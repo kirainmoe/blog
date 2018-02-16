@@ -1,0 +1,122 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>使用 LaTeX + Beamer 制作幻灯片 (Windows) [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "post",
+  "format": "blog/:layout/:title/",
+  "posts": {
+    "title": "使用 LaTeX + Beamer 制作幻灯片 (Windows)",
+    "date": "2017-09-17T08:32:47.000Z",
+    "modified": "2018-01-07T05:18:30.179Z",
+    "content": "<p>因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"为什么选用-LaTeX-Beamer\"><a href=\"#为什么选用-LaTeX-Beamer\" class=\"headerlink\" title=\"为什么选用 LaTeX + Beamer?\"><\\/a>为什么选用 LaTeX + Beamer?<\\/h1><blockquote>\n<p>LaTeX 是一种基于ΤΕΧ的排版系统，利用这种格式，即使使用者没有排版和程序设计的知识也可以充分发挥由TeX所提供的强大功能，能在几天，甚至几小时内生成很多具有书籍质量的印刷品。对于生成复杂表格和数学公式，这一点表现得尤为突出。因此它非常适用于生成高印刷质量的科技和数学类文档。<\\/p>\n<\\/blockquote>\n<p>Beamer 是基于 LaTeX 的一个制作幻灯片的框架。我之所以选用 Beamer 是因为有了两者的搭配，在制作幻灯片的时候你完全不用太过担心如何排版，如何布局，在不同的设备上显示的效果如何，就像用 Markdown 在写作那样，你只需要把你的内容按照格式打进去，它就会编译生成很漂亮、工整的幻灯片，你需要做的只是微调一下显示的效果，以及花更多的精力在雕琢你的内容而不是板式上。<\\/p>\n<p>配置 LaTeX + Beamer 环境比较复杂，因为自己在没有按照现有教程的情况下一步一步地尝试，就这一步折腾了两个小时。但是接下来真正制作幻灯片的时候是很省力省时的，至少是用 PowerPoint 效率的两倍以上，而且一次配置终身受益，也算是值得了。<\\/p>\n<h1 id=\"配置环境\"><a href=\"#配置环境\" class=\"headerlink\" title=\"配置环境\"><\\/a>配置环境<\\/h1><h2 id=\"1-安装-Tex-编译器-TeXLive\"><a href=\"#1-安装-Tex-编译器-TeXLive\" class=\"headerlink\" title=\"1. 安装 Tex 编译器 TeXLive\"><\\/a>1. 安装 Tex 编译器 TeXLive<\\/h2><p>我的工作环境系统是 Windows 10 1703 x64, 用的是 TeXLive 的发行版，编辑 tex 使用的是 Sublime Text 3 + LaTeXTools(不得不说 Sublime 对 LaTeX 的支持确实不错，不像某 VSCode). 需要注意的是我用相同的步骤在 32 位 Windows 10 下配置出现了一些问题，目前暂不知道由什么引起。<\\/p>\n<p>首先到 <a href=\"http:\\/\\/www.tug.org\\/texlive\\/acquire-netinstall.html\" target=\"_blank\" rel=\"external\">http:\\/\\/www.tug.org\\/texlive\\/acquire-netinstall.html<\\/a> 下载适用于 Windows 的最新的 TeXLive 安装程序。然后运行它。<\\/p>\n<p>接下来选择你要如何安装 TeXLive, 有简单安装（就是安装所有东西）和自定义安装，自定义安装里你可以选择一些你想装和不想装的东西，如果你选择完全安装，那装完会有接近 6 个 G 的样子。如果你选择自定义安装，接下来会让你选择安装的路径和需要的东西。勾选一些必要的东西和去掉一些你不需要的语言包就可以了。<\\/p>\n<p>然后是一个漫长的安装过程。TeXLive 的安装程序会自动下载刚刚你选择要安装的东西，默认的安装目录是 <code>C：\\texlive\\2017\\<\\/code> 下。安装完后你可以选择把安装目录下的 bin\\win32 文件夹 (例如<code>C:\\texlive\\2017\\bin\\win32<\\/code>) 加入到系统的环境变量中。<\\/p>\n<h2 id=\"2-安装-Sumatra-PDF\"><a href=\"#2-安装-Sumatra-PDF\" class=\"headerlink\" title=\"2. 安装 Sumatra PDF\"><\\/a>2. 安装 Sumatra PDF<\\/h2><p>这是一款轻便的 PDF 阅读器，用于接下来我们把 LaTeX 文件编译成 PDF 的时候阅览，以及在写作的时候通过 Sublime Text 的插件 LaTexTools 编译，然后实时查看更改（<s>传说中的热更新<\\/s>）。<\\/p>\n<p>这一步比较简单，可以在这里下载到 Sumatra PDF: <a href=\"https:\\/\\/www.sumatrapdfreader.org\\/free-pdf-reader.html\" target=\"_blank\" rel=\"external\">https:\\/\\/www.sumatrapdfreader.org\\/free-pdf-reader.html<\\/a><\\/p>\n<p>安装完成之后要把 Sumatra PDF 的安装路径加到环境变量里（你应该知道环境变量在哪儿设置的哦？此电脑\\/计算机\\/这台电脑\\/我的电脑 右键→属性→高级→环境变量，编辑 Path 值，在内容的后面加一个英文的分号然后把路径贴进去）。<\\/p>\n<h2 id=\"3-安装和配置-Sublime-Text\"><a href=\"#3-安装和配置-Sublime-Text\" class=\"headerlink\" title=\"3. 安装和配置 Sublime Text\"><\\/a>3. 安装和配置 Sublime Text<\\/h2><p>Sublime Text 3 很容易可以下载到并且安装，这里就不赘述了，各位码农们一定很熟悉这个编辑器了。安装完后我们打开它，先安装它的插件包管理器 Package Control, 键盘按 Ctrl + ~，打开控制台，粘贴：<\\/p>\n<pre><code class=\"python\">import urllib.request,os,hashlib; h = &#39;6f4c264a24d933ce70df5dedcf1dcaee&#39; + &#39;ebe013ee18cced0ef93d5f746d80ef60&#39;; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &#39;http:\\/\\/packagecontrol.io\\/&#39; + pf.replace(&#39; &#39;, &#39;%20&#39;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&#39;Error validating download (got %s instead of %s), please try manual install&#39; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &#39;wb&#39; ).write(by)\n<\\/code><\\/pre>\n<p>然后回车，等待它有反应之后就是安装好了。接着按 Ctrl + Shift + P, 选择 Package Control: Install Package, 搜索 LaTexTools 并且安装。<\\/p>\n<p>安装好后，我们在 Preference -&gt; Package Settings -&gt; LaTexTools -&gt; Settings - User，一路点是，然后我们接下来要修改它的配置文件。主要是修改两个地方就行：<\\/p>\n<p>第一个是修改 LaTeX 发行版和 Sumatra PDF 的位置，在文件大概 209 行的位置，找到：<\\/p>\n<pre><code class=\"json\">  &quot;windows&quot;: {\n    \\/\\/ 修改这里的值为 texlive 安装位置的 bin\\win32 文件夹的路径，然后在最后补上一个 ;$PATH 即可，如下\n    &quot;texpath&quot; : &quot;D:\\\\texlive\\\\2017\\\\bin\\\\win32;$PATH&quot;,\n    \\/\\/ TeX 发行版，修改成 texlive\n    &quot;distro&quot; : &quot;texlive&quot;,\n    \\/\\/ Sumatra PDF 的安装位置，要精确到 exe 文件的路径\n    &quot;sumatra&quot;: &quot;C:\\\\Program Files\\\\SumatraPDF\\\\SumatraPDF.exe&quot;,\n    \\/\\/ ...\n  },\n<\\/code><\\/pre>\n<p>第二个是修改编译 tex 文件的方法，在大概 379 行的位置找到：<\\/p>\n<pre><code class=\"json\">  \\/\\/ 把 traditional 改成 simple 或者 basic\n  &quot;builder&quot;: &quot;traditional&quot;,\n<\\/code><\\/pre>\n<p>这样我们就搭建好了环境。接下来就只需要创建一个 tex 文件，写好之后 Ctrl+B 编译就行了，记得在 Tools -&gt; Build system 里设置为 Auto.<\\/p>\n<h1 id=\"Beamer-基本用法\"><a href=\"#Beamer-基本用法\" class=\"headerlink\" title=\"Beamer 基本用法\"><\\/a>Beamer 基本用法<\\/h1><pre><code class=\"latex\">\\documentclass{beamer}\n\\usepackage[utf8]{inputenc}\n% 引入中文支持\n\\usepackage{CJKutf8}\n% 插入图片用的 package\n\\usepackage{graphicx}\n\\usepackage{ulem}\n% 主题和配色\n\\usetheme{Hannover}\n\\usecolortheme{spruce}\n\n\n% 幻灯片信息\n\\title{Slide Title}\n\\author{Slide Author}\n\\institute{Slide Subtitle}\n\\date{\\today}\n\n\\begin{document}\n  % 中文支持\n  \\begin{CJK}{UTF8}{gbsn}\n    % 插入标题页面\n    \\frame{titlepage}\n\n    % 一张幻灯片\n    \\begin{frame}\n      \\frametitle{幻灯片标题}\n      % 无序列表\n      \\begin{itemize}\n        % \\pause 用于单步放映\n        \\item Item 1\\pause\n        \\item Item 2\\pause\n        \\item Item 3\\pause\n      \\end{itemize}\n    \\end{frame}\n\n    % 模块\n    \\section{分类1}\n      \\subsection{标题1}\n      \\begin{frame}\n        \\frametitle{LaTeX + Beamer 基本用法}\n        % 居中\n        \\begin{Center}\n          Contents that will be displayed on center.\n        \\end{center}\n\n        % 插入一张图片\n        \\includegraphics[height=4cm]{img\\/1.png}\n\n        % 表格\n          \\begin{table}[h]\n          \\centering\n          \\begin{tabular}{|c|c|}\n            \\hline 基因型 &amp; 血型 \\\\\n            \\hline I$^{A}$I$^{A}$, I$^{A}$i &amp; A 型 \\\\\n            \\hline I$^{B}$I$^{B}$, I$^{B}$i &amp; B 型 \\\\\n            \\hline I$^{A}$I$^{B}$ &amp; AB 型 \\\\\n            \\hline ii &amp; O 型 \\\\\n            \\hline\n          \\end{tabular}\n          \\caption{基因型和血型的对应关系}\n          \\label{tab:Margin_settings}\n      \\end{frame}\n  \\end{CJK}\n\\end{document}\n<\\/code><\\/pre>\n<p>大概是这样的。其实用起来还是非常简单的。写完之后按上面的方法编译，然后你就可以找到 tex 文件目录下的 pdf 文件，这个就是编译出的幻灯片。至此我们就完成了 LaTeX + Beamer 环境在 Windows 下的配置。 Linux 和 macOS 下大同小异，就是安装发行版的过程和插件配置时的路径有区别，具体请自行搜索。<\\/p>\n",
+    "excerpt": "<p>因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.<\\/p>",
+    "slug": "making-slider-with-latex-beamer-on-windows",
+    "published": true,
+    "layout": "post",
+    "path": "blog/post/making-slider-with-latex-beamer-on-windows/",
+    "permalink": "https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/",
+    "tags": [
+      {
+        "name": "latex",
+        "slug": "latex",
+        "path": "tags/latex/",
+        "permalink": "https://kirainmoe.com/tags/latex/",
+        "length": 1
+      },
+      {
+        "name": "beamer",
+        "slug": "beamer",
+        "path": "tags/beamer/",
+        "permalink": "https://kirainmoe.com/tags/beamer/",
+        "length": 1
+      }
+    ],
+    "categories": []
+  },
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary"
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

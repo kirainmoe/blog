@@ -1,0 +1,184 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Archives: 9/2017: 2017 [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "year",
+  "format": "blog/:layout/:title/",
+  "posts": [
+    {
+      "title": "使用 LaTeX + Beamer 制作幻灯片 (Windows)",
+      "date": "2017-09-17T08:32:47.000Z",
+      "modified": "2018-01-07T05:18:30.179Z",
+      "content": "<p>因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"为什么选用-LaTeX-Beamer\"><a href=\"#为什么选用-LaTeX-Beamer\" class=\"headerlink\" title=\"为什么选用 LaTeX + Beamer?\"><\\/a>为什么选用 LaTeX + Beamer?<\\/h1><blockquote>\n<p>LaTeX 是一种基于ΤΕΧ的排版系统，利用这种格式，即使使用者没有排版和程序设计的知识也可以充分发挥由TeX所提供的强大功能，能在几天，甚至几小时内生成很多具有书籍质量的印刷品。对于生成复杂表格和数学公式，这一点表现得尤为突出。因此它非常适用于生成高印刷质量的科技和数学类文档。<\\/p>\n<\\/blockquote>\n<p>Beamer 是基于 LaTeX 的一个制作幻灯片的框架。我之所以选用 Beamer 是因为有了两者的搭配，在制作幻灯片的时候你完全不用太过担心如何排版，如何布局，在不同的设备上显示的效果如何，就像用 Markdown 在写作那样，你只需要把你的内容按照格式打进去，它就会编译生成很漂亮、工整的幻灯片，你需要做的只是微调一下显示的效果，以及花更多的精力在雕琢你的内容而不是板式上。<\\/p>\n<p>配置 LaTeX + Beamer 环境比较复杂，因为自己在没有按照现有教程的情况下一步一步地尝试，就这一步折腾了两个小时。但是接下来真正制作幻灯片的时候是很省力省时的，至少是用 PowerPoint 效率的两倍以上，而且一次配置终身受益，也算是值得了。<\\/p>\n<h1 id=\"配置环境\"><a href=\"#配置环境\" class=\"headerlink\" title=\"配置环境\"><\\/a>配置环境<\\/h1><h2 id=\"1-安装-Tex-编译器-TeXLive\"><a href=\"#1-安装-Tex-编译器-TeXLive\" class=\"headerlink\" title=\"1. 安装 Tex 编译器 TeXLive\"><\\/a>1. 安装 Tex 编译器 TeXLive<\\/h2><p>我的工作环境系统是 Windows 10 1703 x64, 用的是 TeXLive 的发行版，编辑 tex 使用的是 Sublime Text 3 + LaTeXTools(不得不说 Sublime 对 LaTeX 的支持确实不错，不像某 VSCode). 需要注意的是我用相同的步骤在 32 位 Windows 10 下配置出现了一些问题，目前暂不知道由什么引起。<\\/p>\n<p>首先到 <a href=\"http:\\/\\/www.tug.org\\/texlive\\/acquire-netinstall.html\" target=\"_blank\" rel=\"external\">http:\\/\\/www.tug.org\\/texlive\\/acquire-netinstall.html<\\/a> 下载适用于 Windows 的最新的 TeXLive 安装程序。然后运行它。<\\/p>\n<p>接下来选择你要如何安装 TeXLive, 有简单安装（就是安装所有东西）和自定义安装，自定义安装里你可以选择一些你想装和不想装的东西，如果你选择完全安装，那装完会有接近 6 个 G 的样子。如果你选择自定义安装，接下来会让你选择安装的路径和需要的东西。勾选一些必要的东西和去掉一些你不需要的语言包就可以了。<\\/p>\n<p>然后是一个漫长的安装过程。TeXLive 的安装程序会自动下载刚刚你选择要安装的东西，默认的安装目录是 <code>C：\\texlive\\2017\\<\\/code> 下。安装完后你可以选择把安装目录下的 bin\\win32 文件夹 (例如<code>C:\\texlive\\2017\\bin\\win32<\\/code>) 加入到系统的环境变量中。<\\/p>\n<h2 id=\"2-安装-Sumatra-PDF\"><a href=\"#2-安装-Sumatra-PDF\" class=\"headerlink\" title=\"2. 安装 Sumatra PDF\"><\\/a>2. 安装 Sumatra PDF<\\/h2><p>这是一款轻便的 PDF 阅读器，用于接下来我们把 LaTeX 文件编译成 PDF 的时候阅览，以及在写作的时候通过 Sublime Text 的插件 LaTexTools 编译，然后实时查看更改（<s>传说中的热更新<\\/s>）。<\\/p>\n<p>这一步比较简单，可以在这里下载到 Sumatra PDF: <a href=\"https:\\/\\/www.sumatrapdfreader.org\\/free-pdf-reader.html\" target=\"_blank\" rel=\"external\">https:\\/\\/www.sumatrapdfreader.org\\/free-pdf-reader.html<\\/a><\\/p>\n<p>安装完成之后要把 Sumatra PDF 的安装路径加到环境变量里（你应该知道环境变量在哪儿设置的哦？此电脑\\/计算机\\/这台电脑\\/我的电脑 右键→属性→高级→环境变量，编辑 Path 值，在内容的后面加一个英文的分号然后把路径贴进去）。<\\/p>\n<h2 id=\"3-安装和配置-Sublime-Text\"><a href=\"#3-安装和配置-Sublime-Text\" class=\"headerlink\" title=\"3. 安装和配置 Sublime Text\"><\\/a>3. 安装和配置 Sublime Text<\\/h2><p>Sublime Text 3 很容易可以下载到并且安装，这里就不赘述了，各位码农们一定很熟悉这个编辑器了。安装完后我们打开它，先安装它的插件包管理器 Package Control, 键盘按 Ctrl + ~，打开控制台，粘贴：<\\/p>\n<pre><code class=\"python\">import urllib.request,os,hashlib; h = &#39;6f4c264a24d933ce70df5dedcf1dcaee&#39; + &#39;ebe013ee18cced0ef93d5f746d80ef60&#39;; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &#39;http:\\/\\/packagecontrol.io\\/&#39; + pf.replace(&#39; &#39;, &#39;%20&#39;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&#39;Error validating download (got %s instead of %s), please try manual install&#39; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &#39;wb&#39; ).write(by)\n<\\/code><\\/pre>\n<p>然后回车，等待它有反应之后就是安装好了。接着按 Ctrl + Shift + P, 选择 Package Control: Install Package, 搜索 LaTexTools 并且安装。<\\/p>\n<p>安装好后，我们在 Preference -&gt; Package Settings -&gt; LaTexTools -&gt; Settings - User，一路点是，然后我们接下来要修改它的配置文件。主要是修改两个地方就行：<\\/p>\n<p>第一个是修改 LaTeX 发行版和 Sumatra PDF 的位置，在文件大概 209 行的位置，找到：<\\/p>\n<pre><code class=\"json\">  &quot;windows&quot;: {\n    \\/\\/ 修改这里的值为 texlive 安装位置的 bin\\win32 文件夹的路径，然后在最后补上一个 ;$PATH 即可，如下\n    &quot;texpath&quot; : &quot;D:\\\\texlive\\\\2017\\\\bin\\\\win32;$PATH&quot;,\n    \\/\\/ TeX 发行版，修改成 texlive\n    &quot;distro&quot; : &quot;texlive&quot;,\n    \\/\\/ Sumatra PDF 的安装位置，要精确到 exe 文件的路径\n    &quot;sumatra&quot;: &quot;C:\\\\Program Files\\\\SumatraPDF\\\\SumatraPDF.exe&quot;,\n    \\/\\/ ...\n  },\n<\\/code><\\/pre>\n<p>第二个是修改编译 tex 文件的方法，在大概 379 行的位置找到：<\\/p>\n<pre><code class=\"json\">  \\/\\/ 把 traditional 改成 simple 或者 basic\n  &quot;builder&quot;: &quot;traditional&quot;,\n<\\/code><\\/pre>\n<p>这样我们就搭建好了环境。接下来就只需要创建一个 tex 文件，写好之后 Ctrl+B 编译就行了，记得在 Tools -&gt; Build system 里设置为 Auto.<\\/p>\n<h1 id=\"Beamer-基本用法\"><a href=\"#Beamer-基本用法\" class=\"headerlink\" title=\"Beamer 基本用法\"><\\/a>Beamer 基本用法<\\/h1><pre><code class=\"latex\">\\documentclass{beamer}\n\\usepackage[utf8]{inputenc}\n% 引入中文支持\n\\usepackage{CJKutf8}\n% 插入图片用的 package\n\\usepackage{graphicx}\n\\usepackage{ulem}\n% 主题和配色\n\\usetheme{Hannover}\n\\usecolortheme{spruce}\n\n\n% 幻灯片信息\n\\title{Slide Title}\n\\author{Slide Author}\n\\institute{Slide Subtitle}\n\\date{\\today}\n\n\\begin{document}\n  % 中文支持\n  \\begin{CJK}{UTF8}{gbsn}\n    % 插入标题页面\n    \\frame{titlepage}\n\n    % 一张幻灯片\n    \\begin{frame}\n      \\frametitle{幻灯片标题}\n      % 无序列表\n      \\begin{itemize}\n        % \\pause 用于单步放映\n        \\item Item 1\\pause\n        \\item Item 2\\pause\n        \\item Item 3\\pause\n      \\end{itemize}\n    \\end{frame}\n\n    % 模块\n    \\section{分类1}\n      \\subsection{标题1}\n      \\begin{frame}\n        \\frametitle{LaTeX + Beamer 基本用法}\n        % 居中\n        \\begin{Center}\n          Contents that will be displayed on center.\n        \\end{center}\n\n        % 插入一张图片\n        \\includegraphics[height=4cm]{img\\/1.png}\n\n        % 表格\n          \\begin{table}[h]\n          \\centering\n          \\begin{tabular}{|c|c|}\n            \\hline 基因型 &amp; 血型 \\\\\n            \\hline I$^{A}$I$^{A}$, I$^{A}$i &amp; A 型 \\\\\n            \\hline I$^{B}$I$^{B}$, I$^{B}$i &amp; B 型 \\\\\n            \\hline I$^{A}$I$^{B}$ &amp; AB 型 \\\\\n            \\hline ii &amp; O 型 \\\\\n            \\hline\n          \\end{tabular}\n          \\caption{基因型和血型的对应关系}\n          \\label{tab:Margin_settings}\n      \\end{frame}\n  \\end{CJK}\n\\end{document}\n<\\/code><\\/pre>\n<p>大概是这样的。其实用起来还是非常简单的。写完之后按上面的方法编译，然后你就可以找到 tex 文件目录下的 pdf 文件，这个就是编译出的幻灯片。至此我们就完成了 LaTeX + Beamer 环境在 Windows 下的配置。 Linux 和 macOS 下大同小异，就是安装发行版的过程和插件配置时的路径有区别，具体请自行搜索。<\\/p>\n",
+      "excerpt": "<p>因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.<\\/p>",
+      "slug": "making-slider-with-latex-beamer-on-windows",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/making-slider-with-latex-beamer-on-windows/",
+      "permalink": "https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/",
+      "tags": [
+        {
+          "name": "latex",
+          "slug": "latex",
+          "path": "tags/latex/",
+          "permalink": "https://kirainmoe.com/tags/latex/",
+          "length": 1
+        },
+        {
+          "name": "beamer",
+          "slug": "beamer",
+          "path": "tags/beamer/",
+          "permalink": "https://kirainmoe.com/tags/beamer/",
+          "length": 1
+        }
+      ],
+      "categories": []
+    },
+    {
+      "title": "每周解题报告 (4th, 8/20~9/10)",
+      "date": "2017-09-10T03:16:22.000Z",
+      "modified": "2018-01-07T05:18:35.990Z",
+      "content": "<p>经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……<\\/p>\n<p>有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在<a href=\"https:\\/\\/github.com\\/kirainmoe\\/oh-my-hdu\" target=\"_blank\" rel=\"external\">这个地方<\\/a>。<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"13-200-HDU1069-Monkey-and-Banana\"><a href=\"#13-200-HDU1069-Monkey-and-Banana\" class=\"headerlink\" title=\"13\\/200, HDU1069, Monkey and Banana\"><\\/a>13\\/200, HDU1069, Monkey and Banana<\\/h1><h2 id=\"Solution\"><a href=\"#Solution\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>经典 DP，最开始的思路是……设一个四维的状态…反正数据范围这么小是吧 (x) 后来写了好久写不下去了。查了一发题解，随便点开一个，看到第一句话：先把 x 排序，然后把 y 排序……会了……<\\/p>\n<p>那么，首先输入一组 xyz，然后排序一下，选择其中两个当做 width 和 length，然后最后一个数当 height；把 x, y 分别按照从大到小的顺序排序一遍，然后对 z 求满足第 i 层的 x, y 小于第 i-1 层的 x, y 时的最大 z 之和就好了。<\\/p>\n<p>转移方程：<code>dp[i] = dp[j] + block[i].height, 其中 j = 0...i-1<\\/code><\\/p>\n<p><em>\\/\\/ PS. 嘛，顺序枚举 j 似乎会 WA，所以 j 要从 i-1 倒回去。 <\\/em><\\/p>\n<h2 id=\"Code\"><a href=\"#Code\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXN = 35 * 6 + 10;\nstruct Block {\n  int x, y, z;\n};\nBlock b[MAXN];\nint T, kases = 0;\nint size = 0, ans = 0;\nint dp[MAXN];\n\nbool cmp(const Block a, const Block b)\n{\n  if (a.x &gt; b.x)\n    return true;\n  if (a.x == b.x &amp;&amp; a.y &gt; b.y)\n    return true;\n  return false;\n}\n\nint main()\n{\n  while (scanf(&quot;%d&quot;, &amp;T) != EOF &amp;&amp; T != 0)\n  {    \n    size = 0, ans = 0;\n    memset(b, 0, sizeof(b));\n    memset(dp, 0, sizeof(dp));\n\n    for (int i = 0; i &lt; T; i++)\n    {\n      int tx, ty, tz;\n      scanf(&quot;%d%d%d&quot;, &amp;tx, &amp;ty, &amp;tz);\n      int arr[3] = {tx, ty, tz};\n\n      sort(arr, arr + 3);\n\n      \\/\\/ permutation\n      b[size].x = arr[0], b[size].y = arr[1], b[size++].z = arr[2];\n      b[size].x = arr[0], b[size].y = arr[2], b[size++].z = arr[1];\n      b[size].x = arr[1], b[size].y = arr[2], b[size++].z = arr[0];\n\n      sort(b, b+size, cmp);\n    }\n\n    for (int i = 0; i &lt; size; i++)\n    {\n      dp[i] = b[i].z;\n      for (int j = i - 1; j &gt;= 0; j--)\n      {\n        if (b[i].x &lt; b[j].x &amp;&amp; b[i].y &lt; b[j].y) {\n          dp[i] = max(dp[j] + b[i].z, dp[i]);\n        }\n      }\n      ans = max(ans, dp[i]);\n    }\n    printf(&quot;Case %d: maximum height = %d\\n&quot;, ++kases, ans);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"14-200-HDU1176-免费馅饼\"><a href=\"#14-200-HDU1176-免费馅饼\" class=\"headerlink\" title=\"14\\/200, HDU1176, 免费馅饼\"><\\/a>14\\/200, HDU1176, 免费馅饼<\\/h1><h2 id=\"Solution-1\"><a href=\"#Solution-1\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>这题有两种做法。<\\/p>\n<ol>\n<li><p>第一种是直接 DP，注意的是可以不要想太多去检查状态是否合法，状态表示和转移方程：<code>dp[i][j]<\\/code> 表示第 i 秒的时候站在第 j 个位置能接到的最大馅饼数，<br>则：<code>dp[i][j]  = max(dp[i-1][j], dp[i-1][j-1], dp[i-1][j+1]) + items[i][j] (如果 j-1 和 j+1 存在)<\\/code><\\/p>\n<\\/li>\n<li><p>数塔做法：联想一下数字三角形，从下往上递推回去就行了。<code>dp[i][j]<\\/code> 还是表示第 i 秒在第 j 个位置能取到的最大值，不同的是要逆推，并且可以直接覆盖掉之前的值（因为计算完就没有用了），则：<br><code>dp[i][j] =  max(dp[i+1][j-1], dp[i+1][j], dp[i+1][j+1]) + dp[i][j]<\\/code><\\/p>\n<\\/li>\n<\\/ol>\n<h2 id=\"Code-1\"><a href=\"#Code-1\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">\\/\\/ Solution 1\n#include &lt;bits\\/stdc++.h&gt;\nusing namespace std;\n\nconst int MAXT = 1e5 + 10;\nconst int MAXP = 11;\n\nint n, mt, ans = 0;\nint items[MAXT][MAXP];\nint dp[MAXT][MAXP];\n\nint cmp(int a, int b, int c)\n{\n  return max(a, max(b, c));\n}\n\nint main()\n{\n  while (scanf(&quot;%d&quot;, &amp;n) != EOF &amp;&amp; n != 0)\n  {\n    memset(items, 0, sizeof(items));\n    memset(dp, 0, sizeof(dp));\n    mt = 0, ans = 0;\n    for (int i = 0; i &lt; n; i++)\n    {\n      int x, t;\n      scanf(&quot;%d%d&quot;, &amp;x, &amp;t);\n      items[t][x]++;\n      mt = max(t, mt);\n    }\n\n    dp[1][4] = items[1][4];\n    dp[1][5] = items[1][5];\n    dp[1][6] = items[1][6];\n\n    for (int i = 2; i &lt;= mt; i++)\n    {\n      for (int j = 0; j &lt; MAXP; j++)\n      {\n        dp[i][j] = dp[i-1][j];\n        if (j == 0) {\n          dp[i][j] = max(dp[i-1][j], dp[i-1][j+1]) + items[i][j];\n        } else if (j == MAXP - 1) {\n          dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]) + items[i][j];\n        } else {\n          dp[i][j] = cmp(dp[i-1][j-1], dp[i-1][j], dp[i-1][j+1]) + items[i][j];\n        }\n        ans = max(ans, dp[i][j]);\n      }\n    }\n\n    printf(&quot;%d\\n&quot;, ans);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<pre><code class=\"cpp\">\\/\\/ Solution 2\n#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXT = 1e5 + 10;\nconst int MAXP = 11;\n\nint n, mt, ans = 0;\nint pies[MAXT][MAXP];\n\nint main()\n{\n  while (scanf(&quot;%d&quot;, &amp;n) != EOF &amp;&amp; n)\n  {\n    memset(pies, 0, sizeof(pies));\n    ans = 0;\n    for (int i = 0; i &lt; n; i++)\n    {\n      int x, t;\n      scanf(&quot;%d%d&quot;, &amp;x, &amp;t);\n      pies[t][x]++;\n      mt = max(mt, t);\n    }\n\n    for (int i = mt - 1; i &gt;= 0; i--)\n    {\n      for (int j = 0; j &lt; MAXP; j++)\n      {\n        int tmp = pies[i][j];       \\/\\/ current\n        pies[i][j] = pies[i+1][j];\n\n        if (j &gt; 0) {\n          pies[i][j] = max(pies[i+1][j-1], pies[i][j]);\n        }\n\n        if (j &lt; MAXP - 1) {\n          pies[i][j] = max(pies[i+1][j+1], pies[i][j]);\n        }\n\n        pies[i][j] += tmp;\n      }\n    }\n\n    printf(&quot;%d\\n&quot;, pies[0][5]);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"15-200-Codeforces-846A-Curriculum-Vitae\"><a href=\"#15-200-Codeforces-846A-Curriculum-Vitae\" class=\"headerlink\" title=\"15\\/200, Codeforces 846A, Curriculum Vitae\"><\\/a>15\\/200, Codeforces 846A, Curriculum Vitae<\\/h1><h2 id=\"Solution-2\"><a href=\"#Solution-2\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>题意就是一个人要找工作，要在简历上介绍他所完成过的游戏，游戏有成功的和失败的，这个人不想让任何失败的游戏出现在成功的游戏之后，然后求他最多可以在他的简历上放上多少个这样的符合要求的游戏。<\\/p>\n<p>↑ 说成人话就是：求一个由 0 和 1 组成的序列的子序列，这个子序列满足没有一个 0 在 1 的右边，且长度尽可能大。例如 0 1 0 0 1 0 的符合要求的子序列为 0 0 0 1 或 0 0 0 0.<\\/p>\n<p>翻译完之后我们可以发现，只要找到一个最长的数列的，使得它的左边都是 0，右边都是 1 就可以了。然后我们可以发现这个子序列满足<strong>最长不下降（注意不是最长上升）<\\/strong>的性质。鉴于数据范围 &lt;= 100，所以我们可以用 O(n^2) 的最长不下降子序列算法直接过。<\\/p>\n<p>第二天想了一下，突然觉得这题似乎还有线性的做法：考虑第 i 件作品是否入选，和它的上一件符合性质要求的作品有关。假如第 i 件作品是失败的，那么第 i 件写入简历时，最大值为 <strong>上一件失败作品的最大值 + 1<\\/strong>；如果第 i 件作品是成功的，那么第 i 件写入简历时最大值为 <strong>上一件失败作品的最大值 和 上一件成功作品的最大值 两者的最大值 + 1<\\/strong>。这样，我们可以用一个 <code>last0<\\/code> 表示上一件失败作品的位置，用 <code>last1<\\/code> 表示上一件成功作品的位置。具体的转移方程可以看代码：<\\/p>\n<h2 id=\"Code-2\"><a href=\"#Code-2\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">\\/\\/ Solution 1: O(n^2)\n#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXN = 105;\nconst int INF = 1e9 + 7;\nint n, ans = 0;\nint arr[MAXN];\nint dp[MAXN];\nint main()\n{\n  memset(arr, 0, sizeof(arr));\n  memset(dp, 0, sizeof(dp));\n\n  scanf(&quot;%d&quot;, &amp;n);\n  for (int i = 0; i &lt; n; i++)\n  {\n    scanf(&quot;%d&quot;, &amp;arr[i]);\n  }\n\n  for (int i = 0; i &lt; n; i++)\n  {\n    dp[i] = 1;\n    for (int j = 0; j &lt; i; j++)\n    {\n      if (arr[j] &lt;= arr[i] &amp;&amp; dp[i] &lt; dp[j] + 1)\n      {\n        dp[i] = dp[j] + 1;\n      }\n    }\n    ans = max(dp[i], ans);\n  }\n\n  printf(&quot;%d&quot;, ans);\n\n  return 0;\n}\n<\\/code><\\/pre>\n<pre><code class=\"cpp\">\\/\\/ Solution 2: O(n)\n#include &lt;bits\\/stdc++.h&gt;\nusing namespace std;\nconst int MAXN = 105;\nint n;\nint dp[MAXN];\nint last0 = -1, last1 = -1;\nint main()\n{\n    memset(dp, 0, sizeof(dp));\n    scanf(&quot;%d&quot;, &amp;n);\n    for (int i = 0; i &lt; n; i++)\n    {\n        int tmp;\n        scanf(&quot;%d&quot;, &amp;tmp);\n        if (tmp == 0) {\n            dp[i] = (last0 == -1 ? 1 : dp[last0] + 1);\n            last0 = i;\n        } else {\n            if (i == 0) {\n                dp[i] = 1;\n            } else {\n              dp[i] = 1;\n                if (last0 != -1) {\n                    dp[i] = max(dp[last0] + 1, dp[i]);\n                }\n                if (last1 != -1) {\n                    dp[i] = max(dp[last1] + 1, dp[i]);\n                }\n            }\n            last1 = i;\n        }\n    }\n    int ans = 0;\n    for (int i = 0; i &lt; n; i++)\n    {\n      ans = max(ans, dp[i]);\n  }\n  printf(&quot;%d&quot;, ans);\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"16-200-Codeforces-854A-Fraction\"><a href=\"#16-200-Codeforces-854A-Fraction\" class=\"headerlink\" title=\"16\\/200, Codeforces 854A, Fraction\"><\\/a>16\\/200, Codeforces 854A, Fraction<\\/h1><p>嗯……太水了，不想写了，就是单纯的计算。<\\/p>\n<pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nconst int INF = 1e9 + 7;\nint gcd(int a, int b)\n{\n  return (a == 0) ? b : gcd(b % a, a);\n}\nint main()\n{\n  int ori, curi = 1, curj = INF;\n\n  scanf(&quot;%d&quot;, &amp;ori);\n  for (int i = 1; i &lt; ori; i++)\n  {\n    for (int j = i + 1; j &lt; ori; j++)\n    {\n      int gcder = gcd(j, i);\n      double a = (double) i, b = (double) j;\n\n      if (\n        (i + j) == ori &amp;&amp;\n        gcder == 1 &amp;&amp;\n        (double)(a \\/ b) &gt; (double)((double)curi \\/ (double)curj)\n      ) {\n        curi = i, curj = j;\n      }\n    }\n  }\n\n  printf(&quot;%d %d&quot;, curi, curj);\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"17-200-HDU4568-Hunter\"><a href=\"#17-200-HDU4568-Hunter\" class=\"headerlink\" title=\"17\\/200, HDU4568, Hunter\"><\\/a>17\\/200, HDU4568, Hunter<\\/h1><p>这题前前后后花了我两星期的时间……这星期又花了三天的时间看它，终于理解并且 A 掉了这题……果然状态压缩还是一个大坑 Orz……<\\/p>\n<h2 id=\"Solution-3\"><a href=\"#Solution-3\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>题目大意是给定一个 n*m 的地图，其中有一些点当中有宝藏，经过地图中的每个点都需要花费相应的代价。一个人要从边界进入这个地图，经过所有的宝藏点，然后从边界走出，问这样做的最小代价是多少。n, m &lt;= 200, 宝藏数目 1 &lt;= k &lt;= 13.<\\/p>\n<p>首先题目的模型说成人话就是从边界的任何一点进入，取走所有宝藏，然后从边界的任意一点走出，所以我们可以知道最小代价应该是：从边界到第一个点的代价+第一个点到第二个点的代价+……+从终点走出边界的代价，这样这道题就被我们分解成了一个个的子问题了，我们只需要分别计算这些子问题就可以了。现在：<\\/p>\n<ol>\n<li><p>从边界到第一个点的最小代价和从终点走出的边界如何知道？从第 i 个点到第 j 个点的最小代价又如何知道？SPFA 对每一个宝藏点跑一遍就行了，这样我们总共需要进行 k 次 SPFA。<\\/p>\n<\\/li>\n<li><p>如何决策？每次拓展都选择当前一步代价最小的方案走显然有可能不是最优解，所以我们还是用动态规划来解全局最优的最小代价。<\\/p>\n<\\/li>\n<li><p>用 DP 如何表示状态？这道题的要求是走完所有的宝藏点，那么我们首先考虑如何表示经过的和未经过的宝藏点。因为 k &lt;= 13，我们的第一反应应该是状态压缩。用二进制表示状态点的经过情况，二进制第 i 位为 0 表示未经过第 i 个宝藏点，为 1 则表示已经经过，然后把二进制状态转换成十进制的整数即可。还有一个问题，假如只设置这样的一个状态，那么只能表示经过的点情况，不能表示终点在哪一个点，而我们到达终点的时候还需要从边界走出去，这样就还差一步，所以我们再设计一维状态，那么：<\\/p>\n<\\/li>\n<\\/ol>\n<blockquote>\n<p>设 <code>dp[i][j]<\\/code> 为当前经过的点状态为 i 且最后所在的终点位置为 j 时，所花费的最小代价。这样我们还能顺便得到转移方程：<code>dp[s | (1 &lt;&lt; next)][next] = min(dp[s | (1 &lt;&lt; next)][next], dp[s][cur] + toEach[cur][next])<\\/code>, 其中 s 是当前状态，cur 是当前状态的终点，next 是下一步的点。<\\/p>\n<\\/blockquote>\n<p>（为什么这里不需要表示起点？因为我们用 <code>dp[1 &lt;&lt; i][i] = toEdge[i]<\\/code> 可以很容易地表示以第 i 个点为起点时的代价，又我们的状态从 0 开始，所以起点在哪可以直接决策；但是终点我们很难通过 DP 方程直接决策，所以我们多一维状态。）<\\/p>\n<p>首先我们用 SPFA 先求出每两个宝藏点之间的距离和每个宝藏点到边界的距离（注意节点的拓展方向），然后就可以状态压缩了。DP 完之后，别忘了要回到边界，所以最终 <code>ans = min(dp[(1 &lt;&lt; k) - 1][i] + toEdge[i], ans), 其中 i = 0...k<\\/code>.<\\/p>\n<p>这样我们就完美地解决了这个问题。<\\/p>\n<h2 id=\"Code-3\"><a href=\"#Code-3\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt;\nusing namespace std;\nconst int INF = 1e9 + 7;\nconst int MAXN = 205;\nconst int MAXT = 14;\n\nstruct Point {\n  int x, y;\n};\nPoint target[MAXT];    \\/\\/ 宝藏坐标\n\nint k, cases, row, col;\n\n\\/\\/ dp[i][j] 表示当前已经过的宝藏点状态为 i, 并且终点为 j 时所花费的最小代价\n\\/\\/ 那么有 DP 方程：dp[s|(1&lt;&lt;next)][next] = min(dp[s|(1&lt;&lt;next)][s], dp[s][cur] + toEach[cur][next]);\n\\/\\/ 其中 next 是下一个目标状态点，cur 是当前状态的终点\nint dp[1 &lt;&lt; MAXT][MAXT];\n\n\\/\\/ 用于 SPFA 计算每个宝藏点之间的距离\nint dist[MAXN][MAXN];\n\n\\/\\/ toEdge[i] 表示第 i 个宝藏点到边界的最小代价（不包括本身）\n\\/\\/ toEach[i][j] 表示第 i 个宝藏点到第 j 个宝藏点的最小代价\nint toEdge[MAXT], toEach[MAXT][MAXT];\n\n\\/\\/ SPFA 拓展节点的方向\nint dir[2][4] = {\n  { 0, 0, 1, -1 },\n  { 1, -1, 0, 0 }\n};\n\n\\/\\/ SPFA 记录点访问情况的数组\nbool vis[MAXN][MAXN];\n\n\\/\\/ 用不定长数组存储地图\nvector&lt;int&gt; G[MAXN];\n\nvoid SPFA(int s)\n{\n  \\/\\/ 初始化 SPFA\n  memset(vis, 0, sizeof(vis));\n  for (int i = 0; i &lt; MAXN; i++)\n    for (int j = 0; j &lt; MAXN; j++)\n      dist[i][j] = INF;\n\n  queue&lt;Point&gt; Q;\n\n  Point start;\n  start.x = target[s].x, start.y = target[s].y;\n  vis[start.x][start.y] = 1;    \\/\\/ 标记起点为已访问\n  dist[start.x][start.y] = 0;   \\/\\/ 起点到自身的最短路为 0\n  Q.push(start);\n\n  while (!Q.empty())\n  {\n    Point cur = Q.front();\n    Q.pop();\n    vis[cur.x][cur.y] = 0;    \\/\\/ 当前节点出队，标记为未访问\n\n    \\/\\/ 到达边界，更新该点到边界的距离\n    if (cur.x == 0 || cur.y == 0 || cur.x == row - 1 || cur.y == col - 1) {\n      toEdge[s] = min(toEdge[s], dist[cur.x][cur.y]);\n    }\n\n    \\/\\/ 拓展节点\n    for (int i = 0; i &lt; 4; i++)\n    {\n      Point next;\n      next.x = cur.x + dir[0][i], next.y = cur.y + dir[1][i];\n      \\/\\/ 检验节点合法性以及是否可到达\n      if (next.x &gt;= 0 &amp;&amp; next.y &gt;= 0 &amp;&amp; next.x &lt; row &amp;&amp; next.y &lt; col &amp;&amp; G[next.x][next.y] != -1) {\n        \\/\\/ 松弛操作\n        if (dist[next.x][next.y] &gt; dist[cur.x][cur.y] + G[next.x][next.y]) {\n          dist[next.x][next.y] = dist[cur.x][cur.y] + G[next.x][next.y];\n          if (!vis[next.x][next.y]) {\n            Q.push(next);\n            vis[next.x][next.y] = 1;\n          }\n        }\n      }\n    } \\/\\/ end for i\n  } \\/\\/ end while\n}\n\nvoid init()\n{\n  for (int i = 0; i &lt; MAXN; i++)\n    G[i].clear();\n\n  for (int i = 0; i &lt; (1 &lt;&lt; MAXT); i++)\n    for (int j = 0; j &lt; MAXT; j++)\n      dp[i][j] = INF;\n\n  fill(toEdge, toEdge + MAXT, INF);\n\n  for (int i = 0; i &lt; MAXT; i++)\n    for (int j = 0; j &lt; MAXT; j++)\n      toEach[i][j] = INF;\n}\n\nint main()\n{\n  scanf(&quot;%d&quot;, &amp;cases);\n  while (cases--)\n  {\n    init();\n    scanf(&quot;%d%d&quot;, &amp;row, &amp;col);\n    for (int i = 0; i &lt; row; i++)\n    {\n      for (int j = 0; j &lt; col; j++)\n      {\n        int tmp;\n        scanf(&quot;%d&quot;, &amp;tmp);\n        G[i].push_back(tmp);\n      }\n    }\n    scanf(&quot;%d&quot;, &amp;k);\n    for (int i = 0; i &lt; k; i++)\n    {\n      scanf(&quot;%d%d&quot;, &amp;target[i].x, &amp;target[i].y);\n    }\n\n    \\/\\/ 求每两个宝藏点之间的最短距离（最小代价）\n    for (int i = 0; i &lt; k; i++)\n    {\n      SPFA(i);\n      for (int j = 0; j &lt; k; j++)\n      {\n        \\/\\/ 自身到自身的代价为 0\n        if (i == j) {\n          toEach[i][j] = 0;\n          continue;\n        }\n        int jx = target[j].x, jy = target[j].y;\n        toEach[i][j] = min(toEach[i][j], dist[jx][jy]);\n      }\n      \\/\\/ dp[1 &lt;&lt; i][i] 表示只访问了第 i 个点时的代价\n      \\/\\/ 等于：从边界进来时的代价 + 自身的代价\n      dp[1 &lt;&lt; i][i] = toEdge[i] + G[target[i].x][target[i].y];\n    }\n\n    \\/\\/ solve\n    \\/\\/ 枚举从 0 到 (1 &lt;&lt; k) - 1 的每个状态\n    for (int state = 0; state &lt; (1 &lt;&lt; k); state++)\n    {\n      \\/\\/ 枚举该状态当前的终点\n      for (int i = 0; i &lt; k; i++)\n      {\n        \\/\\/ 如果状态不包含当前点，则回溯\n        if ((state &amp; (1 &lt;&lt; i)) == 0) {\n          continue;\n        }\n\n        \\/\\/ 如果当前状态下到终点的距离还没有计算，则回溯？\n        \\/\\/ 不太清楚是不是这样的，因为我注释掉这段代码仍然是 AC 的\n        if (dp[state][i] == INF) {\n          continue;\n        }\n\n        \\/\\/ 枚举在当前状态时，下一个目标是去哪一个宝藏点呢\n        for (int j = 0; j &lt; k; j++)\n        {\n          \\/\\/ 如果这个宝藏点已经访问过了，就回溯，因为每个点只能走一次\n          if ((state &amp; (1 &lt;&lt; j)) == 1) {\n            continue;\n          }\n          \\/\\/ 下一个状态\n          int next = (state | (1 &lt;&lt; j));\n\n          \\/\\/ 下一个状态 next，终点为 j 的最小代价等于 这个代价 和 当前代价+(cur, next)两点间最短距离 的最小值\n          dp[next][j] = min(dp[next][j], dp[state][i] + toEach[i][j]);\n        } \\/\\/ for j\n      } \\/\\/ for i\n    } \\/\\/ for state\n\n    \\/\\/ 输出答案\n    int ans = INF;\n    for (int i = 0; i &lt; k; i++)\n    {\n      \\/\\/ 最终的最优答案是 min(dp[(1 &lt;&lt; k) - 1][i]), i = 0...k\n      \\/\\/ 因为 dp[i][j] 是以 j 为终点，但是我们最终需要从边界出去，所以还要加上终点到边界的最短距离\n      ans = min(dp[(1 &lt;&lt; k) - 1][i] + toEdge[i], ans);\n    }\n    printf(&quot;%d\\n&quot;, ans);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<p>\\/\\/ EOF<\\/p>\n",
+      "excerpt": "<p>经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……<\\/p>\n<p>有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在<a href=\"https:\\/\\/github.com\\/kirainmoe\\/oh-my-hdu\">这个地方<\\/a>。<\\/p>",
+      "slug": "practicing-record-4th-8-20-9-10",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/practicing-record-4th-8-20-9-10/",
+      "permalink": "https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/",
+      "tags": [
+        {
+          "name": "oi",
+          "slug": "oi",
+          "path": "tags/oi/",
+          "permalink": "https://kirainmoe.com/tags/oi/",
+          "length": 9
+        },
+        {
+          "name": "algorithm",
+          "slug": "algorithm",
+          "path": "tags/algorithm/",
+          "permalink": "https://kirainmoe.com/tags/algorithm/",
+          "length": 8
+        }
+      ],
+      "categories": []
+    },
+    {
+      "title": "开发一个简单的 webpack 插件",
+      "date": "2017-09-02T03:59:44.000Z",
+      "modified": "2018-01-07T05:18:45.784Z",
+      "content": "<p>之前为了尝试实现 <a href=\"https:\\/\\/kotori.love\" target=\"_blank\" rel=\"external\">dalao<\\/a> 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"前言\"><a href=\"#前言\" class=\"headerlink\" title=\"前言\"><\\/a>前言<\\/h1><p>首先呢，webpack 的强大功能其中有很大的一部分是离不开插件的，通过插件你几乎可以<s>为所欲为<\\/s>，也能更充分地利用 webpack. 事实上 webpack 的配置什么的很多看起来很复杂，文档也很多，所以会给很多人一种它的插件也很难搞的错觉……和其它的程序类似， webpack 的插件也有一个模子，也就是基本框架。<\\/p>\n<p>为了让整理出来的东西看起来具体一些，我以前文提到的那个想法为例，这个想法具体如下：<\\/p>\n<blockquote>\n<p>在我们使用 webpack-dev-server 结合 webpack 开发的时候，webpack-dev-server 会把 console 中的错误和警告信息转发到浏览器端，但是单纯用 <code>webpack --watch<\\/code> 的时候，webpack 除了会检测文件变动重新 compile 之外并不会把其他信息转发到浏览器上，以至于有时候我们发现了一些问题，到最后切到 console 才发现是编译的过程出现了偏差。所以有没有什么办法让 <code>webpack --watch<\\/code> 的时候也能把错误和警告显示到浏览器的 console？<\\/p>\n<\\/blockquote>\n<p>当然我不把具体的实现过程展开了。这样的需求显然可以通过 webpack 插件实现，监听 webpack 的 compile 事件，获取异常信息，然后前端和后端建立一个 socket 连接，实时输出这些信息。<\\/p>\n<h1 id=\"实现\"><a href=\"#实现\" class=\"headerlink\" title=\"实现\"><\\/a>实现<\\/h1><p>是的，以上所有的步骤都可以通过一个 webpack 插件做到。不多说废话，在开发之前稍微浏览一下 webpack 的官方开发文档还是很重要的：<\\/p>\n<blockquote>\n<p>How to write a plugin: <a href=\"https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation<\\/a><br>Plugin API: <a href=\"https:\\/\\/webpack.js.org\\/api\\/\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/api\\/<\\/a><\\/p>\n<\\/blockquote>\n<p>先来看看我们是怎么在 webpack 中应用插件的：<\\/p>\n<pre><code class=\"js\">\\/\\/ webpack.config.js\nplugins: [\n  new webpack.HotModuleReplacementPlugin(),\n  new webpack.NoEmitOnErrorsPlugin()\n],\n<\\/code><\\/pre>\n<p>可以看到，我们在 <code>webpack config<\\/code> 中的 <code>plugins<\\/code> 字段里实例化一个对象来应用插件，所以我们的新插件也应该有一个 class. 官方文档中用的是 ES5 的 <code>function + prototype<\\/code> 的写法，我们可以直接用上 ES6 的 class. 假设插件名字为 <code>MyAwesomePlugin<\\/code>, 首先我们创建一个 <em>MyAwesomePlugin.js<\\/em>：<\\/p>\n<pre><code class=\"js\">module.exports = class MyAwesomePlugin {\n    constructor(options) {\n        this.options = options;\n    }\n\n    apply(compiler) {\n        console.log(&#39;Hello world!&#39;);\n    }\n};\n<\\/code><\\/pre>\n<p>在这个文件里我们 export 了一个叫做 <code>MyAwesomePlugin<\\/code> 的类。其中有一个 <code>apply()<\\/code> 方法，它表示在 webpack 初次加载完此插件的时候应该做的事情，也就是只会在 webpack 启动的时候被执行一次。接下来如果我们监听 compile 的事件等等，首先就要在这里写一下；假如我们的插件依赖于一个 express 的后端服务器，那么我们也可以在 <code>apply()<\\/code> 里初始化 express。<\\/p>\n<p>然后我们试着应用这个插件，在你的 <code>webpack.config.js<\\/code> 中：<\\/p>\n<pre><code class=\"js\">const MyAwesomePlugin = require(&#39;.\\/MyAwesomePlugin&#39;);\n\n\\/\\/ ...\n\nplugins: [\n    \\/\\/ ...\n    new MyAwesomePlugin()\n]\n<\\/code><\\/pre>\n<p>然后尝试着启动 webpack，如果一切正常，你应该在 console 中看到 <code>Hello, world!<\\/code> 了。<\\/p>\n<p>接下来我们就开始做实事了，回头看看我们的需求，这是一个需要前后端配合的工作，首先我们需要在后端拥有一个 socket 服务器，然后监听 webpack 每次编译完后的结果，把信息通过这个 socket 服务器发送到浏览器。要实现这一步，还需要浏览器加载和后端服务器通信的相关 JS.启动 socket 服务器这件事我们在 <code>apply()<\\/code> 方法中完成就可以了，接下来是事件监听。<\\/p>\n<p>说到事件监听，首先这里要区分一下 webpack 中的两个概念：<code>compiler<\\/code> 和 <code>compilation<\\/code>.<\\/p>\n<hr>\n<h2 id=\"compiler\"><a href=\"#compiler\" class=\"headerlink\" title=\"compiler\"><\\/a>compiler<\\/h2><p>首先你一定已经注意到上文的代码中，<code>apply()<\\/code> 方法传入了一个叫 <code>compiler<\\/code> 的参数。这个所谓的 <code>compiler<\\/code> 对象从字面意思上看是编译器的意思，实际上它也就指向了当前运行的 webpack 实例。这个实例包含了 webpack 的所有 options, loaders 和 plugins, 它随着 webpack 的启动而产生，可以说是 webpack 的“灵魂”。当我们运用一个插件时（即插件类被实例化，同时类中的 <code>apply()<\\/code> 方法被调用的时候），<code>apply()<\\/code> 方法便会接收到一个指向这个 <code>compiler<\\/code> 的参数，我们可以通过这个 <code>compiler<\\/code> 访问整个 webpack 环境。<\\/p>\n<h3 id=\"compilation\"><a href=\"#compilation\" class=\"headerlink\" title=\"compilation\"><\\/a>compilation<\\/h3><p>对 <code>compiler<\\/code> 有了一定的了解之后，大概我们就可以猜到 <code>compilation<\\/code> 是干什么用的了。所谓 <code>compilation<\\/code> 包含了 webpack 每次 build 后的详细信息，包括编译出的结果、错误信息、模块、编译后的资源、改变的文件和依赖等的当前状态，同时它提供了很多的事件挂钩，以便于插件来执行一些<s>黑魔法<\\/s>。<\\/p>\n<hr>\n<p>具体的 API 可以在上文给出的链接中找到，这里我们直接贴出代码后再解释：<\\/p>\n<pre><code class=\"js\">apply(compiler) {\n    compiler.plugin(&#39;compilation&#39;, this.injectScriptToBundle.bind(this));\n    compiler.plugin(&#39;done&#39;, this.onBuildCompleted.bind(this));\n}\n<\\/code><\\/pre>\n<p>这一段代码中我们监听了 <code>compiler<\\/code> 的两个事件（可以看到我们是用 <code>compiler.plugin(hook, method)<\\/code> 方法注册事件的）：<\\/p>\n<ul>\n<li>第一是在每次文件变动，重新编译的时候，执行 <code>this.injectScriptToBundle()<\\/code> 方法；<\\/li>\n<li>第二是编译完成之后，执行 <code>this.onBuildCompleted()<\\/code> 方法。<\\/li>\n<\\/ul>\n<p>根据方法名我们大致可以构想一下，前一个方法用于把前端与后端交互用的 JS 代码注入到 bundle 中（显然，我们是不会直接把这样的调试用代码写到源代码里的），后一个方法大概就是把编译完成之后异常信息发送出去了。<\\/p>\n<p>我们先来看看 <code>injectScriptToBundle()<\\/code> 方法：<\\/p>\n<pre><code class=\"js\">injectScriptToBundle(compilation) {\n    compilation.mainTemplate(&#39;startup&#39;, source =&gt; {\n        return &quot;\\nconsole.log(&#39;Hello world!&#39;);\\n&quot; + source;\n    });\n}\n<\\/code><\\/pre>\n<p>我已经截掉了一些对这篇文章没有什么用的代码。首先我们可以看到这个方法有一个参数，而这个参数正是上文提到的 <code>compilation<\\/code>. 这一段代码的作用就是在即将编译的源代码的开头部分插入一段我们自定义的 JS 代码。<\\/p>\n<p>对了，这里面出现了一个 <code>mainTemplate<\\/code> 方法，具体可以看看 webpack 的官方文档：<a href=\"https:\\/\\/webpack.js.org\\/api\\/plugins\\/template\\/#src\\/components\\/Sidebar\\/Sidebar.jsx\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/api\\/plugins\\/template\\/#src\\/components\\/Sidebar\\/Sidebar.jsx<\\/a><\\/p>\n<p>然后接下来我们只需要在 <code>onBuildCompleted()<\\/code> 方法中获取并向前端发送信息即可：<\\/p>\n<pre><code class=\"js\">onBuildCompleted(stats) {\n    const detail = stats.toJson({\n        errorDetails: false\n    });\n\n    this.sendWarnings(statsJson.warnings);\n    this.sendErrors(statsJson.errors);\n}\n<\\/code><\\/pre>\n<p>忽略掉发送信息那部分的代码，我们只要看上半部分就好了。<code>stats<\\/code> 参数随着 <code>compiler<\\/code> 的 <code>done<\\/code> 事件被触发后产生，包含本次编译的结果统计信息。它提供了一个 <code>toJson()<\\/code> 方法，可以把这些信息转换成直观的 JSON，然后我们也就可以从这个 JSON 里拿到我们想要的内容了。<\\/p>\n<p>做好了这一切之后，大概已经实现了我们的目标了。上文的示例代码可以在<a href=\"https:\\/\\/github.com\\/moefront\\/webpack-plugin-console-to-browser\" target=\"_blank\" rel=\"external\">这里<\\/a>找到。<\\/p>\n<h1 id=\"推荐阅读\"><a href=\"#推荐阅读\" class=\"headerlink\" title=\"推荐阅读\"><\\/a>推荐阅读<\\/h1><ul>\n<li>细说webpack之流程篇：<a href=\"http:\\/\\/www.cnblogs.com\\/yxy99\\/p\\/5852987.html\" target=\"_blank\" rel=\"external\">http:\\/\\/www.cnblogs.com\\/yxy99\\/p\\/5852987.html<\\/a><\\/li>\n<li>Compiler and Compilation: <a href=\"https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation<\\/a><\\/li>\n<li>Accessing the compilation: <a href=\"https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#accessing-the-compilation\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#accessing-the-compilation<\\/a><\\/li>\n<li>webpack 插件开发简要：<a href=\"http:\\/\\/www.cnblogs.com\\/sampapa\\/p\\/6958166.html\" target=\"_blank\" rel=\"external\">http:\\/\\/www.cnblogs.com\\/sampapa\\/p\\/6958166.html<\\/a><\\/li>\n<\\/ul>\n",
+      "excerpt": "<p>之前为了尝试实现 <a href=\"https:\\/\\/kotori.love\">dalao<\\/a> 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。<\\/p>",
+      "slug": "webpack-plugin-developing-tutorial",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/webpack-plugin-developing-tutorial/",
+      "permalink": "https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/",
+      "tags": [
+        {
+          "name": "frontend",
+          "slug": "frontend",
+          "path": "tags/frontend/",
+          "permalink": "https://kirainmoe.com/tags/frontend/",
+          "length": 4
+        },
+        {
+          "name": "webpack",
+          "slug": "webpack",
+          "path": "tags/webpack/",
+          "permalink": "https://kirainmoe.com/tags/webpack/",
+          "length": 3
+        }
+      ],
+      "categories": []
+    }
+  ],
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary",
+  "prev": 0,
+  "next": 0
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

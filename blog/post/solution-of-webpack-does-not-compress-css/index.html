@@ -1,0 +1,130 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>环境变量导致的 webpack 打包时不压缩 CSS 文件 [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "post",
+  "format": "blog/:layout/:title/",
+  "posts": {
+    "title": "环境变量导致的 webpack 打包时不压缩 CSS 文件",
+    "date": "2018-01-07T07:23:36.000Z",
+    "modified": "2018-01-07T07:46:37.091Z",
+    "content": "<p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。<br><a id=\"more\"><\\/a><br>通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：<\\/p>\n<pre><code class=\"js\">{\n  test: \\/(\\.styl)$\\/,\n  loaders: [\n    &#39;style-loader&#39;,\n    {\n      loader: &#39;css-loader&#39;,\n      options: {\n        minimize: process.env.NODE_ENV === &#39;production&#39;\n      }\n    }\n    &#39;postcss-loader&#39;,\n    &#39;stylus-loader&#39;\n  ]\n}\n<\\/code><\\/pre>\n<p>因为个人习惯，我一般不把 <code>minimize<\\/code> 属性直接设置为 true，而是判断当前是否将要打包成生产环境用的文件，如果是才压缩 CSS. 然而就在这个地方出了锅，发现弄出来的 CSS 根本没压缩。一开始以为是 ExtractTextPlugin 的问题，后来发现如果直接把 minimize 的值设置为 true 的时候就会压缩，那么问题就在于 <code>process.env.NODE_ENV === &#39;production&#39;<\\/code> 表达式返回了不正确的值。<\\/p>\n<p>导致这个原因的问题在于没有设置 <code>NODE_ENV<\\/code> 环境变量= =这个变量需要在运行 webpack 的时候设置，之前一直以为使用 <code>webpack.DefinePlugin<\\/code> 定义 <code>process.env.NODE_ENV<\\/code> 就可以的：<\\/p>\n<pre><code class=\"js\">  new webpack.DefinePlugin({\n    &#39;process.env.NODE_ENV&#39;: JSON.stringify(&#39;production&#39;)\n  })\n<\\/code><\\/pre>\n<p>猜测 <code>webpack.DefinePlugin<\\/code> 插件定义的变量只对项目的代码有效（就是对要打包的目标生效），但是对打包工具 webpack 自身似乎是无效的，所以即便在项目中 <code>process.env.NODE_ENV<\\/code> 能取到正常的值，但是对于其他情况下 <code>process.env.NODE_ENV<\\/code> 就没有定义了。<\\/p>\n<p>解决方法就是手动在终端中定义 <code>process.env.NODE_ENV<\\/code> 变量，但是这样太麻烦了，而且还有跨系统兼容性的问题。可以使用 <a href=\"https:\\/\\/github.com\\/kentcdodds\\/cross-env\" target=\"_blank\" rel=\"external\">cross-env<\\/a> 来定义环境变量，然后再通过其启动 webpack.<\\/p>\n<pre><code class=\"bash\">yarn add --dev cross-env\n<\\/code><\\/pre>\n<p>然后修改 <code>package.json<\\/code> 中的 <code>script<\\/code> 字段，在执行打包命令的时候先调用 cross-env 设置环境变量，然后再唤起 webpack. 例如：<\\/p>\n<pre><code class=\"js\">&quot;scripts&quot;: {\n  &quot;dist&quot;: &quot;cross-env NODE_ENV=production webpack --config config\\/webpack.config.js --env=production&quot;,\n  &quot;serve&quot;: &quot;cross-env NODE_ENV=dev webpack-dev-server --progress --config config\\/webpack.config.js --env=dev&quot;,\n  &quot;serve:dist&quot;: &quot;cross-env NODE_ENV=dist wepack-dev-server --progress --config config\\/webpack.config.js --env=production&quot;,\n  &quot;watch&quot;: &quot;cross-env NODE_ENV=dev webpack --progress --watch --config config\\/webpack.config.js --env=dev&quot;\n},\n<\\/code><\\/pre>\n<p>这样子再运行打包生产环境文件的命令的时候，webpack 就能获取到正确的 <code>process.env.NODE_ENV<\\/code> 环境变量，就能正常压缩 CSS 了。<\\/p>\n",
+    "excerpt": "<p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。<br>",
+    "slug": "solution-of-webpack-does-not-compress-css",
+    "published": true,
+    "layout": "post",
+    "path": "blog/post/solution-of-webpack-does-not-compress-css/",
+    "permalink": "https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/",
+    "tags": [
+      {
+        "name": "frontend",
+        "slug": "frontend",
+        "path": "tags/frontend/",
+        "permalink": "https://kirainmoe.com/tags/frontend/",
+        "length": 4
+      },
+      {
+        "name": "webpack",
+        "slug": "webpack",
+        "path": "tags/webpack/",
+        "permalink": "https://kirainmoe.com/tags/webpack/",
+        "length": 3
+      }
+    ],
+    "categories": [
+      {
+        "name": "前端",
+        "slug": "前端",
+        "path": "categories/前端/",
+        "permalink": "https://kirainmoe.com/categories/前端/",
+        "length": 4
+      }
+    ]
+  },
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary"
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

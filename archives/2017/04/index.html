@@ -1,0 +1,111 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Archives: 4/2017: 2017 [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "year",
+  "format": "blog/:layout/:title/",
+  "posts": [
+    {
+      "title": "导出 Typecho 的数据到 Canvas：typecho-to-canvas",
+      "date": "2017-04-09T08:28:10.000Z",
+      "modified": "2018-01-07T05:15:25.777Z",
+      "content": "<p>通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。<br><a id=\"more\"><\\/a><br>有关 <a href=\"canvas.toddaustin.io\">Canvas<\\/a> 什么的我就不说了吧，大概知道这是个比较新的 PHP 博客程序，由 Laravel 框架驱动就可以了。<\\/p>\n<p>至于为什么为突发奇想写这样一个东西，首先主要是这是个比较新鲜的东西，相关的东西都还很少，我在 GitHub 上找到了 <em>wordpress-to-canvas<\\/em> 的东西，于是便觉得为何不搞一个 <em>typecho-to-canvas<\\/em> 呢～其次呢，因为我之前用过一段时间的 Typecho，也想借这个东西把之前的一些数据导回来（虽然我找不到我把 DB 的 备份扔到哪了……qwq），以及……其他的一些原因……所以就花了一些时间造这个轮子啦。<\\/p>\n<p>GitHub: <a href=\"https:\\/\\/github.com\\/kirainmoe\\/typecho-to-canvas\" target=\"_blank\" rel=\"external\">typecho-to-canvas: easily converting your data from Typecho to Canvas<\\/a><\\/p>\n<p>Packagist(Composer): <a href=\"https:\\/\\/packagist.org\\/packages\\/kirainmoe\\/typecho-to-canvas\" target=\"_blank\" rel=\"external\">typecho-to-canvas<\\/a><\\/p>\n<h2 id=\"功能特色\"><a href=\"#功能特色\" class=\"headerlink\" title=\"# 功能特色\"><\\/a># 功能特色<\\/h2><ul>\n<li>Typecho 下的第一个 “Switch to Canvas” 工具<\\/li>\n<li>支持转换 Typecho 的文章、标签和关系树，兼容性约 95%<\\/li>\n<li>自动加载和解析配置数据，你甚至可以全程 Enter<\\/li>\n<li>在 CLI 模式下运行<\\/li>\n<li><s>作者这么萌<\\/s><\\/li>\n<\\/ul>\n<h2 id=\"环境需求\"><a href=\"#环境需求\" class=\"headerlink\" title=\"# 环境需求\"><\\/a># 环境需求<\\/h2><ul>\n<li>确保 Typecho 和 Canvas 在转换环境下分别已正确安装<\\/li>\n<li>拥有转换环境的操作权限<\\/li>\n<li>PHP 5.6.4 以上的版本（Canvas 的版本要求）<\\/li>\n<li>已正确安装 composer 依赖管理工具<\\/li>\n<li>PHP 已加载对应 Typecho 和 Canvas 安装类型的数据库的 PDO 拓展<\\/li>\n<li>数据库正常运行<s>（废话）<\\/s><\\/li>\n<li>耐心，Patient<\\/li>\n<\\/ul>\n<h2 id=\"使用方法\"><a href=\"#使用方法\" class=\"headerlink\" title=\"# 使用方法\"><\\/a># 使用方法<\\/h2><h4 id=\"数据无价，在进行以下操作之前，强烈建议手动备份-Typecho-和-Canvas-的数据库。\"><a href=\"#数据无价，在进行以下操作之前，强烈建议手动备份-Typecho-和-Canvas-的数据库。\" class=\"headerlink\" title=\"数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。\"><\\/a>数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。<\\/h4><h4 id=\"数据无价，在进行以下操作之前，强烈建议手动备份-Typecho-和-Canvas-的数据库。-1\"><a href=\"#数据无价，在进行以下操作之前，强烈建议手动备份-Typecho-和-Canvas-的数据库。-1\" class=\"headerlink\" title=\"数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。\"><\\/a>数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。<\\/h4><h4 id=\"数据无价，在进行以下操作之前，强烈建议手动备份-Typecho-和-Canvas-的数据库。-2\"><a href=\"#数据无价，在进行以下操作之前，强烈建议手动备份-Typecho-和-Canvas-的数据库。-2\" class=\"headerlink\" title=\"数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。\"><\\/a>数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。<\\/h4><p>重要的事情说三遍。<br>再次确保你的环境工作正常，Typecho 和 Canvas 的数据库可以访问～然后接着往下看吧～<\\/p>\n<h4 id=\"准备：安装-te2cn\"><a href=\"#准备：安装-te2cn\" class=\"headerlink\" title=\"准备：安装 te2cn\"><\\/a>准备：安装 te2cn<\\/h4><p>安装教程可以在 GitHub 的 README 找到：<a href=\"https:\\/\\/github.com\\/kirainmoe\\/typecho-to-canvas\" target=\"_blank\" rel=\"external\">https:\\/\\/github.com\\/kirainmoe\\/typecho-to-canvas<\\/a><\\/p>\n<p>这里提供通过 Git 的安装方法，简单快捷～如果你没有安装 Git，请自行搜索当前系统的安装方式。<\\/p>\n<pre><code class=\"shell\"># 首先将项目仓库拉下来\n$ git clone https:\\/\\/github.com\\/kirainmoe\\/typecho-to-canvas\n$ cd typecho-to-canvas\n\n# 然后用 composer 安装依赖\n$ composer install\n\n# 运行 te2cn，按照提示转换数据就行啦\n$ chmod -R 755 .\\/te2cn\n$ .\\/te2cn\n<\\/code><\\/pre>\n<hr>\n<h4 id=\"填写数据库配置信息\"><a href=\"#填写数据库配置信息\" class=\"headerlink\" title=\"填写数据库配置信息\"><\\/a>填写数据库配置信息<\\/h4><p>运行程序首先是一贯的套路 welcome，然后 <strong>te2cn<\\/strong> 会先后向你询问 <em>Typecho<\\/em> 和 <em>Canvas<\\/em> 的数据库配置信息。首先会询问 Typecho 的数据库配置信息，请按顺序依次输入：数据库主机、用户、密码、数据库名称、端口、以及数据库的种类。程序会给出默认值，如果你不需要修改默认值，可以直接敲回车。<br>（小技巧：直接将 Typecho 的配置文件 <strong>config.inc.php<\\/strong> 复制到程序目录下，<strong>te2cn<\\/strong> 会自动解析数据库配置，无需人工填写）<\\/p>\n<p>接下来会询问 Canvas 数据库的配置信息。首先会问你 Canvas 和 Typecho 是否安装在同一数据库主机中，如果是的话直接回车，程序会问你 Canvas 安装的数据库名称；如果不是的话，会收集 Canvas 安装数据库的配置。<br>（目前暂时不支持解析 Laravel .ENV 的说 qwq）<\\/p>\n<p>接下来会列出所收集或解析的数据库的配置信息，请检查是否有误，如果无误可以直接敲回车。<\\/p>\n<h4 id=\"开始转换进程\"><a href=\"#开始转换进程\" class=\"headerlink\" title=\"开始转换进程\"><\\/a>开始转换进程<\\/h4><p>如果信息填写正确，程序就会自动开始数据导出进程。不过在这之前会先询问你是否保留 Canvas 的现有数据，如果你需要保留直接回车，不保留的话需要确认两次，以防误操作丢失数据。<\\/p>\n<p>然后，程序就会自动启动转换进程。取决于 Typecho 数据量的大小以及服务器 IO 性能，这个过程可能需要一些时间，请耐心等待，在依次导出了 tags, posts, relationships 之后，就完成了操作。<\\/p>\n<h4 id=\"Enjoy～\"><a href=\"#Enjoy～\" class=\"headerlink\" title=\"Enjoy～\"><\\/a>Enjoy～<\\/h4><p>当看到转换完成的提示之后，Typecho 的数据就成功地被导出到 Canvas 了。你可以试一试运行 Canvas 看看效果：<\\/p>\n<pre><code class=\"shell\">$ cd \\/path\\/to\\/your\\/canvas\n$ php artisan serve\n<\\/code><\\/pre>\n<h2 id=\"问题解决\"><a href=\"#问题解决\" class=\"headerlink\" title=\"# 问题解决\"><\\/a># 问题解决<\\/h2><p>目前由于 Canvas 暂时不支持本地评论以及其他一些 Typecho 的 features，所以只做了文章、标签和关系树的单向转换。如果有时间会更新逆向转换功能（canvas-to-typecho）。<\\/p>\n<p>有任何问题或者建议，都可以到 GitHub 的项目主页提 issues 或者 Pull request 告诉我们。<\\/p>\n<p>嘛。希望这个轮子能对你们有帮助～<\\/p>\n",
+      "excerpt": "<p>通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。<br>",
+      "slug": "export-data-of-typecho-to-canvas",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/export-data-of-typecho-to-canvas/",
+      "permalink": "https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/",
+      "tags": [],
+      "categories": []
+    }
+  ],
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary",
+  "prev": 0,
+  "next": 0
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

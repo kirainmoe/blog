@@ -1,0 +1,122 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>每周解题报告 (4th, 8/20~9/10) [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "post",
+  "format": "blog/:layout/:title/",
+  "posts": {
+    "title": "每周解题报告 (4th, 8/20~9/10)",
+    "date": "2017-09-10T03:16:22.000Z",
+    "modified": "2018-01-07T05:18:35.990Z",
+    "content": "<p>经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……<\\/p>\n<p>有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在<a href=\"https:\\/\\/github.com\\/kirainmoe\\/oh-my-hdu\" target=\"_blank\" rel=\"external\">这个地方<\\/a>。<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"13-200-HDU1069-Monkey-and-Banana\"><a href=\"#13-200-HDU1069-Monkey-and-Banana\" class=\"headerlink\" title=\"13\\/200, HDU1069, Monkey and Banana\"><\\/a>13\\/200, HDU1069, Monkey and Banana<\\/h1><h2 id=\"Solution\"><a href=\"#Solution\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>经典 DP，最开始的思路是……设一个四维的状态…反正数据范围这么小是吧 (x) 后来写了好久写不下去了。查了一发题解，随便点开一个，看到第一句话：先把 x 排序，然后把 y 排序……会了……<\\/p>\n<p>那么，首先输入一组 xyz，然后排序一下，选择其中两个当做 width 和 length，然后最后一个数当 height；把 x, y 分别按照从大到小的顺序排序一遍，然后对 z 求满足第 i 层的 x, y 小于第 i-1 层的 x, y 时的最大 z 之和就好了。<\\/p>\n<p>转移方程：<code>dp[i] = dp[j] + block[i].height, 其中 j = 0...i-1<\\/code><\\/p>\n<p><em>\\/\\/ PS. 嘛，顺序枚举 j 似乎会 WA，所以 j 要从 i-1 倒回去。 <\\/em><\\/p>\n<h2 id=\"Code\"><a href=\"#Code\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXN = 35 * 6 + 10;\nstruct Block {\n  int x, y, z;\n};\nBlock b[MAXN];\nint T, kases = 0;\nint size = 0, ans = 0;\nint dp[MAXN];\n\nbool cmp(const Block a, const Block b)\n{\n  if (a.x &gt; b.x)\n    return true;\n  if (a.x == b.x &amp;&amp; a.y &gt; b.y)\n    return true;\n  return false;\n}\n\nint main()\n{\n  while (scanf(&quot;%d&quot;, &amp;T) != EOF &amp;&amp; T != 0)\n  {    \n    size = 0, ans = 0;\n    memset(b, 0, sizeof(b));\n    memset(dp, 0, sizeof(dp));\n\n    for (int i = 0; i &lt; T; i++)\n    {\n      int tx, ty, tz;\n      scanf(&quot;%d%d%d&quot;, &amp;tx, &amp;ty, &amp;tz);\n      int arr[3] = {tx, ty, tz};\n\n      sort(arr, arr + 3);\n\n      \\/\\/ permutation\n      b[size].x = arr[0], b[size].y = arr[1], b[size++].z = arr[2];\n      b[size].x = arr[0], b[size].y = arr[2], b[size++].z = arr[1];\n      b[size].x = arr[1], b[size].y = arr[2], b[size++].z = arr[0];\n\n      sort(b, b+size, cmp);\n    }\n\n    for (int i = 0; i &lt; size; i++)\n    {\n      dp[i] = b[i].z;\n      for (int j = i - 1; j &gt;= 0; j--)\n      {\n        if (b[i].x &lt; b[j].x &amp;&amp; b[i].y &lt; b[j].y) {\n          dp[i] = max(dp[j] + b[i].z, dp[i]);\n        }\n      }\n      ans = max(ans, dp[i]);\n    }\n    printf(&quot;Case %d: maximum height = %d\\n&quot;, ++kases, ans);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"14-200-HDU1176-免费馅饼\"><a href=\"#14-200-HDU1176-免费馅饼\" class=\"headerlink\" title=\"14\\/200, HDU1176, 免费馅饼\"><\\/a>14\\/200, HDU1176, 免费馅饼<\\/h1><h2 id=\"Solution-1\"><a href=\"#Solution-1\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>这题有两种做法。<\\/p>\n<ol>\n<li><p>第一种是直接 DP，注意的是可以不要想太多去检查状态是否合法，状态表示和转移方程：<code>dp[i][j]<\\/code> 表示第 i 秒的时候站在第 j 个位置能接到的最大馅饼数，<br>则：<code>dp[i][j]  = max(dp[i-1][j], dp[i-1][j-1], dp[i-1][j+1]) + items[i][j] (如果 j-1 和 j+1 存在)<\\/code><\\/p>\n<\\/li>\n<li><p>数塔做法：联想一下数字三角形，从下往上递推回去就行了。<code>dp[i][j]<\\/code> 还是表示第 i 秒在第 j 个位置能取到的最大值，不同的是要逆推，并且可以直接覆盖掉之前的值（因为计算完就没有用了），则：<br><code>dp[i][j] =  max(dp[i+1][j-1], dp[i+1][j], dp[i+1][j+1]) + dp[i][j]<\\/code><\\/p>\n<\\/li>\n<\\/ol>\n<h2 id=\"Code-1\"><a href=\"#Code-1\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">\\/\\/ Solution 1\n#include &lt;bits\\/stdc++.h&gt;\nusing namespace std;\n\nconst int MAXT = 1e5 + 10;\nconst int MAXP = 11;\n\nint n, mt, ans = 0;\nint items[MAXT][MAXP];\nint dp[MAXT][MAXP];\n\nint cmp(int a, int b, int c)\n{\n  return max(a, max(b, c));\n}\n\nint main()\n{\n  while (scanf(&quot;%d&quot;, &amp;n) != EOF &amp;&amp; n != 0)\n  {\n    memset(items, 0, sizeof(items));\n    memset(dp, 0, sizeof(dp));\n    mt = 0, ans = 0;\n    for (int i = 0; i &lt; n; i++)\n    {\n      int x, t;\n      scanf(&quot;%d%d&quot;, &amp;x, &amp;t);\n      items[t][x]++;\n      mt = max(t, mt);\n    }\n\n    dp[1][4] = items[1][4];\n    dp[1][5] = items[1][5];\n    dp[1][6] = items[1][6];\n\n    for (int i = 2; i &lt;= mt; i++)\n    {\n      for (int j = 0; j &lt; MAXP; j++)\n      {\n        dp[i][j] = dp[i-1][j];\n        if (j == 0) {\n          dp[i][j] = max(dp[i-1][j], dp[i-1][j+1]) + items[i][j];\n        } else if (j == MAXP - 1) {\n          dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]) + items[i][j];\n        } else {\n          dp[i][j] = cmp(dp[i-1][j-1], dp[i-1][j], dp[i-1][j+1]) + items[i][j];\n        }\n        ans = max(ans, dp[i][j]);\n      }\n    }\n\n    printf(&quot;%d\\n&quot;, ans);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<pre><code class=\"cpp\">\\/\\/ Solution 2\n#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXT = 1e5 + 10;\nconst int MAXP = 11;\n\nint n, mt, ans = 0;\nint pies[MAXT][MAXP];\n\nint main()\n{\n  while (scanf(&quot;%d&quot;, &amp;n) != EOF &amp;&amp; n)\n  {\n    memset(pies, 0, sizeof(pies));\n    ans = 0;\n    for (int i = 0; i &lt; n; i++)\n    {\n      int x, t;\n      scanf(&quot;%d%d&quot;, &amp;x, &amp;t);\n      pies[t][x]++;\n      mt = max(mt, t);\n    }\n\n    for (int i = mt - 1; i &gt;= 0; i--)\n    {\n      for (int j = 0; j &lt; MAXP; j++)\n      {\n        int tmp = pies[i][j];       \\/\\/ current\n        pies[i][j] = pies[i+1][j];\n\n        if (j &gt; 0) {\n          pies[i][j] = max(pies[i+1][j-1], pies[i][j]);\n        }\n\n        if (j &lt; MAXP - 1) {\n          pies[i][j] = max(pies[i+1][j+1], pies[i][j]);\n        }\n\n        pies[i][j] += tmp;\n      }\n    }\n\n    printf(&quot;%d\\n&quot;, pies[0][5]);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"15-200-Codeforces-846A-Curriculum-Vitae\"><a href=\"#15-200-Codeforces-846A-Curriculum-Vitae\" class=\"headerlink\" title=\"15\\/200, Codeforces 846A, Curriculum Vitae\"><\\/a>15\\/200, Codeforces 846A, Curriculum Vitae<\\/h1><h2 id=\"Solution-2\"><a href=\"#Solution-2\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>题意就是一个人要找工作，要在简历上介绍他所完成过的游戏，游戏有成功的和失败的，这个人不想让任何失败的游戏出现在成功的游戏之后，然后求他最多可以在他的简历上放上多少个这样的符合要求的游戏。<\\/p>\n<p>↑ 说成人话就是：求一个由 0 和 1 组成的序列的子序列，这个子序列满足没有一个 0 在 1 的右边，且长度尽可能大。例如 0 1 0 0 1 0 的符合要求的子序列为 0 0 0 1 或 0 0 0 0.<\\/p>\n<p>翻译完之后我们可以发现，只要找到一个最长的数列的，使得它的左边都是 0，右边都是 1 就可以了。然后我们可以发现这个子序列满足<strong>最长不下降（注意不是最长上升）<\\/strong>的性质。鉴于数据范围 &lt;= 100，所以我们可以用 O(n^2) 的最长不下降子序列算法直接过。<\\/p>\n<p>第二天想了一下，突然觉得这题似乎还有线性的做法：考虑第 i 件作品是否入选，和它的上一件符合性质要求的作品有关。假如第 i 件作品是失败的，那么第 i 件写入简历时，最大值为 <strong>上一件失败作品的最大值 + 1<\\/strong>；如果第 i 件作品是成功的，那么第 i 件写入简历时最大值为 <strong>上一件失败作品的最大值 和 上一件成功作品的最大值 两者的最大值 + 1<\\/strong>。这样，我们可以用一个 <code>last0<\\/code> 表示上一件失败作品的位置，用 <code>last1<\\/code> 表示上一件成功作品的位置。具体的转移方程可以看代码：<\\/p>\n<h2 id=\"Code-2\"><a href=\"#Code-2\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">\\/\\/ Solution 1: O(n^2)\n#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXN = 105;\nconst int INF = 1e9 + 7;\nint n, ans = 0;\nint arr[MAXN];\nint dp[MAXN];\nint main()\n{\n  memset(arr, 0, sizeof(arr));\n  memset(dp, 0, sizeof(dp));\n\n  scanf(&quot;%d&quot;, &amp;n);\n  for (int i = 0; i &lt; n; i++)\n  {\n    scanf(&quot;%d&quot;, &amp;arr[i]);\n  }\n\n  for (int i = 0; i &lt; n; i++)\n  {\n    dp[i] = 1;\n    for (int j = 0; j &lt; i; j++)\n    {\n      if (arr[j] &lt;= arr[i] &amp;&amp; dp[i] &lt; dp[j] + 1)\n      {\n        dp[i] = dp[j] + 1;\n      }\n    }\n    ans = max(dp[i], ans);\n  }\n\n  printf(&quot;%d&quot;, ans);\n\n  return 0;\n}\n<\\/code><\\/pre>\n<pre><code class=\"cpp\">\\/\\/ Solution 2: O(n)\n#include &lt;bits\\/stdc++.h&gt;\nusing namespace std;\nconst int MAXN = 105;\nint n;\nint dp[MAXN];\nint last0 = -1, last1 = -1;\nint main()\n{\n    memset(dp, 0, sizeof(dp));\n    scanf(&quot;%d&quot;, &amp;n);\n    for (int i = 0; i &lt; n; i++)\n    {\n        int tmp;\n        scanf(&quot;%d&quot;, &amp;tmp);\n        if (tmp == 0) {\n            dp[i] = (last0 == -1 ? 1 : dp[last0] + 1);\n            last0 = i;\n        } else {\n            if (i == 0) {\n                dp[i] = 1;\n            } else {\n              dp[i] = 1;\n                if (last0 != -1) {\n                    dp[i] = max(dp[last0] + 1, dp[i]);\n                }\n                if (last1 != -1) {\n                    dp[i] = max(dp[last1] + 1, dp[i]);\n                }\n            }\n            last1 = i;\n        }\n    }\n    int ans = 0;\n    for (int i = 0; i &lt; n; i++)\n    {\n      ans = max(ans, dp[i]);\n  }\n  printf(&quot;%d&quot;, ans);\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"16-200-Codeforces-854A-Fraction\"><a href=\"#16-200-Codeforces-854A-Fraction\" class=\"headerlink\" title=\"16\\/200, Codeforces 854A, Fraction\"><\\/a>16\\/200, Codeforces 854A, Fraction<\\/h1><p>嗯……太水了，不想写了，就是单纯的计算。<\\/p>\n<pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nconst int INF = 1e9 + 7;\nint gcd(int a, int b)\n{\n  return (a == 0) ? b : gcd(b % a, a);\n}\nint main()\n{\n  int ori, curi = 1, curj = INF;\n\n  scanf(&quot;%d&quot;, &amp;ori);\n  for (int i = 1; i &lt; ori; i++)\n  {\n    for (int j = i + 1; j &lt; ori; j++)\n    {\n      int gcder = gcd(j, i);\n      double a = (double) i, b = (double) j;\n\n      if (\n        (i + j) == ori &amp;&amp;\n        gcder == 1 &amp;&amp;\n        (double)(a \\/ b) &gt; (double)((double)curi \\/ (double)curj)\n      ) {\n        curi = i, curj = j;\n      }\n    }\n  }\n\n  printf(&quot;%d %d&quot;, curi, curj);\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"17-200-HDU4568-Hunter\"><a href=\"#17-200-HDU4568-Hunter\" class=\"headerlink\" title=\"17\\/200, HDU4568, Hunter\"><\\/a>17\\/200, HDU4568, Hunter<\\/h1><p>这题前前后后花了我两星期的时间……这星期又花了三天的时间看它，终于理解并且 A 掉了这题……果然状态压缩还是一个大坑 Orz……<\\/p>\n<h2 id=\"Solution-3\"><a href=\"#Solution-3\" class=\"headerlink\" title=\"Solution\"><\\/a>Solution<\\/h2><p>题目大意是给定一个 n*m 的地图，其中有一些点当中有宝藏，经过地图中的每个点都需要花费相应的代价。一个人要从边界进入这个地图，经过所有的宝藏点，然后从边界走出，问这样做的最小代价是多少。n, m &lt;= 200, 宝藏数目 1 &lt;= k &lt;= 13.<\\/p>\n<p>首先题目的模型说成人话就是从边界的任何一点进入，取走所有宝藏，然后从边界的任意一点走出，所以我们可以知道最小代价应该是：从边界到第一个点的代价+第一个点到第二个点的代价+……+从终点走出边界的代价，这样这道题就被我们分解成了一个个的子问题了，我们只需要分别计算这些子问题就可以了。现在：<\\/p>\n<ol>\n<li><p>从边界到第一个点的最小代价和从终点走出的边界如何知道？从第 i 个点到第 j 个点的最小代价又如何知道？SPFA 对每一个宝藏点跑一遍就行了，这样我们总共需要进行 k 次 SPFA。<\\/p>\n<\\/li>\n<li><p>如何决策？每次拓展都选择当前一步代价最小的方案走显然有可能不是最优解，所以我们还是用动态规划来解全局最优的最小代价。<\\/p>\n<\\/li>\n<li><p>用 DP 如何表示状态？这道题的要求是走完所有的宝藏点，那么我们首先考虑如何表示经过的和未经过的宝藏点。因为 k &lt;= 13，我们的第一反应应该是状态压缩。用二进制表示状态点的经过情况，二进制第 i 位为 0 表示未经过第 i 个宝藏点，为 1 则表示已经经过，然后把二进制状态转换成十进制的整数即可。还有一个问题，假如只设置这样的一个状态，那么只能表示经过的点情况，不能表示终点在哪一个点，而我们到达终点的时候还需要从边界走出去，这样就还差一步，所以我们再设计一维状态，那么：<\\/p>\n<\\/li>\n<\\/ol>\n<blockquote>\n<p>设 <code>dp[i][j]<\\/code> 为当前经过的点状态为 i 且最后所在的终点位置为 j 时，所花费的最小代价。这样我们还能顺便得到转移方程：<code>dp[s | (1 &lt;&lt; next)][next] = min(dp[s | (1 &lt;&lt; next)][next], dp[s][cur] + toEach[cur][next])<\\/code>, 其中 s 是当前状态，cur 是当前状态的终点，next 是下一步的点。<\\/p>\n<\\/blockquote>\n<p>（为什么这里不需要表示起点？因为我们用 <code>dp[1 &lt;&lt; i][i] = toEdge[i]<\\/code> 可以很容易地表示以第 i 个点为起点时的代价，又我们的状态从 0 开始，所以起点在哪可以直接决策；但是终点我们很难通过 DP 方程直接决策，所以我们多一维状态。）<\\/p>\n<p>首先我们用 SPFA 先求出每两个宝藏点之间的距离和每个宝藏点到边界的距离（注意节点的拓展方向），然后就可以状态压缩了。DP 完之后，别忘了要回到边界，所以最终 <code>ans = min(dp[(1 &lt;&lt; k) - 1][i] + toEdge[i], ans), 其中 i = 0...k<\\/code>.<\\/p>\n<p>这样我们就完美地解决了这个问题。<\\/p>\n<h2 id=\"Code-3\"><a href=\"#Code-3\" class=\"headerlink\" title=\"Code\"><\\/a>Code<\\/h2><pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt;\nusing namespace std;\nconst int INF = 1e9 + 7;\nconst int MAXN = 205;\nconst int MAXT = 14;\n\nstruct Point {\n  int x, y;\n};\nPoint target[MAXT];    \\/\\/ 宝藏坐标\n\nint k, cases, row, col;\n\n\\/\\/ dp[i][j] 表示当前已经过的宝藏点状态为 i, 并且终点为 j 时所花费的最小代价\n\\/\\/ 那么有 DP 方程：dp[s|(1&lt;&lt;next)][next] = min(dp[s|(1&lt;&lt;next)][s], dp[s][cur] + toEach[cur][next]);\n\\/\\/ 其中 next 是下一个目标状态点，cur 是当前状态的终点\nint dp[1 &lt;&lt; MAXT][MAXT];\n\n\\/\\/ 用于 SPFA 计算每个宝藏点之间的距离\nint dist[MAXN][MAXN];\n\n\\/\\/ toEdge[i] 表示第 i 个宝藏点到边界的最小代价（不包括本身）\n\\/\\/ toEach[i][j] 表示第 i 个宝藏点到第 j 个宝藏点的最小代价\nint toEdge[MAXT], toEach[MAXT][MAXT];\n\n\\/\\/ SPFA 拓展节点的方向\nint dir[2][4] = {\n  { 0, 0, 1, -1 },\n  { 1, -1, 0, 0 }\n};\n\n\\/\\/ SPFA 记录点访问情况的数组\nbool vis[MAXN][MAXN];\n\n\\/\\/ 用不定长数组存储地图\nvector&lt;int&gt; G[MAXN];\n\nvoid SPFA(int s)\n{\n  \\/\\/ 初始化 SPFA\n  memset(vis, 0, sizeof(vis));\n  for (int i = 0; i &lt; MAXN; i++)\n    for (int j = 0; j &lt; MAXN; j++)\n      dist[i][j] = INF;\n\n  queue&lt;Point&gt; Q;\n\n  Point start;\n  start.x = target[s].x, start.y = target[s].y;\n  vis[start.x][start.y] = 1;    \\/\\/ 标记起点为已访问\n  dist[start.x][start.y] = 0;   \\/\\/ 起点到自身的最短路为 0\n  Q.push(start);\n\n  while (!Q.empty())\n  {\n    Point cur = Q.front();\n    Q.pop();\n    vis[cur.x][cur.y] = 0;    \\/\\/ 当前节点出队，标记为未访问\n\n    \\/\\/ 到达边界，更新该点到边界的距离\n    if (cur.x == 0 || cur.y == 0 || cur.x == row - 1 || cur.y == col - 1) {\n      toEdge[s] = min(toEdge[s], dist[cur.x][cur.y]);\n    }\n\n    \\/\\/ 拓展节点\n    for (int i = 0; i &lt; 4; i++)\n    {\n      Point next;\n      next.x = cur.x + dir[0][i], next.y = cur.y + dir[1][i];\n      \\/\\/ 检验节点合法性以及是否可到达\n      if (next.x &gt;= 0 &amp;&amp; next.y &gt;= 0 &amp;&amp; next.x &lt; row &amp;&amp; next.y &lt; col &amp;&amp; G[next.x][next.y] != -1) {\n        \\/\\/ 松弛操作\n        if (dist[next.x][next.y] &gt; dist[cur.x][cur.y] + G[next.x][next.y]) {\n          dist[next.x][next.y] = dist[cur.x][cur.y] + G[next.x][next.y];\n          if (!vis[next.x][next.y]) {\n            Q.push(next);\n            vis[next.x][next.y] = 1;\n          }\n        }\n      }\n    } \\/\\/ end for i\n  } \\/\\/ end while\n}\n\nvoid init()\n{\n  for (int i = 0; i &lt; MAXN; i++)\n    G[i].clear();\n\n  for (int i = 0; i &lt; (1 &lt;&lt; MAXT); i++)\n    for (int j = 0; j &lt; MAXT; j++)\n      dp[i][j] = INF;\n\n  fill(toEdge, toEdge + MAXT, INF);\n\n  for (int i = 0; i &lt; MAXT; i++)\n    for (int j = 0; j &lt; MAXT; j++)\n      toEach[i][j] = INF;\n}\n\nint main()\n{\n  scanf(&quot;%d&quot;, &amp;cases);\n  while (cases--)\n  {\n    init();\n    scanf(&quot;%d%d&quot;, &amp;row, &amp;col);\n    for (int i = 0; i &lt; row; i++)\n    {\n      for (int j = 0; j &lt; col; j++)\n      {\n        int tmp;\n        scanf(&quot;%d&quot;, &amp;tmp);\n        G[i].push_back(tmp);\n      }\n    }\n    scanf(&quot;%d&quot;, &amp;k);\n    for (int i = 0; i &lt; k; i++)\n    {\n      scanf(&quot;%d%d&quot;, &amp;target[i].x, &amp;target[i].y);\n    }\n\n    \\/\\/ 求每两个宝藏点之间的最短距离（最小代价）\n    for (int i = 0; i &lt; k; i++)\n    {\n      SPFA(i);\n      for (int j = 0; j &lt; k; j++)\n      {\n        \\/\\/ 自身到自身的代价为 0\n        if (i == j) {\n          toEach[i][j] = 0;\n          continue;\n        }\n        int jx = target[j].x, jy = target[j].y;\n        toEach[i][j] = min(toEach[i][j], dist[jx][jy]);\n      }\n      \\/\\/ dp[1 &lt;&lt; i][i] 表示只访问了第 i 个点时的代价\n      \\/\\/ 等于：从边界进来时的代价 + 自身的代价\n      dp[1 &lt;&lt; i][i] = toEdge[i] + G[target[i].x][target[i].y];\n    }\n\n    \\/\\/ solve\n    \\/\\/ 枚举从 0 到 (1 &lt;&lt; k) - 1 的每个状态\n    for (int state = 0; state &lt; (1 &lt;&lt; k); state++)\n    {\n      \\/\\/ 枚举该状态当前的终点\n      for (int i = 0; i &lt; k; i++)\n      {\n        \\/\\/ 如果状态不包含当前点，则回溯\n        if ((state &amp; (1 &lt;&lt; i)) == 0) {\n          continue;\n        }\n\n        \\/\\/ 如果当前状态下到终点的距离还没有计算，则回溯？\n        \\/\\/ 不太清楚是不是这样的，因为我注释掉这段代码仍然是 AC 的\n        if (dp[state][i] == INF) {\n          continue;\n        }\n\n        \\/\\/ 枚举在当前状态时，下一个目标是去哪一个宝藏点呢\n        for (int j = 0; j &lt; k; j++)\n        {\n          \\/\\/ 如果这个宝藏点已经访问过了，就回溯，因为每个点只能走一次\n          if ((state &amp; (1 &lt;&lt; j)) == 1) {\n            continue;\n          }\n          \\/\\/ 下一个状态\n          int next = (state | (1 &lt;&lt; j));\n\n          \\/\\/ 下一个状态 next，终点为 j 的最小代价等于 这个代价 和 当前代价+(cur, next)两点间最短距离 的最小值\n          dp[next][j] = min(dp[next][j], dp[state][i] + toEach[i][j]);\n        } \\/\\/ for j\n      } \\/\\/ for i\n    } \\/\\/ for state\n\n    \\/\\/ 输出答案\n    int ans = INF;\n    for (int i = 0; i &lt; k; i++)\n    {\n      \\/\\/ 最终的最优答案是 min(dp[(1 &lt;&lt; k) - 1][i]), i = 0...k\n      \\/\\/ 因为 dp[i][j] 是以 j 为终点，但是我们最终需要从边界出去，所以还要加上终点到边界的最短距离\n      ans = min(dp[(1 &lt;&lt; k) - 1][i] + toEdge[i], ans);\n    }\n    printf(&quot;%d\\n&quot;, ans);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<p>\\/\\/ EOF<\\/p>\n",
+    "excerpt": "<p>经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……<\\/p>\n<p>有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在<a href=\"https:\\/\\/github.com\\/kirainmoe\\/oh-my-hdu\">这个地方<\\/a>。<\\/p>",
+    "slug": "practicing-record-4th-8-20-9-10",
+    "published": true,
+    "layout": "post",
+    "path": "blog/post/practicing-record-4th-8-20-9-10/",
+    "permalink": "https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/",
+    "tags": [
+      {
+        "name": "oi",
+        "slug": "oi",
+        "path": "tags/oi/",
+        "permalink": "https://kirainmoe.com/tags/oi/",
+        "length": 9
+      },
+      {
+        "name": "algorithm",
+        "slug": "algorithm",
+        "path": "tags/algorithm/",
+        "permalink": "https://kirainmoe.com/tags/algorithm/",
+        "length": 8
+      }
+    ],
+    "categories": []
+  },
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary"
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

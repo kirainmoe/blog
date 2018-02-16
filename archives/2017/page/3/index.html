@@ -1,0 +1,161 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Archives: 2017 [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "year",
+  "format": "blog/:layout/:title/",
+  "posts": [
+    {
+      "title": "LeetCode Praticing Record",
+      "date": "2017-03-01T09:38:39.000Z",
+      "modified": "2018-01-07T05:18:29.347Z",
+      "content": "<p>_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 <a href=\"https:\\/\\/leetcode.com\" target=\"_blank\" rel=\"external\">LeetCode<\\/a> 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））<s>所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……<\\/s><\\/p>\n<a id=\"more\"><\\/a>\n<p><s>（题外：西方的 LeetCode 比什么 *gu 一类的 Online Judge 不知道高到哪里去了！）<\\/s><\\/p>\n<h1 id=\"目录-Content\"><a href=\"#目录-Content\" class=\"headerlink\" title=\"目录 (Content)\"><\\/a>目录 (Content)<\\/h1><p>[Problem 1] Two sum 简单的两数求和（斜眼笑）<br>[Problem 2] Add Two Numbers 真 · 两数求和<br>[Problem 3] Longest Substring Without Repeating Characters 找到一串字符串最长不重复的子串<\\/p>\n<h2 id=\"Problem-1-Two-sum\"><a href=\"#Problem-1-Two-sum\" class=\"headerlink\" title=\"[Problem 1] Two sum\"><\\/a>[Problem 1] Two sum<\\/h2><p>一开始看难度 Easy，以为又是普通 OJ 的那种 A+B 问题，点进去一看才发现……我毕竟还是图样图森破啊。<br>呐。问题的大意就是给你一个不定长的整数数组 nums，里面的数不会重复；再给你一个目标数 target，然后让你求出数组中的哪两个数加起来等于目标数。<br>（喂，这和我们说好的水题不一样啊！）<br>其实还是可以的啦，题目给的标签是哈希表，那就照着这个方向写吧。这里哈希表用STL 的 map 来建好了，也是很方便的（问题是写这题之前还没试过用 map 呢 orz）<br>代码 Gist 地址：<a href=\"https:\\/\\/gist.github.com\\/kirainmoe\\/919ee87b7653ada8689fbe2384503bd5#file-two_sum-cpp\" target=\"_blank\" rel=\"external\">https:\\/\\/gist.github.com\\/kirainmoe\\/919ee87b7653ada8689fbe2384503bd5#file-two_sum-cpp<\\/a><br>做题的时候参考的：<br>《C++ 中的 STL 中 map 用法详解》：<a href=\"http:\\/\\/blog.sina.com.cn\\/s\\/blog_a9303fd9010195hm.html\" target=\"_blank\" rel=\"external\">http:\\/\\/blog.sina.com.cn\\/s\\/blog_a9303fd9010195hm.html<\\/a><\\/p>\n<hr>\n<h2 id=\"Problem-2-Add-Two-Numbers\"><a href=\"#Problem-2-Add-Two-Numbers\" class=\"headerlink\" title=\"[Problem 2] Add Two Numbers\"><\\/a>[Problem 2] Add Two Numbers<\\/h2><p>稍有常识的人就能看出，<s>如果我们的铁骑继续前进<\\/s> 这道题目就是一个高精度加法运算的链表实现形式：<br>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8<br>把高精度的模板套过来使之与链表相适即可。但是受 Top solution 的一个题解的启发，原来代码可以写得更简洁，如下，代码不长不扔 Gist 了。<\\/p>\n<pre><code class=\"cpp\">\\/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n *\\/\nclass Solution {\npublic:\n    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {\n        ListNode a = ListNode(0), *ans = &amp;a;\n        int remain = 0;         \\/\\/ 剩余\n    \\/\\/ l1, l2 都为空之后，切记要处理最后剩余的\n    while (l1 != NULL || l2 != NULL || remain != 0)\n        {\n            int cur = (l1 ? l1-&gt;val : 0) + (l2 ? l2-&gt;val : 0) + remain;\n            remain = cur \\/ 10;\n            ans-&gt;next = new ListNode(cur % 10);\n            ans = ans-&gt;next;\n\n            \\/\\/ 下一位，记得判断一下 l1, l2 的 next 是否为 NULL\n            l1 = l1 ? l1-&gt;next : l1;\n            l2 = l2 ? l2-&gt;next : l2;\n        }\n\n        return a.next;\n    }\n};\n<\\/code><\\/pre>\n<p>就是这样的喵。<\\/p>\n<hr>\n<h2 id=\"Problem-3-Longest-Substring-Without-Repeating-Characters\"><a href=\"#Problem-3-Longest-Substring-Without-Repeating-Characters\" class=\"headerlink\" title=\"[Problem 3] Longest Substring Without Repeating Characters\"><\\/a>[Problem 3] Longest Substring Without Repeating Characters<\\/h2><p>其实做这道题目距离今天已经有一段日子了……也是我 LeetCode 的入坑题。难度是 Medium ，但是我觉得这个比上一题简单的说。<\\/p>\n<p>题目大意是给你一个字符串，找出最长的不重复子串，然后返回这个不重复子串的长度。比如说：<\\/p>\n<pre><code>Given &quot;pwwkew&quot;, the answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.\n<\\/code><\\/pre><p>刚看到这道题目的时候，想到以前好像做过类似的题目可以用 DP 来求解，仔细想想发现不需要用动态规划，并且可以把时间复杂度控制在 O(n)。具体的做法如下：<\\/p>\n<blockquote>\n<p>首先维护一个长度为 96 的数组 pos，因为这里题目给出来的字符串不只包括大小写字母，还包括特殊符号（喂，不带不给数据范围的啊），但是都在 ASCII 能表示的范围内，用这个数组作为 Flag。用 memset() 把这个数组赋上初值 -1。定义一个叫 ans 和 cur 的整形变量，分别用来存储最终答案和当前搜到的最长不重复子串的长度，初值都让他们为 0。最后我们还需要一个作为指针作用的变量 flag = s.length().<\\/p>\n<p>接下来就是求解。将这个字符串从后往前搜（length-1→0），定义一个叫做 tmp 的变量保存当前遍历到的字符的 ASCII 码与 32 的差（s[i]-32，这里与 32 做差的原因是我们上文只定义了 96 的数组长度）。接着对 pos[tmp] 做判断：<br>如果 pos[tmp] == -1，说明到目前为止还没有遇到过这个字母，那么令 cur += 1，接着判断 cur 和 ans 的关系，如果 cur &gt; ans，就用 cur 的值替换 ans 的值。<\\/p>\n<p>如果 pos[tmp] != -1，说明在之前已经遇到了这个字母，而现在又遇到了，这个时候需要判断 pos[tmp] 和 flag 的大小关系。<\\/p>\n<p>== 如果 pos[tmp] &gt; flag，这个时候说明 flag 在当前搜到的字符(tmp) 上一次出现之后已经更新过了，那么这时候我们就令 cur = flag-i（这个时候，从 i 到 flag 的字符共同组成从 s[i] 开始往下能取到的最长不重复子串），然后比较 ans 和 cur，更新 ans 的值。<\\/p>\n<p>==  如果 pos[tmp] &lt; flag，那么更新 flag 的值，让 flag = pos[tmp]（这么做的原因是因为如果 pos[tmp] 在 flag 之前，那么从 i 开始能取到的最长不重复子串就会变成 i 到 pos[tmp]-1之间的所有字符）。这个时候就可以令 cur = flag-i 了。由于这个时候得到的新值必定比 ans 小，所以就不需要做比较了。<\\/p>\n<p>做完这一切还有最后一件事，就是更新当前字母出现的位置啦。别忘记在循环体最后加上 pos[tmp] = i 更新一下位置。最后就大胆地 return ans; 吧。<\\/p>\n<\\/blockquote>\n<p>代码 Gist 地址：<a href=\"https:\\/\\/gist.github.com\\/kirainmoe\\/a39a65e73efc95012bb7be84d32337c7\" target=\"_blank\" rel=\"external\">https:\\/\\/gist.github.com\\/kirainmoe\\/a39a65e73efc95012bb7be84d32337c7<\\/a><br>由于理想情况下复杂度是 O(n) ，所以实测最快可以在 LeetCode 跑到 9ms 左右（这个成绩是超过 99.57% 的提交）<\\/p>\n",
+      "excerpt": "<p>_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 <a href=\"https:\\/\\/leetcode.com\">LeetCode<\\/a> 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））<s>所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……<\\/s><\\/p>",
+      "slug": "leetcode-praticing-record",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/leetcode-praticing-record/",
+      "permalink": "https://kirainmoe.com/blog/post/leetcode-praticing-record/",
+      "tags": [
+        {
+          "name": "algorithm",
+          "slug": "algorithm",
+          "path": "tags/algorithm/",
+          "permalink": "https://kirainmoe.com/tags/algorithm/",
+          "length": 8
+        },
+        {
+          "name": "leetcode",
+          "slug": "leetcode",
+          "path": "tags/leetcode/",
+          "permalink": "https://kirainmoe.com/tags/leetcode/",
+          "length": 1
+        },
+        {
+          "name": "cpp",
+          "slug": "cpp",
+          "path": "tags/cpp/",
+          "permalink": "https://kirainmoe.com/tags/cpp/",
+          "length": 1
+        }
+      ],
+      "categories": []
+    },
+    {
+      "title": "只读属性引起的 state 不随 setState 的触发而变化",
+      "date": "2017-02-19T09:32:16.000Z",
+      "modified": "2018-01-07T05:18:38.461Z",
+      "content": "<p>这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 <code>&lt;input&gt;<\\/code> 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 <code>this.state.val<\\/code> 赋值，用 <code>this.setState()<\\/code> 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。<\\/p>\n<a id=\"more\"><\\/a>\n<p>我们知道通过调用 React 组件的 <code>setState()<\\/code> 方法改变组件的状态会触发组件重新渲染，则用 <code>this.state<\\/code> 调用的 state 也会改变。所以说，输入框的值没有实时更新，很可能是因为组件根本没有重新渲染。一开始以为是回调的问题，于是使用 <code>setState()<\\/code> 的第二个参数处理接下来的业务逻辑，可是发现并不是。最后发现，问题出现在对 input 的 value 属性的设置上。<\\/p>\n<p>考虑下面的这一段代码：<\\/p>\n<pre><code class=\"javascript\">class App extends React.Component {\n\n  constructor(props) {\n    super(props);\n\n    this.state = {\n      val: &#39;&#39;\n    };\n    setTimeout(() =&gt; {\n      this.setState({\n        val: &#39;world!&#39;\n      });\n    }, 1000);\n  }\n\n  render() {\n    return (\n      &lt;div&gt;\n        &lt;span&gt;Hello&lt;\\/span&gt;\n        &lt;input type=&#39;text&#39; defaultValue={this.state.val} \\/&gt;\n      &lt;\\/div&gt;\n    );\n  }\n\n}\n<\\/code><\\/pre>\n<p>如果正常，将 <code>&lt;App \\/&gt;<\\/code> 渲染到页面上，你可以看到 Hello 。然后稍等 1s，你可以看到 Hello 。<\\/p>\n<blockquote>\n<p><s>这就是你说的正常显示？我读书少你别骗我！”<\\/s><\\/p>\n<\\/blockquote>\n<p>的确，如果单单读这段代码，一般人都应该能猜出想象中的结果——文本框最开始为空，但是一秒后它的值会变为 world。可是这里却并没有实现。文档并没有写错，<code>this.setState()<\\/code> 过后会引起状态的变更，虽然是异步的但是迟早会做这一步的啊。为什么在这里无效呢。<\\/p>\n<p>问题的关键在于，我们为输入框赋值的时候用的属性是 <code>defaultValue<\\/code>。这是一个只读属性。<\\/p>\n<blockquote>\n<p><s>“切，这就是你的锅了，好好的 value 属性不用，用个 poi 的 defaultValue！”<\\/s><\\/p>\n<\\/blockquote>\n<p>可是假如你把 defaultValue 改成 value，那么请你打开 console，那里已经有一条红色的警告消息等着你了。不信的话大家不妨试试：<\\/p>\n<p><code>Warning: Failed form propType: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`. Check the render method of `Hello`.<\\/code><\\/p>\n<p>React 要求我们设置这个 input 为只读，或者为这个 input 设置一个 onChange 事件，如果都不的话就用 defaultValue 代替 value。很多人为了省事就听了它的话用了 defaultValue（包括我），于是就踩进了坑。下面我们试着改一下上面那个组件的 render 方法好不好啊？吼啊！（（（<\\/p>\n<pre><code class=\"javascript\">return (\n  &lt;div&gt;\n    &lt;span&gt;Hello&lt;\\/span&gt;\n    &lt;input \n          type=&#39;text&#39;\n          value={this.state.val}\n          onChange={() =&gt; false} \\/&gt;\n  &lt;\\/div&gt;\n);\n<\\/code><\\/pre>\n<p>把 defaultValue 改成 value 并且绑定一个 onChange 事件。再次刷新页面你会发现出现了我们预期中的结果。至此我们可以大声讲出这个问题就是有这个只读的属性 defaultValue 引起的了。<\\/p>\n",
+      "excerpt": "<p>这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 <code>&lt;input&gt;<\\/code> 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 <code>this.state.val<\\/code> 赋值，用 <code>this.setState()<\\/code> 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。<\\/p>",
+      "slug": "state-does-not-chage-by-setState-due-to-the-readonly-props",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/state-does-not-chage-by-setState-due-to-the-readonly-props/",
+      "permalink": "https://kirainmoe.com/blog/post/state-does-not-chage-by-setState-due-to-the-readonly-props/",
+      "tags": [],
+      "categories": []
+    },
+    {
+      "title": "修改 React-Native Android App 包名",
+      "date": "2017-02-17T09:31:03.000Z",
+      "modified": "2018-01-07T05:26:58.048Z",
+      "content": "<p>不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。<br>不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。<\\/p>\n<a id=\"more\"><\\/a>\n<p>我们知道，例如我们执行 react-native init AwesomeProject 的时候，创建的 App 包名默认是 com.AwesomeProject 。<\\/p>\n<ol>\n<li>首先最容易找到的是 package.json 当中的 name 字段，修改它（其实后来发现修不修改都没有什么关系，因为并没有什么卵用）。<\\/li>\n<li>然后是 android\\/app 目录下的 build.gradle，这个是 gradle 执行 build 的 config 文件，里面大概 90 行左右，在 defaultConfig 块中有一个 applicationId “com.AwesomeProject”， 修改它。<\\/li>\n<li>修改 android\\/src\\/main 目录下的 AndroidManifest.xml ，第 2 行就是了，找到 package=“com.AwesomeProject”，修改之。<\\/li>\n<li>接着就是 android\\/src\\/main\\/java 目录下的东西了。首先这个文件夹中你可以看到 .\\/com\\/AwesomeProject 目录，我们先把这个目录下的两个文件移动走，然后放到对应你想要修改的包名的目录。例如这里，我想修改包名为 com.kirainmoe.helloworld，我们就在 android\\/src\\/main\\/java 目录下创建这样的层级目录：.\\/com\\/kirainmoe\\/helloworld\\/ ，然后将两个文件 MainActivity.java 和 MainApplication.java 移动过去。<br>然后修改 MainActivity.java &amp; MainApplication.java 第一行中的 package com.AwesomeProject; 改掉，改成你想要的包名，记住一定要和前面的对应。<\\/li>\n<\\/ol>\n<p>（百度出来的回答到这里结束，然而……）<\\/p>\n<p>好了，做到这里之后就尝试了一下 react-native run-android，结果在构建 debug app 的时候，到 :app:compileDebugJavaWithJavac 这一步就报错了：<\\/p>\n<pre><code class=\"bash\">\\/path\\/to\\/MainApplication.java:20: 错误: 找不到符号 \n return BuildConfig.DEBUG; \n ^ \n 符号: 变量 BuildConfig \n1 个错误 \n FAILED \nFAILURE: Build failed with an exception. \n\n* What went wrong: \nExecution failed for task ‘:app:compileDebugJavaWithJavac’. \n&gt; Compilation failed; see the compiler error output for details. \n\n* Try: \nRun with — stacktrace option to get the stack trace. Run with — info or — debug option\n to get more log output. \n\nBUILD FAILED \n\nTotal time: 1 mins 5.339 secs \nCould not install the app on the device, read the error above for details. \nMake sure you have an Android emulator running or a device connected and have \nset up your Android development environment: \nhttps:\\/\\/facebook.github.io\\/react-native\\/docs\\/android-setup.html\n<\\/code><\\/pre>\n<p>orz，看看错误信息应该是出在 MainApplication.java 上，这里的内容是：<\\/p>\n<pre><code class=\"java\">return BuildConfig.DEBUG;\n<\\/code><\\/pre>\n<p>搜索一下这个错误信息，好像确实有遇到的人，但是这里提出的解决方案是针对 Android Studio 下的……不过其中一句话启发了我：<\\/p>\n<blockquote>\n<p>BuildConfig类是在编译时自动生成的，分为debug和release两个版本，路径是：<br>app\\/build\\/source\\/BuildConfig\\/Build Varients\\/package name\\/BuildConfig<br>修改包名后，原来使用到BuildConfig类的类，import语句会出错，<br>把import语句的包名改为修改后的包名或者删除这条import语句（让系统自动补充import语句），调试时提示找不到BuildConfig类<br><strong>import 修改后的包名.BuildConfig;<\\/strong><\\/p>\n<\\/blockquote>\n<p>最后一句话中提到可以通过 import packageName.BuildConfig; 引入，那么我们也可以带上包名来 return 以解决找不到 BuildConfig 的问题，把刚才的语句修改为：<\\/p>\n<pre><code class=\"java\">return your.package.name.BuildConfig.DEBUG;\n<\\/code><\\/pre>\n<p>例如，我可以改成：<\\/p>\n<pre><code class=\"java\">return com.kirinmoe.helloworld.BuildConfig.DEBUG;\n<\\/code><\\/pre>\n<p>好了，到此为止，再次执行 react-native run-android ，问题就不再出现了。<\\/p>\n<blockquote>\n<p>Update at 9\\/14: 貌似也可以在这个文件里加一句 import your.package.name;，这样也能解决找不到 BuildConfig 的问题。<\\/p>\n<\\/blockquote>\n",
+      "excerpt": "<p>不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。<br>不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。<\\/p>",
+      "slug": "change-the-package-name-of-react-native-app",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/change-the-package-name-of-react-native-app/",
+      "permalink": "https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/",
+      "tags": [],
+      "categories": []
+    }
+  ],
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary",
+  "prev": 2,
+  "next": 0
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>
