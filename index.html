@@ -30,6 +30,42 @@
   "format": "blog/:layout/:title/",
   "posts": [
     {
+      "title": "Typescript 下 Redux connect 带有 Props 组件的问题",
+      "date": "2018-06-28T11:34:48.000Z",
+      "modified": "2018-06-28T12:05:24.800Z",
+      "content": "<p><s>Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码<\\/s> <\\/p>\n<p>真香<\\/p>\n<a id=\"more\"><\\/a>\n<p>考虑以下在 Typescript 语法下使用 redux 的代码片段：<\\/p>\n<pre><code class=\"js\">import * as React from &#39;react&#39;;\nimport { connect, Dispatch } from &#39;react-redux&#39;;\n\nimport { State } from &#39;.\\/types&#39;;\n\ninterface Props {\n    id: string;\n}\n\nclass MyComponent extends React.Component&lt;Props&gt; {\n    constructor(props: Props) {\n        super(props);\n    }\n\n    render() {\n        return (\n            &lt;div id={this.props.id}&gt;\n                {\\/* .... *\\/}\n            &lt;\\/div&gt;\n        );\n    }\n}\n\nconst mapStateToProps = (state: State) =&gt; ({\n    \\/\\/ ...\n});\n\nconst mapDispatchToProps = (dispatch: Dispatch) =&gt; ({\n    \\/\\/ ...\n});\n\nexport default connect(mapStateToProps, mapDispatchToProps)(MyComponent);\n<\\/code><\\/pre>\n<p>这是个很简单的把组件和 redux 连接起来的部分代码。以上的代码是可以通过编译的，也可以运行。<\\/p>\n<p>现在假如我们有另一个 Component 引入了这个 Component：<\\/p>\n<pre><code class=\"js\">import MyComponent from &#39;.\\/MyComponent&#39;;\n\n\\/\\/ ....\n&lt;MyComponent id={&#39;example-id&#39;}&gt;\n<\\/code><\\/pre>\n<p>看起来没毛病啊，MyComponent 确实需要一个叫 id 的参数，也在组件里声明过了，然而 Typescript 会提示编译错误：<\\/p>\n<blockquote>\n<p>类型“IntrinsicAttributes &amp; IntrinsicClassAttributes<component<pick<props, never=\"\">, ComponentState, any&gt;…”上不存在属性“id”。<\\/component<pick<props,><\\/p>\n<\\/blockquote>\n<p>这里不是因为编译器瞎了，回看我们的 MyComponent 中，export 的是 <code>connect()<\\/code> 处理过的 HOC 而不是我们原始的组件，而 经过 <code>connect()<\\/code> 之后的组件会把 state 和 dispatch 映射到新组件的 props 里，但这个组件原有 props 的类型就丢掉了。<\\/p>\n<p>解决方法之一就是把 id 这个 props 写到 reducer 的 state 中；但有时候为了代码的整洁性，这个 props 只在这个组件中需要并起作用，便没有必要弄到全局的 state 里。事实上，<code>connect()<\\/code> 函数在 Typescript 中也可以指定类型：<\\/p>\n<pre><code class=\"js\">export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);\n<\\/code><\\/pre>\n<p>以上代码等效为：<\\/p>\n<pre><code class=\"js\">interface StateOfProps {\n    \\/\\/ ...\n}\n\ninterface StateOfDispatch {\n    \\/\\/ ...\n}\n\nexport default connect&lt;StateOfProps, StateOfDispatch, void&gt;(\n    mapStateToProps,\n    mapDispatchToProps\n)(MyComponent);\n<\\/code><\\/pre>\n<p>注意在后者的 <code>connect()<\\/code> 中我们为其指定了 3 个类型，分别是 <strong><code>mapStateToProps()<\\/code> 返回值的类型<\\/strong>、<strong><code>mapDispatchToProps()<\\/code> 返回值的类型<\\/strong>，但最后一个 <code>void<\\/code> 有什么作用？<strong>第三个类型实际上指定的就是目标组件原本需要的 Props 的类型<\\/strong>。所以我们可以通过改写成如下的代码：<\\/p>\n<pre><code class=\"js\">interface StateOfProps {\n    \\/\\/ ...\n}\n\ninterface StateOfDispatch {\n    \\/\\/ ...\n}\n\nexport default connect&lt;StateOfProps, StateOfDispatch, Props&gt;(\n    mapStateToProps,\n    mapDispatchToProps\n)(MyComponent);\n<\\/code><\\/pre>\n<p>即可解决上述问题。<\\/p>\n",
+      "excerpt": "<p><s>Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码<\\/s> <\\/p>\n<p>真香<\\/p>",
+      "slug": "redux-with-typescript-connect-component-problem",
+      "published": true,
+      "layout": "post",
+      "path": "blog/post/redux-with-typescript-connect-component-problem/",
+      "permalink": "https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/",
+      "tags": [
+        {
+          "name": "typescript",
+          "slug": "typescript",
+          "path": "tags/typescript/",
+          "permalink": "https://kirainmoe.com/tags/typescript/",
+          "length": 2
+        },
+        {
+          "name": "react",
+          "slug": "react",
+          "path": "tags/react/",
+          "permalink": "https://kirainmoe.com/tags/react/",
+          "length": 4
+        },
+        {
+          "name": "redux",
+          "slug": "redux",
+          "path": "tags/redux/",
+          "permalink": "https://kirainmoe.com/tags/redux/",
+          "length": 1
+        }
+      ],
+      "categories": []
+    },
+    {
       "title": "第三方 Android ROM 无法连接 Google Play 的原因排查",
       "date": "2018-03-04T03:28:44.000Z",
       "modified": "2018-03-04T04:13:21.185Z",
@@ -146,18 +182,18 @@
       "permalink": "https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/",
       "tags": [
         {
-          "name": "frontend",
-          "slug": "frontend",
-          "path": "tags/frontend/",
-          "permalink": "https://kirainmoe.com/tags/frontend/",
-          "length": 4
-        },
-        {
           "name": "webpack",
           "slug": "webpack",
           "path": "tags/webpack/",
           "permalink": "https://kirainmoe.com/tags/webpack/",
           "length": 3
+        },
+        {
+          "name": "frontend",
+          "slug": "frontend",
+          "path": "tags/frontend/",
+          "permalink": "https://kirainmoe.com/tags/frontend/",
+          "length": 4
         }
       ],
       "categories": [
@@ -183,11 +219,18 @@
       "permalink": "https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/",
       "tags": [
         {
+          "name": "typescript",
+          "slug": "typescript",
+          "path": "tags/typescript/",
+          "permalink": "https://kirainmoe.com/tags/typescript/",
+          "length": 2
+        },
+        {
           "name": "react",
           "slug": "react",
           "path": "tags/react/",
           "permalink": "https://kirainmoe.com/tags/react/",
-          "length": 3
+          "length": 4
         },
         {
           "name": "frontend",
@@ -195,13 +238,6 @@
           "path": "tags/frontend/",
           "permalink": "https://kirainmoe.com/tags/frontend/",
           "length": 4
-        },
-        {
-          "name": "typescript",
-          "slug": "typescript",
-          "path": "tags/typescript/",
-          "permalink": "https://kirainmoe.com/tags/typescript/",
-          "length": 1
         },
         {
           "name": "javascript",
@@ -239,7 +275,7 @@
           "slug": "react",
           "path": "tags/react/",
           "permalink": "https://kirainmoe.com/tags/react/",
-          "length": 3
+          "length": 4
         },
         {
           "name": "front-end",
@@ -326,42 +362,6 @@
           "slug": "linux",
           "path": "tags/linux/",
           "permalink": "https://kirainmoe.com/tags/linux/",
-          "length": 1
-        }
-      ],
-      "categories": []
-    },
-    {
-      "title": "愤怒的小鸟 (Review / NOIP2016 D2T3)",
-      "date": "2017-11-03T12:36:17.000Z",
-      "modified": "2018-01-07T05:26:49.253Z",
-      "content": "<p>嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (\\/ω＼)<\\/p>\n<a id=\"more\"><\\/a>\n<p>题目：<a href=\"https:\\/\\/www.luogu.org\\/problemnew\\/show\\/2831\" target=\"_blank\" rel=\"external\">https:\\/\\/www.luogu.org\\/problemnew\\/show\\/2831<\\/a><\\/p>\n<p>题目就是呢，要构造最少条的抛物线，消灭掉所有的小猪~然后求最少的抛物线数量~观察题目我们可以发现——特殊指令 m 是没有什么卵用的= =<\\/p>\n<p>然后接下来我们分析题目：求构造的最少抛物线数量 → 构造抛物线直到把所有的猪都打掉 → 每个猪打一次就没了，而且抛物线的轨迹不会改变 → 对于一条抛物线，如果能打掉尽可能多的猪那么再好不过 → n &lt;= 18 → ……<\\/p>\n<p>好的，看到数据范围大家应该有一些想法了。大部分人会想到搜索 + 剪枝，也有写记忆化搜索的……然而这两种都不太好写，但是能解是肯定的，这里就不多说这个了。<\\/p>\n<p>n 才 18，还有另一种做法呀~那就是状态压缩 DP！( ＞ω＜) 表示对于能理解状态压缩的玩家们，把这题写成状态压缩比写成搜索题好写多了~而且效率也很高的说。如果不能理解状压的话想写就比较麻烦辣。<\\/p>\n<p>那么我们要做什么呢？先设计个 DP 状态和方程呗，显然我们应该<strong>用<code>dp[i]<\\/code>来表示击败的猪的二进制状态为 i 的时候，需要构造的抛物线的最小数目。<\\/strong>二进制状态为 i 是什么概念呢，这里简单地说一下，比如说总共有 3 只猪，这时候你把第一只（标号为 0）和第二只（标号为 1）的猪打掉了，那么 i 就是<code>011<\\/code>咯（打掉第几只猪，状态 i 的二进制下第几位就是 1），同理如果你把三只猪都打死了，那么 i 就是<code>111<\\/code>.<\\/p>\n<p>所以，根据状态压缩 DP 的原理，我们先枚举合法的每一个状态，也就是 <code>i = 1<\\/code> 到 <code>(1 &lt;&lt; n) - 1<\\/code>。对于每一个状态，随便举出其中包含的一个点 k，那么 <code>dp[i]<\\/code> 最坏的情况应该是：在没打掉第 k 只猪之前的最小值 + 1，我们把这个值作为初值赋给 <code>dp[i]<\\/code>: <code>dp[i] = dp[i &amp; ~(1 &lt;&lt; k)] + 1<\\/code>, 或者表示成<code>dp[i] = dp[i - (1 &lt;&lt; k)] + 1<\\/code>.<\\/p>\n<p>然后我们再枚举出当前状态包含的另一个点 t (t != k), 取<code>dp[i]<\\/code>（上文已经更新过了）和<code>dp[j] + 1<\\/code>的最小值即可。因为我们知道，两点构成一条抛物线，所以我们可以找两个，这两个点一定可以勾出一条抛物线，然后从当前状态 i 中去掉<strong>这条抛物线经过的所有的小猪<\\/strong>，这样就得到了状态 j （╯‵□′）╯︵┴─┴ ：<code>dp[i] = min(dp[i], dp[i - (i &amp; fstate[i][j])] + 1)<\\/code>, 这里 <code>fstate[i][j]<\\/code> 的意思请往下看。<\\/p>\n<p>那么还有一个问题，就是我们怎么知道 k 和 t 构成的那条抛物线经过了哪些猪呢？这时候我们可以枚举任意两个点算出经过这两个点的形如<code>y=ax^2+bx, a &lt; 0<\\/code>的抛物线，再计算这条抛物线对其他点的影响，把它们整理成一个二进制状态；简言之，两点（当然，还有原点 0, 0）可以确定一条抛物线，我们用<code>fstate[i][j]<\\/code>表示能干掉第 i 和第 j 只小猪的这条抛物线，最终能打掉的猪的状态，这样上面的 j 就可以推出来了。<code>fstate<\\/code>数组的计算就是，选取两个点计算 a 和 b，然后枚举其他的点，如果<code>aXk^2 + bXk = Yk<\\/code>成立的话，那么就把这个点 k 合并到<code>fstate[i][j]<\\/code>里去：<code>fstate[i][j] |= (1 &lt;&lt; k)<\\/code>.<\\/p>\n<p>好了。至此这道题已经做得差不多了，还有一个很关键的地方可能就是——抛物线怎么算 (￣▽￣)~这里主要要 care 一下精度的问题: <code>const double eps = 1e-7;<\\/code>.<\\/p>\n<p>然后我们对于两个已知点 A(x1, y1), B(x2, y2)，我们可以得到两个等式：<\\/p>\n<pre><code>y1 = a * x1^2 + b * x1\ny2 = a * x2^2 + b * x2\n<\\/code><\\/pre><p>移项变形一下，我们可以得到：<\\/p>\n<pre><code>b = (y1 - a * x1^2) \\/ x1\nb = (y2 - a * x2^2) \\/ x2\n<\\/code><\\/pre><p>消去参数 b，然后得到关于 a 的一个等式，整理之后我们可以得到：<\\/p>\n<pre><code>a = (x2 * y1 - x1 * y2) \\/ (x1 * x2 * (x1 - x2))\n<\\/code><\\/pre><p>其中 x1, x2, x1-x2 均不为 0. 得到 a 之后把 a 带回上面一个含 b 的式子就可以了(o ° ω ° O ) 。<\\/p>\n<p>然后这道题就做完啦。<\\/p>\n<pre><code class=\"cpp\">#include &lt;cstdio&gt;\n#include &lt;cstring&gt;\n#include &lt;cmath&gt;\n#include &lt;algorithm&gt;\n#define db double\nusing namespace std;\nconst int MAXN = 18;\nconst int INF = 1e9 + 7;\nconst db eps = 1e-7;\nstruct Point {\n    db x, y;\n}; \nPoint p[MAXN + 5];\nint dp[1 &lt;&lt; MAXN];\nint fstate[MAXN][MAXN];\nint n, m, t;\nint main()\n{\n    scanf(&quot;%d&quot;, &amp;t);\n    while (t--)\n    {\n        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);\n        for (int i = 0; i &lt; n; i++)\n        {\n            scanf(&quot;%lf%lf&quot;, &amp;p[i].x, &amp;p[i].y);\n        }\n\n        memset(fstate, 0, sizeof fstate);\n\n        for (int i = 0; i &lt; n; i++)\n        {\n            for (int j = 0; j &lt; n; j++)\n            {\n                if (i == j) {\n                    continue;\n                }\n\n                db x1 = p[i].x, x2 = p[j].x, y1 = p[i].y, y2 = p[j].y;\n                if (x1 &lt; eps || x2 &lt; eps || abs(x1 - x2) &lt; eps) {\n                    continue;\n                }\n                db a = (x2 * y1 - x1 * y2) \\/ (x1 * x2 * (x1 - x2));\n                if (a &gt; -eps) {\n                    continue;\n                }\n\n                db b = y1 \\/ x1 - a * x1;\n                int final = (1 &lt;&lt; i) | (1 &lt;&lt; j);\n                for (int k = 0; k &lt; n; k++)\n                {\n                    db xk = p[k].x, yk = p[k].y;\n                    if (abs(a * xk * xk + b * xk - yk) &lt; eps) {\n                        final |= (1 &lt;&lt; k);\n                    }\n                }\n                fstate[i][j] = final;\n            }\n        }\n\n        fill(dp, dp + (1 &lt;&lt; n), INF);\n        dp[0] = 0;\n        for (int i = 1; i &lt; (1 &lt;&lt; n); i++)\n        {\n            int cur = 0;\n            for (int j = 0; j &lt; n; j++)\n            {\n                if (i &amp; (1 &lt;&lt; j)) {\n                    cur = j;\n                    break;\n                }\n            }\n\n            \\/\\/ dp[i] = dp[i - (1 &lt;&lt; cur)] + 1;\n            dp[i] = dp[i &amp; ~(1 &lt;&lt; cur)] + 1;\n\n            for (int j = 0; j &lt; n; j++)\n            {\n               if (i &amp; (1 &lt;&lt; j) &amp;&amp; j != cur) {\n                    dp[i] = min(dp[i], dp[i &amp; ~(i &amp; fstate[cur][j])] + 1);\n                    \\/\\/ dp[i] = min(dp[i], dp[i - (i &amp; fstate[cur][j])] + 1);\n               }\n            }\n        }\n\n        printf(&quot;%d\\n&quot;, dp[(1 &lt;&lt; n) - 1]);\n    }\n    return 0;\n}\n<\\/code><\\/pre>\n",
-      "excerpt": "<p>嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (\\/ω＼)<\\/p>",
-      "slug": "angry-birds-state-compressing",
-      "published": true,
-      "layout": "post",
-      "path": "blog/post/angry-birds-state-compressing/",
-      "permalink": "https://kirainmoe.com/blog/post/angry-birds-state-compressing/",
-      "tags": [
-        {
-          "name": "oi",
-          "slug": "oi",
-          "path": "tags/oi/",
-          "permalink": "https://kirainmoe.com/tags/oi/",
-          "length": 9
-        },
-        {
-          "name": "algorithm",
-          "slug": "algorithm",
-          "path": "tags/algorithm/",
-          "permalink": "https://kirainmoe.com/tags/algorithm/",
-          "length": 8
-        },
-        {
-          "name": "dynamic programming",
-          "slug": "dynamic-programming",
-          "path": "tags/dynamic-programming/",
-          "permalink": "https://kirainmoe.com/tags/dynamic-programming/",
           "length": 1
         }
       ],
