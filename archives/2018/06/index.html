@@ -32,8 +32,8 @@
     {
       "title": "Typescript 下 Redux connect 带有 Props 组件的问题",
       "date": "2018-06-28T11:34:48.000Z",
-      "modified": "2018-06-28T12:05:24.800Z",
-      "content": "<p><s>Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码<\\/s> <\\/p>\n<p>真香<\\/p>\n<a id=\"more\"><\\/a>\n<p>考虑以下在 Typescript 语法下使用 redux 的代码片段：<\\/p>\n<pre><code class=\"js\">import * as React from &#39;react&#39;;\nimport { connect, Dispatch } from &#39;react-redux&#39;;\n\nimport { State } from &#39;.\\/types&#39;;\n\ninterface Props {\n    id: string;\n}\n\nclass MyComponent extends React.Component&lt;Props&gt; {\n    constructor(props: Props) {\n        super(props);\n    }\n\n    render() {\n        return (\n            &lt;div id={this.props.id}&gt;\n                {\\/* .... *\\/}\n            &lt;\\/div&gt;\n        );\n    }\n}\n\nconst mapStateToProps = (state: State) =&gt; ({\n    \\/\\/ ...\n});\n\nconst mapDispatchToProps = (dispatch: Dispatch) =&gt; ({\n    \\/\\/ ...\n});\n\nexport default connect(mapStateToProps, mapDispatchToProps)(MyComponent);\n<\\/code><\\/pre>\n<p>这是个很简单的把组件和 redux 连接起来的部分代码。以上的代码是可以通过编译的，也可以运行。<\\/p>\n<p>现在假如我们有另一个 Component 引入了这个 Component：<\\/p>\n<pre><code class=\"js\">import MyComponent from &#39;.\\/MyComponent&#39;;\n\n\\/\\/ ....\n&lt;MyComponent id={&#39;example-id&#39;}&gt;\n<\\/code><\\/pre>\n<p>看起来没毛病啊，MyComponent 确实需要一个叫 id 的参数，也在组件里声明过了，然而 Typescript 会提示编译错误：<\\/p>\n<blockquote>\n<p>类型“IntrinsicAttributes &amp; IntrinsicClassAttributes<component<pick<props, never=\"\">, ComponentState, any&gt;…”上不存在属性“id”。<\\/component<pick<props,><\\/p>\n<\\/blockquote>\n<p>这里不是因为编译器瞎了，回看我们的 MyComponent 中，export 的是 <code>connect()<\\/code> 处理过的 HOC 而不是我们原始的组件，而 经过 <code>connect()<\\/code> 之后的组件会把 state 和 dispatch 映射到新组件的 props 里，但这个组件原有 props 的类型就丢掉了。<\\/p>\n<p>解决方法之一就是把 id 这个 props 写到 reducer 的 state 中；但有时候为了代码的整洁性，这个 props 只在这个组件中需要并起作用，便没有必要弄到全局的 state 里。事实上，<code>connect()<\\/code> 函数在 Typescript 中也可以指定类型：<\\/p>\n<pre><code class=\"js\">export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);\n<\\/code><\\/pre>\n<p>以上代码等效为：<\\/p>\n<pre><code class=\"js\">interface StateOfProps {\n    \\/\\/ ...\n}\n\ninterface StateOfDispatch {\n    \\/\\/ ...\n}\n\nexport default connect&lt;StateOfProps, StateOfDispatch, void&gt;(\n    mapStateToProps,\n    mapDispatchToProps\n)(MyComponent);\n<\\/code><\\/pre>\n<p>注意在后者的 <code>connect()<\\/code> 中我们为其指定了 3 个类型，分别是 <strong><code>mapStateToProps()<\\/code> 返回值的类型<\\/strong>、<strong><code>mapDispatchToProps()<\\/code> 返回值的类型<\\/strong>，但最后一个 <code>void<\\/code> 有什么作用？<strong>第三个类型实际上指定的就是目标组件原本需要的 Props 的类型<\\/strong>。所以我们可以通过改写成如下的代码：<\\/p>\n<pre><code class=\"js\">interface StateOfProps {\n    \\/\\/ ...\n}\n\ninterface StateOfDispatch {\n    \\/\\/ ...\n}\n\nexport default connect&lt;StateOfProps, StateOfDispatch, Props&gt;(\n    mapStateToProps,\n    mapDispatchToProps\n)(MyComponent);\n<\\/code><\\/pre>\n<p>即可解决上述问题。<\\/p>\n",
+      "modified": "2018-07-19T18:04:58.079Z",
+      "content": "<p><s>Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码<\\/s> <\\/p>\n<p>真香<\\/p>\n<a id=\"more\"><\\/a>\n<p>考虑以下在 Typescript 语法下使用 redux 的代码片段：<\\/p>\n<pre><code class=\"js\">import * as React from &#39;react&#39;;\nimport { connect, Dispatch } from &#39;react-redux&#39;;\n\nimport { State } from &#39;.\\/types&#39;;\n\ninterface Props {\n    id: string;\n}\n\nclass MyComponent extends React.Component&lt;Props&gt; {\n    constructor(props: Props) {\n        super(props);\n    }\n\n    render() {\n        return (\n            &lt;div id={this.props.id}&gt;\n                {\\/* .... *\\/}\n            &lt;\\/div&gt;\n        );\n    }\n}\n\nconst mapStateToProps = (state: State) =&gt; ({\n    \\/\\/ ...\n});\n\nconst mapDispatchToProps = (dispatch: Dispatch) =&gt; ({\n    \\/\\/ ...\n});\n\nexport default connect(mapStateToProps, mapDispatchToProps)(MyComponent);\n<\\/code><\\/pre>\n<p>这是个很简单的把组件和 redux 连接起来的部分代码。以上的代码是可以通过编译的，也可以运行。<\\/p>\n<p>现在假如我们有另一个 Component 引入了这个 Component：<\\/p>\n<pre><code class=\"js\">import MyComponent from &#39;.\\/MyComponent&#39;;\n\n\\/\\/ ....\n&lt;MyComponent id={&#39;example-id&#39;} \\/&gt;\n<\\/code><\\/pre>\n<p>看起来没毛病啊，MyComponent 确实需要一个叫 id 的参数，也在组件里声明过了，然而 Typescript 会提示编译错误：<\\/p>\n<blockquote>\n<p>类型“IntrinsicAttributes &amp; IntrinsicClassAttributes<component<pick<props, never=\"\">, ComponentState, any&gt;…”上不存在属性“id”。<\\/component<pick<props,><\\/p>\n<\\/blockquote>\n<p>这里不是因为编译器瞎了，回看我们的 MyComponent 中，export 的是 <code>connect()<\\/code> 处理过的 HOC 而不是我们原始的组件，而 经过 <code>connect()<\\/code> 之后的组件会把 state 和 dispatch 映射到新组件的 props 里，但这个组件原有 props 的类型就丢掉了。<\\/p>\n<p>解决方法之一就是把 id 这个 props 写到 reducer 的 state 中；但有时候为了代码的整洁性，这个 props 只在这个组件中需要并起作用，便没有必要弄到全局的 state 里。事实上，<code>connect()<\\/code> 函数在 Typescript 中也可以指定类型：<\\/p>\n<pre><code class=\"js\">export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);\n<\\/code><\\/pre>\n<p>以上代码等效为：<\\/p>\n<pre><code class=\"js\">interface TypeOfState {\n    \\/\\/ ...\n}\n\ninterface TypeOfDispatch {\n    \\/\\/ ...\n}\n\nexport default connect&lt;TypeOfState, TypeOfDispatch, void&gt;(\n    mapStateToProps,\n    mapDispatchToProps\n)(MyComponent);\n<\\/code><\\/pre>\n<p>注意在后者的 <code>connect()<\\/code> 中我们为其指定了 3 个类型，分别是 <strong><code>mapStateToProps()<\\/code> 返回值的类型<\\/strong>、<strong><code>mapDispatchToProps()<\\/code> 返回值的类型<\\/strong>，但最后一个 <code>void<\\/code> 有什么作用？<strong>第三个类型实际上指定的就是目标组件原本需要的 Props 的类型<\\/strong>。所以我们可以通过改写成如下的代码：<\\/p>\n<pre><code class=\"js\">interface TypeOfState {\n    \\/\\/ ...\n}\n\ninterface TypeOfDispatch {\n    \\/\\/ ...\n}\n\nexport default connect&lt;TypeOfState, TypeOfDispatch, Props&gt;(\n    mapStateToProps,\n    mapDispatchToProps\n)(MyComponent);\n<\\/code><\\/pre>\n<p>即可解决上述问题。<\\/p>\n",
       "excerpt": "<p><s>Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码<\\/s> <\\/p>\n<p>真香<\\/p>",
       "slug": "redux-with-typescript-connect-component-problem",
       "published": true,
@@ -42,18 +42,18 @@
       "permalink": "https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/",
       "tags": [
         {
-          "name": "typescript",
-          "slug": "typescript",
-          "path": "tags/typescript/",
-          "permalink": "https://kirainmoe.com/tags/typescript/",
-          "length": 2
-        },
-        {
           "name": "react",
           "slug": "react",
           "path": "tags/react/",
           "permalink": "https://kirainmoe.com/tags/react/",
           "length": 4
+        },
+        {
+          "name": "typescript",
+          "slug": "typescript",
+          "path": "tags/typescript/",
+          "permalink": "https://kirainmoe.com/tags/typescript/",
+          "length": 2
         },
         {
           "name": "redux",
