@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cpp on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/cpp/</link>
+    <description>Recent content in Cpp on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Wed, 01 Mar 2017 17:38:39 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LeetCode Praticing Record</title>
+      <link>https://kirainmoe.com/blog/post/leetcode-praticing-record/</link>
+      <pubDate>Wed, 01 Mar 2017 17:38:39 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/leetcode-praticing-record/</guid>
+      <description>&lt;p&gt;_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 &lt;a href=&#34;https://leetcode.com&#34;&gt;LeetCode&lt;/a&gt; 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））&lt;s&gt;所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

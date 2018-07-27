@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端 on YumeのDiary</title>
+    <link>https://kirainmoe.com/categories/%E5%89%8D%E7%AB%AF/</link>
+    <description>Recent content in 前端 on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sun, 14 Jan 2018 16:33:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Progressive Web App 初体验</title>
+      <link>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</link>
+      <pubDate>Sun, 14 Jan 2018 16:33:20 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</guid>
+      <description>&lt;p&gt;最近访问 &lt;a href=&#34;https://mobile.twitter.com/&#34;&gt;Twitter Mobile&lt;/a&gt; 和 &lt;a href=&#34;https://m.weibo.cn/beta&#34;&gt;微博 HTML5 版&lt;/a&gt; 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>环境变量导致的 webpack 打包时不压缩 CSS 文件</title>
+      <link>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</link>
+      <pubDate>Sun, 07 Jan 2018 15:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</guid>
+      <description>&lt;p&gt;项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。
+
+通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Typescript 写 React 遇到的一些坑</title>
+      <link>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</link>
+      <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 React 制作全站单页主题的实践</title>
+      <link>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</link>
+      <pubDate>Sun, 17 Dec 2017 20:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</guid>
+      <description>&lt;p&gt;算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,100 +1,235 @@
-<!-- Himawari no Yakusoku -->
-
-<!DOCTYPE html>
-<html lang="Zh-cn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="theme-color" content="#FF98A8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Tag: frontend [ YumeのDiary ]</title>
-  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
-  <link rel="manifest" href="/manifest.json">
-  
-    <!-- stylesheets list from config.yml -->
-    
-      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-      <link rel="stylesheet" href="/himawari.css">
-    
-  
-</head>
 <body>
-  
-  <!-- infos -->
-  <script type="text/json" id="himawari-json">{
-  "title": "YumeのDiary",
-  "siteTitle": "YumeのDiary",
-  "description": "6 年間、共に歩んでくれたあなたへ。",
-  "author": "Yume Kankawa",
-  "route": "tag",
-  "format": "blog/:layout/:title/",
-  "posts": {
-    "path": "tags/frontend/index.html",
-    "tags": false,
-    "categories": false
-  },
-  "menu": {
-    "Home": "/",
-    "Guestbook": "/pages/guestbook/",
-    "Friends": "/pages/friends/",
-    "About": "https://about.me/kirainmoe"
-  },
-  "socials": {
-    "twitter": "https://twitter.com/yume_kankawa",
-    "github": "https://github.com/kirainmoe",
-    "weibo": "https://weibo.com/returnnnn",
-    "medium": "https://medium.com/@kotori",
-    "lastfm": "https://www.last.fm/user/kirainmoe"
-  },
-  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
-  "menuIcon": {
-    "Home": "home",
-    "Guestbook": "book",
-    "Friends": "users",
-    "Archives": "tags",
-    "About": "id-card-o"
-  },
-  "disqus": "yume-diary",
-  "prev": 0,
-  "next": 0
-}</script>
-  <!-- hook node of React -->
-  <div id="himawari-app"></div>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="Frontend - YumeのDiary" property="og:title">
+<title>Frontend | YumeのDiary</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-  
-    <!-- scripts list from theme config.yml -->
-    
-      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
-    
-      <script src="/common.js"></script>
-    
-      <script src="/main.js"></script>
-    
-  
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://kirainmoe.com//"><h1 class="title is-4">YumeのDiary</h1></a>
+        <a class="nav-item" href="/pages/guestbook/">Guestbook</a>
+        <a class="nav-item" href="/pages/friends/">Friends</a>        
+        <a class="nav-item" href="https://about.me/kirainmoe">About</a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://medium.com/@kotori">
+            <span class="icon">
+              <i class="fa fa-medium"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
 
-    gtag('config', 'UA-111347233-1');
-  </script>
+  <section class="section">
+    <div class="container">
+      
+      <article>
+        <h2 class="subtitle is-6">January 14, 2018</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/">Progressive Web App 初体验</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/frontend">frontend</a>
+    
+        <a class="button is-link" href="/tags/progressive-web-app">progressive-web-app</a>
+    
+</div>
+
+        
+        <div class="content">
+          最近访问 Twitter Mobile 和 微博 HTML5 版 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">January 7, 2018</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/">环境变量导致的 webpack 打包时不压缩 CSS 文件</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/webpack">webpack</a>
+    
+        <a class="button is-link" href="/tags/frontend">frontend</a>
+    
+</div>
+
+        
+        <div class="content">
+          项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。 通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">December 19, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/">使用 Typescript 写 React 遇到的一些坑</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/typescript">typescript</a>
+    
+        <a class="button is-link" href="/tags/javascript">javascript</a>
+    
+        <a class="button is-link" href="/tags/react">react</a>
+    
+        <a class="button is-link" href="/tags/frontend">frontend</a>
+    
+</div>
+
+        
+        <div class="content">
+          自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&ndash;）……这里就简单的记录一下。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">September 2, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/">开发一个简单的 webpack 插件</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/webpack">webpack</a>
+    
+        <a class="button is-link" href="/tags/frontend">frontend</a>
+    
+</div>
+
+        
+        <div class="content">
+          之前为了尝试实现 dalao 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+    </div>
+  </section>
+  <section class="section">
+  <div class="container">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          
+          <a class="button is-disabled">
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-left"></i>
+            </span>
+            Newer
+          </a>
+          
+        </div>
+      </div>
+      <div class="level-right is-marginless">
+        <div class="level-item">
+          
+          <a class="button is-disabled">
+            Older
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2018 YumeのDiary / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://themes.gohugo.io/hemingway2/">Theme</a></p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 </body>
-</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kmp on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/kmp/</link>
+    <description>Recent content in Kmp on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Tue, 17 Oct 2017 13:01:43 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/kmp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>浅谈 KMP 字符串匹配算法</title>
+      <link>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</link>
+      <pubDate>Tue, 17 Oct 2017 13:01:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</guid>
+      <description>&lt;p&gt;因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

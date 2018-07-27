@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Progressive Web App on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/progressive-web-app/</link>
+    <description>Recent content in Progressive Web App on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sun, 14 Jan 2018 16:33:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/progressive-web-app/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Progressive Web App 初体验</title>
+      <link>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</link>
+      <pubDate>Sun, 14 Jan 2018 16:33:20 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</guid>
+      <description>&lt;p&gt;最近访问 &lt;a href=&#34;https://mobile.twitter.com/&#34;&gt;Twitter Mobile&lt;/a&gt; 和 &lt;a href=&#34;https://m.weibo.cn/beta&#34;&gt;微博 HTML5 版&lt;/a&gt; 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

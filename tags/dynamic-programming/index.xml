@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dynamic Programming on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/dynamic-programming/</link>
+    <description>Recent content in Dynamic Programming on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Fri, 03 Nov 2017 20:36:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/dynamic-programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>愤怒的小鸟 (Review / NOIP2016 D2T3)</title>
+      <link>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</link>
+      <pubDate>Fri, 03 Nov 2017 20:36:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</guid>
+      <description>&lt;p&gt;嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

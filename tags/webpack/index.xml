@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Webpack on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/webpack/</link>
+    <description>Recent content in Webpack on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sun, 07 Jan 2018 15:23:36 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/webpack/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>环境变量导致的 webpack 打包时不压缩 CSS 文件</title>
+      <link>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</link>
+      <pubDate>Sun, 07 Jan 2018 15:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</guid>
+      <description>&lt;p&gt;项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。
+
+通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开发一个简单的 webpack 插件</title>
+      <link>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</link>
+      <pubDate>Sat, 02 Sep 2017 11:59:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</guid>
+      <description>&lt;p&gt;之前为了尝试实现 &lt;a href=&#34;https://kotori.love&#34;&gt;dalao&lt;/a&gt; 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从根源缩小 webpack 打包的 React App 体积</title>
+      <link>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</link>
+      <pubDate>Tue, 06 Jun 2017 10:51:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</guid>
+      <description>&lt;p&gt;用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

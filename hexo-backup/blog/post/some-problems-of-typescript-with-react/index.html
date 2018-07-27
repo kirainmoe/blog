@@ -1,0 +1,145 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>使用 Typescript 写 React 遇到的一些坑 [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "post",
+  "format": "blog/:layout/:title/",
+  "posts": {
+    "title": "使用 Typescript 写 React 遇到的一些坑",
+    "date": "2017-12-19T14:12:18.000Z",
+    "modified": "2018-07-19T18:04:58.079Z",
+    "content": "<p>自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度–）……这里就简单的记录一下。<\\/p>\n<a id=\"more\"><\\/a>\n<h2 id=\"使用-ES7-装饰符-decorator-时提示返回类型未定义\"><a href=\"#使用-ES7-装饰符-decorator-时提示返回类型未定义\" class=\"headerlink\" title=\"使用 ES7 装饰符 (decorator) 时提示返回类型未定义\"><\\/a>使用 ES7 装饰符 (decorator) 时提示返回类型未定义<\\/h2><p>这个问题发生在使用 <a href=\"https:\\/\\/github.com\\/concretesolutions\\/redux-zero\" target=\"_blank\" rel=\"external\">redux-zero<\\/a> （大概是个懒人版的 Redux）的时候。<\\/p>\n<p>一般来说，connect 一个组件大概要这样写，不管是用 react-redux 还是 redux-zero：<\\/p>\n<pre><code class=\"javascript\">import { connect } from &#39;redux-zero\\/react&#39;;\n\n\\/* ... *\\/\n\nclass MyComponent extends React.Compoent {\n    render() {\n        return (\\/* ... *\\/);\n    }\n}\n\nexport default connect(mapStateToProps, actions)(MyComponent);\n<\\/code><\\/pre>\n<p>有时候我们可以偷懒用上 ES7 的 decorator 特性写得简洁一些：<\\/p>\n<pre><code class=\"javascript\">@connect(mapStateToProps, actions)\nexport default class MyCompoent extends React.Component {\n    \\/\\/ ...\n}\n<\\/code><\\/pre>\n<p>这两种写法效果是一样的。然而在 Typescript 中，以上代码会报这样的错误：<\\/p>\n<pre><code>[ts] Unable to resolve signature of class decorator when called as an expression.\n<\\/code><\\/pre><p>点一下 <code>connect<\\/code> 方法的定义，可以看到在 <code>connect.d.ts<\\/code> 的 17 行有这样的一句：<\\/p>\n<pre><code class=\"javascript\">export default function connect(mapToProps: any, actions?: {}): (Child: any) =&gt; (props: any) =&gt; JSX.Element;\n<\\/code><\\/pre>\n<p>看着似乎没什么问题，但是：<\\/p>\n<pre><code class=\"javascript\">\\/\\/ test 1\nconst test = (component: any) =&gt; {\n    console.log(component);\n}\n@test\nclass MyComponent extends React.Component {\n    \\/\\/ ...\n}\n\\/\\/ passed\n<\\/code><\\/pre>\n<p>把定义 <code>test<\\/code> 的方法换一下：<\\/p>\n<pre><code class=\"javascript\">\\/\\/ test 2\nfunction test(component: any) {\n    console.log(component);\n}\n@test\nclass MyComponent extends React.Component {\n    \\/\\/ ...\n}\n\\/\\/ compile failed\n<\\/code><\\/pre>\n<p>看起来 Typescript 并不允许把用 function 定义的函数作为装饰符来使用呢。但是我们总不能去改依赖的代码吧，这个时候怎么办呢w<\\/p>\n<p>如果一些项目有 DefinitelyTyped 的 typing 文件的话，可以尝试安装 <code>@types\\/xxxxx<\\/code>, 例如 <code>@types\\/react-redux<\\/code>。<\\/p>\n<p>如果没有的话，答案就是自己再包上一层，以 <code>redux-zero<\\/code> 的 <code>connect()<\\/code> 为例：<\\/p>\n<pre><code class=\"javascript\">\\/\\/ utils\\/connect.ts\nimport { connect as connectComponent } from &#39;redux-zero\\/react&#39;;\n\nexport const connect = (mapStateToProps: any, actions: any) =&gt; {\n  return (target: any) =&gt; (\n    connectComponent(mapStateToProps, actions)(target) as any\n  );\n};\n\n\\/\\/ component\nimport { connect } from &#39;utils\\/connect&#39;;\n\\/* ... *\\/\n@connect(mapStateToProps, actions)\nexport defalt class MyComponent extends React.Component {\n    \\/\\/ ...\n}\n<\\/code><\\/pre>\n<p>这样就可以啦。<\\/p>\n<h2 id=\"自定义-JSX-元素在-JSX-IntrinsicElements-不存在\"><a href=\"#自定义-JSX-元素在-JSX-IntrinsicElements-不存在\" class=\"headerlink\" title=\"自定义 JSX 元素在 JSX.IntrinsicElements 不存在\"><\\/a>自定义 JSX 元素在 JSX.IntrinsicElements 不存在<\\/h2><p>我并不知道怎么描述这个问题比较合适，场景是需要批量渲染一个对象中所有的组件：<\\/p>\n<pre><code class=\"javascript\">const components = {\n    comp1: Compnent1,\n    comp2: Component2,\n    \\/\\/ ...\n},\n    keys = Object.keys(components);\n\nconst res: Array&lt;any&gt; = [];\nkeys.forEach(key =&gt; {\n    const tmp: any = components[key];\n    res.push(&lt;tmp key={key} \\/&gt;);\n});\n<\\/code><\\/pre>\n<p>上面的代码会返回这样的错误：<\\/p>\n<pre><code>[ts] Property &#39;tmp&#39; does not exist on type &#39;JSX.IntrinsicElements&#39;.\n<\\/code><\\/pre><p>原因是 Typescript 要求 JSX 组件变量名的第一个字母为大写，如果不是的话 TS 便认为它不是个合法的 JSX 元素。所以把 <code>tmp<\\/code> 改成 <code>Tmp<\\/code> 就可以惹。<\\/p>\n",
+    "excerpt": "<p>自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度–）……这里就简单的记录一下。<\\/p>",
+    "slug": "some-problems-of-typescript-with-react",
+    "published": true,
+    "layout": "post",
+    "path": "blog/post/some-problems-of-typescript-with-react/",
+    "permalink": "https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/",
+    "tags": [
+      {
+        "name": "react",
+        "slug": "react",
+        "path": "tags/react/",
+        "permalink": "https://kirainmoe.com/tags/react/",
+        "length": 4
+      },
+      {
+        "name": "typescript",
+        "slug": "typescript",
+        "path": "tags/typescript/",
+        "permalink": "https://kirainmoe.com/tags/typescript/",
+        "length": 2
+      },
+      {
+        "name": "frontend",
+        "slug": "frontend",
+        "path": "tags/frontend/",
+        "permalink": "https://kirainmoe.com/tags/frontend/",
+        "length": 4
+      },
+      {
+        "name": "javascript",
+        "slug": "javascript",
+        "path": "tags/javascript/",
+        "permalink": "https://kirainmoe.com/tags/javascript/",
+        "length": 1
+      }
+    ],
+    "categories": [
+      {
+        "name": "前端",
+        "slug": "前端",
+        "path": "categories/前端/",
+        "permalink": "https://kirainmoe.com/categories/前端/",
+        "length": 4
+      }
+    ],
+    "illust": "https://www.typescriptlang.org/assets/images/foreground_bluprint.svg"
+  },
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary"
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

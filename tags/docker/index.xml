@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/docker/</link>
+    <description>Recent content in Docker on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sat, 05 Aug 2017 21:05:18 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一次搭建内部 Online Judge 及调优的笔记</title>
+      <link>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</link>
+      <pubDate>Sat, 05 Aug 2017 21:05:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</guid>
+      <description>&lt;p&gt;嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
+为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
+关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

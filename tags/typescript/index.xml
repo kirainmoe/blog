@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Typescript on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/typescript/</link>
+    <description>Recent content in Typescript on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Thu, 28 Jun 2018 19:34:48 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Typescript 下 Redux connect 带有 Props 组件的问题</title>
+      <link>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</link>
+      <pubDate>Thu, 28 Jun 2018 19:34:48 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
+      <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;真香&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Typescript 写 React 遇到的一些坑</title>
+      <link>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</link>
+      <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

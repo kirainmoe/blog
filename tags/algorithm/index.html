@@ -1,100 +1,378 @@
-<!-- Himawari no Yakusoku -->
-
-<!DOCTYPE html>
-<html lang="Zh-cn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="theme-color" content="#FF98A8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Tag: algorithm [ YumeのDiary ]</title>
-  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
-  <link rel="manifest" href="/manifest.json">
-  
-    <!-- stylesheets list from config.yml -->
-    
-      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-      <link rel="stylesheet" href="/himawari.css">
-    
-  
-</head>
 <body>
-  
-  <!-- infos -->
-  <script type="text/json" id="himawari-json">{
-  "title": "YumeのDiary",
-  "siteTitle": "YumeのDiary",
-  "description": "6 年間、共に歩んでくれたあなたへ。",
-  "author": "Yume Kankawa",
-  "route": "tag",
-  "format": "blog/:layout/:title/",
-  "posts": {
-    "path": "tags/algorithm/index.html",
-    "tags": false,
-    "categories": false
-  },
-  "menu": {
-    "Home": "/",
-    "Guestbook": "/pages/guestbook/",
-    "Friends": "/pages/friends/",
-    "About": "https://about.me/kirainmoe"
-  },
-  "socials": {
-    "twitter": "https://twitter.com/yume_kankawa",
-    "github": "https://github.com/kirainmoe",
-    "weibo": "https://weibo.com/returnnnn",
-    "medium": "https://medium.com/@kotori",
-    "lastfm": "https://www.last.fm/user/kirainmoe"
-  },
-  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
-  "menuIcon": {
-    "Home": "home",
-    "Guestbook": "book",
-    "Friends": "users",
-    "Archives": "tags",
-    "About": "id-card-o"
-  },
-  "disqus": "yume-diary",
-  "prev": 0,
-  "next": 0
-}</script>
-  <!-- hook node of React -->
-  <div id="himawari-app"></div>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="Algorithm - YumeのDiary" property="og:title">
+<title>Algorithm | YumeのDiary</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-  
-    <!-- scripts list from theme config.yml -->
-    
-      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
-    
-      <script src="/common.js"></script>
-    
-      <script src="/main.js"></script>
-    
-  
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://kirainmoe.com//"><h1 class="title is-4">YumeのDiary</h1></a>
+        <a class="nav-item" href="/pages/guestbook/">Guestbook</a>
+        <a class="nav-item" href="/pages/friends/">Friends</a>        
+        <a class="nav-item" href="https://about.me/kirainmoe">About</a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://medium.com/@kotori">
+            <span class="icon">
+              <i class="fa fa-medium"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
 
-    gtag('config', 'UA-111347233-1');
-  </script>
+  <section class="section">
+    <div class="container">
+      
+      <article>
+        <h2 class="subtitle is-6">July 27, 2018</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/exgcd-and-gauss/">被迫学习之拓展欧几里得算法 &amp; 高斯消元</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/math">math</a>
+    
+</div>
+
+        
+        <div class="content">
+          为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/exgcd-and-gauss/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">November 3, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/angry-birds-state-compressing/">愤怒的小鸟 (Review / NOIP2016 D2T3)</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/dynamic-programming">dynamic programming</a>
+    
+</div>
+
+        
+        <div class="content">
+          嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/angry-birds-state-compressing/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">October 29, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/my-first-contest-problem/">记自己的第一次差点翻车的出题经历</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+        
+        <div class="content">
+          复赛在即，我们学校里面的四个撒币不知道是谁突发奇想，说要出一套模拟题。于是我们四个人分别出了一道要多恶心有多恶心的题= =本来嘛是要在学校内部自己测的，不过人太少，不好玩，于是就连夜 py 到洛谷上搞了公开赛。从早上 8 点到中午 12 点，虽然出了很多的锅，不过还是要记录一下我的第一次出题经历（
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/my-first-contest-problem/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">October 17, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/">浅谈 KMP 字符串匹配算法</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/kmp">kmp</a>
+    
+</div>
+
+        
+        <div class="content">
+          因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">September 10, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/">每周解题报告 (4th, 8/20~9/10)</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+        
+        <div class="content">
+          经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……
+有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在这个地方。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">August 20, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/">每周解题报告 (3rd, 8/14~8/20)</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+</div>
+
+        
+        <div class="content">
+          这周主要是尝试了一些新的东西（ 做了一些之前一直想看但是一直没看懂和没做的题目。依旧是做 HDU 的题。虽然写得不是很熟练，不过慢慢来应该也是可以的。 另外下周由于要阶段考试这样子，可能就没有时间做题目了。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">August 13, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/">每周解题报告 (2nd, 8/7~8/13)</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+        
+        <div class="content">
+          这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">August 7, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/">每周解题报告 (1st, 8/3~8/6)</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+        
+        <div class="content">
+          RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。
+这一阶段的话主要是挑 HDUOJ 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（比如 A+B Problem），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
+        <h2 class="subtitle is-6">March 1, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/leetcode-praticing-record/">LeetCode Praticing Record</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/leetcode">leetcode</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/cpp">cpp</a>
+    
+</div>
+
+        
+        <div class="content">
+          _(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 LeetCode 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……
+
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/leetcode-praticing-record/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+    </div>
+  </section>
+  <section class="section">
+  <div class="container">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          
+          <a class="button is-disabled">
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-left"></i>
+            </span>
+            Newer
+          </a>
+          
+        </div>
+      </div>
+      <div class="level-right is-marginless">
+        <div class="level-item">
+          
+          <a class="button is-disabled">
+            Older
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2018 YumeのDiary / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://themes.gohugo.io/hemingway2/">Theme</a></p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 </body>
-</html>

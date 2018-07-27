@@ -1,0 +1,122 @@
+<!-- Himawari no Yakusoku -->
+
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#FF98A8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>开发一个简单的 webpack 插件 [ YumeのDiary ]</title>
+  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
+  <link rel="manifest" href="/manifest.json">
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/himawari.css">
+    
+  
+</head>
+<body>
+  
+  <!-- infos -->
+  <script type="text/json" id="himawari-json">{
+  "title": "YumeのDiary",
+  "siteTitle": "YumeのDiary",
+  "description": "6 年間、共に歩んでくれたあなたへ。",
+  "author": "Yume Kankawa",
+  "route": "post",
+  "format": "blog/:layout/:title/",
+  "posts": {
+    "title": "开发一个简单的 webpack 插件",
+    "date": "2017-09-02T03:59:44.000Z",
+    "modified": "2018-07-19T18:04:58.082Z",
+    "content": "<p>之前为了尝试实现 <a href=\"https:\\/\\/kotori.love\" target=\"_blank\" rel=\"external\">dalao<\\/a> 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"前言\"><a href=\"#前言\" class=\"headerlink\" title=\"前言\"><\\/a>前言<\\/h1><p>首先呢，webpack 的强大功能其中有很大的一部分是离不开插件的，通过插件你几乎可以<s>为所欲为<\\/s>，也能更充分地利用 webpack. 事实上 webpack 的配置什么的很多看起来很复杂，文档也很多，所以会给很多人一种它的插件也很难搞的错觉……和其它的程序类似， webpack 的插件也有一个模子，也就是基本框架。<\\/p>\n<p>为了让整理出来的东西看起来具体一些，我以前文提到的那个想法为例，这个想法具体如下：<\\/p>\n<blockquote>\n<p>在我们使用 webpack-dev-server 结合 webpack 开发的时候，webpack-dev-server 会把 console 中的错误和警告信息转发到浏览器端，但是单纯用 <code>webpack --watch<\\/code> 的时候，webpack 除了会检测文件变动重新 compile 之外并不会把其他信息转发到浏览器上，以至于有时候我们发现了一些问题，到最后切到 console 才发现是编译的过程出现了偏差。所以有没有什么办法让 <code>webpack --watch<\\/code> 的时候也能把错误和警告显示到浏览器的 console？<\\/p>\n<\\/blockquote>\n<p>当然我不把具体的实现过程展开了。这样的需求显然可以通过 webpack 插件实现，监听 webpack 的 compile 事件，获取异常信息，然后前端和后端建立一个 socket 连接，实时输出这些信息。<\\/p>\n<h1 id=\"实现\"><a href=\"#实现\" class=\"headerlink\" title=\"实现\"><\\/a>实现<\\/h1><p>是的，以上所有的步骤都可以通过一个 webpack 插件做到。不多说废话，在开发之前稍微浏览一下 webpack 的官方开发文档还是很重要的：<\\/p>\n<blockquote>\n<p>How to write a plugin: <a href=\"https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation<\\/a><br>Plugin API: <a href=\"https:\\/\\/webpack.js.org\\/api\\/\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/api\\/<\\/a><\\/p>\n<\\/blockquote>\n<p>先来看看我们是怎么在 webpack 中应用插件的：<\\/p>\n<pre><code class=\"js\">\\/\\/ webpack.config.js\nplugins: [\n  new webpack.HotModuleReplacementPlugin(),\n  new webpack.NoEmitOnErrorsPlugin()\n],\n<\\/code><\\/pre>\n<p>可以看到，我们在 <code>webpack config<\\/code> 中的 <code>plugins<\\/code> 字段里实例化一个对象来应用插件，所以我们的新插件也应该有一个 class. 官方文档中用的是 ES5 的 <code>function + prototype<\\/code> 的写法，我们可以直接用上 ES6 的 class. 假设插件名字为 <code>MyAwesomePlugin<\\/code>, 首先我们创建一个 <em>MyAwesomePlugin.js<\\/em>：<\\/p>\n<pre><code class=\"js\">module.exports = class MyAwesomePlugin {\n    constructor(options) {\n        this.options = options;\n    }\n\n    apply(compiler) {\n        console.log(&#39;Hello world!&#39;);\n    }\n};\n<\\/code><\\/pre>\n<p>在这个文件里我们 export 了一个叫做 <code>MyAwesomePlugin<\\/code> 的类。其中有一个 <code>apply()<\\/code> 方法，它表示在 webpack 初次加载完此插件的时候应该做的事情，也就是只会在 webpack 启动的时候被执行一次。接下来如果我们监听 compile 的事件等等，首先就要在这里写一下；假如我们的插件依赖于一个 express 的后端服务器，那么我们也可以在 <code>apply()<\\/code> 里初始化 express。<\\/p>\n<p>然后我们试着应用这个插件，在你的 <code>webpack.config.js<\\/code> 中：<\\/p>\n<pre><code class=\"js\">const MyAwesomePlugin = require(&#39;.\\/MyAwesomePlugin&#39;);\n\n\\/\\/ ...\n\nplugins: [\n    \\/\\/ ...\n    new MyAwesomePlugin()\n]\n<\\/code><\\/pre>\n<p>然后尝试着启动 webpack，如果一切正常，你应该在 console 中看到 <code>Hello, world!<\\/code> 了。<\\/p>\n<p>接下来我们就开始做实事了，回头看看我们的需求，这是一个需要前后端配合的工作，首先我们需要在后端拥有一个 socket 服务器，然后监听 webpack 每次编译完后的结果，把信息通过这个 socket 服务器发送到浏览器。要实现这一步，还需要浏览器加载和后端服务器通信的相关 JS.启动 socket 服务器这件事我们在 <code>apply()<\\/code> 方法中完成就可以了，接下来是事件监听。<\\/p>\n<p>说到事件监听，首先这里要区分一下 webpack 中的两个概念：<code>compiler<\\/code> 和 <code>compilation<\\/code>.<\\/p>\n<hr>\n<h2 id=\"compiler\"><a href=\"#compiler\" class=\"headerlink\" title=\"compiler\"><\\/a>compiler<\\/h2><p>首先你一定已经注意到上文的代码中，<code>apply()<\\/code> 方法传入了一个叫 <code>compiler<\\/code> 的参数。这个所谓的 <code>compiler<\\/code> 对象从字面意思上看是编译器的意思，实际上它也就指向了当前运行的 webpack 实例。这个实例包含了 webpack 的所有 options, loaders 和 plugins, 它随着 webpack 的启动而产生，可以说是 webpack 的“灵魂”。当我们运用一个插件时（即插件类被实例化，同时类中的 <code>apply()<\\/code> 方法被调用的时候），<code>apply()<\\/code> 方法便会接收到一个指向这个 <code>compiler<\\/code> 的参数，我们可以通过这个 <code>compiler<\\/code> 访问整个 webpack 环境。<\\/p>\n<h3 id=\"compilation\"><a href=\"#compilation\" class=\"headerlink\" title=\"compilation\"><\\/a>compilation<\\/h3><p>对 <code>compiler<\\/code> 有了一定的了解之后，大概我们就可以猜到 <code>compilation<\\/code> 是干什么用的了。所谓 <code>compilation<\\/code> 包含了 webpack 每次 build 后的详细信息，包括编译出的结果、错误信息、模块、编译后的资源、改变的文件和依赖等的当前状态，同时它提供了很多的事件挂钩，以便于插件来执行一些<s>黑魔法<\\/s>。<\\/p>\n<hr>\n<p>具体的 API 可以在上文给出的链接中找到，这里我们直接贴出代码后再解释：<\\/p>\n<pre><code class=\"js\">apply(compiler) {\n    compiler.plugin(&#39;compilation&#39;, this.injectScriptToBundle.bind(this));\n    compiler.plugin(&#39;done&#39;, this.onBuildCompleted.bind(this));\n}\n<\\/code><\\/pre>\n<p>这一段代码中我们监听了 <code>compiler<\\/code> 的两个事件（可以看到我们是用 <code>compiler.plugin(hook, method)<\\/code> 方法注册事件的）：<\\/p>\n<ul>\n<li>第一是在每次文件变动，重新编译的时候，执行 <code>this.injectScriptToBundle()<\\/code> 方法；<\\/li>\n<li>第二是编译完成之后，执行 <code>this.onBuildCompleted()<\\/code> 方法。<\\/li>\n<\\/ul>\n<p>根据方法名我们大致可以构想一下，前一个方法用于把前端与后端交互用的 JS 代码注入到 bundle 中（显然，我们是不会直接把这样的调试用代码写到源代码里的），后一个方法大概就是把编译完成之后异常信息发送出去了。<\\/p>\n<p>我们先来看看 <code>injectScriptToBundle()<\\/code> 方法：<\\/p>\n<pre><code class=\"js\">injectScriptToBundle(compilation) {\n    compilation.mainTemplate(&#39;startup&#39;, source =&gt; {\n        return &quot;\\nconsole.log(&#39;Hello world!&#39;);\\n&quot; + source;\n    });\n}\n<\\/code><\\/pre>\n<p>我已经截掉了一些对这篇文章没有什么用的代码。首先我们可以看到这个方法有一个参数，而这个参数正是上文提到的 <code>compilation<\\/code>. 这一段代码的作用就是在即将编译的源代码的开头部分插入一段我们自定义的 JS 代码。<\\/p>\n<p>对了，这里面出现了一个 <code>mainTemplate<\\/code> 方法，具体可以看看 webpack 的官方文档：<a href=\"https:\\/\\/webpack.js.org\\/api\\/plugins\\/template\\/#src\\/components\\/Sidebar\\/Sidebar.jsx\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/api\\/plugins\\/template\\/#src\\/components\\/Sidebar\\/Sidebar.jsx<\\/a><\\/p>\n<p>然后接下来我们只需要在 <code>onBuildCompleted()<\\/code> 方法中获取并向前端发送信息即可：<\\/p>\n<pre><code class=\"js\">onBuildCompleted(stats) {\n    const detail = stats.toJson({\n        errorDetails: false\n    });\n\n    this.sendWarnings(statsJson.warnings);\n    this.sendErrors(statsJson.errors);\n}\n<\\/code><\\/pre>\n<p>忽略掉发送信息那部分的代码，我们只要看上半部分就好了。<code>stats<\\/code> 参数随着 <code>compiler<\\/code> 的 <code>done<\\/code> 事件被触发后产生，包含本次编译的结果统计信息。它提供了一个 <code>toJson()<\\/code> 方法，可以把这些信息转换成直观的 JSON，然后我们也就可以从这个 JSON 里拿到我们想要的内容了。<\\/p>\n<p>做好了这一切之后，大概已经实现了我们的目标了。上文的示例代码可以在<a href=\"https:\\/\\/github.com\\/moefront\\/webpack-plugin-console-to-browser\" target=\"_blank\" rel=\"external\">这里<\\/a>找到。<\\/p>\n<h1 id=\"推荐阅读\"><a href=\"#推荐阅读\" class=\"headerlink\" title=\"推荐阅读\"><\\/a>推荐阅读<\\/h1><ul>\n<li>细说webpack之流程篇：<a href=\"http:\\/\\/www.cnblogs.com\\/yxy99\\/p\\/5852987.html\" target=\"_blank\" rel=\"external\">http:\\/\\/www.cnblogs.com\\/yxy99\\/p\\/5852987.html<\\/a><\\/li>\n<li>Compiler and Compilation: <a href=\"https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#compiler-and-compilation<\\/a><\\/li>\n<li>Accessing the compilation: <a href=\"https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#accessing-the-compilation\" target=\"_blank\" rel=\"external\">https:\\/\\/webpack.js.org\\/development\\/how-to-write-a-plugin\\/#accessing-the-compilation<\\/a><\\/li>\n<li>webpack 插件开发简要：<a href=\"http:\\/\\/www.cnblogs.com\\/sampapa\\/p\\/6958166.html\" target=\"_blank\" rel=\"external\">http:\\/\\/www.cnblogs.com\\/sampapa\\/p\\/6958166.html<\\/a><\\/li>\n<\\/ul>\n",
+    "excerpt": "<p>之前为了尝试实现 <a href=\"https:\\/\\/kotori.love\">dalao<\\/a> 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。<\\/p>",
+    "slug": "webpack-plugin-developing-tutorial",
+    "published": true,
+    "layout": "post",
+    "path": "blog/post/webpack-plugin-developing-tutorial/",
+    "permalink": "https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/",
+    "tags": [
+      {
+        "name": "webpack",
+        "slug": "webpack",
+        "path": "tags/webpack/",
+        "permalink": "https://kirainmoe.com/tags/webpack/",
+        "length": 3
+      },
+      {
+        "name": "frontend",
+        "slug": "frontend",
+        "path": "tags/frontend/",
+        "permalink": "https://kirainmoe.com/tags/frontend/",
+        "length": 4
+      }
+    ],
+    "categories": []
+  },
+  "menu": {
+    "Home": "/",
+    "Guestbook": "/pages/guestbook/",
+    "Friends": "/pages/friends/",
+    "About": "https://about.me/kirainmoe"
+  },
+  "socials": {
+    "twitter": "https://twitter.com/yume_kankawa",
+    "github": "https://github.com/kirainmoe",
+    "weibo": "https://weibo.com/returnnnn",
+    "medium": "https://medium.com/@kotori",
+    "lastfm": "https://www.last.fm/user/kirainmoe"
+  },
+  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
+  "menuIcon": {
+    "Home": "home",
+    "Guestbook": "book",
+    "Friends": "users",
+    "Archives": "tags",
+    "About": "id-card-o"
+  },
+  "disqus": "yume-diary"
+}</script>
+  <!-- hook node of React -->
+  <div id="himawari-app"></div>
+
+  
+    <!-- scripts list from theme config.yml -->
+    
+      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    
+      <script src="/common.js"></script>
+    
+      <script src="/main.js"></script>
+    
+  
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111347233-1');
+  </script>
+
+</body>
+</html>

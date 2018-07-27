@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/google/</link>
+    <description>Recent content in Google on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sun, 04 Mar 2018 11:28:44 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>第三方 Android ROM 无法连接 Google Play 的原因排查</title>
+      <link>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</link>
+      <pubDate>Sun, 04 Mar 2018 11:28:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</guid>
+      <description>&lt;p&gt;现在用的手机已经服役快要四年了，这年头这种的手机大概也就真的只能拿来当手机用了，于是就刷了个第三方适配的 Flyme 好好用着。虽然平时不太从 Google Play 下载软件，必要时也可以用 APKPure 代替，但是聊聊 LINE 什么的没有 GCM 的推送十分不方便，有时候打开提示一条消息，结果已经是三小时前的了。于是想了想还是决定安装 Google 的那一套东西。然而，无论我用任何第三方工具安装，或者是下载 opengapps 的卡刷包刷入，Google Play 都无法工作。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

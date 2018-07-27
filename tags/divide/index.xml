@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Divide on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/divide/</link>
+    <description>Recent content in Divide on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Wed, 19 Jul 2017 20:12:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/divide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>奇怪的道路 (FCS2017 D2T1)</title>
+      <link>https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/</link>
+      <pubDate>Wed, 19 Jul 2017 20:12:30 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/</guid>
+      <description>&lt;p&gt;emmm&amp;hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……&lt;/p&gt;
+
+&lt;p&gt;由于我比较啰嗦，以及我太弱了导致文章有可能有一些部分讲错了，所以，大家将就着看一下吧（虽然我不相信有人看）。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

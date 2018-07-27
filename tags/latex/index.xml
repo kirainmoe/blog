@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Latex on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/latex/</link>
+    <description>Recent content in Latex on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sun, 17 Sep 2017 16:32:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 LaTeX &#43; Beamer 制作幻灯片 (Windows)</title>
+      <link>https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/</link>
+      <pubDate>Sun, 17 Sep 2017 16:32:47 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/</guid>
+      <description>&lt;p&gt;因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

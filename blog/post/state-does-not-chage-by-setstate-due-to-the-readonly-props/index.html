@@ -1,0 +1,177 @@
+<body>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="只读属性引起的 state 不随 setState 的触发而变化 - YumeのDiary" property="og:title">
+<title>只读属性引起的 state 不随 setState 的触发而变化 | YumeのDiary</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+  <section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://kirainmoe.com//"><h1 class="title is-4">YumeのDiary</h1></a>
+        <a class="nav-item" href="/pages/guestbook/">Guestbook</a>
+        <a class="nav-item" href="/pages/friends/">Friends</a>        
+        <a class="nav-item" href="https://about.me/kirainmoe">About</a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://medium.com/@kotori">
+            <span class="icon">
+              <i class="fa fa-medium"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  <section class="section">
+    <div class="container article-here">
+      <h2 class="subtitle is-6">February 19, 2017</h2>
+      <h1 class="title">只读属性引起的 state 不随 setState 的触发而变化</h1>
+      
+      <div class="content">
+        <p>这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 <code>&lt;input&gt;</code> 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 <code>this.state.val</code> 赋值，用 <code>this.setState()</code> 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。</p>
+
+<p></p>
+
+<p>我们知道通过调用 React 组件的 <code>setState()</code> 方法改变组件的状态会触发组件重新渲染，则用 <code>this.state</code> 调用的 state 也会改变。所以说，输入框的值没有实时更新，很可能是因为组件根本没有重新渲染。一开始以为是回调的问题，于是使用 <code>setState()</code> 的第二个参数处理接下来的业务逻辑，可是发现并不是。最后发现，问题出现在对 input 的 value 属性的设置上。</p>
+
+<p>考虑下面的这一段代码：</p>
+
+<pre><code class="language-javascript">class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      val: ''
+    };
+    setTimeout(() =&gt; {
+      this.setState({
+        val: 'world!'
+      });
+    }, 1000);
+  }
+  
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;span&gt;Hello&lt;/span&gt;
+        &lt;input type='text' defaultValue={this.state.val} /&gt;
+      &lt;/div&gt;
+    );
+  }
+  
+}
+</code></pre>
+
+<p>如果正常，将 <code>&lt;App /&gt;</code> 渲染到页面上，你可以看到 Hello 。然后稍等 1s，你可以看到 Hello 。</p>
+
+<blockquote>
+<p><s>这就是你说的正常显示？我读书少你别骗我！”</s></p>
+</blockquote>
+
+<p>的确，如果单单读这段代码，一般人都应该能猜出想象中的结果——文本框最开始为空，但是一秒后它的值会变为 world。可是这里却并没有实现。文档并没有写错，<code>this.setState()</code> 过后会引起状态的变更，虽然是异步的但是迟早会做这一步的啊。为什么在这里无效呢。</p>
+
+<p>问题的关键在于，我们为输入框赋值的时候用的属性是 <code>defaultValue</code>。这是一个只读属性。</p>
+
+<blockquote>
+<p><s>“切，这就是你的锅了，好好的 value 属性不用，用个 poi 的 defaultValue！”</s></p>
+</blockquote>
+
+<p>可是假如你把 defaultValue 改成 value，那么请你打开 console，那里已经有一条红色的警告消息等着你了。不信的话大家不妨试试：</p>
+
+<pre><code class="language-Warning:">
+React 要求我们设置这个 input 为只读，或者为这个 input 设置一个 onChange 事件，如果都不的话就用 defaultValue 代替 value。很多人为了省事就听了它的话用了 defaultValue（包括我），于是就踩进了坑。下面我们试着改一下上面那个组件的 render 方法好不好啊？吼啊！（（（
+
+```javascript
+return (
+  &lt;div&gt;
+    &lt;span&gt;Hello&lt;/span&gt;
+    &lt;input 
+          type='text'
+          value={this.state.val}
+          onChange={() =&gt; false} /&gt;
+  &lt;/div&gt;
+);
+</code></pre>
+
+<p>把 defaultValue 改成 value 并且绑定一个 onChange 事件。再次刷新页面你会发现出现了我们预期中的结果。至此我们可以大声讲出这个问题就是有这个只读的属性 defaultValue 引起的了。</p>
+      </div>
+    </div>
+  </section>
+  
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'yume_diary';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2018 YumeのDiary / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://themes.gohugo.io/hemingway2/">Theme</a></p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>

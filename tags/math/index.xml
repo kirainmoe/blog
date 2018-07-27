@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/math/</link>
+    <description>Recent content in Math on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Fri, 27 Jul 2018 20:43:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>被迫学习之拓展欧几里得算法 &amp; 高斯消元</title>
+      <link>https://kirainmoe.com/blog/post/exgcd-and-gauss/</link>
+      <pubDate>Fri, 27 Jul 2018 20:43:27 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/exgcd-and-gauss/</guid>
+      <description>&lt;p&gt;为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

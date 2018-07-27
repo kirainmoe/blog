@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YumeのDiary</title>
+    <link>https://kirainmoe.com/</link>
+    <description>Recent content on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Fri, 27 Jul 2018 20:43:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>被迫学习之拓展欧几里得算法 &amp; 高斯消元</title>
+      <link>https://kirainmoe.com/blog/post/exgcd-and-gauss/</link>
+      <pubDate>Fri, 27 Jul 2018 20:43:27 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/exgcd-and-gauss/</guid>
+      <description>&lt;p&gt;为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Typescript 下 Redux connect 带有 Props 组件的问题</title>
+      <link>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</link>
+      <pubDate>Thu, 28 Jun 2018 19:34:48 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
+      <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;真香&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>第三方 Android ROM 无法连接 Google Play 的原因排查</title>
+      <link>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</link>
+      <pubDate>Sun, 04 Mar 2018 11:28:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</guid>
+      <description>&lt;p&gt;现在用的手机已经服役快要四年了，这年头这种的手机大概也就真的只能拿来当手机用了，于是就刷了个第三方适配的 Flyme 好好用着。虽然平时不太从 Google Play 下载软件，必要时也可以用 APKPure 代替，但是聊聊 LINE 什么的没有 GCM 的推送十分不方便，有时候打开提示一条消息，结果已经是三小时前的了。于是想了想还是决定安装 Google 的那一套东西。然而，无论我用任何第三方工具安装，或者是下载 opengapps 的卡刷包刷入，Google Play 都无法工作。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>No Title</title>
+      <link>https://kirainmoe.com/blog/post/no-title/</link>
+      <pubDate>Fri, 16 Feb 2018 23:14:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/no-title/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;世上无所谓正解
+我们只是
+在做自己
+想做的事罢了&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Progressive Web App 初体验</title>
+      <link>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</link>
+      <pubDate>Sun, 14 Jan 2018 16:33:20 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</guid>
+      <description>&lt;p&gt;最近访问 &lt;a href=&#34;https://mobile.twitter.com/&#34;&gt;Twitter Mobile&lt;/a&gt; 和 &lt;a href=&#34;https://m.weibo.cn/beta&#34;&gt;微博 HTML5 版&lt;/a&gt; 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>环境变量导致的 webpack 打包时不压缩 CSS 文件</title>
+      <link>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</link>
+      <pubDate>Sun, 07 Jan 2018 15:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</guid>
+      <description>&lt;p&gt;项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。
+
+通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Typescript 写 React 遇到的一些坑</title>
+      <link>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</link>
+      <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 React 制作全站单页主题的实践</title>
+      <link>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</link>
+      <pubDate>Sun, 17 Dec 2017 20:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</guid>
+      <description>&lt;p&gt;算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>“不悔梦归处，只恨太匆匆”</title>
+      <link>https://kirainmoe.com/blog/post/noip-retired-feeling/</link>
+      <pubDate>Mon, 13 Nov 2017 21:41:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/noip-retired-feeling/</guid>
+      <description>&lt;p&gt;呐。听说按照 OI 界的传统，每位 OIer 退役的时候，都要写一篇退役感言。
+于是，当我们从这一场梦中醒来的时候，日子又将恢复成从前的样子。
+不悔梦归处，只恨太匆匆。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 Linux 下配置 lemon 评测系统</title>
+      <link>https://kirainmoe.com/blog/post/configure-lemon-judger-for-linux/</link>
+      <pubDate>Fri, 10 Nov 2017 19:45:59 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/configure-lemon-judger-for-linux/</guid>
+      <description>&lt;p&gt;Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>愤怒的小鸟 (Review / NOIP2016 D2T3)</title>
+      <link>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</link>
+      <pubDate>Fri, 03 Nov 2017 20:36:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</guid>
+      <description>&lt;p&gt;嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记自己的第一次差点翻车的出题经历</title>
+      <link>https://kirainmoe.com/blog/post/my-first-contest-problem/</link>
+      <pubDate>Sun, 29 Oct 2017 21:01:52 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/my-first-contest-problem/</guid>
+      <description>&lt;p&gt;复赛在即，我们学校里面的四个撒币不知道是谁突发奇想，说要出一套模拟题。于是我们四个人分别出了一道要多恶心有多恶心的题= =本来嘛是要在学校内部自己测的，不过人太少，不好玩，于是就连夜 py 到洛谷上搞了公开赛。从早上 8 点到中午 12 点，虽然出了很多的锅，不过还是要记录一下我的第一次出题经历（&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>浅谈 KMP 字符串匹配算法</title>
+      <link>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</link>
+      <pubDate>Tue, 17 Oct 2017 13:01:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</guid>
+      <description>&lt;p&gt;因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 LaTeX &#43; Beamer 制作幻灯片 (Windows)</title>
+      <link>https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/</link>
+      <pubDate>Sun, 17 Sep 2017 16:32:47 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/</guid>
+      <description>&lt;p&gt;因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (4th, 8/20~9/10)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/</link>
+      <pubDate>Sun, 10 Sep 2017 11:16:22 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/</guid>
+      <description>&lt;p&gt;经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……&lt;/p&gt;
+
+&lt;p&gt;有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在&lt;a href=&#34;https://github.com/kirainmoe/oh-my-hdu&#34;&gt;这个地方&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开发一个简单的 webpack 插件</title>
+      <link>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</link>
+      <pubDate>Sat, 02 Sep 2017 11:59:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</guid>
+      <description>&lt;p&gt;之前为了尝试实现 &lt;a href=&#34;https://kotori.love&#34;&gt;dalao&lt;/a&gt; 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>八月のif</title>
+      <link>https://kirainmoe.com/blog/post/hachigatsu-no-if/</link>
+      <pubDate>Sat, 26 Aug 2017 18:27:16 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/hachigatsu-no-if/</guid>
+      <description>&lt;p&gt;炎夏的阳光在远处悠悠荡荡地摇曳
+注视着西下的夕阳 心中无限遐思
+倘若当初我们没有相遇相识
+等待着我们的会是怎样的夏天呢
+
+想象着 （这不一样的夏天）
+大家追寻着 （各自的梦想）
+可是真的会 变成那样吗
+到底还是会 在某一天 走到一起的吧&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (3rd, 8/14~8/20)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</link>
+      <pubDate>Sun, 20 Aug 2017 14:43:46 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</guid>
+      <description>&lt;p&gt;这周主要是尝试了一些新的东西（ 做了一些之前一直想看但是一直没看懂和没做的题目。依旧是做 HDU 的题。虽然写得不是很熟练，不过慢慢来应该也是可以的。
+另外下周由于要阶段考试这样子，可能就没有时间做题目了。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (2nd, 8/7~8/13)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</link>
+      <pubDate>Sun, 13 Aug 2017 16:46:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</guid>
+      <description>&lt;p&gt;这一周主要在看 DP 的题目，嘛，都是一些我觉得很好&lt;s&gt;但是我写不出来的&lt;/s&gt;题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (1st, 8/3~8/6)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</link>
+      <pubDate>Mon, 07 Aug 2017 12:49:06 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</guid>
+      <description>&lt;p&gt;RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。&lt;/p&gt;
+
+&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一次搭建内部 Online Judge 及调优的笔记</title>
+      <link>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</link>
+      <pubDate>Sat, 05 Aug 2017 21:05:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</guid>
+      <description>&lt;p&gt;嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
+为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
+关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>奇怪的道路 (FCS2017 D2T1)</title>
+      <link>https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/</link>
+      <pubDate>Wed, 19 Jul 2017 20:12:30 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/</guid>
+      <description>&lt;p&gt;emmm&amp;hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……&lt;/p&gt;
+
+&lt;p&gt;由于我比较啰嗦，以及我太弱了导致文章有可能有一些部分讲错了，所以，大家将就着看一下吧（虽然我不相信有人看）。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从根源缩小 webpack 打包的 React App 体积</title>
+      <link>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</link>
+      <pubDate>Tue, 06 Jun 2017 10:51:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</guid>
+      <description>&lt;p&gt;用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Friends</title>
+      <link>https://kirainmoe.com/pages/friends/</link>
+      <pubDate>Sun, 09 Apr 2017 17:43:54 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/pages/friends/</guid>
+      <description>交换链接什么的当然欢迎啦~
+因为太懒，没有做什么伪随机排序。以下链接不分先后。
+有些链接可能因为 年久失修 已经失效来着。
+如果你在你的站上单向 link 我了的话我看到了也会加上的。
+大概就是这样。
+ MoeFront Family そら: https://kotori.love TyanBoot: https://snowstar.org CDog: https://blog.cdog.me 柚子: http://elven.coding.me Miny : http://awoer.com 祀画 : http://ihux.cn 立华: http://freedom.moe Arathi Software Foundation Arathi : http://arathi.pw 方程 : http://equationl.com 听风 : http://www.tingfeng-key.com MoeNet Andy : https://nnya.cat Balthild : https://qaq.cat StusGame Kenvix : https://kenvix.com mokeyjay : http://www.mokeyjay.com Alien: https://alien.bz Other Lin : https://servernotfound.net/ ZGQ : http://izgq.net Dsus4 : https://diary.moe Longtete : http://codrips.com 纳兰泽雨 : https://nlzy.</description>
+    </item>
+    
+    <item>
+      <title>Guestbook</title>
+      <link>https://kirainmoe.com/pages/guestbook/</link>
+      <pubDate>Sun, 09 Apr 2017 17:09:35 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/pages/guestbook/</guid>
+      <description>关于我 这里是吟梦酱，18 级 XMU 信科新生，坐标位于一个居民经常被吃的省份
+拉拉人和邦邦人 (μ&amp;rsquo;s / Aqours, Poppin&amp;rsquo;Party / Pastel*Palettes)
+退役 OIer, 热爱前端，主推 React 然而只会 jQuery 别骗了我连 jQuery 都不会
+社交 &amp;amp; 游戏 Twitter @yume_kankawa
+GitHub @kirainmoe
+微博 @香澄味的吟梦酱
+npm @kirainmoe
+网易云音乐 @吟梦
+V2EX @kirainmoe
+Bandori! Girls Band Party (JP): 5034326
+LoveLive! School Idol Festival (JP): 341665955
+关于本站 目前博客文章内容：45% 算法，45% 前端，5% 后端，剩下 5% 大概算是乱写
+博客是一个用来大开脑洞和回收情绪的地方
+可能大概也许也是将我本人性格体现得最淋漓尽致的地方
+因此我不喜欢在博客里写无聊的文章
+也不从别的地方转一些没有价值的东西
+所以你们可以看到这里是一片荒凉
+技术栈和资源版权相关： - 博客由 Hexo 驱动
+ 主题 Himawari 基于 webpack &amp;amp; preact &amp;amp; redux-zero &amp;amp; react-router 4 构建</description>
+    </item>
+    
+    <item>
+      <title>导出 Typecho 的数据到 Canvas：typecho-to-canvas</title>
+      <link>https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/</link>
+      <pubDate>Sun, 09 Apr 2017 16:28:10 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/</guid>
+      <description>通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。 有关 Canvas 什么的我就不说了吧，大概知道这是个比较新的 PHP 博客程序，由 Laravel 框架驱动就可以了。
+至于为什么为突发奇想写这样一个东西，首先主要是这是个比较新鲜的东西，相关的东西都还很少，我在 GitHub 上找到了 wordpress-to-canvas 的东西，于是便觉得为何不搞一个 typecho-to-canvas 呢～其次呢，因为我之前用过一段时间的 Typecho，也想借这个东西把之前的一些数据导回来（虽然我找不到我把 DB 的 备份扔到哪了……qwq），以及……其他的一些原因……所以就花了一些时间造这个轮子啦。
+GitHub: typecho-to-canvas: easily converting your data from Typecho to Canvas
+Packagist(Composer): typecho-to-canvas
+# 功能特色  Typecho 下的第一个 &amp;ldquo;Switch to Canvas&amp;rdquo; 工具 支持转换 Typecho 的文章、标签和关系树，兼容性约 95% 自动加载和解析配置数据，你甚至可以全程 Enter 在 CLI 模式下运行 作者这么萌  # 环境需求  确保 Typecho 和 Canvas 在转换环境下分别已正确安装 拥有转换环境的操作权限 PHP 5.6.4 以上的版本（Canvas 的版本要求） 已正确安装 composer 依赖管理工具 PHP 已加载对应 Typecho 和 Canvas 安装类型的数据库的 PDO 拓展 数据库正常运行（废话） 耐心，Patient  # 使用方法 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。 重要的事情说三遍。 再次确保你的环境工作正常，Typecho 和 Canvas 的数据库可以访问～然后接着往下看吧～</description>
+    </item>
+    
+    <item>
+      <title>LeetCode Praticing Record</title>
+      <link>https://kirainmoe.com/blog/post/leetcode-praticing-record/</link>
+      <pubDate>Wed, 01 Mar 2017 17:38:39 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/leetcode-praticing-record/</guid>
+      <description>&lt;p&gt;_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 &lt;a href=&#34;https://leetcode.com&#34;&gt;LeetCode&lt;/a&gt; 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））&lt;s&gt;所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>只读属性引起的 state 不随 setState 的触发而变化</title>
+      <link>https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/</link>
+      <pubDate>Sun, 19 Feb 2017 17:32:16 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/</guid>
+      <description>&lt;p&gt;这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt; 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 &lt;code&gt;this.state.val&lt;/code&gt; 赋值，用 &lt;code&gt;this.setState()&lt;/code&gt; 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>修改 React-Native Android App 包名</title>
+      <link>https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/</link>
+      <pubDate>Fri, 17 Feb 2017 17:31:03 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/</guid>
+      <description>&lt;p&gt;不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。
+不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>初探全新的 Node.js 包管理器 Yarn</title>
+      <link>https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/</link>
+      <pubDate>Wed, 12 Oct 2016 17:33:58 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;就在昨天，&lt;strong&gt;&lt;em&gt;Facebook&lt;/em&gt;&lt;/strong&gt; 发布了新的 **&lt;em&gt;node.js&lt;/em&gt; &lt;strong&gt;包管理器 &lt;a href=&#34;https://yarnpkg.com/&#34;&gt;&lt;strong&gt;&lt;em&gt;Yarn&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt; 用以替代 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt;。咱虽然是个半桶水的咸鱼前端，不过也得跟上** &lt;em&gt;Javascript&lt;/em&gt; &lt;strong&gt;这股潮&lt;/strong&gt;&lt;em&gt;(hong)&lt;/em&gt;&lt;/strong&gt;流&lt;strong&gt;&lt;em&gt;(huang)&lt;/em&gt;&lt;/strong&gt; 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt; 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

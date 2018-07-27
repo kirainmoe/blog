@@ -1,137 +1,363 @@
-<!-- Himawari no Yakusoku -->
-
-<!DOCTYPE html>
-<html lang="Zh-cn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="theme-color" content="#FF98A8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>使用 React 制作全站单页主题的实践 [ YumeのDiary ]</title>
-  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
-  <link rel="manifest" href="/manifest.json">
-  
-    <!-- stylesheets list from config.yml -->
-    
-      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-      <link rel="stylesheet" href="/himawari.css">
-    
-  
-</head>
 <body>
-  
-  <!-- infos -->
-  <script type="text/json" id="himawari-json">{
-  "title": "YumeのDiary",
-  "siteTitle": "YumeのDiary",
-  "description": "6 年間、共に歩んでくれたあなたへ。",
-  "author": "Yume Kankawa",
-  "route": "post",
-  "format": "blog/:layout/:title/",
-  "posts": {
-    "title": "使用 React 制作全站单页主题的实践",
-    "date": "2017-12-17T12:23:36.000Z",
-    "modified": "2018-07-19T18:04:58.076Z",
-    "content": "<p>算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。<\\/p>\n<a id=\"more\"><\\/a>\n<p>下文开始瞎扯，如果有什么讲得不对的地方欢迎提出来。<\\/p>\n<h1 id=\"单页化主题有什么不同呢\"><a href=\"#单页化主题有什么不同呢\" class=\"headerlink\" title=\"单页化主题有什么不同呢\"><\\/a>单页化主题有什么不同呢<\\/h1><p>有关于是将站点单页化还是多页化，以及单页化是否可以给用户更好的体验等问题，一直以来都有很多的观点。但是从现今对各大网站的分析看，毫无疑问单页化的趋势更占上风，个人认为单页化的用户体验也更好一些。<\\/p>\n<p>用 PJAX 等技术实现单页化的主题确实已经有很多人做过了，但是对于做出那种基于前端组件化和路由分发的 SPA，并没有见到多少相关的尝试（可能是我见识短浅 emmm）。<\\/p>\n<p>相比起使用 PJAX 实现的单页化，SPA 实现有下面这些特点：<\\/p>\n<ul>\n<li>更灵活。SPA 对后端的要求更小（当然前提是你不做 SSR），服务端只需要给出渲染一个页面所需要的数据，其他的事情都可以交给前端来做。<\\/li>\n<li>更科学。使用 SPA 实现单页化，就可以运用上一些诸如单项数据流的<s>哲学<\\/s>。<\\/li>\n<li>更清晰。SPA 的项目结构可以很清楚，诸如组件化一类的实现将会很便捷。<\\/li>\n<li>更 reactive. 借助一些诸如 React 一类的框架，使用 SPA 实现单页化可以在前端完成一些复杂的视图变化。<\\/li>\n<li><s>更装逼。<\\/s>相比于使用 PJAX 实现单页，SPA 实现更考验一个前端的实现能力和架构能力。<\\/li>\n<li>…..<\\/li>\n<\\/ul>\n<p>还有一些我暂时想不到的特点。然而事物都有两面性，如果选择将整个博客 SPA 化，那么就会有以下麻烦的地方：<\\/p>\n<ul>\n<li>实现繁琐，不说搭建开发环境的麻烦，开发的时候也有一些很重复而繁琐的事情要做。相比制作 PJAX 主题来说，码量会更多一些。<\\/li>\n<li>和后端对接数据的时候稍显复杂。<\\/li>\n<li>打包出的 JS 文件会很大，如果不做组件异步加载或者适当的 code spilt，那么由于前端一个页面就要加载所有需要的组件，bundle 的体积自然比用 PJAX 做大好多好多倍。<\\/li>\n<li>…..<\\/li>\n<\\/ul>\n<p>以及你可能会踩很多的坑。不过既然我们说了是个实践，那么我们还是要尝试一下这个想法的。<\\/p>\n<h1 id=\"技术栈的选择\"><a href=\"#技术栈的选择\" class=\"headerlink\" title=\"技术栈的选择\"><\\/a>技术栈的选择<\\/h1><p>在做一个 SPA 意义上的主题之前，首先应该是对技术栈的选择，而技术栈的选择直接关系到开发的成本、舒适程度和最后产物的质量。<\\/p>\n<h2 id=\"前端框架\"><a href=\"#前端框架\" class=\"headerlink\" title=\"前端框架\"><\\/a>前端框架<\\/h2><p>关于框架的选择，很多 SPA 的最佳实践无非是在比较流行的 Angular, React 和 Vue 当中做出选择。<\\/p>\n<p>关于三个框架如何选择，这里只想说你认为好就行了。网上有很多关于对比这三个框架的文章，可以参考一下然后做出权衡。前端框架的选择主要考虑的是功能实现是否方便、对后期架构的影响、开发的成本，以及体积的大小等等，再有就是上手的难度和社区支持一类的也很重要。ng 的功能十分强大，项目的架构很完美；但是体积和性能相较后两者比较就相对比较不出色了，而且上手的难度会高一些；React 在性能和体积方面权衡得很适当，而且有很出色的生态系统；Vue 国内很多用户，选择 Vue 作为主题的前端框架也不错；这三者都能很好地胜任 SPA 的制作。<\\/p>\n<p>我最熟悉的是 React，所以我选择的自然是它了。鉴于主题的页面逻辑一般不会很复杂，所以我这里用了体积更小的 preact + preact-compat 来代替官方 react，性价比相对会更高。<\\/p>\n<h2 id=\"路由分发\"><a href=\"#路由分发\" class=\"headerlink\" title=\"路由分发\"><\\/a>路由分发<\\/h2><p>大部分 SPA 的路由分发都是在前端完成的，通过不同的 URI 渲染不同的组件到页面上。这就要求我们在后面的制作过程中将不同功能的组件（例如 header, footer, 文章部分，菜单等等）各自分开，这就是组件化了。对于 React 用户而言，路由的最佳选择无疑是 react-router 了。还记得之前 react-router 4 发布的时候 API 翻天覆地的变换和一堆的 bug（日常任务：黑 react-router (1\\/1)），现在明显已经好了很多了，至少在这一次的使用中没有踩到坑。所以就决定是它了。<\\/p>\n<h2 id=\"状态管理\"><a href=\"#状态管理\" class=\"headerlink\" title=\"状态管理\"><\\/a>状态管理<\\/h2><p>对于 SPA 来说，页面的状态大概会很复杂，所以我们需要一个好的状态管理方案。这里我用的是单一状态树 + 单向数据流的解决方案。<\\/p>\n<p>对于 React 而言，可以选择比较流行的 redux 和 mobx，两者相对来说 mobx 会更方便一些，但是依旧是权衡性能和体积，我们这里还是选择 redux. 幸运的是，redux 有一个简化的解决方案 redux-zero，使用它可以大大减少我们掉 redux 的坑的几率（<\\/p>\n<h2 id=\"打包工具\"><a href=\"#打包工具\" class=\"headerlink\" title=\"打包工具\"><\\/a>打包工具<\\/h2><p>毫无疑问地选择 webpack，个人认为 webpack 是当前最适合用来做单页 App 也是功能和配置都最强大的一款打包工具。自然配置会有些复杂，不过耐心一点就可以了。<\\/p>\n<h2 id=\"样式预处理器\"><a href=\"#样式预处理器\" class=\"headerlink\" title=\"样式预处理器\"><\\/a>样式预处理器<\\/h2><p>这个看个人喜好，用一个样式预处理器会减少一些开发的繁琐。SASS\\/SCSS\\/LESS\\/Stylus 什么的，任君选择。<\\/p>\n<h2 id=\"其它\"><a href=\"#其它\" class=\"headerlink\" title=\"其它\"><\\/a>其它<\\/h2><p>除了上面之外，我还用了 Typescript 来写 React 代码，Typescript 真的很爽。当然如果你不熟悉 TS ，你也可以只用 babel 什么的就好了。<\\/p>\n<h1 id=\"具体思想\"><a href=\"#具体思想\" class=\"headerlink\" title=\"具体思想\"><\\/a>具体思想<\\/h1><ol>\n<li><p>首先由后端将所需要的数据（标题，描述，文章列表，当前页面等等）用 JSON 的格式输出到前端的一个隐藏的标签中（可以使用<code>&lt;script type=&quot;text\\/json&quot; id=&quot;json-holder&quot;&gt;&lt;\\/script&gt;<\\/code>这样的标签），这样方便我们接下来取用。<\\/p>\n<\\/li>\n<li><p>设计一个状态树，包含上述由后端发来的数据的字段，以及一些特殊组件的状态。这个状态树应该满足：修改上述数据之后可以触发整个页面视图的重新渲染。这样我们切换页面或者做一些操作的时候，只要修改这个状态树，那么整个页面就会改变。<\\/p>\n<\\/li>\n<li><p>根据通过不同的 URI ，由路由展示不同的组件。例如用户访问 <code>\\/<\\/code> 的时候，渲染首页的最近文章组件；用户访问 <code>\\/blog\\/post\\/xxxxxx<\\/code> 的时候渲染文章页组件……<\\/p>\n<\\/li>\n<li><p>将路由、组件和状态树连接起来，确保状态树改变的同时路由展示的组件会更新。<\\/p>\n<\\/li>\n<li><p>载入页面的时候，整个 SPA 加载完毕，这时候读取后端发来的嵌入在当前页面的数据，解析为新状态并替换当前状态树（第一次加载页面的时候，这个状态树应该是空的），这样就会触发视图的重新渲染。<\\/p>\n<\\/li>\n<li><p>最后一步，也是这个做法很核心的一步，就是监听页面的切换，用户切换页面的时候，使用 XHR 或者 fetch（推荐一个对 fetch 的封装：<a href=\"https:\\/\\/github.com\\/kokororin\\/honoka\" target=\"_blank\" rel=\"external\">这里<\\/a>） 等方式先抓取新页面，然后用 selector 取出嵌在新页面里的 JSON 数据，解析后替换当前状态树。<\\/p>\n<\\/li>\n<li><p>最后可以对上面的流程做一些适当的优化。这时候后端传出来的 <code>route<\\/code> 等参数就可以派上用场了。<\\/p>\n<\\/li>\n<\\/ol>\n<p>大概像这样:<\\/p>\n<pre><code class=\"javascript\">&lt;Provider store={store}&gt;\n    &lt;BrowserRouter basename={&#39;\\/&#39;}&gt;\n      &lt;div data-reactroot&gt;\n        &lt;Banner \\/&gt;\n        &lt;Menu \\/&gt;\n        &lt;SiteInfo \\/&gt;\n\n        &lt;Route exact path={&#39;\\/&#39;} component={AppIndex} \\/&gt;   \\/\\/ index\n        &lt;Route path={&#39;\\/page\\/:page&#39;} component={Pagination} \\/&gt;   \\/\\/ pagination\n        &lt;Route path={&#39;\\/blog\\/post\\/:slug&#39;} component={Post} \\/&gt;  \\/\\/ blog post\n        &lt;Route path={&#39;\\/pages\\/:slug&#39;} component={Page} \\/&gt;  \\/\\/ single pages\n\n        &lt;Footer \\/&gt;\n      &lt;\\/div&gt;\n    &lt;\\/BrowserRouter&gt;\n&lt;\\/Provider&gt;\n<\\/code><\\/pre>\n<h1 id=\"项目架构\"><a href=\"#项目架构\" class=\"headerlink\" title=\"项目架构\"><\\/a>项目架构<\\/h1><p>以 Hexo 主题为例，我们的 SPA 主题大概是下面这样一个架构：<\\/p>\n<pre><code>theme\\/\n  layouts\\/      # 主题各个页面布局文件，其实我们要做的无非是借助后端在各个页面展示不同的数据和载入文件\n  config\\/       # webpack 的配置\n    webpack.config.js\n  dist\\/         # 打包的 SPA\n  src\\/          # 整个 SPA 的源代码\n    actions\\/    # Redux 的 actions\n    components\\/ # 各种组件\n    stores\\/     # Redux 的 store\n    styles\\/     # 样式\n    images\\/     # 图片什么的\n    index.tsx   # 项目入口\n  package.json\n  tsconfig.json\n  tslint.json\n  ...\n<\\/code><\\/pre><p>（别问我为什么没有 reducers，我用 redux-zero 我自豪（x ）<\\/p>\n<p>下面是我在项目中用的一份 webpack 配置，可以参考:<\\/p>\n<pre><code class=\"js\">const webpack = require(&#39;webpack&#39;),\n  path = require(&#39;path&#39;),\n  ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;);\n\nconst srcPath = path.join(__dirname, &#39;\\/..\\/src&#39;);\n\nmodule.exports = {\n  output: {\n    path: path.join(__dirname, &#39;\\/..\\/source\\/dist&#39;),\n    filename: &#39;[name].js&#39;,\n    publicPath: &#39;\\/dist\\/&#39;\n  },\n  resolve: {\n    extensions: [&#39;.js&#39;, &#39;.jsx&#39;, &#39;.ts&#39;, &#39;.tsx&#39;],\n    alias: {\n      &#39;@&#39;: srcPath,\n      &#39;react&#39;: &#39;preact-compat&#39;,\n      &#39;react-dom&#39;: &#39;preact-compat&#39;\n    }\n  },\n  module: {\n    rules: [\n      {\n        test: \\/\\.(js|jsx)$\\/,\n        enforce: &#39;pre&#39;,\n        include: srcPath,\n        exclude: &#39;\\/node_modules\\/&#39;,\n        loader: &#39;eslint-loader&#39;\n      },  \\/\\/ eslint\n\n      {\n        test: \\/\\.(ts|tsx)$\\/,\n        enforce: &#39;pre&#39;,\n        include: srcPath,\n        exclude: &#39;\\/node_modules\\/&#39;,\n        loader: &#39;tslint-loader&#39;,\n      },  \\/\\/ tslint\n      {\n        test: \\/\\.(ts|tsx)$\\/,\n        include: srcPath,\n        exclude: &#39;\\/node_modules\\/&#39;,\n        loader: &#39;awesome-typescript-loader&#39;,\n      },  \\/\\/ typescript\n      {\n        test: \\/\\.(js|jsx)$\\/,\n        include: srcPath,\n        exclude: &#39;\\/node_modules\\/&#39;,\n        loader: &#39;babel-loader&#39;\n      },  \\/\\/ js babel\n      {\n        test: \\/(\\.styl)$\\/,\n        exclude: &#39;\\/node_modules\\/&#39;,\n        use: ExtractTextPlugin.extract({\n          fallback: [{\n            loader: &#39;style-loader&#39;,\n          }],\n          use: [{\n              loader: &#39;css-loader&#39;,\n              options: {\n                importLoaders: 2,\n                minimize: process.env.NODE_ENV === &#39;production&#39;,\n                sourceMap: true\n              }\n            },\n            {\n              loader: &#39;postcss-loader&#39;,\n              options: {\n                sourceMap: true\n              }\n            },\n            &#39;stylus-loader&#39;\n          ]\n        })\n      },  \\/\\/ stylus\n      {\n        test: \\/\\.(png|jpg|gif|woff|woff2|ttf|eot)$\\/,\n        loader: &#39;url-loader&#39;,\n        options: {\n          limit: 8192\n        }\n      },\n\n      {\n        test: \\/\\.(mp4|ogg|svg)$\\/,\n        loader: &#39;file-loader&#39;\n      }\n  }, \\/\\/ module\n    cache: true,\n    devtool: &#39;eval-source-map&#39;,\n    plugins: [\n        new webpack.NoEmitOnErrorsPlugin(),\n        new webpack.optimize.CommonsChunkPlugin(&#39;common&#39;),\n        new webpack.DefinePlugin({\n        &#39;process.env.NODE_ENV&#39;: &#39;&quot;dev&quot;&#39;,\n        &#39;process.env.REACT_DISTRO&#39;: &#39;&quot;preact&quot;&#39;\n        }),\n        new webpack.HotModuleReplacementPlugin(),\n        new ExtractTextPlugin(&#39;himawari.css&#39;)\n    ]\n};\n<\\/code><\\/pre>\n<h1 id=\"问题\"><a href=\"#问题\" class=\"headerlink\" title=\"问题\"><\\/a>问题<\\/h1><p>目前发现的问题就是，写在文章中的 JS 标签不会执行，这个是有解决方案的，一个一个取出来重新创建一个 script 标签然后 appendChild 到 body 就行了。<\\/p>\n<p><s>以及……preact + redux 的主题好像和 react + mobx 的 MUSE 冲突了2333 暂时还没有找到方案。<\\/s> 问题在于上一步执行文章内的 JS 的时候多处理了一次，导致组件被 render 了两次……emmm……<\\/p>\n<p>（待补充）<\\/p>\n",
-    "excerpt": "<p>算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。<\\/p>",
-    "slug": "experiment-of-building-spa-theme-using-react",
-    "published": true,
-    "layout": "post",
-    "path": "blog/post/experiment-of-building-spa-theme-using-react/",
-    "permalink": "https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/",
-    "tags": [
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="使用 React 制作全站单页主题的实践 - YumeのDiary" property="og:title">
+<title>使用 React 制作全站单页主题的实践 | YumeのDiary</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+  <section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://kirainmoe.com//"><h1 class="title is-4">YumeのDiary</h1></a>
+        <a class="nav-item" href="/pages/guestbook/">Guestbook</a>
+        <a class="nav-item" href="/pages/friends/">Friends</a>        
+        <a class="nav-item" href="https://about.me/kirainmoe">About</a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://medium.com/@kotori">
+            <span class="icon">
+              <i class="fa fa-medium"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  <section class="section">
+    <div class="container article-here">
+      <h2 class="subtitle is-6">December 17, 2017</h2>
+      <h1 class="title">使用 React 制作全站单页主题的实践</h1>
+      
+      <div class="tags">
+    
+        <a class="button is-link" href="/tags/react">react</a>
+    
+        <a class="button is-link" href="/tags/front-end">front-end</a>
+    
+        <a class="button is-link" href="/tags/theme">theme</a>
+    
+</div>
+
+      
+      <div class="content">
+        <p>算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。</p>
+
+<p></p>
+
+<p>下文开始瞎扯，如果有什么讲得不对的地方欢迎提出来。</p>
+
+<h1 id="单页化主题有什么不同呢">单页化主题有什么不同呢</h1>
+
+<p>有关于是将站点单页化还是多页化，以及单页化是否可以给用户更好的体验等问题，一直以来都有很多的观点。但是从现今对各大网站的分析看，毫无疑问单页化的趋势更占上风，个人认为单页化的用户体验也更好一些。</p>
+
+<p>用 PJAX 等技术实现单页化的主题确实已经有很多人做过了，但是对于做出那种基于前端组件化和路由分发的 SPA，并没有见到多少相关的尝试（可能是我见识短浅 emmm）。</p>
+
+<p>相比起使用 PJAX 实现的单页化，SPA 实现有下面这些特点：</p>
+
+<ul>
+<li>更灵活。SPA 对后端的要求更小（当然前提是你不做 SSR），服务端只需要给出渲染一个页面所需要的数据，其他的事情都可以交给前端来做。</li>
+<li>更科学。使用 SPA 实现单页化，就可以运用上一些诸如单项数据流的<s>哲学</s>。</li>
+<li>更清晰。SPA 的项目结构可以很清楚，诸如组件化一类的实现将会很便捷。</li>
+<li>更 reactive. 借助一些诸如 React 一类的框架，使用 SPA 实现单页化可以在前端完成一些复杂的视图变化。</li>
+<li><s>更装逼。</s>相比于使用 PJAX 实现单页，SPA 实现更考验一个前端的实现能力和架构能力。</li>
+<li>&hellip;..</li>
+</ul>
+
+<p>还有一些我暂时想不到的特点。然而事物都有两面性，如果选择将整个博客 SPA 化，那么就会有以下麻烦的地方：</p>
+
+<ul>
+<li>实现繁琐，不说搭建开发环境的麻烦，开发的时候也有一些很重复而繁琐的事情要做。相比制作 PJAX 主题来说，码量会更多一些。</li>
+<li>和后端对接数据的时候稍显复杂。</li>
+<li>打包出的 JS 文件会很大，如果不做组件异步加载或者适当的 code spilt，那么由于前端一个页面就要加载所有需要的组件，bundle 的体积自然比用 PJAX 做大好多好多倍。</li>
+<li>&hellip;..</li>
+</ul>
+
+<p>以及你可能会踩很多的坑。不过既然我们说了是个实践，那么我们还是要尝试一下这个想法的。</p>
+
+<h1 id="技术栈的选择">技术栈的选择</h1>
+
+<p>在做一个 SPA 意义上的主题之前，首先应该是对技术栈的选择，而技术栈的选择直接关系到开发的成本、舒适程度和最后产物的质量。</p>
+
+<h2 id="前端框架">前端框架</h2>
+
+<p>关于框架的选择，很多 SPA 的最佳实践无非是在比较流行的 Angular, React 和 Vue 当中做出选择。</p>
+
+<p>关于三个框架如何选择，这里只想说你认为好就行了。网上有很多关于对比这三个框架的文章，可以参考一下然后做出权衡。前端框架的选择主要考虑的是功能实现是否方便、对后期架构的影响、开发的成本，以及体积的大小等等，再有就是上手的难度和社区支持一类的也很重要。ng 的功能十分强大，项目的架构很完美；但是体积和性能相较后两者比较就相对比较不出色了，而且上手的难度会高一些；React 在性能和体积方面权衡得很适当，而且有很出色的生态系统；Vue 国内很多用户，选择 Vue 作为主题的前端框架也不错；这三者都能很好地胜任 SPA 的制作。</p>
+
+<p>我最熟悉的是 React，所以我选择的自然是它了。鉴于主题的页面逻辑一般不会很复杂，所以我这里用了体积更小的 preact + preact-compat 来代替官方 react，性价比相对会更高。</p>
+
+<h2 id="路由分发">路由分发</h2>
+
+<p>大部分 SPA 的路由分发都是在前端完成的，通过不同的 URI 渲染不同的组件到页面上。这就要求我们在后面的制作过程中将不同功能的组件（例如 header, footer, 文章部分，菜单等等）各自分开，这就是组件化了。对于 React 用户而言，路由的最佳选择无疑是 react-router 了。还记得之前 react-router 4 发布的时候 API 翻天覆地的变换和一堆的 bug（日常任务：黑 react-router (<sup>1</sup>&frasl;<sub>1</sub>)），现在明显已经好了很多了，至少在这一次的使用中没有踩到坑。所以就决定是它了。</p>
+
+<h2 id="状态管理">状态管理</h2>
+
+<p>对于 SPA 来说，页面的状态大概会很复杂，所以我们需要一个好的状态管理方案。这里我用的是单一状态树 + 单向数据流的解决方案。</p>
+
+<p>对于 React 而言，可以选择比较流行的 redux 和 mobx，两者相对来说 mobx 会更方便一些，但是依旧是权衡性能和体积，我们这里还是选择 redux. 幸运的是，redux 有一个简化的解决方案 redux-zero，使用它可以大大减少我们掉 redux 的坑的几率（</p>
+
+<h2 id="打包工具">打包工具</h2>
+
+<p>毫无疑问地选择 webpack，个人认为 webpack 是当前最适合用来做单页 App 也是功能和配置都最强大的一款打包工具。自然配置会有些复杂，不过耐心一点就可以了。</p>
+
+<h2 id="样式预处理器">样式预处理器</h2>
+
+<p>这个看个人喜好，用一个样式预处理器会减少一些开发的繁琐。SASS/SCSS/LESS/Stylus 什么的，任君选择。</p>
+
+<h2 id="其它">其它</h2>
+
+<p>除了上面之外，我还用了 Typescript 来写 React 代码，Typescript 真的很爽。当然如果你不熟悉 TS ，你也可以只用 babel 什么的就好了。</p>
+
+<h1 id="具体思想">具体思想</h1>
+
+<ol>
+<li><p>首先由后端将所需要的数据（标题，描述，文章列表，当前页面等等）用 JSON 的格式输出到前端的一个隐藏的标签中（可以使用<code>&lt;script type=&quot;text/json&quot; id=&quot;json-holder&quot;&gt;&lt;/script&gt;</code>这样的标签），这样方便我们接下来取用。</p></li>
+
+<li><p>设计一个状态树，包含上述由后端发来的数据的字段，以及一些特殊组件的状态。这个状态树应该满足：修改上述数据之后可以触发整个页面视图的重新渲染。这样我们切换页面或者做一些操作的时候，只要修改这个状态树，那么整个页面就会改变。</p></li>
+
+<li><p>根据通过不同的 URI ，由路由展示不同的组件。例如用户访问 <code>/</code> 的时候，渲染首页的最近文章组件；用户访问 <code>/blog/post/xxxxxx</code> 的时候渲染文章页组件……</p></li>
+
+<li><p>将路由、组件和状态树连接起来，确保状态树改变的同时路由展示的组件会更新。</p></li>
+
+<li><p>载入页面的时候，整个 SPA 加载完毕，这时候读取后端发来的嵌入在当前页面的数据，解析为新状态并替换当前状态树（第一次加载页面的时候，这个状态树应该是空的），这样就会触发视图的重新渲染。</p></li>
+
+<li><p>最后一步，也是这个做法很核心的一步，就是监听页面的切换，用户切换页面的时候，使用 XHR 或者 fetch（推荐一个对 fetch 的封装：<a href="https://github.com/kokororin/honoka">这里</a>） 等方式先抓取新页面，然后用 selector 取出嵌在新页面里的 JSON 数据，解析后替换当前状态树。</p></li>
+
+<li><p>最后可以对上面的流程做一些适当的优化。这时候后端传出来的 <code>route</code> 等参数就可以派上用场了。</p></li>
+</ol>
+
+<p>大概像这样:</p>
+
+<pre><code class="language-javascript">&lt;Provider store={store}&gt;
+    &lt;BrowserRouter basename={'/'}&gt;
+      &lt;div data-reactroot&gt;
+        &lt;Banner /&gt;
+        &lt;Menu /&gt;
+        &lt;SiteInfo /&gt;
+
+        &lt;Route exact path={'/'} component={AppIndex} /&gt;   // index
+        &lt;Route path={'/page/:page'} component={Pagination} /&gt;   // pagination
+        &lt;Route path={'/blog/post/:slug'} component={Post} /&gt;  // blog post
+        &lt;Route path={'/pages/:slug'} component={Page} /&gt;  // single pages
+
+        &lt;Footer /&gt;
+      &lt;/div&gt;
+    &lt;/BrowserRouter&gt;
+&lt;/Provider&gt;
+</code></pre>
+
+<h1 id="项目架构">项目架构</h1>
+
+<p>以 Hexo 主题为例，我们的 SPA 主题大概是下面这样一个架构：</p>
+
+<pre><code>theme/
+  layouts/      # 主题各个页面布局文件，其实我们要做的无非是借助后端在各个页面展示不同的数据和载入文件
+  config/       # webpack 的配置
+    webpack.config.js
+  dist/         # 打包的 SPA
+  src/          # 整个 SPA 的源代码
+    actions/    # Redux 的 actions
+    components/ # 各种组件
+    stores/     # Redux 的 store
+    styles/     # 样式
+    images/     # 图片什么的
+    index.tsx   # 项目入口
+  package.json
+  tsconfig.json
+  tslint.json
+  ...
+</code></pre>
+
+<p>（别问我为什么没有 reducers，我用 redux-zero 我自豪（x ）</p>
+
+<p>下面是我在项目中用的一份 webpack 配置，可以参考:</p>
+
+<pre><code class="language-js">const webpack = require('webpack'),
+  path = require('path'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const srcPath = path.join(__dirname, '/../src');
+
+module.exports = {
+  output: {
+    path: path.join(__dirname, '/../source/dist'),
+    filename: '[name].js',
+    publicPath: '/dist/'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@': srcPath,
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
+  },
+  module: {
+    rules: [
       {
-        "name": "react",
-        "slug": "react",
-        "path": "tags/react/",
-        "permalink": "https://kirainmoe.com/tags/react/",
-        "length": 4
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        include: srcPath,
+        exclude: '/node_modules/',
+        loader: 'eslint-loader'
+      },  // eslint
+
+      {
+        test: /\.(ts|tsx)$/,
+        enforce: 'pre',
+        include: srcPath,
+        exclude: '/node_modules/',
+        loader: 'tslint-loader',
+      },  // tslint
+      {
+        test: /\.(ts|tsx)$/,
+        include: srcPath,
+        exclude: '/node_modules/',
+        loader: 'awesome-typescript-loader',
+      },  // typescript
+      {
+        test: /\.(js|jsx)$/,
+        include: srcPath,
+        exclude: '/node_modules/',
+        loader: 'babel-loader'
+      },  // js babel
+      {
+        test: /(\.styl)$/,
+        exclude: '/node_modules/',
+        use: ExtractTextPlugin.extract({
+          fallback: [{
+            loader: 'style-loader',
+          }],
+          use: [{
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                minimize: process.env.NODE_ENV === 'production',
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            'stylus-loader'
+          ]
+        })
+      },  // stylus
+      {
+        test: /\.(png|jpg|gif|woff|woff2|ttf|eot)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192
+        }
       },
+
       {
-        "name": "front-end",
-        "slug": "front-end",
-        "path": "tags/front-end/",
-        "permalink": "https://kirainmoe.com/tags/front-end/",
-        "length": 1
-      },
-      {
-        "name": "theme",
-        "slug": "theme",
-        "path": "tags/theme/",
-        "permalink": "https://kirainmoe.com/tags/theme/",
-        "length": 1
+        test: /\.(mp4|ogg|svg)$/,
+        loader: 'file-loader'
       }
-    ],
-    "categories": [
-      {
-        "name": "前端",
-        "slug": "前端",
-        "path": "categories/前端/",
-        "permalink": "https://kirainmoe.com/categories/前端/",
-        "length": 4
-      }
+  }, // module
+    cache: true,
+    devtool: 'eval-source-map',
+    plugins: [
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin('common'),
+        new webpack.DefinePlugin({
+        'process.env.NODE_ENV': '&quot;dev&quot;',
+        'process.env.REACT_DISTRO': '&quot;preact&quot;'
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin('himawari.css')
     ]
-  },
-  "menu": {
-    "Home": "/",
-    "Guestbook": "/pages/guestbook/",
-    "Friends": "/pages/friends/",
-    "About": "https://about.me/kirainmoe"
-  },
-  "socials": {
-    "twitter": "https://twitter.com/yume_kankawa",
-    "github": "https://github.com/kirainmoe",
-    "weibo": "https://weibo.com/returnnnn",
-    "medium": "https://medium.com/@kotori",
-    "lastfm": "https://www.last.fm/user/kirainmoe"
-  },
-  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
-  "menuIcon": {
-    "Home": "home",
-    "Guestbook": "book",
-    "Friends": "users",
-    "Archives": "tags",
-    "About": "id-card-o"
-  },
-  "disqus": "yume-diary"
-}</script>
-  <!-- hook node of React -->
-  <div id="himawari-app"></div>
+};
 
+</code></pre>
+
+<h1 id="问题">问题</h1>
+
+<p>目前发现的问题就是，写在文章中的 JS 标签不会执行，这个是有解决方案的，一个一个取出来重新创建一个 script 标签然后 appendChild 到 body 就行了。</p>
+
+<p><s>以及……preact + redux 的主题好像和 react + mobx 的 MUSE 冲突了2333 暂时还没有找到方案。</s> 问题在于上一步执行文章内的 JS 的时候多处理了一次，导致组件被 render 了两次……emmm……</p>
+
+<p>（待补充）</p>
+      </div>
+    </div>
+  </section>
   
-    <!-- scripts list from theme config.yml -->
-    
-      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
-    
-      <script src="/common.js"></script>
-    
-      <script src="/main.js"></script>
-    
-  
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'yume_diary';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'UA-111347233-1');
-  </script>
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2018 YumeのDiary / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://themes.gohugo.io/hemingway2/">Theme</a></p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 </body>
-</html>

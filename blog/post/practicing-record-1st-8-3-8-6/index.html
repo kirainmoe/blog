@@ -1,122 +1,310 @@
-<!-- Himawari no Yakusoku -->
-
-<!DOCTYPE html>
-<html lang="Zh-cn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="theme-color" content="#FF98A8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>每周解题报告 (1st, 8/3~8/6) [ YumeのDiary ]</title>
-  <meta name="description" content="6 年間、共に歩んでくれたあなたへ。">
-  <link rel="manifest" href="/manifest.json">
-  
-    <!-- stylesheets list from config.yml -->
-    
-      <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-      <link rel="stylesheet" href="/himawari.css">
-    
-  
-</head>
 <body>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="每周解题报告 (1st, 8/3~8/6) - YumeのDiary" property="og:title">
+<title>每周解题报告 (1st, 8/3~8/6) | YumeのDiary</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+  <section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://kirainmoe.com//"><h1 class="title is-4">YumeのDiary</h1></a>
+        <a class="nav-item" href="/pages/guestbook/">Guestbook</a>
+        <a class="nav-item" href="/pages/friends/">Friends</a>        
+        <a class="nav-item" href="https://about.me/kirainmoe">About</a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://medium.com/@kotori">
+            <span class="icon">
+              <i class="fa fa-medium"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  <section class="section">
+    <div class="container article-here">
+      <h2 class="subtitle is-6">August 7, 2017</h2>
+      <h1 class="title">每周解题报告 (1st, 8/3~8/6)</h1>
+      
+      <div class="tags">
+    
+        <a class="button is-link" href="/tags/oi">oi</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+      
+      <div class="content">
+        <p>RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。</p>
+
+<p>这一阶段的话主要是挑 <a href="http://acm.hdu.edu.cn/">HDUOJ</a> 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（<s>比如 A+B Problem</s>），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（</p>
+
+<p></p>
+
+<h1 id="1-200-hdu1003-max-sum"><sup>1</sup>&frasl;<sub>200</sub>, HDU1003, Max Sum</h1>
+
+<p>题意大概是给一个很长的数列，有正有负，然后要求这个数列的子序列的和的最大值。然后范围大概是 1e5 以内。有个比较迷的地方就是不仅要求最大值，而且还要求出取得最大值的时候，子区间的位置。时间 1s, 内存 64M.</p>
+
+<p>第一反应是不是区间 DP 的题啊，然后看了一下数据范围果断把这个白痴的想法扔回肚子里去了。子序列最大值倒是会求啊，但是一开始没有反应过来要怎么统计位置。后来想了一下，开不下二维数组那我开一维的总可以了吧。所以这就是一道最大连续子区间和的动态规划问题了。</p>
+
+<p>设 <code>dp[i]</code> 表示以 <code>a[i]</code> 为区间终点时能取到的和的最大值，然后开两个辅助数组 <code>left[i]</code> 和 <code>right[i]</code> 来表示当取到这个最大值的时候的区间左界和右界分别在哪里，然后最后 for 一遍统计最大值就做完了。需要注意这里一个地方就是数据可正可负，那么考虑一种情况就是假设 <code>dp[i-1]</code> 小于 0 的时候，那么无论 <code>a[i]</code> 是正数还是负数，显然只取 <code>a[i]</code> 的结果会比取 <code>d[i-1] + a[i]</code> 的结果更优，所以遇到这种情况就要重置一下区间的左右界。</p>
+
+<p>还有一个要注意的地方就是输出的格式，当时做的时候各种 PE……</p>
+
+<p>转移方程为 <code>dp[i] = max(dp[i-1] + a[i], a[i])</code>.</p>
+
+<p>Code:</p>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+const int INF = 1e9 + 7;
+const int MAXN = 1e5 + 10;
+
+int n, sn;
+int a[MAXN];
+int dp[MAXN];
+int left[MAXN], right[MAXN];
+
+void init()
+{
+  for (int i = 0; i &lt; MAXN; i++)
+  {
+    dp[i] = -INF;
+    left[i] = 0;
+    right[i] = 0;
+  }
+}
+
+int main()
+{
+  scanf(&quot;%d&quot;, &amp;n);
+  sn = n;
   
-  <!-- infos -->
-  <script type="text/json" id="himawari-json">{
-  "title": "YumeのDiary",
-  "siteTitle": "YumeのDiary",
-  "description": "6 年間、共に歩んでくれたあなたへ。",
-  "author": "Yume Kankawa",
-  "route": "post",
-  "format": "blog/:layout/:title/",
-  "posts": {
-    "title": "每周解题报告 (1st, 8/3~8/6)",
-    "date": "2017-08-07T04:49:06.000Z",
-    "modified": "2018-07-19T18:04:58.079Z",
-    "content": "<p>RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。<\\/p>\n<p>这一阶段的话主要是挑 <a href=\"http:\\/\\/acm.hdu.edu.cn\\/\" target=\"_blank\" rel=\"external\">HDUOJ<\\/a> 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（<s>比如 A+B Problem<\\/s>），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（<\\/p>\n<a id=\"more\"><\\/a>\n<h1 id=\"1-200-HDU1003-Max-Sum\"><a href=\"#1-200-HDU1003-Max-Sum\" class=\"headerlink\" title=\"1\\/200, HDU1003, Max Sum\"><\\/a>1\\/200, HDU1003, Max Sum<\\/h1><p>题意大概是给一个很长的数列，有正有负，然后要求这个数列的子序列的和的最大值。然后范围大概是 1e5 以内。有个比较迷的地方就是不仅要求最大值，而且还要求出取得最大值的时候，子区间的位置。时间 1s, 内存 64M.<\\/p>\n<p>第一反应是不是区间 DP 的题啊，然后看了一下数据范围果断把这个白痴的想法扔回肚子里去了。子序列最大值倒是会求啊，但是一开始没有反应过来要怎么统计位置。后来想了一下，开不下二维数组那我开一维的总可以了吧。所以这就是一道最大连续子区间和的动态规划问题了。<\\/p>\n<p>设 <code>dp[i]<\\/code> 表示以 <code>a[i]<\\/code> 为区间终点时能取到的和的最大值，然后开两个辅助数组 <code>left[i]<\\/code> 和 <code>right[i]<\\/code> 来表示当取到这个最大值的时候的区间左界和右界分别在哪里，然后最后 for 一遍统计最大值就做完了。需要注意这里一个地方就是数据可正可负，那么考虑一种情况就是假设 <code>dp[i-1]<\\/code> 小于 0 的时候，那么无论 <code>a[i]<\\/code> 是正数还是负数，显然只取 <code>a[i]<\\/code> 的结果会比取 <code>d[i-1] + a[i]<\\/code> 的结果更优，所以遇到这种情况就要重置一下区间的左右界。<\\/p>\n<p>还有一个要注意的地方就是输出的格式，当时做的时候各种 PE……<\\/p>\n<p>转移方程为 <code>dp[i] = max(dp[i-1] + a[i], a[i])<\\/code>.<\\/p>\n<p>Code:<\\/p>\n<pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nconst int INF = 1e9 + 7;\nconst int MAXN = 1e5 + 10;\n\nint n, sn;\nint a[MAXN];\nint dp[MAXN];\nint left[MAXN], right[MAXN];\n\nvoid init()\n{\n  for (int i = 0; i &lt; MAXN; i++)\n  {\n    dp[i] = -INF;\n    left[i] = 0;\n    right[i] = 0;\n  }\n}\n\nint main()\n{\n  scanf(&quot;%d&quot;, &amp;n);\n  sn = n;\n\n  int tmp = 1;\n  while (sn--)\n  {\n    printf(&quot;Case %d:\\n&quot;, tmp++);\n    init();\n\n    int num;\n    scanf(&quot;%d&quot;, &amp;num);\n    for (int i = 0; i &lt; num; i++)\n    {\n      scanf(&quot;%d&quot;, &amp;a[i]);\n    }\n\n    dp[0] = a[0], left[0] = 0, right[0] = 0;\n    for (int i = 1; i &lt;= num; i++) \n    {\n      \\/\\/ 遇到负数的时候重新计数 \n      if (dp[i-1] &lt; 0)\n      {\n        left[i] = right[i] = i;\n        dp[i] = a[i];\n        continue;\n      }\n\n      dp[i] = dp[i-1] + a[i];\n      left[i] = left[i-1];\n      right[i] = i;\n    }\n\n    int maximum = -INF;   \\/\\/ 维护最大值\n    int l, r;\n    for (int i = 0; i &lt; num; i++) \n    {\n      if (dp[i] &gt; maximum)\n      {\n        maximum = dp[i];\n        l = left[i], r = right[i];\n      }\n    }\n\n    printf(&quot;%d %d %d\\n&quot;, maximum, l+1, r+1);\n\n    if (tmp-1 != n)\n      printf(&quot;\\n&quot;);\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"2-200-HDU1004-Let-the-Balloon-Raise\"><a href=\"#2-200-HDU1004-Let-the-Balloon-Raise\" class=\"headerlink\" title=\"2\\/200, HDU1004, Let the Balloon Raise\"><\\/a>2\\/200, HDU1004, Let the Balloon Raise<\\/h1><p>题意就是已知有 n 个气球和它们的颜色，然后要问最受欢迎的气球（也就是出现次数最多的颜色种类）是哪个，颜色用字符串表示且长度不超过 15，有多个子任务，且对于每个子任务保证只有一个合法答案。<\\/p>\n<p>嘛，简单的字符串计数嘛。这个用什么方法达到都可以的，你开心就好了。在这里我是用一个奇怪的做法，首先用 STL 的 string 保存每个气球的颜色，然后再按字典序用 <code>sort()<\\/code> 排序一下，最后就可以很方便地统计出出现次数最多的那种气球来了。<\\/p>\n<p>Code:<\\/p>\n<pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nusing namespace std;\nconst int MAXN = 1010;\nstring balloons[MAXN];\nint main()\n{\n  int num;\n  int maximum, tmp, handle;\n\n  while (scanf(&quot;%d&quot;, &amp;num) != EOF &amp;&amp; num != 0)\n  { \n    for (int i = 0; i &lt; num; i++)\n    {\n      cin &gt;&gt; balloons[i];\n    }\n    sort(balloons, balloons + num);\n\n    maximum = 0, tmp = 0, handle = 0;\n    for (int i = 1; i &lt; num; i++)\n    {\n      if (balloons[i] != balloons[i-1])\n      {\n        tmp = 1;\n      }\n      else\n      {\n        tmp++;\n      }\n\n      if (tmp &gt; maximum)\n      {\n        maximum = tmp;\n        handle = i;\n      }\n    }\n    cout &lt;&lt; balloons[handle]  &lt;&lt; endl;\n  }\n\n  return 0;\n}\n<\\/code><\\/pre>\n<h1 id=\"3-200-HDU1005-Number-Sequence\"><a href=\"#3-200-HDU1005-Number-Sequence\" class=\"headerlink\" title=\"3\\/200, HDU1005, Number Sequence\"><\\/a>3\\/200, HDU1005, Number Sequence<\\/h1><p>题意是对于一个函数 f(n), 满足 f(1) = 1, f(2) = 1, f(n) = (A <em> f(n-1) + B <\\/em> f(n-2)) % 7, 然后求对于给定的 A, B 和 N, f(N) 的值是多少。1 &lt;= n &lt;= 1e8, 有多个子任务。<\\/p>\n<p>看数据范围我想没人敢一个一个算过去吧……而且还有好多个子任务，直接就 T 了。<\\/p>\n<p>这题的话一看我就猜到是递推……手推了 7 个之后发现好像没有什么规律……开始怀疑人生.jpg 后来才知道，因为结果要模 7，那么对于 f(n-1) 有 7 种可能的值 (0-6)，对于 f(n-2) 也是有 7 种可能的值，那么 f(n-1) 和 f(n-2) 一共有 7^2=49 种不同的组合可能，也就是最多 49 次就会出现一个循环节……找到循环节，接下来就可以直接算 f(N) 了，然后就做完了。<\\/p>\n<p>做的时候不知道为啥各种 RE，把计算输出的那部分改了一下就 AC 了。<\\/p>\n<pre><code class=\"cpp\">#include &lt;bits\\/stdc++.h&gt; \nint arr[55];\nint main()\n{\n  arr[0] = 1, arr[1] = 1;\n\n  int a, b, n;\n  int pot = 0;\n  while (scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;n) != EOF &amp;&amp; n != 0)\n  {\n    int pot;\n    for (int i = 2; i &lt;= 54; i++)\n    {\n      arr[i] = (a * arr[i-1] + b * arr[i-2]) % 7;\n      if (arr[i] == 1 &amp;&amp; arr[i-1] == 1)\n      {\n        pot = i;\n        break;\n      }\n    }\n\n    n = n % (pot-1);\n\n    if (n == 0)\n    {\n      printf(&quot;%d\\n&quot;, arr[pot-2]);\n    }\n    else\n    {\n      printf(&quot;%d\\n&quot;, arr[n-1]);\n    }\n  }\n  return 0;\n}\n<\\/code><\\/pre>\n",
-    "excerpt": "<p>RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。<\\/p>\n<p>这一阶段的话主要是挑 <a href=\"http:\\/\\/acm.hdu.edu.cn\\/\">HDUOJ<\\/a> 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（<s>比如 A+B Problem<\\/s>），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（<\\/p>",
-    "slug": "practicing-record-1st-8-3-8-6",
-    "published": true,
-    "layout": "post",
-    "path": "blog/post/practicing-record-1st-8-3-8-6/",
-    "permalink": "https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/",
-    "tags": [
+  int tmp = 1;
+  while (sn--)
+  {
+    printf(&quot;Case %d:\n&quot;, tmp++);
+    init();
+    
+    int num;
+    scanf(&quot;%d&quot;, &amp;num);
+    for (int i = 0; i &lt; num; i++)
+    {
+      scanf(&quot;%d&quot;, &amp;a[i]);
+    }
+    
+    dp[0] = a[0], left[0] = 0, right[0] = 0;
+    for (int i = 1; i &lt;= num; i++) 
+    {
+      // 遇到负数的时候重新计数 
+      if (dp[i-1] &lt; 0)
       {
-        "name": "oi",
-        "slug": "oi",
-        "path": "tags/oi/",
-        "permalink": "https://kirainmoe.com/tags/oi/",
-        "length": 9
-      },
-      {
-        "name": "algorithm",
-        "slug": "algorithm",
-        "path": "tags/algorithm/",
-        "permalink": "https://kirainmoe.com/tags/algorithm/",
-        "length": 8
+        left[i] = right[i] = i;
+        dp[i] = a[i];
+        continue;
       }
-    ],
-    "categories": []
-  },
-  "menu": {
-    "Home": "/",
-    "Guestbook": "/pages/guestbook/",
-    "Friends": "/pages/friends/",
-    "About": "https://about.me/kirainmoe"
-  },
-  "socials": {
-    "twitter": "https://twitter.com/yume_kankawa",
-    "github": "https://github.com/kirainmoe",
-    "weibo": "https://weibo.com/returnnnn",
-    "medium": "https://medium.com/@kotori",
-    "lastfm": "https://www.last.fm/user/kirainmoe"
-  },
-  "avatar": "https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G",
-  "menuIcon": {
-    "Home": "home",
-    "Guestbook": "book",
-    "Friends": "users",
-    "Archives": "tags",
-    "About": "id-card-o"
-  },
-  "disqus": "yume-diary"
-}</script>
-  <!-- hook node of React -->
-  <div id="himawari-app"></div>
 
+      dp[i] = dp[i-1] + a[i];
+      left[i] = left[i-1];
+      right[i] = i;
+    }
+    
+    int maximum = -INF;   // 维护最大值
+    int l, r;
+    for (int i = 0; i &lt; num; i++) 
+    {
+      if (dp[i] &gt; maximum)
+      {
+        maximum = dp[i];
+        l = left[i], r = right[i];
+      }
+    }
+    
+    printf(&quot;%d %d %d\n&quot;, maximum, l+1, r+1);
+    
+    if (tmp-1 != n)
+      printf(&quot;\n&quot;);
+  }
+  return 0;
+}
+
+</code></pre>
+
+<h1 id="2-200-hdu1004-let-the-balloon-raise"><sup>2</sup>&frasl;<sub>200</sub>, HDU1004, Let the Balloon Raise</h1>
+
+<p>题意就是已知有 n 个气球和它们的颜色，然后要问最受欢迎的气球（也就是出现次数最多的颜色种类）是哪个，颜色用字符串表示且长度不超过 15，有多个子任务，且对于每个子任务保证只有一个合法答案。</p>
+
+<p>嘛，简单的字符串计数嘛。这个用什么方法达到都可以的，你开心就好了。在这里我是用一个奇怪的做法，首先用 STL 的 string 保存每个气球的颜色，然后再按字典序用 <code>sort()</code> 排序一下，最后就可以很方便地统计出出现次数最多的那种气球来了。</p>
+
+<p>Code:</p>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+using namespace std;
+const int MAXN = 1010;
+string balloons[MAXN];
+int main()
+{
+  int num;
+  int maximum, tmp, handle;
   
-    <!-- scripts list from theme config.yml -->
+  while (scanf(&quot;%d&quot;, &amp;num) != EOF &amp;&amp; num != 0)
+  { 
+    for (int i = 0; i &lt; num; i++)
+    {
+      cin &gt;&gt; balloons[i];
+    }
+    sort(balloons, balloons + num);
     
-      <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-clike.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-php.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-css.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-c.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-cpp.min.js"></script>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
-    
-      <script src="/common.js"></script>
-    
-      <script src="/main.js"></script>
-    
+    maximum = 0, tmp = 0, handle = 0;
+    for (int i = 1; i &lt; num; i++)
+    {
+      if (balloons[i] != balloons[i-1])
+      {
+        tmp = 1;
+      }
+      else
+      {
+        tmp++;
+      }
+      
+      if (tmp &gt; maximum)
+      {
+        maximum = tmp;
+        handle = i;
+      }
+    }
+    cout &lt;&lt; balloons[handle]  &lt;&lt; endl;
+  }
   
+  return 0;
+}
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111347233-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+</code></pre>
 
-    gtag('config', 'UA-111347233-1');
-  </script>
+<h1 id="3-200-hdu1005-number-sequence"><sup>3</sup>&frasl;<sub>200</sub>, HDU1005, Number Sequence</h1>
+
+<p>题意是对于一个函数 f(n), 满足 f(1) = 1, f(2) = 1, f(n) = (A * f(n-1) + B * f(n-2)) % 7, 然后求对于给定的 A, B 和 N, f(N) 的值是多少。1 &lt;= n &lt;= 1e8, 有多个子任务。</p>
+
+<p>看数据范围我想没人敢一个一个算过去吧……而且还有好多个子任务，直接就 T 了。</p>
+
+<p>这题的话一看我就猜到是递推……手推了 7 个之后发现好像没有什么规律……开始怀疑人生.jpg 后来才知道，因为结果要模 7，那么对于 f(n-1) 有 7 种可能的值 (0-6)，对于 f(n-2) 也是有 7 种可能的值，那么 f(n-1) 和 f(n-2) 一共有 7^2=49 种不同的组合可能，也就是最多 49 次就会出现一个循环节……找到循环节，接下来就可以直接算 f(N) 了，然后就做完了。</p>
+
+<p>做的时候不知道为啥各种 RE，把计算输出的那部分改了一下就 AC 了。</p>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+int arr[55];
+int main()
+{
+  arr[0] = 1, arr[1] = 1;
+  
+  int a, b, n;
+  int pot = 0;
+  while (scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;n) != EOF &amp;&amp; n != 0)
+  {
+    int pot;
+    for (int i = 2; i &lt;= 54; i++)
+    {
+      arr[i] = (a * arr[i-1] + b * arr[i-2]) % 7;
+      if (arr[i] == 1 &amp;&amp; arr[i-1] == 1)
+      {
+        pot = i;
+        break;
+      }
+    }
+    
+    n = n % (pot-1);
+    
+    if (n == 0)
+    {
+      printf(&quot;%d\n&quot;, arr[pot-2]);
+    }
+    else
+    {
+      printf(&quot;%d\n&quot;, arr[n-1]);
+    }
+  }
+  return 0;
+}
+
+</code></pre>
+      </div>
+    </div>
+  </section>
+  
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'yume_diary';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2018 YumeのDiary / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://themes.gohugo.io/hemingway2/">Theme</a></p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 </body>
-</html>
