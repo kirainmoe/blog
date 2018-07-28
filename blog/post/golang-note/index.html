@@ -1,0 +1,758 @@
+<body>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="Golang 学习笔记 （1） - YumeのDiary" property="og:title">
+<title>Golang 学习笔记 （1） | YumeのDiary</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+  <section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://kirainmoe.com/"><h1 class="title is-4">YumeのDiary</h1></a>
+        <a class="nav-item" href="/pages/guestbook/">Guestbook</a>
+        <a class="nav-item" href="/pages/friends/">Friends</a>        
+        <a class="nav-item" href="https://about.me/kirainmoe">About</a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://medium.com/@kotori">
+            <span class="icon">
+              <i class="fa fa-medium"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  <section class="section">
+    <div class="container article-here">
+      <h2 class="subtitle is-6">July 28, 2018</h2>
+      <h1 class="title">Golang 学习笔记 （1）</h1>
+      
+      <div class="tags">
+    
+        <a class="button is-link" href="/tags/note">note</a>
+    
+        <a class="button is-link" href="/tags/golang">golang</a>
+    
+</div>
+
+      
+      <div class="content">
+        <p>把 Hexo 换成了基于 Go 的 Hugo，所以有必要学一下 Golang 了（</p>
+
+<p>之前也一直在想学个新的语言，一直在纠结选什么好，刚巧就是你了。</p>
+
+<p></p>
+
+<blockquote>
+<p>Table of Content</p>
+</blockquote>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#0x01-包">0x01 包</a></li>
+<li><a href="#0x02-函数">0x02 函数</a></li>
+<li><a href="#0x03-返回值">0x03 返回值</a></li>
+<li><a href="#0x04-变量">0x04 变量</a></li>
+<li><a href="#0x05-变量类型">0x05 变量类型</a></li>
+<li><a href="#0x06-类型转换">0x06 类型转换</a></li>
+<li><a href="#0x07-常量">0x07 常量</a></li>
+<li><a href="#0x08-循环">0x08 循环</a></li>
+<li><a href="#0x09-判断">0x09 判断</a>
+
+<ul>
+<li><a href="#if-else-结构">if else 结构</a></li>
+<li><a href="#switch-结构">switch 结构</a></li>
+</ul></li>
+<li><a href="#0x10-defer">0x10 defer</a></li>
+<li><a href="#0x11-指针">0x11 指针</a></li>
+<li><a href="#0x12-结构体">0x12 结构体</a></li>
+<li><a href="#0x13-数组">0x13 数组</a></li>
+<li><a href="#0x14-切片">0x14 切片</a></li>
+<li><a href="#0x15-make">0x15 make</a></li>
+<li><a href="#0x16-range-遍历">0x16 range 遍历</a></li>
+<li><a href="#0x17-映射">0x17 映射</a></li>
+<li><a href="#0x18-函数值和函数的闭包">0x18 函数值和函数的闭包</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="0x01-包">0x01 包</h1>
+
+<p>Go 程序类似 Java，由包构成，并且程序总是从 main 包开始运行。包名与导入路径的最后一个元素相同。</p>
+
+<pre><code class="language-go">package main    // 声明当前文件所属的包，不需要引号
+import &quot;fmt&quot;    // 导入包，需要引号
+import (
+    &quot;os&quot;
+    &quot;math/rand&quot;
+)   // 这样也可以
+</code></pre>
+
+<p>导入却未被使用的包编译器会报错。</p>
+
+<p>Go 中如果一个函数/方法/变量/常量名字以大写字母开头，表示它已经被导出。如：</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+import &quot;math&quot;
+func main() {
+    fmt.Println(math.Pi)    // 3.141592653589793
+    // fmt.Println(math.pi)  unexported, return undefined
+}
+</code></pre>
+
+<p>再如上述代码中，<code>Println</code> 是 <code>fmt</code> 包导出的一个方法。</p>
+
+<h1 id="0x02-函数">0x02 函数</h1>
+
+<p>定义函数格式如下：</p>
+
+<pre><code class="language-go">func [functionName] ([param1 paramType], [param2 paramType]...) [returnValType] {
+    // ...
+    return // ...
+}
+</code></pre>
+
+<p>与 C/C++/Java 的区别在于变量的类型在变量名之后而不是之前。另外，若有多个参数的类型相同，则可以简写：</p>
+
+<pre><code class="language-go">func add(x int, y int) int {
+    return x + y
+}
+
+func dec(x, y int) int {
+    return x - y
+}
+</code></pre>
+
+<h1 id="0x03-返回值">0x03 返回值</h1>
+
+<p>Go 语言支持一个函数中返回多个值：</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+func swap(x, y: string) (string, string) {
+    return y, x
+}
+func main() {
+    a, b := swap(&quot;hello&quot;, &quot;world&quot;)
+    fmt.Println(a, b)   // world hello
+}
+</code></pre>
+
+<p>还有“返回值命名”这种操作。直接在声明返回值的时候写下返回值的变量名：</p>
+
+<pre><code class="language-go">func split(sum int) (x, y int) {
+    x = sum * 4 / 9 // 不需要再定义了
+    y = sum - x
+    return          // 直接返回 x,y
+}
+</code></pre>
+
+<p>这样可以一定程度上省掉注释写文档（</p>
+
+<p><code>:=</code> 运算符相当于定义变量后直接赋值：</p>
+
+<pre><code class="language-go">var a int
+a = 233
+// just the same as..
+b := 233
+</code></pre>
+
+<h1 id="0x04-变量">0x04 变量</h1>
+
+<p>上文提到用 <code>var [variableName1], [variableName2] [variableType]</code> 声明一个变量.若想在声明变量时初始化值，可以这样：</p>
+
+<pre><code class="language-go">var a bool = false
+var x, y int = 1, 2
+t := &quot;naive&quot;            // 如果有初始值，Go 可以进行类型推断
+
+fmt.Println(a, x, y, t)
+</code></pre>
+
+<p>声明完不用的变量同样会使编译器报错。需要注意 <code>:=</code> 不能在函数作用于外部使用。如：</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+a := 233        // do not declare a variable like this
+func main() {
+    // ...
+}
+</code></pre>
+
+<h1 id="0x05-变量类型">0x05 变量类型</h1>
+
+<p>Go 的基本类型……</p>
+
+<pre><code class="language-go">bool    // 布尔
+
+string  // 字符串
+
+// 整型，其中 int, uint, uintptr 的位宽由操作系统位数决定
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr // unsigned
+
+byte // uint8 的别名
+
+rune // int32 的别名, 表示一个 Unicode 码点
+
+float32 float64 // 浮点，Go 没有 double
+
+complex64 complex128    // 复数
+</code></pre>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;math/cmplx&quot;
+)
+
+// 定义多个变量也可以因式分解关键字
+var (
+    maxInt uint64 = 1 &lt;&lt; 64 - 1 // 2^64-1
+    z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
+
+func main() {
+    fmt.Println(&quot;Type: %t Value: %v\n&quot;, maxInt, maxInt)
+    fmt.Println(&quot;Type: %t Value: %v\n&quot;, z, z)
+}
+</code></pre>
+
+<p>Println<code>中的占位符：</code>%t<code>表示变量类型，</code>%v<code>表示变量值. 当然你可以用</code>fmt.Printf()` 然后写那些格式占位符。</p>
+
+<p>如果没有对已声明的变量赋值，那么他们的默认值为 0/false/空字符串。</p>
+
+<h1 id="0x06-类型转换">0x06 类型转换</h1>
+
+<p>可以用 <code>var a type = type(b)</code> 格式。</p>
+
+<pre><code class="language-go">var i int = 233
+var f float64 = float64(i)
+u := uint(f)
+</code></pre>
+
+<p>与 C 不同的是，Go 在不同类型的项之间赋值时需要显式转换。</p>
+
+<h1 id="0x07-常量">0x07 常量</h1>
+
+<p>声明常量在其前面加上关键字 <code>const</code>, 注意常量不能用 <code>:=</code> 语法声明：</p>
+
+<pre><code class="language-go">const a = 2333
+const Pi float64 = 3.14
+const World = &quot;世界&quot;
+const fake bool = false
+</code></pre>
+
+<h1 id="0x08-循环">0x08 循环</h1>
+
+<p>Go 只有 for 循环的结构……虽然 for 可以替代 while 但是有时候还是写 while 比较方便的呢。与 C/C++/JS 等语言的区别在于省略了把初始化语句、条件表达式、后置语句括起来的括号，但是仍然保留大括号。</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+func main() {
+	sum := 0
+	for i := 0; i &lt; 10; i++ {
+		sum += i
+	}
+	fmt.Println(sum)
+}
+</code></pre>
+
+<p>如果去掉初始化和后置语句就变成类似 while 了：</p>
+
+<pre><code>for ; condition; {
+
+}
+</code></pre>
+
+<p>其实……C 的 while 就是 Go 中的 for（ 所以当初始化语句和后置语句没有的时候你甚至可以省略分号，这样 for 就成了 while 了：</p>
+
+<pre><code>package main
+import &quot;fmt&quot;
+func main() {
+	sum := 1
+	for sum &lt; 1000 {
+		sum += sum
+	}
+	fmt.Println(sum)
+}
+
+</code></pre>
+
+<p>省略循环条件下的无限循环：</p>
+
+<pre><code class="language-go">for {
+    // do something infinity
+}
+</code></pre>
+
+<p>循环的控制语句和其他语言类似，使用 <code>break</code> 语句退出循环结构，使用 <code>continue</code> 语句继续下一个循环。</p>
+
+<h1 id="0x09-判断">0x09 判断</h1>
+
+<h2 id="if-else-结构">if else 结构</h2>
+
+<p>Go 的 if 语句与 for 类似，条件表达式外不需要小括号，而逻辑部分需要大括号。</p>
+
+<pre><code class="language-go">func sqrt(x float64) string {
+	if x &lt; 0 {
+		return sqrt(-x) + &quot;i&quot;
+	} else {
+        return fmt.Sprint(math.Sqrt(x))
+    }
+}
+</code></pre>
+
+<p>区别于其他语言，Go 允许你在执行 if 的判断前进行初始化，和 for 的初始化语句类似</p>
+
+<pre><code class="language-go">func pow(x, n, lim float64) float64 {
+	if v := math.Pow(x, n); v &lt; lim {
+		return v
+	}
+	return lim  // 注意，初始化语句的作用域仅限于大括号内，这里如果访问 v 就是 undefined
+}
+</code></pre>
+
+<h2 id="switch-结构">switch 结构</h2>
+
+<p>与其他语言类似并继承<s>Go 特色</s>，条件部分不需要小括号，可以有初始化语句。但还有一点与其它语言的不同在于 Go 的 switch 中 case 结束后不需要 break，Go 会自动帮你添加而不会运行选定 case 之后的所有 case（除非你指定了 fallthrough）.</p>
+
+<p>Go 的 case 不需要是常量，取值不用是整数。</p>
+
+<pre><code class="language-go">package main
+import (
+	&quot;fmt&quot;
+	&quot;runtime&quot;
+)
+func main() {
+	fmt.Print(&quot;Go runs on &quot;)
+	switch os := runtime.GOOS; os {
+	case &quot;darwin&quot;:
+		fmt.Println(&quot;OS X.&quot;)
+	case &quot;linux&quot;:
+		fmt.Println(&quot;Linux.&quot;)
+	default:
+		// freebsd, openbsd,
+		// plan9, windows...
+		fmt.Printf(&quot;%s.&quot;, os)
+	}
+}
+</code></pre>
+
+<h1 id="0x10-defer">0x10 defer</h1>
+
+<p>defer 语句将函数推迟到外层函数返回后进行，如：</p>
+
+<pre><code class="language-go">func main() {
+	defer fmt.Println(&quot;world&quot;)
+	fmt.Println(&quot;hello&quot;)
+}
+</code></pre>
+
+<p>程序先输出 hello, 等待 main 函数执行完返回后输出 world. 注意 defer 推迟的函数是压入栈（后进先出）中的，也就是说：</p>
+
+<pre><code class="language-go">func main() {
+	defer fmt.Println(&quot;world&quot;)
+	defer fmt.Println(&quot;happy&quot;)
+	fmt.Println(&quot;hello&quot;)
+}
+</code></pre>
+
+<p>以上程序的输出顺序是 hello happy world 而不是 hello world happy.</p>
+
+<h1 id="0x11-指针">0x11 指针</h1>
+
+<p>定义一个指向 int 类型变量的指针：<code>var p *int</code>，定义方法和 C/C++ 类似。</p>
+
+<p>同样地，<code>&amp;</code> 和 <code>*</code> 运算符的效果也是相同的。但是 Go 里没有指针运算（啥玩意啊.jpg）</p>
+
+<p>&amp; 操作符会生成一个指向其操作数的指针。</p>
+
+<pre><code class="language-go">i := 233
+p = &amp;i
+</code></pre>
+
+<ul>
+<li>操作符表示指针指向的底层值。</li>
+</ul>
+
+<pre><code class="language-go">fmt.Println(*p) // 通过指针 p 读取 i
+*p = 666        // 通过指针 p 设置 i
+fmt.Println(i)  // 666
+</code></pre>
+
+<h1 id="0x12-结构体">0x12 结构体</h1>
+
+<p>结构体定义格式如下：</p>
+
+<pre><code class="language-go">type StructName struct {
+    member1 type1
+    member2 type2
+    // ...
+}
+</code></pre>
+
+<p>定义结构体及其类型的变量示意：</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+type Vertex struct {
+	X int
+	Y int
+}
+func main() {
+	t := Vertex{2, 3}
+	fmt.Println(Vertex{1, 2})
+	fmt.Println(t)
+}
+</code></pre>
+
+<p>与 C/C++ 类似，结构体成员用 <code>.</code> 运算符访问；当拥有一个结构体指正的时候，那么……还是可以用 <code>.</code> 运算符访问。当然。你想用 <code>(*ptr).member</code> 访问也可以呀，只是 Go 允许我们使用隐式间接引用：</p>
+
+<pre><code class="language-go">func main() {
+	v := Vertex{1, 2}
+	p := &amp;v
+	v.X = 1e8
+	fmt.Println(v)
+	p.X = 1e9
+	fmt.Println(v)
+}
+</code></pre>
+
+<p>上文的赋值法，默认是第一个值赋给 X，第二个赋给 Y；对结构体的具体字段赋值则类似 JS 中的语法：</p>
+
+<pre><code class="language-go">var (
+	v1 = Vertex{1, 2}  // has type Vertex
+	v2 = Vertex{X: 1}  // Y:0 is implicit
+	v3 = Vertex{}      // X:0 and Y:0
+	p  = &amp;Vertex{1, 2} // has type *Vertex
+)
+</code></pre>
+
+<p>特殊的前缀 &amp; 返回一个指向结构体的指针。</p>
+
+<h1 id="0x13-数组">0x13 数组</h1>
+
+<p>定义一个数组的格式：<code>var arrayName [arrayLength]typeName</code>，注意是否空格。</p>
+
+<p>如：<code>var a [10]int</code>，a 是一个长度为 10 的 int 型数组。这样定义的数组是静态的，也就是说你定义完之后，a 的长度只能是 10 不能再改了。</p>
+
+<h1 id="0x14-切片">0x14 切片</h1>
+
+<p>每个数组的大小都是固定的。而切片则为数组元素提供动态大小的、灵活的视角。在实践中，切片比数组更常用。类型 []T 表示一个元素类型为 T 的切片。</p>
+
+<p>切片通过两个下标来界定，即一个上界和一个下界，二者以冒号分隔：<code>a[low : high]</code></p>
+
+<p>它会选择一个半开区间，包括第一个元素，但排除最后一个元素：<code>[low, high)</code>。如切片 <code>a[1:4]</code>，它包含 a 中下标从 1 到 3 的元素。</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+func main() {
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	var s []int = primes[1:4]
+	fmt.Println(s)
+}
+</code></pre>
+
+<p>切片并不存储任何数据，只是描述了底层数组中的一段。更改切片的元素会修改其底层数组中对应的元素。与它共享底层数组的切片都会观测到这些修改（可以理解为切片是对一个数组的部分引用）：</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+	names := [4]string{
+		&quot;John&quot;,
+		&quot;Paul&quot;,
+		&quot;George&quot;,
+		&quot;Ringo&quot;,
+	}
+	fmt.Println(names)
+
+	a := names[0:2]
+	b := names[1:3]
+	fmt.Println(a, b)
+
+	b[0] = &quot;XXX&quot;
+	fmt.Println(a, b)
+	fmt.Println(names)
+}
+</code></pre>
+
+<p>切片的默认下界为 0，上界为切片/数组的长度。</p>
+
+<p>切片拥有 长度 和 容量 两个属性。切片的长度就是它实际包含的元素个数；切片的容量是从它的第一个元素开始数，到其底层数组元素末尾的个数（最多可以容纳的元素个数）。</p>
+
+<p>切片 <code>s</code> 的长度和容量可通过表达式 <code>len(s)</code> 和 <code>cap(s)</code> 来获取。</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+func main() {
+	s := []int{2, 3, 5, 7, 11, 13}
+	printSlice(s)
+
+	// Slice the slice to give it zero length.
+	s = s[:0]
+	printSlice(s)
+
+	// Extend its length.
+	s = s[:4]
+	printSlice(s)
+
+	// Drop its first two values.
+	s = s[2:]
+	printSlice(s)
+}
+func printSlice(s []int) {
+	fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)
+}
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code class="language-markdown">len=6 cap=6 [2 3 5 7 11 13]
+len=0 cap=6 []
+len=4 cap=6 [2 3 5 7]
+len=2 cap=4 [5 7]
+</code></pre>
+
+<p>切片的零值是 <code>nil</code>，类似其他语言的 <code>null</code>。<code>nil</code> 切片的长度和容量为 0 且没有底层数组。</p>
+
+<pre><code class="language-go">var a [10]int       // 声明的是数组
+var b []int         // 声明的是一个 nil 切片
+</code></pre>
+
+<h1 id="0x15-make">0x15 make</h1>
+
+<p>内建函数 <code>make()</code> 可以创建切片，也是创造动态数组的方式。make 函数会分配一个元素为零值的数组并返回一个引用了它的切片，格式如下：</p>
+
+<pre><code class="language-go">var name = make([]type, length)     // len(name) = length
+
+// e.g.
+a := make([]int, 5)     // len(a) = 5
+</code></pre>
+
+<p>若要指定该切片的容量，则需要向 <code>make()</code> 传入多余的参数：</p>
+
+<pre><code class="language-go">name := make([]type, from, to)      // len(name) = 0, cap(name) = to
+</code></pre>
+
+<p>如：</p>
+
+<pre><code class="language-go">b := make([]int, 0, 5) // len(b)=0, cap(b)=5
+
+b = b[:cap(b)] // len(b)=5, cap(b)=5  emmmm
+b = b[1:]      // len(b)=4, cap(b)=4
+</code></pre>
+
+<p>切片套切片就成了二位切(shu)片(zu)；切片可以包含任意类型。</p>
+
+<p>既然是动态数(qie)组(pian)就要可以动态修改数据嘛，比如向切片里添加新元素。Go 内建的 <code>append(s []T, vs ... T) []T</code> 函数就可以做到。</p>
+
+<p>从函数原型中我们知道，<code>append()</code> 函数第一个参数是一个任意类型 <code>T</code> 的切片 <code>s</code>(如果这里理解 C++ 的 template 就更容易理解了)，接下来的几个参数分别是要加入切片 <code>s</code> 的 <code>T</code> 型数据，最后返回一个新的 <code>T</code> 型切片。新添加的值会出现在切片末尾。</p>
+
+<p>当 s 的底层数组太小，不足以容纳所有给定的值时，它就会分配一个更大的数组。返回的切片会指向这个新分配的数组。<a href="https://blog.go-zh.org/go-slices-usage-and-internals">参考</a>。</p>
+
+<h1 id="0x16-range-遍历">0x16 range 遍历</h1>
+
+<p>对标 foreach，在 Go 中的遍历仍然用的是 for，但是有一个新的辅助关键字 range：当使用 for 循环遍历切片或映射的时候格式如下：</p>
+
+<pre><code class="language-go">var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+func main() {
+	for index, value := range pow {
+		fmt.Printf(&quot;2**%d = %d\n&quot;, index, value)
+	}
+}
+</code></pre>
+
+<p>注意 <code>range</code> 循环时每次迭代会返回两个值 <code>index</code> 和 <code>value</code>，第一个值是在切片中的下表，第二个值则是真正的值（但是是一个副本，而不是引用）。</p>
+
+<p>如果我们只需要值不需要下标？你会说多写一个不会死，但是 Go 是不允许无用变量出现的；将 <code>index</code> 用 <code>_</code> 代替即可：</p>
+
+<pre><code class="language-go">for _, value := range pow {
+    // ...
+}
+</code></pre>
+
+<p>如果不需要值只要下标，去掉 <code>, value</code> 即可：</p>
+
+<pre><code class="language-go">for index := range pow {
+    // ...
+}
+</code></pre>
+
+<h1 id="0x17-映射">0x17 映射</h1>
+
+<p>数组只能以数字做下标，有时候我想以一个字符串啥的做下表怎么办？可以用 <code>map</code> 映射，这个就类似 C++ STL 的 map 的应用，只不过方法不同而已（</p>
+
+<p>创建一个映射并赋值（注意空格）</p>
+
+<pre><code class="language-go">var mapName map[keyType]valueType
+
+// e.g. -----------
+
+var m map[string]int
+func main() {
+	m = make(map[string]int)
+	m[&quot;abc&quot;] = 123
+	fmt.Println(m[&quot;abc&quot;])
+}
+</code></pre>
+
+<p>对 map 直接赋值：</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+type Vertex struct {
+	Lat, Long float64
+}
+var m = map[string]Vertex{
+	&quot;Bell Labs&quot;: Vertex{
+		40.68433, -74.39967,
+	},
+	&quot;Google&quot;: Vertex{
+		37.42202, -122.08408,
+	},
+}
+func main() {
+	fmt.Println(m)
+}
+</code></pre>
+
+<p>上面对 <code>m</code> 的赋值中，可以对成员省略类型名：</p>
+
+<pre><code class="language-go">var m = map[string]Vertex{
+	&quot;Bell Labs&quot;: {40.68433, -74.39967},
+	&quot;Google&quot;: {37.42202, -122.08408},
+}
+</code></pre>
+
+<p>注意到，数组和映射的最后一个成员末尾要留一个逗号，这是 Go 的规范。</p>
+
+<p>一些对映射的基本操作：</p>
+
+<pre><code class="language-go">m[key] = element	// 在映射 m 中插入元素
+elem := m[key]		// 获取元素
+delete(mapInstance, key)	// 从 mapInstance 中删除键值为 key 的元素
+elem, ok := m[key]	// 检测元素是否存在，若存在则 ok 为 true（还有这种操作？？）
+</code></pre>
+
+<h1 id="0x18-函数值和函数的闭包">0x18 函数值和函数的闭包</h1>
+
+<p>函数本身是一种数据类型。函数可以是一个闭包，引用其函数体外的变量。</p>
+
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+func adder() func(int) int {
+	sum := 0
+	// 返回的是一个函数闭包
+	return func(x int) int {
+		sum += x		// 用了外部变量 sum
+		return sum
+	}
+}
+func main() {
+	pos, neg := adder(), adder()
+	for i := 0; i &lt; 10; i++ {
+		fmt.Println(
+			pos(i),
+			neg(-2*i),
+		)
+	}
+}
+</code></pre>
+      </div>
+    </div>
+  </section>
+  
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'yume-diary';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2018 YumeのDiary / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://themes.gohugo.io/hemingway2/">Theme</a></p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

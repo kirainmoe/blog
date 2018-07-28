@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on YumeのDiary</title>
+    <link>https://kirainmoe.com/tags/golang/</link>
+    <description>Recent content in Golang on YumeのDiary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Sat, 28 Jul 2018 09:51:43 +0000</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang 学习笔记 （1）</title>
+      <link>https://kirainmoe.com/blog/post/golang-note/</link>
+      <pubDate>Sat, 28 Jul 2018 09:51:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/golang-note/</guid>
+      <description>&lt;p&gt;把 Hexo 换成了基于 Go 的 Hugo，所以有必要学一下 Golang 了（&lt;/p&gt;
+
+&lt;p&gt;之前也一直在想学个新的语言，一直在纠结选什么好，刚巧就是你了。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
