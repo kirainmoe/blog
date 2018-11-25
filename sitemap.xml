@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</loc>
+    <lastmod>2018-11-25T22:43:30+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/post/golang-note/</loc>
     <lastmod>2018-07-28T09:51:43+00:00</lastmod>
   </url>
@@ -183,7 +188,7 @@
   
   <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2018-07-28T09:51:43+00:00</lastmod>
+    <lastmod>2018-11-25T22:43:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -416,7 +421,7 @@
   
   <url>
     <loc>https://kirainmoe.com/</loc>
-    <lastmod>2018-07-28T09:51:43+00:00</lastmod>
+    <lastmod>2018-11-25T22:43:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   

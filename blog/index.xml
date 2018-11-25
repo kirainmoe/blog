@@ -7,10 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2018 YumeのDiary</copyright>
-    <lastBuildDate>Sat, 28 Jul 2018 09:51:43 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 25 Nov 2018 22:43:30 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xiamen GDG DevFest 2018 repo</title>
+      <link>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</link>
+      <pubDate>Sun, 25 Nov 2018 22:43:30 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</guid>
+      <description>&lt;p&gt;这是厦门 2018 谷歌开发者嘉年华 参会报告~&lt;/p&gt;
+
+&lt;p&gt;（多图预警，流量环境谨慎点开~）&lt;/p&gt;
+
+&lt;p&gt;ps. 由于在大会上做笔记不是很方便和不完全，因此下面的内容可能有错误或者不周，敬请谅解。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Golang 学习笔记 （1）</title>
