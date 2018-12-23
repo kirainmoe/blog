@@ -1,3 +1,7 @@
 html, body {
 	font-family: "Poppins","Hiragino Sans GB","STHeiti","Microsoft YaHei","游ゴシック",YuGothic,"ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","メイリオ","Meiryo"
 }
+
+.subtitle, .title {
+	margin-bottom: 10px!important;
+}

@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2018 YumeのDiary</copyright>
-    <lastBuildDate>Sun, 25 Nov 2018 22:43:30 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Dec 2018 11:31:15 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BeagleBone Black 开发入门实验</title>
+      <link>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</link>
+      <pubDate>Sun, 23 Dec 2018 11:31:15 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</guid>
+      <description>&lt;p&gt;写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……&lt;/p&gt;
+
+&lt;p&gt;以下内容&lt;s&gt;为图省事大量地摘编自我的实验报告&lt;/s&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Xiamen GDG DevFest 2018 repo</title>
