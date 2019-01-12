@@ -50,4 +50,16 @@ document.addEventListener('pjax:success', function() {
     setTimeout(function() {
         progress.style.display = 'none';
     }, 500);
+    // rerender hightlight.js
+    hljs.initHighlightingOnLoad();
+    var blockcodes = document.querySelectorAll('pre code');
+    for (var i in blockcodes) {
+        if (blockcodes[i] instanceof HTMLElement) {
+            hljs.highlightBlock(blockcodes[i]);
+        }
+    }
+
+    // rerender MathJax
+    window.MathJax.Hub.PreProcess();
+    window.MathJax.Hub.Process();
 });
