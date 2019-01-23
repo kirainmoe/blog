@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hasee on 宇宙よりも遠い場所</title>
+    <link>https://kirainmoe.com/tags/hasee/</link>
+    <description>Recent content in Hasee on 宇宙よりも遠い場所</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2018 YumeのDiary</copyright>
+    <lastBuildDate>Wed, 23 Jan 2019 20:14:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/hasee/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>神舟战神 Z7-KP7GZ 黑苹果 macOS Mojave 安装指北</title>
+      <link>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</link>
+      <pubDate>Wed, 23 Jan 2019 20:14:54 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</guid>
+      <description>&lt;p&gt;RT. 这篇文章主要用来记录一下这个机型安装 macOS 的一些要点和注意事项。&lt;/p&gt;
+
+&lt;p&gt;以下内容基于神舟战神 Z7-KP7GZ (i7-8750H + GTX1060) 版摸索得到，安装的 macOS 版本为 Mojave (10.14.2).该文章理论适用于使用该模具的其它机器，如 Z7m-KP7GZ / Z7m-KP5GZ.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</loc>
+    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</loc>
     <lastmod>2019-01-01T20:18:50+08:00</lastmod>
   </url>
@@ -204,7 +209,7 @@
   
   <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2019-01-01T20:18:50+08:00</lastmod>
+    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -274,6 +279,18 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/tags/hackintosh/</loc>
+    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/hasee/</loc>
+    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/javascript/</loc>
     <lastmod>2017-12-19T22:12:18+00:00</lastmod>
     <priority>0</priority>
@@ -312,6 +329,12 @@
   <url>
     <loc>https://kirainmoe.com/tags/linux/</loc>
     <lastmod>2017-11-10T19:45:59+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/macos/</loc>
+    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -467,7 +490,7 @@
   
   <url>
     <loc>https://kirainmoe.com/</loc>
-    <lastmod>2019-01-01T20:18:50+08:00</lastmod>
+    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
