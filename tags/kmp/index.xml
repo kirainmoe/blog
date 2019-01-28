@@ -18,9 +18,7 @@
       <pubDate>Tue, 17 Oct 2017 13:01:43 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</guid>
-      <description>&lt;p&gt;因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。&lt;/p&gt;</description>
     </item>
     
   </channel>

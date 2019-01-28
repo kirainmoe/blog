@@ -92,8 +92,6 @@
       <div class="content">
         <p>这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 <code>&lt;input&gt;</code> 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 <code>this.state.val</code> 赋值，用 <code>this.setState()</code> 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。</p>
 
-<p></p>
-
 <p>我们知道通过调用 React 组件的 <code>setState()</code> 方法改变组件的状态会触发组件重新渲染，则用 <code>this.state</code> 调用的 state 也会改变。所以说，输入框的值没有实时更新，很可能是因为组件根本没有重新渲染。一开始以为是回调的问题，于是使用 <code>setState()</code> 的第二个参数处理接下来的业务逻辑，可是发现并不是。最后发现，问题出现在对 input 的 value 属性的设置上。</p>
 
 <p>考虑下面的这一段代码：</p>
@@ -196,7 +194,7 @@ return (
 <script src="https://kirainmoe.com//index.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

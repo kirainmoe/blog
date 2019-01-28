@@ -107,8 +107,6 @@
 为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
 关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 <a href="https://github.com/QingdaoU/OnlineJudge">qduoj</a>。</p>
 
-<p></p>
-
 <p>之所以选 qduoj 呢是因为<s>好看</s>这个 OJ 的架构比较让人满意，网页端采用了 Python Django，判题端的沙箱做得还可以，然后整个项目跑在 docker 中，可以最大限度地减少对宿主机留下的后遗症，以及在判题方面有更高的安全保障。</p>
 
 <p>我是在一台 Xeon E3 的 ThinkServer 上部署的 Online Judge，操作系统是 Arch Linux, 运行截至写本文之日最新版的 docker. 这个环境可以供各位参考一下，<s>毕竟 Arch Linux 大法好</s>.</p>
@@ -238,7 +236,7 @@
 <script src="https://kirainmoe.com//index.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

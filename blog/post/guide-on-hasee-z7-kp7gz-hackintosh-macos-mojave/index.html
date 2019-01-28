@@ -160,7 +160,9 @@
 
 <p>emmmm……我在两天前下载了 10.14.2，刚刚驱得差不多在我正打算写这篇文章的时候，我发现了一件恐怖的事情，那就是——Apple 推了 10.14.3 的新版本。所以各位后面来的直接一步到位上新版本吧（</p>
 
-<p>首先镜像文件是肯定需要的啦，这里推荐下载黑果小兵的集成版：<a href="http://blog.daliansky.net/macOS-Mojave-10.14.3-18D42-official-version-with-Clover-4895-original-image.html，同时下载">http://blog.daliansky.net/macOS-Mojave-10.14.3-18D42-official-version-with-Clover-4895-original-image.html，同时下载</a> TransMac 用于写入镜像。注意写入镜像需要一个 8GB 以上的 U 盘。</p>
+<p>首先镜像文件是肯定需要的啦，这里推荐下载黑果小兵的集成版：<a href="http://blog.daliansky.net/macOS-Mojave-10.14.3-18D42-official-version-with-Clover-4895-original-image.html">http://blog.daliansky.net/macOS-Mojave-10.14.3-18D42-official-version-with-Clover-4895-original-image.html</a></p>
+
+<p>同时下载 TransMac 用于写入镜像。注意写入镜像需要一个 8GB 以上的 U 盘。</p>
 
 <p>驱动 Z7-KP7GZ 用到的相关 Kext, Patch 等文件都可以在 <a href="https://github.com/kirainmoe/hasee-z7-kp7gz-macos">https://github.com/kirainmoe/hasee-z7-kp7gz-macos</a> 找到。建议在一个有线网络的环境下安装，或者提前下载好所有需要的东西。</p>
 
@@ -178,6 +180,7 @@
 <li>触摸板</li>
 <li>蓝牙</li>
 <li>USB3.0</li>
+<li>睡眠</li>
 <li>etc.</li>
 </ul>
 
@@ -188,7 +191,6 @@
 <ul>
 <li>独显 GTX1060 (1. BIOS 不支持禁用核显；2. Nvidia 没有推出 10.14 可用的 WebDriver)</li>
 <li>无线网卡 AC9560 (Intel 嘛……你知道的，全球无解……)</li>
-<li>睡眠（睡死什么的……总之还差这一点不能完美）</li>
 </ul>
 
 <h1 id="details">Details</h1>
@@ -212,7 +214,7 @@
 
 <h2 id="关于电池">关于电池</h2>
 
-<p>电池的话一般使用 Clover Hotpatch 给 DSDT 打补丁来解决。然而，在我尝试驱动该电池的时候，我发现 Z7-KP7GZ 的电池 ACPI 部分和机械革命 X6Ti 的电池 ACPI 部分惊人的相似，而且 MaciASL 的补丁源中就提供了 X6Ti 的电池补丁，补丁的重合度非常高，因此稍作修改即可使用。所以这里是通过给 DSDT 打补丁的方法来驱动的。电池补丁的内容在上文提供的 GitHub 链接中的 battery-patch.txt.</p>
+<p>电池的话一般使用 Clover Hotpatch 给 DSDT 打补丁来解决。然而，在我尝试驱动该电池的时候，我发现 Z7-KP7GZ 的电池 ACPI 部分和机械革命 X6Ti 的电池 ACPI 部分惊人的相似，而且 MaciASL 的补丁源中就提供了 X6Ti 的电池补丁，补丁的重合度非常高，因此稍作修改即可使用。所以这里是通过给 DSDT 打补丁的方法来驱动的。电池补丁的内容在上文提供的 GitHub 链接中的 dsdt-patch.txt.</p>
 
 <p>系统安装完成后，使用 Clover 按 F4 提取 DSDT，进入系统下载并打开 MaciASL，打开你提取的 DSDT（位于 /EFI/CLOVER/ACPI/origin 中），点击上方的 Patch，找到本仓库内的 battery-patch.txt，将里面的内容粘贴到 Patch 中，然后点击 Apply 应用即可，检查并编译没有错误后，保存新的 DSDT 到 patched 目录中。记得配合 ACPIBatteryManager.kext 使用哦。</p>
 
@@ -244,7 +246,17 @@
 
 <h2 id="关于-cpu-变频和睿频">关于 CPU 变频和睿频</h2>
 
-<p>8 代 CPU 算是比较容易驱动的，直接使用 MacBook 15,1 的 SMBIOS 即可（也就是 Macbook Pro 2018,, 15-inch），自带从 1.3GHz-4.1GHz 的 16 档变频。因为 8750H 的默频是 2.2GHz，能上到 4.1GHz 说明睿频也是正常的。</p>
+<p>8 代 CPU 算是比较容易驱动的，直接使用 MacBook 15,1 的 SMBIOS 即可（也就是 Macbook Pro 2018, 15-inch），自带从 1.3GHz-4.1GHz 的 16 档变频。因为 8750H 的默频是 2.2GHz，能上到 4.1GHz 说明睿频也是正常的。</p>
+
+<h2 id="关于睡眠">关于睡眠</h2>
+
+<p>正常的睡眠功能需要正确驱动 USB，注入 USB Connector 的信息，并且打上 USB _PRW 的补丁。这台机器上比较特殊，必须要给 GLAN/XDCI/HDAS/CVNW 下的 _PRW 全部修改或者删除才可以正常睡眠，否则会一睡眠就立刻唤醒……（天知道为了解决这个问题我花了多少天、爬了多少的帖子……）使用仓库中的 dsdt-patch.txt 同时可以解决睡眠立刻唤醒 (instant wake) 的问题。</p>
+
+<p>如果还有无法让睡眠工作的，可以在文章下评论让我知道。</p>
+
+<h2 id="关于-hidpi">关于 HiDPI</h2>
+
+<p>直接使用一键 HiDPI 补丁即可：<a href="https://github.com/xzhih/one-key-hidpi">https://github.com/xzhih/one-key-hidpi</a>  不需要注入 EDID 之类。</p>
 
 <hr />
 

@@ -20,8 +20,7 @@
       <guid>https://kirainmoe.com/blog/post/noip-retired-feeling/</guid>
       <description>&lt;p&gt;呐。听说按照 OI 界的传统，每位 OIer 退役的时候，都要写一篇退役感言。
 于是，当我们从这一场梦中醒来的时候，日子又将恢复成从前的样子。
-不悔梦归处，只恨太匆匆。
-&lt;/p&gt;</description>
+不悔梦归处，只恨太匆匆。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -30,9 +29,7 @@
       <pubDate>Fri, 10 Nov 2017 19:45:59 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/configure-lemon-judger-for-linux/</guid>
-      <description>&lt;p&gt;Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,9 +38,7 @@
       <pubDate>Fri, 03 Nov 2017 20:36:17 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</guid>
-      <description>&lt;p&gt;嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -52,9 +47,7 @@
       <pubDate>Sun, 29 Oct 2017 21:01:52 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/my-first-contest-problem/</guid>
-      <description>&lt;p&gt;复赛在即，我们学校里面的四个撒币不知道是谁突发奇想，说要出一套模拟题。于是我们四个人分别出了一道要多恶心有多恶心的题= =本来嘛是要在学校内部自己测的，不过人太少，不好玩，于是就连夜 py 到洛谷上搞了公开赛。从早上 8 点到中午 12 点，虽然出了很多的锅，不过还是要记录一下我的第一次出题经历（&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;复赛在即，我们学校里面的四个撒币不知道是谁突发奇想，说要出一套模拟题。于是我们四个人分别出了一道要多恶心有多恶心的题= =本来嘛是要在学校内部自己测的，不过人太少，不好玩，于是就连夜 py 到洛谷上搞了公开赛。从早上 8 点到中午 12 点，虽然出了很多的锅，不过还是要记录一下我的第一次出题经历（&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -65,9 +58,7 @@
       <guid>https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/</guid>
       <description>&lt;p&gt;经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……&lt;/p&gt;
 
-&lt;p&gt;有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在&lt;a href=&#34;https://github.com/kirainmoe/oh-my-hdu&#34;&gt;这个地方&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在&lt;a href=&#34;https://github.com/kirainmoe/oh-my-hdu&#34;&gt;这个地方&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -77,9 +68,7 @@
       
       <guid>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</guid>
       <description>&lt;p&gt;这周主要是尝试了一些新的东西（ 做了一些之前一直想看但是一直没看懂和没做的题目。依旧是做 HDU 的题。虽然写得不是很熟练，不过慢慢来应该也是可以的。
-另外下周由于要阶段考试这样子，可能就没有时间做题目了。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+另外下周由于要阶段考试这样子，可能就没有时间做题目了。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -88,9 +77,7 @@
       <pubDate>Sun, 13 Aug 2017 16:46:17 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</guid>
-      <description>&lt;p&gt;这一周主要在看 DP 的题目，嘛，都是一些我觉得很好&lt;s&gt;但是我写不出来的&lt;/s&gt;题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;这一周主要在看 DP 的题目，嘛，都是一些我觉得很好&lt;s&gt;但是我写不出来的&lt;/s&gt;题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -101,9 +88,7 @@
       <guid>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</guid>
       <description>&lt;p&gt;RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。&lt;/p&gt;
 
-&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -114,9 +99,7 @@
       <guid>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</guid>
       <description>&lt;p&gt;嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
 为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
-关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
   </channel>

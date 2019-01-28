@@ -99,9 +99,9 @@
 
       
       <div class="content">
-        <p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。
+        <p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。</p>
 
-通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：</p>
+<p>通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：</p>
 
 <pre><code class="language-js">{
   test: /(\.styl)$/,
@@ -185,7 +185,7 @@
 <script src="https://kirainmoe.com//index.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

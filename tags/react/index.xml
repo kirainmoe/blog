@@ -20,9 +20,7 @@
       <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
       <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
 
-&lt;p&gt;真香&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;真香&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,9 +29,7 @@
       <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
-      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -42,9 +38,7 @@
       <pubDate>Sun, 17 Dec 2017 20:23:36 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</guid>
-      <description>&lt;p&gt;算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -53,9 +47,7 @@
       <pubDate>Tue, 06 Jun 2017 10:51:43 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</guid>
-      <description>&lt;p&gt;用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。&lt;/p&gt;</description>
     </item>
     
   </channel>

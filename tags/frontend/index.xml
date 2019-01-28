@@ -18,9 +18,7 @@
       <pubDate>Sun, 14 Jan 2018 16:33:20 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</guid>
-      <description>&lt;p&gt;最近访问 &lt;a href=&#34;https://mobile.twitter.com/&#34;&gt;Twitter Mobile&lt;/a&gt; 和 &lt;a href=&#34;https://m.weibo.cn/beta&#34;&gt;微博 HTML5 版&lt;/a&gt; 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近访问 &lt;a href=&#34;https://mobile.twitter.com/&#34;&gt;Twitter Mobile&lt;/a&gt; 和 &lt;a href=&#34;https://m.weibo.cn/beta&#34;&gt;微博 HTML5 版&lt;/a&gt; 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,9 +27,7 @@
       <pubDate>Sun, 07 Jan 2018 15:23:36 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</guid>
-      <description>&lt;p&gt;项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。
-
-通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：&lt;/p&gt;</description>
+      <description>&lt;p&gt;项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -40,9 +36,7 @@
       <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
-      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -51,9 +45,7 @@
       <pubDate>Sat, 02 Sep 2017 11:59:44 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</guid>
-      <description>&lt;p&gt;之前为了尝试实现 &lt;a href=&#34;https://kotori.love&#34;&gt;dalao&lt;/a&gt; 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;之前为了尝试实现 &lt;a href=&#34;https://kotori.love&#34;&gt;dalao&lt;/a&gt; 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -20,9 +20,7 @@
       <guid>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</guid>
       <description>&lt;p&gt;嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
 为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
-关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
   </channel>

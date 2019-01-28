@@ -22,9 +22,7 @@
 &lt;p&gt;&lt;strong&gt;FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;就在昨天，&lt;strong&gt;&lt;em&gt;Facebook&lt;/em&gt;&lt;/strong&gt; 发布了新的 **&lt;em&gt;node.js&lt;/em&gt; &lt;strong&gt;包管理器 &lt;a href=&#34;https://yarnpkg.com/&#34;&gt;&lt;strong&gt;&lt;em&gt;Yarn&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt; 用以替代 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt;。咱虽然是个半桶水的咸鱼前端，不过也得跟上** &lt;em&gt;Javascript&lt;/em&gt; &lt;strong&gt;这股潮&lt;/strong&gt;&lt;em&gt;(hong)&lt;/em&gt;&lt;/strong&gt;流&lt;strong&gt;&lt;em&gt;(huang)&lt;/em&gt;&lt;/strong&gt; 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt; 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;就在昨天，&lt;strong&gt;&lt;em&gt;Facebook&lt;/em&gt;&lt;/strong&gt; 发布了新的 **&lt;em&gt;node.js&lt;/em&gt; &lt;strong&gt;包管理器 &lt;a href=&#34;https://yarnpkg.com/&#34;&gt;&lt;strong&gt;&lt;em&gt;Yarn&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt; 用以替代 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt;。咱虽然是个半桶水的咸鱼前端，不过也得跟上** &lt;em&gt;Javascript&lt;/em&gt; &lt;strong&gt;这股潮&lt;/strong&gt;&lt;em&gt;(hong)&lt;/em&gt;&lt;/strong&gt;流&lt;strong&gt;&lt;em&gt;(huang)&lt;/em&gt;&lt;/strong&gt; 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt; 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。&lt;/p&gt;</description>
     </item>
     
   </channel>

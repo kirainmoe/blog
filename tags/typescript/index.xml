@@ -20,9 +20,7 @@
       <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
       <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
 
-&lt;p&gt;真香&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;真香&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,9 +29,7 @@
       <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
-      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;</description>
     </item>
     
   </channel>

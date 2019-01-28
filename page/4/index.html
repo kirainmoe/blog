@@ -88,6 +88,24 @@
     <div class="container">
       
       <article>
+        <h2 class="subtitle is-6">April 9, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/">导出 Typecho 的数据到 Canvas：typecho-to-canvas</a></h1>
+        
+        <div class="content">
+          通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
         <h2 class="subtitle is-6">March 1, 2017</h2>
         <h1 class="title"><a href="https://kirainmoe.com/blog/post/leetcode-praticing-record/">LeetCode Praticing Record</a></h1>
         
@@ -104,7 +122,6 @@
         
         <div class="content">
           _(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 LeetCode 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……
-
 
           
           ...<a class="button is-link" href="https://kirainmoe.com/blog/post/leetcode-praticing-record/" style="height:28px">
@@ -124,7 +141,6 @@
         <div class="content">
           这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 &lt;input&gt; 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 this.state.val 赋值，用 this.setState() 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。
 
-
           
           ...<a class="button is-link" href="https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/" style="height:28px">
             Read more
@@ -142,7 +158,6 @@
         
         <div class="content">
           不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。 不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。
-
 
           
           ...<a class="button is-link" href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/" style="height:28px">
@@ -173,7 +188,6 @@
         <div class="content">
            FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.
  就在昨天，Facebook 发布了新的 **node.js 包管理器 Yarn 用以替代 npm。咱虽然是个半桶水的咸鱼前端，不过也得跟上** Javascript 这股潮(hong)流(huang) 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 npm 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。
-
 
           
           ...<a class="button is-link" href="https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/" style="height:28px">
@@ -238,7 +252,7 @@
 <script src="https://kirainmoe.com//index.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

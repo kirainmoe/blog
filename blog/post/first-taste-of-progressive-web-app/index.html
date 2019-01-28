@@ -101,8 +101,6 @@
       <div class="content">
         <p>最近访问 <a href="https://mobile.twitter.com/">Twitter Mobile</a> 和 <a href="https://m.weibo.cn/beta">微博 HTML5 版</a> 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。</p>
 
-<p></p>
-
 <h1 id="关于-pwa">关于 PWA</h1>
 
 <p>不仅仅是微博，国内的饿了么等站也同样支持 PWA，个人看来 PWA 的应用场景和前景都是相当广泛的。甚至，从微信小程序当中你也能看到它和 PWA 之间有着概念的重合。至于 PWA 的诞生背景就不多做介绍。各位可以尝试一下 Twitter 的 PWA，体验真的很好。</p>
@@ -416,7 +414,7 @@ plugins: [
 <script src="https://kirainmoe.com//index.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
