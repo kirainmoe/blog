@@ -41,7 +41,8 @@ window.addEventListener('scroll', function(e) {
 var progress = document.querySelector('.loading-progress');
 var pjax = new Pjax({
     elements: "a",
-    selectors: ["title", ".content-container"]
+    selectors: ["title", ".content-container"],
+    cacheBust: false
 });
 document.addEventListener('pjax:send', function() {
     progress.style.display = 'block';
