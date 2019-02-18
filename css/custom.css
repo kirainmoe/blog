@@ -85,3 +85,7 @@ html, body {
 
 	display: none;
 }
+
+.content h1:not(:first-child), .content h2:not(:first-child), .content h3:not(:first-child), .content h4:not(:first-child), .content h5:not(:first-child), .content h6:not(:first-child) {
+	margin-top: 20px!important;
+}
