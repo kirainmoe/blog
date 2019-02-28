@@ -1,0 +1,201 @@
+<body>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="Hash - 宇宙よりも遠い場所" property="og:title">
+<title>Hash | 宇宙よりも遠い場所</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none", 
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], 
+          showMathMenu: false
+        }
+	  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+<style type="text/css">
+	.nav-left {	display: block; text-align: left; }
+	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
+	.nav-item { justify-content: flex-start;  }
+	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
+	.nav-title a { padding: 10px 0px;  }
+	@media screen and (max-width: 700px) {
+		.nav { display: block; text-align: center;  }
+		.nav-title > .nav-item { display: block;  text-align: center; }
+		.nav-left { text-align: center;  }
+	}
+</style>
+
+  <section class="section navigator">
+  <div class="navigator-background"></div>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
+        <div class="nav-links">
+          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
+          <a class="nav-link" href="/pages/friends/">Friends</a>        
+          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://acm.kirainmoe.com">
+            <span class="icon">
+              <i class="fa fa-tumblr"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<div class="return-top">
+  <i class="fa fa-angle-up"></i>
+</div>
+
+<div class="loading-progress"></div>
+  <section class="section content-container">
+    <div class="container">
+      
+      <article>
+        <h2 class="subtitle is-6">February 28, 2019</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/">从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/search">search</a>
+    
+        <a class="button is-link" href="/tags/hash">hash</a>
+    
+</div>
+
+        
+        <div class="content">
+          八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+    </div>
+    <section class="section">
+  <div class="container">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          
+          <a class="button is-disabled">
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-left"></i>
+            </span>
+            Newer
+          </a>
+          
+        </div>
+      </div>
+      <div class="level-right is-marginless">
+        <div class="level-item">
+          
+          <a class="button is-disabled">
+            Older
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+  </section>
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script src="https://kirainmoe.com//index.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hash on 宇宙よりも遠い場所</title>
+    <link>https://kirainmoe.com/tags/hash/</link>
+    <description>Recent content in Hash on 宇宙よりも遠い場所</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <lastBuildDate>Thu, 28 Feb 2019 20:59:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/hash/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</title>
+      <link>https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</link>
+      <pubDate>Thu, 28 Feb 2019 20:59:37 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</guid>
+      <description>&lt;p&gt;八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，&lt;s&gt;最近又很寂寞&lt;/s&gt;，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

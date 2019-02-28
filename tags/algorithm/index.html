@@ -12,6 +12,22 @@
 <link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none", 
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], 
+          showMathMenu: false
+        }
+	  });
+</script>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -28,6 +44,7 @@
 		.nav-left { text-align: center;  }
 	}
 </style>
+
   <section class="section navigator">
   <div class="navigator-background"></div>
   <div class="container">
@@ -86,6 +103,35 @@
 <div class="loading-progress"></div>
   <section class="section content-container">
     <div class="container">
+      
+      <article>
+        <h2 class="subtitle is-6">February 28, 2019</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/">从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+        <a class="button is-link" href="/tags/search">search</a>
+    
+        <a class="button is-link" href="/tags/hash">hash</a>
+    
+</div>
+
+        
+        <div class="content">
+          八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
       
       <article>
         <h2 class="subtitle is-6">February 18, 2019</h2>
@@ -334,35 +380,6 @@
         </div>
       </article>
       
-      <article>
-        <h2 class="subtitle is-6">March 1, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/leetcode-praticing-record/">LeetCode Praticing Record</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/leetcode">leetcode</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/cpp">cpp</a>
-    
-</div>
-
-        
-        <div class="content">
-          _(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 LeetCode 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/leetcode-praticing-record/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
     </div>
     <section class="section">
   <div class="container">
@@ -382,7 +399,7 @@
       <div class="level-right is-marginless">
         <div class="level-item">
           
-          <a class="button is-disabled">
+          <a class="button" href="/tags/algorithm/page/2/">
             Older
             <span class="icon is-small is-marginless">
               <i class="fa fa-angle-right"></i>

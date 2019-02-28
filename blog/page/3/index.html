@@ -12,6 +12,22 @@
 <link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none", 
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], 
+          showMathMenu: false
+        }
+	  });
+</script>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -28,6 +44,7 @@
 		.nav-left { text-align: center;  }
 	}
 </style>
+
   <section class="section navigator">
   <div class="navigator-background"></div>
   <div class="container">
@@ -86,6 +103,33 @@
 <div class="loading-progress"></div>
   <section class="section content-container">
     <div class="container">
+      
+      <article>
+        <h2 class="subtitle is-6">September 17, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/">使用 LaTeX &#43; Beamer 制作幻灯片 (Windows)</a></h1>
+        
+        <div class="tags">
+    
+        <a class="button is-link" href="/tags/latex">latex</a>
+    
+        <a class="button is-link" href="/tags/beamer">beamer</a>
+    
+</div>
+
+        
+        <div class="content">
+          因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
       
       <article>
         <h2 class="subtitle is-6">September 10, 2017</h2>
@@ -334,24 +378,6 @@
 
           
           ...<a class="button is-link" href="https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">April 9, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/">导出 Typecho 的数据到 Canvas：typecho-to-canvas</a></h1>
-        
-        <div class="content">
-          通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/" style="height:28px">
             Read more
             <span class="icon is-small">
               <i class="fa fa-angle-double-right"></i>

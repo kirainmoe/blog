@@ -12,6 +12,22 @@
 <link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none", 
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], 
+          showMathMenu: false
+        }
+	  });
+</script>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -28,6 +44,7 @@
 		.nav-left { text-align: center;  }
 	}
 </style>
+
   <section class="section navigator">
   <div class="navigator-background"></div>
   <div class="container">
@@ -86,6 +103,24 @@
 <div class="loading-progress"></div>
   <section class="section content-container">
     <div class="container">
+      
+      <article>
+        <h2 class="subtitle is-6">April 9, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/">导出 Typecho 的数据到 Canvas：typecho-to-canvas</a></h1>
+        
+        <div class="content">
+          通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
       
       <article>
         <h2 class="subtitle is-6">March 1, 2017</h2>
