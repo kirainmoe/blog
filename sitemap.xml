@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kirainmoe.com/blog/post/xmu-acm-training-record-1/</loc>
+    <lastmod>2019-03-05T22:52:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</loc>
     <lastmod>2019-02-28T20:59:37+08:00</lastmod>
   </url>
@@ -188,8 +193,14 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/tags/acm/</loc>
+    <lastmod>2019-03-05T22:52:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/algorithm/</loc>
-    <lastmod>2019-02-28T20:59:37+08:00</lastmod>
+    <lastmod>2019-03-05T22:52:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -219,7 +230,7 @@
   
   <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2019-02-28T20:59:37+08:00</lastmod>
+    <lastmod>2019-03-05T22:52:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -446,7 +457,7 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/</loc>
-    <lastmod>2019-02-28T20:59:37+08:00</lastmod>
+    <lastmod>2019-03-05T22:52:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -512,7 +523,7 @@
   
   <url>
     <loc>https://kirainmoe.com/</loc>
-    <lastmod>2019-02-28T20:59:37+08:00</lastmod>
+    <lastmod>2019-03-05T22:52:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
