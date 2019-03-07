@@ -425,7 +425,7 @@ int main()
 
 <h2 id="单调队列与单调栈-滑动窗口最小值问题">单调队列与单调栈——滑动窗口最小值问题</h2>
 
-<p>问题背景：输入正整数 $k$ 和一个长度为 $n$ 的整数序列 $A_1, A_2, &hellip;, A_n$, 定义 **$f(i)$ 表示从元素 $i$ 开始的连续 $k$ 个元素的最小值，即 $f(i)=min{A<em>i, A</em>{i+1}, &hellip;, A_{i+k-1}}$. 要求计算 $f(1), f(2)&hellip;f(n-k+1)$. （参见紫书 P241）</p>
+<p>问题背景：输入正整数 $k$ 和一个长度为 $n$ 的整数序列 $A_1, A_2, &hellip;, A_n$, 定义 **$f(i)$ 表示从元素 $i$ 开始的连续 $k$ 个元素的最小值，即 $f(i)=min{A_i, A_{i+1}, &hellip;, A_{i+k-1}}$. 要求计算 $f(1), f(2)&hellip;f(n-k+1)$. （参见紫书 P241）</p>
 
 <p>例题链接：<a href="https://www.luogu.org/problemnew/show/P1886">洛谷 P1886 滑动窗口</a></p>
 
@@ -676,7 +676,7 @@ int main()
 <p>堆是基于完全二叉树衍生出来的数据结构（啥叫完全二叉树？：）</p>
 
 <blockquote>
-<p>定义：对一棵具有 n 个结点的二叉树按层序从左到右排号，如果编号为 i 的结点与同样深度的满二叉树编号为 i 结点在二叉树中位置完全相同，称为完全二叉树。<strong>若结点起始序号为 1，完全二叉树及其子树满足 $left_child = (root * 2)$，$right_child = (root * 2) + 1$</strong>。<br />
+<p>定义：对一棵具有 n 个结点的二叉树按层序从左到右排号，如果编号为 i 的结点与同样深度的满二叉树编号为 i 结点在二叉树中位置完全相同，称为完全二叉树。<strong>若结点起始序号为 1，完全二叉树及其子树满足 $left\_child = (root * 2)$，$right\_child = (root * 2) + 1$</strong>。<br />
 <img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0sadgpxf4j20ij08w3zv.jpg" alt="完全二叉树示意图" /><br />
 (图源网络，找不到出处了，侵删)</p>
 </blockquote>
@@ -690,9 +690,11 @@ int main()
 
 <p>堆的效率是很高的，无论是排序也好，还是什么都好。堆结构的平均操作复杂度是 $O(log n)$, 不知道高效到哪里去了。</p>
 
-<p>那么这么牛逼的数据结构怎么写呢？<s>什么？堆？using std::priority_queue;</s> 众所周知 STL 的 priority_queue 优先队列就是我们需要用这类数据结构时的最佳选择，但是今天我们不要当搬运工了，我们要来手写堆，顺便来理一下堆是怎么实现的。以小根堆为例：</p>
+<p>那么这么牛逼的数据结构怎么写呢？<s>什么？堆？using std::priority_queue;</s> 众所周知 STL 的 priority_queue 优先队列就是我们需要用这类数据结构时的最佳选择，但是今天我们不要当搬运工了，我们要来手写堆，顺便来理一下堆是怎么实现的。好了，前方灵魂画手上线。以小根堆为例：</p>
 
 <p>首先，完全二叉树的表示与顺序存储：我们刚刚说到完全二叉树及其子树的性质，那么我们可以开一个从 1 开始编号的节点数组 <code>node[i]</code>, 这样满足 <code>node[2*i]</code> 是其左子树的根节点，<code>node[2*i+1]</code> 是其右子树的根节点。</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0tz2wospuj20oy081wf4.jpg" alt="save" /></p>
 
 <p>其次，数据的查询。因为我们要查询的最值就在根节点，因此返回 <code>node[1]</code> 即为所求。</p>
 
@@ -706,6 +708,8 @@ int main()
 <li>直到 <code>node[par] &lt;= x</code> 或 <code>x</code> 成为根节点时，退出循环。</li>
 </ol>
 
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0tz36obrrj216k1jgn3p.jpg" alt="insert" /></p>
+
 <p>最后，数据的删除。数据的删除分几步：</p>
 
 <ol>
@@ -715,6 +719,8 @@ int main()
 <li>如果 <code>node[tmp]</code> 的左儿子比右儿子小，判断 <code>node[tmp]</code> 与 <code>node[tmp * 2 + 1]</code>（右儿子） 的关系，如果 <code>node[tmp] &gt; node[tmp * 2 + 1]</code>，则交换两个结点并令 <code>tmp = tmp * 2 + 1</code>，否则退出循环</li>
 <li>最后令 <code>cnt</code> 减一：<code>cnt--;</code></li>
 </ol>
+
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0tz3ku007j20vt0eqwir.jpg" alt="delete" /></p>
 
 <p>所以说……写这玩意还是很麻烦的……除非题目特别，否则为啥放着好好的 <code>priority_queue</code> 不用来写这么长一串东西……</p>
 
