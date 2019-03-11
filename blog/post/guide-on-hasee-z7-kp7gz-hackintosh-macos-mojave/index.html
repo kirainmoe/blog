@@ -195,7 +195,7 @@
 <li>亮度调节和小太阳快捷键</li>
 <li>电池</li>
 <li>触摸板</li>
-<li>蓝牙</li>
+<li>蓝牙（需要热启动）</li>
 <li>USB3.0</li>
 <li>睡眠</li>
 <li>etc.</li>
@@ -221,11 +221,12 @@
 <p>8 代平台的 UHD630 驱动下比较经常遇到的问题是开机跑完条后黑屏 3 分钟的问题。对此新版本的 Lilu 和 WhateverGreen 已经解决了这个问题。将上述两个 kext 的最新版本（或者上文链接提供的版本）放到 Clover 的 Kexts 文件夹中，然后编辑 Clover 的引导配置文件 config.plist:</p>
 
 <ul>
+<li>去除勾选 <code>Clover FixMask</code> 中的 <code>Add PNLF</code></li>
 <li>在 Boot Args 中添加 <code>igfxcflbklt=1</code> 参数</li>
 <li>在 Devices/Properties 中添加 <code>enable-cfl-backlight-fix</code> 项，数值为 <code>01000000</code>, 类型为 DATA.</li>
 </ul>
 
-<p>关于亮度调节：需要注入 PNLF 的 DSDT，在 Clover 的 ACPI/Fixes 中勾选 <code>Add PNLF</code> 即可，配合最新 Lilu/WhateverGreen 即可在设置中看到亮度滑条。</p>
+<p>但是，使用上面的方法有个缺点，就是能解决开机黑屏，但是不能调节亮度，因为调节亮度需要 <code>PNLF</code>. CoffeeLake 需要特定的 SSDT-PNLF 补丁 <a href="https://github.com/kirainmoe/hasee-z7-kp7gz-macos/raw/master/ACPI/patched/SSDT-UIAC.aml">SSDT-PNLFCFL.aml</a>, 将其放入 ACPI/patched 中。在 Clover 的 Boot Args 中去掉 <code>igfxcflbklt=1</code> 的参数，安装最新 lilu / WhateverGreen / <strong>AppleBacklightFixup</strong> 三个驱动，然后都 Clover ACPI 的 SortOrder 中添加 SSDT-PNLFCFL.aml，保存，重启，就可以调节亮度了。</p>
 
 <p>关于亮度调节的小太阳快捷键：需要外接一个 USB 键盘，然后到设置——键盘——快捷键中，左侧会出现一个“显示器”的项，修改热键为你喜欢的键即可。注意修改为 Fn+F11, Fn+F12 时似乎无效。此外快捷键还可以用其它内核拓展驱动来解决。</p>
 

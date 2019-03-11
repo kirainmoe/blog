@@ -1,0 +1,966 @@
+<body>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="[19-3-9] XMU ACM 集训队笔记(2) - 宇宙よりも遠い場所" property="og:title">
+<title>[19-3-9] XMU ACM 集训队笔记(2) | 宇宙よりも遠い場所</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none", 
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], 
+          showMathMenu: false
+        }
+	  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+<style type="text/css">
+	.nav-left {	display: block; text-align: left; }
+	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
+	.nav-item { justify-content: flex-start;  }
+	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
+	.nav-title a { padding: 10px 0px;  }
+	@media screen and (max-width: 700px) {
+		.nav { display: block; text-align: center;  }
+		.nav-title > .nav-item { display: block;  text-align: center; }
+		.nav-left { text-align: center;  }
+	}
+</style>
+
+  <section class="section navigator">
+  <div class="navigator-background"></div>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
+        <div class="nav-links">
+          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
+          <a class="nav-link" href="/pages/friends/">Friends</a>        
+          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://acm.kirainmoe.com">
+            <span class="icon">
+              <i class="fa fa-tumblr"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<div class="return-top">
+  <i class="fa fa-angle-up"></i>
+</div>
+
+<div class="loading-progress"></div>
+  <section class="section content-container">
+    <div class="container article-here">
+      <h2 class="subtitle is-6">March 10, 2019</h2>
+      <h1 class="title">[19-3-9] XMU ACM 集训队笔记(2)</h1>
+      
+      <div class="tags">
+    
+        <a class="button is-link" href="/tags/acm">acm</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+      
+      <div class="content">
+        <p>本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。</p>
+
+<p>前方持续高能中……</p>
+
+<h1 id="贪心算法">贪心算法</h1>
+
+<p>贪心什么的，看似很简单，无非是往大了贪或者往小了贪，如果都不对的话那就往 DP 的方向考虑了……问题是呢，原则是简单的，但是思想可以很复杂，不同的题目场景就要考虑不同的策略。贪心的策略和顺序的学问是很大的，贪心不规范爆零两行泪啊。因此无论是平时做题还是考场上写贪心，最好能稍微证明一下算法的正确性。这里只选出了一些经典的问题。</p>
+
+<h2 id="部分背包问题">部分背包问题</h2>
+
+<blockquote>
+<p>有容量为 C 的背包和 n 件物品，第 $i$ 件物品的单位价值为 $w_i$, <strong>每个商品可以只装该商品的一部分</strong>。问怎样装可以使得装入背包中的物品价值最大。</p>
+</blockquote>
+
+<p>普通的背包问题我们将在下文的动态规划部分中讨论，而这个问题与普通背包的区别在于，这个背包可以一个物体只装一部分，而不是像 01 背包那样要么装要没不装。01 背包的问题中，因为不能只装一部分，所以对于一个价值高但占用容量大的物品 $i_1$、一个价值低但占用容量小的物品 $i_2$ 两个物品中，哪怕是 $i_1$ 的<strong>单位价值</strong>比 $i_2$ 高出很多，我们仍然需要决策究竟选哪个。但是在部分背包的问题中，我们大可以直接选<strong>性价比最高的（也就是说单位价值最高）</strong>物品，我们可以把背包分成无数个单位，我们要做的就是让每个背包容量单位获得的价值最大。</p>
+
+<p>因此，我们只需要计算出每个物品的单位价值（$\frac{w_i}{v_i}$）,然后按照这个单位价值从大到小排序，每次装下<strong>x = min(当前物品数量，背包剩余容量比物品单位体积)</strong>个物品，获得<strong>当前物品单位价值 $\times$ x</strong>的价值，然后将背包的容量减去 $\frac{v_i}{x}$ 即可。</p>
+
+<h2 id="活动安排问题">活动安排问题</h2>
+
+<blockquote>
+<p>有 $n$ 个活动，第 $i$ 个活动的起止时间是 $s_i$, $t_i$，多个活动的起止时间可能交叉，问从$s$ 到 $t$ 时间最多能参加多少场活动（一个活动开始期间不允许参加其它时间与之交叉的活动）。</p>
+</blockquote>
+
+<p>这又是一道很考验策略的题目。我们知道贪心需要满足两个原则：局部最优和无后效性。那么怎么贪心才是最优的策略呢？选择时长尽量短的活动？选择开始时间最早的活动？如果你不确定某个贪心策略是不是正确的，你可以找找反例试着推翻它:</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0xjtvn71fj20pq0brjrw.jpg" alt="反例1" /></p>
+
+<p>显然，这两个贪心策略都不是正确的。</p>
+
+<p>猜到了选择开头最早，为什么不试试选择结束最早的呢？仔细一想，好像选择结束时间最早的是对的诶。但是为什么呢？这里就要回想一下我们使用贪心的“无后效性原则”。无论选择时长最短的活动还是选择开始时间最早的活动，都无法避免这个活动的时长对后面选择其他活动的影响；但是如果选择结束时间最早的活动的话，一旦我们做出决策，它是没有后效性的——活动都结束了怎么影响其他活动呢，大不了刚刚选择的时候我不选它就好了嘛。</p>
+
+<h2 id="划船问题">划船问题</h2>
+
+<p><a href="http://poj.org/problem?id=1700">POJ1700: Crossing River</a></p>
+
+<blockquote>
+<p>$n$ 个人要过河，而只有一条能载两个人的船。每个人划船的时间是不同的，因此船过河的时间取决于两个人中划船较慢的那个人所用的时间。求一个划船的策略使得所有人渡过河的时间尽可能快。<br />
+样例：过河的人划船速度分别为 1, 2, 5, 10；最短的渡河时间为 17.</p>
+</blockquote>
+
+<p>让我们先来看看样例是怎么做的，这样有助于我们分析问题。</p>
+
+<pre><code>首先 1 2 过河，用时为 2；       // start
+然后 1 回来，总用时为 3；
+接着 5 10 过河，用时 10；
+然后 2 回来，总用时 15；        // here
+最后 1 2 过去，最后答案 17.
+</code></pre>
+
+<p>因为时间取决于船上划船较慢的人所用的时间，我们可以发现：过河的时候船坐满最好，但是船回来的时候带一个人回来就好，而且如果这个回来的人划船越快，总耗时就越短。因此我们不如让划得快的人做个好人，帮忙把所有人带过去，最后再自己过去。</p>
+
+<p>分析样例我们能发现：一轮过河中（从 start 到 here 为一轮），先让较小的两个过去，再让最小的回来接最大的两个过去，然后第二小的人回来，最后最小的和第二小的一起过去——这是我们初步得到的策略。接下来我们要完善它，因为这个策略还有一些不合理的地方。</p>
+
+<p>首先，这样的策略一轮涉及了四个人，分别是：（所有人中）用时最短的，用时次短的，（未渡河的）用时最长的，用时次长的。这一轮下来，用时长的两个人到了对岸，而用时短的两个人和船回到了岸边。涉及四个人的策略带了两个人过去，那么只剩下三个人、两个人的时候，怎么办呢？还有，不要忘了处理只有一个人过河的情况。</p>
+
+<p>只剩下两个人的时候好解决，两个人可以同时过去，用时是两个人中用时较长的哪一个。而剩三个人的时候，最佳策略是这样的：先让时间最短的带最长的过去，然后最短的回来，最后最短和次短的一起过去。</p>
+
+<p>其次，考虑这样一组数据：<code>1 10 15 20</code>，按照我们的策略，让 1, 10 过去，1 回来；15 20 过去，10 回来；1 10 过去，这样的用时为 51. <strong>但我们发现，1 20 过去 1 回来，1 15 过去 1 回来，1 10 过去的总用时为 47</strong>，这样的策略好像更优。问题出在哪里呢？问题在于，我们让最小和次小充当摆渡者的时候，过去的代价是 $v_{max} + v_{2nd min}$，回来的代价是 $v_{min} + v_{2nd min}$，而上面的样例过去的代价是 $v_{max} + v_{2nd max} + v_{2nd min}$, 回来的代价是 $v_{min} \times 2$, 我们发现如果 $v_{min} + v_{2nd max} &lt; 2 \times v_{2nd min}$ 的时候，让时间最小的人跑两趟，而不是让次小的人跑，花的时间更少。发现了这一点，我们的策略就比较完善了，按照上述策略模拟把代码写出来即可：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 1050;
+int a[MAXN], n;
+int main()
+{
+    int t;
+    scanf(&quot;%d&quot;, &amp;t);
+    while (t--) {
+        memset(a, 0, sizeof a);
+        scanf(&quot;%d&quot;, &amp;n);
+        for (int i = 0; i &lt; n; i++)
+            scanf(&quot;%d&quot;, &amp;a[i]);
+        std::sort(a, a + n);
+        int ans = 0;
+        int i = 0, j = n-1, tmp = n;
+        if (n == 1 || n == 2) {
+            printf(&quot;%d\n&quot;, a[n-1]);
+            continue;
+        } 
+        while (tmp &gt;= 4) {	// 剩四个以上 
+            // 如果用最小运两次的代价比用最小和次小运的代价大，就用普通的策略 
+            if (a[0] + a[j-1] &gt;= 2 * a[1]) {
+                // 总代价=次小（往）+最小（返）+最大（往）+次小（返） 
+                ans += a[1];
+                ans += a[0];
+                ans += a[j];
+                ans += a[1];
+            } else {	// 否则就用最小的运两次 
+                // 总代价=最大（往）+最小（返）+次大（往）+最小（返） 
+                ans += a[j];
+                ans += a[0];
+                ans += a[j-1];
+                ans += a[0];
+            }
+            j -= 2; 
+            tmp -= 2;			// 每轮运走两个人 
+        }
+        if (tmp == 3) {		// 剩三个 
+            ans += a[2];
+            ans += a[0];
+            ans += a[1];
+        }
+        else {				// 剩两个或一个 
+            ans += a[1];
+        }
+        printf(&quot;%d\n&quot;, ans);
+    }
+    return 0;
+}
+</code></pre>
+
+<h2 id="异或最大和字典序计数">异或最大和字典序计数</h2>
+
+<p>说到这个问题，童年噩梦 Trie 树要上线了。没错，从 17 年夏令营到现在，我依旧不会写 Trie. 好吧，正视现实了，我们写个简单点的，01 Trie树——就是只含有 0 和 1 两个支路的 Trie 树。</p>
+
+<p>为了让 01 字典树不那么难写，我们还是把它分成几个步骤来写：</p>
+
+<p>（1）初始化。因为 01 Trie 树长这样：</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/9f1137b1gy1g0xvhm3e9yj20g009hq30.jpg" alt="" /></p>
+
+<p>每个节点都可以通过走 0 或 1 的支路（图中省略了部分没有子节点支路）代表二进制的下一位，如从根节点沿着 1-0-1 的支路走，最后得到的二进制数是 101，也就是 5.</p>
+
+<p>那么，这个“支路”怎么表示呢？我们可以对每个节点开一个长度为 2 的数组 a, a[0] 代表走 0 支路后到达的节点的编号，a[1] 则同理。一般的，如果有 $n$ 个最大值小于 $2^{31}$ 的数，则节点池数组的大小开到 $n \times 31$ 即可：</p>
+
+<pre><code class="language-cpp">struct TrieNode {
+    int a[2];   // a[i] 表示走 i 支路到达下一个节点的编号
+    int val;    // 表示以当前节点为最后一个节点的数的十进制表示
+};
+TrieNode node[32 * MAXN];
+
+int tot = 1;    // 总结点编号，用于插入时指定新结点的位置
+</code></pre>
+
+<p>（2）插入。向 01 字典树中插入一个新的十进制数 $x$，首先将其转化为 31 位长的二进制数（高位不足补 0），然后再从根节点开始，根据第 $i$ 位为 0 或 1，往下一位一位走，直到走完。我们定义，编号 1 的节点为根节点。</p>
+
+<pre><code class="language-cpp">void insert(int x)
+{
+    int rt = 1;                     // 从根节点开始
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;       // 取 x 第 i 位的数
+        if (node[rt].a[t]) {          // 对应支路指向的结点是否已存在
+            rt = node[rt].a[t];
+        } else {                    // 否则就创建对应的节点
+            node[rt].a[t] = ++tot;
+            rt = node[rt].a[t];     // 将树根交给新结点，在子树中继续插入剩余部分
+        }
+    }
+    node[rt].val = x;               // 在最后一个节点的 val 中记录当前数
+}
+</code></pre>
+
+<p>（3）查询。对于不同的题目，查询的目的是不同的。这里就给出一个查询某个数是否在字典树中、并返回最后一个节点的编号的模板，大体思路还是将目标数字按位拆分，然后从根节点走对应支路看看节点是否存在。</p>
+
+<pre><code class="language-cpp">int search(int x)
+{
+    int rt = 1;
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;
+        if (!node[rt].a[t])
+            return 0;
+        rt = node[rt].a[t];
+    }
+    return rt;
+}
+</code></pre>
+
+<p>好啦！ 01 字典树就这么结束啦！是不是很简单（x</p>
+
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0xvxu2inzj20ec08twex.jpg" alt="表情包" /></p>
+
+<p>那么 01 Trie 树和贪心有什么关系？有请我们的主角——异或最大登场！</p>
+
+<p>例题：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4825">HDU4825 2014百度之星 Xor Sum</a></p>
+
+<blockquote>
+<p>给定一个集合，集合里有 $n$ 个数 $i_1, i_2, &hellip;, i_n$，现任意给定集合中的一个数 $i_x$, 你需要找到集合中的另一个数 $i_t$，使得 $i_x$ 与 $i_t$ 的异或结果 $i_x \veebar i_t$ 最大。</p>
+</blockquote>
+
+<p>首先我们要把集合中的所有数都丢进一棵字典树里。接下来我们先来看看怎么异或会最大——显然，对于两个数 $i_x$ 和 $i_t$，如果他们的二进制表示下，“同位不同数”现象出现的位数越高、出现得越多，那么异或的结果显然就越大。因此我们想要找一个 $i_t$，使之<strong>尽可能地在二进制位下的更高位与 $i_t$ 不同</strong>。<br />
+那么我们建完树后，就把 $i_x$ 的每一位拆出来：如果 $i_x$ 的二进制下第 $j$ 位为 0，那么我们就尝试在字典树中往 1 走，如果走不通再走 0；反之同理。——这就是我们的贪心策略。并且，在二进制高位下异或为 1，比在二进制低位下异或为 1，最终得到的数更大。（$11111$ 和 $10111$ 异或结果为 $1000$, $11111$ 和 $11000$ 异或结果为 $111$，虽然后者同位不同数更多，但是因为前者的高位异或结果为 1，显然前者得到的结果更大）。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 100050;
+int a[MAXN];
+int t, n, m;
+int trie[32 * MAXN][2], tot = 1, value[32 * MAXN];
+void insert(int x) {
+    int rt = 1;
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;
+        if (!trie[rt][t])
+            trie[rt][t] = ++tot;
+        rt = trie[rt][t];
+    }
+    value[rt] = x;
+}
+int search(int x) {
+    int rt = 1;
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;
+        if (trie[rt][t ^ 1])
+            rt = trie[rt][t ^ 1];
+        else
+            rt = trie[rt][t];
+    }
+    return value[rt];
+    
+}
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;t);
+    for (int x = 1; x &lt;= t; x++) {
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        memset(a, 0, sizeof a);
+        memset(trie, 0, sizeof trie);
+        memset(value, 0, sizeof value);
+        tot = 1;
+        printf(&quot;Case #%d:\n&quot;, x);
+        for (int i = 0; i &lt; n; i++) {
+            scanf(&quot;%d&quot;, a + i);
+            insert(a[i]);
+        }
+        int tmp;
+        for (int i = 0; i &lt; m; i++) {
+            scanf(&quot;%d&quot;, &amp;tmp);
+            printf(&quot;%d\n&quot;, search(tmp));
+        }
+    }
+    return 0;
+}
+</code></pre>
+
+<p>再多讲(chao)一些<a href="https://blog.csdn.net/izumi_hanako/article/details/79317653">网上</a>看到的 01字典树的应用技巧：</p>
+
+<blockquote>
+<p>找异或最大值:就是本题，当前位是 1 就走 0，是 0 就走 1,；走不通再走另一个；<br />
+找与/或的最大值：以与运算为例，如果当前位是 1，那么肯定优先走 1；如果当前位是 0，那么当前位 和 0 或 1 运算的结果都是 0，我们无法确定走哪条支路才是最优解。于是我们可以将两条路合并成一条，把 1 的树自底向上合并到 0 的树，如下图所示：<br />
+<img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0xwpj1bunj20f6099aa8.jpg" alt="trie-merge" /></p>
+</blockquote>
+
+<p>至于字典序计数？我好像找不到对应的例题 emmmm……<s>那就先不写了吧x</s></p>
+
+<h2 id="哈夫曼编码">哈夫曼编码</h2>
+
+<p>首先引入哈夫曼树的概念：</p>
+
+<blockquote>
+<p>哈夫曼树又称最优二叉树，是一种带权路径长度最短的二叉树。树边的总数为 $n$, 每条边的权值分别为 $w_1, w_2, &hellip;, w_n$, 则哈夫曼树满足 $\Sigma_{i=1}^{n}w_i$ 最小。</p>
+</blockquote>
+
+<p>而哈夫曼编码，主要目的是根据使用频率来最大化节省字符（编码）的存储空间。Huffman 编码根据权值作为码长的度量，并且 Huffman 编码是一种无前缀的编码，解码的时候不会冲突。</p>
+
+<p>假设我有 A, B, C, D 四个字符，分别出现了 $i_1, i_2, i_3, i_4$ 次，那么要如何将每个字符编码，才能让总长最小？</p>
+
+<p>以字符 A, B, C, D 对应分别出现 4, 3, 2, 1 次为例，首先我们构造编码哈夫曼树，每个字符出现的次数就是它们各自的权值 $w_i$. 我们每次都拿两个权值最小的字符 $c_a, c_b$, 把它们两个合并起来看成一个整体，得到一个新的权值为 $w_a + w_b$ 的字符，加入集合中；直到集合中只剩下一个“字符”为止，再给每条路径标号 0 or 1 即可。</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1g0xz7c2xuyj20v20ktwfn.jpg" alt="huffman code tree" /></p>
+
+<h2 id="例题">例题</h2>
+
+<p>USACO 4.2.3 Job Proceeding 工序安排: <a href="https://www.luogu.org/problemnew/show/P2751">洛谷</a></p>
+
+<p>这道题的难点在于有两个决策阶段 A 和 B，要采取不同的贪心顺序。<br />
+对于阶段 A，每个零件被加工的时刻取决于机器空闲的时刻，所以这就是典型的接水问题的变种——哪台机器有空，就到哪台机器加工，优先选择效率比较高的机器。<br />
+而对于阶段 B，因为每个零件被加工的时刻还取决于这个零件完成工序 A 的时刻，因此要使总时间最小，越后面开始加工的零件花费的时间就要更小。因此我们对于最晚完成工序 A 的零件，给它分配完成工序 B 效率最高的机器。这个策略的正确性是显然的，假设最后一个零件在 $t$ 时刻完成 A 工序的加工，此时可用的机器加工时间分别为 $b_1, b_2 (b_1 \lt b_2)$, 那么无论该零件是不是最后一个完成 B 工序的，总时间一定最小。（因为，如果它不是最后一个完成的，显然最后一个完成的零件开始加工 B 的时刻一定比它更早，如果两者使用的机器交换，总时间一定更长）<br />
+我们对优先队列重载运算符来定义选择“效率最高的机器”的规则。要注意，这里的“效率最高”，并不一定是指耗时最短的机器，而是指加入该机器后，完成的时间是所有机器中最快的。因为完成时间受到开始时间、步长的影响，所以特别注意一下下文代码的比较条件。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+const int MAXN = 1050;
+const int MAXM = 80;
+using std::priority_queue;
+struct mech {
+    int step;
+    int sum;
+    bool operator &lt; (const mech a) const {
+        if (step + sum == a.step + a.sum) {
+            return step &gt; a.step;
+        }
+        return step + sum &gt; a.step + a.sum;
+    }
+}; 
+mech a[MAXM], b[MAXM];
+int n, m1, m2;
+int done[MAXN]; 
+int main()
+{
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m1, &amp;m2);
+    for (int i = 0; i &lt; m1; i++)
+        scanf(&quot;%d&quot;, &amp;a[i].step);
+    for (int i = 0; i &lt; m2; i++)
+        scanf(&quot;%d&quot;, &amp;b[i].step);
+        
+    priority_queue&lt;mech&gt; pq1, pq2;
+    for (int i = 0; i &lt; m1; i++)
+        pq1.push(a[i]);
+    for (int i = 0; i &lt; m2; i++)
+        pq2.push(b[i]);		
+        
+    int ansa = -1, ansb = -1;
+    for (int i = 0; i &lt; n; i++) {
+        mech cur = pq1.top();
+        pq1.pop();
+        int t = cur.sum + cur.step;
+        cur.sum = t;
+        done[i] = t;
+        pq1.push(cur);
+        ansa = std::max(ansa, cur.sum);
+    }
+    
+    for (int i = n-1; i &gt;= 0; i--) {
+        mech cur = pq2.top();
+        pq2.pop();
+        cur.sum += cur.step;
+        ansb = std::max(ansb, cur.sum + done[i]);
+        pq2.push(cur);
+    }
+    printf(&quot;%d %d&quot;, ansa, ansb);
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<p><a href="https://www.luogu.org/problemnew/show/P1750">洛谷 P1750：出栈序列</a></p>
+
+<p>老实说我觉得这道题挺没意思的……虽然考察的是字典序相关，但我总觉得它没考到点上。</p>
+
+<p>给定元素的入栈顺序，求字典序最小的出栈顺序。这个题的做法是这样的：设定 $left$ 和 $right$ 两个下标指针，最开始分别指向第 $1$ 个元素和第 $c$ 个元素（$c$ 为栈容量），并标记所有元素都在栈中。每次从 $left$ 到 $right$ 找到一个未出栈的最小的数输出它，并将其标记为已出栈，然后让 $left$ 向前移到指向起点或下一个没有出栈的元素（如果 $left$ 前面已经没有未出栈的元素了，就向 $right$ 的方向找），并将 $right += 1$ 表示下一个元素入栈，直到 $n$ 个数全部被输出为止。你要说这道题是贪心……emmm……勉强算吧。不知道为什么，反正我就觉得这题没那么有意思。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int MAXN = 10500;
+bool instack[MAXN];
+int a[MAXN], left, right, n, c;
+int main()
+{
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;c);
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&quot;%d&quot;, &amp;a[i]);
+        instack[i] = 1;
+    }
+    left = 0, right = c - 1;
+    int cnt = 0;
+    while (cnt &lt; n) {
+        int min = a[left], idx = left;
+        for (int i = left + 1; i &lt;= right; i++) {
+            if (min &gt; a[i] &amp;&amp; instack[i]) {
+                min = a[i];
+                idx = i;
+            }
+        }
+        instack[idx] = 0;
+        left = idx;
+        while (left &gt; 0) {
+            left--;
+            if (instack[left])
+                break;
+        }
+        if (right &lt; n)
+            right++;
+        if (!instack[left]) {
+            for (int i = idx + 1; i &lt;= right; i++)
+                if (instack[i]) {
+                    left = i;
+                    break;
+                }
+        }
+        
+        printf(&quot;%d &quot;, min);
+        cnt++;
+    }
+    return 0;
+}
+</code></pre>
+
+<h1 id="动态规划">动态规划</h1>
+
+<p>比较简单的动态规划我就不再讲了，什么数字三角形、记忆化搜索什么的……这次的重点是几个常见的 DP 模型：</p>
+
+<h2 id="01-背包">01 背包</h2>
+
+<blockquote>
+<p>有 n 件物品，背包容量为 V。放入第 i 件物品占用容量 Vi，获得价值 Wi，求解将哪些物品装入背包的总价值最大。</p>
+</blockquote>
+
+<p>与上面的部分背包不同，这里装东西的策略是：对于某样东西，要么装，要么不装，不存在装一半、装四分之三等等的说法。那么这就比较需要思考了。<br />
+首先是设计状态，我们用 $f\{i,j\}$ 表示：<strong>背包已用容量为 $j$ 的时候, 考虑第 $i$ 件物品装或不装能得到的最大价值</strong>。注意这里的 $j$ 意思是：无论第 $i$ 件物品装了或没装，背包已用的容量都为 $j$ 的情况。那么，我们可以得到这样的一个转移方程：$f\{i, j\} = max(f\{i-1, j\}, f\{i-1, j-v_{i}\} + w_{i})$, 也就是说：<strong>考虑第 i 件物品后，背包已用容量为 j 时刻所获得的最大价值 = max(不放第 i 件物品、已用背包容量为 j 的情况下的价值，背包已用容量为 j-v[i] 的情况下装下物品 i 后的总价值)</strong></p>
+
+<p>01 背包的优化：观察状态转移方程，我们发现 $f(i, j)$ 只和 $f(i-1, j)$、$f(i-1, j-v_{i})$ 有关，而和 $f(i-2, *)$ 没有任何关系。于是我们就想， $f(0, *)&hellip;f(i-2, *)$ 这些数据能不能“阅后即焚”呢？能不能不要开 <code>f[0...n][0...v]</code> 这么大的数组，开 <code>f[0,1][0...v]</code> 呢？</p>
+
+<p>说到 01 背包自然是 01 背包的经典题 <a href="https://vijos.org/p/1104">Vijos P1104 采药</a> 啦。二维的标准做法是这样的：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int MAXN = 1005;
+int cost[MAXN], value[MAXN];
+int t, m;
+int dp[MAXN][MAXN];
+int max(int a, int b) {
+    return a &gt; b ? a : b;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;t, &amp;m);
+    int i, j = 0;
+    for (i = 1; i &lt;= m; i++) {
+        scanf(&quot;%d%d&quot;, cost + i, value + i);
+    }
+    for (i = 1; i &lt;= m; i++) {
+        for (j = t; j &gt;= 0; j--) {
+            if (j &gt;= cost[i])
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j - cost[i]] + value[i]);
+            else
+                dp[i][j] = dp[i-1][j];
+        }
+    }
+    printf(&quot;%d&quot;, dp[m][t]);
+    return 0;
+}
+</code></pre>
+
+<p>我们试着把数组的第一维优化到只有两个长度，利用模 2 运算来决定利用哪一维的空间：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int MAXN = 1005;
+int cost[MAXN], value[MAXN];
+int t, m;
+int dp[3][MAXN];
+int max(int a, int b) {
+    return a &gt; b ? a : b;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;t, &amp;m);
+    int i, j = 0;
+    for (i = 1; i &lt;= m; i++) {
+        scanf(&quot;%d%d&quot;, cost + i, value + i);
+    }
+    for (i = 1; i &lt;= m; i++) {
+        for (j = t; j &gt;= 0; j--) {
+            if (j &gt;= cost[i])
+                dp[i % 2][j] = max(dp[!(i % 2)][j], dp[!(i % 2)][j - cost[i]] + value[i]);
+            else
+                dp[i % 2][j] = dp[!(i % 2)][j];
+        }
+    }
+    printf(&quot;%d&quot;, dp[m % 2][t]);
+    return 0;
+}
+</code></pre>
+
+<p>实际上，我们上面的代码，在状态转移的时候做了两件事：第一是把 i-1 的状态复制到 i 中，第二部分才是通过转移方程转移。转移的部分覆盖了原先的状态，但是还有一部分无法被转移 ($j &lt; cost[i]$， 当前物品无法入选) 的状态需要从 i-1 中直接复制。因此实际上上面的代码状态转移的部分拆开来写是这样的：</p>
+
+<pre><code class="language-cpp">for (int i = 1; i &lt;= m; i++) {
+    for (int j = 0; j &lt;= t; j++) {
+        dp[i][j] = dp[i-1][j];
+    }
+    for (int j = cost[i]; j &lt;= t; j++) {
+        dp[i][j] = max(dp[i-1][j], dp[i-1][j-cost[i]] + value[i]);
+    }
+}
+</code></pre>
+
+<p>那么问题来了，既然还没有开始阶段 $i$ 的转移决策之前，我们要把 $i-1$ 的结果复制过来，那不如用一维数组来表示状态就好了，这样 $i-1$ 轮的转移完成之后，直接在原数组上开始第 $i$ 轮的转移。这样的空间复杂度直接降到了 O(n)。我们令 $f(j)$ 表示背包使用容量为 $j$ 时所取得物品的最大值，在第 $i$ 轮决策的时候，我们有如下的转移方程：$f(j) = max\{f(j), f(j-v_i) + w_i\}$. 该方法称为“滚动数组优化”。</p>
+
+<p>这里注意一个细节，朴素做法中，$j$ 的枚举顺序其实可以是任意的，因为转移过的状态 $f(i, j_1)$ 并不会影响任何未转移的状态 $f(i, j_2)$（后者计算时，取的是 $f(i-1, j_x)$ 的值）. 而当我们用滚动数组优化后，我们在还没开始第 $i$ 个物品的决策之前，滚动数组中保存的是第 $i-1$ 个物品决策转移后的状态，为了保证我们的状态转移方程得到正确地结果，我们要求<strong>计算 $f(j)$ 时 $f(j-v_i)$ 还没有被计算</strong>。$j-v_i \lt j$，为了保证 $f(j)$ 不被影响，我们要求 $j$ 必须<strong>逆序枚举</strong>，即 $j$ 从背包最大容量 $V$ 枚举到当前物品重量 $v_i$. 这样我们才能保证计算 $f(j)$ 的时候，$f(j-v_i)$ 还没有被更新；如果正序枚举的话，完整的状态转移方程就会变成 $f(i, j) = max\{f(i-1, j), f(i, j-v_i) + w_i\}$, 等于用阶段 $i$ 更新后的状态来更新该阶段的其它状态，<strong>物品 $i$ 就可能会被拿很多次</strong>，显然会得到错误的结果。</p>
+
+<p>使用滚动数组优化的代码应该像这样：</p>
+
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define MAXN 1005
+int cost[MAXN], value[MAXN];
+int t, m;
+int dp[MAXN];
+int max(int a, int b) {
+    return a &gt; b ? a : b;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;t, &amp;m);
+    int i, j = 0;
+    for (i = 0; i &lt; m; i++) {
+        scanf(&quot;%d%d&quot;, cost + i, value + i);
+    }
+    for (i = 0; i &lt; m; i++) {
+        for (j = t; j &gt;= cost[i]; j --) {       // 这里必须逆序枚举~
+            dp[j] = max(dp[j], dp[j - cost[i]] + value[i]);
+        }
+    }
+    printf(&quot;%d&quot;, dp[t]);
+    return 0;
+}
+</code></pre>
+
+<h2 id="完全背包">完全背包</h2>
+
+<blockquote>
+<p>有 n <strong>种</strong>物品，背包容量为 V。<strong>每种物品的数量有无限多个，</strong>放入第 i 种物品占用容量 Vi，获得价值 Wi，求解将哪些物品装入背包的总价值最大。</p>
+</blockquote>
+
+<p>这个问题与 01 背包的区别在于，某种物品的个数是无限多的。</p>
+
+<p>刚刚我们在讲 01 背包的滚动数组的时候说到，如果正序枚举 $j$ 的话，相当于第 $i$ 件物品可能会被拿很多次……emmm，等等，这好像正是我们想要的结果呀。如果正序枚举的话，$j-w_i$ 一定在 $j$ 前被枚举，这样 $f(j)$ 就变成了：在已经放过至少一件 $i$ 物品、背包容量变为 $j-w_i$ 后，再放入一件物品使背包已用容量变为 $j$ 时，所获得的最大价值。那是不是把 01 背包 <code>for (int j = t; j &gt;= cost[i]; j--)</code> 改成 <code>for (int j = cost[i]; j &lt;= t; j++)</code> 就可以了呢……</p>
+
+<p>看一道例题：<a href="https://www.luogu.org/problemnew/show/P1616">luogu 1616 疯狂的采药</a>，这就是一道完全背包的问题，代码如下：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;algorithm&gt;
+using namespace std;
+const int MAXT = 100050;
+const int MAXN = 10050;
+int T, M;
+int dp[MAXT];
+int cost[MAXN], val[MAXN];
+int main()
+{
+    scanf(&quot;%d%d&quot;, &amp;T, &amp;M);
+    for (int i = 1; i &lt;= M; i++)
+    {
+        scanf(&quot;%d%d&quot;, &amp;cost[i], &amp;val[i]);
+    }
+    for (int i = 1; i &lt;= M; i++)
+    {
+        for (int j = cost[i]; j &lt;= T; j++)      // here
+        {
+            dp[j] = max(dp[j], dp[j - cost[i]] + val[i]);
+        }
+    }
+    printf(&quot;%d&quot;, dp[T]);
+    return 0;
+} 
+</code></pre>
+
+<p>hmmm.. 就是这么简单，只需要改变一个枚举顺序就可以解决完全背包问题辣。</p>
+
+<h2 id="最长公共子序列-longest-common-subsequence">最长公共子序列 (Longest Common Subsequence)</h2>
+
+<p>首先解释一下子序列和子串的区别，子序列的每个元素可以不相邻，但是一定要保持相对位置；子串则每个元素必须相邻，如 $abcdefg$ ，$abcd$ 可以是其子序列或子串，而 $acf$ 是它的子序列，但不是它的子串。</p>
+
+<blockquote>
+<p>给定长度为 $n$ 的字符串 $A$ 和长度为 $m$ 的字符串 $B$，求既是 $A$ 的子序列又是 $B$ 的子序列的字符串长度最长是多少。</p>
+</blockquote>
+
+<p>我们用 $f(i, j)$ 表示考虑 $A[1&hellip;i]$ 与 $B[1&hellip;j]$ 的最长公共子序列的长度，那么我们所求的最终目标状态就是 $f(strlen(A), strlen(B))$.</p>
+
+<p>首先考虑状态的初始化：$A[1&hellip;i]$ 与 $B[0]$ 的公共子序列长度为0，$A[0]$ 与 $B[1&hellip;i]$ 的公共子序列长度也为 0，因此我们初始化 $f(*, 0) = f(0, *)0 = 0$.</p>
+
+<p>再考虑状态转移方程。当前考虑 $A[1&hellip;i]$ 和 $B[1&hellip;j]$ 时，这两个前缀串的最长公共子序列长度的转移方式，有如下三种情况：</p>
+
+<ol>
+<li>$A[i] = B[j]$, 那么 $f(i, j) = f(i-1, j-1) + 1$</li>
+<li>$A[i] \neq B[j]$，那么当前字符不能入选为子串，故 $f(i, j)$ 应沿用先前的结果，而先前的最大值可能在 $f(i-1, j)$ 或 $f(i, j-1)$ 取得, 即 $f(i, j) = max\{f(i-1, j), f(i, j-1)\}$.</li>
+</ol>
+
+<p>因此，总的转移方程是这样的：
+$$
+f(i, j) = max\begin{cases} f(i-1, j)\\ f(i, j-1) \\ f(i-1, j-1) + 1, A[i] = B[j] \end{cases}.
+$$</p>
+
+<p>记字符串 $A$ 的总长度为 $n$，字符串 $B$ 的总长度为 $m$, 上述转移的时间复杂度为 $O(nm)$.</p>
+
+<h2 id="最长上升子序列-longest-incresing-subsequence">最长上升子序列 (Longest Incresing Subsequence)</h2>
+
+<blockquote>
+<p>给定一个长度为 $n$ 的数列 $A$, 从该数列中从左到右选出严格单调递增的 $i$ 个数，问 $i$ 的最大值是多少。</p>
+</blockquote>
+
+<p>朴素做法：用 $f(i)$ 表示以第 $i$ 个数 $a_i$ 结尾的 LIS 的长度, 则有状态转移方程 $f(i) = max\{f(j)\} + 1, 1 \leq j \lt i, a_i &gt; a_j$。初状态为 $f(0)=0$，最终 $max\{f(i)\}, 1 \leq i \leq n$ 即为所求。由于这个方法需要把 $1 \sim i-1$ 的每个 $f(j)$ 、 $a_j$ 都询问一遍，因此总的时间复杂度是 $O(n^2)$.</p>
+
+<p>接下来考虑将 LIS 算法的时间复杂度优化到 $O(nlogn)$. 优化的角度主要是我们查找 $a_i &gt; a_j$ 的过程。能把这样复杂度为 $O(n)$ 的查找过程优化到 $O(nlogn)$ 的，那就只有在单调数据结构中二分查找了吧。具体思想是这样的：</p>
+
+<ol>
+<li>设置一个单调栈（满足栈底到栈顶的元素单调递增）$s$，然后将第一个元素加入栈中。</li>
+<li>接下来开始逐个加入数列中的元素，设当前待入栈的元素为 $a_i$.</li>
+<li>若 $a_i$ &gt; 栈顶元素 $s[top]$, 则直接让 $a_i$ 入栈.</li>
+<li>若 $a_i$ &lt;= 栈顶元素 $s[top]$, 则<strong>在栈中二分查找到第一个小于等于 $a_i$ 的元素的位置 pos</strong>，将 $s[pos]$ 替换为 $a_i$.</li>
+<li>重复上述步骤，直至所有数都被处理完成.</li>
+<li>此时栈中的元素个数 $s.size$ 即为 LIS 的答案，但注意<strong>栈中元素并不是组成 LIS 的元素</strong>。</li>
+</ol>
+
+<pre><code class="language-cpp">int stk[MAXN], top = 0;
+vector&lt;int&gt; a;
+
+stk[top] = a[0];
+for (int i = 1; i &lt; a.size(); i++) {
+    if (a[i] &gt; stk[top]) {
+        stk[++top] = a[i];
+    } else {
+        int pos = lower_bound(stk, stk + top + 1, a[i]) - stk;
+        stk[pos] = a[i];
+    }
+}
+
+int ans = top + 1;		// stk.size 即为答案
+</code></pre>
+
+<p>上述方法的合法之处在于，替换栈中的元素并不会改变栈元素的数量，如果后面没有更优的答案，最终答案仍然是之前找到的 LIS 序列的数量。但如果后面有更好的答案，那么替换栈中已有较大的元素之后，新元素就可以再加入到栈顶，更新答案。至于二分，当然是 STL <code>lower_bound</code> 大法好啦。</p>
+
+<p>说到 LIS 当然不能缺少 LIS 的经典例题 <a href="https://www.luogu.org/problemnew/show/P1020">luogu P1020 导弹拦截</a>, 这个题是一道比较早的 NOIP 提高组复赛题。这道题的第一问比较简单，反正就是求一个最长<strong>非升</strong>子序列（这个把上面的比较改个符号就是了；第二问才是难点所在，想当年看了好久的第二问愣是不知道为什么第二问等价于求最长上升子序列，原因是应用了 Dilworth 定理的命题：<strong>偏序集能划分成的最少的全序集的个数与最大反链的元素个数相等。</strong>虽然我还是看不懂就是了。</p>
+
+<p>来一份上古代码：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;utility&gt;
+#include &lt;functional&gt;
+using std::greater;
+const int MAXN = 300005;
+int n;
+int a[MAXN], dp1[MAXN], dp2[MAXN];
+int main()
+{
+    #ifndef ONLINE_JUDGE
+    freopen(&quot;1074.in&quot;, &quot;r&quot;, stdin);
+    #endif
+    n = 0;
+    while (~scanf(&quot;%d&quot;, a + n)) {
+        n++;
+    }
+    memset(dp1, 0, sizeof dp1);
+    memset(dp2, 0, sizeof dp2);
+    dp1[1] = a[0];
+    int ldsLength = 1;
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] &lt;= dp1[ldsLength]) {
+            ldsLength++;
+            dp1[ldsLength] = a[i];
+        } else {
+            int index = std::upper_bound(dp1 + 1, dp1 + ldsLength, a[i], greater&lt;int&gt;() ) - dp1;
+            dp1[index] = a[i];
+        }
+    }
+
+    printf(&quot;%d\n&quot;, ldsLength);
+    int lisLength = 1;
+    dp2[1] = a[0];
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] &gt; dp2[lisLength]) {
+            lisLength++;
+            dp2[lisLength] = a[i];
+        } else {
+            int index = std::lower_bound(dp2 + 1, dp2 + lisLength, a[i]) - dp2;
+            dp2[index] = a[i];
+        }
+    }
+    printf(&quot;%d&quot;, lisLength);
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<p>一道例题：<a href="https://www.luogu.org/problemnew/show/P1439">luogu P1439 模板：最长公共子序列</a></p>
+
+<p>在做题之前先看看数据范围，$n \leq 10^6$&hellip;??? 这样的数据范围，别说 $O(n^2)$ 的时间复杂度能不能过了，二维数组 $dp[i][j]$ 根本就开不下啊。但是，这道题里还有 $50%$ 的数据 $n \leq 1000$, 可以用朴素的 LCS 做法，我们先解决这 50 分：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 1050;
+using std::max;
+int a[MAXN], b[MAXN];
+int dp[MAXN][MAXN];
+int n;
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    if (n &gt; 1000)
+        return 0;
+
+    for (int i = 0; i &lt; n; i++)
+        scanf(&quot;%d&quot;, a + i);
+    for (int i = 0; i &lt; n; i++)
+        scanf(&quot;%d&quot;, b + i);
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+            if (a[i-1] == b[j-1]) {
+                dp[i][j] = max(dp[i][j], dp[i-1][j-1] + 1);
+            }
+        }
+    }
+    printf(&quot;%d&quot;, dp[n][n]);
+    return 0;
+}
+</code></pre>
+
+<p>好了，50 分到手。接下来我们看看剩下的 50 分到底怎么拿。什么？啥二维偏序？什(wo)么(shi)花(zhen)里(de)胡(bu)哨(hui)的？弱鸡只能先从特例找规律入手了：</p>
+
+<pre><code>5 
+3 2 1 4 5
+5 3 2 4 1
+</code></pre>
+
+<p>这个样例的答案是 3. 发现了什么规律吗？没有。但我们发现两个序列都是全排列，没有重复的数字。现在我们把令 $pa[i]$ 表示 $a[i]$ 在 $b[i]$ 中的位置，得到：<code>2 3 5 4 1</code>. 多手模几组样例，我们就会发现：这道题要求的 LCS，恰好是<strong>$pa$ 的 LIS 数量</strong>！那么，我们只需要对 $b[i]$ 计数排序，得到 $b[i]$ 的所在的位置 $pb[i]$，再构造数组 $pa[i] = pb[a[i]]$，最后对 $pa$ 数组用 $O(nlogn)$ 的方法求 LIS 就解决啦。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 100050;
+using std::max;
+using std::sort;
+using std::lower_bound;
+int a[MAXN], b[MAXN], pa[MAXN], pb[MAXN];
+int stk[MAXN], top = 0;
+int n;
+bool cmp(const int i, const int j) {
+    return b[i] &lt; b[j];
+}
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&quot;%d&quot;, a + i);
+    }
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&quot;%d&quot;, b + i);
+    }
+    for (int i = 0; i &lt; n; i++) {
+        pb[b[i] - 1] = i;
+    }
+    for (int i = 0; i &lt; n; i++) {
+        pa[i] = pb[a[i] - 1];
+    }
+    
+    stk[top] = pa[0];
+    for (int i = 1; i &lt; n; i++) {
+        if (pa[i] &gt; stk[top]) {
+            stk[++top] = pa[i];
+        } else {
+            int pos = lower_bound(stk, stk + top + 1, pa[i]) - stk;
+            stk[pos] = pa[i];
+        }
+    }
+    
+    printf(&quot;%d&quot;, top + 1);
+    
+    return 0;
+}
+</code></pre>
+
+<h2 id="区间-dp">区间 DP</h2>
+
+<p>区间 DP 是一类比较特殊的 DP。顾名思义，区间 DP 是一类以“区间长度”作为决策阶段的动态规划。在区间 DP 中，一个区间的状态由若干个比它小、被它包含的区间的状态转移而来，所以区间 DP 的决策一般就是划分区间的策略。区间 DP 一般需要有区间长、区间左端点（由前两者可以得到右端点）这几个要素，一般以区间长度作为阶段，以左端点的位置作为状态，以区间划分位置作为决策依据。</p>
+
+<p>区间 DP 常见的状态设计是用 $f(i, j)$ 表示区间 $[i, j]$ 的目标值。按照阶段 =&gt; 状态 =&gt; 决策的顺序来枚举递推、解决问题。因此我们在循环枚举的时候，比较多见的是：第一维枚举区间长度 $k$，第二维枚举左端点 $l$。根据区间长度和左端点算出右端点 $r = l + k = 1$，然后第三维枚举区间 $[l, r)$ 上的分界点 $x$, 则有状态转移方程 $f(l, r) = better\{f(l, r), f(l, x) + f(x + 1, r)\}$.</p>
+
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P3146">[USACO16OPEN]248</a></p>
+
+<p>这道区间 DP 的例题比较简单，用 $f(i, j)$ 表示合并区间 $[i, j]$ 可得到的数的最大值。注意这道题两个相同的数合并只会 +1 而不是翻倍。有状态转移方程 $f(i, j) = max\{f(i, j), f(i, k) + 1\}$，其中 $k$ 是区间划分点，当且仅当 $f(i, k) == f(k+1, j)$ 的时候，上面的式子才能被执行。另外这道题据说还有别的解法，有时间可以研究一下。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 300;
+int a[MAXN], dp[MAXN][MAXN], n;
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++)
+        scanf(&quot;%d&quot;, a + i);
+    for (int i = 1; i &lt;= n; i++)
+        dp[i][i] = a[i];
+    int ans = -1;
+    for (int k = 2; k &lt;= n; k++) {
+        for (int l = 1; l + k - 1 &lt;= n; l++) {
+            int r = l + k - 1;
+            for (int j = l; j &lt; r; j++) {
+                if (dp[l][j] == dp[j+1][r]) {
+                    dp[l][r] = std::max(dp[l][r], dp[l][j] + 1);
+                    ans = std::max(ans, dp[l][r]);
+                }
+            }
+        }
+    }
+    printf(&quot;%d&quot;, ans);
+    return 0;
+}
+</code></pre>
+
+<h2 id="树形-dp">树形 DP</h2>
+
+<p>// Todo</p>
+
+<h2 id="状态压缩-dp">状态压缩 DP</h2>
+
+<p>// Todo</p>
+      </div>
+    </div>
+  
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'yume-diary';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  </section>
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script src="https://kirainmoe.com//index.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
