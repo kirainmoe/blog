@@ -869,7 +869,7 @@ int main()
 
 <p>区间 DP 是一类比较特殊的 DP。顾名思义，区间 DP 是一类以“区间长度”作为决策阶段的动态规划。在区间 DP 中，一个区间的状态由若干个比它小、被它包含的区间的状态转移而来，所以区间 DP 的决策一般就是划分区间的策略。区间 DP 一般需要有区间长、区间左端点（由前两者可以得到右端点）这几个要素，一般以区间长度作为阶段，以左端点的位置作为状态，以区间划分位置作为决策依据。</p>
 
-<p>区间 DP 常见的状态设计是用 $f(i, j)$ 表示区间 $[i, j]$ 的目标值。按照阶段 =&gt; 状态 =&gt; 决策的顺序来枚举递推、解决问题。因此我们在循环枚举的时候，比较多见的是：第一维枚举区间长度 $k$，第二维枚举左端点 $l$。根据区间长度和左端点算出右端点 $r = l + k = 1$，然后第三维枚举区间 $[l, r)$ 上的分界点 $x$, 则有状态转移方程 $f(l, r) = better\{f(l, r), f(l, x) + f(x + 1, r)\}$.</p>
+<p>区间 DP 常见的状态设计是用 $f(i, j)$ 表示区间 $[i, j]$ 的目标值。按照阶段 =&gt; 状态 =&gt; 决策的顺序来枚举递推、解决问题。因此我们在循环枚举的时候，比较多见的是：第一维枚举区间长度 $k$，第二维枚举左端点 $l$。根据区间长度和左端点算出右端点 $r = l + k - 1$，然后第三维枚举区间 $[l, r)$ 上的分界点 $x$, 则有状态转移方程 $f(l, r) = better\{f(l, r), f(l, x) + f(x + 1, r)\}$.</p>
 
 <p>例题：<a href="https://www.luogu.org/problemnew/show/P3146">[USACO16OPEN]248</a></p>
 
@@ -906,11 +906,199 @@ int main()
 
 <h2 id="树形-dp">树形 DP</h2>
 
-<p>// Todo</p>
+<p>树形 DP 是一类非线性的 DP，它依赖于树这种数据结构。通常我们在有 $n-1$ 条无向边的无根树上，任意选择一个节点作为根节点，定义出每个节点的深度后由浅到深进行 DFS 遍历，遍历到子节点的时候由递推关系更新子树根节点的状态。一般我们以节点由深到浅（从下向上）的递推顺序作为阶段。树形 DP 的状态设计也是根据题目的不同而异的，但一般一定有一维是<strong>节点的编号</strong>（代表以该节点为根的子树）。</p>
+
+<p>某些情况下，树形 DP 的树结构是以一个 $n$ 个节点、$n-1$ 条边的无向图形式给出的，并且没有给树根。此时我们需要用邻接表（前向星）存储 $n-1$ 条无向边，然后任选一个节点作为根节点进行 DFS. 注意在这种情况下要做好 vis 标记，因为 DFS 到子节点的时候，子节点对应的前向星链表中也存有由子节点向父节点的边，可能会导致父节点的重复访问。</p>
+
+<p>如果题目的场景导致每个无向图中的每个节点都可能是根的时候，我们任选其中一个根进行 DFS 的时间复杂度是 $O(n)$，如果对每个节点都当做新根节点做一次 DFS，总的时间复杂度可能达到 $O(n^2)$, 效率比较低。此时根据节点间状态的递推关系，我们可以使用“换根法”来在 O(n) 的时间复杂度内将以某个节点为根节点得到的结果的“特殊状态”推广到其它的节点上，具体是这样的：</p>
+
+<ol>
+<li>首先建图，任选一个节点为根（例如选择编号为 1 的节点），在这棵树上进行一次树形 DP，得到以 1 为根节点时的状态。</li>
+<li>从 1 出发执行 DFS 进行换根操作，具体是对 1 的每个子节点，根据节点 1 和其子节点 $i$ 递推关系，从 $f(1)$ 中转移部分状态到 $f(i)$ 中。</li>
+<li>再对 $i$ 重复上面的步骤，直到整棵树“换根”完成。</li>
+</ol>
+
+<p>这样一来，整棵树只需要执行两次 DFS，利用递推关系将复杂度降到了 $O(n)$.</p>
+
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P2986">[USACO10MAR]伟大的奶牛聚集</a></p>
+
+<p>这是一道需要根据递推关系换根的题目。状态表示是这样的：记 $f(i)$ 为以 $i$ 为根节点的所有子树中的所有奶牛到 $i$ 号节点聚集所花费的代价，则对于<strong>一次以 rt 为根节点的树形 DP</strong>，有状态转移方程：$f(i) = \Sigma_{j=1}^{|son(i)|}(cnt_j * w_{i, j})$, 其中 $|son(i)|$ 表示以 $i$ 为根节点的子树节点数量，$cnt_j$ 表示编号为 $j$ 的子节点及其子树聚集的奶牛数目，$w_{i, j}$ 表示从 $i$ 到 $j$ 的无向边的长度。</p>
+
+<p>进行一轮 DFS 之后我们开始换根操作，考虑以 $i$ 为根，将根换到 $i$ 的儿子 $j$ 的情况，首先要从 $f(i)$ 中减去原先走到 $j$ 节点的奶牛走到 $i$ 节点的价值 $cnt_j * e_{i, j}$; 其次还要加上 $i$ 本身的奶牛及其它 $i$ 的子节点的奶牛走到 $j$ 的价值，即 $(cnt_i - cnt_j) * e_{i, j}$。然后再以 $j$ 为根节点，令 $j$ 和 $j$ 可达的、除 $i$ 之外的子节点进行换根。具体代码如下（这道题因为数据量比较大，所以记得开 long long, 不开 LL 一时爽，提交一下全 WA 光）：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;climits&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 100050;
+const long long INF = LLONG_MAX - 233;
+typedef long long ll;
+struct Edge {
+    int u, v, w, next;
+    Edge() {}
+    Edge(int tu, int tv, int tw, int tn): u(tu), v(tv), w(tw), next(tn) {}
+};
+Edge e[MAXN &lt;&lt; 1];
+int n, c[MAXN], head[MAXN], cnt = 1;
+bool vis[MAXN];
+long long cc[MAXN], ans = INF;
+long long dp[MAXN];
+void insertEdge(int u, int v, int w) {
+    e[cnt] = Edge(u, v, w, head[u]);
+    head[u] = cnt++;
+    e[cnt] = Edge(v, u, w, head[v]);
+    head[v] = cnt++;
+}
+void dfs(int rt) {
+    cc[rt] = (ll)c[rt];
+    if (!head[rt]) {
+        return;
+    }
+    for (int i = head[rt]; i != 0; i = e[i].next) {
+        if (!vis[e[i].v]) {
+            vis[e[i].v] = 1;
+            dfs(e[i].v);
+            dp[rt] += dp[e[i].v] + (ll)cc[e[i].v] * e[i].w;
+            cc[rt] += cc[e[i].v];
+        }
+    }
+}
+void change_root(int rt) {
+    if (!head[rt]) {
+        return;
+    }
+    for (int i = head[rt]; i != 0; i = e[i].next) {
+        if (!vis[e[i].v]) {
+            vis[e[i].v] = 1;
+            long long tmp = cc[rt], v = e[i].v, tmp2 = cc[v];
+            long long delta = cc[rt] - cc[v];
+            cc[rt] = delta;
+            cc[v] = tmp;
+            dp[v] = dp[rt] - tmp2 * (ll)e[i].w + cc[rt] * e[i].w;
+            ans = std::min(ans, dp[v]);
+            change_root(v);
+            
+            cc[rt] = tmp, cc[v] = tmp2;
+        }
+    }
+}
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++)
+        scanf(&quot;%d&quot;, &amp;c[i]);
+    int u, v, w;
+    for (int i = 1; i &lt; n; i++) {
+        scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+        insertEdge(u, v, w);
+    }
+    int rt = 1;
+    vis[rt] = 1, cc[rt] = c[rt];
+    dfs(rt);
+    ans = dp[rt];
+    
+    memset(vis, 0, sizeof vis);
+    vis[rt] = 1;
+    change_root(rt);
+
+    printf(&quot;%lld&quot;, ans);
+    return 0;
+}
+</code></pre>
+
+<p>树形 DP 的变化形式多种多样，难度不一，不可能通过做一道题就能掌握到精髓，所以还要多加练习其它类型的题，如背包依赖树形 DP 等，尤其要好好品味一下状态的设计和状态转移的策略。</p>
 
 <h2 id="状态压缩-dp">状态压缩 DP</h2>
 
-<p>// Todo</p>
+<p>状态压缩 DP 顾名思义，就是对 DP 的状态进行压缩。考虑这样一个场景，我们要在一张图中 DP，每一个点只能走一次，那么我们怎么设计状态能实现“每个点只走一次”呢？有多少个点设计多少维状态吗？那样空间复杂度和时间复杂度都很大。这时候我们可以把状态用二进制来表示，用十进制整数存储。我们知道二进制状态的每一位中，都只能取 0 或 1，这样每一位都表示了两种状态。此时我们可以取某个十进制数 $k$, 令 $k$ 的二进制下第 $i$ 位表示是否访问过某个点，如果是第 $i$ 位为1，否则第 $i$ 位为 0. 这样表示状态，可以将所有的状态量压缩到 $1 &lt;&lt; n$ ($n$ 为节点的总数) 个，并且不同的状态之间不会冲突。这就是状态压缩 DP 的基本原理——用二进制来表示状态。当然，也有一些<s>毒瘤题</s>用三进制等来表示状态。</p>
+
+<p>熟悉状态压缩 DP 的写法，首先需要熟悉一些常用的二进制操作（下面的表格摘自《算法竞赛进阶指南》）:</p>
+
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>写法</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>取出整数 $n$ 在二进制表示下的第 $k$ 位</td>
+<td><code>(n &gt;&gt; k) &amp; 1</code></td>
+</tr>
+
+<tr>
+<td>取出整数 $n$ 在二进制表示下的后 $k$ ($0 \sim k-1$)位</td>
+<td><code>n &amp; ((1 &lt;&lt; k) - 1)</code></td>
+</tr>
+
+<tr>
+<td>把整数 $n$ 在二进制表示下的第 $k$ 位取反</td>
+<td><code>n ^ (1 &lt;&lt; k)</code></td>
+</tr>
+
+<tr>
+<td>对整数 $n$ 在二进制表示下的第 $k$ 为赋值 1</td>
+<td>$n | (1 &lt;&lt; k)$</td>
+</tr>
+
+<tr>
+<td>对整数 $n$ 在二进制表示下的第 $k$ 为赋值 1</td>
+<td><code>n &amp; (~(1 &lt;&lt; k))</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P1171">P1171 旅行商问题</a></p>
+
+<p>虽然 TSP 问题 $n$ 比较小的时候是个比较经典的状态压缩 DP 模型，但是这个题有一个 $n=20$ 的点，普通的状态压缩会 TLE，怎么办呢……<s>开 O2 就好了</s>。否则的话就要加其它的玄学优化，或者用别的方法……emmm，我选择开 O2.</p>
+
+<p>用 $dp[s][j]$ 表示当前走的城市状态为 $s$, 且最后一个去的城市为 $j$ 时的最小代价，初始化时 $dp[*][*] = INF, dp[1][0] = 1$。从外到内分别枚举 $s(0\sim(1 &lt;&lt; n) - 1)$, $i (0 \sim n-1)$ $ s \&amp; (1 &lt;&lt; i) \neq 0$, $j (0 \sim n-1), i \neq j, s \&amp; (1 &lt;&lt; j) == 0$，则有转移方程 $dp[s | (1 &lt;&lt; j)][j] = min\{dp[s | (1 &lt;&lt; j)][j], dp[s][i] + dist[i][j]\}$. 最终答案是 $min\{dp[(1 &lt;&lt; n) - 1\}[i] + dist[i][0], i \in [0, n), i \in N$.</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int INF = 1e9 + 7;
+const int MAXS = 1 &lt;&lt; 20;
+const int MAXN = 21;
+int n;
+int dist[MAXN][MAXN];
+int dp[MAXS][MAXN];
+int min(int a, int b) {
+    return a &gt; b ? b : a;
+}
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            scanf(&quot;%d&quot;, &amp;dist[i][j]);
+        }
+    }
+    
+    memset(dp, 0x3f, sizeof dp);
+    dp[1][0] = 0;
+    
+    for (int s = 1; s &lt; (1 &lt;&lt; n); s++) {
+        for (int i = 0; i &lt; n; i++) {
+            if (s &amp; (1 &lt;&lt; i)) {
+                for (int j = 0; j &lt; n; j++) {
+                    if (i == j || s &amp; (1 &lt;&lt; j))
+                        continue;
+                    dp[s | (1 &lt;&lt; j)][j] = min(dp[s | (1 &lt;&lt; j)][j], dp[s][i] + dist[i][j]);
+                }
+            }
+        }
+    }
+
+    int ans = INF;
+    for (int i = 1; i &lt; n; i++) {
+        ans = min(ans, dp[(1 &lt;&lt; n) - 1][i] + dist[i][0]);
+    }
+    printf(&quot;%d&quot;, ans);
+    return 0;
+}
+</code></pre>
       </div>
     </div>
   
