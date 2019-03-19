@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kirainmoe.com/blog/post/tarjan-algorithm-learning-note/</loc>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/post/xmu-acm-training-record-2/</loc>
     <lastmod>2019-03-10T10:42:18+08:00</lastmod>
   </url>
@@ -199,13 +204,13 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/acm/</loc>
-    <lastmod>2019-03-10T10:42:18+08:00</lastmod>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kirainmoe.com/tags/algorithm/</loc>
-    <lastmod>2019-03-10T10:42:18+08:00</lastmod>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -235,7 +240,7 @@
   
   <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2019-03-10T10:42:18+08:00</lastmod>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -301,6 +306,12 @@
   <url>
     <loc>https://kirainmoe.com/tags/google/</loc>
     <lastmod>2018-11-25T22:43:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/graph-theory/</loc>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -462,7 +473,7 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/</loc>
-    <lastmod>2019-03-10T10:42:18+08:00</lastmod>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -528,7 +539,7 @@
   
   <url>
     <loc>https://kirainmoe.com/</loc>
-    <lastmod>2019-03-10T10:42:18+08:00</lastmod>
+    <lastmod>2019-03-18T21:44:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
