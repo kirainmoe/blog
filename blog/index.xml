@@ -24,6 +24,16 @@
     </item>
     
     <item>
+      <title>[19-3-16] XMU ACM 集训队笔记(3)</title>
+      <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-3/</link>
+      <pubDate>Sat, 16 Mar 2019 12:15:33 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-3/</guid>
+      <description>&lt;p&gt;本期主要内容：图论基础，拓扑排序，欧拉回路和哈密顿回路，最小生成树及其性质与变种，最短路，强连通分量的分解（Tarjan &amp;amp; Kasaraju），二分图匹配的匈牙利算法，二分图最大匹配及其相关问题（最大匹配关键点/边、最大独立集、最小点/边覆盖、DAG 最小路径覆盖、经典问题中的二分图建图）。&lt;br /&gt;
+现在是第三周，每周的内容和难度基本呈现指数级增长……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>[19-3-9] XMU ACM 集训队笔记(2)</title>
       <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-2/</link>
       <pubDate>Sun, 10 Mar 2019 10:42:18 +0800</pubDate>

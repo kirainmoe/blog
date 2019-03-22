@@ -1,0 +1,901 @@
+<body>
+  <!DOCTYPE html>
+<html lang="en-us">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="" name="keywords">
+<meta content="[19-3-16] XMU ACM 集训队笔记(3) - 宇宙よりも遠い場所" property="og:title">
+<title>[19-3-16] XMU ACM 集训队笔记(3) | 宇宙よりも遠い場所</title>
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
+<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none", 
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], 
+          showMathMenu: false
+        }
+	  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+<style type="text/css">
+	.nav-left {	display: block; text-align: left; }
+	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
+	.nav-item { justify-content: flex-start;  }
+	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
+	.nav-title a { padding: 10px 0px;  }
+	@media screen and (max-width: 700px) {
+		.nav { display: block; text-align: center;  }
+		.nav-title > .nav-item { display: block;  text-align: center; }
+		.nav-left { text-align: center;  }
+	}
+</style>
+
+  <section class="section navigator">
+  <div class="navigator-background"></div>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
+        <div class="nav-links">
+          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
+          <a class="nav-link" href="/pages/friends/">Friends</a>        
+          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/kirainmoe">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/yume_kankawa">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://weibo.com/returnnnn">
+            <span class="icon">
+              <i class="fa fa-weibo"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://acm.kirainmoe.com">
+            <span class="icon">
+              <i class="fa fa-tumblr"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<div class="return-top">
+  <i class="fa fa-angle-up"></i>
+</div>
+
+<div class="loading-progress"></div>
+  <section class="section content-container">
+    <div class="container article-here">
+      <h2 class="subtitle is-6">March 16, 2019</h2>
+      <h1 class="title">[19-3-16] XMU ACM 集训队笔记(3)</h1>
+      
+      <div class="tags">
+    
+        <a class="button is-link" href="/tags/acm">acm</a>
+    
+        <a class="button is-link" href="/tags/algorithm">algorithm</a>
+    
+</div>
+
+      
+      <div class="content">
+        <p>本期主要内容：图论基础，拓扑排序，欧拉回路和哈密顿回路，最小生成树及其性质与变种，最短路，强连通分量的分解（Tarjan &amp; Kasaraju），二分图匹配的匈牙利算法，二分图最大匹配及其相关问题（最大匹配关键点/边、最大独立集、最小点/边覆盖、DAG 最小路径覆盖、经典问题中的二分图建图）。<br />
+现在是第三周，每周的内容和难度基本呈现指数级增长……</p>
+
+<h1 id="有向无环图和拓扑排序">有向无环图和拓扑排序</h1>
+
+<blockquote>
+<p>有向无环图(DAG): 如果一个有向图从任意顶点出发无法经过若干条边回到该点，则这张图是一个 DAG（有向无环图）。<br />
+<img src="https://ws1.sinaimg.cn/large/9f1137b1gy1g14inwc882j209w07474m.jpg" alt="DAG" /></p>
+
+<p>拓扑排序：在一个有向图中，对所有的节点进行排序，要求没有一个节点指向它前面的节点。也即，对于边集 $E$，若有 $e_{u, v} \in E$, 那么 $u, v$ 在拓扑序列中的顺序为 $u$ 出现在 $v$ 之前。<br />
+显然，只有 DAG 图才满足若有 $e_{u, v}$ 一定不存在 $e_{v, u}$, 才可能存在拓扑排序。拓扑排序经常用于处理各节点间具有先后依赖关系的图的问题。</p>
+</blockquote>
+
+<p>对 DAG 进行拓扑排序的算法步骤如下：</p>
+
+<ol>
+<li>初始化图，使用 $e[i][j]$ 表示以 $i$ 为起点的边，$in[i]$ 表示 $i$ 节点的入度数；</li>
+<li>初始化 BFS 队列 $q$；</li>
+<li>统计所有节点的入度 $in[i]$, 找到其中入度 $in[i]=0$ 的所有节点，加入队列中；</li>
+<li>从队列中选出入度为 0 的节点 $x$，将其加入拓扑序列中；</li>
+<li>遍历 $x$ 的所有出边 $e[x][j]$，将该边指向的节点的入度减 1：$in[e[x][j].v]&ndash;$；</li>
+<li>如果指向的节点入度减 1 后入度为 $0$，那么将其加入队列中；</li>
+<li>重复操作 4~7，直至队列为空，此时若拓扑序列长度为 $n$ 则找到序列；若长度 $&lt; n$，则不存在拓扑序列。</li>
+</ol>
+
+<p>下面是拓扑排序在前向星存图结构中的一种写法：</p>
+
+<pre><code class="language-cpp">struct Edge {
+    int u, v, next;
+} e[MAXM];
+int head[MAXN], in[MAXN], ans[MAXN], cnt = 0;
+queue&lt;int&gt; q;
+// 统计节点入度
+for (int i = 0; i &lt; ecnt; i++) {     // ecnt: 边数
+    in[e[i].v]++;
+}
+// 将入度为 0 的节点加入队列中
+for (int i = 0; i &lt; n; i++)
+    if (in[i] == 0)
+        q.push(in[i]);
+while (!q.empty()) {
+    int next = q.front();
+    q.pop();
+    ans[cnt++] = next;
+    for (int i = head[next]; i != 0; i = e[i].next) {
+        in[e[i].v]--;
+        if (in[e[i].v] == 0)
+            q.push(e[i].v);
+    }
+}
+// 判断是否存在拓扑序列
+if (cnt == n - 1)   // 存在
+    for (int i = 0; i &lt; cnt; i++)
+        printf(&quot;%d&quot;, ans[i]);
+else
+    printf(&quot;No Answer!&quot;);
+</code></pre>
+
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P1347">luogu P1347 福建省历届夏令营 排序</a></p>
+
+<p>这道题中给出的 A, B, C, D&hellip; 相当于节点；小于关系相当于对两个节点连了一条有向边。而要决定最终的序列，那就相当于求节点的拓扑排序了。这道题的亮点在于节点间的关系必须在线计算，也就是说每给定一个条件，就要判断新条件加入后是否已经可以组成序列，或者产生了冲突。所以我们可以每次加入一个新条件后就对所有节点进行一次拓扑排序。假设当前给的条件涉及的节点数量为 $k$，求得的拓扑序列长度为 $cnt$，我们可以分三种情况讨论：（1）当 $cnt = n = k$，说明找到了覆盖所有节点的合法拓扑序列，输出答案；（2）当 $cnt = k \neq n$，说明所给的条件还不能确定最终序列，但是当前所给的条件都是不冲突的；（3）当 $cnt \neq k$，说明当前给的条件出现了冲突，构成的已经不是一个 DAG 了，输出冲突发生时的条件。每加入一个新条件就讨论一次。如果所有的条件都处理完之后仍然无法确定答案，那就是最后一种 cannot be determined 的情况。</p>
+
+<p>这里我的建图考虑到为了让一些查询更方便而做的预处理，代码有些复杂：</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt; 
+#include &lt;queue&gt;
+
+using std::queue;
+const int MAXN = 1000;
+struct Edge {
+    char u, v;
+    int next;
+} e[1000];
+
+int n, m;
+bool map[MAXN][MAXN], vis[MAXN];
+int ans[MAXN], cnt = 0;
+int head[MAXN], ecnt = 1, vised = 0;
+int ini[MAXN], in[MAXN];
+
+bool addEdge(char u, char v)
+{
+    if (!vis[u - 'A'])
+        vised++, vis[u - 'A'] = 1;
+    if (!vis[v - 'A'])
+        vised++, vis[v - 'A'] = 1;
+    if (map[v - 'A'][u - 'A'])
+        return false;
+    e[ecnt].u = u, e[ecnt].v = v;
+    e[ecnt].next = head[u - 'A'];
+    head[u - 'A'] = ecnt;
+    ecnt++;
+    map[u - 'A'][v - 'A'] = 1;
+    if (ini[v - 'A'] &gt;= 26)
+        ini[v - 'A'] = 1;
+    else
+        ini[v - 'A']++;
+    if (ini[u - 'A'] &gt;= 26)
+        ini[u - 'A'] = 0;
+    return true;
+}
+
+int main()
+{
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    char s[10];
+    memset(ini, 0x3f, sizeof ini);
+    for (int i = 0; i &lt; m; i++) {
+        scanf(&quot;%s&quot;, s);
+        queue&lt;int&gt; q;
+        bool res = addEdge(s[0], s[2]);
+        if (!res) {
+            printf(&quot;Inconsistency found after %d relations.&quot;, i + 1);
+            return 0;
+        }
+        
+        memset(ans, 0, sizeof ans);
+        memset(in, 0, sizeof in);
+        memcpy(in, ini, sizeof ini);
+        cnt = 0;
+        
+        bool flag = true;
+        for (int j = 0; j &lt; n; j++)
+            if (in[j] == 0)
+                q.push(j);
+
+        int zerocnt = 0;
+        while (!q.empty()) {
+            int t = q.front();
+            q.pop();
+            ans[cnt++] = t;
+            
+            for (int j = head[t]; j != 0; j = e[j].next) {
+                int next = e[j].v - 'A';
+                in[next]--;
+                if (!in[next]) {
+                    if (zerocnt)
+                        flag = false;
+                    zerocnt++;
+                    q.push(next);
+                }
+            }
+            zerocnt = 0;
+        }
+        if (cnt == n &amp;&amp; flag) {
+            printf(&quot;Sorted sequence determined after %d relations: &quot;, i +  1);
+            for (int j = 0; j &lt; n; j++)
+                printf(&quot;%c&quot;, ans[j] + 'A');
+            printf(&quot;.&quot;);
+            return 0;
+        } else if (cnt != vised) {
+            printf(&quot;Inconsistency found after %d relations.&quot;, i + 1);
+            return 0;
+        }
+    }
+    printf(&quot;Sorted sequence cannot be determined.&quot;);
+    return 0;
+}
+</code></pre>
+
+<h1 id="欧拉回路和哈密顿回路">欧拉回路和哈密顿回路</h1>
+
+<blockquote>
+<p>欧拉路径：对于图 $G(V, E)$, 若图 $G$ 存在一条路径，该路径经过且劲经过一次每条边 $e_i \in E$, 则该路径称为欧拉路径。<br />
+欧拉回路：如果一个回路是欧拉路径，那么该回路称为欧拉回路。<br />
+哈密顿路径：对于图 $G(V, E)$, 若图 $G$ 存在一条由指定的起点 $s$ 前往指定的终点 $t$ 的路径，途中经过所有其他节点且只经过一次，则该路径称为哈密顿路径。<br />
+哈密顿回路：如果一个回路是哈密顿路径，那么该回路称为哈密顿回路。<br />
+<img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g14p1dnqkkj20ub0g5751.jpg" alt="欧拉回路和哈密顿回路" /></p>
+</blockquote>
+
+<p>先讲讲欧拉回路。</p>
+
+<p><strong>首先是欧拉回路存在性的判定：</strong></p>
+
+<ol>
+<li>无向图存在欧拉回路的充要条件：一个无向图存在欧拉回路，当且仅当该图所有顶点度数都为偶数,且该图是连通图。</li>
+</ol>
+
+<p>因为欧拉回路对于图的每条边都要经过一次、最终回到起点，说明每个点都至少经历过一次“进”和“出”的两步操作；而对于每个节点，如果入度为奇数，完成多轮进出操作，势必有其中一条边要被走两次；因此可以对点的出入度进行判断。这是对于回路的情况；如果只是普通的欧拉路径，起点和终点分别只有一次出和入的操作，此时条件就变为：除了起点和终点的度为奇数，其他节点的度都要为偶。</p>
+
+<p>类似地，我们可以类比到有向图的情况：</p>
+
+<ol>
+<li>有向图存在欧拉回路的充要条件：一个有向图存在欧拉回路，所有顶点的入度等于出度且该图是连通图。</li>
+</ol>
+
+<p>根据上面的分析，每个节点有一条入路，就必须对应另一条出路。如果只是普通的欧拉路径，条件就变为：起点的出度=入度+1，终点的入度=出度+1，其余点的出度=入度。</p>
+
+<p><strong>给定一个图 $G=(V,E)$，求该图的欧拉路径 or 欧拉回路（假设其存在）？</strong></p>
+
+<p>我们的思路很简单，既然每条边只能经过一次，我们就把走过的边删掉，然后走到下一个点试着继续走，对整张图做一次 DFS，直到走回起点。因为我们这里涉及到了删边的操作，因此我们用 STL 的 multiset 存图：</p>
+
+<pre><code class="language-cpp">stack&lt;int&gt; ans;
+multiset&lt;int&gt; e[MAXN];
+// 编写 DFS 函数递归求解
+void dfs(int x) {
+    // 遍历与 x 相连的每条无向边
+    for (multiset&lt;int&gt;::iterator itor = e[x].begin(); itor != e[x].end(); itor = e[x].begin()) {
+        // 删除边（注意是无向图，要删两次）并对下一个节点遍历
+        int tmp = *itor;
+        to[x].erase(itor);
+        to[u].erase(to[u].find(x));
+        dfs(tmp);
+    }
+    // DFS 完成后，将当前点加入队列
+    ans.push(x);
+}
+// 倒序输出队列中的内容即为答案
+while (!ans.empty()) {
+    printf(&quot;%d&quot;, ans.top());
+    ans.pop();
+}
+</code></pre>
+
+<p>此外也有一种删边的做法是每次搜索边 $e_{ij}$ 的时候，标记 $used[e_{ij}] = 1$ 来表示删边，适用于用前向星存储图时的情况。</p>
+
+<p>上述的算法称为 Hierholzers 算法。对于有向图也同理，删边的时候只删一条进来的就好。此外对于无向图的欧拉回路，还有一种算法称为 Fleury 算法，但前者的时间复杂度似乎更优，因此就不再赘述后者了。</p>
+
+<p><a href="https://www.luogu.org/problemnew/show/P2731">USACO Training Section 3.3 Riding the Fences</a></p>
+
+<p>这道题是一个很经典的欧拉路径/欧拉回路模板题。这道题虽然保证一定有解，不需要判断解的存在性，但是所求的图可能是一个欧拉回路或欧拉路径，需要特别注意一下 DFS 搜索的节点，究竟是奇度点还是编号最小的点。此外因为题目要求输出的时候按照最小的字典序，因此我们这里用 <code>multiset</code> 来存边是很好的选择。别忘了在加边的时候统计一下每个点的出度和入度。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;set&gt;
+using std::stack;
+using std::multiset;
+const int MAXN = 2000;
+multiset&lt;int&gt; e[MAXN];
+int cnt = 1, inout[MAXN];
+stack&lt;int&gt; ans;
+void addEdge(int u, int v) {
+	e[u].insert(v);
+	e[v].insert(u);
+	inout[u]++, inout[v]++;
+}
+void dfs(int x) {
+	for (multiset&lt;int&gt;::iterator itor = e[x].begin(); itor != e[x].end(); itor = e[x].begin()) {
+		int next = *itor;
+		e[x].erase(itor);
+		e[next].erase(e[next].find(x));
+		dfs(next);
+	}
+	ans.push(x);
+}
+int main()
+{
+	int n, u, v;
+	scanf(&quot;%d&quot;, &amp;n);
+	for (int i = 0; i &lt; n; i++) {
+		scanf(&quot;%d%d&quot;, &amp;u, &amp;v);
+		addEdge(u, v);
+	}
+	bool flag = true;
+	int s;
+	for (int i = 1; i &lt;= 500; i++) {
+		if (inout[i] % 2 == 1) {
+			s = i, flag = false;
+			break;
+		}
+	}
+	if (!flag) {		// 欧拉路径 
+		dfs(s);
+	} else {				// 欧拉回路 
+		for (int i = 1; i &lt;= 500; i++) {
+			if (inout[i]) {
+				dfs(i);
+				break;
+			}
+		}
+	}
+	while (!ans.empty()) {
+		printf(&quot;%d\n&quot;, ans.top());
+		ans.pop();
+	}
+	return 0;
+}
+</code></pre>
+
+<hr />
+
+<p>再说说哈密顿回路。首先还是存在性的判断，我们只讨论无向图的情况，这里我们涉及 <strong>Dirac 定理</strong>：</p>
+
+<blockquote>
+<p>如果图中任意不相邻的两点度的和大于或等于顶点总数，那这个图一定是哈密尔顿图。特殊地，如果所有顶点的度都大于等于 $n / 2$，则该图一定存在哈密尔顿回路。</p>
+</blockquote>
+
+<p>证明就不说了<s>我也不会</s>。还是直接来讲讲怎么求哈密顿回路吧：</p>
+
+<ol>
+<li>任意找到两个相邻的顶点 $S, T$</li>
+<li>选取与 $S$ 相邻的另一点 $A$, 与 $T$ 相邻的另一点 B，向两头拓展得到新的路径 $A-&gt;S-&gt;T-&gt;B$</li>
+<li>再令 $S = A, T = B$, 重复步骤 2 向两头拓展，直到无法拓展为止</li>
+<li>令最终的首尾节点为 $S, T$</li>
+<li>若 $S, T$ 不相邻，则在上述路径中，找到一对满足条件的相邻节点 $V_i, V_j$，使 $V_i$ 与 T 相邻，$V_j$ 与 $S$ 相邻，路径变为 $S \to V_i \to T to V_j$, 此时得到新的路径。</li>
+<li>若 $S \to T$ 路径经过的顶点个数为 $n$, 游戏结束。</li>
+<li>若 $S \to T$ 路径经过的顶点个数不为 $n$, 则找到 $S \to T$ 中的一个节点 $V_i$，该节点满足与未访问的节点 $V_u$ 相邻，从 $V_i$ 出将路径断开为 $S=V_i, T=V_{i+1}$，然后跳到步骤 2 继续拓展路径。</li>
+</ol>
+
+<pre><code class="language-cpp">int n;                          // 顶点个数
+int ans[MAXN];                  // 最终回路
+bool G[MAXN][MAXN], vis[MAXN];  // 邻接矩阵和标记数组
+
+int s = 1, t;                   // 起点，终点
+int cnt = 2;                    // 路径中的点数
+for (int i = 1; i &lt;= n; i++) {
+    if (G[s][i]) {
+        t = i;
+        break;
+    }
+}
+ans[0] = s, ans[1] = t;         // 寻找与起点相邻的点先令其为 t
+while (true) {
+    while (true) {
+        int i;
+        // 不断向 T 的方向拓展
+        for (i = 1; i &lt;= n; i++) {
+            if (G[t][i] &amp;&amp; !vis[i]) {
+                ans[cnt++] = i;
+                vis[i] = true;
+                t = i;
+                break;
+            }
+        }
+        if (i &gt; n)
+            break;
+    }
+    std::reverse(ans, ans + cnt);       // 将存在数组中的路径倒过来
+    std::swap(s, t);                    // 交换起点终点继续拓展
+    while (true) {
+        int i;
+        for (i = 1; i &lt;= n; i++) {
+            if (G[t][i] &amp;&amp; !vis[i]) {
+                ans[cnt++] = i;
+                vis[i] = true;
+                t = i;
+                break;
+            }
+        }
+        if (i &gt; n)
+            break;
+    }
+
+    // 第一轮拓展完成，如果 s, t 不相邻，则寻找相邻节点
+    if (!G[s][t]) {
+        int pos;
+        for (int i = 1; i &lt; cnt - 2; i++) {
+            if (G[s][ans[i + 1]] &amp;&amp; G[ans[i]][t]) {
+                pos = i;
+                break;
+            }
+        }
+        t = ans[++pos];
+        // 路径变为 s-&gt;vi-&gt;t-&gt;vi+1
+        std::reverse(ans + i, ans + cnt);
+    }
+    
+    if (cnt == n) {     // 发现最终路径，算法结束
+        break;
+    }
+    // 否则找到与未访问节点相邻的路径节点，重复上述步骤
+    int i, j;
+    for (j = 1; j &lt;= n; j++) {
+        if (!vis[j]) {
+            for (i = 1; i &lt; cnt - 2; i++) {
+                if (G[ans[i]][j]) {
+                    break;
+                }
+            }
+        }
+    }
+    s = ans[i-1], t = j;
+    std::reverse(ans, ans + i);
+    std::reverse(ans + i, ans + cnt);
+    ans[cnt++] = j;
+    vis[j] = 1;
+}
+</code></pre>
+
+<p>例题：<a href="https://codeforces.com/problemset/problem/325/E">Codeforces 325E The Red Button</a></p>
+
+<blockquote>
+<p>题意：给定 $n$ 个点，编号为 $0~n-1$, 从第 $i$ 个点可以走到第 $2i \mod n$ 或 $(2i+1) \mod n$ 个点，求一条以 0 为起点、经过所有点最后回到 0 的哈密尔顿路径。如果不存在这样的路径输出 -1. 数据范围 $n \leq 100000$.</p>
+</blockquote>
+
+<p>这道题有点复杂。首先，上面的求哈密尔顿回路算法复杂度是 $O(n^2)$ 级别的，所以这里显然不适用。我们尝试寻找一个 $O(n)$ 的算法来解决这个问题。首先我们可以发现，当 $n$ 为奇数的时候，是一定没有解的。</p>
+
+<p>当 $n$ 为奇数时，考虑节点 $i = 0$，能够走到 $0$ 号点的节点 $t$ 需要满足条件 $2t \mod n = 0$ 或 $(2t + 1) \mod n = 0$, 那么当且仅当 $t = 0$（条件1） 或 $t = floor(\frac{n}{2}) = \frac{n-1}{2}$（条件2） 的时候，才满足上式。再考虑节点 $i = n-1$, 能走到点 $n-1$ 的需要满足同样的条件，有 $t = n-1$（条件1）和 $t = floor(\frac{n}{2})$. 我们发现 $floor(\frac{n}{2})$ 这个点，既要走向点 $0$，又要走向点 $n-1$ 才能满足走过所有点的条件，但我们这里求得是哈密尔顿回路，每个点只能走一次，所以说当 $n$ 为奇数的时候回路就不存在了，可以直接输出 $-1$.</p>
+
+<p>接下来我们只要考虑 $n$ 为偶数的情况。我们发现 $x$ 可以到达点 $2x \mod n$ 和 $(2x+1) \mod n$, $x + \frac{n}{2}$ 可以到达点 $(2x+n) \mod n = 2x \mod n$ 和点 $(2x+n+1) \mod n = (2x+1) \mod n$，也就是说点 $x$ 和 $x + \frac{n}{2}$ 所能够到达的点是一样的，并且点 $2x \mod n$ 和 $(2x+1) \mod n$ 也只能由这两个点到达。那么既然如此我们就可以认为，后两个点的先驱点一定是前两个点；至于哪个点的先驱是哪个点，就是一个简单的组合问题。并且我们发现，四个点相连的两条边一定都只经过一次。那么，我们就可以像求欧拉回路的那样：</p>
+
+<ol>
+<li>使用 DFS，因为起点是 0，所以以点 0 为入口进行 DFS；</li>
+<li>任选一个未被访问过的节点 $x$；</li>
+<li>尝试走 $2x \mod n$ 或 $(2x+1) \mod n$（取决于哪一个点没有被 $(x+\frac{n}{2})$ 走过）；</li>
+<li>如果都没有走过，就走 $2x \mod n$ 的点，然后完成之后判断一下 $x + \frac{n}{2}$ 点是否被走过，如果是的话就返回；否则说明 $x$ 应该走 $(2x+1) \mod n$；</li>
+<li>最后在 DFS 函数末尾记录路径。</li>
+</ol>
+
+<p>十分牵强的解释……我也不是很懂。毕竟是 E 题，思维难度还是有的。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+const int MAXN = 100050;
+bool vis[MAXN];
+int n;
+std::stack&lt;int&gt; s;
+void dfs(int x)
+{
+	if (vis[x])
+		return;
+	vis[x] = 1;
+	if (vis[(x + (n / 2)) % n]) {
+		!vis[(2 * x) % n] ? dfs(2 * x % n) : dfs((2 * x + 1) % n);
+	} else {
+		dfs((2 * x) % n);
+		if (!vis[(x + n / 2) % n]) {
+			dfs((2 * x + 1) % n); 
+		}
+	}
+	s.push(x);
+}
+int main()
+{
+	scanf(&quot;%d&quot;, &amp;n);
+	if (n % 2) {
+		printf(&quot;-1&quot;);
+		return 0;
+	}
+	dfs(0);
+	while (!s.empty()) {
+		printf(&quot;%d &quot;, s.top());
+		s.pop();
+	}
+	printf(&quot;0&quot;);
+	return 0;
+}
+</code></pre>
+
+<h1 id="最小生成树及其变种问题">最小生成树及其变种问题</h1>
+
+<p>最小生成树的话一般用 Prim 算法或者 Kruskal 算法，我一般倾向于用后者，因为好写而且效率高。而 Kruskal 的核心思想是：使用并查集维护最小生成树中的节点，先对所有的边进行排序，然后遍历所有的边，如果发现边中的两个点不在生成树中，就将这条边加入。可以证明这样的贪心策略最终结果一定是所求的 MST。</p>
+
+<p>到这里不得不提一下，Kruskal 算法的重点在于并查集的使用，而我们一般需要通过一些技巧来优化并查集查询的效率。因为并查集的本质是一棵树，如果题目的数据比较特殊，合并节点合并成了一条链，那么并查集中查找的复杂度就退化到$O(n)$级别了。并查集的优化方式主要有两种，一种是按秩合并——记录以每个节点为根的树的深度，合并两个节点的时候把秩小的（树深浅的）合并到秩大的（树深高的）去，这样查询的时候可以减少复杂度；另一种是路径压缩——查询某棵树的子节点时，如果该子节点不是所在并查集的根节点的直接儿子，那就令该子节点的父亲直接等于并查集的根节点，这样下次询问该节点的时候就可以一下跳到根节点。这两种优化方案的区别是：后者的效率比前者高，一般情况下如果题目没有特殊的要求我们选择的是后者；但是后者会破坏并查集的树的原始结构，而前者并不会，如果题目要求保持这个结构，那就必须用前一个方法。</p>
+
+<p>按秩合并的代码如下：</p>
+
+<pre><code class="language-cpp">int find(int x) {
+	return x == p[x] ? x : find(p[x]);
+}
+void unions(int x, int y) {
+	int px = find(x), py = find(y);
+	if (px == py)
+		return;
+	else {
+		if (rank[px] &gt; rank[py]) {
+			p[py] = px;
+		} else if (rank[px] == rank[py]) {
+			p[py] = px;
+			rank[px]++;
+		} else {
+			p[px] = py;
+		}
+	}
+}
+</code></pre>
+
+<p>路径压缩的代码：</p>
+
+<pre><code class="language-cpp">int find(int x) {
+  return p[x] == x ? p[x] : p[x] = find(p[x]);
+}
+void unions(int x, int y) {
+    int px = find(x),
+        py = find(y);
+    if (px != py) {
+        p[px] = py;
+    }
+}
+</code></pre>
+
+<p>接下来我们谈谈它的几个衍生问题。</p>
+
+<h2 id="最小瓶颈路">最小瓶颈路</h2>
+
+<p>给定一个加权无向图，并给定无向图中两个结点 $u$ 和 $v$，求 $u$ 到 $v$ 的一条路径，使得路径上边的最大权值最小。可以证明这个“最大权值最小”的边一定在最小生成树上。对于询问两个点 $u$, $v$ 的最小瓶颈路的问题，我们对求完的最小生成树用 Tarjan 或者倍增求一遍最近公共祖先 LCA，两者到达 LCA 的路径中的最大边就是最小瓶颈路了。</p>
+
+<p>例题：<a href="https://loj.ac/problem/136">LOJ136 最小瓶颈树</a></p>
+
+<p>裸题，首先建图（注意这是一张无向图），然后对边排序执行 Kruskal，并把 MST 中的边另开一个数组计入，Kruskal 完成后用该数组建立新图，任选一个点进行 DFS 把无根树转成有根树，DFS 的同时记录深度、父节点和到父节点的边权，然后倍增进行预处理，再求 LCA，两个点到 LCA 的路径中边的最大值即为所求。另外，如果有的节点及没有入边也没有出边，那么该节点就无法访问到，有关该节点的查询一律输出 -1.</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 1050, MAXM = 100050, MAXLOG = 30;
+struct Edge {
+	int u, v, w, next;
+	bool operator &lt; (const Edge b) const {
+		return w &lt; b.w;
+	}
+} e[MAXM &lt;&lt; 1], e2[MAXM &lt;&lt; 1];
+int head[MAXN], hc[MAXN], ecnt = 1, cnt = 1, n, m, k;
+int ancestor[MAXN][MAXLOG], depth[MAXN], wi[MAXN], cost[MAXN][MAXLOG];
+int p[MAXN];
+bool vis[MAXN];
+void add_edge(int u, int v, int w) {
+	e[cnt] = (Edge){ u, v, w, head[u] };
+	head[u] = cnt++;
+	e[cnt] = (Edge) { v, u, w, head[v] };
+	head[v] = cnt++;
+}
+void add_lca_edge(int u, int v, int w) {
+	e2[ecnt] = (Edge) { u, v, w, hc[u] };
+	hc[u] = ecnt++;
+}
+int find(int x) {
+	return x == p[x] ? x : p[x] = find(p[x]);
+}
+void kruskal() {
+	for (int i = 0; i &lt; 2 * m; i++)	{
+		int x = e[i].u, y = e[i].v, px = find(x), py = find(y);
+		if (px != py) {
+			p[px] = py;
+			add_lca_edge(x, y, e[i].w);
+			add_lca_edge(y, x, e[i].w);
+		}
+	}
+}
+void dfs(int x, int father) {
+	if (hc[x])
+		vis[x] = 1;
+	for (int i = hc[x]; i; i = e2[i].next) {
+		if (e2[i].v == father)
+			continue;
+		if (vis[e2[i].v])
+			continue;
+		vis[e2[i].v] = 1;
+		depth[e2[i].v] = depth[x] + 1;
+		wi[e2[i].v] = e2[i].w;
+		ancestor[e2[i].v][0] = x;
+		dfs(e2[i].v, x);
+	}
+}
+void preprocess() {
+	for (int i = 1; i &lt;= n; i++) {
+		cost[i][0] = wi[i];
+		for (int j = 1; (1 &lt;&lt; j) &lt;= n; j++)
+			ancestor[i][j] = -1;
+	}
+	for (int j = 1; (1 &lt;&lt; j) &lt;= n; j++) {
+		for (int i = 1; i &lt;= n; i++) {
+			int parent = ancestor[i][j-1];
+			if (parent != -1) {
+				ancestor[i][j] = ancestor[ancestor[i][j-1]][j-1];
+				cost[i][j] = std::max(cost[i][j-1], cost[parent][j-1]);
+			}
+		}
+	}
+}
+int query(int x, int y) {
+	int d = 0;
+	if (depth[x] &lt; depth[y])
+		std::swap(x, y);
+	for (d = 0; (1 &lt;&lt; (d + 1)) &lt;= depth[x]; d++);
+	int ans = -1;
+	for (int i = d; i &gt;= 0; i--) {
+		if (depth[x] - (1 &lt;&lt; i) &gt;= depth[y]) {
+			ans = std::max(ans, cost[x][i]);
+			x = ancestor[x][i];
+		}
+	}
+	if (x == y) {
+		return ans;
+	}
+	for (int i = d; i &gt;= 0; i--) {
+		if (ancestor[x][i] &gt; 0 &amp;&amp; ancestor[x][i] != ancestor[y][i]) {
+			ans = std::max(ans, std::max(cost[x][i], cost[y][i]));
+			x = ancestor[x][i], y = ancestor[y][i];
+		}
+	}
+	ans = std::max(ans, std::max(cost[x][0], cost[y][0]));
+	return ans;
+}
+int main() {
+	scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;k);
+	int u, v, w;
+	for (int i = 0; i &lt; m; i++) {
+		scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+		add_edge(u, v, w);
+	}
+	std::sort(e, e + 2 * m);
+	for (int i = 1; i &lt;= n; i++)
+		p[i] = i;
+	kruskal();
+	for (int i = 1; i &lt;= n; i++)
+		if (!vis[i])
+			dfs(i, i);
+	preprocess();
+	int x, y;
+	for (int i = 0; i &lt; k; i++) {
+		scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+		if (!vis[x] || !vis[y]) {
+			printf(&quot;-1\n&quot;);
+			continue;
+		}
+		printf(&quot;%d\n&quot;, query(x, y));
+	}
+	return 0; 
+}
+</code></pre>
+
+<h1 id="tarjan-和-kosaraju-算法">Tarjan 和 Kosaraju 算法</h1>
+
+<p>关于 Tarjan （求无向图的双连通分量、有向图的强连通分量） 和 Kosaraju（求有向图的强连通分量）算法，我另外写了一篇文章来记录：<a href="https://kirainmoe.com/blog/post/tarjan-algorithm-learning-note/">【学习笔记】Tarjan 算法</a>.</p>
+
+<p>直接看例题：<a href="https://www.luogu.org/problemnew/show/P2812">luogu P2812 USACO Network of Schools</a></p>
+
+<p>这道题就是一个 Tarjan 求有向图的强连通分量 + 缩点的题目，求 SCC 和缩点的同时对每个 SCC 记录其入度和出度。第一个问题等价于求 SCC 中入度为 0 的点有几个，因为缩点后的入度为 0 说明一定要在该部分至少放一台机器才能是这个点有网可用；第二个问题就等价于求入度为 0 或出度为 0 的点的最大值——正确性是显然的。</p>
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;stack&gt;
+const int MAXM = 5000005;
+const int MAXN = 10005;
+using std::vector;
+using std::stack;
+struct Edge {
+	int u, v, next;
+} e[MAXM];
+Edge ec[MAXN];
+int head[MAXN], hc[MAXN], cnt = 1, ccnt = 1, scccnt = 0, n;
+int dfn[MAXN], low[MAXN], c[MAXN], order = 0;
+int in[MAXN], out[MAXN];
+bool instack[MAXN];
+vector&lt;vector&lt;int&gt; &gt; scc;
+stack&lt;int&gt; s;
+void addEdge(int u, int v) {
+	e[cnt] = (Edge){ u, v, head[u] };
+	head[u] = cnt++;
+}
+void add_scc_edge(int u, int v) {
+	ec[ccnt] = (Edge) { u, v, hc[u] };
+	hc[u] = ccnt++;
+}
+void tarjan(int x) {
+	s.push(x);
+	instack[x] = 1;
+	dfn[x] = low[x] = ++order;
+	for (int i = head[x]; i; i = e[i].next) {
+		int y = e[i].v;
+		if (!dfn[y]) {
+			tarjan(y);
+			low[x] = std::min(low[x], low[y]);
+		} else if (instack[y]) {
+			low[x] = std::min(low[x], dfn[y]);
+		}
+	}
+	
+	if (low[x] == dfn[x]) {
+		int tmp;
+		vector&lt;int&gt; t;
+		do {
+			tmp = s.top();
+			s.pop();
+			instack[tmp] = 0;
+			c[tmp] = scccnt;
+			t.push_back(tmp);
+		} while (tmp != x);
+		
+		scc.push_back(t);
+		scccnt++;
+
+	}
+}
+int main() {
+	scanf(&quot;%d&quot;, &amp;n);
+	int u;
+	for (int i = 1; i &lt;= n; i++) {
+		while (scanf(&quot;%d&quot;, &amp;u) &amp;&amp; u != 0) {
+			addEdge(i, u);
+		}
+	}
+	for (int i = 1; i &lt;= n; i++)  {
+		if (!dfn[i]) {
+			tarjan(i);
+		}
+	}
+	
+	for (int x = 1; x &lt;= n; x++) {
+		for (int i = head[x]; i; i = e[i].next) {
+			int y = e[i].v;
+			if (c[x] == c[y])
+				continue;
+			add_scc_edge(c[x], c[y]);
+			in[c[y]]++;
+			out[c[x]]++;
+		}
+	}
+	
+	if (scccnt == 1) {
+		printf(&quot;1\n0&quot;);
+		return 0;
+	}
+	
+	int ans1 = 0;
+	for (int i = 0; i &lt; scccnt; i++) {
+		if (in[i] == 0)
+			ans1++;
+	}
+	int ans2 = 0;
+	for (int i = 0; i &lt; scccnt; i++) {
+		if (out[i] == 0)
+			ans2++;
+	}
+	printf(&quot;%d\n%d&quot;, ans1, std::max(ans1, ans2));
+	
+	return 0;
+}
+</code></pre>
+
+<h1 id="二分图">二分图</h1>
+
+<p>因为二分图的内容和网络流有一些关联，所以二分图的部分我想<s>偷懒</s>等到网络流的时候再整理。</p>
+      </div>
+    </div>
+  
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'yume-diary';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  </section>
+  <section class="section footblock">
+  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
+  <div class="container has-text-centered">
+    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
+  </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script src="https://kirainmoe.com//index.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
