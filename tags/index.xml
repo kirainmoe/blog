@@ -139,6 +139,15 @@
     </item>
     
     <item>
+      <title>Gdg</title>
+      <link>https://kirainmoe.com/tags/gdg/</link>
+      <pubDate>Mon, 01 Apr 2019 17:18:32 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/tags/gdg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Golang</title>
       <link>https://kirainmoe.com/tags/golang/</link>
       <pubDate>Sat, 28 Jul 2018 09:51:43 +0000</pubDate>
@@ -150,7 +159,7 @@
     <item>
       <title>Google</title>
       <link>https://kirainmoe.com/tags/google/</link>
-      <pubDate>Sun, 25 Nov 2018 22:43:30 +0800</pubDate>
+      <pubDate>Mon, 01 Apr 2019 17:18:32 +0800</pubDate>
       
       <guid>https://kirainmoe.com/tags/google/</guid>
       <description></description>
@@ -387,6 +396,15 @@
       <pubDate>Thu, 28 Feb 2019 20:59:37 +0800</pubDate>
       
       <guid>https://kirainmoe.com/tags/search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tensorflow</title>
+      <link>https://kirainmoe.com/tags/tensorflow/</link>
+      <pubDate>Mon, 01 Apr 2019 17:18:32 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/tags/tensorflow/</guid>
       <description></description>
     </item>
     

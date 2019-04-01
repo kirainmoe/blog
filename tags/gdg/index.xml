@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gdg on 宇宙よりも遠い場所</title>
+    <link>https://kirainmoe.com/tags/gdg/</link>
+    <description>Recent content in Gdg on 宇宙よりも遠い場所</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <lastBuildDate>Mon, 01 Apr 2019 17:18:32 +0800</lastBuildDate>
+    
+	<atom:link href="https://kirainmoe.com/tags/gdg/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[2019] TF Dev Summit Ext</title>
+      <link>https://kirainmoe.com/blog/post/tfug-tensorflow-dev-summit-ext/</link>
+      <pubDate>Mon, 01 Apr 2019 17:18:32 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/tfug-tensorflow-dev-summit-ext/</guid>
+      <description>&lt;p&gt;这是 2019 TensorFlow Dev Summit Extended 的活动记录。&lt;/p&gt;
+
+&lt;p&gt;本文同步发布于 厦门GDG 微信公众号、TFUG厦门 微信公众号。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
