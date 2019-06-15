@@ -105,6 +105,24 @@
     <div class="container">
       
       <article>
+        <h2 class="subtitle is-6">February 17, 2017</h2>
+        <h1 class="title"><a href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/">修改 React-Native Android App 包名</a></h1>
+        
+        <div class="content">
+          不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。 不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。
+
+          
+          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/" style="height:28px">
+            Read more
+            <span class="icon is-small">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </article>
+      
+      <article>
         <h2 class="subtitle is-6">October 12, 2016</h2>
         <h1 class="title"><a href="https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/">初探全新的 Node.js 包管理器 Yarn</a></h1>
         
@@ -179,10 +197,8 @@
 <canvas id="live2d" width="300" height="300"></canvas>
 
 
-
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
 <canvas id="live2d" width="300" height="300"></canvas>
-
 
 
 <script>hljs.initHighlightingOnLoad();</script>
