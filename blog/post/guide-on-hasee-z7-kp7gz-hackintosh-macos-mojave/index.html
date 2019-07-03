@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="" name="keywords">
-<meta content="神舟战神 Z7-KP7GZ 黑苹果 macOS Mojave 安装指北 - 宇宙よりも遠い場所" property="og:title">
-<title>神舟战神 Z7-KP7GZ 黑苹果 macOS Mojave 安装指北 | 宇宙よりも遠い場所</title>
+<meta content="神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北 - 宇宙よりも遠い場所" property="og:title">
+<title>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北 | 宇宙よりも遠い場所</title>
 <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
@@ -66,12 +66,6 @@
             </span>
           </a>
           
-          <a class="level-item" href="https://twitter.com/yume_kankawa">
-            <span class="icon">
-              <i class="fa fa-twitter"></i>
-            </span>
-          </a>
-          
           <a class="level-item" href="https://weibo.com/returnnnn">
             <span class="icon">
               <i class="fa fa-weibo"></i>
@@ -104,7 +98,7 @@
   <section class="section content-container">
     <div class="container article-here">
       <h2 class="subtitle is-6">January 23, 2019</h2>
-      <h1 class="title">神舟战神 Z7-KP7GZ 黑苹果 macOS Mojave 安装指北</h1>
+      <h1 class="title">神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北</h1>
       
       <div class="tags">
     
@@ -118,7 +112,16 @@
 
       
       <div class="content">
-        <p>RT. 这篇文章主要用来记录一下这个机型安装 macOS 的一些要点和注意事项。</p>
+        <h1 id="2019-7-更新"><sup>2019</sup>&frasl;<sub>7</sub> 更新</h1>
+
+<p>八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover
+配置文件安装：<a href="https://github.com/kirainmoe/hasee-tongfang-macos">https://github.com/kirainmoe/hasee-tongfang-macos</a> .</p>
+
+<p>EFI 配置文件替换教程参见 <a href="https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B">GitHub Wiki</a>.</p>
+
+<p>以下内容可能已经过时。</p>
+
+<p>RT. 这篇文章主要用来记录一下这个机型安装 macOS 的一些要点和注意事项。</p>
 
 <p>以下内容基于神舟战神 Z7-KP7GZ (i7-8750H + GTX1060) 版摸索得到，安装的 macOS 版本为 Mojave (10.14.2).该文章理论适用于使用该模具的其它机器，如 Z7m-KP7GZ / Z7m-KP5GZ.</p>
 
@@ -175,9 +178,8 @@
 
 <h1 id="preparation">Preparation</h1>
 
-<p>emmmm……我在两天前下载了 10.14.2，刚刚驱得差不多在我正打算写这篇文章的时候，我发现了一件恐怖的事情，那就是——Apple 推了 10.14.3 的新版本。所以各位后面来的直接一步到位上新版本吧（</p>
-
-<p>首先镜像文件是肯定需要的啦，这里推荐下载黑果小兵的集成版：<a href="http://blog.daliansky.net/macOS-Mojave-10.14.3-18D42-official-version-with-Clover-4895-original-image.html">http://blog.daliansky.net/macOS-Mojave-10.14.3-18D42-official-version-with-Clover-4895-original-image.html</a></p>
+<p>首先镜像文件是肯定需要的啦，这里推荐下载<a href="https://blog.daliansky.net/categories/%E4%B8%8B%E8%BD%BD/">黑果小兵集成 Clover 的镜像</a>，或到远景论坛下载 Len&rsquo;s DMG.
+注意，不推荐使用任何“X苹果乐园”的镜像。</p>
 
 <p>同时下载 TransMac 用于写入镜像。注意写入镜像需要一个 8GB 以上的 U 盘。</p>
 
@@ -207,7 +209,7 @@
 
 <ul>
 <li>独显 GTX1060 (1. BIOS 不支持禁用核显；2. Nvidia 没有推出 10.14 可用的 WebDriver)</li>
-<li>无线网卡 AC9560 (Intel 嘛……你知道的，全球无解……)</li>
+<li>无线网卡 AC9462 (Intel 嘛……你知道的，全球无解……)</li>
 </ul>
 
 <h1 id="details">Details</h1>
@@ -242,7 +244,7 @@
 
 <h2 id="关于触摸板">关于触摸板</h2>
 
-<p>Z7-KP7GZ 使用的是 I2C HID 的触摸板，需要 VoodooI2CHID.kext 和 VoodooI2C.kext 两个内核扩展来驱动。安装这两个内核扩展之后，就可以使用触摸板和手势了，支持的手势和 Windows Precision 差不多，除了从右向左滑打开通知中心之类的无法实现之外。不需要 AppleSmartPS2Touchpad.kext 驱动。</p>
+<p>Z7-KP7GZ 使用的是 I2C HID 的触摸板，需要 VoodooI2CHID.kext 和 VoodooI2C.kext 两个内核扩展来驱动。<s>安装这两个内核扩展之后，就可以使用触摸板和手势了，支持的手势和 Windows Precision 差不多，除了从右向左滑打开通知中心之类的无法实现之外。不需要 AppleSmartPS2Touchpad.kext 驱动。</s> 现在使用 SSDT 仿冒触摸板可以驱动大部分手势。</p>
 
 <p>需要注意的是，要设置触摸板手势的话，需要先驱动电池。虽然我也不知道这是什么操作，总之搞就完事了。没有驱动电池的话打开触摸板设置会提示你找不到触摸板并搜索蓝牙触摸板；如果没有设置，默认辅助点按等等手势是不可用的。</p>
 
@@ -271,10 +273,6 @@
 <p>正常的睡眠功能需要正确驱动 USB，注入 USB Connector 的信息，并且打上 USB _PRW 的补丁。这台机器上比较特殊，必须要给 GLAN/XDCI/HDAS/CVNW 下的 _PRW 全部修改或者删除才可以正常睡眠，否则会一睡眠就立刻唤醒……（天知道为了解决这个问题我花了多少天、爬了多少的帖子……）使用仓库中的 dsdt-patch.txt 同时可以解决睡眠立刻唤醒 (instant wake) 的问题。</p>
 
 <p>如果还有无法让睡眠工作的，可以在文章下评论让我知道。</p>
-
-<h2 id="关于-hidpi">关于 HiDPI</h2>
-
-<p>直接使用一键 HiDPI 补丁即可：<a href="https://github.com/xzhih/one-key-hidpi">https://github.com/xzhih/one-key-hidpi</a>  不需要注入 EDID 之类。</p>
 
 <hr />
 
@@ -320,6 +318,7 @@
 <script src="https://kirainmoe.com//index.js"></script>
 <script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
 <script type="text/javascript">
+  if (!window.mobilecheck())
   loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
 </script>
 
