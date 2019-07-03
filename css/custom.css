@@ -87,6 +87,27 @@ html, body {
 	display: none;
 }
 
+.title a {
+	color: #13995f;
+	transition: .5s all linear;
+	font-family: 'Microsft YaHei', 'Pingfang SC'!important;
+}
+
+.title a:hover {
+	border-bottom: 0px;
+	color: #16dd87;
+}
+
+.tags a {
+	color: #039556c4!important;
+	border-bottom: 0px;
+	text-decoration: none!important;
+}
+
+.tags a::before {
+	content: '#';
+}
+
 .content h1:not(:first-child), .content h2:not(:first-child), .content h3:not(:first-child), .content h4:not(:first-child), .content h5:not(:first-child), .content h6:not(:first-child) {
 	margin-top: 20px!important;
 }
