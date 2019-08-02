@@ -32,7 +32,6 @@ Miny
 立华
 团子
 Arathi Software Foundation Arathi
-方程
 听风
 OI/ACM Pantw
 Ringoer
@@ -54,14 +53,14 @@ Howard
 QQDie
 七夏浅笑
 Tsez
-凌芜
 Handle
 Kira
 OZOO
 Rin404
+zoengjinnbiu
 Dsus4
 Longtete
-var playList = [ { &#34;title&#34;: &#34;Wonderland Girl&#34;, &#34;artist&#34;: &#34;Pastel＊Palettes&#34;, &#34;cover&#34;: &#34;//p1.music.126.net/Zf30nZBFD_-awZAjxJNVBg==/109951163877813786.jpg&#34;, &#34;src&#34;: &#34;</description>
+var playList = [ { &#34;title&#34;: &#34;Returns&#34;, &#34;artist&#34;: &#34;Poppin&#39;Party&#34;, &#34;cover&#34;: &#34;//p2.music.126.net/dCH9K1QBEaLnYjHrEGGpvQ==/109951164075577423.jpg&#34;, &#34;src&#34;: &#34;https://api.kotori.love/netease/1365428127.mp3&#34;, &#34;lyric&#34;: &#34;</description>
     </item>
     
     <item>
@@ -70,25 +69,11 @@ var playList = [ { &#34;title&#34;: &#34;Wonderland Girl&#34;, &#34;artist&#34;:
       <pubDate>Sun, 09 Apr 2017 17:09:35 +0000</pubDate>
       
       <guid>https://kirainmoe.com/pages/guestbook/</guid>
-      <description>关于我 叫我吟梦就好。
-目前就读于厦门大学信息科学与技术学院。
-拉拉人和邦邦人 (μ&amp;rsquo;s / Aqours &amp;amp;&amp;amp; Poppin&amp;rsquo;Party / Pastel*Palettes)。
-退役 OIer / XMU ACM / 前端 / ML 努力学习中
-社交 GitHub @kirainmoe
-微博 @香澄味的吟梦酱
-npm @kirainmoe
-网易云音乐 @吟梦
-V2EX @kirainmoe
-バンドリ!ガールズバンドパーティ! (JP): 5034326
-梦想协奏曲！少女乐团派对！(CN): 1000666452
-LoveLive! School Idol Festival (JP): 341665955
-关于本站 “宇宙よりも遠い場所”，意为“比宇宙更遥远的地方”。站名取自 同名 2018 年一月新番。取这个名字的原因除了因为很喜欢这一部番剧之外，更希望能像番剧里讲的故事那样——乘上与平时相反的电车，去看未曾见过的风景。
-说出自己真实的心声，做自己喜欢做的事情。从 2014 年开始写博客以来，转眼间已经过去了四五个春夏秋冬了。博客的内容也随着我的兴趣和研究方向在不断地变化着。
-它是一本日记？或是贴满便签的备忘录？或是一张名片？又或者只是一片自言自语的荒芜地。又有谁知道呢。
-文章写了很多，也在不定期的搬迁中丢了很多。有的文章很幼稚，有的文章很有价值……现在还留下来的，但愿它们能一直在吧。
-技术栈和资源版权  博客由 Hugo 驱动
- 托管于 GitHub Pages
- 主题基于 beli3ver 的 hemingway2 深度修改</description>
+      <description>Profile Yume Maruyama (aka. kirainmoe), major Computer Science in Xiamen University School of Informatics.
+Nickname inspired from the character Maruyama Aya of BanG Dream!
+I’m fond of LoveLive! and BanG Dream! (μ&amp;rsquo;s / Aqours &amp;amp;&amp;amp; Poppin&amp;rsquo;Party / Pastel*Palettes)
+Skills: C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in Machine Learning.
+Experience  2016.4~2018.9, Zhangzhou No.1 Middle School OI Team. 2018.11~now, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.</description>
     </item>
     
   </channel>
