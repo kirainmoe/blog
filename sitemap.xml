@@ -4,13 +4,42 @@
   
   <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2019-06-15T13:57:11+08:00</lastmod>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kirainmoe.com/tags/</loc>
-    <lastmod>2019-06-15T13:57:11+08:00</lastmod>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/bios/</loc>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/hasee/</loc>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/uefi/</loc>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/</loc>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/</loc>
+    <lastmod>2019-08-16T10:57:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,12 +64,6 @@
   <url>
     <loc>https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/</loc>
     <lastmod>2019-06-15T13:57:11+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/</loc>
-    <lastmod>2019-06-15T13:57:11+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -145,12 +168,6 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/hackintosh/</loc>
-    <lastmod>2019-01-23T20:14:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/tags/hasee/</loc>
     <lastmod>2019-01-23T20:14:54+08:00</lastmod>
     <priority>0</priority>
   </url>
