@@ -156,7 +156,7 @@
 
 <li><p>部分蓝天模具的笔记本可能带有 BIOS 写入保护，你必须先关闭该保护才能刷写 BIOS.</p></li>
 
-<li><p>部分同方模具可能出现新主板不兼容旧 BIOS 的情况（如新版 KP7GZ 的 BIOS 版本为 1.07，不兼容刷入 1.05 的 BIOS，否则会导致开机掉电）。请务必在原机 BIOS 的基础上修改。</p></li>
+<li><p>部分同方模具可能出现新主板不兼容旧 BIOS 的情况。请务必在原机 BIOS 的基础上修改。</p></li>
 
 <li><p>刷写 BIOS 的过程中请确认你的电脑电量充足，并退出所有安全软件和其它无关程序，防止出现意外。</p></li>
 
@@ -195,10 +195,21 @@
 
 <p>完成替换之后，在保存之前，会有两个 <code>Raw section</code>. 此时可以保存修改后的 BIOS ROM 文件。打开新的文件就会变成一个 <code>Raw section</code> 了。</p>
 
-<p>第三步，刷入 BIOS. 解压下载得到的 FPTW64，然后把修改完成后的 BIOS ROM 复制到解压目录下，确保 BIOS 文件和 FPTW64.exe 等在同一级目录下。然后<strong>使用管理员权限运行命令提示符</strong>，定位到 FPT 所在目录下，然后使用命令刷入 BIOS. 例如，我修改后的 BIOS 文件名为 <code>modified.rom</code>，则运行下列命令，注意空格和大小写：</p>
+<p>第三步，刷入 BIOS. 解压下载得到的 FPTW64，然后把修改完成后的 BIOS ROM 复制到解压目录下，确保 BIOS 文件和 FPTW64.exe 等在同一级目录下。然后<strong>使用管理员权限运行命令提示符</strong>，定位到 FPT 所在目录下。首先用 FPTW64 将 BIOS 完整地再备份一遍（包括 EEPROM, ME 和 BIOS 程序等），使用如下命令备份：</p>
+
+<pre><code class="language-shell">FPTW64 -D all.bin
+</code></pre>
+
+<p>这样，程序会备份出一个 <code>all.bin</code> 的文件，检查一下它的大小是不是 16M。这一步是为了防止你万一输错命令还是出现什么意外导致翻车，然后得到一块黑砖。完成之后将这个文件复制到你的移动存储设备上，以备不时之需，在翻车时可以通过其他电脑使用编程器救回。</p>
+
+<p>接下来使用命令刷入 BIOS. 例如，我修改后的 BIOS 文件名为 <code>modified.rom</code>，则运行下列命令，注意空格和大小写，<strong>务必添加 -BIOS 参数，否则程序会将 EEPROM, ME 等部分覆盖导致开机掉电！</strong>：</p>
 
 <pre><code class="language-batch">FPTW64 -F modified.rom -BIOS
 </code></pre>
+
+<blockquote>
+<p>Tips: 如果你上面的操作一不小心没加参数，可以重刷一遍刚刚备份的完整文件救回：<code>FPTW64 -F all.bin</code></p>
+</blockquote>
 
 <p>效果图如下。</p>
 
