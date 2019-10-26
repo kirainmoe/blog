@@ -40,7 +40,7 @@
 
 &lt;p&gt;解包 《バンドリ!ガールズバンドパーティ!》（即 BanG Dream! 梦想协奏曲 少女乐团派对，以下简称 garupa）游戏的资源文件。&lt;/p&gt;
 
-&lt;p&gt;其实这不是什么新东西，网上已经有很多相关的教程了，只是因为自己去弄了，写一篇新的文章记录一下过程和补充一些细节。&lt;/p&gt;
+&lt;p&gt;其实这不是什么新东西，网上已经有很多相关的教程了，只是因为整个过程有点繁琐，所以写一篇新的文章记录一下过程和补充一些细节。&lt;/p&gt;
 
 &lt;p&gt;下文以 Android 版本的日服和国服为例。以下内容仅供学习使用，请勿用于商业等用途。&lt;/p&gt;</description>
     </item>
@@ -475,10 +475,11 @@ var playList = [ { &#34;title&#34;: &#34;Returns&#34;, &#34;artist&#34;: &#34;Po
       <pubDate>Sun, 09 Apr 2017 17:09:35 +0000</pubDate>
       
       <guid>https://kirainmoe.com/pages/guestbook/</guid>
-      <description>Profile Yume Maruyama (aka. kirainmoe), major Computer Science in Xiamen University School of Informatics.
+      <description>Profile  Yume Maruyama (aka. @kirainmoe, @ayamita).
+Studying Computer Science in Xiamen University School of Informatics.
 Nickname inspired from the character Maruyama Aya of BanG Dream!
 I’m fond of LoveLive! and BanG Dream! (μ&amp;rsquo;s / Aqours &amp;amp;&amp;amp; Poppin&amp;rsquo;Party / Pastel*Palettes)
-Skills  C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in ICPC / Machine Learning.  Experience  2016.4~2018.9, Zhangzhou No.1 Middle School OI Team. 2018.11~now, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.</description>
+ Skills  C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in ICPC / Machine Learning.  Experience  2016.4 ~ 2018.9, Zhangzhou No.1 Middle School OI Team.</description>
     </item>
     
     <item>

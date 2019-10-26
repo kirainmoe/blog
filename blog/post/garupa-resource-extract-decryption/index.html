@@ -116,13 +116,13 @@
 
 <p>解包 《バンドリ!ガールズバンドパーティ!》（即 BanG Dream! 梦想协奏曲 少女乐团派对，以下简称 garupa）游戏的资源文件。</p>
 
-<p>其实这不是什么新东西，网上已经有很多相关的教程了，只是因为自己去弄了，写一篇新的文章记录一下过程和补充一些细节。</p>
+<p>其实这不是什么新东西，网上已经有很多相关的教程了，只是因为整个过程有点繁琐，所以写一篇新的文章记录一下过程和补充一些细节。</p>
 
 <p>下文以 Android 版本的日服和国服为例。以下内容仅供学习使用，请勿用于商业等用途。</p>
 
 <h1 id="综述">综述</h1>
 
-<p>Garupa 的主要资源文件（包括音乐、贴图、Live2D模型、语音、卡牌、BGM……）都存放在 /storage/emuated/0/Android/data/jp.co.craftegg.band/data 下（简体中文版的包名为：com.bilibili.star.bili），在这个文件夹下你可以看到一堆文件名为一串哈希值的无后缀文件，这些文件是压缩后的 Unity Asset Bundle 文件。</p>
+<p>Garupa 的主要资源文件（包括音乐、贴图、Live2D模型、语音、卡牌、BGM……）都存放在 /storage/emuated/0/Android/data/jp.co.craftegg.band/data/files 下（简体中文版的包名为：com.bilibili.star.bili），在这个文件夹下你可以看到一堆文件名为一串哈希值的无后缀文件，这些文件是压缩后的 Unity Asset Bundle 文件。</p>
 
 <p>将这些压缩后的 bundle 文件展开，可以看到游戏的数据文件。其中有一些例如 Live2D 模型、表情、贴图、卡牌等文件以 mtn, 图片等形式存储，它们可以直接导出；而大部分的音乐（原创音乐、翻唱音乐、试听音乐、BGM等）通过加密、压缩之后，以 acb 的形式存储在 Unity Asset Bundle 中。</p>
 
@@ -139,7 +139,7 @@
 
 <h2 id="方法-1">方法 1</h2>
 
-<p>直接提取已下载好的数据包：<code>adb pull /storage/emulated/0/Android/data/jp.co.craftegg.band/data D:\bandori</code>；如果是国服： <code>adb pull /storage/emulated/0/Android/data/com.bilibili.star.bili/data D:\bandori</code>。</p>
+<p>直接提取已下载好的数据包：<code>adb pull /storage/emulated/0/Android/data/jp.co.craftegg.band/data/files D:\bandori</code>；如果是国服： <code>adb pull /storage/emulated/0/Android/data/com.bilibili.star.bili/data/files D:\bandori</code>。</p>
 
 <h2 id="方法-2">方法 2</h2>
 
