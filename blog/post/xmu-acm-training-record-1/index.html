@@ -182,8 +182,8 @@ int main()
 <ol>
 <li>从左到右扫描表达式，遇到操作数就将其加入栈中</li>
 <li>遇到操作符，则弹出栈顶的两个数 $s_2, s_1$（注意先后顺序），进行运算后将新的结果加入栈中</li>
-<li>最后栈中的数即为结果。</li>
-</ol>
+
+<li><p>最后栈中的数即为结果。</p>
 
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
@@ -195,125 +195,126 @@ using std::endl;
 using std::stack;
 
 bool shouldPopFromStack(char current, char fromStack) {
-    int p1 = (current == '*' || current == '/') ? 1 : 0;
-    int p2 = (fromStack == '*' || fromStack == '/') ? 1 : 0;
-    return p1 &lt;= p2;
+int p1 = (current == '*' || current == '/') ? 1 : 0;
+int p2 = (fromStack == '*' || fromStack == '/') ? 1 : 0;
+return p1 &lt;= p2;
 }
 
 string convert(string raw)
 {
-    int length = raw.length();
-    stack&lt;char&gt; s;
-    string res = &quot;&quot;;
+int length = raw.length();
+stack&lt;char&gt; s;
+string res = &quot;&quot;;
 
-    for (int i = 0; i &lt; length; i++) {
-        // 遇到数字，直接加入后缀表达式中 
-        if (raw[i] &gt;= '0' &amp;&amp; raw[i] &lt;= '9') {
-            res += raw[i];
-            continue;
+for (int i = 0; i &lt; length; i++) {
+    // 遇到数字，直接加入后缀表达式中 
+    if (raw[i] &gt;= '0' &amp;&amp; raw[i] &lt;= '9') {
+        res += raw[i];
+        continue;
+    }
+    else {
+        res += ' ';
+    }
+    // 遇到左括号，入栈 
+    if (raw[i] == '(') {
+        s.push('(');
+    }
+    // 遇到右括号，本身不加入表达式， 让栈中元素出栈，直至遇到左括号
+    else if (raw[i] == ')')  {
+        while (true) {
+            char now = s.top();
+            s.pop();
+            if (now == '(') {
+                break;
+            } else {
+                res += now;
+            }
         }
-        else {
-            res += ' ';
-        }
-        // 遇到左括号，入栈 
-        if (raw[i] == '(') {
-            s.push('(');
-        }
-        // 遇到右括号，本身不加入表达式， 让栈中元素出栈，直至遇到左括号
-        else if (raw[i] == ')')  {
-            while (true) {
+    }
+    // 运算符 
+    else {
+        // 分为栈为空与不为空两种情况讨论 
+        if (s.empty()) {
+            s.push(raw[i]);          // 栈为空，直接加入 
+        } else {
+            // 否则，弹出栈顶元素加入表达式，直到遇见左括号，然后自己入栈 
+            while (!s.empty()) {
                 char now = s.top();
-                s.pop();
-                if (now == '(') {
+                if (now == '(' || !shouldPopFromStack(raw[i], now)) {
                     break;
                 } else {
+                    s.pop();
                     res += now;
                 }
             }
-        }
-        // 运算符 
-        else {
-            // 分为栈为空与不为空两种情况讨论 
-            if (s.empty()) {
-                s.push(raw[i]);          // 栈为空，直接加入 
-            } else {
-                // 否则，弹出栈顶元素加入表达式，直到遇见左括号，然后自己入栈 
-                while (!s.empty()) {
-                    char now = s.top();
-                    if (now == '(' || !shouldPopFromStack(raw[i], now)) {
-                        break;
-                    } else {
-                        s.pop();
-                        res += now;
-                    }
-                }
-                s.push(raw[i]);         // 最后别忘了把自己加进去 
-            }
+            s.push(raw[i]);         // 最后别忘了把自己加进去 
         }
     }
-    res += ' ';
-    // 完成后把栈中剩余符号加入表达式
-    while (!s.empty()) {
-        char now = s.top();
-        s.pop();
-        res += now;
-    }
+}
+res += ' ';
+// 完成后把栈中剩余符号加入表达式
+while (!s.empty()) {
+    char now = s.top();
+    s.pop();
+    res += now;
+}
 
-    return res;
+return res;
 }
 
 int main()
 {
-    string raw;
-    std::cin &gt;&gt; raw;
-    std::cout &lt;&lt; &quot;Original expression: &quot; &lt;&lt; raw &lt;&lt; endl;
+string raw;
+std::cin &gt;&gt; raw;
+std::cout &lt;&lt; &quot;Original expression: &quot; &lt;&lt; raw &lt;&lt; endl;
 
-    string res = convert(raw);
-    std::cout &lt;&lt; &quot;Parsed expression: &quot; &lt;&lt; res &lt;&lt; endl;
+string res = convert(raw);
+std::cout &lt;&lt; &quot;Parsed expression: &quot; &lt;&lt; res &lt;&lt; endl;
     
-    stack&lt;long long&gt; s;
-    int length = res.length();
-    long long cur = 0;
-    for (int i = 0; i &lt; length; i++) {
-        // 遇到数字就入栈 
-        if (res[i] &gt;= '0' &amp;&amp; res[i] &lt;= '9') {
-            cur = cur * 10 + res[i] - '0';
-        } else if (res[i] == ' ') {
-            s.push(cur);
-            cur = 0;
-        }
-        // 否则，弹出栈顶的两个数计算，注意先后顺序 
-        else {
-            long long s2 = s.top();
-            s.pop();
-            long long s1 = s.top();
-            s.pop();
+stack&lt;long long&gt; s;
+int length = res.length();
+long long cur = 0;
+for (int i = 0; i &lt; length; i++) {
+    // 遇到数字就入栈 
+    if (res[i] &gt;= '0' &amp;&amp; res[i] &lt;= '9') {
+        cur = cur * 10 + res[i] - '0';
+    } else if (res[i] == ' ') {
+        s.push(cur);
+        cur = 0;
+    }
+    // 否则，弹出栈顶的两个数计算，注意先后顺序 
+    else {
+        long long s2 = s.top();
+        s.pop();
+        long long s1 = s.top();
+        s.pop();
 
-            switch (res[i]) {
-                case '+':
-                    s.push(s1 + s2);
-                    break;
-                case '-':
-                    s.push(s1 - s2);
-                    break;
-                case '*':
-                    s.push(s1 * s2);
-                    break;
-                case '/':
-                    s.push(s1 / s2);   // 可能会有小数
-                    break;
-            }
+        switch (res[i]) {
+            case '+':
+                s.push(s1 + s2);
+                break;
+            case '-':
+                s.push(s1 - s2);
+                break;
+            case '*':
+                s.push(s1 * s2);
+                break;
+            case '/':
+                s.push(s1 / s2);   // 可能会有小数
+                break;
         }
     }
+}
 
-    long long ans = s.top();
-    std::cout &lt;&lt; ans;
+long long ans = s.top();
+std::cout &lt;&lt; ans;
 
-    return 0;
+return 0;
 }
 
 
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>例题链接：<a href="https://vijos.org/p/1849">Vijos 1849 表达式求值</a></p>
 
@@ -651,18 +652,17 @@ int main()
 <ol>
 <li>首先取得整个区间的中间值 $mid=\lfloor(left + right) / 2\rfloor$</li>
 <li>先取右区间的中间值 $mid2 = \lfloor(mid + right) / 2 \rfloor$，将区间分成三个部分</li>
-<li>判断 $a[mid2]$ 与 $a[mid]$ 的关系。若 $a[mid]$ 比 $a[mid2]$ 更接近最值，则我们舍弃右区间，转而搜索左区间；否则就搜索左区间。以求区间最大值为例：</li>
-</ol>
+
+<li><p>判断 $a[mid2]$ 与 $a[mid]$ 的关系。若 $a[mid]$ 比 $a[mid2]$ 更接近最值，则我们舍弃右区间，转而搜索左区间；否则就搜索左区间。以求区间最大值为例：</p>
 
 <pre><code class="language-cpp">if (check(mid) &gt; check(mid2)) {
-    right = mid2;
+right = mid2;
 } else {
-    left = mid2
+left = mid2
 }
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>重复 1~3, 边界为 $left == right$ 或两者的差距达到某个控制值，如 $eps$.</li>
+<li><p>重复 1~3, 边界为 $left == right$ 或两者的差距达到某个控制值，如 $eps$.</p></li>
 </ol>
 
 <h2 id="堆和优先队列">堆和优先队列</h2>

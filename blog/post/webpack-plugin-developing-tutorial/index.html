@@ -141,93 +141,99 @@ plugins: [
 ],
 </code></pre>
 
-<p>可以看到，我们在 <code>webpack config</code> 中的 <code>plugins</code> 字段里实例化一个对象来应用插件，所以我们的新插件也应该有一个 class. 官方文档中用的是 ES5 的 <code>function + prototype</code> 的写法，我们可以直接用上 ES6 的 class. 假设插件名字为 <code>MyAwesomePlugin</code>, 首先我们创建一个 *MyAwesomePlugin.js*：</p>
-
-<pre><code class="language-js">module.exports = class MyAwesomePlugin {
-    constructor(options) {
-        this.options = options;
-    }
-
-    apply(compiler) {
-        console.log('Hello world!');
-    }
-};
-</code></pre>
-
-<p>在这个文件里我们 export 了一个叫做 <code>MyAwesomePlugin</code> 的类。其中有一个 <code>apply()</code> 方法，它表示在 webpack 初次加载完此插件的时候应该做的事情，也就是只会在 webpack 启动的时候被执行一次。接下来如果我们监听 compile 的事件等等，首先就要在这里写一下；假如我们的插件依赖于一个 express 的后端服务器，那么我们也可以在 <code>apply()</code> 里初始化 express。</p>
-
-<p>然后我们试着应用这个插件，在你的 <code>webpack.config.js</code> 中：</p>
-
-<pre><code class="language-js">const MyAwesomePlugin = require('./MyAwesomePlugin');
-
-// ...
-
-plugins: [
-    // ...
-    new MyAwesomePlugin()
-]
-</code></pre>
-
-<p>然后尝试着启动 webpack，如果一切正常，你应该在 console 中看到 <code>Hello, world!</code> 了。</p>
-
-<p>接下来我们就开始做实事了，回头看看我们的需求，这是一个需要前后端配合的工作，首先我们需要在后端拥有一个 socket 服务器，然后监听 webpack 每次编译完后的结果，把信息通过这个 socket 服务器发送到浏览器。要实现这一步，还需要浏览器加载和后端服务器通信的相关 JS.启动 socket 服务器这件事我们在 <code>apply()</code> 方法中完成就可以了，接下来是事件监听。</p>
-
-<p>说到事件监听，首先这里要区分一下 webpack 中的两个概念：<code>compiler</code> 和 <code>compilation</code>.</p>
-
-<hr />
-
-<h2 id="compiler">compiler</h2>
-
-<p>首先你一定已经注意到上文的代码中，<code>apply()</code> 方法传入了一个叫 <code>compiler</code> 的参数。这个所谓的 <code>compiler</code> 对象从字面意思上看是编译器的意思，实际上它也就指向了当前运行的 webpack 实例。这个实例包含了 webpack 的所有 options, loaders 和 plugins, 它随着 webpack 的启动而产生，可以说是 webpack 的“灵魂”。当我们运用一个插件时（即插件类被实例化，同时类中的 <code>apply()</code> 方法被调用的时候），<code>apply()</code> 方法便会接收到一个指向这个 <code>compiler</code> 的参数，我们可以通过这个 <code>compiler</code> 访问整个 webpack 环境。</p>
-
-<h3 id="compilation">compilation</h3>
-
-<p>对 <code>compiler</code> 有了一定的了解之后，大概我们就可以猜到 <code>compilation</code> 是干什么用的了。所谓 <code>compilation</code> 包含了 webpack 每次 build 后的详细信息，包括编译出的结果、错误信息、模块、编译后的资源、改变的文件和依赖等的当前状态，同时它提供了很多的事件挂钩，以便于插件来执行一些<s>黑魔法</s>。</p>
-
-<hr />
-
-<p>具体的 API 可以在上文给出的链接中找到，这里我们直接贴出代码后再解释：</p>
-
-<pre><code class="language-js">apply(compiler) {
-    compiler.plugin('compilation', this.injectScriptToBundle.bind(this));
-    compiler.plugin('done', this.onBuildCompleted.bind(this));
-}
-</code></pre>
+<p>可以看到，我们在 <code>webpack config</code> 中的 <code>plugins</code> 字段里实例化一个对象来应用插件，所以我们的新插件也应该有一个 class. 官方文档中用的是 ES5 的 <code>function + prototype</code> 的写法，我们可以直接用上 ES6 的 class. 假设插件名字为 <code>MyAwesomePlugin</code>, 首先我们创建一个 *MyAwesomePlugin.js*：
+```js
+module.exports = class MyAwesomePlugin {
+	constructor(options) {
+		this.options = options;
+	}</p>
 </blockquote>
 
-<p>这一段代码中我们监听了 <code>compiler</code> 的两个事件（可以看到我们是用 <code>compiler.plugin(hook, method)</code> 方法注册事件的）：</p>
+<p>	apply(compiler) {
+		console.log(&lsquo;Hello world!&rsquo;);
+	}
+};</p>
 
-<ul>
-<li>第一是在每次文件变动，重新编译的时候，执行 <code>this.injectScriptToBundle()</code> 方法；</li>
-<li>第二是编译完成之后，执行 <code>this.onBuildCompleted()</code> 方法。</li>
-</ul>
+<pre><code>在这个文件里我们 export 了一个叫做 ```MyAwesomePlugin``` 的类。其中有一个 ```apply()``` 方法，它表示在 webpack 初次加载完此插件的时候应该做的事情，也就是只会在 webpack 启动的时候被执行一次。接下来如果我们监听 compile 的事件等等，首先就要在这里写一下；假如我们的插件依赖于一个 express 的后端服务器，那么我们也可以在 ```apply()``` 里初始化 express。
 
-<p>根据方法名我们大致可以构想一下，前一个方法用于把前端与后端交互用的 JS 代码注入到 bundle 中（显然，我们是不会直接把这样的调试用代码写到源代码里的），后一个方法大概就是把编译完成之后异常信息发送出去了。</p>
-
-<p>我们先来看看 <code>injectScriptToBundle()</code> 方法：</p>
-
-<pre><code class="language-js">injectScriptToBundle(compilation) {
-    compilation.mainTemplate('startup', source =&gt; {
-        return &quot;\nconsole.log('Hello world!');\n&quot; + source;
-    });
-}
+然后我们试着应用这个插件，在你的 ```webpack.config.js``` 中：
 </code></pre>
 
-<p>我已经截掉了一些对这篇文章没有什么用的代码。首先我们可以看到这个方法有一个参数，而这个参数正是上文提到的 <code>compilation</code>. 这一段代码的作用就是在即将编译的源代码的开头部分插入一段我们自定义的 JS 代码。</p>
+<p>js
+const MyAwesomePlugin = require(&lsquo;./MyAwesomePlugin&rsquo;);</p>
 
-<p>对了，这里面出现了一个 <code>mainTemplate</code> 方法，具体可以看看 webpack 的官方文档：<a href="https://webpack.js.org/api/plugins/template/#src/components/Sidebar/Sidebar.jsx">https://webpack.js.org/api/plugins/template/#src/components/Sidebar/Sidebar.jsx</a></p>
+<p>// &hellip;</p>
 
-<p>然后接下来我们只需要在 <code>onBuildCompleted()</code> 方法中获取并向前端发送信息即可：</p>
+<p>plugins: [
+	// &hellip;
+	new MyAwesomePlugin()
+]</p>
 
-<pre><code class="language-js">onBuildCompleted(stats) {
-    const detail = stats.toJson({
-        errorDetails: false
-    });
+<pre><code>然后尝试着启动 webpack，如果一切正常，你应该在 console 中看到 ```Hello, world!``` 了。
 
-    this.sendWarnings(statsJson.warnings);
-    this.sendErrors(statsJson.errors);
-}
+接下来我们就开始做实事了，回头看看我们的需求，这是一个需要前后端配合的工作，首先我们需要在后端拥有一个 socket 服务器，然后监听 webpack 每次编译完后的结果，把信息通过这个 socket 服务器发送到浏览器。要实现这一步，还需要浏览器加载和后端服务器通信的相关 JS.启动 socket 服务器这件事我们在 ```apply()``` 方法中完成就可以了，接下来是事件监听。
+
+说到事件监听，首先这里要区分一下 webpack 中的两个概念：```compiler``` 和 ```compilation```.
+
+---
+
+## compiler
+
+首先你一定已经注意到上文的代码中，```apply()``` 方法传入了一个叫 ```compiler``` 的参数。这个所谓的 ```compiler``` 对象从字面意思上看是编译器的意思，实际上它也就指向了当前运行的 webpack 实例。这个实例包含了 webpack 的所有 options, loaders 和 plugins, 它随着 webpack 的启动而产生，可以说是 webpack 的“灵魂”。当我们运用一个插件时（即插件类被实例化，同时类中的 ```apply()``` 方法被调用的时候），```apply()``` 方法便会接收到一个指向这个 ```compiler``` 的参数，我们可以通过这个 ```compiler``` 访问整个 webpack 环境。
+
+### compilation
+
+对 ```compiler``` 有了一定的了解之后，大概我们就可以猜到 ```compilation``` 是干什么用的了。所谓 ```compilation``` 包含了 webpack 每次 build 后的详细信息，包括编译出的结果、错误信息、模块、编译后的资源、改变的文件和依赖等的当前状态，同时它提供了很多的事件挂钩，以便于插件来执行一些&lt;s&gt;黑魔法&lt;/s&gt;。
+
+---
+
+具体的 API 可以在上文给出的链接中找到，这里我们直接贴出代码后再解释：
+
 </code></pre>
+
+<p>js
+apply(compiler) {
+	compiler.plugin(&lsquo;compilation&rsquo;, this.injectScriptToBundle.bind(this));
+	compiler.plugin(&lsquo;done&rsquo;, this.onBuildCompleted.bind(this));
+}</p>
+
+<pre><code>
+这一段代码中我们监听了 ```compiler``` 的两个事件（可以看到我们是用 ```compiler.plugin(hook, method)``` 方法注册事件的）：
+
+ - 第一是在每次文件变动，重新编译的时候，执行 ```this.injectScriptToBundle()``` 方法；
+ - 第二是编译完成之后，执行 ```this.onBuildCompleted()``` 方法。
+
+根据方法名我们大致可以构想一下，前一个方法用于把前端与后端交互用的 JS 代码注入到 bundle 中（显然，我们是不会直接把这样的调试用代码写到源代码里的），后一个方法大概就是把编译完成之后异常信息发送出去了。
+
+我们先来看看 ```injectScriptToBundle()``` 方法：
+
+</code></pre>
+
+<p>js
+injectScriptToBundle(compilation) {
+	compilation.mainTemplate(&lsquo;startup&rsquo;, source =&gt; {
+		return &ldquo;\nconsole.log(&lsquo;Hello world!&rsquo;);\n&rdquo; + source;
+	});
+}</p>
+
+<pre><code>我已经截掉了一些对这篇文章没有什么用的代码。首先我们可以看到这个方法有一个参数，而这个参数正是上文提到的 ```compilation```. 这一段代码的作用就是在即将编译的源代码的开头部分插入一段我们自定义的 JS 代码。
+
+对了，这里面出现了一个 ```mainTemplate``` 方法，具体可以看看 webpack 的官方文档：https://webpack.js.org/api/plugins/template/#src/components/Sidebar/Sidebar.jsx
+
+然后接下来我们只需要在 ```onBuildCompleted()``` 方法中获取并向前端发送信息即可：
+
+</code></pre>
+
+<p>js
+onBuildCompleted(stats) {
+	const detail = stats.toJson({
+		errorDetails: false
+	});</p>
+
+<p>	this.sendWarnings(statsJson.warnings);
+	this.sendErrors(statsJson.errors);
+}
+```</p>
 
 <p>忽略掉发送信息那部分的代码，我们只要看上半部分就好了。<code>stats</code> 参数随着 <code>compiler</code> 的 <code>done</code> 事件被触发后产生，包含本次编译的结果统计信息。它提供了一个 <code>toJson()</code> 方法，可以把这些信息转换成直观的 JSON，然后我们也就可以从这个 JSON 里拿到我们想要的内容了。</p>
 

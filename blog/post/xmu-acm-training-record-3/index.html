@@ -409,8 +409,8 @@ int main()
 <li>令最终的首尾节点为 $S, T$</li>
 <li>若 $S, T$ 不相邻，则在上述路径中，找到一对满足条件的相邻节点 $V_i, V_j$，使 $V_i$ 与 T 相邻，$V_j$ 与 $S$ 相邻，路径变为 $S \to V_i \to T to V_j$, 此时得到新的路径。</li>
 <li>若 $S \to T$ 路径经过的顶点个数为 $n$, 游戏结束。</li>
-<li>若 $S \to T$ 路径经过的顶点个数不为 $n$, 则找到 $S \to T$ 中的一个节点 $V_i$，该节点满足与未访问的节点 $V_u$ 相邻，从 $V_i$ 出将路径断开为 $S=V_i, T=V_{i+1}$，然后跳到步骤 2 继续拓展路径。</li>
-</ol>
+
+<li><p>若 $S \to T$ 路径经过的顶点个数不为 $n$, 则找到 $S \to T$ 中的一个节点 $V_i$，该节点满足与未访问的节点 $V_u$ 相邻，从 $V_i$ 出将路径断开为 $S=V_i, T=V_{i+1}$，然后跳到步骤 2 继续拓展路径。</p>
 
 <pre><code class="language-cpp">int n;                          // 顶点个数
 int ans[MAXN];                  // 最终回路
@@ -419,78 +419,79 @@ bool G[MAXN][MAXN], vis[MAXN];  // 邻接矩阵和标记数组
 int s = 1, t;                   // 起点，终点
 int cnt = 2;                    // 路径中的点数
 for (int i = 1; i &lt;= n; i++) {
-    if (G[s][i]) {
-        t = i;
-        break;
-    }
+if (G[s][i]) {
+    t = i;
+    break;
+}
 }
 ans[0] = s, ans[1] = t;         // 寻找与起点相邻的点先令其为 t
 while (true) {
-    while (true) {
-        int i;
-        // 不断向 T 的方向拓展
-        for (i = 1; i &lt;= n; i++) {
-            if (G[t][i] &amp;&amp; !vis[i]) {
-                ans[cnt++] = i;
-                vis[i] = true;
-                t = i;
-                break;
-            }
-        }
-        if (i &gt; n)
+while (true) {
+    int i;
+    // 不断向 T 的方向拓展
+    for (i = 1; i &lt;= n; i++) {
+        if (G[t][i] &amp;&amp; !vis[i]) {
+            ans[cnt++] = i;
+            vis[i] = true;
+            t = i;
             break;
-    }
-    std::reverse(ans, ans + cnt);       // 将存在数组中的路径倒过来
-    std::swap(s, t);                    // 交换起点终点继续拓展
-    while (true) {
-        int i;
-        for (i = 1; i &lt;= n; i++) {
-            if (G[t][i] &amp;&amp; !vis[i]) {
-                ans[cnt++] = i;
-                vis[i] = true;
-                t = i;
-                break;
-            }
         }
-        if (i &gt; n)
-            break;
     }
-
-    // 第一轮拓展完成，如果 s, t 不相邻，则寻找相邻节点
-    if (!G[s][t]) {
-        int pos;
-        for (int i = 1; i &lt; cnt - 2; i++) {
-            if (G[s][ans[i + 1]] &amp;&amp; G[ans[i]][t]) {
-                pos = i;
-                break;
-            }
-        }
-        t = ans[++pos];
-        // 路径变为 s-&gt;vi-&gt;t-&gt;vi+1
-        std::reverse(ans + i, ans + cnt);
-    }
-    
-    if (cnt == n) {     // 发现最终路径，算法结束
+    if (i &gt; n)
         break;
+}
+std::reverse(ans, ans + cnt);       // 将存在数组中的路径倒过来
+std::swap(s, t);                    // 交换起点终点继续拓展
+while (true) {
+    int i;
+    for (i = 1; i &lt;= n; i++) {
+        if (G[t][i] &amp;&amp; !vis[i]) {
+            ans[cnt++] = i;
+            vis[i] = true;
+            t = i;
+            break;
+        }
     }
-    // 否则找到与未访问节点相邻的路径节点，重复上述步骤
-    int i, j;
-    for (j = 1; j &lt;= n; j++) {
-        if (!vis[j]) {
-            for (i = 1; i &lt; cnt - 2; i++) {
-                if (G[ans[i]][j]) {
-                    break;
-                }
+    if (i &gt; n)
+        break;
+}
+
+// 第一轮拓展完成，如果 s, t 不相邻，则寻找相邻节点
+if (!G[s][t]) {
+    int pos;
+    for (int i = 1; i &lt; cnt - 2; i++) {
+        if (G[s][ans[i + 1]] &amp;&amp; G[ans[i]][t]) {
+            pos = i;
+            break;
+        }
+    }
+    t = ans[++pos];
+    // 路径变为 s-&gt;vi-&gt;t-&gt;vi+1
+    std::reverse(ans + i, ans + cnt);
+}
+    
+if (cnt == n) {     // 发现最终路径，算法结束
+    break;
+}
+// 否则找到与未访问节点相邻的路径节点，重复上述步骤
+int i, j;
+for (j = 1; j &lt;= n; j++) {
+    if (!vis[j]) {
+        for (i = 1; i &lt; cnt - 2; i++) {
+            if (G[ans[i]][j]) {
+                break;
             }
         }
     }
-    s = ans[i-1], t = j;
-    std::reverse(ans, ans + i);
-    std::reverse(ans + i, ans + cnt);
-    ans[cnt++] = j;
-    vis[j] = 1;
 }
-</code></pre>
+s = ans[i-1], t = j;
+std::reverse(ans, ans + i);
+std::reverse(ans + i, ans + cnt);
+ans[cnt++] = j;
+vis[j] = 1;
+}
+</code></pre></li>
+</ol>
 
 <p>例题：<a href="https://codeforces.com/problemset/problem/325/E">Codeforces 325E The Red Button</a></p>
 

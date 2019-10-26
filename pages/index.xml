@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on 宇宙よりも遠い場所</title>
@@ -72,8 +72,7 @@ var playList = [ { &#34;title&#34;: &#34;Returns&#34;, &#34;artist&#34;: &#34;Po
       <description>Profile Yume Maruyama (aka. kirainmoe), major Computer Science in Xiamen University School of Informatics.
 Nickname inspired from the character Maruyama Aya of BanG Dream!
 I’m fond of LoveLive! and BanG Dream! (μ&amp;rsquo;s / Aqours &amp;amp;&amp;amp; Poppin&amp;rsquo;Party / Pastel*Palettes)
-Skills: C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in Machine Learning.
-Experience  2016.4~2018.9, Zhangzhou No.1 Middle School OI Team. 2018.11~now, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.</description>
+Skills  C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in ICPC / Machine Learning.  Experience  2016.4~2018.9, Zhangzhou No.1 Middle School OI Team. 2018.11~now, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.</description>
     </item>
     
   </channel>

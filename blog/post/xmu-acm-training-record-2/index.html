@@ -693,24 +693,25 @@ $$</p>
 <li>若 $a_i$ &gt; 栈顶元素 $s[top]$, 则直接让 $a_i$ 入栈.</li>
 <li>若 $a_i$ &lt;= 栈顶元素 $s[top]$, 则<strong>在栈中二分查找到第一个小于等于 $a_i$ 的元素的位置 pos</strong>，将 $s[pos]$ 替换为 $a_i$.</li>
 <li>重复上述步骤，直至所有数都被处理完成.</li>
-<li>此时栈中的元素个数 $s.size$ 即为 LIS 的答案，但注意<strong>栈中元素并不是组成 LIS 的元素</strong>。</li>
-</ol>
+
+<li><p>此时栈中的元素个数 $s.size$ 即为 LIS 的答案，但注意<strong>栈中元素并不是组成 LIS 的元素</strong>。</p>
 
 <pre><code class="language-cpp">int stk[MAXN], top = 0;
 vector&lt;int&gt; a;
 
 stk[top] = a[0];
 for (int i = 1; i &lt; a.size(); i++) {
-    if (a[i] &gt; stk[top]) {
-        stk[++top] = a[i];
-    } else {
-        int pos = lower_bound(stk, stk + top + 1, a[i]) - stk;
-        stk[pos] = a[i];
-    }
+if (a[i] &gt; stk[top]) {
+    stk[++top] = a[i];
+} else {
+    int pos = lower_bound(stk, stk + top + 1, a[i]) - stk;
+    stk[pos] = a[i];
+}
 }
 
 int ans = top + 1;		// stk.size 即为答案
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>上述方法的合法之处在于，替换栈中的元素并不会改变栈元素的数量，如果后面没有更优的答案，最终答案仍然是之前找到的 LIS 序列的数量。但如果后面有更好的答案，那么替换栈中已有较大的元素之后，新元素就可以再加入到栈顶，更新答案。至于二分，当然是 STL <code>lower_bound</code> 大法好啦。</p>
 

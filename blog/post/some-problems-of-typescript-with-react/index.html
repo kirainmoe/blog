@@ -127,9 +127,9 @@
 /* ... */
 
 class MyComponent extends React.Compoent {
-    render() {
-        return (/* ... */);
-    }
+	render() {
+		return (/* ... */);
+	}
 }
 
 export default connect(mapStateToProps, actions)(MyComponent);
@@ -139,7 +139,7 @@ export default connect(mapStateToProps, actions)(MyComponent);
 
 <pre><code class="language-javascript">@connect(mapStateToProps, actions)
 export default class MyCompoent extends React.Component {
-    // ...
+	// ...
 }
 </code></pre>
 
@@ -157,11 +157,11 @@ export default class MyCompoent extends React.Component {
 
 <pre><code class="language-javascript">// test 1
 const test = (component: any) =&gt; {
-    console.log(component);
+	console.log(component);
 }
 @test
 class MyComponent extends React.Component {
-    // ...
+	// ...
 }
 // passed
 </code></pre>
@@ -170,11 +170,11 @@ class MyComponent extends React.Component {
 
 <pre><code class="language-javascript">// test 2
 function test(component: any) {
-    console.log(component);
+	console.log(component);
 }
 @test
 class MyComponent extends React.Component {
-    // ...
+	// ...
 }
 // compile failed
 </code></pre>
@@ -199,7 +199,7 @@ import { connect } from 'utils/connect';
 /* ... */
 @connect(mapStateToProps, actions)
 export defalt class MyComponent extends React.Component {
-    // ...
+	// ...
 }
 </code></pre>
 
@@ -210,16 +210,16 @@ export defalt class MyComponent extends React.Component {
 <p>我并不知道怎么描述这个问题比较合适，场景是需要批量渲染一个对象中所有的组件：</p>
 
 <pre><code class="language-javascript">const components = {
-    comp1: Compnent1,
-    comp2: Component2,
-    // ...
+	comp1: Compnent1,
+	comp2: Component2,
+	// ...
 },
-    keys = Object.keys(components);
+	keys = Object.keys(components);
 
 const res: Array&lt;any&gt; = [];
 keys.forEach(key =&gt; {
-    const tmp: any = components[key];
-    res.push(&lt;tmp key={key} /&gt;);
+	const tmp: any = components[key];
+	res.push(&lt;tmp key={key} /&gt;);
 });
 </code></pre>
 

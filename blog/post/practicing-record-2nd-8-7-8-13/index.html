@@ -136,8 +136,8 @@
 
 <pre><code class="language-cpp">fill(lis, lis + n, INF);
 for (int i = 0; i &lt; n; i++)
-    *lower_bound(lis, lis + n, arr[i]) = arr[i];
-int len = lower_bound(lis, lis + n, INF) - lis;         // LIS 的长度
+	*lower_bound(lis, lis + n, arr[i]) = arr[i];
+int len = lower_bound(lis, lis + n, INF) - lis;			// LIS 的长度
 </code></pre>
 
 <p>简单快捷。</p>
@@ -226,7 +226,7 @@ int main()
       premax[i] = 0;
     }
     
-        // start solution
+ 		// start solution
     int curmax;
     for (int i = 1; i &lt;= m; i++)
     {

@@ -153,17 +153,19 @@
 <pre><code class="language-Warning:">
 React 要求我们设置这个 input 为只读，或者为这个 input 设置一个 onChange 事件，如果都不的话就用 defaultValue 代替 value。很多人为了省事就听了它的话用了 defaultValue（包括我），于是就踩进了坑。下面我们试着改一下上面那个组件的 render 方法好不好啊？吼啊！（（（
 
-```javascript
+</code></pre>
+
+<p>javascript
 return (
-  &lt;div&gt;
-    &lt;span&gt;Hello&lt;/span&gt;
-    &lt;input 
+  <div>
+    <span>Hello</span>
+    <input 
           type='text'
           value={this.state.val}
-          onChange={() =&gt; false} /&gt;
-  &lt;/div&gt;
+          onChange={() => false} /&gt;
+  </div>
 );
-</code></pre>
+```</p>
 
 <p>把 defaultValue 改成 value 并且绑定一个 onChange 事件。再次刷新页面你会发现出现了我们预期中的结果。至此我们可以大声讲出这个问题就是有这个只读的属性 defaultValue 引起的了。</p>
       </div>

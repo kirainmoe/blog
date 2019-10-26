@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>宇宙よりも遠い場所</title>
@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
-    <lastBuildDate>Fri, 16 Aug 2019 10:57:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 16:08:20 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>点分治学习笔记</title>
+      <link>https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/</link>
+      <pubDate>Sat, 26 Oct 2019 16:08:20 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/</guid>
+      <description>&lt;p&gt;点分治是大规模处理树上路径问题的工具。大意是找到一个点，递归统计其所有子树的答案，然后利用容斥原理或其它方式合并答案，最后得到整棵树的答案。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo</title>
@@ -469,8 +478,7 @@ var playList = [ { &#34;title&#34;: &#34;Returns&#34;, &#34;artist&#34;: &#34;Po
       <description>Profile Yume Maruyama (aka. kirainmoe), major Computer Science in Xiamen University School of Informatics.
 Nickname inspired from the character Maruyama Aya of BanG Dream!
 I’m fond of LoveLive! and BanG Dream! (μ&amp;rsquo;s / Aqours &amp;amp;&amp;amp; Poppin&amp;rsquo;Party / Pastel*Palettes)
-Skills: C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in Machine Learning.
-Experience  2016.4~2018.9, Zhangzhou No.1 Middle School OI Team. 2018.11~now, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.</description>
+Skills  C/C++/Golang(*), PHP(**), Javascript/Node(***). Used to be a Front-End. A newbee in ICPC / Machine Learning.  Experience  2016.4~2018.9, Zhangzhou No.1 Middle School OI Team. 2018.11~now, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.</description>
     </item>
     
     <item>

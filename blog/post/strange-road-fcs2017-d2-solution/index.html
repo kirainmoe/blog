@@ -256,7 +256,7 @@ int getNum(int stage, int x, int y)
       return 4;
   }
   
-  int edgeMid = 1 &lt;&lt; (stage - 1),                   // edgeMid = 2^(stage-1)
+  int edgeMid = 1 &lt;&lt; (stage - 1),					// edgeMid = 2^(stage-1)
       nodeNum = 1 &lt;&lt; (2 * (stage - 1));   // nodeNum = 4^(stage-1) = 2^2(stage-1)
   
   if (x &lt;= edgeMid &amp;&amp; y &lt;= edgeMid)
