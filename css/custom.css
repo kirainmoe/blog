@@ -1,5 +1,5 @@
 html, body {
-	font-family: "Poppins","Hiragino Sans GB","STHeiti","Microsoft YaHei","游ゴシック",YuGothic,"ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","メイリオ","Meiryo"
+	font-family: "Poppins","Hiragino Sans GB","Microsoft YaHei","STHeiti","游ゴシック",YuGothic,"ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","メイリオ","Meiryo"
 }
 
 .subtitle, .title {
@@ -110,6 +110,10 @@ html, body {
 
 .content h1:not(:first-child), .content h2:not(:first-child), .content h3:not(:first-child), .content h4:not(:first-child), .content h5:not(:first-child), .content h6:not(:first-child) {
 	margin-top: 20px!important;
+}
+
+code {
+	font-family: "Fira Code", "Menlo", "Monaco", "Consolas"!important;
 }
 
 canvas#live2d {
