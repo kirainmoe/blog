@@ -116,6 +116,15 @@ code {
 	font-family: "Fira Code", "Menlo", "Monaco", "Consolas"!important;
 }
 
+.content pre code {
+	padding: 0px!important;
+}
+
+pre.line-numbers > code {
+	overflow: visible;
+	padding: 0;
+  }
+
 canvas#live2d {
 	position: fixed;
 	left: 0px;
