@@ -1,8 +1,8 @@
 {
     "version":"1.0.0",
-    "model":"aya_event065.moc",
+    "model":"aya_other-12.moc",
     "textures":[
-        "textures/texture_00.png"
+        "textures/karakuri.png"
     ],
     "layout":{
         "center_x":0.0,
