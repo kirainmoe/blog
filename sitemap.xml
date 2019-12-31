@@ -3,8 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kirainmoe.com/tags/2019/</loc>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2019-11-23T12:28:43+08:00</lastmod>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/diary/</loc>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/</loc>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/</loc>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/</loc>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
   </url>
   
   <url>
@@ -18,17 +43,7 @@
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/tags/</loc>
-    <lastmod>2019-11-23T12:28:43+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kirainmoe.com/blog/post/matlab-convolution-example-animation/</loc>
-    <lastmod>2019-11-23T12:28:43+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/</loc>
     <lastmod>2019-11-23T12:28:43+08:00</lastmod>
   </url>
   
@@ -289,11 +304,6 @@
   
   <url>
     <loc>https://kirainmoe.com/categories/</loc>
-    <lastmod>2018-02-16T23:14:44+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/tags/diary/</loc>
     <lastmod>2018-02-16T23:14:44+00:00</lastmod>
   </url>
   
