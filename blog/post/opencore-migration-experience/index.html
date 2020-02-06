@@ -726,14 +726,41 @@ Type: Data
 
 <p><code>Quirks</code> 部分就比较复杂，这里给出部分选项的推荐值和解释，其它的保持默认即可。</p>
 
-<p>| 属性名 | 推荐 | 解释 |
-|&mdash;&mdash;&mdash;|&mdash;&mdash;-|&mdash;&mdash;|
-| ReleaseUsbOwnership | NO | 释放 USB 控制器驱动，等同于 Clover 中的 <code>FixUSBOwnership</code> |
-| RequestBootVarFallback <br> RequestBootVarRouting | YES | OC 要求开启这两个选项 |
-| SanitiseClearScreen | YES | 修复高分屏以 1024x768 的分辨率显示 OC，但是有时候也会有反效果 |
-| ProvideConsoleGOP | YES | 解决选择引导后黑屏 |</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>推荐</th>
+<th>解释</th>
+</tr>
+</thead>
 
-<hr />
+<tbody>
+<tr>
+<td>ReleaseUsbOwnership</td>
+<td>NO</td>
+<td>释放 USB 控制器驱动，等同于 Clover 中的 FixUSBOwnership</td>
+</tr>
+
+<tr>
+<td>RequestBootVarFallback <br> RequestBootVarRouting</td>
+<td>YES</td>
+<td>OC 要求开启这两个选项</td>
+</tr>
+
+<tr>
+<td>SanitiseClearScreen</td>
+<td>YES</td>
+<td>修复高分屏以 1024x768 的分辨率显示 OC，但是有时候也会有反效果</td>
+</tr>
+
+<tr>
+<td>ProvideConsoleGOP</td>
+<td>YES</td>
+<td>解决选择引导后黑屏</td>
+</tr>
+</tbody>
+</table>
 
 <p>到这里，终于完成了 OC 的配置，果然如同传言的一般繁琐。接下来就可以把 EFI 文件夹拷贝到 U 盘的 ESP 分区里，尝试启动了。注意的是，不同于 Clover，OC 必须引导 <code>EFI/Boot/bootx64.efi</code> 启动，而不能引导 <code>EFI/OC/OpenCore.efi</code> 启动，否则无效。</p>
 
