@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html><head>
+<title>About Me &amp; This Site</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                    
+                
+                <a class="a-block nav-link-item active" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#me-maruyama-yume" v-on:click="closeDrawer" id="me-maruyama-yume-nav">
+										 ME: Maruyama Yume
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#skills" v-on:click="closeDrawer" id="skills-nav">
+										 Skills
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#experience" v-on:click="closeDrawer" id="experience-nav">
+										 Experience
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#sns" v-on:click="closeDrawer" id="sns-nav">
+										 SNS
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#community" v-on:click="closeDrawer" id="community-nav">
+										 Community
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#coding" v-on:click="closeDrawer" id="coding-nav">
+										 Coding
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#game" v-on:click="closeDrawer" id="game-nav">
+										 Game
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#contact" v-on:click="closeDrawer" id="contact-nav">
+										 Contact
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#about-this-site" v-on:click="closeDrawer" id="about-this-site-nav">
+										 About this site
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tech-stack--copyrights" v-on:click="closeDrawer" id="tech-stack--copyrights-nav">
+										 Tech stack &amp; Copyrights
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                        
+                    
+                    <a class="a-block drawer-menu-item active" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#me-maruyama-yume" v-on:click="closeDrawer" id="me-maruyama-yume-nav">
+										 ME: Maruyama Yume
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#skills" v-on:click="closeDrawer" id="skills-nav">
+										 Skills
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#experience" v-on:click="closeDrawer" id="experience-nav">
+										 Experience
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#sns" v-on:click="closeDrawer" id="sns-nav">
+										 SNS
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#community" v-on:click="closeDrawer" id="community-nav">
+										 Community
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#coding" v-on:click="closeDrawer" id="coding-nav">
+										 Coding
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#game" v-on:click="closeDrawer" id="game-nav">
+										 Game
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#contact" v-on:click="closeDrawer" id="contact-nav">
+										 Contact
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#about-this-site" v-on:click="closeDrawer" id="about-this-site-nav">
+										 About this site
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tech-stack--copyrights" v-on:click="closeDrawer" id="tech-stack--copyrights-nav">
+										 Tech stack &amp; Copyrights
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    About Me &amp; This Site
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2016-04-09 17:09
+                        </time>
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="me-maruyama-yume">ME: Maruyama Yume</h1>
+<p>丸山（まるやま） 夢（ゆめ） // aka. <strong>@kirainmoe</strong>, @AyAmita</p>
+<p>目前于 <a href="https://information.xmu.edu.cn/">厦门大学信息学院</a> 就读计算机科学专业.</p>
+<p>昵称受启发于 <a href="http://bang-dream.com/">BanG Dream!</a> 企划中的角色 <em>丸山彩</em>.</p>
+<h1 id="skills">Skills</h1>
+<ul>
+<li>C/C++/Golang(✽), PHP(✽✽), Javascript/Node(✽✽✽).</li>
+<li>Used to be a Front-End.</li>
+<li>A newbee in CCPC / ICPC.</li>
+<li>Technical geek.</li>
+</ul>
+<h1 id="experience">Experience</h1>
+<blockquote>
+<p>2016.4 ~ 2018.9, Zhangzhou No.1 Middle School OI Team.</p>
+</blockquote>
+<blockquote>
+<p>2018.11 ~ 2019.11, Xiamen Univeristy ACM Team, as a member of <strong>xmu_otaku_trinity</strong> with <em>@RealR</em> and <em>@Donald.John.Trump</em>.<br>
+Participated in 2019 China Collegiate Programming Contest, Qinghuangdao Site / Bronze Medal (2019.9)</p>
+</blockquote>
+<h1 id="sns">SNS</h1>
+<h2 id="community">Community</h2>
+<ul>
+<li>Sina Weibo <a href="https://weibo.com/returnnnn">@香澄味的吟梦酱</a></li>
+<li>Zhihu <a href="https://www.zhihu.com/people/yin-meng-65-93/activities">@吟梦</a></li>
+<li>Netease Cloud Music <a href="http://music.163.com/#/user/home?id=55783989">@吟梦</a></li>
+<li>Coolapk <a href="#">@吟梦</a></li>
+<li>bilibili <a href="https://space.bilibili.com/3999552">@初雪吟梦</a></li>
+</ul>
+<h2 id="coding">Coding</h2>
+<ul>
+<li>GitHub <a href="https://github.com/kirainmoe">@kirainmoe</a></li>
+<li>npm <a href="https://www.npmjs.com/~kirainmoe">@kirainmoe</a></li>
+<li>V2EX <a href="https://v2ex.com/member/kirainmoe">@kirainmoe</a></li>
+</ul>
+<h2 id="game">Game</h2>
+<ul>
+<li>バンドリ!ガールズバンドパーティ! (JP): <a href="#">5034326</a></li>
+<li>BanG Dream! (CN): <a href="#">1000666452</a></li>
+<li>Arcaea: <a href="#">AyAmita (861369935)</a></li>
+<li>LoveLive! School Idol Festival (JP): <a href="#">341665955</a></li>
+</ul>
+<h1 id="contact">Contact</h1>
+<p><a href="mailto:kirainmoe@stu.xmu.edu.cn">kirainmoe#stu.xmu.edu.cn (replace # with @)</a></p>
+<h1 id="about-this-site">About this site</h1>
+<p>“宇宙よりも遠い場所”，意为“比宇宙更遥远的地方”。站名取自 <a href="https://www.bilibili.com/bangumi/play/ss21778">同名 2018 年一月新番</a>。取这个名字的原因除了因为很喜欢这一部番剧之外，更希望能像番剧里讲的故事那样——乘上与平时相反的电车，去看未曾见过的风景。</p>
+<p>说出自己真实的心声，做自己喜欢做的事情。从 2014 年开始写博客以来，转眼间已经过去了四五个春夏秋冬了。博客的内容也随着我的兴趣和研究方向在不断地变化着。文章写了很多，也在不定期的搬迁中丢了很多。现在还留下来的，但愿它们能一直在吧。</p>
+<!-- raw HTML omitted -->
+<h1 id="tech-stack--copyrights">Tech stack &amp; Copyrights</h1>
+<ul>
+<li>博客由 <a href="https://gohugo.io">Hugo</a> 驱动</li>
+<li>主题使用 Rise 的 <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a></li>
+<li>托管于 <a href="https://github.com/kirainmoe/blog">GitHub Pages</a></li>
+<li>评论系统采用 <a href="https://disq.us">Disqus</a>, 无法访问请爬墙　　</li>
+<li>音乐播放器基于 <a href="https://github.com/moefront/MUSE">MUSE Project</a>, 音乐/图片资源来自 <a href="https://music.163.com/">网易云音乐</a>, API 由<a href="https://kotori.love">そらちゃん</a>提供</li>
+</ul>
+<p>除非特别说明，本站原创内容均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">署名-相同方式共享 4.0 国际</a> 协议许可。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
+
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2016-04-09</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/pages/friends/">
+                    Next<br>Friends
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/pages/guestbook/">
+                    Previous<br>Guestbook
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

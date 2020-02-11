@@ -1,155 +1,807 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="Xiamen GDG DevFest 2018 repo - 宇宙よりも遠い場所" property="og:title">
-<title>Xiamen GDG DevFest 2018 repo | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>Xiamen GDG DevFest 2018 repo</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x00-%e5%89%8d%e8%a8%80" v-on:click="closeDrawer" id="0x00-前言-nav">
+										 0x00 前言
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x01-%e4%bc%9a%e5%89%8d" v-on:click="closeDrawer" id="0x01-会前-nav">
+										 0x01 会前
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x02-devfest-%e4%bc%9a%e4%b8%ad" v-on:click="closeDrawer" id="0x02-devfest-会中-nav">
+										 0x02 DevFest 会中
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e8%af%ad%e9%9f%b3%e6%8a%80%e6%9c%af%e5%8e%a6%e9%97%a8%e5%a4%a7%e5%ad%a6%e5%89%af%e6%95%99%e6%8e%88%e6%b4%aa%e6%b8%85%e9%98%b3" v-on:click="closeDrawer" id="人工智能语音技术厦门大学副教授洪清阳-nav">
+										 人工智能语音技术（厦门大学副教授洪清阳）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tensorflow-lite%e5%9c%a8%e7%a7%bb%e5%8a%a8%e7%ab%af%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88%e7%8e%8b%e7%8e%89%e6%88%90google-iot-gde" v-on:click="closeDrawer" id="tensorflow-lite在移动端的解决方案王玉成google-iot-gde-nav">
+										 Tensorflow Lite在移动端的解决方案（王玉成，Google IoT GDE）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9ctensorflow%e7%90%86%e8%a7%a3%e8%a7%86%e9%a2%91%e4%bf%a1%e6%81%af%e9%83%91%e7%82%9cml-gde" v-on:click="closeDrawer" id="使用神经网络tensorflow理解视频信息郑炜ml-gde-nav">
+										 使用神经网络（TensorFlow）理解视频信息（郑炜，ML GDE）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e5%8a%a9%e5%8a%9b%e5%8a%a8%e6%bc%ab%e5%88%b6%e4%bd%9c%e5%8e%a6%e9%97%a8%e5%a4%a7%e5%ad%a6%e6%9d%8e%e5%8d%93%e5%84%92%e5%8d%9a%e5%a3%ab" v-on:click="closeDrawer" id="深度学习助力动漫制作厦门大学李卓儒博士-nav">
+										 深度学习助力动漫制作（厦门大学李卓儒博士）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%a7%86%e8%a7%89-ai-%e4%bb%8e-2d-%e5%88%b0-3d-%e6%b7%b1%e5%9b%be%e6%99%ba%e6%9c%8d" v-on:click="closeDrawer" id="视觉-ai-从-2d-到-3d-深图智服-nav">
+										 视觉 AI 从 2D 到 3D (深图智服)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x03-codelab" v-on:click="closeDrawer" id="0x03-codelab-nav">
+										 0x03 CodeLab
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#build-your-first-android-app-with-kotlin" v-on:click="closeDrawer" id="build-your-first-android-app-with-kotlin-nav">
+										 Build your first Android App with Kotlin
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e7%9a%84%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8-tf-%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="神经网络的实际应用-tf-实现-nav">
+										 神经网络的实际应用 TF 实现
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x04-%e6%80%bb%e7%bb%93" v-on:click="closeDrawer" id="0x04-总结-nav">
+										 0x04 总结
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">November 25, 2018</h2>
-      <h1 class="title">Xiamen GDG DevFest 2018 repo</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/google">google</a>
-    
-        <a class="button is-link" href="/tags/devfest">devfest</a>
-    
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x00-%e5%89%8d%e8%a8%80" v-on:click="closeDrawer" id="0x00-前言-nav">
+										 0x00 前言
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x01-%e4%bc%9a%e5%89%8d" v-on:click="closeDrawer" id="0x01-会前-nav">
+										 0x01 会前
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x02-devfest-%e4%bc%9a%e4%b8%ad" v-on:click="closeDrawer" id="0x02-devfest-会中-nav">
+										 0x02 DevFest 会中
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e8%af%ad%e9%9f%b3%e6%8a%80%e6%9c%af%e5%8e%a6%e9%97%a8%e5%a4%a7%e5%ad%a6%e5%89%af%e6%95%99%e6%8e%88%e6%b4%aa%e6%b8%85%e9%98%b3" v-on:click="closeDrawer" id="人工智能语音技术厦门大学副教授洪清阳-nav">
+										 人工智能语音技术（厦门大学副教授洪清阳）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tensorflow-lite%e5%9c%a8%e7%a7%bb%e5%8a%a8%e7%ab%af%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88%e7%8e%8b%e7%8e%89%e6%88%90google-iot-gde" v-on:click="closeDrawer" id="tensorflow-lite在移动端的解决方案王玉成google-iot-gde-nav">
+										 Tensorflow Lite在移动端的解决方案（王玉成，Google IoT GDE）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9ctensorflow%e7%90%86%e8%a7%a3%e8%a7%86%e9%a2%91%e4%bf%a1%e6%81%af%e9%83%91%e7%82%9cml-gde" v-on:click="closeDrawer" id="使用神经网络tensorflow理解视频信息郑炜ml-gde-nav">
+										 使用神经网络（TensorFlow）理解视频信息（郑炜，ML GDE）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e5%8a%a9%e5%8a%9b%e5%8a%a8%e6%bc%ab%e5%88%b6%e4%bd%9c%e5%8e%a6%e9%97%a8%e5%a4%a7%e5%ad%a6%e6%9d%8e%e5%8d%93%e5%84%92%e5%8d%9a%e5%a3%ab" v-on:click="closeDrawer" id="深度学习助力动漫制作厦门大学李卓儒博士-nav">
+										 深度学习助力动漫制作（厦门大学李卓儒博士）
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%a7%86%e8%a7%89-ai-%e4%bb%8e-2d-%e5%88%b0-3d-%e6%b7%b1%e5%9b%be%e6%99%ba%e6%9c%8d" v-on:click="closeDrawer" id="视觉-ai-从-2d-到-3d-深图智服-nav">
+										 视觉 AI 从 2D 到 3D (深图智服)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x03-codelab" v-on:click="closeDrawer" id="0x03-codelab-nav">
+										 0x03 CodeLab
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#build-your-first-android-app-with-kotlin" v-on:click="closeDrawer" id="build-your-first-android-app-with-kotlin-nav">
+										 Build your first Android App with Kotlin
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e7%9a%84%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8-tf-%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="神经网络的实际应用-tf-实现-nav">
+										 神经网络的实际应用 TF 实现
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#0x04-%e6%80%bb%e7%bb%93" v-on:click="closeDrawer" id="0x04-总结-nav">
+										 0x04 总结
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
 
-      
-      <div class="content">
-        <p>这是厦门 2018 谷歌开发者嘉年华 参会报告~</p>
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
 
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    Xiamen GDG DevFest 2018 repo
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2018-11-25 22:43
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/google">google</a>
+                                &nbsp;
+                            
+                                <a href="/tags/devfest">devfest</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>这是厦门 2018 谷歌开发者嘉年华 参会报告~</p>
 <p>（多图预警，流量环境谨慎点开~）</p>
-
 <p>ps. 由于在大会上做笔记不是很方便和不完全，因此下面的内容可能有错误或者不周，敬请谅解。</p>
-
 <h1 id="0x00-前言">0x00 前言</h1>
-
 <p>最开始看到这个活动是 11 月初在信院官方迎新群里有人发了 DevFest 的一个预热宣传链接，一看竟然是咕果赞助的开发者大会，而且居然还在我校里召开，果断报名。在周六经历了高数期中考的洗礼之后，就开始迫不及待地等待 GDG DevFest 大会当天的到来。星期天一大早起来赶着公交车来到了科艺中心。</p>
-
 <h1 id="0x01-会前">0x01 会前</h1>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxkhy6swyaj23342bcqv6.jpg" alt="厦门大学科艺中心" /></p>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxki0zzmy1j23342bcx6q.jpg" alt="科艺中心门口的宣传画" /></p>
-
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxkhy6swyaj23342bcqv6.jpg" alt="厦门大学科艺中心"></p>
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxki0zzmy1j23342bcx6q.jpg" alt="科艺中心门口的宣传画"></p>
 <p>九点出头的时候就匆匆赶到厦门大学科学艺术中心，前半个小时是签到时间，本以为九点算是早的，结果一到签到处发现多大半数的人已经把名字写好在签到表上了。签到的时候领了一个 Google Cloud Next 的磁贴和几张 GDG 和谷歌全家信仰贴纸，这波不亏。</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxki215xgzj23342bcu0z.jpg" alt="Google 信仰贴纸~" /></p>
-
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxki215xgzj23342bcu0z.jpg" alt="Google 信仰贴纸~"></p>
 <h1 id="0x02-devfest-会中">0x02 DevFest 会中</h1>
-
-<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxki55pzscj23342bcu0y.jpg" alt="Xiamen GDG DevFast 2018" /></p>
-
-<p>会议在 9:30 之后<s>又鸽了十分钟</s>才正式开始。首先是厦门大学的信息科学与技术学院的领导杨蔷致辞，接下来是厦门软件园的管理致辞，再然后是对 GDG(Google Developer Group) 及其相关活动的简介。今年的 5 月左右 Xiamen GDG 还举办了 Machine Learning Study Jam.</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxki8asa7uj23342bckeh.jpg" alt="" /></p>
-
-<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxkib3s56wj23342bc4qq.jpg" alt="" /></p>
-
-<p><img src="https://ws1.sinaimg.cn/large/9f1137b1gy1fxkibehy1nj23342bcx6p.jpg" alt="" /></p>
-
+<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxki55pzscj23342bcu0y.jpg" alt="Xiamen GDG DevFast 2018"></p>
+<p>会议在 9:30 之后<!-- raw HTML omitted -->又鸽了十分钟<!-- raw HTML omitted -->才正式开始。首先是厦门大学的信息科学与技术学院的领导杨蔷致辞，接下来是厦门软件园的管理致辞，再然后是对 GDG(Google Developer Group) 及其相关活动的简介。今年的 5 月左右 Xiamen GDG 还举办了 Machine Learning Study Jam.</p>
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxki8asa7uj23342bckeh.jpg" alt=""></p>
+<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxkib3s56wj23342bc4qq.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/9f1137b1gy1fxkibehy1nj23342bcx6p.jpg" alt=""></p>
 <p>听完了介绍接下来就是四场技术分享会了。</p>
-
-<h2 id="人工智能语音技术-厦门大学副教授洪清阳">人工智能语音技术（厦门大学副教授洪清阳）</h2>
-
-<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxkii5bjcsj23342bc7wi.jpg" alt="人工智能语音技术" /></p>
-
+<h2 id="人工智能语音技术厦门大学副教授洪清阳">人工智能语音技术（厦门大学副教授洪清阳）</h2>
+<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxkii5bjcsj23342bc7wi.jpg" alt="人工智能语音技术"></p>
 <p>首先第一场分享会是关于人工智能和语音方面的，是我们厦门大学信息科学与技术学院智能系的副教授洪青阳老师。主要介绍了人工智能的发展历程、AI热潮、AI落地技术的迭代（核心算法，数据积累，GPU计算，产品落地）以及从 AI 技术层到应用层的关联.</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxkih9elhhj23342bcb29.jpg" alt="从技术层到应用层 - AI" /></p>
-
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxkih9elhhj23342bcb29.jpg" alt="从技术层到应用层 - AI"></p>
 <p>紧接着介绍了 AI 语音技术的技术趋势：</p>
-
 <blockquote>
 <ol>
 <li>感知计算：视觉和语音识别率超过97%</li>
@@ -157,9 +809,7 @@
 <li>无监督学习：现有深度学习严重依赖标记数据，一旦无监督学习突破人工智能将进入新的阶段</li>
 </ol>
 </blockquote>
-
 <p>以及应用趋势：</p>
-
 <blockquote>
 <ol>
 <li>机器感知（视觉 语音）安防、金融、智能家居、机器人 预计5年内普及</li>
@@ -167,206 +817,141 @@
 <li>人机结合 工业/服务业机器人</li>
 </ol>
 </blockquote>
-
 <p>然后展示了几个 AI 语音技术的应用实践，其中最重要的是菊花厂（HUAWEI）在 P20/Mate20 设备上所拥有的语音唤醒和声纹识别功能是我校 NLP 实验室 AI 语音技术的研究成果落地应用；介绍了语音识别框架：</p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkimaq4arj23342bcaus.jpg" alt="" /></p>
-
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkimaq4arj23342bcaus.jpg" alt=""></p>
 <p>端到端语音合成（深度学习）：完全避开中间标注和细节参数，把语音直接关联对应的文本内容，基于大量训练数据自动调优，Sequence to Sequence在语音合成和机器翻译有很好的应用，解决了一些标注问题。</p>
-
 <p>以及厦大的相关实验室在 OLR Challenge 2018 语种识别竞赛的几个项目（短语音识别，混淆语言语种识别，开集语种识别）中取得了第二/一名的成绩。</p>
-
 <p>最后洪青阳教授还分享了他对 AI 技术的一些看法——警惕AI过热：AI技术深度学习与大数据结合，却有不少进展，但不要把AI变成全民的忽悠。科学研究不能大起大落，一哄而起，一哄而散，盲目冒险不可取。重视基本核心技术，如集成电路技术，飞机发动机有关的材料和工艺，生命科学与生物科技以及AI技术本身才是正道。</p>
-
-<h2 id="tensorflow-lite在移动端的解决方案-王玉成-google-iot-gde">Tensorflow Lite在移动端的解决方案（王玉成，Google IoT GDE）</h2>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxkip3wj0qj23342bce82.jpg" alt="TensorFlow lite" /></p>
-
+<h2 id="tensorflow-lite在移动端的解决方案王玉成google-iot-gde">Tensorflow Lite在移动端的解决方案（王玉成，Google IoT GDE）</h2>
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxkip3wj0qj23342bce82.jpg" alt="TensorFlow lite"></p>
 <p>第二场分享会是谷歌的 IoT 方向 GDE，来自清华大学的王玉成老师带来移动端 Tensorflow 的解决方案——TFLite 相关的讲解。</p>
-
 <p>首先分析了 TensorFlow 框架的现状，除了广泛应用的 Python 版本外，Google 还推出了 TensorFlow.js 应用 WebGL 技术在浏览器端的 TF 版本；TensorFlow Lite (for Android) 和 Swift for TensorFlow; TensorFlow Extended(TFX) 端到端的机器学习平台；TensorFlow Hub有助于发现、发布和使用机器学习模型中重复的部分；TensorFlow Probability是用于概率推理和统计分析的库；Tensor to Tensor 深度学习模型库与数据集, XLA（加速线性代数）用于优化 TensorFlow 计算，等等。</p>
-
 <p>接着是对 TensorFlow Lite 的简介:在移动和嵌入式设备上运行机器学习的解决方案。它的优势有：性能高（速度快，没有精度损失）、低延迟（优化的浮点和定点 CPU 内核）、低容量（依赖，量化，注册）、拓展性强（Android，iOS）、加速、工装等。目前 Google 已在自家的这些产品上使用：Google Assistant， Gboard，Gmail，Google photo，nest 等。TF Lite 主要运用于 Android, iOS 和单片机嵌入式 Linux 等平台上。</p>
-
 <p>再下来介绍了 TensorFlow Lite 的特性，包括支持一系列核心运算符，包括量化和浮点运算，结合融合激活与偏量，针对移动平台调整提高性能和量化精度、基于 Flat Buffers 定义了一种新的模型文件格式、拥有一个新的移动优化解释器来保证应用程序的精简和快速、尺寸小，支持 Oreo 以上版本系统的硬件加速等。</p>
-
-<p><img src="https://ws1.sinaimg.cn/large/9f1137b1gy1fxkizpmzrsj23342bce81.jpg" alt="tensorflow lite 特性" /></p>
-
+<p><img src="https://ws1.sinaimg.cn/large/9f1137b1gy1fxkizpmzrsj23342bce81.jpg" alt="tensorflow lite 特性"></p>
 <p>再接下来就是一些移动端 AI 硬件的最新进展，包括 Edge TPU, Cloud IoT Edge，以及 AI 在图像识别上的应用。</p>
-
-<h2 id="使用神经网络-tensorflow-理解视频信息-郑炜-ml-gde">使用神经网络（TensorFlow）理解视频信息（郑炜，ML GDE）</h2>
-
-<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fxkj5hiq9ij23342bc7wi.jpg" alt="使用神经网络理解视频信息" /></p>
-
+<h2 id="使用神经网络tensorflow理解视频信息郑炜ml-gde">使用神经网络（TensorFlow）理解视频信息（郑炜，ML GDE）</h2>
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fxkj5hiq9ij23342bc7wi.jpg" alt="使用神经网络理解视频信息"></p>
 <p>第三场是 TensorFlow 在理解视频信息、机器视觉方向的应用。主讲人是 Machine Learning 方向的专家郑炜老师。</p>
-
 <p>首先介绍了什么是机器视觉，通俗地说就是一种理解图片、视频内容的技术。原理是将原始图片处理成数字信息，在数字信息的基础上进行其他任务。</p>
-
 <p>机器视觉的重要基础是定义特征，人为定义的如拐角、边缘、颜色、亮度，是简易特征（ORB特征点检测）。</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkkujtgk4j23342bc7wh.jpg" alt="" /></p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkkvv8q11j23342bckjl.jpg" alt="" /></p>
-
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkkujtgk4j23342bc7wh.jpg" alt=""></p>
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkkvv8q11j23342bckjl.jpg" alt=""></p>
 <p>紧接着主讲人解释了为什么需要理解视频信息：以 youtube 为例，理解视频内容有助于内容和广告的推送；视频标题、标签、简介等信息可能并不准确，理解视频内容有助于正确分类视频。</p>
-
 <p>机器视觉理解视频内容仍然是挑战，深度学习是视频理解应用的重要基石。</p>
-
 <p>最后讲了如何用 TensorFlow 进行视频信息理解的解决方案，大致思路是用CNN（卷积神经网络）处理每一帧的画面，每一秒的音频，提取帧级别的特征，然后是分享了一些方法模型，如 Deep Bag of Frames(DBoF), 对视频帧随机取样，用神经网络进行提取、池化后再用分类器归类；长短期记忆循环神经网络(LSTM)，合并音频信息与视频信息，使用 RNN-RNN(循环神经网络)进行分类；以及 NetVLAD* 可训练的池化方式，用可训练的中心点来描述特征，类似梯度可导的 kNN/聚类模型，将时间轴上的时间特征进行聚类再分类。</p>
-
 <p>（因为没怎么接触过 Python 和 TensorFlow，所以从这场开始就是半懂半懵的状态 orz）</p>
-
-<h2 id="深度学习助力动漫制作-厦门大学李卓儒博士">深度学习助力动漫制作（厦门大学李卓儒博士）</h2>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxkl9ua91ej23342bce81.jpg" alt="" /></p>
-
-<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fxklakf0a8j23342bchdu.jpg" alt="" /></p>
-
+<h2 id="深度学习助力动漫制作厦门大学李卓儒博士">深度学习助力动漫制作（厦门大学李卓儒博士）</h2>
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxkl9ua91ej23342bce81.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fxklakf0a8j23342bchdu.jpg" alt=""></p>
 <p>接下来一场是动漫制作与人工智能深度学习相关的，主讲人是厦门大学化学系（对，你没有看错，化学系）的李卓儒博士。先从动画及漫画相关的深度学习研究和应用讲起，内容涵盖最早期的 Google DeepDream, 然后是线条处理（草稿简化、线稿补漏、线稿优化）的几家实现；角色设计生成（ <a href="https://make.girls.moe">https://make.girls.moe</a> ）和色彩绘制 (paintschaniner, style2paint&hellip;)</p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxklbaq7k8j23342bc4qr.jpg" alt="" /></p>
-
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxklbaq7k8j23342bc4qr.jpg" alt=""></p>
 <p>李老师自己制作了一个基于 TensorFlow 的动漫制作辅助工具：</p>
-
-<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxkldpu8g9j23342bc4qp.jpg" alt="" /></p>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxklg0hfnrj23342bc7wh.jpg" alt="" /></p>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxklgt5fehj23342bcnpd.jpg" alt="" /></p>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxklh36fqmj23342bchdt.jpg" alt="" /></p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxklheobovj23342bckjl.jpg" alt="" /></p>
-
+<p><img src="https://wx4.sinaimg.cn/large/9f1137b1gy1fxkldpu8g9j23342bc4qp.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxklg0hfnrj23342bc7wh.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fxklgt5fehj23342bcnpd.jpg" alt=""></p>
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxklh36fqmj23342bchdt.jpg" alt=""></p>
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxklheobovj23342bckjl.jpg" alt=""></p>
 <h2 id="视觉-ai-从-2d-到-3d-深图智服">视觉 AI 从 2D 到 3D (深图智服)</h2>
-
 <p>最后一场技术交流会是深图智服公司的首席架构师带来的还是有关机器视觉的演讲。主要涵盖了2D视觉AI、3D人脸识别和3D场景构建几方面的内容。</p>
-
 <p>2D 视觉 AI 主要包含检测（detection，找出感兴趣物体在图像中出现的位置)(挑战：密集，遮挡，高精度，实时性)、关键点定位（用于姿态估计，校准，随摄像机生成人物装饰等；关键点定位主要以精准为主，数量越多可以做更多的探测内容）、分类与识别（如对人面部表情进行分类）、对图片进行编码（抽取特征向量）、跟踪（避免频繁检测，提高吞吐率）、利用视频相邻帧估计物体下一帧的位置、获取物体运动轨迹等内容。</p>
-
 <p>3D 人脸识别意在解决传统2D人脸识别的问题：人脸的相似性，人脸的易变性，主要具有如下的优势：</p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxko6vzjpyj23342bce81.jpg" alt="3D人脸识别的优势" /></p>
-
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxko6vzjpyj23342bce81.jpg" alt="3D人脸识别的优势"></p>
 <p>识别的常用方法有：利用 3D 技术将目标旋转到同角度之后进行 2D 识别；获取 3D 目标的多个角度 2D 图像之后进行 2D 识别；3D CNN（卷积神经网络），以及以上多种方式的融合等。</p>
-
 <p>3D 场景构建部分首先讨论了 3D 和 2D 的区别：</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxko9bo467j23342bc7wh.jpg" alt="3D vs 2D" /></p>
-
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxko9bo467j23342bc7wh.jpg" alt="3D vs 2D"></p>
 <p>3D信息的获取手段主要有双目或多目摄像头，结构光，雷达等；主要应用有全景图像（又被称为3D实景），无人机航拍，遥感图像，天文影像，360度全景相机等。</p>
-
 <p>拼接 3D 图像的常用方法：基于特征点的匹配</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkoam0rfkj23342bcb29.jpg" alt="基于特征点的匹配" /></p>
-
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkoam0rfkj23342bcb29.jpg" alt="基于特征点的匹配"></p>
 <p>最后科普了 SLAM(Simutaneous Localization and Mapping) 的方法（机器在未知的环境中用传感器数据行进，对环境建立地图，同时利用地图对机器进行定位，例如应用在扫地机器人上对房间进行探索）和 RGB-D SLAN 工作流的实例。</p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkoc83ddxj23342bc7wh.jpg" alt="RGB-D SLAN" /></p>
-
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkoc83ddxj23342bc7wh.jpg" alt="RGB-D SLAN"></p>
 <p>至此五场技术交流会全部完成。听完之后觉得虽然有一些部分因为没有接触过觉得不是很懂，但是也感受到了这部分内容神奇的吸引力。这些交流会解决了我以往对某些技术的疑问，并且为我今后的探索指引了一个大致的方向，可以说是收货颇丰了。</p>
-
 <h1 id="0x03-codelab">0x03 CodeLab</h1>
-
 <p>GDG DevFest 的最重要的活动就是 CodeLab 了，具体就是参与者带上电脑事先配好环境，然后讲师通过一个简单的入门实例来引导你学习某个主题。本场的 CodeLab 主题主要是 Kotlin in Android, TensorFlow Lite 应用, TensorFlow 应用神经网络模型训练和 TensorFlow 在动漫制作的应用。</p>
-
 <p>我只参加了 Build your first Android App with Kotlin 和 TensorFlow 神经网络模型训练两场 CodeLab（因为时间冲突的原因）。</p>
-
 <h2 id="build-your-first-android-app-with-kotlin">Build your first Android App with Kotlin</h2>
-
 <p>这是由厦门大学信息科学与技术学院的吴德文老师主讲的使用 Kotlin 语言开发一个 Android App 的入门。内容主要涉及如何配置 Android Studio, 新建一个 Android 项目，然后是 Kotlin 的基本语法和与 Android 的结合，Java 与 Kotlin 的对比；通过一个计数器的实例带领参与者进入了 Kotlin Android App 开发的世界。值得一提的是在这场 CodeLab 偶然结识了坐在我旁边的来自翔安校区的研究生学长，同样也是对开发很有兴趣的。</p>
-
-<p>可以在 Google 的 codelabs 官网找到这个项目的资料：<a href="https://codelabs.developers.google.com/codelabs/build-your-first-android-app-kotlin/index.html?index=..%2F..devfest18#0">https://codelabs.developers.google.com/codelabs/build-your-first-android-app-kotlin/index.html?index=..%2F..devfest18#0</a></p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkolmxcjqj23342bc4qr.jpg" alt="" /></p>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxkolyf8l7j23342bc7wj.jpg" alt="" /></p>
-
-<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fxkom93087j23342bc7wj.jpg" alt="" /></p>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkomhm8yvj22bc334kjl.jpg" alt="" /></p>
-
+<p>可以在 Google 的 codelabs 官网找到这个项目的资料：https://codelabs.developers.google.com/codelabs/build-your-first-android-app-kotlin/index.html?index=..%2F..devfest18#0</p>
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkolmxcjqj23342bc4qr.jpg" alt=""></p>
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fxkolyf8l7j23342bc7wj.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fxkom93087j23342bc7wj.jpg" alt=""></p>
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1fxkomhm8yvj22bc334kjl.jpg" alt=""></p>
 <h2 id="神经网络的实际应用-tf-实现">神经网络的实际应用 TF 实现</h2>
-
 <p>这是由郑炜老师主讲的。因为吴德文老师的场拖了一会时间，所以我到场的时候这一场 CodeLab 已经开始了。这一场 CodeLab 的主要内容是基于 TensorFlow 和 StarSpace 构建一个神经网络模型，使用 Stackoverflow 的问题集进行训练，然后得到一个模型能够根据你给定的一句话或者一个问题判断这句话/问题属于哪种编程语言。</p>
-
-<p>相关的参考资料和讲稿、代码可以在这里找到：<a href="https://github.com/IshootLaser/NLP-codelab">https://github.com/IshootLaser/NLP-codelab</a></p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkoosqg47j23342bc4qs.jpg" alt="" /></p>
-
+<p>相关的参考资料和讲稿、代码可以在这里找到：https://github.com/IshootLaser/NLP-codelab</p>
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fxkoosqg47j23342bc4qs.jpg" alt=""></p>
 <h1 id="0x04-总结">0x04 总结</h1>
-
 <p>下午三点左右，走出了 GDG DevFest 的会场。回顾下来，这一场开发者的盛会确实让我开拓了视野，也让我开始准备尝试了很多我一直想过但是奈何一直没有去动手的东西，比如 Python, Anaconda, TensorFlow 和 Kotlin.</p>
-
 <p>由于在大会上做笔记不是很方便和不完全，因此上面的内容可能有错误或者不周，敬请谅解。</p>
-
 <p>总之，吹爆咕果和各位辛苦的讲师们。希望明年还能有机会参加 GDG DevFest 2019.</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2018-11-25</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/">
+                    Next<br>BeagleBone Black 开发入门实验
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/golang-note/">
+                    Previous<br>Golang 学习笔记 （1）
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

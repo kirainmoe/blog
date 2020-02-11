@@ -1,556 +1,1441 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="BeagleBone Black 开发入门实验 - 宇宙よりも遠い場所" property="og:title">
-<title>BeagleBone Black 开发入门实验 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>BeagleBone Black 开发入门实验</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">December 23, 2018</h2>
-      <h1 class="title">BeagleBone Black 开发入门实验</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/beaglebone">beaglebone</a>
-    
-        <a class="button is-link" href="/tags/tutorial">tutorial</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……</p>
-
-<p>以下内容<s>为图省事大量地摘编自我的实验报告</s>。</p>
-
-<h1 id="使用脚本程序控制-beaglebone-black-自带的-led-灯">使用脚本程序控制 BeagleBone Black 自带的 LED 灯</h1>
-
-<h2 id="实现目标及所需硬件资源">实现目标及所需硬件资源</h2>
-
-<p>BeagleBone Black 自带 4 个 LED 灯（分别是 USR0, USR1, USR2, USR3），本次实验的实现目标是通过 Bash 脚本语言控制这四个 LED 灯，按照人为定义的规则实现亮灭。</p>
-
-<h2 id="软件流程">软件流程</h2>
-
-<p>BeagleBone Black 的 LED 灯设备驱动文件位于 /sys/class/leds 下，在该目录下执行 ls 命令可以看到四个灯的控制文件分别所对应的目录为 beaglebone:green:usr0-3，进入其中一个目录，可以看到一些文件，这些文件各自有各自的用途：</p>
-
-<ol>
-<li><p>trigger可以用来指定 LED 的触发状态，可以通过 cat 命令查看当前 LED 由哪个设备或事件触发；前文已知第三个 LED 灯指示的是 CPU 的使用状态，如在 beaglebone:green:usr2 目录下执行 cat trigger 命令，返回的结果说明 LED3 的出发状态由 cpu0 所控制。对 trigger 写入内容则可以更改 LED的触发规则：例如执行 echo none &gt; trigger 对 trigger 写入 “none”,则会断开对应 LED 与其它设备的连接；执行 echo timer &gt; trigger对 trigger 写入 “timer”,则将当前 LED 设置为延时触发模式。</p></li>
-
-<li><p>brightness 文件用于控制当前 LED 灯的亮度。若执行 echo 0 &gt; brightness 将0写入亮度文件中，那么对应 LED 灯就会熄灭；相反执行 echo 1 &gt; brightness 将 1 写入亮度文件中，那么对应 LED 灯就会亮起。</p></li>
-
-<li><p>如果执行 echo timer &gt; trigger向 trigger 中写入 “timer”, 那么当前 LED 的触发模式会变为延时触发，此时当前目录下会多出 delay_off 和 delay_on 两个控制文件，分别控制该 LED 熄灭和亮起的延迟时间，单位为 ms.</p></li>
-
-<li><p>如果执行 echo gpio &gt; trigger 向 trigger 中写入 “gpio”，那么当前 LED 的触发方式会由 GPIO 的电平状态决定，此时当前目录下会多出 desired_brightness, gpio 两个文件，可能代表期望亮度和监听的 GPIO 编号。</p></li>
-</ol>
-
-<p>因为本次实验我们只控制自带的 LED 灯而不涉及 GPIO 的操作，因此程序的流程如下：</p>
-
-<ol>
-<li><p>首先对四个 LED 灯对应的 trigger 写入 none, 切断四个 LED 灯与其它设备的关联；</p></li>
-
-<li><p>写入一个 [0, 255] 的整数到 brightness 文件中，控制 LED 灯的亮度；使用 Bash 函数控制 LED 灯的亮灭规则；</p></li>
-
-<li><p>再对四个 LED 灯对应的 trigger 写入 timer，更改 LED 灯为延时触发模式；</p></li>
-
-<li><p>分别设置四个 LED 灯的 brightness 和 delay_on, delay_off 控制 LED 灯的亮灭规则。</p>
-
-<h2 id="关键代码分析及现象结果">关键代码分析及现象结果</h2></li>
-</ol>
-
-<p>以下 Bash 程序实现了让 BeagleBone Black 的四个指示灯一个接一个亮起、熄灭的功能：</p>
-
-<pre><code class="language-bash">#!/bin/bash
-# reset leds' trigger
-echo &quot;Setting LEDs trigger to none...&quot;
-for i in {0..3}
-do
-    echo none &gt; /sys/class/leds/beaglebone\:green\:usr$i/trigger
-done
-
-# turn on leds, controlling by sleep
-echo &quot;Turning on/off LEDs one after another...&quot;
-while :
-do
-    # turn on leds
-    for i in {0..3}
-    do
-        echo 1 &gt; /sys/class/leds/beaglebone\:green\:usr$i/brightness
-        sleep 0.5s      # pause for 500 milliseconds
-    done
-
-    sleep 0.5s
-
-    # turn off leds
-    for i in {3..0}
-    do
-        echo 0 &gt; /sys/class/leds/beaglebone\:green\:usr$i/brightness
-        sleep 0.5s
-    done
-    sleep 0.5s
-done
-</code></pre>
-
-<p>代码分析：首先将 LED 的触发器设置为 “none” 断开 LED 与其它硬件设备间的关联，然后不断执行两段循环：第一段循环会将编号为 0-3 的 LED 分别亮起；每亮起一颗 LED 后，sleep 命令会使得程序暂停 0.5s，然后再亮起下一颗 LED. 第二段循环则每隔 0.5s 按照 3, 2, 1, 0 的顺序熄灭一颗 LED. 一轮操作完成后，四颗 LED 回到全部熄灭的初始状态，然后重复上述步骤。</p>
-
-<p>除了使用系统自带的 sleep 命令以外，还可以设置 delay_on 和 delay_off 来控制延时亮灭。以下 Bash 程序实现了让四颗 LED 灯按不同的间隔时间分别闪烁的功能：</p>
-
-<pre><code class="language-bash">#!/bin/bash
-#reset leds' trigger
-for i in {0..3}
-do
-    echo none &gt; /sys/class/leds/beaglebone\:green\:usr$i/trigger
-done
-
-# set triggers to 'timer'
-for i in {0..3}
-do
-    echo timer &gt; /sys/class/leds/beaglebone\:green\:usr$i/trigger
-done
-
-# set delay time for triggers
-for i in {0..3}
-do
-    # calculate current led's delay time
-    base=200
-    multiply=`expr $multiply + 1`
-    delaytime=`expr $multiply \* $base`
-    echo $delaytime &gt; /sys/class/leds/beaglebone\:green\:usr$i/delay_on
-    echo $delaytime &gt; /sys/class/leds/beaglebone\:green\:usr$i/delay_off
-done
-</code></pre>
-
-<p>代码分析：首先将 LED 的触发器设置为 “none” 断开 LED 与其它硬件设备间的关联，然后再将其设置为 “time”设置 LED 的触发规则为延时模式，此时在对应 LED 的目录下会多出 delay_on, delay_off 两个文件。接下来执行一个循环，循环体内首先根据当前操作的 LED 的编号 (0, 1, 2, 3) 计算对应的间隔时间（上述代码中，对于编号为 i 的 LED，亮起和熄灭的间隔时间定义为 \(\left(i+1\right)\times200 ms\)，再将这个间隔时间写入到 delay_on 和 delay_off 两个文件中。执行该程序的现象：四颗 LED 分别以 200, 400, 600, 800ms 的亮灭间隔闪烁。</p>
-
-<h1 id="使用c语言程序控制外接-led-设备">使用C语言程序控制外接 LED 设备</h1>
-
-<h2 id="实现目标和所需硬件资源">实现目标和所需硬件资源</h2>
-
-<p>实现目标：外接一个三色 LED 设备，使用 C 语言程序控制三颗 LED 灯闪烁；并实现点击外接 LED 上的按钮，控制 LED 灯的闪烁。</p>
-
-<p>所需硬件资源：一块外接 LED, 杜邦线若干。</p>
-
-<h2 id="beaglebone-black-的-gpio-和引脚接口">BeagleBone Black 的 GPIO 和引脚接口</h2>
-
-<p>GPIO (General Purpose Input Output, 通用输入/输出接口)，又称总线拓展器，是一个能用于输入/输出二进制控制信号的接口，可用于 BeagleBone Black 与外接设备之间的数据交互。每个 GPIO 接口可以被人为设定为 Input 和 Output 两种模式，分别用于接收外接设备输入的信号，或向外接设备输出信号。GPIO 的值可以为 0 或 1，分别代表低电平和高电平。</p>
-
-<p>与自带 LED 相同，对 GPIO 的读写和操作，同样是通过操作其对应的设备文件来实现。GPIO 的设备文件位于 /sys/class/gpio 下。执行命令 ls /sys/class/gpio，可以看到该目录具有的文件信息.BeagleBone Black 具有四组 GPIO (GPIO0-3), 每组下分别有若干个 GPIO 接口。对于每个接口，都具有一个 Name 属性(GPIOx_y, x 为该接口的所属分组，y 为一个整数)、Head_pin 属性（Px_y, Px 表示该接口位于 P8/P9 排引脚上，y表示该接口在引脚上的编号）、GPIO No.（GPIO 接口编号）。其中，Head_pin 用于确定该接口在 BBB 上的位置，确保外接设备连接到了正确的接口；GPIO No. 用于在 Linux 下通过此编号操作对应的 GPIO 接口，计算 GPIOx_y 编号的规则为 \((x\ \times32\ +\ y)\)。</p>
-
-<p>以上属性都可以在 BeagleBone Black 的引脚速查表上找到。需要注意，并不是所有的 GPIO 口都可用，有些 GPIO 口可能已经被占用。</p>
-
-<p>BeagleBone Black 操作 GPIO 口的方法：当我们需要操作 GPIO 口时，首先需要根据编号导出 (export) 所需 GPIO 口的设备文件。导出 GPIO 接口设备文件的方法是执行如下命令：echo gpio_no &gt; /sys/class/gpio/export，其中 gpio_no 是所需 GPIO 的编号 (GPIO No.)。执行以上命令后，在 /sys/class/gpio 目录下会多出一个名为 gpio + 编号的目录，该目录内即为控制所需 GPIO 口的设备文件。
-例如，若需要使用位于 P8 引脚排上的 11 号接口对应的 GPIO1_13，其对应的 GPIO No. 为45，则执行：echo 45 &gt; /sys/class/gpio/export . 此时， /sys/class/gpio 目录下会产生一个名为 gpio45 的目录。</p>
-
-<p>执行 cd /sys/class/gpio/gpio45 &amp;&amp; ls，查看该目录下的文件；本次实验中我们只涉及其中两个设备文件：direction 和 value。direction 的值可以为 in/out，用于设置当前 GPIO 口的数据流动方向； value 的值可以为 0/1, 用于设置当前 GPIO 口是高电平还是低电平。</p>
-
-<p>如果不再使用一个 GPIO 接口，可以使用 echo gpio_no &gt; /sys/class/gpio/unexport 来释放这个 GPIO 接口。</p>
-
-<h2 id="硬件连线">硬件连线</h2>
-
-<p>首先分析外接设备三颗 RGB LED灯和按键对应的电路图：</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fygjaiz89pj207q07qmxg.jpg" alt="电路图" /></p>
-
-<p>根据LED的电路图可知，RGB LED 灯一端与 VDD(电源电压)相连，为高电平；另一端是三种颜色对应的引脚 P26, P27, P28. 只需将这三个引脚连接到 BeagleBone Black 的三个 GPIO 口上，设置对应的 GPIO 为低/高电平即可点亮/熄灭某个 LED.</p>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fygjavayzuj20jn06tmy7.jpg" alt="按键电路图" /></p>
-
-<p>本次实验以选择按键 K2 为例，将 P22 引脚连接到 BeagleBone Black 的一个 GPIO 口上，则当按下 K2 后，对应的 GPIO 口会变为高电平，此时 GPIO 的 value 值为 1；松开后会变为低电平，GPIO 的 value 值为 0.
-本次实验选择 BeagleBone 的 GPIO 编号为 26(位于P8_14), 48(位于P9_15), 49(位于P9_17), 60(位于P9_12)，分别连接三个 LED 引脚 P26, P27, P28 和 K2 按键引脚 P22；此外还需要连接 LED 的VDD到 BeagleBone Black 的 DC3.3V (位于P9_03/04) 、连接LED的GND到BeagleBone 的 GND(位于P9_01)。</p>
-
-<h2 id="实现流程">实现流程</h2>
-
-<ol>
-<li>导出(export) 本实验需要使用的四个 GPIO；</li>
-<li>编写 C 语言程序，从控制台读入参数，设置 LED 工作模式（亮起、熄灭、闪烁）；</li>
-<li>通过 C 语言的文件操作函数读写对应的设备文件，实现对 LED 和按键的控制。</li>
-</ol>
-
-<h2 id="关键代码分析及现象结果-c-实现">关键代码分析及现象结果 (C++ 实现)</h2>
-
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#define GPIO_PATH &quot;/sys/class/gpio/&quot;
-int gpio_ports[] = {60, 48, 49, 26};
-int gpio_count = 4;
-/**
- * 导出对应编号的 GPIO 设备文件
- * @param number 要导出的 GPIO 编号
- */
-void export_gpio(int number) {
-    // do not use `w+` or you will meet segmatation fault for permission denied
-    FILE *f = fopen(GPIO_PATH&quot;export&quot;, &quot;w&quot;);
-    printf(&quot;%s&quot;, GPIO_PATH&quot;export&quot;);
-    fprintf(f, &quot;%d&quot;, number);
-    printf(&quot;gpio port %d exported.\n&quot;, number);
-    fclose(f);
-}
-/**
- * 熄灭 RGB, 原理是设置 GPIO 为高电平
- * @param index RGB所对应的GPIO编号
- */
-void stop_light(int index) {
-    char path[200];
-    sprintf(path, &quot;%sgpio%d/value&quot;, GPIO_PATH, index);
-
-    FILE *f = fopen(path, &quot;w&quot;);
-    fprintf(f, &quot;1&quot;);
-    fclose (f);
-    printf(&quot;stopping light at gpio %d...\n&quot;, index);
-}
-/**
- * 亮起 RGB, 原理是设置 GPIO 为低电平
- * @param index    RGB所对应的GPIO编号
- * @param need_out 是否需要先设置 direction 为 out
- */
-void start_light(int index, bool need_out) {
-    char path[200];
-    if (need_out) {
-        sprintf(path, &quot;%sgpio%d/direction&quot;, GPIO_PATH, index);
-    
-        // set direction to out
-        FILE *f = fopen(path, &quot;w&quot;);
-        fprintf(f, &quot;out&quot;);
-        fclose(f);
-        printf(&quot;setting direction to 'out' for gpio %d...\n&quot;, index);
-    }
-    memset(path, 0, sizeof path);
-    FILE *f;
-    sprintf(path, &quot;%sgpio%d/value&quot;, GPIO_PATH, index);
-    f = fopen(path, &quot;w&quot;);
-    fprintf(f, &quot;0&quot;);
-    fclose(f);
-    printf(&quot;led connected at gpio %d should be lighted now.\n&quot;, index);
-}
-/**
- * 闪烁 RGB LED
- * @param limit 闪烁次数限制，-1 表示无限
- */
-void flash_lights(int limit) {
-    printf(&quot;show time!\n&quot;);
-    long long cnt = 0LL;
-    while (1) {
-        // before flash, stop all lights
-        for (int i = 0; i &lt; gpio_count - 1; i++)
-            stop_light(gpio_ports[i]);
-        usleep(500000);
-        for (int i = 0; i &lt; gpio_count - 1; i++) {
-            start_light(gpio_ports[i], cnt == 0);
-            usleep(200000);
-        }
-        for (int i = 0; i &lt; gpio_count - 1; i++) {
-            stop_light(gpio_ports[i]);
-            usleep(200000);
-        }
-        cnt++;
-        if (cnt &gt; limit &amp;&amp; limit != -1)
-            break;
-    }
-}
-int main(int argc, char* argv[]) {
-    // 判断参数个数
-    if (argc != 2) {
-        printf(&quot;Usage: led [on/off/flash/keymode]\n&quot;);
-        exit(0);
-    }
-    // 导出 GPIO 设备文件
-    for (int i = 0; i &lt; gpio_count; i++)
-        export_gpio(gpio_ports[i]);
-    // 根据 argv[1] 参数内容不同，执行不同的操作
-    if (strcmp(&quot;on&quot;, argv[1]) == 0) {
-        for (int i = 0; i &lt; gpio_count - 1; i++)
-            start_light(gpio_ports[i], true);       // 亮灯
-    } else if (strcmp(&quot;off&quot;, argv[1]) == 0) {
-        for (int i = 0; i &lt; gpio_count - 1; i++)
-            stop_light(gpio_ports[i]);              // 灭灯
-    } else if (strcmp(&quot;flash&quot;, argv[1]) == 0) {
-        flash_lights(-1);                           // 闪烁
-    } else if (strcmp(&quot;keymode&quot;, argv[1]) == 0) {
-        // 按键模式，点按按键闪烁，松开按键停止
-        for (int i = 0; i &lt; gpio_count - 1; i++)
-            stop_light(gpio_ports[i]); 
-        // 设置 direction 为 in
-        char path[200];
-        sprintf(path, &quot;%sgpio%d/direction&quot;, GPIO_PATH, gpio_ports[3]);
-        FILE *f = fopen(path, &quot;w&quot;);
-        fprintf(f, &quot;in&quot;);
-        fclose(f);
-        // set path to stream
-        memset(path, 0, sizeof path);
-        sprintf(path, &quot;%sgpio%d/value&quot;, GPIO_PATH, gpio_ports[3]);
-        char a[10];
-        bool isFlashing = false, changed = false;
-        while (1) {
-            f = fopen(path, &quot;r+&quot;);
-            fscanf(f, &quot;%s&quot;, a);
-            // 如果接收到按键信号，且当前仍在闪烁，则停止闪烁
-            if (a[0] == '1' &amp;&amp; isFlashing) {
-                isFlashing = false;
-                printf(&quot;stopped flash:) farewell \n&quot;);
-                for (int i = 0; i &lt; gpio_count - 1; i++)
-                    stop_light(gpio_ports[i]);
-                sleep(2);
-            }
-            // 如果接收到按键型号，且当前没有闪烁，则开始闪烁
-            else if (a[0] == '1' &amp;&amp; !isFlashing) {
-                isFlashing = true;
-                flash_lights(1);
-            }
-            // 如果没有接收到按键信号，则继续闪烁
-            else if (isFlashing) {
-                flash_lights(1);
-            }
-            usleep(100000);
-        }
-    }
-    return 0;
-}
-</code></pre>
-
-<p>在终端执行编译命令：g++ -o led led.cpp，编译上述程序，然后执行：</p>
-
-<pre><code class="language-bash">./led on      # 亮起LED
-./led off     # 熄灭LED
-./led flash   # 闪烁LED
-./led keymode # 按键模式，按下闪烁，再按熄灭
-</code></pre>
-
-<h1 id="物联网概念及其在-beaglebone-black-下的实现">物联网概念及其在 BeagleBone Black 下的实现</h1>
-
-<h2 id="beaglebone-black-实现物联网的几种架构">BeagleBone Black 实现物联网的几种架构</h2>
-
-<p>（1）BeagleBone Black 作为 Web 服务器：用户可以通过浏览器发送 HTTP 请求到 BeagleBone Black 的 Web 服务器上，获取 BBB 的设备信息或与其相连的传感器的信息；</p>
-
-<p>（2） BeagleBone Black 作为 Web 客户端：可以编写程序使 BeagleBone Black 与其它 Web 服务器进行通信；</p>
-
-<p>（3）TCP 通信：一台作为 TCP 服务端，一台作为 TCP 客户端，两者间可以通过 Socket 发送请求、接收请求；</p>
-
-<p>（4）通过PaaS（Platform as a Service, 平台即服务）：BeagleBone Black 上的传感器信息可以通过 HTTP/RESTful API 与 PaaS 平台通信，用户从浏览器端访问该 PaaS 服务器即可获取来自 BBB 的信息。</p>
-
-<h2 id="动态-cgi-页面实现">动态 CGI 页面实现</h2>
-
-<p>CGI (通用网关接口，Common Gateway Interface) 是Web 服务器运行时外部程序的规范,按CGI 编写的程序可以扩展服务器功能。CGI 应用程序能与浏览器进行交互,还可通过数据库API 与数据库服务器等外部数据源进行通信,从数据库服务器中获取数据。格式化为HTML文档后，发送给浏览器，也可以将从浏览器获得的数据放到数据库中。几乎所有服务器都支持CGI,可用任何语言编写CGI,包括流行的C、C ++ 等。</p>
-
-<p>在 BeagleBone Black 中，利用 CGI 可以实现 Web 页面与物理环境的交互：如读取传感器，驱动 LED 等。CGI 脚本的位置默认位于 /usr/lib/cgi-bin 中，可以通过 Apache 2 服务器访问，地址是 <a href="http://192.168.7.2:8000/cgi-bin/">http://192.168.7.2:8000/cgi-bin/</a> .</p>
-
-<p>如，在该目录下创建一个 CGI 脚本页面，使我们访问该页面时，显示 BeagleBone Black 的运行时间、用户、负载等信息。在 /usr/lib/cgi-bin 创建文件 info.cgi, 插入以下代码：</p>
-
-<pre><code class="language-bash">#!/bin/bash
-echo &quot;Content-Type: text/html&quot;
-echo &quot;&quot;
-echo &quot;&lt;!doctype html&gt;&quot;
-echo &quot;&lt;html&gt;&quot;
-echo &quot;&lt;head&gt;&quot;
-echo &quot;&lt;meta charset=\&quot;utf-8\&quot;&gt;&quot;
-echo &quot;&lt;title&gt;BeagleBone Black System Info&lt;/title&gt;&quot;
-echo &quot;&lt;/head&gt;&quot;
-echo &quot;&lt;body&gt;&quot;
-echo &quot;&lt;h1&gt;BeagleBone Black system info&lt;/h1&gt;&quot;
-echo &quot;Host&quot; 
-hostname
-echo &quot; has been up &quot;
-uptime
-echo &quot;&lt;/body&gt;&quot;
-echo &quot;&lt;/html&gt;&quot;
-</code></pre>
-
-<p>执行命令：chmod +x /usr/lib/cgi-bin/info.cgi, 然后浏览器访问页面 <a href="http://192.168.7.2:8080/cgi-bin/info.cgi">http://192.168.7.2:8080/cgi-bin/info.cgi</a> 即可。</p>
-
-<p>CGI 脚本还可以调用 C/C++ 程序，只需在脚本中调用目标程序的路径即可，目标程序的标准输出则会被转发到浏览器中。</p>
-
-<h1 id="beaglebone-black-与-windows-宿主机共享网络">BeagleBone Black 与 Windows 宿主机共享网络</h1>
-
-<p>让 BeagleBone Black 连接网络。可以直接将网络电缆连接到 BeagleBone Black 的 RJ45 接口上，或者使用 USB 与宿主机共享网络。本实验的宿主机为 Windows 10, 与 BeagleBone Black 共享网络需要进行如下操作：</p>
-
-<p>Windows 下：安装 BBB 的驱动，设置可访问互联网的网络适配器与 BeagleBone Black 共享网络，如宿主机与互联网建立连接的网卡为 “WLAN”， BeagleBone Black 在系统中的适配器为“以太网3 (Linux USB Ethernet/RNDIS Gadget)”, 则需要：右击 WLAN =&gt; 属性 =&gt; 共享 =&gt; 允许其它用户通过此计算机的 Internet 连接来连接 =&gt; 勾选“以太网3”。再设置“以太网3”的 IP 地址为 192.168.7.1, 子网掩码为 255.255.255.0.</p>
-
-<p>Linux 下：执行命令 route add default gw 192.168.7.1 添加路由表；然后编辑/etc/resolv.conf，在文件头部加入：</p>
-
-<pre><code>nameserver 127.0.0.1 
-nameserver 8.8.8.8
-nameserver 114.114.114.114
-</code></pre>
-
-<p>配置 BBB 的 DNS 解析服务器。</p>
-
-<h1 id="beaglebone-实现实时温度检测系统">BeagleBone 实现实时温度检测系统</h1>
-
-<h2 id="目的及原理">目的及原理</h2>
-
-<p>使用 BeagleBone Black 连接德州仪器的 TMP75 传感器，通过 i2c 协议通信，数据交由运行在 BeagleBone Black 上的后端 Web Server 处理，在浏览器端显示温度数据、绘制温度曲线并进行交互，效果如图：</p>
-
-<p><img src="https://github.com/kirainmoe/beaglebone-temperature-monitor/blob/master/screenshot.png?raw=true" alt="screenshot" /></p>
-
-<p>原理：TMP75 采用 i2c 协议来发送温度数据。在 BeagleBone Black 的 Debian 系统下，我们可以运行 <code>i2cdetecct -y -r 1</code> 来获得 TMP75 的总线地址；当我们运行 <code>i2cget -y -f 1 0xyy</code>(0xyy 是从 <code>i2cdetect</code> 获取的总线地址) 时，会返回一个代表温度的十六进制数。我们可以整合这些操作到一个前后端方案中。</p>
-
-<h2 id="连线">连线</h2>
-
-<p>TMP75 V33 to BBB DC3.3V (P9_03)</p>
-
-<p>TMP75 GND to BBB GND (P9_01)</p>
-
-<p>TMP75 SCL to BBB SCL(P9_19, do not connect to 17 which is not occupied:) )</p>
-
-<p>TMP75 SDA to BBB SDA(P9_20, do not connect to 18 which is not occupied:) )</p>
-
-<p>TMP75 I/O to BBB GPIO(whichever has not been occupied is OK)</p>
-
-<h2 id="实现代码">实现代码</h2>
-
-<p>实现的方案代码已托管于 GitHub: <a href="https://github.com/kirainmoe/beaglebone-temperature-monitor">https://github.com/kirainmoe/beaglebone-temperature-monitor</a></p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6-beaglebone-black-%e8%87%aa%e5%b8%a6%e7%9a%84-led-%e7%81%af" v-on:click="closeDrawer" id="使用脚本程序控制-beaglebone-black-自带的-led-灯-nav">
+										 使用脚本程序控制 BeagleBone Black 自带的 LED 灯
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%8f%8a%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标及所需硬件资源-nav">
+										 实现目标及所需硬件资源
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%bd%af%e4%bb%b6%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="软件流程-nav">
+										 软件流程
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c" v-on:click="closeDrawer" id="关键代码分析及现象结果-nav">
+										 关键代码分析及现象结果
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8c%e8%af%ad%e8%a8%80%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%a4%96%e6%8e%a5-led-%e8%ae%be%e5%a4%87" v-on:click="closeDrawer" id="使用c语言程序控制外接-led-设备-nav">
+										 使用C语言程序控制外接 LED 设备
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%92%8c%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标和所需硬件资源-nav">
+										 实现目标和所需硬件资源
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-black-%e7%9a%84-gpio-%e5%92%8c%e5%bc%95%e8%84%9a%e6%8e%a5%e5%8f%a3" v-on:click="closeDrawer" id="beaglebone-black-的-gpio-和引脚接口-nav">
+										 BeagleBone Black 的 GPIO 和引脚接口
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%a1%ac%e4%bb%b6%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="硬件连线-nav">
+										 硬件连线
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="实现流程-nav">
+										 实现流程
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c-c-%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="关键代码分析及现象结果-c-实现-nav">
+										 关键代码分析及现象结果 (C&#43;&#43; 实现)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%89%a9%e8%81%94%e7%bd%91%e6%a6%82%e5%bf%b5%e5%8f%8a%e5%85%b6%e5%9c%a8-beaglebone-black-%e4%b8%8b%e7%9a%84%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="物联网概念及其在-beaglebone-black-下的实现-nav">
+										 物联网概念及其在 BeagleBone Black 下的实现
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-black-%e5%ae%9e%e7%8e%b0%e7%89%a9%e8%81%94%e7%bd%91%e7%9a%84%e5%87%a0%e7%a7%8d%e6%9e%b6%e6%9e%84" v-on:click="closeDrawer" id="beaglebone-black-实现物联网的几种架构-nav">
+										 BeagleBone Black 实现物联网的几种架构
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8a%a8%e6%80%81-cgi-%e9%a1%b5%e9%9d%a2%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="动态-cgi-页面实现-nav">
+										 动态 CGI 页面实现
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-black-%e4%b8%8e-windows-%e5%ae%bf%e4%b8%bb%e6%9c%ba%e5%85%b1%e4%ba%ab%e7%bd%91%e7%bb%9c" v-on:click="closeDrawer" id="beaglebone-black-与-windows-宿主机共享网络-nav">
+										 BeagleBone Black 与 Windows 宿主机共享网络
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-%e5%ae%9e%e7%8e%b0%e5%ae%9e%e6%97%b6%e6%b8%a9%e5%ba%a6%e6%a3%80%e6%b5%8b%e7%b3%bb%e7%bb%9f" v-on:click="closeDrawer" id="beaglebone-实现实时温度检测系统-nav">
+										 BeagleBone 实现实时温度检测系统
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%9b%ae%e7%9a%84%e5%8f%8a%e5%8e%9f%e7%90%86" v-on:click="closeDrawer" id="目的及原理-nav">
+										 目的及原理
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="连线-nav">
+										 连线
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e4%bb%a3%e7%a0%81" v-on:click="closeDrawer" id="实现代码-nav">
+										 实现代码
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6-beaglebone-black-%e8%87%aa%e5%b8%a6%e7%9a%84-led-%e7%81%af" v-on:click="closeDrawer" id="使用脚本程序控制-beaglebone-black-自带的-led-灯-nav">
+										 使用脚本程序控制 BeagleBone Black 自带的 LED 灯
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%8f%8a%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标及所需硬件资源-nav">
+										 实现目标及所需硬件资源
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%bd%af%e4%bb%b6%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="软件流程-nav">
+										 软件流程
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c" v-on:click="closeDrawer" id="关键代码分析及现象结果-nav">
+										 关键代码分析及现象结果
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8c%e8%af%ad%e8%a8%80%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%a4%96%e6%8e%a5-led-%e8%ae%be%e5%a4%87" v-on:click="closeDrawer" id="使用c语言程序控制外接-led-设备-nav">
+										 使用C语言程序控制外接 LED 设备
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%92%8c%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标和所需硬件资源-nav">
+										 实现目标和所需硬件资源
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-black-%e7%9a%84-gpio-%e5%92%8c%e5%bc%95%e8%84%9a%e6%8e%a5%e5%8f%a3" v-on:click="closeDrawer" id="beaglebone-black-的-gpio-和引脚接口-nav">
+										 BeagleBone Black 的 GPIO 和引脚接口
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%a1%ac%e4%bb%b6%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="硬件连线-nav">
+										 硬件连线
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="实现流程-nav">
+										 实现流程
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c-c-%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="关键代码分析及现象结果-c-实现-nav">
+										 关键代码分析及现象结果 (C&#43;&#43; 实现)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%89%a9%e8%81%94%e7%bd%91%e6%a6%82%e5%bf%b5%e5%8f%8a%e5%85%b6%e5%9c%a8-beaglebone-black-%e4%b8%8b%e7%9a%84%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="物联网概念及其在-beaglebone-black-下的实现-nav">
+										 物联网概念及其在 BeagleBone Black 下的实现
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-black-%e5%ae%9e%e7%8e%b0%e7%89%a9%e8%81%94%e7%bd%91%e7%9a%84%e5%87%a0%e7%a7%8d%e6%9e%b6%e6%9e%84" v-on:click="closeDrawer" id="beaglebone-black-实现物联网的几种架构-nav">
+										 BeagleBone Black 实现物联网的几种架构
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8a%a8%e6%80%81-cgi-%e9%a1%b5%e9%9d%a2%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="动态-cgi-页面实现-nav">
+										 动态 CGI 页面实现
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-black-%e4%b8%8e-windows-%e5%ae%bf%e4%b8%bb%e6%9c%ba%e5%85%b1%e4%ba%ab%e7%bd%91%e7%bb%9c" v-on:click="closeDrawer" id="beaglebone-black-与-windows-宿主机共享网络-nav">
+										 BeagleBone Black 与 Windows 宿主机共享网络
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#beaglebone-%e5%ae%9e%e7%8e%b0%e5%ae%9e%e6%97%b6%e6%b8%a9%e5%ba%a6%e6%a3%80%e6%b5%8b%e7%b3%bb%e7%bb%9f" v-on:click="closeDrawer" id="beaglebone-实现实时温度检测系统-nav">
+										 BeagleBone 实现实时温度检测系统
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%9b%ae%e7%9a%84%e5%8f%8a%e5%8e%9f%e7%90%86" v-on:click="closeDrawer" id="目的及原理-nav">
+										 目的及原理
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="连线-nav">
+										 连线
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e4%bb%a3%e7%a0%81" v-on:click="closeDrawer" id="实现代码-nav">
+										 实现代码
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    BeagleBone Black 开发入门实验
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2018-12-23 11:31
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/beaglebone">beaglebone</a>
+                                &nbsp;
+                            
+                                <a href="/tags/tutorial">tutorial</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……</p>
+<p>以下内容<!-- raw HTML omitted -->为图省事大量地摘编自我的实验报告<!-- raw HTML omitted -->。</p>
+<h1 id="使用脚本程序控制-beaglebone-black-自带的-led-灯">使用脚本程序控制 BeagleBone Black 自带的 LED 灯</h1>
+<h2 id="实现目标及所需硬件资源">实现目标及所需硬件资源</h2>
+<p>BeagleBone Black 自带 4 个 LED 灯（分别是 USR0, USR1, USR2, USR3），本次实验的实现目标是通过 Bash 脚本语言控制这四个 LED 灯，按照人为定义的规则实现亮灭。</p>
+<h2 id="软件流程">软件流程</h2>
+<p>BeagleBone Black 的 LED 灯设备驱动文件位于 /sys/class/leds 下，在该目录下执行 ls 命令可以看到四个灯的控制文件分别所对应的目录为 beaglebone:green:usr0-3，进入其中一个目录，可以看到一些文件，这些文件各自有各自的用途：</p>
+<ol>
+<li>
+<p>trigger可以用来指定 LED 的触发状态，可以通过 cat 命令查看当前 LED 由哪个设备或事件触发；前文已知第三个 LED 灯指示的是 CPU 的使用状态，如在 beaglebone:green:usr2 目录下执行 cat trigger 命令，返回的结果说明 LED3 的出发状态由 cpu0 所控制。对 trigger 写入内容则可以更改 LED的触发规则：例如执行 echo none &gt; trigger 对 trigger 写入 “none”,则会断开对应 LED 与其它设备的连接；执行 echo timer &gt; trigger对 trigger 写入 “timer”,则将当前 LED 设置为延时触发模式。</p>
+</li>
+<li>
+<p>brightness 文件用于控制当前 LED 灯的亮度。若执行 echo 0 &gt; brightness 将0写入亮度文件中，那么对应 LED 灯就会熄灭；相反执行 echo 1 &gt; brightness 将 1 写入亮度文件中，那么对应 LED 灯就会亮起。</p>
+</li>
+<li>
+<p>如果执行 echo timer &gt; trigger向 trigger 中写入 “timer”, 那么当前 LED 的触发模式会变为延时触发，此时当前目录下会多出 delay_off 和 delay_on 两个控制文件，分别控制该 LED 熄灭和亮起的延迟时间，单位为 ms.</p>
+</li>
+<li>
+<p>如果执行 echo gpio &gt; trigger 向 trigger 中写入 “gpio”，那么当前 LED 的触发方式会由 GPIO 的电平状态决定，此时当前目录下会多出 desired_brightness, gpio 两个文件，可能代表期望亮度和监听的 GPIO 编号。</p>
+</li>
+</ol>
+<p>因为本次实验我们只控制自带的 LED 灯而不涉及 GPIO 的操作，因此程序的流程如下：</p>
+<ol>
+<li>
+<p>首先对四个 LED 灯对应的 trigger 写入 none, 切断四个 LED 灯与其它设备的关联；</p>
+</li>
+<li>
+<p>写入一个 [0, 255] 的整数到 brightness 文件中，控制 LED 灯的亮度；使用 Bash 函数控制 LED 灯的亮灭规则；</p>
+</li>
+<li>
+<p>再对四个 LED 灯对应的 trigger 写入 timer，更改 LED 灯为延时触发模式；</p>
+</li>
+<li>
+<p>分别设置四个 LED 灯的 brightness 和 delay_on, delay_off 控制 LED 灯的亮灭规则。</p>
+</li>
+</ol>
+<h2 id="关键代码分析及现象结果">关键代码分析及现象结果</h2>
+<p>以下 Bash 程序实现了让 BeagleBone Black 的四个指示灯一个接一个亮起、熄灭的功能：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e"># reset leds&#39; trigger</span>
+echo <span style="color:#e6db74">&#34;Setting LEDs trigger to none...&#34;</span>
+<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">do</span>
+    echo none &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/trigger
+<span style="color:#66d9ef">done</span>
+
+<span style="color:#75715e"># turn on leds, controlling by sleep</span>
+echo <span style="color:#e6db74">&#34;Turning on/off LEDs one after another...&#34;</span>
+<span style="color:#66d9ef">while</span> :
+<span style="color:#66d9ef">do</span>
+    <span style="color:#75715e"># turn on leds</span>
+    <span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">do</span>
+        echo <span style="color:#ae81ff">1</span> &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/brightness
+        sleep 0.5s      <span style="color:#75715e"># pause for 500 milliseconds</span>
+    <span style="color:#66d9ef">done</span>
+
+    sleep 0.5s
+
+    <span style="color:#75715e"># turn off leds</span>
+    <span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>3..0<span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">do</span>
+        echo <span style="color:#ae81ff">0</span> &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/brightness
+        sleep 0.5s
+    <span style="color:#66d9ef">done</span>
+    sleep 0.5s
+<span style="color:#66d9ef">done</span>
+</code></pre></div><p>代码分析：首先将 LED 的触发器设置为 “none” 断开 LED 与其它硬件设备间的关联，然后不断执行两段循环：第一段循环会将编号为 0-3 的 LED 分别亮起；每亮起一颗 LED 后，sleep 命令会使得程序暂停 0.5s，然后再亮起下一颗 LED. 第二段循环则每隔 0.5s 按照 3, 2, 1, 0 的顺序熄灭一颗 LED. 一轮操作完成后，四颗 LED 回到全部熄灭的初始状态，然后重复上述步骤。</p>
+<p>除了使用系统自带的 sleep 命令以外，还可以设置 delay_on 和 delay_off 来控制延时亮灭。以下 Bash 程序实现了让四颗 LED 灯按不同的间隔时间分别闪烁的功能：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e">#reset leds&#39; trigger</span>
+<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">do</span>
+    echo none &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/trigger
+<span style="color:#66d9ef">done</span>
+
+<span style="color:#75715e"># set triggers to &#39;timer&#39;</span>
+<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">do</span>
+    echo timer &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/trigger
+<span style="color:#66d9ef">done</span>
+
+<span style="color:#75715e"># set delay time for triggers</span>
+<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">do</span>
+    <span style="color:#75715e"># calculate current led&#39;s delay time</span>
+    base<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>
+    multiply<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr $multiply + 1<span style="color:#e6db74">`</span>
+    delaytime<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr $multiply <span style="color:#ae81ff">\*</span> $base<span style="color:#e6db74">`</span>
+    echo $delaytime &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/delay_on
+    echo $delaytime &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/delay_off
+<span style="color:#66d9ef">done</span>
+</code></pre></div><p>代码分析：首先将 LED 的触发器设置为 “none” 断开 LED 与其它硬件设备间的关联，然后再将其设置为 “time”设置 LED 的触发规则为延时模式，此时在对应 LED 的目录下会多出 delay_on, delay_off 两个文件。接下来执行一个循环，循环体内首先根据当前操作的 LED 的编号 (0, 1, 2, 3) 计算对应的间隔时间（上述代码中，对于编号为 i 的 LED，亮起和熄灭的间隔时间定义为 \(\left(i+1\right)\times200 ms\)，再将这个间隔时间写入到 delay_on 和 delay_off 两个文件中。执行该程序的现象：四颗 LED 分别以 200, 400, 600, 800ms 的亮灭间隔闪烁。</p>
+<h1 id="使用c语言程序控制外接-led-设备">使用C语言程序控制外接 LED 设备</h1>
+<h2 id="实现目标和所需硬件资源">实现目标和所需硬件资源</h2>
+<p>实现目标：外接一个三色 LED 设备，使用 C 语言程序控制三颗 LED 灯闪烁；并实现点击外接 LED 上的按钮，控制 LED 灯的闪烁。</p>
+<p>所需硬件资源：一块外接 LED, 杜邦线若干。</p>
+<h2 id="beaglebone-black-的-gpio-和引脚接口">BeagleBone Black 的 GPIO 和引脚接口</h2>
+<p>GPIO (General Purpose Input Output, 通用输入/输出接口)，又称总线拓展器，是一个能用于输入/输出二进制控制信号的接口，可用于 BeagleBone Black 与外接设备之间的数据交互。每个 GPIO 接口可以被人为设定为 Input 和 Output 两种模式，分别用于接收外接设备输入的信号，或向外接设备输出信号。GPIO 的值可以为 0 或 1，分别代表低电平和高电平。</p>
+<p>与自带 LED 相同，对 GPIO 的读写和操作，同样是通过操作其对应的设备文件来实现。GPIO 的设备文件位于 /sys/class/gpio 下。执行命令 ls /sys/class/gpio，可以看到该目录具有的文件信息.BeagleBone Black 具有四组 GPIO (GPIO0-3), 每组下分别有若干个 GPIO 接口。对于每个接口，都具有一个 Name 属性(GPIOx_y, x 为该接口的所属分组，y 为一个整数)、Head_pin 属性（Px_y, Px 表示该接口位于 P8/P9 排引脚上，y表示该接口在引脚上的编号）、GPIO No.（GPIO 接口编号）。其中，Head_pin 用于确定该接口在 BBB 上的位置，确保外接设备连接到了正确的接口；GPIO No. 用于在 Linux 下通过此编号操作对应的 GPIO 接口，计算 GPIOx_y 编号的规则为 \((x\ \times32\ +\ y)\)。</p>
+<p>以上属性都可以在 BeagleBone Black 的引脚速查表上找到。需要注意，并不是所有的 GPIO 口都可用，有些 GPIO 口可能已经被占用。</p>
+<p>BeagleBone Black 操作 GPIO 口的方法：当我们需要操作 GPIO 口时，首先需要根据编号导出 (export) 所需 GPIO 口的设备文件。导出 GPIO 接口设备文件的方法是执行如下命令：echo gpio_no &gt; /sys/class/gpio/export，其中 gpio_no 是所需 GPIO 的编号 (GPIO No.)。执行以上命令后，在 /sys/class/gpio 目录下会多出一个名为 gpio + 编号的目录，该目录内即为控制所需 GPIO 口的设备文件。
+例如，若需要使用位于 P8 引脚排上的 11 号接口对应的 GPIO1_13，其对应的 GPIO No. 为45，则执行：echo 45 &gt; /sys/class/gpio/export . 此时， /sys/class/gpio 目录下会产生一个名为 gpio45 的目录。</p>
+<p>执行 cd /sys/class/gpio/gpio45 &amp;&amp; ls，查看该目录下的文件；本次实验中我们只涉及其中两个设备文件：direction 和 value。direction 的值可以为 in/out，用于设置当前 GPIO 口的数据流动方向； value 的值可以为 0/1, 用于设置当前 GPIO 口是高电平还是低电平。</p>
+<p>如果不再使用一个 GPIO 接口，可以使用 echo gpio_no &gt; /sys/class/gpio/unexport 来释放这个 GPIO 接口。</p>
+<h2 id="硬件连线">硬件连线</h2>
+<p>首先分析外接设备三颗 RGB LED灯和按键对应的电路图：</p>
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fygjaiz89pj207q07qmxg.jpg" alt="电路图"></p>
+<p>根据LED的电路图可知，RGB LED 灯一端与 VDD(电源电压)相连，为高电平；另一端是三种颜色对应的引脚 P26, P27, P28. 只需将这三个引脚连接到 BeagleBone Black 的三个 GPIO 口上，设置对应的 GPIO 为低/高电平即可点亮/熄灭某个 LED.</p>
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fygjavayzuj20jn06tmy7.jpg" alt="按键电路图"></p>
+<p>本次实验以选择按键 K2 为例，将 P22 引脚连接到 BeagleBone Black 的一个 GPIO 口上，则当按下 K2 后，对应的 GPIO 口会变为高电平，此时 GPIO 的 value 值为 1；松开后会变为低电平，GPIO 的 value 值为 0.
+本次实验选择 BeagleBone 的 GPIO 编号为 26(位于P8_14), 48(位于P9_15), 49(位于P9_17), 60(位于P9_12)，分别连接三个 LED 引脚 P26, P27, P28 和 K2 按键引脚 P22；此外还需要连接 LED 的VDD到 BeagleBone Black 的 DC3.3V (位于P9_03/04) 、连接LED的GND到BeagleBone 的 GND(位于P9_01)。</p>
+<h2 id="实现流程">实现流程</h2>
+<ol>
+<li>导出(export) 本实验需要使用的四个 GPIO；</li>
+<li>编写 C 语言程序，从控制台读入参数，设置 LED 工作模式（亮起、熄灭、闪烁）；</li>
+<li>通过 C 语言的文件操作函数读写对应的设备文件，实现对 LED 和按键的控制。</li>
+</ol>
+<h2 id="关键代码分析及现象结果-c-实现">关键代码分析及现象结果 (C++ 实现)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define GPIO_PATH &#34;</span><span style="color:#75715e">/</span><span style="color:#75715e">sys</span><span style="color:#75715e">/</span><span style="color:#75715e">class</span><span style="color:#75715e">/</span><span style="color:#75715e">gpio</span><span style="color:#75715e">/</span><span style="color:#75715e">&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> gpio_ports[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">26</span>};
+<span style="color:#66d9ef">int</span> gpio_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 导出对应编号的 GPIO 设备文件
+</span><span style="color:#75715e"> * @param number 要导出的 GPIO 编号
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">export_gpio</span>(<span style="color:#66d9ef">int</span> number) {
+    <span style="color:#75715e">// do not use `w+` or you will meet segmatation fault for permission denied
+</span><span style="color:#75715e"></span>    FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(GPIO_PATH<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">export</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">export</span><span style="color:#e6db74">&#34;</span>);
+    fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, number);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">gpio port %d exported.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, number);
+    fclose(f);
+}
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 熄灭 RGB, 原理是设置 GPIO 为高电平
+</span><span style="color:#75715e"> * @param index RGB所对应的GPIO编号
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stop_light</span>(<span style="color:#66d9ef">int</span> index) {
+    <span style="color:#66d9ef">char</span> path[<span style="color:#ae81ff">200</span>];
+    sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/value</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, index);
+
+    FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
+    fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#34;</span>);
+    fclose (f);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">stopping light at gpio %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, index);
+}
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 亮起 RGB, 原理是设置 GPIO 为低电平
+</span><span style="color:#75715e"> * @param index    RGB所对应的GPIO编号
+</span><span style="color:#75715e"> * @param need_out 是否需要先设置 direction 为 out
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start_light</span>(<span style="color:#66d9ef">int</span> index, <span style="color:#66d9ef">bool</span> need_out) {
+    <span style="color:#66d9ef">char</span> path[<span style="color:#ae81ff">200</span>];
+    <span style="color:#66d9ef">if</span> (need_out) {
+        sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/direction</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, index);
+    
+        <span style="color:#75715e">// set direction to out
+</span><span style="color:#75715e"></span>        FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
+        fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">out</span><span style="color:#e6db74">&#34;</span>);
+        fclose(f);
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">setting direction to &#39;out&#39; for gpio %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, index);
+    }
+    memset(path, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> path);
+    FILE <span style="color:#f92672">*</span>f;
+    sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/value</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, index);
+    f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
+    fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#34;</span>);
+    fclose(f);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">led connected at gpio %d should be lighted now.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, index);
+}
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 闪烁 RGB LED
+</span><span style="color:#75715e"> * @param limit 闪烁次数限制，-1 表示无限
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">flash_lights</span>(<span style="color:#66d9ef">int</span> limit) {
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">show time!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#75715e">// before flash, stop all lights
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            stop_light(gpio_ports[i]);
+        usleep(<span style="color:#ae81ff">500000</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+            start_light(gpio_ports[i], cnt <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
+            usleep(<span style="color:#ae81ff">200000</span>);
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+            stop_light(gpio_ports[i]);
+            usleep(<span style="color:#ae81ff">200000</span>);
+        }
+        cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        <span style="color:#66d9ef">if</span> (cnt <span style="color:#f92672">&gt;</span> limit <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> limit <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+            <span style="color:#66d9ef">break</span>;
+    }
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[]) {
+    <span style="color:#75715e">// 判断参数个数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Usage: led [on/off/flash/keymode]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+        exit(<span style="color:#ae81ff">0</span>);
+    }
+    <span style="color:#75715e">// 导出 GPIO 设备文件
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        export_gpio(gpio_ports[i]);
+    <span style="color:#75715e">// 根据 argv[1] 参数内容不同，执行不同的操作
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            start_light(gpio_ports[i], true);       <span style="color:#75715e">// 亮灯
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">off</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            stop_light(gpio_ports[i]);              <span style="color:#75715e">// 灭灯
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">flash</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        flash_lights(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);                           <span style="color:#75715e">// 闪烁
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">keymode</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#75715e">// 按键模式，点按按键闪烁，松开按键停止
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            stop_light(gpio_ports[i]); 
+        <span style="color:#75715e">// 设置 direction 为 in
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">char</span> path[<span style="color:#ae81ff">200</span>];
+        sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/direction</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, gpio_ports[<span style="color:#ae81ff">3</span>]);
+        FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
+        fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">in</span><span style="color:#e6db74">&#34;</span>);
+        fclose(f);
+        <span style="color:#75715e">// set path to stream
+</span><span style="color:#75715e"></span>        memset(path, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> path);
+        sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/value</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, gpio_ports[<span style="color:#ae81ff">3</span>]);
+        <span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">10</span>];
+        <span style="color:#66d9ef">bool</span> isFlashing <span style="color:#f92672">=</span> false, changed <span style="color:#f92672">=</span> false;
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r+</span><span style="color:#e6db74">&#34;</span>);
+            fscanf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, a);
+            <span style="color:#75715e">// 如果接收到按键信号，且当前仍在闪烁，则停止闪烁
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> isFlashing) {
+                isFlashing <span style="color:#f92672">=</span> false;
+                printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">stopped flash:) farewell </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+                    stop_light(gpio_ports[i]);
+                sleep(<span style="color:#ae81ff">2</span>);
+            }
+            <span style="color:#75715e">// 如果接收到按键型号，且当前没有闪烁，则开始闪烁
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#f92672">!</span>isFlashing) {
+                isFlashing <span style="color:#f92672">=</span> true;
+                flash_lights(<span style="color:#ae81ff">1</span>);
+            }
+            <span style="color:#75715e">// 如果没有接收到按键信号，则继续闪烁
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (isFlashing) {
+                flash_lights(<span style="color:#ae81ff">1</span>);
+            }
+            usleep(<span style="color:#ae81ff">100000</span>);
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>在终端执行编译命令：g++ -o led led.cpp，编译上述程序，然后执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./led on      <span style="color:#75715e"># 亮起LED</span>
+./led off     <span style="color:#75715e"># 熄灭LED</span>
+./led flash   <span style="color:#75715e"># 闪烁LED</span>
+./led keymode <span style="color:#75715e"># 按键模式，按下闪烁，再按熄灭</span>
+</code></pre></div><h1 id="物联网概念及其在-beaglebone-black-下的实现">物联网概念及其在 BeagleBone Black 下的实现</h1>
+<h2 id="beaglebone-black-实现物联网的几种架构">BeagleBone Black 实现物联网的几种架构</h2>
+<p>（1）BeagleBone Black 作为 Web 服务器：用户可以通过浏览器发送 HTTP 请求到 BeagleBone Black 的 Web 服务器上，获取 BBB 的设备信息或与其相连的传感器的信息；</p>
+<p>（2） BeagleBone Black 作为 Web 客户端：可以编写程序使 BeagleBone Black 与其它 Web 服务器进行通信；</p>
+<p>（3）TCP 通信：一台作为 TCP 服务端，一台作为 TCP 客户端，两者间可以通过 Socket 发送请求、接收请求；</p>
+<p>（4）通过PaaS（Platform as a Service, 平台即服务）：BeagleBone Black 上的传感器信息可以通过 HTTP/RESTful API 与 PaaS 平台通信，用户从浏览器端访问该 PaaS 服务器即可获取来自 BBB 的信息。</p>
+<h2 id="动态-cgi-页面实现">动态 CGI 页面实现</h2>
+<p>CGI (通用网关接口，Common Gateway Interface) 是Web 服务器运行时外部程序的规范,按CGI 编写的程序可以扩展服务器功能。CGI 应用程序能与浏览器进行交互,还可通过数据库API 与数据库服务器等外部数据源进行通信,从数据库服务器中获取数据。格式化为HTML文档后，发送给浏览器，也可以将从浏览器获得的数据放到数据库中。几乎所有服务器都支持CGI,可用任何语言编写CGI,包括流行的C、C ++ 等。</p>
+<p>在 BeagleBone Black 中，利用 CGI 可以实现 Web 页面与物理环境的交互：如读取传感器，驱动 LED 等。CGI 脚本的位置默认位于 /usr/lib/cgi-bin 中，可以通过 Apache 2 服务器访问，地址是 http://192.168.7.2:8000/cgi-bin/ .</p>
+<p>如，在该目录下创建一个 CGI 脚本页面，使我们访问该页面时，显示 BeagleBone Black 的运行时间、用户、负载等信息。在 /usr/lib/cgi-bin 创建文件 info.cgi, 插入以下代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>echo <span style="color:#e6db74">&#34;Content-Type: text/html&#34;</span>
+echo <span style="color:#e6db74">&#34;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;!doctype html&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;html&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;head&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;meta charset=\&#34;utf-8\&#34;&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;title&gt;BeagleBone Black System Info&lt;/title&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;/head&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;body&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;h1&gt;BeagleBone Black system info&lt;/h1&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;Host&#34;</span> 
+hostname
+echo <span style="color:#e6db74">&#34; has been up &#34;</span>
+uptime
+echo <span style="color:#e6db74">&#34;&lt;/body&gt;&#34;</span>
+echo <span style="color:#e6db74">&#34;&lt;/html&gt;&#34;</span>
+</code></pre></div><p>执行命令：chmod +x /usr/lib/cgi-bin/info.cgi, 然后浏览器访问页面 http://192.168.7.2:8080/cgi-bin/info.cgi 即可。</p>
+<p>CGI 脚本还可以调用 C/C++ 程序，只需在脚本中调用目标程序的路径即可，目标程序的标准输出则会被转发到浏览器中。</p>
+<h1 id="beaglebone-black-与-windows-宿主机共享网络">BeagleBone Black 与 Windows 宿主机共享网络</h1>
+<p>让 BeagleBone Black 连接网络。可以直接将网络电缆连接到 BeagleBone Black 的 RJ45 接口上，或者使用 USB 与宿主机共享网络。本实验的宿主机为 Windows 10, 与 BeagleBone Black 共享网络需要进行如下操作：</p>
+<p>Windows 下：安装 BBB 的驱动，设置可访问互联网的网络适配器与 BeagleBone Black 共享网络，如宿主机与互联网建立连接的网卡为 “WLAN”， BeagleBone Black 在系统中的适配器为“以太网3 (Linux USB Ethernet/RNDIS Gadget)”, 则需要：右击 WLAN =&gt; 属性 =&gt; 共享 =&gt; 允许其它用户通过此计算机的 Internet 连接来连接 =&gt; 勾选“以太网3”。再设置“以太网3”的 IP 地址为 192.168.7.1, 子网掩码为 255.255.255.0.</p>
+<p>Linux 下：执行命令 route add default gw 192.168.7.1 添加路由表；然后编辑/etc/resolv.conf，在文件头部加入：</p>
+<pre><code>nameserver 127.0.0.1 
+nameserver 8.8.8.8
+nameserver 114.114.114.114
+</code></pre><p>配置 BBB 的 DNS 解析服务器。</p>
+<h1 id="beaglebone-实现实时温度检测系统">BeagleBone 实现实时温度检测系统</h1>
+<h2 id="目的及原理">目的及原理</h2>
+<p>使用 BeagleBone Black 连接德州仪器的 TMP75 传感器，通过 i2c 协议通信，数据交由运行在 BeagleBone Black 上的后端 Web Server 处理，在浏览器端显示温度数据、绘制温度曲线并进行交互，效果如图：</p>
+<p><img src="https://github.com/kirainmoe/beaglebone-temperature-monitor/blob/master/screenshot.png?raw=true" alt="screenshot"></p>
+<p>原理：TMP75 采用 i2c 协议来发送温度数据。在 BeagleBone Black 的 Debian 系统下，我们可以运行 <code>i2cdetecct -y -r 1</code> 来获得 TMP75 的总线地址；当我们运行 <code>i2cget -y -f 1 0xyy</code>(0xyy 是从 <code>i2cdetect</code> 获取的总线地址) 时，会返回一个代表温度的十六进制数。我们可以整合这些操作到一个前后端方案中。</p>
+<h2 id="连线">连线</h2>
+<p>TMP75 V33 to BBB DC3.3V (P9_03)</p>
+<p>TMP75 GND to BBB GND (P9_01)</p>
+<p>TMP75 SCL to BBB SCL(P9_19, do not connect to 17 which is not occupied:) )</p>
+<p>TMP75 SDA to BBB SDA(P9_20, do not connect to 18 which is not occupied:) )</p>
+<p>TMP75 I/O to BBB GPIO(whichever has not been occupied is OK)</p>
+<h2 id="实现代码">实现代码</h2>
+<p>实现的方案代码已托管于 GitHub: <a href="https://github.com/kirainmoe/beaglebone-temperature-monitor">https://github.com/kirainmoe/beaglebone-temperature-monitor</a></p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2018-12-23</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/">
+                    Next<br>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/">
+                    Previous<br>Xiamen GDG DevFest 2018 repo
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

@@ -1,139 +1,740 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="奇怪的道路 (FCS2017 D2T1) - 宇宙よりも遠い場所" property="og:title">
-<title>奇怪的道路 (FCS2017 D2T1) | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>奇怪的道路 (FCS2017 D2T1)</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a5%87%e6%80%aa%e7%9a%84%e9%81%93%e8%b7%af" v-on:click="closeDrawer" id="奇怪的道路-nav">
+										 奇怪的道路
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0" v-on:click="closeDrawer" id="问题描述-nav">
+										 问题描述
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%85%a5%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输入格式-nav">
+										 输入格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输出格式-nav">
+										 输出格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%85%a5" v-on:click="closeDrawer" id="样例输入-nav">
+										 样例输入
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%87%ba" v-on:click="closeDrawer" id="样例输出-nav">
+										 样例输出
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%a7%a3%e9%87%8a" v-on:click="closeDrawer" id="样例解释-nav">
+										 样例解释
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e8%a7%84%e6%a8%a1" v-on:click="closeDrawer" id="数据规模-nav">
+										 数据规模
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%80%9d%e8%b7%af" v-on:click="closeDrawer" id="思路-nav">
+										 思路
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81-c" v-on:click="closeDrawer" id="示例代码-c-nav">
+										 示例代码 (C&#43;&#43;)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">July 19, 2017</h2>
-      <h1 class="title">奇怪的道路 (FCS2017 D2T1)</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/algorithms">algorithms</a>
-    
-        <a class="button is-link" href="/tags/divide">divide</a>
-    
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a5%87%e6%80%aa%e7%9a%84%e9%81%93%e8%b7%af" v-on:click="closeDrawer" id="奇怪的道路-nav">
+										 奇怪的道路
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0" v-on:click="closeDrawer" id="问题描述-nav">
+										 问题描述
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%85%a5%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输入格式-nav">
+										 输入格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输出格式-nav">
+										 输出格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%85%a5" v-on:click="closeDrawer" id="样例输入-nav">
+										 样例输入
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%87%ba" v-on:click="closeDrawer" id="样例输出-nav">
+										 样例输出
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%a7%a3%e9%87%8a" v-on:click="closeDrawer" id="样例解释-nav">
+										 样例解释
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e8%a7%84%e6%a8%a1" v-on:click="closeDrawer" id="数据规模-nav">
+										 数据规模
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%80%9d%e8%b7%af" v-on:click="closeDrawer" id="思路-nav">
+										 思路
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81-c" v-on:click="closeDrawer" id="示例代码-c-nav">
+										 示例代码 (C&#43;&#43;)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
 
-      
-      <div class="content">
-        <p>emmm&hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……</p>
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
 
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    奇怪的道路 (FCS2017 D2T1)
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-07-19 20:12
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/algorithms">algorithms</a>
+                                &nbsp;
+                            
+                                <a href="/tags/divide">divide</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>emmm&hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……</p>
 <p>由于我比较啰嗦，以及我太弱了导致文章有可能有一些部分讲错了，所以，大家将就着看一下吧（虽然我不相信有人看）。</p>
-
 <h1 id="奇怪的道路">奇怪的道路</h1>
-
 <h2 id="问题描述">问题描述</h2>
-
 <p>从前，有一座网格城市，城市中每个房子占据一个正方形小格子的中
 心，每个正方形小格子的边长均为1。</p>
-
-<p><img src="https://i.loli.net/2017/07/19/596f4bfc53442.png" alt="road" /></p>
-
-<p>这座城市道路的设计方式是这样的，首先，定义(𝑎)图为一个基本图形，其阶为1，之后，将(𝑎)图中每一个房子都用一个基本图形代替，得到(𝑏)图，那么(𝑏)图的阶即为2，再将(𝑏)图中的每一个房子都用基本图形替代，得到阶为3的&copy;图，以此类推，只要知道这座城市的阶𝑛，就可以知道它的道路设计。</p>
-
+<p><img src="https://i.loli.net/2017/07/19/596f4bfc53442.png" alt="road"></p>
+<p>这座城市道路的设计方式是这样的，首先，定义(𝑎)图为一个基本图形，其阶为1，之后，将(𝑎)图中每一个房子都用一个基本图形代替，得到(𝑏)图，那么(𝑏)图的阶即为2，再将(𝑏)图中的每一个房子都用基本图形替代，得到阶为3的(c)图，以此类推，只要知道这座城市的阶𝑛，就可以知道它的道路设计。</p>
 <p>这种七拐八弯的道路设计使得这座城市之间的道路交通运输相当不便，于是该市的市长决定改造一下这座城市的道路，但在此之前他需要做一系列的评估，比如这座网格城市中，连接第𝑖1行第𝑗1列的房屋与第𝑖2行第𝑗2列的房屋之间（两座房屋可能相同）的道路有多长，由于这种道路设计太过奇怪，人力难以计算，于是这个任务就交给作为软件工程师的你了。</p>
-
 <h2 id="输入格式">输入格式</h2>
-
 <p>每个测试点第一行有两个正整数𝑛, 𝑇，表示城市的阶数和询问数。
 接下来𝑇行，每行4个正整数𝑖1 𝑗1 𝑖2 𝑗2，表示要查询的两个房屋的坐标。</p>
-
 <h2 id="输出格式">输出格式</h2>
-
 <p>对每个询问输出一行相应的值表示答案。</p>
-
 <h2 id="样例输入">样例输入</h2>
-
 <blockquote>
 <p>2 4
 2 1 3 1
@@ -141,44 +742,30 @@
 2 3 3 3
 3 4 2 4</p>
 </blockquote>
-
 <h2 id="样例输出">样例输出</h2>
-
 <blockquote>
 <p>13
 11
 1
 3</p>
 </blockquote>
-
 <h2 id="样例解释">样例解释</h2>
-
 <p>样例对应题目中的(𝑏)图。
 第一个询问问的是图中编号为2的房子与编号为15的房子的距离。
 第二个询问问的是图中编号为14的房子与编号为3的房子的距离。
 第三个询问问的是图中编号为8的房子与编号为9的房子的距离。
 第四个询问问的是图中编号为10的房子与编号为7的房子的距离。</p>
-
 <h2 id="数据规模">数据规模</h2>
-
 <p>Easy：对于30%的数据，1 ≤ 𝑛 ≤ 3。
 Normal：对于60%的数据，1 ≤ 𝑛 ≤ 8。
 Hard：对于100%的数据，均有1 ≤ 𝑛 ≤ 15，1 ≤ 𝑖1, 𝑗1, 𝑖2, 𝑗2 ≤ 2𝑛，1 ≤ 𝑇 ≤ 10000。</p>
-
 <h2 id="思路">思路</h2>
-
 <p>观察题意，不难看出，对于给定的坐标 (x1, y1) 和 (x2, y2)，记他们所对应的房子编号分别为 A, B，要求 A, B 两个房子之间的距离，可以看出<strong>这个距离等于编号A - 编号B 的绝对值</strong>，记这个距离为 x，则我们可以看出：<code>x = abs(A - B)</code>。既然距离是由两个房子的编号唯一决定，那么我们就可以将目标转移到<strong>求这两个坐标对应的房子的编号上</strong>。</p>
-
 <p>首先看 n 的范围不超过 15，也就是说最大的房子数量不超过 4 ^ 15 = 1073741824，做预处理的话开不下这么大的空间。这启示我们，一定存在一种方法，<strong>对于给定的一个城市坐标 (x, y)，通过这种方法能够直接推算出这个坐标所对应的房子编号</strong>。</p>
-
 <p>我们先观察这个图：观察当 n &gt;= 2 时候的图形，可以发现图形有这样的规律：基本图形总是会占满整个四分之一矩阵后，才会进入下一个四分之一矩阵。通过这样的规律，我们又能发现这四个被均分的矩阵<strong>具有相似的子结构</strong>，所以我们可以想到——<strong>分！治！</strong></p>
-
 <p>接下来，目标转移到找到这个方法。题意告诉我们，对于任意已知的 n，以从上到下（行）为 x 轴正方向，以从左到右（列）为 y 轴正方向，第一个房子的坐标一定位于 (1, 1)，第 4^n 个房子一定位于 (2^n+1, 1)，所以根据这个性质我们一定能够推算出这个城市的具体道路规划图。</p>
-
-<p>问题在于，编号和坐标之间有没有什么关系？<s>当然这种琢磨不透的题目</s>一定不会让你一眼看出这个关系，所以我们需要一点小小的计算：</p>
-
+<p>问题在于，编号和坐标之间有没有什么关系？<!-- raw HTML omitted -->当然这种琢磨不透的题目<!-- raw HTML omitted -->一定不会让你一眼看出这个关系，所以我们需要一点小小的计算：</p>
 <p>首先让我们看当 n = 1，即这个城市只有 1 阶，边长为 2^1=2，房子数 4^1 = 4。根据题意，我们有这样的关系：</p>
-
 <pre><code>  1     2
 =========
 1 1 --- 2
@@ -186,182 +773,159 @@ Hard：对于100%的数据，均有1 ≤ 𝑛 ≤ 15，1 ≤ 𝑖1, 𝑗1, 𝑖2
         |
         |
 2 4 --- 3
-</code></pre>
-
-<p>可以看到对于这样的矩阵，知道坐标的区间，就可以唯一确定城市的房子了。比如说在这里，(1, 1) 就对应房子 1。至于为什么和怎么确定，我们下面再说。不过说到这里有人还是会对这个 <s>flag</s> 将信将疑：坐标对应的房子可能会受到这个“基本图形”开口的影响，凭什么说它可以唯一确定一个房子的编号？的确，假如它的开口不同，就会导致这个性质是错的。<s>既然如此我们就把这个反例消灭</s>，保证一个子矩阵始终满足这个基本图形的性质。具体地说，对于已知 n = k 的 k 阶矩阵，一定要满足这个性质：</p>
-
+</code></pre><p>可以看到对于这样的矩阵，知道坐标的区间，就可以唯一确定城市的房子了。比如说在这里，(1, 1) 就对应房子 1。至于为什么和怎么确定，我们下面再说。不过说到这里有人还是会对这个 <!-- raw HTML omitted -->flag<!-- raw HTML omitted --> 将信将疑：坐标对应的房子可能会受到这个“基本图形”开口的影响，凭什么说它可以唯一确定一个房子的编号？的确，假如它的开口不同，就会导致这个性质是错的。<!-- raw HTML omitted -->既然如此我们就把这个反例消灭<!-- raw HTML omitted -->，保证一个子矩阵始终满足这个基本图形的性质。具体地说，对于已知 n = k 的 k 阶矩阵，一定要满足这个性质：</p>
 <blockquote>
 <p>在最左上方取到这个矩阵中数的最小值，并在最左下方取到这个矩阵中数的最大值。</p>
 </blockquote>
-
 <p>具体的操作，比如说我们看下面的这个图，这也是由基本图形变形而来的：</p>
-
 <pre><code> 1     4
  |     |
  |     |
  2 --- 3
-</code></pre>
-
-<p>那么怎么把它变成基本图形那样，可能大家的第一想法是旋转。但是旋转之后，并不满足在左上取最小值和左下取最大值的性质，所以旋转是不行的。所以我们采取另外一个方法，就是对称。例如上图中，我们取 1, 3 连接而成的对角线为对称轴，将这个图形沿着轴对称，那么这个图形就在还原回基本图形的同时，也保持了这个性质。</p>
-
-<p>现在又有一个问题。如何知道什么时候对称，沿什么轴来对称？根据分治的思想我们再观察四个图形，我们发现，记当 n=k 的时候边长为 E, 则 E = 2^k，节点数为 N, 则 N = 4^k. 以中点为界将这个矩阵划分为相等的四个部分，<strong>右上角的矩阵和右下角的矩阵会始终保持着这个性质</strong>，那么我们的对称操作只需要对左上和左下的两个矩阵执行就可以了。观察左上和左下的两个矩阵，我们在确定对称轴的时候只需要找到对称后<strong>还原出基本图形及满足其性质</strong>（<s>窝说话太啰嗦了，所以希望你们还记得这个性质</s>）的那一条对称轴即可。再看图形，我们很容易找出，使得左上部分矩阵符合以上性质的对称轴为<strong>从左上到原矩阵中心位置</strong>的这条<strong>对角线</strong>，同样我们为左下矩阵找到的对称轴为<strong>从左下到原矩阵中心位置</strong>的这条<strong>对角线</strong>。</p>
-
+</code></pre><p>那么怎么把它变成基本图形那样，可能大家的第一想法是旋转。但是旋转之后，并不满足在左上取最小值和左下取最大值的性质，所以旋转是不行的。所以我们采取另外一个方法，就是对称。例如上图中，我们取 1, 3 连接而成的对角线为对称轴，将这个图形沿着轴对称，那么这个图形就在还原回基本图形的同时，也保持了这个性质。</p>
+<p>现在又有一个问题。如何知道什么时候对称，沿什么轴来对称？根据分治的思想我们再观察四个图形，我们发现，记当 n=k 的时候边长为 E, 则 E = 2^k，节点数为 N, 则 N = 4^k. 以中点为界将这个矩阵划分为相等的四个部分，<strong>右上角的矩阵和右下角的矩阵会始终保持着这个性质</strong>，那么我们的对称操作只需要对左上和左下的两个矩阵执行就可以了。观察左上和左下的两个矩阵，我们在确定对称轴的时候只需要找到对称后<strong>还原出基本图形及满足其性质</strong>（<!-- raw HTML omitted -->窝说话太啰嗦了，所以希望你们还记得这个性质<!-- raw HTML omitted -->）的那一条对称轴即可。再看图形，我们很容易找出，使得左上部分矩阵符合以上性质的对称轴为<strong>从左上到原矩阵中心位置</strong>的这条<strong>对角线</strong>，同样我们为左下矩阵找到的对称轴为<strong>从左下到原矩阵中心位置</strong>的这条<strong>对角线</strong>。</p>
 <p>下面开始用坐标推算房子的编号。我们规定<code>getnum(n, x, y)</code>为<strong>第 n 阶中坐标位于 (x, y) 的房子的编号</strong>，并且规定当 n = 0 的时候，<code>getnum(0, 1, 1) = 1</code>。令 edgeMid = 当前阶的大矩阵边长的一半，有 <code>mid = 2^(n-1)</code>，nodeNum = 当前阶的大矩阵被四均分后的节点数目，有 <code>node = 4^(n-1) = 2^(2n-2)</code>.</p>
-
 <p>注意到我们刚才提到的性质1：基本图形会先填满一个四分之一矩阵之后，才会进入下一个矩阵。而且无论 n 为何值，进入四个矩阵的先后顺序一定是：左上 =&gt; 右上 =&gt; 右下 =&gt; 左下。所以呢，对于右上的矩阵，编号最小的房子一定是 nodeNum + 1；对于右下的矩阵，编号最小的房子一定是 2 × nodeNum + 1；对于左下的矩阵，编号最小的房子一定是 3 × nodeNum + 1。最大的也很容易推出。</p>
-
 <p>先从简单的两个子矩阵——也就是不需要做任何对称的两个矩阵入手：对于每个阶段右上和右下这两个不需要做对称操作的部分，其坐标和编号的关系是显然的一个递推式：</p>
-
 <pre><code>// 右上
 index = 1 * nodeNum + getnum(n - 1, x, y - edgeMid);
 
 // 右下
 index = 2 * nodeNum + getnum(n - 1, x - edgeMid, y - edgeMid);
-</code></pre>
-
-<p>其中进行坐标变换是为了确保起点为 (1, 1)，终点为 (2^n+1, 1)，这样根据坐标推出的编号才会成立。</p>
-
+</code></pre><p>其中进行坐标变换是为了确保起点为 (1, 1)，终点为 (2^n+1, 1)，这样根据坐标推出的编号才会成立。</p>
 <p>进行对称操作的部分的坐标需要进行额外的小变化，因为<strong>进行了对称</strong>，所以我们要<strong>将 x 和 y 进行反转</strong>。同样也要进行坐标变换确保起点为 (1, 1) 和 (2^n+1, 1)。这里要注意一下左下矩阵的边界处理。</p>
-
 <pre><code>// 左上
 index = getnum(n - 1, y, x);
 
 // 左下
 index = 3 * nodeNum + getnum(n - 1, edgeMid + 1 - y, 2 * edgeMid + 1 - x);
-</code></pre>
-
-<p>注意这里的坐标轴方向是以向下为 x 轴正方向，向右为 x 轴负方向，这样大家画一画草图就可以很容易地推出左下矩阵这个让人看了十分害怕的递推式。</p>
-
+</code></pre><p>注意这里的坐标轴方向是以向下为 x 轴正方向，向右为 x 轴负方向，这样大家画一画草图就可以很容易地推出左下矩阵这个让人看了十分害怕的递推式。</p>
 <p>至此，我们的目的——根据节点坐标推算它的编号——已经达到了。不信的话你可以随便找个点按照上面的递推式试一下。</p>
-
 <p>以下贴的是参考代码。事实上理解了上面的内容，代码也就不难出来了。</p>
-
 <h2 id="示例代码-c">示例代码 (C++)</h2>
-
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
-int getNum(int stage, int x, int y)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getNum</span>(<span style="color:#66d9ef">int</span> stage, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-  if (stage == 1) {
-    if (x == 1 &amp;&amp; y == 1)
-      return 1;
-    if (x == 1 &amp;&amp; y == 2)
-      return 2;
-    if (x == 2 &amp;&amp; y == 2)
-      return 3;
-    if (x == 2 &amp;&amp; y == 1)
-      return 4;
+  <span style="color:#66d9ef">if</span> (stage <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">4</span>;
   }
   
-  int edgeMid = 1 &lt;&lt; (stage - 1),					// edgeMid = 2^(stage-1)
-      nodeNum = 1 &lt;&lt; (2 * (stage - 1));   // nodeNum = 4^(stage-1) = 2^2(stage-1)
-  
-  if (x &lt;= edgeMid &amp;&amp; y &lt;= edgeMid)
-    return getNum(stage - 1, y, x);
-  if (x &lt;= edgeMid &amp;&amp; y &gt; edgeMid)
-    return nodeNum + getNum(stage - 1, x, y - edgeMid);
-  if (x &gt; edgeMid &amp;&amp; y &gt; edgeMid)
-    return 2 * nodeNum + getNum(stage - 1, x - edgeMid, y - edgeMid);
-  if (x &gt; edgeMid &amp;&amp; y &lt;= edgeMid)
-    return 3 * nodeNum + getNum(stage - 1, edgeMid + 1 - y, 2 * edgeMid + 1 - x);
+  <span style="color:#66d9ef">int</span> edgeMid <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> (stage <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>),					<span style="color:#75715e">// edgeMid = 2^(stage-1)
+</span><span style="color:#75715e"></span>      nodeNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (stage <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));   <span style="color:#75715e">// nodeNum = 4^(stage-1) = 2^2(stage-1)
+</span><span style="color:#75715e"></span>  
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> edgeMid <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> edgeMid)
+    <span style="color:#66d9ef">return</span> getNum(stage <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, y, x);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> edgeMid <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">&gt;</span> edgeMid)
+    <span style="color:#66d9ef">return</span> nodeNum <span style="color:#f92672">+</span> getNum(stage <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, x, y <span style="color:#f92672">-</span> edgeMid);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&gt;</span> edgeMid <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">&gt;</span> edgeMid)
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> nodeNum <span style="color:#f92672">+</span> getNum(stage <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">-</span> edgeMid, y <span style="color:#f92672">-</span> edgeMid);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&gt;</span> edgeMid <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> y <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> edgeMid)
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> nodeNum <span style="color:#f92672">+</span> getNum(stage <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, edgeMid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> y, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> edgeMid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> x);
   
 }
 
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  freopen(&quot;road.in&quot;, &quot;r&quot;, stdin);
-  freopen(&quot;road.out&quot;, &quot;w&quot;, stdout);
+  freopen(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">road.in</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>, stdin);
+  freopen(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">road.out</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>, stdout);
   
-  int n, T;
-  scanf(&quot;%d%d&quot;, &amp;n, &amp;T);
+  <span style="color:#66d9ef">int</span> n, T;
+  scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>T);
   
-  while (T--)
+  <span style="color:#66d9ef">while</span> (T<span style="color:#f92672">-</span><span style="color:#f92672">-</span>)
   {
-    int x1, y1, x2, y2;
-    scanf(&quot;%d%d%d%d&quot;, &amp;x1, &amp;y1, &amp;x2, &amp;y2);
-    printf(&quot;%d\n&quot;, abs(getNum(n, x1, y1) - getNum(n, x2, y2)));
+    <span style="color:#66d9ef">int</span> x1, y1, x2, y2;
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>x1, <span style="color:#f92672">&amp;</span>y1, <span style="color:#f92672">&amp;</span>x2, <span style="color:#f92672">&amp;</span>y2);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, abs(getNum(n, x1, y1) <span style="color:#f92672">-</span> getNum(n, x2, y2)));
   }
   
   fclose(stdin);
   fclose(stdout);
   
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>这样我们就圆满地解决了这个问题。 —— 题解</p>
 </blockquote>
-
 <ul>
 <li>原题版权归出题人所有。</li>
 </ul>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-07-19</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/">
+                    Next<br>一次搭建内部 Online Judge 及调优的笔记
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/">
+                    Previous<br>从根源缩小 webpack 打包的 React App 体积
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

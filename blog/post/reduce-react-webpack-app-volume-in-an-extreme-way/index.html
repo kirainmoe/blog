@@ -1,299 +1,983 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="从根源缩小 webpack 打包的 React App 体积 - 宇宙よりも遠い場所" property="og:title">
-<title>从根源缩小 webpack 打包的 React App 体积 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>从根源缩小 webpack 打包的 React App 体积</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">June 6, 2017</h2>
-      <h1 class="title">从根源缩小 webpack 打包的 React App 体积</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/react">react</a>
-    
-        <a class="button is-link" href="/tags/webpack">webpack</a>
-    
-        <a class="button is-link" href="/tags/volume">volume</a>
-    
-        <a class="button is-link" href="/tags/react-lite">react-lite</a>
-    
-        <a class="button is-link" href="/tags/preact">preact</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。</p>
-
-<p><s>上一次更文已经是四……三……月份了？再不写点啥这里都有长草了……</s></p>
-
-<h1 id="在这之前">在这之前</h1>
-
-<p>关于如何缩小 webpack 打包出的 bundle 的体积，已经有很多的引路人为我们填下了很多的坑，所以如果你想要缩减体积提高 React App 的首屏渲染效率，你可以参考以下的这些方法：</p>
-
-<h2 id="将第三方库与业务代码分离打包">将第三方库与业务代码分离打包</h2>
-
-<p>大概是个治标不治本的方法，因为要正常渲染还是都要加载的，只是分开之后业务代码的部分体积会小一些，而且 React 和 ReactDOM 这类的库可以直接从 CDN 取得。这个地方目前据我所知有三种主流的方法：</p>
-
-<p>一个是修改 webpack.config.js 中的 vendor 和使用 CommonsChunkPlugin 来分离 vendor 和 bundle，可以参考：
- - <a href="http://blog.csdn.net/tyro_java/article/details/54755610；">http://blog.csdn.net/tyro_java/article/details/54755610；</a>
- - <a href="https://webpack.github.io/docs/code-splitting.html#multiple-entry-chunks">https://webpack.github.io/docs/code-splitting.html#multiple-entry-chunks</a></p>
-
-<p>二是通过 webpack.config.js 中的 external 把模块的对象暴露到 window 中去，个人不是很推荐这种方法，虽然很方便，但不太好维护什么的；</p>
-
-<p>三是用 webpack 的 DLL 方式来分离：
- - <a href="http://www.jianshu.com/p/a5b3c2284bb6。">http://www.jianshu.com/p/a5b3c2284bb6。</a></p>
-
-<h2 id="去掉不必要的东西和使用-uglifyjs-压缩">去掉不必要的东西和使用 uglifyJS 压缩</h2>
-
-<p>诸如 react-hot-loader 和 redux-devtools 一类的东西生产环境是不需要的，所以在 dist 的时候就不要打包进去了。</p>
-
-<p>以及很重要也很有效的一个方法就是用 uglifyJS 插件压缩 JS 代码，webpack 中自带了 UglifyJsPlugin，只需要修改一下 webpack config 中的 plugin 就可以了：</p>
-
-<pre><code class="language-javascript">new webpack.optimize.UglifyJsPlugin({
-  compress: {
-    warnings: false,
-    comments: false
-  }
-})
-</code></pre>
-
-<h2 id="把代码分割成小块-code-split">把代码分割成小块 (Code Split)</h2>
-
-<p>Code Split 的应用场景是当很多时候用户加载一个页面的时候只需要部分的内容，而却要下载所有的页面，因为它们被 webpack 一起打包在 bundle 当中了。解决方法就是把代码分块，然后按需加载。此方案支持 CommonJS 和 AMD, 但是暂时不支持 ES6 module. 这个方案可能对那些纠结 SPA 体积过大的开发者们很有帮助：</p>
-
-<p><a href="https://webpack.github.io/docs/code-splitting.html">https://webpack.github.io/docs/code-splitting.html</a></p>
-
-<h2 id="从服务器端着手优化">从服务器端着手优化</h2>
-
-<p>从服务器端下手也是在正式发布生产环境之前一个很重要的环节——例如，开启 gzip 压缩的话能让 bundle 的体积缩小不少。以及不要忘记还有一个屡试不爽的方案——服务端渲染（SSR）。这两个方案的要求比较高也很好用，但是有些场景下并不适用<s>例如你没有服务器的控制权</s>。</p>
-
-<h1 id="直接从-react-上下手">直接从 React 上下手</h1>
-
-<p>在我完成一个 React 项目的过程中也因为体积太大而捣鼓了好久，上面的这些方法也或多或少试过，鉴于应用场景的特殊性和广泛性有些上文提到的有效的方法都无法实践在这个项目中。一个小小的东西打包出来有 360K+ 的大小。考虑到其中 React + ReactDOM + redux 就占了将近一半（170K 左右）的空间，所以能否从 React 上下手来减少 bundle 的体积？</p>
-
-<p>答案是肯定的，但是这并不是要你去自己精简 React —— 为了一个小项目去做这样的事情实在是太费神了，<s>不如直接重构</s>。好在，现在市面上也有一些 React 的精简版本，我们可以直接使用它们，有些轻量版的 React 甚至可以平滑过渡，<s>实在是我这种懒人的福音</s>。</p>
-
-<p>当前有很多对 React 进行抽象精简或者自行实现 Virtual DOM 和 JSX 的方案，例如 deku, react-lite, preact 等等。</p>
-
-<h2 id="react-lite">react-lite</h2>
-
-<p>这里之所以不介绍 deku 是因为虽然 deku 有一些诸如 VDOM 的关键理念，但是如果你想从 React 转到 deku 相当于重构。</p>
-
-<p>react-lite 是一个 react 的轻量实现。日常用到的 React API 几乎都可以在 react-lite 中跑起来。与原有的 react 相比
-，react-lite 保留了 react 的大量特性，例如 VDOM，JSX，等等；当然也丢了一些某些场景下用不到的东西，如果你不想要服务端渲染的话可以考虑使用 react-lite。</p>
-
-<blockquote>
-<p>React-lite supports the core APIs of React, such as Virtual DOM, intended as a drop-in replacement for React, when you don&rsquo;t need server-side rendering in browser(no ReactDOM.renderToString &amp; ReactDOM.renderToStaticMarkup).</p>
-</blockquote>
-
-<p>react-lite 也是我现在正在使用的代替 react 的方案，从某种意义上讲，react-lite 在某些方面（例如渲染等）的性能优于 react. 除了能有效地缩小 bundle 的体积（170K+ -&gt; 30K）以及配置方便以外，它最吸引人的地方还在于：</p>
-
-<h3 id="它能和-react-router-redux-完美兼容">它能和 react-router / redux 完美兼容！</h3>
-
-<h3 id="它能和-react-router-redux-完美兼容-1">它能和 react-router / redux 完美兼容！</h3>
-
-<h3 id="它能和-react-router-redux-完美兼容-2">它能和 react-router / redux 完美兼容！</h3>
-
-<p>简直太棒了有没有！！这意味着用 react-router + redux 构建的 react 项目几乎就可以直接平滑地过渡到 react-lite 上！！而且对于 react 的一些 unittest, react-lite 都能跑过。</p>
-
-<p>从 react 过渡到 react-lite 也十分容易，在大部分情况下两者是可以兼容的，直接为 webpack 配置一个 alias，把对 react 的引用指向 react-lite 即可：</p>
-
-<pre><code class="language-javascript">// webpack.config.js
-{
-    resolve: {
-        alias: {
-            'react': 'react-lite',
-            'react-dom': 'react-lite'
-        }
-    }
-}
-</code></pre>
-
-<p><a href="https://github.com/Lucifier129/react-lite">https://github.com/Lucifier129/react-lite</a></p>
-
-<h2 id="preact">preact</h2>
-
-<p>react-lite 能把 150K+ 的 react &amp; react-dom 弄到 25K 左右，接下来介绍的 preact 号称是“3KB 的 react”，而且与 react 有相似的 API：</p>
-
-<blockquote>
-<p>Fast 3kB alternative to React, with the same ES2015 API.</p>
-
-<p>All the power of Virtual DOM components, without the overhead:</p>
-
-<ul>
-<li>Familiar React API &amp; patterns: ES6 Class and Functional Components</li>
-<li>Extensive React compatibility via a simple preact-compat alias</li>
-<li>Everything you need: JSX, VDOM, React DevTools, HMR, SSR..</li>
-<li>A highly optimized diff algorithm and seamless Server Side Rendering</li>
-<li>Transparent asynchronous rendering with a pluggable scheduler</li>
-</ul>
-</blockquote>
-
-<p>和 react-lite 一样，它的渲染性能在某些场景下也能超过 react，毕竟没有了那么多奇奇怪怪的东西，性能飞起来也不足为奇嘛。</p>
-
-<p>不过，体积小了 50 倍，相应地你也要付出一些代价。preact 不像 react-lite 那样可以平滑过渡，要修改组件的代码，自己配置 babel 对 JSX 的转译，很多东西也都需要替换成 preact 专用的东西，相对的讲不是那么方便，据说 react 的单元测试 preact 只能跑过一半。但是想到体积减小的大胜利，这点小小的工作就不值一提了。</p>
-
-<p><a href="https://github.com/developit/preact">https://github.com/developit/preact</a></p>
-
-<h1 id="后记">后记</h1>
-
-<p>通过上面的方案以及直接对 React 动刀子，项目的体积直接从原来的 360K 左右变到 170K 上下了，首屏渲染的速度也改善了很多。后续如果还有什么行之有效的优化方法再补充这篇文章吧。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%9c%a8%e8%bf%99%e4%b9%8b%e5%89%8d" v-on:click="closeDrawer" id="在这之前-nav">
+										 在这之前
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%b0%86%e7%ac%ac%e4%b8%89%e6%96%b9%e5%ba%93%e4%b8%8e%e4%b8%9a%e5%8a%a1%e4%bb%a3%e7%a0%81%e5%88%86%e7%a6%bb%e6%89%93%e5%8c%85" v-on:click="closeDrawer" id="将第三方库与业务代码分离打包-nav">
+										 将第三方库与业务代码分离打包
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8e%bb%e6%8e%89%e4%b8%8d%e5%bf%85%e8%a6%81%e7%9a%84%e4%b8%9c%e8%a5%bf%e5%92%8c%e4%bd%bf%e7%94%a8-uglifyjs-%e5%8e%8b%e7%bc%a9" v-on:click="closeDrawer" id="去掉不必要的东西和使用-uglifyjs-压缩-nav">
+										 去掉不必要的东西和使用 uglifyJS 压缩
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%8a%8a%e4%bb%a3%e7%a0%81%e5%88%86%e5%89%b2%e6%88%90%e5%b0%8f%e5%9d%97-code-split" v-on:click="closeDrawer" id="把代码分割成小块-code-split-nav">
+										 把代码分割成小块 (Code Split)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bb%8e%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%ab%af%e7%9d%80%e6%89%8b%e4%bc%98%e5%8c%96" v-on:click="closeDrawer" id="从服务器端着手优化-nav">
+										 从服务器端着手优化
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%9b%b4%e6%8e%a5%e4%bb%8e-react-%e4%b8%8a%e4%b8%8b%e6%89%8b" v-on:click="closeDrawer" id="直接从-react-上下手-nav">
+										 直接从 React 上下手
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#react-lite" v-on:click="closeDrawer" id="react-lite-nav">
+										 react-lite
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%83%e8%83%bd%e5%92%8c-react-router--redux-%e5%ae%8c%e7%be%8e%e5%85%bc%e5%ae%b9" v-on:click="closeDrawer" id="它能和-react-router--redux-完美兼容-nav">
+										 它能和 react-router / redux 完美兼容！
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%83%e8%83%bd%e5%92%8c-react-router--redux-%e5%ae%8c%e7%be%8e%e5%85%bc%e5%ae%b9-1" v-on:click="closeDrawer" id="它能和-react-router--redux-完美兼容-1-nav">
+										 它能和 react-router / redux 完美兼容！
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%83%e8%83%bd%e5%92%8c-react-router--redux-%e5%ae%8c%e7%be%8e%e5%85%bc%e5%ae%b9-2" v-on:click="closeDrawer" id="它能和-react-router--redux-完美兼容-2-nav">
+										 它能和 react-router / redux 完美兼容！
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#preact" v-on:click="closeDrawer" id="preact-nav">
+										 preact
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%90%8e%e8%ae%b0" v-on:click="closeDrawer" id="后记-nav">
+										 后记
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%9c%a8%e8%bf%99%e4%b9%8b%e5%89%8d" v-on:click="closeDrawer" id="在这之前-nav">
+										 在这之前
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%b0%86%e7%ac%ac%e4%b8%89%e6%96%b9%e5%ba%93%e4%b8%8e%e4%b8%9a%e5%8a%a1%e4%bb%a3%e7%a0%81%e5%88%86%e7%a6%bb%e6%89%93%e5%8c%85" v-on:click="closeDrawer" id="将第三方库与业务代码分离打包-nav">
+										 将第三方库与业务代码分离打包
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8e%bb%e6%8e%89%e4%b8%8d%e5%bf%85%e8%a6%81%e7%9a%84%e4%b8%9c%e8%a5%bf%e5%92%8c%e4%bd%bf%e7%94%a8-uglifyjs-%e5%8e%8b%e7%bc%a9" v-on:click="closeDrawer" id="去掉不必要的东西和使用-uglifyjs-压缩-nav">
+										 去掉不必要的东西和使用 uglifyJS 压缩
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%8a%8a%e4%bb%a3%e7%a0%81%e5%88%86%e5%89%b2%e6%88%90%e5%b0%8f%e5%9d%97-code-split" v-on:click="closeDrawer" id="把代码分割成小块-code-split-nav">
+										 把代码分割成小块 (Code Split)
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bb%8e%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%ab%af%e7%9d%80%e6%89%8b%e4%bc%98%e5%8c%96" v-on:click="closeDrawer" id="从服务器端着手优化-nav">
+										 从服务器端着手优化
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%9b%b4%e6%8e%a5%e4%bb%8e-react-%e4%b8%8a%e4%b8%8b%e6%89%8b" v-on:click="closeDrawer" id="直接从-react-上下手-nav">
+										 直接从 React 上下手
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#react-lite" v-on:click="closeDrawer" id="react-lite-nav">
+										 react-lite
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%83%e8%83%bd%e5%92%8c-react-router--redux-%e5%ae%8c%e7%be%8e%e5%85%bc%e5%ae%b9" v-on:click="closeDrawer" id="它能和-react-router--redux-完美兼容-nav">
+										 它能和 react-router / redux 完美兼容！
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%83%e8%83%bd%e5%92%8c-react-router--redux-%e5%ae%8c%e7%be%8e%e5%85%bc%e5%ae%b9-1" v-on:click="closeDrawer" id="它能和-react-router--redux-完美兼容-1-nav">
+										 它能和 react-router / redux 完美兼容！
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%83%e8%83%bd%e5%92%8c-react-router--redux-%e5%ae%8c%e7%be%8e%e5%85%bc%e5%ae%b9-2" v-on:click="closeDrawer" id="它能和-react-router--redux-完美兼容-2-nav">
+										 它能和 react-router / redux 完美兼容！
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#preact" v-on:click="closeDrawer" id="preact-nav">
+										 preact
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%90%8e%e8%ae%b0" v-on:click="closeDrawer" id="后记-nav">
+										 后记
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    从根源缩小 webpack 打包的 React App 体积
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-06-06 10:51
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/react">react</a>
+                                &nbsp;
+                            
+                                <a href="/tags/webpack">webpack</a>
+                                &nbsp;
+                            
+                                <a href="/tags/volume">volume</a>
+                                &nbsp;
+                            
+                                <a href="/tags/react-lite">react-lite</a>
+                                &nbsp;
+                            
+                                <a href="/tags/preact">preact</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。</p>
+<p><!-- raw HTML omitted -->上一次更文已经是四……三……月份了？再不写点啥这里都有长草了……<!-- raw HTML omitted --></p>
+<h1 id="在这之前">在这之前</h1>
+<p>关于如何缩小 webpack 打包出的 bundle 的体积，已经有很多的引路人为我们填下了很多的坑，所以如果你想要缩减体积提高 React App 的首屏渲染效率，你可以参考以下的这些方法：</p>
+<h2 id="将第三方库与业务代码分离打包">将第三方库与业务代码分离打包</h2>
+<p>大概是个治标不治本的方法，因为要正常渲染还是都要加载的，只是分开之后业务代码的部分体积会小一些，而且 React 和 ReactDOM 这类的库可以直接从 CDN 取得。这个地方目前据我所知有三种主流的方法：</p>
+<p>一个是修改 webpack.config.js 中的 vendor 和使用 CommonsChunkPlugin 来分离 vendor 和 bundle，可以参考：</p>
+<ul>
+<li><a href="http://blog.csdn.net/tyro_java/article/details/54755610">http://blog.csdn.net/tyro_java/article/details/54755610</a>；</li>
+<li><a href="https://webpack.github.io/docs/code-splitting.html#multiple-entry-chunks">https://webpack.github.io/docs/code-splitting.html#multiple-entry-chunks</a></li>
+</ul>
+<p>二是通过 webpack.config.js 中的 external 把模块的对象暴露到 window 中去，个人不是很推荐这种方法，虽然很方便，但不太好维护什么的；</p>
+<p>三是用 webpack 的 DLL 方式来分离：</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/a5b3c2284bb6">http://www.jianshu.com/p/a5b3c2284bb6</a>。</li>
+</ul>
+<h2 id="去掉不必要的东西和使用-uglifyjs-压缩">去掉不必要的东西和使用 uglifyJS 压缩</h2>
+<p>诸如 react-hot-loader 和 redux-devtools 一类的东西生产环境是不需要的，所以在 dist 的时候就不要打包进去了。</p>
+<p>以及很重要也很有效的一个方法就是用 uglifyJS 插件压缩 JS 代码，webpack 中自带了 UglifyJsPlugin，只需要修改一下 webpack config 中的 plugin 就可以了：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">webpack</span>.<span style="color:#a6e22e">optimize</span>.<span style="color:#a6e22e">UglifyJsPlugin</span>({
+  <span style="color:#a6e22e">compress</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">warnings</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+    <span style="color:#a6e22e">comments</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>
+  }
+})
+</code></pre></div><h2 id="把代码分割成小块-code-split">把代码分割成小块 (Code Split)</h2>
+<p>Code Split 的应用场景是当很多时候用户加载一个页面的时候只需要部分的内容，而却要下载所有的页面，因为它们被 webpack 一起打包在 bundle 当中了。解决方法就是把代码分块，然后按需加载。此方案支持 CommonJS 和 AMD, 但是暂时不支持 ES6 module. 这个方案可能对那些纠结 SPA 体积过大的开发者们很有帮助：</p>
+<p><a href="https://webpack.github.io/docs/code-splitting.html">https://webpack.github.io/docs/code-splitting.html</a></p>
+<h2 id="从服务器端着手优化">从服务器端着手优化</h2>
+<p>从服务器端下手也是在正式发布生产环境之前一个很重要的环节——例如，开启 gzip 压缩的话能让 bundle 的体积缩小不少。以及不要忘记还有一个屡试不爽的方案——服务端渲染（SSR）。这两个方案的要求比较高也很好用，但是有些场景下并不适用<!-- raw HTML omitted -->例如你没有服务器的控制权<!-- raw HTML omitted -->。</p>
+<h1 id="直接从-react-上下手">直接从 React 上下手</h1>
+<p>在我完成一个 React 项目的过程中也因为体积太大而捣鼓了好久，上面的这些方法也或多或少试过，鉴于应用场景的特殊性和广泛性有些上文提到的有效的方法都无法实践在这个项目中。一个小小的东西打包出来有 360K+ 的大小。考虑到其中 React + ReactDOM + redux 就占了将近一半（170K 左右）的空间，所以能否从 React 上下手来减少 bundle 的体积？</p>
+<p>答案是肯定的，但是这并不是要你去自己精简 React —— 为了一个小项目去做这样的事情实在是太费神了，<!-- raw HTML omitted -->不如直接重构<!-- raw HTML omitted -->。好在，现在市面上也有一些 React 的精简版本，我们可以直接使用它们，有些轻量版的 React 甚至可以平滑过渡，<!-- raw HTML omitted -->实在是我这种懒人的福音<!-- raw HTML omitted -->。</p>
+<p>当前有很多对 React 进行抽象精简或者自行实现 Virtual DOM 和 JSX 的方案，例如 deku, react-lite, preact 等等。</p>
+<h2 id="react-lite">react-lite</h2>
+<p>这里之所以不介绍 deku 是因为虽然 deku 有一些诸如 VDOM 的关键理念，但是如果你想从 React 转到 deku 相当于重构。</p>
+<p>react-lite 是一个 react 的轻量实现。日常用到的 React API 几乎都可以在 react-lite 中跑起来。与原有的 react 相比
+，react-lite 保留了 react 的大量特性，例如 VDOM，JSX，等等；当然也丢了一些某些场景下用不到的东西，如果你不想要服务端渲染的话可以考虑使用 react-lite。</p>
+<blockquote>
+<p>React-lite supports the core APIs of React, such as Virtual DOM, intended as a drop-in replacement for React, when you don&rsquo;t need server-side rendering in browser(no ReactDOM.renderToString &amp; ReactDOM.renderToStaticMarkup).</p>
+</blockquote>
+<p>react-lite 也是我现在正在使用的代替 react 的方案，从某种意义上讲，react-lite 在某些方面（例如渲染等）的性能优于 react. 除了能有效地缩小 bundle 的体积（170K+ -&gt; 30K）以及配置方便以外，它最吸引人的地方还在于：</p>
+<h3 id="它能和-react-router--redux-完美兼容">它能和 react-router / redux 完美兼容！</h3>
+<h3 id="它能和-react-router--redux-完美兼容-1">它能和 react-router / redux 完美兼容！</h3>
+<h3 id="它能和-react-router--redux-完美兼容-2">它能和 react-router / redux 完美兼容！</h3>
+<p>简直太棒了有没有！！这意味着用 react-router + redux 构建的 react 项目几乎就可以直接平滑地过渡到 react-lite 上！！而且对于 react 的一些 unittest, react-lite 都能跑过。</p>
+<p>从 react 过渡到 react-lite 也十分容易，在大部分情况下两者是可以兼容的，直接为 webpack 配置一个 alias，把对 react 的引用指向 react-lite 即可：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span>{
+    <span style="color:#a6e22e">resolve</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">alias</span><span style="color:#f92672">:</span> {
+            <span style="color:#e6db74">&#39;react&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;react-lite&#39;</span>,
+            <span style="color:#e6db74">&#39;react-dom&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;react-lite&#39;</span>
+        }
+    }
+}
+</code></pre></div><p><a href="https://github.com/Lucifier129/react-lite">https://github.com/Lucifier129/react-lite</a></p>
+<h2 id="preact">preact</h2>
+<p>react-lite 能把 150K+ 的 react &amp; react-dom 弄到 25K 左右，接下来介绍的 preact 号称是“3KB 的 react”，而且与 react 有相似的 API：</p>
+<blockquote>
+<p>Fast 3kB alternative to React, with the same ES2015 API.</p>
+</blockquote>
+<blockquote>
+<p>All the power of Virtual DOM components, without the overhead:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Familiar React API &amp; patterns: ES6 Class and Functional Components</li>
+</ul>
+</blockquote>
+<ul>
+<li>Extensive React compatibility via a simple preact-compat alias</li>
+<li>Everything you need: JSX, VDOM, React DevTools, HMR, SSR..</li>
+<li>A highly optimized diff algorithm and seamless Server Side Rendering</li>
+<li>Transparent asynchronous rendering with a pluggable scheduler</li>
+</ul>
+<p>和 react-lite 一样，它的渲染性能在某些场景下也能超过 react，毕竟没有了那么多奇奇怪怪的东西，性能飞起来也不足为奇嘛。</p>
+<p>不过，体积小了 50 倍，相应地你也要付出一些代价。preact 不像 react-lite 那样可以平滑过渡，要修改组件的代码，自己配置 babel 对 JSX 的转译，很多东西也都需要替换成 preact 专用的东西，相对的讲不是那么方便，据说 react 的单元测试 preact 只能跑过一半。但是想到体积减小的大胜利，这点小小的工作就不值一提了。</p>
+<p><a href="https://github.com/developit/preact">https://github.com/developit/preact</a></p>
+<h1 id="后记">后记</h1>
+<p>通过上面的方案以及直接对 React 动刀子，项目的体积直接从原来的 360K 左右变到 170K 上下了，首屏渲染的速度也改善了很多。后续如果还有什么行之有效的优化方法再补充这篇文章吧。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-06-06</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/">
+                    Next<br>奇怪的道路 (FCS2017 D2T1)
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/">
+                    Previous<br>导出 Typecho 的数据到 Canvas：typecho-to-canvas
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

@@ -6,7 +6,7 @@
     <description>Recent content in hasee on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Sat, 16 Feb 2019 10:57:54 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/hasee/index.xml" rel="self" type="application/rss+xml" />
@@ -27,13 +27,10 @@
       <pubDate>Wed, 23 Jan 2019 20:14:54 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</guid>
-      <description>&lt;h1 id=&#34;2019-7-更新&#34;&gt;&lt;sup&gt;2019&lt;/sup&gt;&amp;frasl;&lt;sub&gt;7&lt;/sub&gt; 更新&lt;/h1&gt;
-
+      <description>&lt;h1 id=&#34;20197-更新&#34;&gt;2019/7 更新&lt;/h1&gt;
 &lt;p&gt;八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover
-配置文件安装：&lt;a href=&#34;https://github.com/kirainmoe/hasee-tongfang-macos&#34;&gt;https://github.com/kirainmoe/hasee-tongfang-macos&lt;/a&gt; .&lt;/p&gt;
-
+配置文件安装：https://github.com/kirainmoe/hasee-tongfang-macos .&lt;/p&gt;
 &lt;p&gt;EFI 配置文件替换教程参见 &lt;a href=&#34;https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B&#34;&gt;GitHub Wiki&lt;/a&gt;.&lt;/p&gt;
-
 &lt;p&gt;以下内容可能已经过时。&lt;/p&gt;</description>
     </item>
     

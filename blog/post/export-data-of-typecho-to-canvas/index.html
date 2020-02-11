@@ -1,262 +1,1010 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="导出 Typecho 的数据到 Canvas：typecho-to-canvas - 宇宙よりも遠い場所" property="og:title">
-<title>导出 Typecho 的数据到 Canvas：typecho-to-canvas | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>导出 Typecho 的数据到 Canvas：typecho-to-canvas</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e5%8a%9f%e8%83%bd%e7%89%b9%e8%89%b2" v-on:click="closeDrawer" id="-功能特色-nav">
+										 # 功能特色
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e7%8e%af%e5%a2%83%e9%9c%80%e6%b1%82" v-on:click="closeDrawer" id="-环境需求-nav">
+										 # 环境需求
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95" v-on:click="closeDrawer" id="-使用方法-nav">
+										 # 使用方法
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e6%97%a0%e4%bb%b7%e5%9c%a8%e8%bf%9b%e8%a1%8c%e4%bb%a5%e4%b8%8b%e6%93%8d%e4%bd%9c%e4%b9%8b%e5%89%8d%e5%bc%ba%e7%83%88%e5%bb%ba%e8%ae%ae%e6%89%8b%e5%8a%a8%e5%a4%87%e4%bb%bd-typecho-%e5%92%8c-canvas-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93" v-on:click="closeDrawer" id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-nav">
+										 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e6%97%a0%e4%bb%b7%e5%9c%a8%e8%bf%9b%e8%a1%8c%e4%bb%a5%e4%b8%8b%e6%93%8d%e4%bd%9c%e4%b9%8b%e5%89%8d%e5%bc%ba%e7%83%88%e5%bb%ba%e8%ae%ae%e6%89%8b%e5%8a%a8%e5%a4%87%e4%bb%bd-typecho-%e5%92%8c-canvas-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93-1" v-on:click="closeDrawer" id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-1-nav">
+										 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e6%97%a0%e4%bb%b7%e5%9c%a8%e8%bf%9b%e8%a1%8c%e4%bb%a5%e4%b8%8b%e6%93%8d%e4%bd%9c%e4%b9%8b%e5%89%8d%e5%bc%ba%e7%83%88%e5%bb%ba%e8%ae%ae%e6%89%8b%e5%8a%a8%e5%a4%87%e4%bb%bd-typecho-%e5%92%8c-canvas-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93-2" v-on:click="closeDrawer" id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-2-nav">
+										 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%87%86%e5%a4%87%e5%ae%89%e8%a3%85-te2cn" v-on:click="closeDrawer" id="准备安装-te2cn-nav">
+										 准备：安装 te2cn
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a1%ab%e5%86%99%e6%95%b0%e6%8d%ae%e5%ba%93%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af" v-on:click="closeDrawer" id="填写数据库配置信息-nav">
+										 填写数据库配置信息
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%bc%80%e5%a7%8b%e8%bd%ac%e6%8d%a2%e8%bf%9b%e7%a8%8b" v-on:click="closeDrawer" id="开始转换进程-nav">
+										 开始转换进程
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#enjoy" v-on:click="closeDrawer" id="enjoy-nav">
+										 Enjoy～
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3" v-on:click="closeDrawer" id="-问题解决-nav">
+										 # 问题解决
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">April 9, 2017</h2>
-      <h1 class="title">导出 Typecho 的数据到 Canvas：typecho-to-canvas</h1>
-      
-      <div class="content">
-        <p>通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。</p>
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e5%8a%9f%e8%83%bd%e7%89%b9%e8%89%b2" v-on:click="closeDrawer" id="-功能特色-nav">
+										 # 功能特色
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e7%8e%af%e5%a2%83%e9%9c%80%e6%b1%82" v-on:click="closeDrawer" id="-环境需求-nav">
+										 # 环境需求
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95" v-on:click="closeDrawer" id="-使用方法-nav">
+										 # 使用方法
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e6%97%a0%e4%bb%b7%e5%9c%a8%e8%bf%9b%e8%a1%8c%e4%bb%a5%e4%b8%8b%e6%93%8d%e4%bd%9c%e4%b9%8b%e5%89%8d%e5%bc%ba%e7%83%88%e5%bb%ba%e8%ae%ae%e6%89%8b%e5%8a%a8%e5%a4%87%e4%bb%bd-typecho-%e5%92%8c-canvas-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93" v-on:click="closeDrawer" id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-nav">
+										 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e6%97%a0%e4%bb%b7%e5%9c%a8%e8%bf%9b%e8%a1%8c%e4%bb%a5%e4%b8%8b%e6%93%8d%e4%bd%9c%e4%b9%8b%e5%89%8d%e5%bc%ba%e7%83%88%e5%bb%ba%e8%ae%ae%e6%89%8b%e5%8a%a8%e5%a4%87%e4%bb%bd-typecho-%e5%92%8c-canvas-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93-1" v-on:click="closeDrawer" id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-1-nav">
+										 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%95%b0%e6%8d%ae%e6%97%a0%e4%bb%b7%e5%9c%a8%e8%bf%9b%e8%a1%8c%e4%bb%a5%e4%b8%8b%e6%93%8d%e4%bd%9c%e4%b9%8b%e5%89%8d%e5%bc%ba%e7%83%88%e5%bb%ba%e8%ae%ae%e6%89%8b%e5%8a%a8%e5%a4%87%e4%bb%bd-typecho-%e5%92%8c-canvas-%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93-2" v-on:click="closeDrawer" id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-2-nav">
+										 数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%87%86%e5%a4%87%e5%ae%89%e8%a3%85-te2cn" v-on:click="closeDrawer" id="准备安装-te2cn-nav">
+										 准备：安装 te2cn
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a1%ab%e5%86%99%e6%95%b0%e6%8d%ae%e5%ba%93%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af" v-on:click="closeDrawer" id="填写数据库配置信息-nav">
+										 填写数据库配置信息
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%bc%80%e5%a7%8b%e8%bd%ac%e6%8d%a2%e8%bf%9b%e7%a8%8b" v-on:click="closeDrawer" id="开始转换进程-nav">
+										 开始转换进程
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#enjoy" v-on:click="closeDrawer" id="enjoy-nav">
+										 Enjoy～
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#-%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3" v-on:click="closeDrawer" id="-问题解决-nav">
+										 # 问题解决
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    导出 Typecho 的数据到 Canvas：typecho-to-canvas
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-04-09 16:28
+                        </time>
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。</p>
 <p>有关 <a href="canvas.toddaustin.io">Canvas</a> 什么的我就不说了吧，大概知道这是个比较新的 PHP 博客程序，由 Laravel 框架驱动就可以了。</p>
-
 <p>至于为什么为突发奇想写这样一个东西，首先主要是这是个比较新鲜的东西，相关的东西都还很少，我在 GitHub 上找到了 <em>wordpress-to-canvas</em> 的东西，于是便觉得为何不搞一个 <em>typecho-to-canvas</em> 呢～其次呢，因为我之前用过一段时间的 Typecho，也想借这个东西把之前的一些数据导回来（虽然我找不到我把 DB 的 备份扔到哪了……qwq），以及……其他的一些原因……所以就花了一些时间造这个轮子啦。</p>
-
 <p>GitHub: <a href="https://github.com/kirainmoe/typecho-to-canvas">typecho-to-canvas: easily converting your data from Typecho to Canvas</a></p>
-
 <p>Packagist(Composer): <a href="https://packagist.org/packages/kirainmoe/typecho-to-canvas">typecho-to-canvas</a></p>
-
-<h2 id="功能特色"># 功能特色</h2>
-
+<h2 id="-功能特色"># 功能特色</h2>
 <ul>
 <li>Typecho 下的第一个 &ldquo;Switch to Canvas&rdquo; 工具</li>
 <li>支持转换 Typecho 的文章、标签和关系树，兼容性约 95%</li>
 <li>自动加载和解析配置数据，你甚至可以全程 Enter</li>
 <li>在 CLI 模式下运行</li>
-<li><s>作者这么萌</s></li>
+<li><!-- raw HTML omitted -->作者这么萌<!-- raw HTML omitted --></li>
 </ul>
-
-<h2 id="环境需求"># 环境需求</h2>
-
+<h2 id="-环境需求"># 环境需求</h2>
 <ul>
 <li>确保 Typecho 和 Canvas 在转换环境下分别已正确安装</li>
 <li>拥有转换环境的操作权限</li>
 <li>PHP 5.6.4 以上的版本（Canvas 的版本要求）</li>
 <li>已正确安装 composer 依赖管理工具</li>
 <li>PHP 已加载对应 Typecho 和 Canvas 安装类型的数据库的 PDO 拓展</li>
-<li>数据库正常运行<s>（废话）</s></li>
+<li>数据库正常运行<!-- raw HTML omitted -->（废话）<!-- raw HTML omitted --></li>
 <li>耐心，Patient</li>
 </ul>
-
-<h2 id="使用方法"># 使用方法</h2>
-
-<h4 id="数据无价-在进行以下操作之前-强烈建议手动备份-typecho-和-canvas-的数据库">数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。</h4>
-
-<h4 id="数据无价-在进行以下操作之前-强烈建议手动备份-typecho-和-canvas-的数据库-1">数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。</h4>
-
-<h4 id="数据无价-在进行以下操作之前-强烈建议手动备份-typecho-和-canvas-的数据库-2">数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。</h4>
-
+<h2 id="-使用方法"># 使用方法</h2>
+<h4 id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库">数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。</h4>
+<h4 id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-1">数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。</h4>
+<h4 id="数据无价在进行以下操作之前强烈建议手动备份-typecho-和-canvas-的数据库-2">数据无价，在进行以下操作之前，强烈建议手动备份 Typecho 和 Canvas 的数据库。</h4>
 <p>重要的事情说三遍。
 再次确保你的环境工作正常，Typecho 和 Canvas 的数据库可以访问～然后接着往下看吧～</p>
-
-<h4 id="准备-安装-te2cn">准备：安装 te2cn</h4>
-
-<p>安装教程可以在 GitHub 的 README 找到：<a href="https://github.com/kirainmoe/typecho-to-canvas">https://github.com/kirainmoe/typecho-to-canvas</a></p>
-
+<h4 id="准备安装-te2cn">准备：安装 te2cn</h4>
+<p>安装教程可以在 GitHub 的 README 找到：https://github.com/kirainmoe/typecho-to-canvas</p>
 <p>这里提供通过 Git 的安装方法，简单快捷～如果你没有安装 Git，请自行搜索当前系统的安装方式。</p>
-
-<pre><code class="language-shell"># 首先将项目仓库拉下来
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 首先将项目仓库拉下来</span>
 $ git clone https://github.com/kirainmoe/typecho-to-canvas
 $ cd typecho-to-canvas
 
-# 然后用 composer 安装依赖
+<span style="color:#75715e"># 然后用 composer 安装依赖</span>
 $ composer install
 
-# 运行 te2cn，按照提示转换数据就行啦
-$ chmod -R 755 ./te2cn
+<span style="color:#75715e"># 运行 te2cn，按照提示转换数据就行啦</span>
+$ chmod -R <span style="color:#ae81ff">755</span> ./te2cn
 $ ./te2cn
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h4 id="填写数据库配置信息">填写数据库配置信息</h4>
-
 <p>运行程序首先是一贯的套路 welcome，然后 <strong>te2cn</strong> 会先后向你询问 <em>Typecho</em> 和 <em>Canvas</em> 的数据库配置信息。首先会询问 Typecho 的数据库配置信息，请按顺序依次输入：数据库主机、用户、密码、数据库名称、端口、以及数据库的种类。程序会给出默认值，如果你不需要修改默认值，可以直接敲回车。
 （小技巧：直接将 Typecho 的配置文件 <strong>config.inc.php</strong> 复制到程序目录下，<strong>te2cn</strong> 会自动解析数据库配置，无需人工填写）</p>
-
 <p>接下来会询问 Canvas 数据库的配置信息。首先会问你 Canvas 和 Typecho 是否安装在同一数据库主机中，如果是的话直接回车，程序会问你 Canvas 安装的数据库名称；如果不是的话，会收集 Canvas 安装数据库的配置。
 （目前暂时不支持解析 Laravel .ENV 的说 qwq）</p>
-
 <p>接下来会列出所收集或解析的数据库的配置信息，请检查是否有误，如果无误可以直接敲回车。</p>
-
 <h4 id="开始转换进程">开始转换进程</h4>
-
 <p>如果信息填写正确，程序就会自动开始数据导出进程。不过在这之前会先询问你是否保留 Canvas 的现有数据，如果你需要保留直接回车，不保留的话需要确认两次，以防误操作丢失数据。</p>
-
 <p>然后，程序就会自动启动转换进程。取决于 Typecho 数据量的大小以及服务器 IO 性能，这个过程可能需要一些时间，请耐心等待，在依次导出了 tags, posts, relationships 之后，就完成了操作。</p>
-
 <h4 id="enjoy">Enjoy～</h4>
-
 <p>当看到转换完成的提示之后，Typecho 的数据就成功地被导出到 Canvas 了。你可以试一试运行 Canvas 看看效果：</p>
-
-<pre><code class="language-shell">$ cd /path/to/your/canvas
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /path/to/your/canvas
 $ php artisan serve
-</code></pre>
-
-<h2 id="问题解决"># 问题解决</h2>
-
+</code></pre></div><h2 id="-问题解决"># 问题解决</h2>
 <p>目前由于 Canvas 暂时不支持本地评论以及其他一些 Typecho 的 features，所以只做了文章、标签和关系树的单向转换。如果有时间会更新逆向转换功能（canvas-to-typecho）。</p>
-
 <p>有任何问题或者建议，都可以到 GitHub 的项目主页提 issues 或者 Pull request 告诉我们。</p>
-
 <p>嘛。希望这个轮子能对你们有帮助～</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-04-09</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/">
+                    Next<br>从根源缩小 webpack 打包的 React App 体积
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/leetcode-praticing-record/">
+                    Previous<br>LeetCode Praticing Record
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

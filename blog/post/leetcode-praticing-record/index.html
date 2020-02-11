@@ -1,271 +1,595 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="LeetCode Praticing Record - 宇宙よりも遠い場所" property="og:title">
-<title>LeetCode Praticing Record | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>LeetCode Praticing Record</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">March 1, 2017</h2>
-      <h1 class="title">LeetCode Praticing Record</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/leetcode">leetcode</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/cpp">cpp</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 <a href="https://leetcode.com">LeetCode</a> 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））<s>所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……</s></p>
-
-<p><s>（题外：西方的 LeetCode 比什么 *gu 一类的 Online Judge 不知道高到哪里去了！）</s></p>
-
-<h1 id="目录-content">目录 (Content)</h1>
-
-<p>[Problem 1] Two sum 简单的两数求和（斜眼笑）
-[Problem 2] Add Two Numbers 真 · 两数求和
-[Problem 3] Longest Substring Without Repeating Characters 找到一串字符串最长不重复的子串</p>
-
-<h2 id="problem-1-two-sum">[Problem 1] Two sum</h2>
-
-<p>一开始看难度 Easy，以为又是普通 OJ 的那种 A+B 问题，点进去一看才发现……我毕竟还是图样图森破啊。
-呐。问题的大意就是给你一个不定长的整数数组 nums，里面的数不会重复；再给你一个目标数 target，然后让你求出数组中的哪两个数加起来等于目标数。
-（喂，这和我们说好的水题不一样啊！）
-其实还是可以的啦，题目给的标签是哈希表，那就照着这个方向写吧。这里哈希表用STL 的 map 来建好了，也是很方便的（问题是写这题之前还没试过用 map 呢 orz）
-代码 Gist 地址：<a href="https://gist.github.com/kirainmoe/919ee87b7653ada8689fbe2384503bd5#file-two_sum-cpp">https://gist.github.com/kirainmoe/919ee87b7653ada8689fbe2384503bd5#file-two_sum-cpp</a>
-做题的时候参考的：
-《C++ 中的 STL 中 map 用法详解》：<a href="http://blog.sina.com.cn/s/blog_a9303fd9010195hm.html">http://blog.sina.com.cn/s/blog_a9303fd9010195hm.html</a></p>
-
-<hr />
-
-<h2 id="problem-2-add-two-numbers">[Problem 2] Add Two Numbers</h2>
-
-<p>稍有常识的人就能看出，<s>如果我们的铁骑继续前进</s> 这道题目就是一个高精度加法运算的链表实现形式：
-Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-Output: 7 -&gt; 0 -&gt; 8
-把高精度的模板套过来使之与链表相适即可。但是受 Top solution 的一个题解的启发，原来代码可以写得更简洁，如下，代码不长不扔 Gist 了。</p>
-
-<pre><code class="language-cpp">/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode a = ListNode(0), *ans = &amp;a;
-        int remain = 0;         // 剩余
-    // l1, l2 都为空之后，切记要处理最后剩余的
-    while (l1 != NULL || l2 != NULL || remain != 0)
-        {
-            int cur = (l1 ? l1-&gt;val : 0) + (l2 ? l2-&gt;val : 0) + remain;
-            remain = cur / 10;
-            ans-&gt;next = new ListNode(cur % 10);
-            ans = ans-&gt;next;
-            
-            // 下一位，记得判断一下 l1, l2 的 next 是否为 NULL
-            l1 = l1 ? l1-&gt;next : l1;
-            l2 = l2 ? l2-&gt;next : l2;
-        }
-        
-        return a.next;
-    }
-};
-</code></pre>
-
-<p>就是这样的喵。</p>
-
-<hr />
-
-<h2 id="problem-3-longest-substring-without-repeating-characters">[Problem 3] Longest Substring Without Repeating Characters</h2>
-
-<p>其实做这道题目距离今天已经有一段日子了……也是我 LeetCode 的入坑题。难度是 Medium ，但是我觉得这个比上一题简单的说。</p>
-
-<p>题目大意是给你一个字符串，找出最长的不重复子串，然后返回这个不重复子串的长度。比如说：</p>
-
-<pre><code>Given &quot;pwwkew&quot;, the answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
-</code></pre>
-
-<p>刚看到这道题目的时候，想到以前好像做过类似的题目可以用 DP 来求解，仔细想想发现不需要用动态规划，并且可以把时间复杂度控制在 O(n)。具体的做法如下：</p>
-
-<blockquote>
-<p>首先维护一个长度为 96 的数组 pos，因为这里题目给出来的字符串不只包括大小写字母，还包括特殊符号（喂，不带不给数据范围的啊），但是都在 ASCII 能表示的范围内，用这个数组作为 Flag。用 memset() 把这个数组赋上初值 -1。定义一个叫 ans 和 cur 的整形变量，分别用来存储最终答案和当前搜到的最长不重复子串的长度，初值都让他们为 0。最后我们还需要一个作为指针作用的变量 flag = s.length().</p>
-
-<p>接下来就是求解。将这个字符串从后往前搜（length-1→0），定义一个叫做 tmp 的变量保存当前遍历到的字符的 ASCII 码与 32 的差（s[i]-32，这里与 32 做差的原因是我们上文只定义了 96 的数组长度）。接着对 pos[tmp] 做判断：
-如果 pos[tmp] == -1，说明到目前为止还没有遇到过这个字母，那么令 cur += 1，接着判断 cur 和 ans 的关系，如果 cur &gt; ans，就用 cur 的值替换 ans 的值。</p>
-
-<p>如果 pos[tmp] != -1，说明在之前已经遇到了这个字母，而现在又遇到了，这个时候需要判断 pos[tmp] 和 flag 的大小关系。</p>
-
-<p>== 如果 pos[tmp] &gt; flag，这个时候说明 flag 在当前搜到的字符(tmp) 上一次出现之后已经更新过了，那么这时候我们就令 cur = flag-i（这个时候，从 i 到 flag 的字符共同组成从 s[i] 开始往下能取到的最长不重复子串），然后比较 ans 和 cur，更新 ans 的值。</p>
-
-<p>==  如果 pos[tmp] &lt; flag，那么更新 flag 的值，让 flag = pos[tmp]（这么做的原因是因为如果 pos[tmp] 在 flag 之前，那么从 i 开始能取到的最长不重复子串就会变成 i 到 pos[tmp]-1之间的所有字符）。这个时候就可以令 cur = flag-i 了。由于这个时候得到的新值必定比 ans 小，所以就不需要做比较了。</p>
-
-<p>做完这一切还有最后一件事，就是更新当前字母出现的位置啦。别忘记在循环体最后加上 pos[tmp] = i 更新一下位置。最后就大胆地 return ans; 吧。</p>
-</blockquote>
-
-<p>代码 Gist 地址：<a href="https://gist.github.com/kirainmoe/a39a65e73efc95012bb7be84d32337c7">https://gist.github.com/kirainmoe/a39a65e73efc95012bb7be84d32337c7</a>
-由于理想情况下复杂度是 O(n) ，所以实测最快可以在 LeetCode 跑到 9ms 左右（这个成绩是超过 99.57% 的提交）</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%9b%ae%e5%bd%95-content" v-on:click="closeDrawer" id="目录-content-nav">
+										 目录 (Content)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#problem-1-two-sum" v-on:click="closeDrawer" id="problem-1-two-sum-nav">
+										 [Problem 1] Two sum
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#problem-2-add-two-numbers" v-on:click="closeDrawer" id="problem-2-add-two-numbers-nav">
+										 [Problem 2] Add Two Numbers
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#problem-3-longest-substring-without-repeating-characters" v-on:click="closeDrawer" id="problem-3-longest-substring-without-repeating-characters-nav">
+										 [Problem 3] Longest Substring Without Repeating Characters
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%9b%ae%e5%bd%95-content" v-on:click="closeDrawer" id="目录-content-nav">
+										 目录 (Content)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#problem-1-two-sum" v-on:click="closeDrawer" id="problem-1-two-sum-nav">
+										 [Problem 1] Two sum
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#problem-2-add-two-numbers" v-on:click="closeDrawer" id="problem-2-add-two-numbers-nav">
+										 [Problem 2] Add Two Numbers
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#problem-3-longest-substring-without-repeating-characters" v-on:click="closeDrawer" id="problem-3-longest-substring-without-repeating-characters-nav">
+										 [Problem 3] Longest Substring Without Repeating Characters
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    LeetCode Praticing Record
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-03-01 17:38
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/leetcode">leetcode</a>
+                                &nbsp;
+                            
+                                <a href="/tags/algorithm">algorithm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/cpp">cpp</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 <a href="https://leetcode.com">LeetCode</a> 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））<!-- raw HTML omitted -->所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->（题外：西方的 LeetCode 比什么 *gu 一类的 Online Judge 不知道高到哪里去了！）<!-- raw HTML omitted --></p>
+<h1 id="目录-content">目录 (Content)</h1>
+<p>[Problem 1] Two sum 简单的两数求和（斜眼笑）
+[Problem 2] Add Two Numbers 真 · 两数求和
+[Problem 3] Longest Substring Without Repeating Characters 找到一串字符串最长不重复的子串</p>
+<h2 id="problem-1-two-sum">[Problem 1] Two sum</h2>
+<p>一开始看难度 Easy，以为又是普通 OJ 的那种 A+B 问题，点进去一看才发现……我毕竟还是图样图森破啊。
+呐。问题的大意就是给你一个不定长的整数数组 nums，里面的数不会重复；再给你一个目标数 target，然后让你求出数组中的哪两个数加起来等于目标数。
+（喂，这和我们说好的水题不一样啊！）
+其实还是可以的啦，题目给的标签是哈希表，那就照着这个方向写吧。这里哈希表用STL 的 map 来建好了，也是很方便的（问题是写这题之前还没试过用 map 呢 orz）
+代码 Gist 地址：https://gist.github.com/kirainmoe/919ee87b7653ada8689fbe2384503bd5#file-two_sum-cpp
+做题的时候参考的：
+《C++ 中的 STL 中 map 用法详解》：http://blog.sina.com.cn/s/blog_a9303fd9010195hm.html</p>
+<hr>
+<h2 id="problem-2-add-two-numbers">[Problem 2] Add Two Numbers</h2>
+<p>稍有常识的人就能看出，<!-- raw HTML omitted -->如果我们的铁骑继续前进<!-- raw HTML omitted --> 这道题目就是一个高精度加法运算的链表实现形式：
+Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+把高精度的模板套过来使之与链表相适即可。但是受 Top solution 的一个题解的启发，原来代码可以写得更简洁，如下，代码不长不扔 Gist 了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Definition for singly-linked list.
+</span><span style="color:#75715e"> * struct ListNode {
+</span><span style="color:#75715e"> *     int val;
+</span><span style="color:#75715e"> *     ListNode *next;
+</span><span style="color:#75715e"> *     ListNode(int x) : val(x), next(NULL) {}
+</span><span style="color:#75715e"> * };
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    ListNode<span style="color:#f92672">*</span> addTwoNumbers(ListNode<span style="color:#f92672">*</span> l1, ListNode<span style="color:#f92672">*</span> l2) {
+        ListNode a <span style="color:#f92672">=</span> ListNode(<span style="color:#ae81ff">0</span>), <span style="color:#f92672">*</span>ans <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>a;
+        <span style="color:#66d9ef">int</span> remain <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;         <span style="color:#75715e">// 剩余
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// l1, l2 都为空之后，切记要处理最后剩余的
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (l1 <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL <span style="color:#f92672">|</span><span style="color:#f92672">|</span> l2 <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL <span style="color:#f92672">|</span><span style="color:#f92672">|</span> remain <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+        {
+            <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> (l1 <span style="color:#f92672">?</span> l1<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>val : <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> (l2 <span style="color:#f92672">?</span> l2<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>val : <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> remain;
+            remain <span style="color:#f92672">=</span> cur <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>;
+            ans<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>next <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode(cur <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>);
+            ans <span style="color:#f92672">=</span> ans<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>next;
+            
+            <span style="color:#75715e">// 下一位，记得判断一下 l1, l2 的 next 是否为 NULL
+</span><span style="color:#75715e"></span>            l1 <span style="color:#f92672">=</span> l1 <span style="color:#f92672">?</span> l1<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>next : l1;
+            l2 <span style="color:#f92672">=</span> l2 <span style="color:#f92672">?</span> l2<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>next : l2;
+        }
+        
+        <span style="color:#66d9ef">return</span> a.next;
+    }
+};
+</code></pre></div><p>就是这样的喵。</p>
+<hr>
+<h2 id="problem-3-longest-substring-without-repeating-characters">[Problem 3] Longest Substring Without Repeating Characters</h2>
+<p>其实做这道题目距离今天已经有一段日子了……也是我 LeetCode 的入坑题。难度是 Medium ，但是我觉得这个比上一题简单的说。</p>
+<p>题目大意是给你一个字符串，找出最长的不重复子串，然后返回这个不重复子串的长度。比如说：</p>
+<pre><code>Given &quot;pwwkew&quot;, the answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
+</code></pre><p>刚看到这道题目的时候，想到以前好像做过类似的题目可以用 DP 来求解，仔细想想发现不需要用动态规划，并且可以把时间复杂度控制在 O(n)。具体的做法如下：</p>
+<blockquote>
+<p>首先维护一个长度为 96 的数组 pos，因为这里题目给出来的字符串不只包括大小写字母，还包括特殊符号（喂，不带不给数据范围的啊），但是都在 ASCII 能表示的范围内，用这个数组作为 Flag。用 memset() 把这个数组赋上初值 -1。定义一个叫 ans 和 cur 的整形变量，分别用来存储最终答案和当前搜到的最长不重复子串的长度，初值都让他们为 0。最后我们还需要一个作为指针作用的变量 flag = s.length().</p>
+</blockquote>
+<blockquote>
+<p>接下来就是求解。将这个字符串从后往前搜（length-1→0），定义一个叫做 tmp 的变量保存当前遍历到的字符的 ASCII 码与 32 的差（s[i]-32，这里与 32 做差的原因是我们上文只定义了 96 的数组长度）。接着对 pos[tmp] 做判断：
+如果 pos[tmp] == -1，说明到目前为止还没有遇到过这个字母，那么令 cur += 1，接着判断 cur 和 ans 的关系，如果 cur &gt; ans，就用 cur 的值替换 ans 的值。</p>
+</blockquote>
+<blockquote>
+<p>如果 pos[tmp] != -1，说明在之前已经遇到了这个字母，而现在又遇到了，这个时候需要判断 pos[tmp] 和 flag 的大小关系。</p>
+</blockquote>
+<p>== 如果 pos[tmp] &gt; flag，这个时候说明 flag 在当前搜到的字符(tmp) 上一次出现之后已经更新过了，那么这时候我们就令 cur = flag-i（这个时候，从 i 到 flag 的字符共同组成从 s[i] 开始往下能取到的最长不重复子串），然后比较 ans 和 cur，更新 ans 的值。</p>
+<blockquote>
+<p>==  如果 pos[tmp] &lt; flag，那么更新 flag 的值，让 flag = pos[tmp]（这么做的原因是因为如果 pos[tmp] 在 flag 之前，那么从 i 开始能取到的最长不重复子串就会变成 i 到 pos[tmp]-1之间的所有字符）。这个时候就可以令 cur = flag-i 了。由于这个时候得到的新值必定比 ans 小，所以就不需要做比较了。</p>
+</blockquote>
+<blockquote>
+<p>做完这一切还有最后一件事，就是更新当前字母出现的位置啦。别忘记在循环体最后加上 pos[tmp] = i 更新一下位置。最后就大胆地 return ans; 吧。</p>
+</blockquote>
+<p>代码 Gist 地址：https://gist.github.com/kirainmoe/a39a65e73efc95012bb7be84d32337c7
+由于理想情况下复杂度是 O(n) ，所以实测最快可以在 LeetCode 跑到 9ms 左右（这个成绩是超过 99.57% 的提交）</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-03-01</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/">
+                    Next<br>导出 Typecho 的数据到 Canvas：typecho-to-canvas
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/">
+                    Previous<br>只读属性引起的 state 不随 setState 的触发而变化
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

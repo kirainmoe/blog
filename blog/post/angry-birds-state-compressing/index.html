@@ -1,311 +1,436 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="愤怒的小鸟 (Review / NOIP2016 D2T3) - 宇宙よりも遠い場所" property="og:title">
-<title>愤怒的小鸟 (Review / NOIP2016 D2T3) | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>愤怒的小鸟 (Review / NOIP2016 D2T3)</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">November 3, 2017</h2>
-      <h1 class="title">愤怒的小鸟 (Review / NOIP2016 D2T3)</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/oi">oi</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/dynamic-programming">dynamic programming</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)</p>
-
-<p>题目：<a href="https://www.luogu.org/problemnew/show/2831">https://www.luogu.org/problemnew/show/2831</a></p>
-
-<p>题目就是呢，要构造最少条的抛物线，消灭掉所有的小猪~然后求最少的抛物线数量~观察题目我们可以发现——特殊指令 m 是没有什么卵用的= =</p>
-
-<p>然后接下来我们分析题目：求构造的最少抛物线数量 → 构造抛物线直到把所有的猪都打掉 → 每个猪打一次就没了，而且抛物线的轨迹不会改变 → 对于一条抛物线，如果能打掉尽可能多的猪那么再好不过 → n &lt;= 18 → ……</p>
-
-<p>好的，看到数据范围大家应该有一些想法了。大部分人会想到搜索 + 剪枝，也有写记忆化搜索的……然而这两种都不太好写，但是能解是肯定的，这里就不多说这个了。</p>
-
-<p>n 才 18，还有另一种做法呀~那就是状态压缩 DP！( ＞ω＜) 表示对于能理解状态压缩的玩家们，把这题写成状态压缩比写成搜索题好写多了~而且效率也很高的说。如果不能理解状压的话想写就比较麻烦辣。</p>
-
-<p>那么我们要做什么呢？先设计个 DP 状态和方程呗，显然我们应该<strong>用<code>dp[i]</code>来表示击败的猪的二进制状态为 i 的时候，需要构造的抛物线的最小数目。</strong>二进制状态为 i 是什么概念呢，这里简单地说一下，比如说总共有 3 只猪，这时候你把第一只（标号为 0）和第二只（标号为 1）的猪打掉了，那么 i 就是<code>011</code>咯（打掉第几只猪，状态 i 的二进制下第几位就是 1），同理如果你把三只猪都打死了，那么 i 就是<code>111</code>.</p>
-
-<p>所以，根据状态压缩 DP 的原理，我们先枚举合法的每一个状态，也就是 <code>i = 1</code> 到 <code>(1 &lt;&lt; n) - 1</code>。对于每一个状态，随便举出其中包含的一个点 k，那么 <code>dp[i]</code> 最坏的情况应该是：在没打掉第 k 只猪之前的最小值 + 1，我们把这个值作为初值赋给 <code>dp[i]</code>: <code>dp[i] = dp[i &amp; ~(1 &lt;&lt; k)] + 1</code>, 或者表示成<code>dp[i] = dp[i - (1 &lt;&lt; k)] + 1</code>.</p>
-
-<p>然后我们再枚举出当前状态包含的另一个点 t (t != k), 取<code>dp[i]</code>（上文已经更新过了）和<code>dp[j] + 1</code>的最小值即可。因为我们知道，两点构成一条抛物线，所以我们可以找两个，这两个点一定可以勾出一条抛物线，然后从当前状态 i 中去掉<strong>这条抛物线经过的所有的小猪</strong>，这样就得到了状态 j （╯‵□′）╯︵┴─┴ ：<code>dp[i] = min(dp[i], dp[i - (i &amp; fstate[i][j])] + 1)</code>, 这里 <code>fstate[i][j]</code> 的意思请往下看。</p>
-
-<p>那么还有一个问题，就是我们怎么知道 k 和 t 构成的那条抛物线经过了哪些猪呢？这时候我们可以枚举任意两个点算出经过这两个点的形如<code>y=ax^2+bx, a &lt; 0</code>的抛物线，再计算这条抛物线对其他点的影响，把它们整理成一个二进制状态；简言之，两点（当然，还有原点 0, 0）可以确定一条抛物线，我们用<code>fstate[i][j]</code>表示能干掉第 i 和第 j 只小猪的这条抛物线，最终能打掉的猪的状态，这样上面的 j 就可以推出来了。<code>fstate</code>数组的计算就是，选取两个点计算 a 和 b，然后枚举其他的点，如果<code>aXk^2 + bXk = Yk</code>成立的话，那么就把这个点 k 合并到<code>fstate[i][j]</code>里去：<code>fstate[i][j] |= (1 &lt;&lt; k)</code>.</p>
-
-<p>好了。至此这道题已经做得差不多了，还有一个很关键的地方可能就是——抛物线怎么算 (￣▽￣)~这里主要要 care 一下精度的问题: <code>const double eps = 1e-7;</code>.</p>
-
-<p>然后我们对于两个已知点 A(x1, y1), B(x2, y2)，我们可以得到两个等式：</p>
-
-<pre><code>y1 = a * x1^2 + b * x1
-y2 = a * x2^2 + b * x2
-</code></pre>
-
-<p>移项变形一下，我们可以得到：</p>
-
-<pre><code>b = (y1 - a * x1^2) / x1
-b = (y2 - a * x2^2) / x2
-</code></pre>
-
-<p>消去参数 b，然后得到关于 a 的一个等式，整理之后我们可以得到：</p>
-
-<pre><code>a = (x2 * y1 - x1 * y2) / (x1 * x2 * (x1 - x2))
-</code></pre>
-
-<p>其中 x1, x2, x1-x2 均不为 0. 得到 a 之后把 a 带回上面一个含 b 的式子就可以了(o ° ω ° O ) 。</p>
-
-<p>然后这道题就做完啦。</p>
-
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cmath&gt;
-#include &lt;algorithm&gt;
-#define db double
-using namespace std;
-const int MAXN = 18;
-const int INF = 1e9 + 7;
-const db eps = 1e-7;
-struct Point {
-    db x, y;
-}; 
-Point p[MAXN + 5];
-int dp[1 &lt;&lt; MAXN];
-int fstate[MAXN][MAXN];
-int n, m, t;
-int main()
-{
-    scanf(&quot;%d&quot;, &amp;t);
-    while (t--)
-    {
-        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
-        for (int i = 0; i &lt; n; i++)
-        {
-            scanf(&quot;%lf%lf&quot;, &amp;p[i].x, &amp;p[i].y);
-        }
-        
-        memset(fstate, 0, sizeof fstate);
-        
-        for (int i = 0; i &lt; n; i++)
-        {
-            for (int j = 0; j &lt; n; j++)
-            {
-                if (i == j) {
-                    continue;
-                }
-                
-                db x1 = p[i].x, x2 = p[j].x, y1 = p[i].y, y2 = p[j].y;
-                if (x1 &lt; eps || x2 &lt; eps || abs(x1 - x2) &lt; eps) {
-                    continue;
-                }
-                db a = (x2 * y1 - x1 * y2) / (x1 * x2 * (x1 - x2));
-                if (a &gt; -eps) {
-                    continue;
-                }
-
-                db b = y1 / x1 - a * x1;
-                int final = (1 &lt;&lt; i) | (1 &lt;&lt; j);
-                for (int k = 0; k &lt; n; k++)
-                {
-                    db xk = p[k].x, yk = p[k].y;
-                    if (abs(a * xk * xk + b * xk - yk) &lt; eps) {
-                        final |= (1 &lt;&lt; k);
-                    }
-                }
-                fstate[i][j] = final;
-            }
-        }
-    
-        fill(dp, dp + (1 &lt;&lt; n), INF);
-        dp[0] = 0;
-        for (int i = 1; i &lt; (1 &lt;&lt; n); i++)
-        {
-            int cur = 0;
-            for (int j = 0; j &lt; n; j++)
-            {
-                if (i &amp; (1 &lt;&lt; j)) {
-                    cur = j;
-                    break;
-                }
-            }
-            
-            // dp[i] = dp[i - (1 &lt;&lt; cur)] + 1;
-            dp[i] = dp[i &amp; ~(1 &lt;&lt; cur)] + 1;
-
-            for (int j = 0; j &lt; n; j++)
-            {
-               if (i &amp; (1 &lt;&lt; j) &amp;&amp; j != cur) {
-                    dp[i] = min(dp[i], dp[i &amp; ~(i &amp; fstate[cur][j])] + 1);
-                    // dp[i] = min(dp[i], dp[i - (i &amp; fstate[cur][j])] + 1);
-               }
-            }
-        }
-        
-        printf(&quot;%d\n&quot;, dp[(1 &lt;&lt; n) - 1]);
-    }
-    return 0;
-}
-</code></pre>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    愤怒的小鸟 (Review / NOIP2016 D2T3)
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-11-03 20:36
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/oi">oi</a>
+                                &nbsp;
+                            
+                                <a href="/tags/algorithm">algorithm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/dynamic-programming">dynamic programming</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)</p>
+<p>题目：https://www.luogu.org/problemnew/show/2831</p>
+<p>题目就是呢，要构造最少条的抛物线，消灭掉所有的小猪~然后求最少的抛物线数量~观察题目我们可以发现——特殊指令 m 是没有什么卵用的= =</p>
+<p>然后接下来我们分析题目：求构造的最少抛物线数量 → 构造抛物线直到把所有的猪都打掉 → 每个猪打一次就没了，而且抛物线的轨迹不会改变 → 对于一条抛物线，如果能打掉尽可能多的猪那么再好不过 → n &lt;= 18 → ……</p>
+<p>好的，看到数据范围大家应该有一些想法了。大部分人会想到搜索 + 剪枝，也有写记忆化搜索的……然而这两种都不太好写，但是能解是肯定的，这里就不多说这个了。</p>
+<p>n 才 18，还有另一种做法呀~那就是状态压缩 DP！( ＞ω＜) 表示对于能理解状态压缩的玩家们，把这题写成状态压缩比写成搜索题好写多了~而且效率也很高的说。如果不能理解状压的话想写就比较麻烦辣。</p>
+<p>那么我们要做什么呢？先设计个 DP 状态和方程呗，显然我们应该**用<code>dp[i]</code>来表示击败的猪的二进制状态为 i 的时候，需要构造的抛物线的最小数目。**二进制状态为 i 是什么概念呢，这里简单地说一下，比如说总共有 3 只猪，这时候你把第一只（标号为 0）和第二只（标号为 1）的猪打掉了，那么 i 就是<code>011</code>咯（打掉第几只猪，状态 i 的二进制下第几位就是 1），同理如果你把三只猪都打死了，那么 i 就是<code>111</code>.</p>
+<p>所以，根据状态压缩 DP 的原理，我们先枚举合法的每一个状态，也就是 <code>i = 1</code> 到 <code>(1 &lt;&lt; n) - 1</code>。对于每一个状态，随便举出其中包含的一个点 k，那么 <code>dp[i]</code> 最坏的情况应该是：在没打掉第 k 只猪之前的最小值 + 1，我们把这个值作为初值赋给 <code>dp[i]</code>: <code>dp[i] = dp[i &amp; ~(1 &lt;&lt; k)] + 1</code>, 或者表示成<code>dp[i] = dp[i - (1 &lt;&lt; k)] + 1</code>.</p>
+<p>然后我们再枚举出当前状态包含的另一个点 t (t != k), 取<code>dp[i]</code>（上文已经更新过了）和<code>dp[j] + 1</code>的最小值即可。因为我们知道，两点构成一条抛物线，所以我们可以找两个，这两个点一定可以勾出一条抛物线，然后从当前状态 i 中去掉<strong>这条抛物线经过的所有的小猪</strong>，这样就得到了状态 j （╯‵□′）╯︵┴─┴ ：<code>dp[i] = min(dp[i], dp[i - (i &amp; fstate[i][j])] + 1)</code>, 这里 <code>fstate[i][j]</code> 的意思请往下看。</p>
+<p>那么还有一个问题，就是我们怎么知道 k 和 t 构成的那条抛物线经过了哪些猪呢？这时候我们可以枚举任意两个点算出经过这两个点的形如<code>y=ax^2+bx, a &lt; 0</code>的抛物线，再计算这条抛物线对其他点的影响，把它们整理成一个二进制状态；简言之，两点（当然，还有原点 0, 0）可以确定一条抛物线，我们用<code>fstate[i][j]</code>表示能干掉第 i 和第 j 只小猪的这条抛物线，最终能打掉的猪的状态，这样上面的 j 就可以推出来了。<code>fstate</code>数组的计算就是，选取两个点计算 a 和 b，然后枚举其他的点，如果<code>aXk^2 + bXk = Yk</code>成立的话，那么就把这个点 k 合并到<code>fstate[i][j]</code>里去：<code>fstate[i][j] |= (1 &lt;&lt; k)</code>.</p>
+<p>好了。至此这道题已经做得差不多了，还有一个很关键的地方可能就是——抛物线怎么算 (￣▽￣)~这里主要要 care 一下精度的问题: <code>const double eps = 1e-7;</code>.</p>
+<p>然后我们对于两个已知点 A(x1, y1), B(x2, y2)，我们可以得到两个等式：</p>
+<pre><code>y1 = a * x1^2 + b * x1
+y2 = a * x2^2 + b * x2
+</code></pre><p>移项变形一下，我们可以得到：</p>
+<pre><code>b = (y1 - a * x1^2) / x1
+b = (y2 - a * x2^2) / x2
+</code></pre><p>消去参数 b，然后得到关于 a 的一个等式，整理之后我们可以得到：</p>
+<pre><code>a = (x2 * y1 - x1 * y2) / (x1 * x2 * (x1 - x2))
+</code></pre><p>其中 x1, x2, x1-x2 均不为 0. 得到 a 之后把 a 带回上面一个含 b 的式子就可以了(o ° ω ° O ) 。</p>
+<p>然后这道题就做完啦。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define db double</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
+<span style="color:#66d9ef">const</span> db eps <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-7</span>;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Point</span> {
+    db x, y;
+}; 
+Point p[MAXN <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>];
+<span style="color:#66d9ef">int</span> dp[<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> MAXN];
+<span style="color:#66d9ef">int</span> fstate[MAXN][MAXN];
+<span style="color:#66d9ef">int</span> n, m, t;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>t);
+    <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">-</span><span style="color:#f92672">-</span>)
+    {
+        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        {
+            scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%lf%lf</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>p[i].x, <span style="color:#f92672">&amp;</span>p[i].y);
+        }
+        
+        memset(fstate, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> fstate);
+        
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            {
+                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> j) {
+                    <span style="color:#66d9ef">continue</span>;
+                }
+                
+                db x1 <span style="color:#f92672">=</span> p[i].x, x2 <span style="color:#f92672">=</span> p[j].x, y1 <span style="color:#f92672">=</span> p[i].y, y2 <span style="color:#f92672">=</span> p[j].y;
+                <span style="color:#66d9ef">if</span> (x1 <span style="color:#f92672">&lt;</span> eps <span style="color:#f92672">|</span><span style="color:#f92672">|</span> x2 <span style="color:#f92672">&lt;</span> eps <span style="color:#f92672">|</span><span style="color:#f92672">|</span> abs(x1 <span style="color:#f92672">-</span> x2) <span style="color:#f92672">&lt;</span> eps) {
+                    <span style="color:#66d9ef">continue</span>;
+                }
+                db a <span style="color:#f92672">=</span> (x2 <span style="color:#f92672">*</span> y1 <span style="color:#f92672">-</span> x1 <span style="color:#f92672">*</span> y2) <span style="color:#f92672">/</span> (x1 <span style="color:#f92672">*</span> x2 <span style="color:#f92672">*</span> (x1 <span style="color:#f92672">-</span> x2));
+                <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span>eps) {
+                    <span style="color:#66d9ef">continue</span>;
+                }
+
+                db b <span style="color:#f92672">=</span> y1 <span style="color:#f92672">/</span> x1 <span style="color:#f92672">-</span> a <span style="color:#f92672">*</span> x1;
+                <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">final</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> i) <span style="color:#f92672">|</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> j);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> n; k<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+                {
+                    db xk <span style="color:#f92672">=</span> p[k].x, yk <span style="color:#f92672">=</span> p[k].y;
+                    <span style="color:#66d9ef">if</span> (abs(a <span style="color:#f92672">*</span> xk <span style="color:#f92672">*</span> xk <span style="color:#f92672">+</span> b <span style="color:#f92672">*</span> xk <span style="color:#f92672">-</span> yk) <span style="color:#f92672">&lt;</span> eps) {
+                        <span style="color:#66d9ef">final</span> <span style="color:#f92672">|</span><span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> k);
+                    }
+                }
+                fstate[i][j] <span style="color:#f92672">=</span> <span style="color:#66d9ef">final</span>;
+            }
+        }
+    
+        fill(dp, dp <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> n), INF);
+        dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> n); i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        {
+            <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            {
+                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> j)) {
+                    cur <span style="color:#f92672">=</span> j;
+                    <span style="color:#66d9ef">break</span>;
+                }
+            }
+            
+            <span style="color:#75715e">// dp[i] = dp[i - (1 &lt;&lt; cur)] + 1;
+</span><span style="color:#75715e"></span>            dp[i] <span style="color:#f92672">=</span> dp[i <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> cur)] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+            {
+               <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> j) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> j <span style="color:#f92672">!</span><span style="color:#f92672">=</span> cur) {
+                    dp[i] <span style="color:#f92672">=</span> min(dp[i], dp[i <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>(i <span style="color:#f92672">&amp;</span> fstate[cur][j])] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+                    <span style="color:#75715e">// dp[i] = min(dp[i], dp[i - (i &amp; fstate[cur][j])] + 1);
+</span><span style="color:#75715e"></span>               }
+            }
+        }
+        
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dp[(<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> n) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-11-03</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/configure-lemon-judger-for-linux/">
+                    Next<br>在 Linux 下配置 lemon 评测系统
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/my-first-contest-problem/">
+                    Previous<br>记自己的第一次差点翻车的出题经历
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

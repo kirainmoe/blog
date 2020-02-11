@@ -6,7 +6,7 @@
     <description>Recent content in windows on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Tue, 01 Jan 2019 20:18:50 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/windows/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,7 @@
       <pubDate>Tue, 01 Jan 2019 20:18:50 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</guid>
-      <description>&lt;p&gt;Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达&lt;s&gt;一半&lt;/s&gt;的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达&lt;!-- raw HTML omitted --&gt;一半&lt;!-- raw HTML omitted --&gt;的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。&lt;/p&gt;</description>
     </item>
     
   </channel>

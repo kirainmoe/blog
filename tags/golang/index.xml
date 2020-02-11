@@ -6,7 +6,7 @@
     <description>Recent content in golang on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Sat, 28 Jul 2018 09:51:43 +0000</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,6 @@
       
       <guid>https://kirainmoe.com/blog/post/golang-note/</guid>
       <description>&lt;p&gt;把 Hexo 换成了基于 Go 的 Hugo，所以有必要学一下 Golang 了（&lt;/p&gt;
-
 &lt;p&gt;之前也一直在想学个新的语言，一直在纠结选什么好，刚巧就是你了。&lt;/p&gt;</description>
     </item>
     

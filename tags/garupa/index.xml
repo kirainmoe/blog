@@ -6,7 +6,7 @@
     <description>Recent content in garupa on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Sat, 15 Jun 2019 13:57:11 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/garupa/index.xml" rel="self" type="application/rss+xml" />
@@ -18,12 +18,9 @@
       <pubDate>Sat, 15 Jun 2019 13:57:11 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/06/15/5d04f02dbd06449617.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
+      <description>&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/06/15/5d04f02dbd06449617.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;解包 《バンドリ!ガールズバンドパーティ!》（即 BanG Dream! 梦想协奏曲 少女乐团派对，以下简称 garupa）游戏的资源文件。&lt;/p&gt;
-
 &lt;p&gt;其实这不是什么新东西，网上已经有很多相关的教程了，只是因为整个过程有点繁琐，所以写一篇新的文章记录一下过程和补充一些细节。&lt;/p&gt;
-
 &lt;p&gt;下文以 Android 版本的日服和国服为例。以下内容仅供学习使用，请勿用于商业等用途。&lt;/p&gt;</description>
     </item>
     

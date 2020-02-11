@@ -1,293 +1,787 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo - 宇宙よりも遠い場所" property="og:title">
-<title>修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">February 16, 2019</h2>
-      <h1 class="title">修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/bios">bios</a>
-    
-        <a class="button is-link" href="/tags/uefi">uefi</a>
-    
-        <a class="button is-link" href="/tags/hasee">hasee</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>如题。修改 BIOS 有风险，请谨慎操作。</p>
-
-<h1 id="前言">前言</h1>
-
-<h2 id="为啥要改开机-logo">为啥要改开机 Logo?</h2>
-
-<p>这还用问吗，当然是因为神船的默认开机 Logo 看起来太太太太太太太不顺眼了，虽然我的电脑原来开机 Logo 是白色的战神字样而不是勤俭之眼，但是看起来还是很违和。</p>
-
-<h2 id="修改开机-logo-的原理">修改开机 Logo 的原理</h2>
-
-<p>现在较新的电脑都使用了 UEFI BIOS, 而开机的厂家 Logo 是储存在 BIOS 中的。所以我们先提取一下本机的 BIOS，用工具替换掉原 BIOS 中的图片文件，然后再将修改过的 BIOS 刷入 BIOS 芯片中，这样就起到替换的效果啦。</p>
-
-<h2 id="适用于哪些机型">适用于哪些机型？</h2>
-
-<p>理论上适用于所有采用了 AMI BIOS 的机型。</p>
-
-<hr />
-
-<h1 id="准备">准备</h1>
-
-<ul>
-<li>一张大小为 400x300，背景为黑色，颜色为 24 位深，格式为 bmp 的自定义 Logo 图片。如果你不知道什么图片适合，那么下面给你一张 jpg 格式的示例。</li>
-<li>用于修改 BIOS 的 UEFITools，这里用的是 0.25.0 版本：<a href="https://www.lanzous.com/i5ljt2b">https://www.lanzous.com/i5ljt2b</a></li>
-<li>用于备份/提取本机 BIOS 的特定版本的 AfuWin64: <a href="https://www.lanzous.com/i5ljsve">https://www.lanzous.com/i5ljsve</a></li>
-<li>用于刷新 BIOS 的 FPTW64：<a href="https://www.lanzous.com/i5ljsxg">https://www.lanzous.com/i5ljsxg</a></li>
-</ul>
-
-<p><img src="https://i.loli.net/2019/08/16/V56DiyCoL2TGZNt.jpg" alt="Hasee.jpg" /></p>
-
-<hr />
-
-<h1 id="注意事项">注意事项</h1>
-
-<ul>
-<li><p>刷入修改版的 BIOS 有风险。有可能因为修改过程的失误或者刷写过程中的意外，导致写入的 BIOS 程序损坏，从而导致电脑无法开机。当出现这种情况时，你只能通过拆机后使用编程器物理刷入厂商提供的 BIOS 或原机备份的 BIOS 来恢复。这里建议无法承担后果的用户三思而后行。</p></li>
-
-<li><p>以下步骤在我的 8 代同方机型 Z7-KP7GZ 上测试正常，理论上适用于其他同方机型。注意，部分同方机型无法使用网上下载的 AfuWin64 直接在 Windows 下提取 BIOS，请使用我上面提供的链接，这是从神舟官网的 BIOS 下载站下载的对应机型的刷写和备份工具。</p></li>
-
-<li><p>AfuWin64 无法支持刷写修改版的 BIOS（无法通过签名验证），所以我们需要使用 FPTW64 使用命令刷写 BIOS.</p></li>
-
-<li><p>刷入相同版本的修改版 BIOS 不需要刷写 EC.</p></li>
-
-<li><p>部分蓝天模具的笔记本可能带有 BIOS 写入保护，你必须先关闭该保护才能刷写 BIOS.</p></li>
-
-<li><p>部分同方模具可能出现新主板不兼容旧 BIOS 的情况。请务必在原机 BIOS 的基础上修改。</p></li>
-
-<li><p>刷写 BIOS 的过程中请确认你的电脑电量充足，并退出所有安全软件和其它无关程序，防止出现意外。</p></li>
-
-<li><p>请严格按照步骤操作。万一翻车了且你没有备份原机 BIOS，可以在神舟官网客服站下载到 BIOS（仅限 8 代以上机器，且只有特定版本）：<a href="http://kfgl.hasee.com/lookup/bios/bios_nb.asp">http://kfgl.hasee.com/lookup/bios/bios_nb.asp</a></p></li>
-</ul>
-
-<hr />
-
-<h1 id="让我们开始吧">让我们开始吧</h1>
-
-<p>第一步，提取原机当前 BIOS. 首先打开 AfuWin64 (AFUWINGUIx64.exe)，点击下面的“储存”按钮，首先备份当前 BIOS. 程序会自动读取 BIOS ROM 备份 BIOS，如图所示。</p>
-
-<p><img src="https://i.loli.net/2019/08/16/XyUAcC9aEJ3tzRp.jpg" alt="TIM截图20190816121405.jpg" /></p>
-
-<p><img src="https://i.loli.net/2019/08/16/pQhJlHA4odrbu1N.jpg" alt="TIM截图20190816121446.jpg" /></p>
-
-<p>请务必确保程序提示 Done， 且没有任何报错的时候，再进行下面的操作. 如果有报错（如提示验证错误等），请重新打开 AfuWin64 程序操作。得到的原机 BIOS 先拷贝一份到移动存储设备上，以防万一备用；然后拷贝一份副本，用于接下来的修改。</p>
-
-<p>第二步，修改 BIOS 并替换图片。打开 UEFITools，首先点击左上角的 File -&gt; Open image File，打开刚才备份的 BIOS 的待修改副本。我们首先要寻找 UEFI 启动 logo 的位置，因为 logo 图片文件名的格式是固定的，因此我们直接按 Ctrl+F 搜索，选择 &ldquo;Text&rdquo; 类型，搜索 &ldquo;Logo.bmp&rdquo; (不含引号)：</p>
-
-<p><img src="https://i.loli.net/2019/08/16/sBrijKVHuXY46Wf.jpg" alt="TIM截图20190816122313.jpg" /></p>
-
-<p>完成搜索后我们会在下方看到类似 <code>Unicode text &quot;Logo.bmp&quot; found in User interface section at offset 0h</code> 的信息：</p>
-
-<p><img src="https://i.loli.net/2019/08/16/xnWJ6U5a3EgmHAy.jpg" alt="TIM截图20190816122324.jpg" /></p>
-
-<p>双击这条信息可以定位到搜索的位置。这里我只找到了一个 Logo.bmp；如果你有多个搜索结果，请找到 GUID 为 <code>7BB28B99-61BB-11D5-9A5D-0090273FC14D</code> 的那一个，如图所示：</p>
-
-<p><img src="https://i.loli.net/2019/08/16/kwF1gGpNBuDlIS7.jpg" alt="TIM截图20190816122554.jpg" /></p>
-
-<p>右键点击 <code>User interface section</code> 上方的 <code>Raw section</code>，然后点击 <code>Replace Body</code>, 选择你准备好的 Logo.bmp 文件替换：</p>
-
-<p><img src="https://i.loli.net/2019/08/16/DUBeqwXOGKWLZ4n.jpg" alt="TIM截图20190816122736.jpg" /></p>
-
-<p>这里再说明一下图片，格式在上文有提到了，但并不确定对图片的大小是否有限制。一般来说，不适合放大小太大的图片（因为 BIOS ROM 的大小总共只有 10MB）。我替换成功的图片大小为 351KB，因此小于等于这个大小的图片应该都是没有问题的。</p>
-
-<p>完成替换之后，在保存之前，会有两个 <code>Raw section</code>. 此时可以保存修改后的 BIOS ROM 文件。打开新的文件就会变成一个 <code>Raw section</code> 了。</p>
-
-<p>第三步，刷入 BIOS. 解压下载得到的 FPTW64，然后把修改完成后的 BIOS ROM 复制到解压目录下，确保 BIOS 文件和 FPTW64.exe 等在同一级目录下。然后<strong>使用管理员权限运行命令提示符</strong>，定位到 FPT 所在目录下。首先用 FPTW64 将 BIOS 完整地再备份一遍（包括 EEPROM, ME 和 BIOS 程序等），使用如下命令备份：</p>
-
-<pre><code class="language-shell">FPTW64 -D all.bin
-</code></pre>
-
-<p>这样，程序会备份出一个 <code>all.bin</code> 的文件，检查一下它的大小是不是 16M。这一步是为了防止你万一输错命令还是出现什么意外导致翻车，然后得到一块黑砖。完成之后将这个文件复制到你的移动存储设备上，以备不时之需，在翻车时可以通过其他电脑使用编程器救回。</p>
-
-<p>接下来使用命令刷入 BIOS. 例如，我修改后的 BIOS 文件名为 <code>modified.rom</code>，则运行下列命令，注意空格和大小写，<strong>务必添加 -BIOS 参数，否则程序会将 EEPROM, ME 等部分覆盖导致开机掉电！</strong>：</p>
-
-<pre><code class="language-batch">FPTW64 -F modified.rom -BIOS
-</code></pre>
-
-<blockquote>
-<p>Tips: 如果你上面的操作一不小心没加参数，可以重刷一遍刚刚备份的完整文件救回：<code>FPTW64 -F all.bin</code></p>
-</blockquote>
-
-<p>效果图如下。</p>
-
-<p><img src="https://i.loli.net/2019/08/16/omTh7Q4JgxGKjZz.png" alt="TIM图片20190816123444.png" /></p>
-
-<p>当看到绿色的 <code>FPT Operation Successful.</code> 时，BIOS 就已经刷新成功了，快重启看看你是成功了还是成仁了吧。</p>
-
-<h1 id="最终效果图">最终效果图</h1>
-
-<p><img src="https://i.loli.net/2019/08/16/8Ou3TY9JamvchEi.jpg" alt="TIM图片201908161123471.jpg" /></p>
-
-<p><img src="https://i.loli.net/2019/08/16/DY94d7phNjSwkF2.jpg" alt="TIM图片20190816112400.jpg" /></p>
-
-<h1 id="其它">其它</h1>
-
-<p>特别感谢群友 @浅笔向阳 的 BIOS 刷写经验。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%89%8d%e8%a8%80" v-on:click="closeDrawer" id="前言-nav">
+										 前言
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%b8%ba%e5%95%a5%e8%a6%81%e6%94%b9%e5%bc%80%e6%9c%ba-logo" v-on:click="closeDrawer" id="为啥要改开机-logo-nav">
+										 为啥要改开机 Logo?
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bf%ae%e6%94%b9%e5%bc%80%e6%9c%ba-logo-%e7%9a%84%e5%8e%9f%e7%90%86" v-on:click="closeDrawer" id="修改开机-logo-的原理-nav">
+										 修改开机 Logo 的原理
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%80%82%e7%94%a8%e4%ba%8e%e5%93%aa%e4%ba%9b%e6%9c%ba%e5%9e%8b" v-on:click="closeDrawer" id="适用于哪些机型-nav">
+										 适用于哪些机型？
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%87%86%e5%a4%87" v-on:click="closeDrawer" id="准备-nav">
+										 准备
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" v-on:click="closeDrawer" id="注意事项-nav">
+										 注意事项
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%ae%a9%e6%88%91%e4%bb%ac%e5%bc%80%e5%a7%8b%e5%90%a7" v-on:click="closeDrawer" id="让我们开始吧-nav">
+										 让我们开始吧
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%9c%80%e7%bb%88%e6%95%88%e6%9e%9c%e5%9b%be" v-on:click="closeDrawer" id="最终效果图-nav">
+										 最终效果图
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b6%e5%ae%83" v-on:click="closeDrawer" id="其它-nav">
+										 其它
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%89%8d%e8%a8%80" v-on:click="closeDrawer" id="前言-nav">
+										 前言
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%b8%ba%e5%95%a5%e8%a6%81%e6%94%b9%e5%bc%80%e6%9c%ba-logo" v-on:click="closeDrawer" id="为啥要改开机-logo-nav">
+										 为啥要改开机 Logo?
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bf%ae%e6%94%b9%e5%bc%80%e6%9c%ba-logo-%e7%9a%84%e5%8e%9f%e7%90%86" v-on:click="closeDrawer" id="修改开机-logo-的原理-nav">
+										 修改开机 Logo 的原理
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%80%82%e7%94%a8%e4%ba%8e%e5%93%aa%e4%ba%9b%e6%9c%ba%e5%9e%8b" v-on:click="closeDrawer" id="适用于哪些机型-nav">
+										 适用于哪些机型？
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%87%86%e5%a4%87" v-on:click="closeDrawer" id="准备-nav">
+										 准备
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" v-on:click="closeDrawer" id="注意事项-nav">
+										 注意事项
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%ae%a9%e6%88%91%e4%bb%ac%e5%bc%80%e5%a7%8b%e5%90%a7" v-on:click="closeDrawer" id="让我们开始吧-nav">
+										 让我们开始吧
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%9c%80%e7%bb%88%e6%95%88%e6%9e%9c%e5%9b%be" v-on:click="closeDrawer" id="最终效果图-nav">
+										 最终效果图
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b6%e5%ae%83" v-on:click="closeDrawer" id="其它-nav">
+										 其它
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2019-02-16 10:57
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/bios">bios</a>
+                                &nbsp;
+                            
+                                <a href="/tags/uefi">uefi</a>
+                                &nbsp;
+                            
+                                <a href="/tags/hasee">hasee</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>如题。修改 BIOS 有风险，请谨慎操作。</p>
+<h1 id="前言">前言</h1>
+<h2 id="为啥要改开机-logo">为啥要改开机 Logo?</h2>
+<p>这还用问吗，当然是因为神船的默认开机 Logo 看起来太太太太太太太不顺眼了，虽然我的电脑原来开机 Logo 是白色的战神字样而不是勤俭之眼，但是看起来还是很违和。</p>
+<h2 id="修改开机-logo-的原理">修改开机 Logo 的原理</h2>
+<p>现在较新的电脑都使用了 UEFI BIOS, 而开机的厂家 Logo 是储存在 BIOS 中的。所以我们先提取一下本机的 BIOS，用工具替换掉原 BIOS 中的图片文件，然后再将修改过的 BIOS 刷入 BIOS 芯片中，这样就起到替换的效果啦。</p>
+<h2 id="适用于哪些机型">适用于哪些机型？</h2>
+<p>理论上适用于所有采用了 AMI BIOS 的机型。</p>
+<hr>
+<h1 id="准备">准备</h1>
+<ul>
+<li>一张大小为 400x300，背景为黑色，颜色为 24 位深，格式为 bmp 的自定义 Logo 图片。如果你不知道什么图片适合，那么下面给你一张 jpg 格式的示例。</li>
+<li>用于修改 BIOS 的 UEFITools，这里用的是 0.25.0 版本：https://www.lanzous.com/i5ljt2b</li>
+<li>用于备份/提取本机 BIOS 的特定版本的 AfuWin64: <a href="https://www.lanzous.com/i5ljsve">https://www.lanzous.com/i5ljsve</a></li>
+<li>用于刷新 BIOS 的 FPTW64：https://www.lanzous.com/i5ljsxg</li>
+</ul>
+<p><img src="https://i.loli.net/2019/08/16/V56DiyCoL2TGZNt.jpg" alt="Hasee.jpg"></p>
+<hr>
+<h1 id="注意事项">注意事项</h1>
+<ul>
+<li>
+<p>刷入修改版的 BIOS 有风险。有可能因为修改过程的失误或者刷写过程中的意外，导致写入的 BIOS 程序损坏，从而导致电脑无法开机。当出现这种情况时，你只能通过拆机后使用编程器物理刷入厂商提供的 BIOS 或原机备份的 BIOS 来恢复。这里建议无法承担后果的用户三思而后行。</p>
+</li>
+<li>
+<p>以下步骤在我的 8 代同方机型 Z7-KP7GZ 上测试正常，理论上适用于其他同方机型。注意，部分同方机型无法使用网上下载的 AfuWin64 直接在 Windows 下提取 BIOS，请使用我上面提供的链接，这是从神舟官网的 BIOS 下载站下载的对应机型的刷写和备份工具。</p>
+</li>
+<li>
+<p>AfuWin64 无法支持刷写修改版的 BIOS（无法通过签名验证），所以我们需要使用 FPTW64 使用命令刷写 BIOS.</p>
+</li>
+<li>
+<p>刷入相同版本的修改版 BIOS 不需要刷写 EC.</p>
+</li>
+<li>
+<p>部分蓝天模具的笔记本可能带有 BIOS 写入保护，你必须先关闭该保护才能刷写 BIOS.</p>
+</li>
+<li>
+<p>部分同方模具可能出现新主板不兼容旧 BIOS 的情况。请务必在原机 BIOS 的基础上修改。</p>
+</li>
+<li>
+<p>刷写 BIOS 的过程中请确认你的电脑电量充足，并退出所有安全软件和其它无关程序，防止出现意外。</p>
+</li>
+<li>
+<p>请严格按照步骤操作。万一翻车了且你没有备份原机 BIOS，可以在神舟官网客服站下载到 BIOS（仅限 8 代以上机器，且只有特定版本）：http://kfgl.hasee.com/lookup/bios/bios_nb.asp</p>
+</li>
+</ul>
+<hr>
+<h1 id="让我们开始吧">让我们开始吧</h1>
+<p>第一步，提取原机当前 BIOS. 首先打开 AfuWin64 (AFUWINGUIx64.exe)，点击下面的“储存”按钮，首先备份当前 BIOS. 程序会自动读取 BIOS ROM 备份 BIOS，如图所示。</p>
+<p><img src="https://i.loli.net/2019/08/16/XyUAcC9aEJ3tzRp.jpg" alt="TIM截图20190816121405.jpg"></p>
+<p><img src="https://i.loli.net/2019/08/16/pQhJlHA4odrbu1N.jpg" alt="TIM截图20190816121446.jpg"></p>
+<p>请务必确保程序提示 Done， 且没有任何报错的时候，再进行下面的操作. 如果有报错（如提示验证错误等），请重新打开 AfuWin64 程序操作。得到的原机 BIOS 先拷贝一份到移动存储设备上，以防万一备用；然后拷贝一份副本，用于接下来的修改。</p>
+<p>第二步，修改 BIOS 并替换图片。打开 UEFITools，首先点击左上角的 File -&gt; Open image File，打开刚才备份的 BIOS 的待修改副本。我们首先要寻找 UEFI 启动 logo 的位置，因为 logo 图片文件名的格式是固定的，因此我们直接按 Ctrl+F 搜索，选择 &ldquo;Text&rdquo; 类型，搜索 &ldquo;Logo.bmp&rdquo; (不含引号)：</p>
+<p><img src="https://i.loli.net/2019/08/16/sBrijKVHuXY46Wf.jpg" alt="TIM截图20190816122313.jpg"></p>
+<p>完成搜索后我们会在下方看到类似 <code>Unicode text &quot;Logo.bmp&quot; found in User interface section at offset 0h</code> 的信息：</p>
+<p><img src="https://i.loli.net/2019/08/16/xnWJ6U5a3EgmHAy.jpg" alt="TIM截图20190816122324.jpg"></p>
+<p>双击这条信息可以定位到搜索的位置。这里我只找到了一个 Logo.bmp；如果你有多个搜索结果，请找到 GUID 为 <code>7BB28B99-61BB-11D5-9A5D-0090273FC14D</code> 的那一个，如图所示：</p>
+<p><img src="https://i.loli.net/2019/08/16/kwF1gGpNBuDlIS7.jpg" alt="TIM截图20190816122554.jpg"></p>
+<p>右键点击 <code>User interface section</code> 上方的 <code>Raw section</code>，然后点击 <code>Replace Body</code>, 选择你准备好的 Logo.bmp 文件替换：</p>
+<p><img src="https://i.loli.net/2019/08/16/DUBeqwXOGKWLZ4n.jpg" alt="TIM截图20190816122736.jpg"></p>
+<p>这里再说明一下图片，格式在上文有提到了，但并不确定对图片的大小是否有限制。一般来说，不适合放大小太大的图片（因为 BIOS ROM 的大小总共只有 10MB）。我替换成功的图片大小为 351KB，因此小于等于这个大小的图片应该都是没有问题的。</p>
+<p>完成替换之后，在保存之前，会有两个 <code>Raw section</code>. 此时可以保存修改后的 BIOS ROM 文件。打开新的文件就会变成一个 <code>Raw section</code> 了。</p>
+<p>第三步，刷入 BIOS. 解压下载得到的 FPTW64，然后把修改完成后的 BIOS ROM 复制到解压目录下，确保 BIOS 文件和 FPTW64.exe 等在同一级目录下。然后<strong>使用管理员权限运行命令提示符</strong>，定位到 FPT 所在目录下。首先用 FPTW64 将 BIOS 完整地再备份一遍（包括 EEPROM, ME 和 BIOS 程序等），使用如下命令备份：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">FPTW64 -D all.bin
+</code></pre></div><p>这样，程序会备份出一个 <code>all.bin</code> 的文件，检查一下它的大小是不是 16M。这一步是为了防止你万一输错命令还是出现什么意外导致翻车，然后得到一块黑砖。完成之后将这个文件复制到你的移动存储设备上，以备不时之需，在翻车时可以通过其他电脑使用编程器救回。</p>
+<p>接下来使用命令刷入 BIOS. 例如，我修改后的 BIOS 文件名为 <code>modified.rom</code>，则运行下列命令，注意空格和大小写，<strong>务必添加 -BIOS 参数，否则程序会将 EEPROM, ME 等部分覆盖导致开机掉电！</strong>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-batch" data-lang="batch">FPTW64 -F modified.rom -BIOS
+</code></pre></div><blockquote>
+<p>Tips: 如果你上面的操作一不小心没加参数，可以重刷一遍刚刚备份的完整文件救回：<code>FPTW64 -F all.bin</code></p>
+</blockquote>
+<p>效果图如下。</p>
+<p><img src="https://i.loli.net/2019/08/16/omTh7Q4JgxGKjZz.png" alt="TIM图片20190816123444.png"></p>
+<p>当看到绿色的 <code>FPT Operation Successful.</code> 时，BIOS 就已经刷新成功了，快重启看看你是成功了还是成仁了吧。</p>
+<h1 id="最终效果图">最终效果图</h1>
+<p><img src="https://i.loli.net/2019/08/16/8Ou3TY9JamvchEi.jpg" alt="TIM图片201908161123471.jpg"></p>
+<p><img src="https://i.loli.net/2019/08/16/DY94d7phNjSwkF2.jpg" alt="TIM图片20190816112400.jpg"></p>
+<h1 id="其它">其它</h1>
+<p>特别感谢群友 @浅笔向阳 的 BIOS 刷写经验。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2019-02-16</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/">
+                    Next<br>【APIO2009 前缀和/预处理/动态规划】 采油区域
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/">
+                    Previous<br>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

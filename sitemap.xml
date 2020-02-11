@@ -313,17 +313,7 @@
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/categories/</loc>
-    <lastmod>2018-02-16T23:14:44+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kirainmoe.com/blog/post/no-title/</loc>
-    <lastmod>2018-02-16T23:14:44+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/categories/%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2018-02-16T23:14:44+00:00</lastmod>
   </url>
   
@@ -339,11 +329,6 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/progressive-web-app/</loc>
-    <lastmod>2018-01-14T16:33:20+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2018-01-14T16:33:20+00:00</lastmod>
   </url>
   
@@ -533,21 +518,6 @@
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/pages/friends/</loc>
-    <lastmod>2017-04-09T17:43:54+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/pages/</loc>
-    <lastmod>2017-04-09T17:43:54+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/pages/guestbook/</loc>
-    <lastmod>2017-04-09T17:09:35+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/</loc>
     <lastmod>2017-04-09T16:28:10+00:00</lastmod>
   </url>
@@ -595,6 +565,30 @@
   <url>
     <loc>https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/</loc>
     <lastmod>2016-10-12T17:33:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/pages/friends/</loc>
+    <lastmod>2016-04-09T17:43:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/pages/</loc>
+    <lastmod>2016-04-09T17:43:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/pages/about/</loc>
+    <lastmod>2016-04-09T17:09:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/pages/guestbook/</loc>
+    <lastmod>2016-04-09T17:09:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/</loc>
   </url>
   
 </urlset>

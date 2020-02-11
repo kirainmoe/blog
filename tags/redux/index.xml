@@ -6,7 +6,7 @@
     <description>Recent content in redux on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Thu, 28 Jun 2018 19:34:48 +0000</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/redux/index.xml" rel="self" type="application/rss+xml" />
@@ -18,8 +18,7 @@
       <pubDate>Thu, 28 Jun 2018 19:34:48 +0000</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
-      <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
-
+      <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;真香&lt;/p&gt;</description>
     </item>
     

@@ -1,275 +1,673 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="一次搭建内部 Online Judge 及调优的笔记 - 宇宙よりも遠い場所" property="og:title">
-<title>一次搭建内部 Online Judge 及调优的笔记 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>一次搭建内部 Online Judge 及调优的笔记</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">August 5, 2017</h2>
-      <h1 class="title">一次搭建内部 Online Judge 及调优的笔记</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/online-judge">online judge</a>
-    
-        <a class="button is-link" href="/tags/oi">oi</a>
-    
-        <a class="button is-link" href="/tags/python">python</a>
-    
-        <a class="button is-link" href="/tags/docker">docker</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
-为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
-关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 <a href="https://github.com/QingdaoU/OnlineJudge">qduoj</a>。</p>
-
-<p>之所以选 qduoj 呢是因为<s>好看</s>这个 OJ 的架构比较让人满意，网页端采用了 Python Django，判题端的沙箱做得还可以，然后整个项目跑在 docker 中，可以最大限度地减少对宿主机留下的后遗症，以及在判题方面有更高的安全保障。</p>
-
-<p>我是在一台 Xeon E3 的 ThinkServer 上部署的 Online Judge，操作系统是 Arch Linux, 运行截至写本文之日最新版的 docker. 这个环境可以供各位参考一下，<s>毕竟 Arch Linux 大法好</s>.</p>
-
-<h1 id="installation">Installation</h1>
-
-<p>部署之前，先按照项目 README 中的一步一步走就是了。项目需要 docker 和 docker-compose，由于我用的是 Arch，所以通过下面的命令安装依赖：</p>
-
-<pre><code class="language-shell"># pacman -S git python-pip docker docker-compose
-</code></pre>
-
-<p>安装完之后我们启动 docker 服务：</p>
-
-<pre><code class="language-shell"># systemctl start docker
-</code></pre>
-
-<p>然后就是把项目克隆到本地，这一步就不多说了，然后接下来是关键的一步，同时也是这个项目的第一个坑：</p>
-
-<p>首先我们来看看原文 (README) 中是怎么说的：
-&gt; 启动服务：运行 docker-compose up -d ，不需要其他的步骤，大约一分钟之后 web 界面就可以访问了，默认开放80和443端口。其中443端口是自签名证书。</p>
-
-<blockquote>
-<p>这就结束了：超级管理员用户名是root，默认密码是password@root，请及时修改。登录/admin，添加一个判题服务器，地址为judger，端口为8080，密码是上面自定义的rpc_token。修改custom_settings.py可以自定义站点信息。</p>
-</blockquote>
-
-<p>天真的我照做了，然后一切正常，打开浏览器访问 <a href="http://localhost/">http://localhost/</a> ，然后喜闻乐见地 connection reset 了。对于一个对 docker 和 python 一窍不通的萌新来说，没有什么比用当场懵逼形容更合适不过的了……</p>
-
-<p>于是翻 issues, 查找 docker 的玩法，调出了 oj_web_server 这个容器的 log，从 log 中发现找不到 WEBSITE_INFO 的 attribute，WEBSITE_INFO 在 custom_settings.py 当中有定义，初步推断应该是容器内的 django 读不到放在容器外的 custom_settings.py.</p>
-
-<p>然后打开 docker-compose.yml 一看，似乎没什么不对啊。于是乎在群内求助，经由<a href="https://boot.pw/">田师傅</a>的指导，将 docker-compose.yml 中的 <code>$PWD</code> 变量统统改成 <code>./</code> 之后，重新 <code>docker-compose up -d</code>，终于在浏览器中看到了这个 OJ 的真容。大概可能也许是原项目对 <code>$PWD</code> 的环境变量使用有问题吧 OvO……或者是不同发行版不兼容……或者是我少配置了什么……谁知道呢。</p>
-
-<h1 id="一些优化">一些优化</h1>
-
-<p>搭好了之后，就是魔改它的时间了……想了想，这是个基于 docker 的项目诶，想要魔改似乎很麻烦的说。</p>
-
-<p>鉴于每次在容器中修改之后再 commit 的方法十分麻烦，这里我直接把容器里的代码部分复制出来，然后再用 docker 的数据卷机制从宿主机映射回去，这样就可以很方便地修改了，同时容器中也会实时更新：</p>
-
-<pre><code class="language-shell"># docker cp oj_web_server:/code /home/username/code
-</code></pre>
-
-<p>然后再修改 docker-compose.yml，按照其中的其它映射数据卷的配置的格式抄一遍，把复制出来的目录映射回去镜像里就可以了。</p>
-
-<h1 id="填坑">填坑</h1>
-
-<p>生产过程中还是在不停地踩坑……大部分是在判题的部分踩的。</p>
-
-<h3 id="添加题目的时候标题等字段必须有英文-且不能出现公式字符">添加题目的时候标题等字段必须有英文，且不能出现公式字符</h3>
-
-<p>这个只能说似乎防 XSS 的机制做得好像太严格了，稍微修改一下问题的表达，问题不大。</p>
-
-<h3 id="编译失败-compile-error-后面是一大串-json">编译失败，Compile Error，后面是一大串 JSON</h3>
-
-<p>大概像这样的：</p>
-
-<pre><code class="language-json">Compile error: Compile error, info: {'cpu_time': 1203, 'exit_status': 0, 'signal': 0, 'flag': 3, 'memory': 164458496, 'real_time': 1263}
-</code></pre>
-
-<p>当我看到标程 CE 的时候，又是一脸懵逼状。</p>
-
-<p>参考这个 issue: <a href="https://github.com/QingdaoU/OnlineJudge/issues/40">https://github.com/QingdaoU/OnlineJudge/issues/40</a> ，原来是评测机里限制了编译时候的资源，包括 CPU 时间和内存什么的。但是可能是评测机的性能太差了，即使原作者放宽了限制依旧存在这个问题。那么只能再人为地放宽这个限制了。</p>
-
-<p>用你喜欢的办法修改 judger 容器中的 language.py，把其中的 compile_max_cpu_time 和 compile_max_memory 稍微调大一点就好了。</p>
-
-<h3 id="compiler-bomb">Compiler Bomb</h3>
-
-<p>如果你闲着无聊的话，试试下面这件事：在一个 .c 文件中写入这段代码: <code>main[-1u]={1};</code>，然后用 gcc 编译。仅对 C 语言有效，C++ 无效。</p>
-
-<p><s>这可是你自己要作死的。</s></p>
-
-<blockquote>
-<p>编译这段代码之后，会生成16GB的文件。</p>
-</blockquote>
-
-<p>关于编译器炸弹的原理，请看这里：<a href="http://link.zhihu.com/?target=https%3A//wikicoding.org/wiki/c/Compiler_Bomb/%3Futm_content%3Dbuffer7c944%26utm_medium%3Dsocial%26utm_source%3Dfacebook.com%26utm_campaign%3Dbuffer">http://link.zhihu.com/?target=https%3A//wikicoding.org/wiki/c/Compiler_Bomb/%3Futm_content%3Dbuffer7c944%26utm_medium%3Dsocial%26utm_source%3Dfacebook.com%26utm_campaign%3Dbuffer</a></p>
-
-<p>网上有一篇文章说限制编译出的可执行文件的大小，然而我并没有在 gcc 的编译选项中看到任何可以限制大小的参数……</p>
-
-<p>不过既然这个东西会生成 16GB 的文件，那么写入的话肯定需要时间对吧，既然如此我们还是可以通过限制编译所用的最大时间来防范这种攻击，超时的话直接干掉编译器返回 CE. 鉴于我并不知道判题端容器中的 gcc 似乎没有受到上文说的 compile_max_cpu_time 的限制的原因，我们直接从编译命令上下手，修改 language.py 中的 compile_command：</p>
-
-<pre><code>&quot;compile_command&quot;: &quot;/usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c99 {src_path} -lm -o {exe_path}/main&quot;
-</code></pre>
-
-<p>改成：</p>
-
-<pre><code>&quot;compile_command&quot;: &quot;timeout 3s /usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c99 {src_path} -lm -o {exe_path}/main&quot;
-</code></pre>
-
-<p>这样子给编译设置一个最长 3s 的限制（当然，根据机器性能的不同，你可以设置短一点或者长一点），超过了就直接 kill 掉 gcc.</p>
-
-<p>（大概还有很多坑没有踩，接下来再慢慢补充吧……）</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#installation" v-on:click="closeDrawer" id="installation-nav">
+										 Installation
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%b8%80%e4%ba%9b%e4%bc%98%e5%8c%96" v-on:click="closeDrawer" id="一些优化-nav">
+										 一些优化
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a1%ab%e5%9d%91" v-on:click="closeDrawer" id="填坑-nav">
+										 填坑
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%b7%bb%e5%8a%a0%e9%a2%98%e7%9b%ae%e7%9a%84%e6%97%b6%e5%80%99%e6%a0%87%e9%a2%98%e7%ad%89%e5%ad%97%e6%ae%b5%e5%bf%85%e9%a1%bb%e6%9c%89%e8%8b%b1%e6%96%87%e4%b8%94%e4%b8%8d%e8%83%bd%e5%87%ba%e7%8e%b0%e5%85%ac%e5%bc%8f%e5%ad%97%e7%ac%a6" v-on:click="closeDrawer" id="添加题目的时候标题等字段必须有英文且不能出现公式字符-nav">
+										 添加题目的时候标题等字段必须有英文，且不能出现公式字符
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%bc%96%e8%af%91%e5%a4%b1%e8%b4%a5compile-error%e5%90%8e%e9%9d%a2%e6%98%af%e4%b8%80%e5%a4%a7%e4%b8%b2-json" v-on:click="closeDrawer" id="编译失败compile-error后面是一大串-json-nav">
+										 编译失败，Compile Error，后面是一大串 JSON
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#compiler-bomb" v-on:click="closeDrawer" id="compiler-bomb-nav">
+										 Compiler Bomb
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#installation" v-on:click="closeDrawer" id="installation-nav">
+										 Installation
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%b8%80%e4%ba%9b%e4%bc%98%e5%8c%96" v-on:click="closeDrawer" id="一些优化-nav">
+										 一些优化
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a1%ab%e5%9d%91" v-on:click="closeDrawer" id="填坑-nav">
+										 填坑
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%b7%bb%e5%8a%a0%e9%a2%98%e7%9b%ae%e7%9a%84%e6%97%b6%e5%80%99%e6%a0%87%e9%a2%98%e7%ad%89%e5%ad%97%e6%ae%b5%e5%bf%85%e9%a1%bb%e6%9c%89%e8%8b%b1%e6%96%87%e4%b8%94%e4%b8%8d%e8%83%bd%e5%87%ba%e7%8e%b0%e5%85%ac%e5%bc%8f%e5%ad%97%e7%ac%a6" v-on:click="closeDrawer" id="添加题目的时候标题等字段必须有英文且不能出现公式字符-nav">
+										 添加题目的时候标题等字段必须有英文，且不能出现公式字符
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%bc%96%e8%af%91%e5%a4%b1%e8%b4%a5compile-error%e5%90%8e%e9%9d%a2%e6%98%af%e4%b8%80%e5%a4%a7%e4%b8%b2-json" v-on:click="closeDrawer" id="编译失败compile-error后面是一大串-json-nav">
+										 编译失败，Compile Error，后面是一大串 JSON
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#compiler-bomb" v-on:click="closeDrawer" id="compiler-bomb-nav">
+										 Compiler Bomb
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    一次搭建内部 Online Judge 及调优的笔记
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-08-05 21:05
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/online-judge">online judge</a>
+                                &nbsp;
+                            
+                                <a href="/tags/oi">oi</a>
+                                &nbsp;
+                            
+                                <a href="/tags/python">python</a>
+                                &nbsp;
+                            
+                                <a href="/tags/docker">docker</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
+为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
+关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 <a href="https://github.com/QingdaoU/OnlineJudge">qduoj</a>。</p>
+<p>之所以选 qduoj 呢是因为<!-- raw HTML omitted -->好看<!-- raw HTML omitted -->这个 OJ 的架构比较让人满意，网页端采用了 Python Django，判题端的沙箱做得还可以，然后整个项目跑在 docker 中，可以最大限度地减少对宿主机留下的后遗症，以及在判题方面有更高的安全保障。</p>
+<p>我是在一台 Xeon E3 的 ThinkServer 上部署的 Online Judge，操作系统是 Arch Linux, 运行截至写本文之日最新版的 docker. 这个环境可以供各位参考一下，<!-- raw HTML omitted -->毕竟 Arch Linux 大法好<!-- raw HTML omitted -->.</p>
+<h1 id="installation">Installation</h1>
+<p>部署之前，先按照项目 README 中的一步一步走就是了。项目需要 docker 和 docker-compose，由于我用的是 Arch，所以通过下面的命令安装依赖：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># pacman -S git python-pip docker docker-compose</span>
+</code></pre></div><p>安装完之后我们启动 docker 服务：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># systemctl start docker</span>
+</code></pre></div><p>然后就是把项目克隆到本地，这一步就不多说了，然后接下来是关键的一步，同时也是这个项目的第一个坑：</p>
+<p>首先我们来看看原文 (README) 中是怎么说的：</p>
+<blockquote>
+<p>启动服务：运行 docker-compose up -d ，不需要其他的步骤，大约一分钟之后 web 界面就可以访问了，默认开放80和443端口。其中443端口是自签名证书。</p>
+</blockquote>
+<blockquote>
+<p>这就结束了：超级管理员用户名是root，默认密码是password@root，请及时修改。登录/admin，添加一个判题服务器，地址为judger，端口为8080，密码是上面自定义的rpc_token。修改custom_settings.py可以自定义站点信息。</p>
+</blockquote>
+<p>天真的我照做了，然后一切正常，打开浏览器访问 http://localhost/ ，然后喜闻乐见地 connection reset 了。对于一个对 docker 和 python 一窍不通的萌新来说，没有什么比用当场懵逼形容更合适不过的了……</p>
+<p>于是翻 issues, 查找 docker 的玩法，调出了 oj_web_server 这个容器的 log，从 log 中发现找不到 WEBSITE_INFO 的 attribute，WEBSITE_INFO 在 custom_settings.py 当中有定义，初步推断应该是容器内的 django 读不到放在容器外的 custom_settings.py.</p>
+<p>然后打开 docker-compose.yml 一看，似乎没什么不对啊。于是乎在群内求助，经由<a href="https://boot.pw/">田师傅</a>的指导，将 docker-compose.yml 中的 <code>$PWD</code> 变量统统改成 <code>./</code> 之后，重新 <code>docker-compose up -d</code>，终于在浏览器中看到了这个 OJ 的真容。大概可能也许是原项目对 <code>$PWD</code> 的环境变量使用有问题吧 OvO……或者是不同发行版不兼容……或者是我少配置了什么……谁知道呢。</p>
+<h1 id="一些优化">一些优化</h1>
+<p>搭好了之后，就是魔改它的时间了……想了想，这是个基于 docker 的项目诶，想要魔改似乎很麻烦的说。</p>
+<p>鉴于每次在容器中修改之后再 commit 的方法十分麻烦，这里我直接把容器里的代码部分复制出来，然后再用 docker 的数据卷机制从宿主机映射回去，这样就可以很方便地修改了，同时容器中也会实时更新：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># docker cp oj_web_server:/code /home/username/code</span>
+</code></pre></div><p>然后再修改 docker-compose.yml，按照其中的其它映射数据卷的配置的格式抄一遍，把复制出来的目录映射回去镜像里就可以了。</p>
+<h1 id="填坑">填坑</h1>
+<p>生产过程中还是在不停地踩坑……大部分是在判题的部分踩的。</p>
+<h3 id="添加题目的时候标题等字段必须有英文且不能出现公式字符">添加题目的时候标题等字段必须有英文，且不能出现公式字符</h3>
+<p>这个只能说似乎防 XSS 的机制做得好像太严格了，稍微修改一下问题的表达，问题不大。</p>
+<h3 id="编译失败compile-error后面是一大串-json">编译失败，Compile Error，后面是一大串 JSON</h3>
+<p>大概像这样的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">C</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">e</span> <span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">C</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">e</span> <span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">f</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">:</span> {<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">1</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#960050;background-color:#1e0010">0</span><span style="color:#960050;background-color:#1e0010">3</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">f</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">3</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">y</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">1</span><span style="color:#960050;background-color:#1e0010">6</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#960050;background-color:#1e0010">5</span><span style="color:#960050;background-color:#1e0010">8</span><span style="color:#960050;background-color:#1e0010">4</span><span style="color:#960050;background-color:#1e0010">9</span><span style="color:#960050;background-color:#1e0010">6</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">1</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#960050;background-color:#1e0010">6</span><span style="color:#960050;background-color:#1e0010">3</span>}
+</code></pre></div><p>当我看到标程 CE 的时候，又是一脸懵逼状。</p>
+<p>参考这个 issue: <a href="https://github.com/QingdaoU/OnlineJudge/issues/40">https://github.com/QingdaoU/OnlineJudge/issues/40</a> ，原来是评测机里限制了编译时候的资源，包括 CPU 时间和内存什么的。但是可能是评测机的性能太差了，即使原作者放宽了限制依旧存在这个问题。那么只能再人为地放宽这个限制了。</p>
+<p>用你喜欢的办法修改 judger 容器中的 language.py，把其中的 compile_max_cpu_time 和 compile_max_memory 稍微调大一点就好了。</p>
+<h3 id="compiler-bomb">Compiler Bomb</h3>
+<p>如果你闲着无聊的话，试试下面这件事：在一个 .c 文件中写入这段代码: <code>main[-1u]={1};</code>，然后用 gcc 编译。仅对 C 语言有效，C++ 无效。</p>
+<p><!-- raw HTML omitted -->这可是你自己要作死的。<!-- raw HTML omitted --></p>
+<blockquote>
+<p>编译这段代码之后，会生成16GB的文件。</p>
+</blockquote>
+<p>关于编译器炸弹的原理，请看这里：http://link.zhihu.com/?target=https%3A//wikicoding.org/wiki/c/Compiler_Bomb/%3Futm_content%3Dbuffer7c944%26utm_medium%3Dsocial%26utm_source%3Dfacebook.com%26utm_campaign%3Dbuffer</p>
+<p>网上有一篇文章说限制编译出的可执行文件的大小，然而我并没有在 gcc 的编译选项中看到任何可以限制大小的参数……</p>
+<p>不过既然这个东西会生成 16GB 的文件，那么写入的话肯定需要时间对吧，既然如此我们还是可以通过限制编译所用的最大时间来防范这种攻击，超时的话直接干掉编译器返回 CE. 鉴于我并不知道判题端容器中的 gcc 似乎没有受到上文说的 compile_max_cpu_time 的限制的原因，我们直接从编译命令上下手，修改 language.py 中的 compile_command：</p>
+<pre><code>&quot;compile_command&quot;: &quot;/usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c99 {src_path} -lm -o {exe_path}/main&quot;
+</code></pre><p>改成：</p>
+<pre><code>&quot;compile_command&quot;: &quot;timeout 3s /usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c99 {src_path} -lm -o {exe_path}/main&quot;
+</code></pre><p>这样子给编译设置一个最长 3s 的限制（当然，根据机器性能的不同，你可以设置短一点或者长一点），超过了就直接 kill 掉 gcc.</p>
+<p>（大概还有很多坑没有踩，接下来再慢慢补充吧……）</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-08-05</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/">
+                    Next<br>每周解题报告 (1st, 8/3~8/6)
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/">
+                    Previous<br>奇怪的道路 (FCS2017 D2T1)
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

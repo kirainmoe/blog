@@ -1,453 +1,882 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="Progressive Web App 初体验 - 宇宙よりも遠い場所" property="og:title">
-<title>Progressive Web App 初体验 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>Progressive Web App 初体验</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">January 14, 2018</h2>
-      <h1 class="title">Progressive Web App 初体验</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/frontend">frontend</a>
-    
-        <a class="button is-link" href="/tags/progressive-web-app">progressive-web-app</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>最近访问 <a href="https://mobile.twitter.com/">Twitter Mobile</a> 和 <a href="https://m.weibo.cn/beta">微博 HTML5 版</a> 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。</p>
-
-<h1 id="关于-pwa">关于 PWA</h1>
-
-<p>不仅仅是微博，国内的饿了么等站也同样支持 PWA，个人看来 PWA 的应用场景和前景都是相当广泛的。甚至，从微信小程序当中你也能看到它和 PWA 之间有着概念的重合。至于 PWA 的诞生背景就不多做介绍。各位可以尝试一下 Twitter 的 PWA，体验真的很好。</p>
-
-<blockquote>
-<p><a href="https://www.zhihu.com/question/46690207">如何看待 Progressive Web Apps 的发展前景？</a></p>
-</blockquote>
-
-<p>传统 WebApp 在移动端上的体验不是很好一直为人所诟病，问题在于移动端浏览器在对页面的渲染和 DOM 的操作上有性能方面的差距，以及并不能做一些高级的事情，例如驻后台更新数据、推送通知等等。如果说 RN/Weex 是用前端的技术栈做移动端的原生应用，以此来作为移动端 App 的功能、性能与开发成本之间的权衡，那么 PWA 和前两者便有一些区别，在前两者向 NativeApp 妥协的时候，它另辟蹊径，坚守 WebApp，而把目光着重于优化和实现一些 WebApp 做不到的事情。某种意义上说有点类似于 Hybrid？但是壳什么的，浏览器已经帮你准备好了。你只需要在访问支持 PWA 的站点的时候按一下“添加到主屏幕”，它就如同一个 App 一样躺在你的桌面了。</p>
-
-<p>讲了很多 PWA 的优点（总结一下就是：支持添加到主屏，可以完成通知推送等工作（甚至支持 GCM）；其他的还有诸如离线缓存等），PWA 也存在一些不足的地方。首先一个比较大的问题就是兼容性，作为 Google 首推的东西 Chrome 自然是支持的，新版本的 FF 目测也可以，但是对于别的浏览器来说就十分难受了：</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fng8t2ltorj20y60dn0tk.jpg" alt="Can I Use 中关于 Service Worker 的兼容性报告" /></p>
-
-<p>从 <a href="https://caniuse.com/#search=service%20worker">caniuse</a> 的报告中可以看到兼容性有些感人。</p>
-
-<h1 id="service-worker">Service Worker</h1>
-
-<p>刚刚说到的一些 PWA 的特性，例如后台消息推送、离线缓存等等，都是由 Service Worker 来实现的。所以说一个 PWA 应用的核心就在于 Service Worker，完全不过分。</p>
-
-<blockquote>
-<p>一个 Service Worker是一段运行在浏览器后台进程里的脚本，他独立于当前页面，提供了那些不需要与 web 页面交互的功能在网页背后悄悄执行的能力。在将来，基于它可以实现消息推送，静静更新以及地理围栏等服务，但是目前它首先要具备的功能是拦截和处理网络请求的功能，包括可编程的消息缓存管理能力。</p>
-</blockquote>
-
-<p>通俗地讲，Service Worker 就是挂在后台的一段脚本，你在前台该干嘛干嘛，它可以在后台搞一些事情，比如缓存你看的页面或者资源啊，接收到通知的时候推送给你啊，转发你的请求啊，这些都是目前比较多见的应用；当你关掉了页面之后，它还是会在后台待着继续做上面这些事情。</p>
-
-<blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API">Service Worker API - MDN</a>
-Service worker是一个注册在指定源和路径下的事件驱动worker。它采用JavaScript控制关联的页面或者网站，拦截并修改访问和资源请求，细粒度地缓存资源。你可以完全控制应用在特定情形（最常见的情形是网络不可用）下的表现。Service worker运行在worker上下文，因此它不能访问DOM。相对于驱动应用的主JavaScript线程，它运行在其他线程中，所以不会造成阻塞。它设计为完全异步，同步API（如XHR和localStorage）不能在service worker中使用。</p>
-</blockquote>
-
-<p>可以看到，Service Worker 不具备对 DOM 的访问权限，工作完全都在后台。同时因为 Service Worker 运行在后台的特性，它的操作都是异步的，因此 Promise 在这里非常好用。无法使用 XHR 这样的同步 API 还怎么和服务器通信呢，我们有 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">fetch</a> 呀。在 Service Worker 中 fetch 也扮演了一个很重要的角色。</p>
-
-<p>Service Worker 的工作机制是这样的：用户访问一个具有 Service Worker 的页面，浏览器就会下载这个 Service Worker 并尝试安装、激活。一旦激活，Service Worker 就会到后台开始工作。接下来用户访问这个页面或者每隔一个时段浏览器都会下载这个 Service Worker，如果监测到 Service Worker 有更新，就会重新安装并激活新的 Service Worker，同时 revoke 掉旧的 Service Worker，这就是 SW 的生命周期。</p>
-
-<p>因为 Service Worker 有着最近的权限接触数据，因此 Service Worker 只能被安装在 HTTPS 加密的页面中，虽然无形当中提高了 PWA 的门槛，不过也是为了安全做考虑。GitHub Pages 等服务默认支持 HTTPS，所以各位如果想尝试 Service Worker 又被需要 HTTPS 所烦恼的话，可以考虑一下。</p>
-
-<h1 id="in-action">In Action</h1>
-
-<p>多说一句，一些用 React/Vue 这类框架做的 SPA 原本就有很完整的体验, 如果加上 ServiceWorker，让它成为一个 PWA，岂不美哉 <s>开发移动端的经费都省了</s>。事实上刚才说到的 Twitter(基于 React) 和新版微博(基于 Vue) 便是很好的实践的例子。而 create-react-app 创建的 React App 默认也会启用 ServiceWorker 特性，在 cra 创建的应用中，你可以看到和 ServiceWorker 安装激活有关的代码，同时 webpack 中也有相应的配置。</p>
-
-<p>我的 Blog 默认采用 HTTPS 安全连接，前端也是用 webpack 构建的，用来尝试 PWA 一些基础的功能（例如离线缓存，生成单独的 App 图标）完全可以，所以我就以博客为<s>小白鼠</s>试了一下，只做了十分基本的离线缓存。</p>
-
-<h2 id="step-1-编写并注入-serviceworker-到前端页面中">Step 1 / 编写并注入 ServiceWorker 到前端页面中</h2>
-
-<p>这块我们就直接抄走 create-react-app 生成的 App 的代码好啦。在 src 目录下有一个 registerServiceWorker.js，就是用来管理安装/激活/检查/注销 ServiceWorker 的，我们来看看它：</p>
-
-<pre><code class="language-js">// In production, we register a service worker to serve assets from local cache.
-
-// This lets the app load faster on subsequent visits in production, and gives
-// it offline capabilities. However, it also means that developers (and users)
-// will only see deployed updates on the &quot;N+1&quot; visit to a page, since previously
-// cached resources are updated in the background.
-
-// To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
-// This link also includes instructions on opting out of this behavior.
-</code></pre>
-
-<p>这里告诉我们它用 registerWorker 的目的在于缓存一些资源，但是呢会导致如果生产环境的页面被开发者更新了之后，看到新效果之前可能有延迟。</p>
-
-<pre><code class="language-js">const isLocalhost = Boolean(
-  window.location.hostname === 'localhost' ||
-    window.location.hostname === '[::1]' ||
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-);
-// 执行注册 ServiceWorker 的操作，可以看出只有在生产环境下才做这件事
-export default function register() {
-  if (process.env.NODE_ENV === 'production' &amp;&amp; 'serviceWorker' in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
-    if (publicUrl.origin !== window.location.origin) {
-      return;
-    }
-    // 页面加载完成后，执行注册操作
-    window.addEventListener('load', () =&gt; {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-      if (!isLocalhost) {
-        registerValidSW(swUrl);
-      } else {
-        checkValidServiceWorker(swUrl);
-      }
-    });
-  }
-}
-</code></pre>
-
-<p>我们看看注册操作的主函数：</p>
-
-<pre><code class="language-js">function registerValidSW(swUrl) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then(registration =&gt; {
-      registration.onupdatefound = () =&gt; {
-        const installingWorker = registration.installing;
-        installingWorker.onstatechange = () =&gt; {
-          if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              console.log('New content is available; please refresh.');
-            } else {
-              console.log('Content is cached for offline use.');
-            }
-          }
-        };
-      };
-    })
-    .catch(error =&gt; {
-      console.error('Error during service worker registration:', error);
-    });
-}
-</code></pre>
-
-<p>可以看到我们<strong>用 <code>navigator.serviceWorker.register(serviceWorkerJsUrl)</code> 告诉浏览器应该注册从 serviceWorkerJsUrl 注册这个 ServiceWorker</strong>, 然后指定当浏览器监测到 serviceWorker 更新之后该做的事情（事实上没有什么东西，就是 console.log 告诉用户内容是否有更新，以及当前页面的内容已经被缓存了）。</p>
-
-<pre><code class="language-js">function checkValidServiceWorker(swUrl) {
-  // Check if the service worker can be found. If it can't reload the page.
-  fetch(swUrl)
-    .then(response =&gt; {
-      // Ensure service worker exists, and that we really are getting a JS file.
-      if (
-        response.status === 404 ||
-        response.headers.get('content-type').indexOf('javascript') === -1
-      ) {
-        // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration =&gt; {
-          registration.unregister().then(() =&gt; {
-            window.location.reload();
-          });
-        });
-      } else {
-        // Service worker found. Proceed as normal.
-        registerValidSW(swUrl);
-      }
-    })
-    .catch(() =&gt; {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
-    });
-}
-</code></pre>
-
-<p>这段代码是检查 Service Worker 的有效性。首先对 serviceWorkerJsUrl 发出 fetch 请求，如果 serviceWorker 不存在了（返回 404，或者类型不是 JS 文件），那么程序会认为已经不再需要 ServiceWorker 了，那么就调用 <code>registration.unregister()</code> 执行注销操作并刷新页面。如果 fetch 不成功，程序会认为当前没有可用的网络，运行在离线模式 (offline mode) 中。</p>
-
-<pre><code class="language-js">export function unregister() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration =&gt; {
-      registration.unregister();
-    });
-  }
-}
-</code></pre>
-
-<p>这一段是注销的函数，当你不再需要的时候也可以人工调用这个函数注销 ServiceWorker.</p>
-
-<p>然后我们在自己项目的 src 里引用这个文件，注册 service worker. 例如，采用 ES6 的写法：</p>
-
-<pre><code class="language-js">import registerServiceWorker from './registerServiceWorker';
-registerServiceWorker();
-</code></pre>
-
-<p>这样就注册完成了，很简单。</p>
-
-<h2 id="step-2-编写-service-worker-js">Step 2 / 编写 service-worker.js</h2>
-
-<p>因为这里我们要做的只是缓存，所以我们把要缓存的东西以及相关的代码写入 service-worker.js 中就可以了，如果你要推送东西，同样可以参照一下 API 然后写在这里。这个 js 脚本便是即将在浏览器的后台执行的脚本了。当然，如果在很简单的需求下，我们不需要手写 service-worker.js，可以直接生成的。</p>
-
-<p>webpack 有一个插件叫做 <code>sw-precache-webpack-plugin</code>, 我们可以用它来生成 service-worker.js 以便用 SW 缓存我们的资源。首先我们安装这个插件：<code>yarn add sw-precache-webpack-plugin --dev</code>.</p>
-
-<p>然后修改 <code>webpack.config</code>:</p>
-
-<pre><code class="language-js">const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-
-module.exports = {
-    // ...
-    plugins: [
-        new SWPrecacheWebpackPlugin({
-        dontCacheBustUrlsMatching: /\.\w{8}\./,
-        filename: 'service-worker.js',
-        logger(message) {
-            if (message.indexOf('Total precache size is') === 0) {
-            return;
-            }
-            if (message.indexOf('Skipping static resource') === 0) {
-            return;
-            }
-        },
-        minify: true,
-        navigateFallback: '/index.html',
-        navigateFallbackWhitelist: [/^(?!\/__).*/],
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
-        }),
-    ],
-    // ...
-}
-</code></pre>
-
-<p>这段代码会在 webpack 打包进程中自动帮我们生成 service-worker.js, 通过看代码我们发现这个 js 告诉了浏览器我们可以离线哪些资源，并且注册了安装、激活、更新时应该做的事情，等等。</p>
-
-<p>完成后打开浏览器，打开 DevTools 切到 Application 窗口，再点左边的 ServiceWorker，如果没有出错的话就可以看到 ServiceWorker 被安装并激活了。你也可以在这个窗格调试你的 ServiceWorker.</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fngags88u3j20hb0dp3z8.jpg" alt="devtools service-worker" /></p>
-
-<p>你可以转到 <code>chrome://inspect</code> 查看当前所有站点注册的 ServiceWorker 的情况。</p>
-
-<h2 id="step-3-生成-asset-manifest-json">Step 3 / 生成 asset-manifest.json</h2>
-
-<p>这一步我们同样用插件：<code>webpack-manifest-plugin</code>, 用法同样很简单：</p>
-
-<pre><code class="language-js">const ManifestPlugin = require('webpack-manifest-plugin');
-// ...
-plugins: [
-    new ManifestPlugin({
-      fileName: 'asset-manifest.json'
-    }),
-]
-</code></pre>
-
-<p>打包完后根目录下便会有一个 asset-manifest.json 文件，这个文件告诉了浏览器有哪些静态文件。</p>
-
-<h2 id="step-4-写好-manifest-json">Step 4 / 写好 manifest.json</h2>
-
-<p>最后一步，如果要让我们的应用在手机端访问 Chrome 的时候，提示安装的横幅（就是添加到主屏幕的提示），我们还需要做一件事——为你的 WebApp 写一个 <code>manifest.json</code>，这里不同于上一步的 <code>asset-manifest.json</code>，<code>manifest.json</code> 主要是告诉浏览器这个站点的一些信息，包括名称、图标、首页、主题色等等。加上这个文件之后才能算是一个完整的 PWA。例如：</p>
-
-<pre><code class="language-js">{
-  &quot;short_name&quot;: &quot;YumeのDiary&quot;,
-  &quot;name&quot;: &quot;吟梦酱的 Blog&quot;,
-  &quot;description&quot;: &quot;是吟梦酱的 Blog 的说~&quot;,
-  &quot;icons&quot;: [
-    {
-      &quot;src&quot;: &quot;favicon.png&quot;,
-      &quot;sizes&quot;: &quot;192x192&quot;,
-      &quot;type&quot;: &quot;image/png&quot;
-    }
-  ],
-  &quot;start_url&quot;: &quot;/&quot;,
-  &quot;display&quot;: &quot;standalone&quot;,
-  &quot;theme_color&quot;: &quot;#FF98A8&quot;,
-  &quot;background_color&quot;: &quot;#ffffff&quot;
-}
-</code></pre>
-
-<p>这是我的 manifest 文件。这些配置项都很简单易懂，看的懂英文的人都知道是什么意思了。例如，<code>short_name</code> 是被添加到手机桌面时显示的标签， <code>name</code> 就是 App 的名称，<code>display</code> 设置为 <code>standalone</code> 表示不打开浏览器界面而单独打开此 App（就是传说中的套壳2333），<code>background_color</code> 是从桌面启动 PWA 时第一屏的背景色……</p>
-
-<p>然后在 HTML 中链接 manifest.json:</p>
-
-<pre><code class="language-html">&lt;head&gt;
-  &lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot;&gt;
-&lt;/head&gt;
-</code></pre>
-
-<p>把 manifest.json 放在根目录，完成之后你可以打开 DevTool -&gt; Application -&gt; Manifest 查看情况，也可以测试一下是否可以正常添加。</p>
-
-<blockquote>
-<p><a href="https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android">Installable Web Apps with the Web App Manifest in Chrome for Android</a></p>
-</blockquote>
-
-<h1 id="finally">Finally</h1>
-
-<p>做完了这一切，我们可以试试是否正常。如果正常的话，使用移动版 Chrome(&gt;=42) 打开你的页面，你可以看到“添加到主屏幕”的提示：</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fngas27pusj20k00zkn1z.jpg" alt="add-to-homescreen: kirainmoe.com pwa" /></p>
-
-<p>如果看到了提示，说明成功了。如果没有看到的话，可能有以下原因：</p>
-
-<ol>
-<li>ServiceWorker 没有被正常加载。使用桌面端的 Chrome 看看是否成功加载了 ServiceWorker、console 是否报错等等。</li>
-<li>当前页面不是 HTTPS 协议。只有 HTTPS 协议才能激活 ServiceWorker 并提示安装 PWA。</li>
-<li>Chrome 无法正确识别 manifest.json. 有很多原因导致，可以在上文讲到的 DevTool -&gt; Application -&gt; Manifest 中尝试添加，看看控制台是否报错和报错内容。比如说：你的图标有问题（需要 mime-type 为 image/png，并且尺寸一定要 100% 符合，且尺寸要大于 144x144）……等等。</li>
-</ol>
-
-<p>解决了上面这些问题之后再试一次，应该就没有问题了。</p>
-
-<p>新技能 get√ 感觉逼格又提升了一些（wu <code>_(:з」∠)_</code></p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e-pwa" v-on:click="closeDrawer" id="关于-pwa-nav">
+										 关于 PWA
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#service-worker" v-on:click="closeDrawer" id="service-worker-nav">
+										 Service Worker
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#in-action" v-on:click="closeDrawer" id="in-action-nav">
+										 In Action
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-1--%e7%bc%96%e5%86%99%e5%b9%b6%e6%b3%a8%e5%85%a5-serviceworker-%e5%88%b0%e5%89%8d%e7%ab%af%e9%a1%b5%e9%9d%a2%e4%b8%ad" v-on:click="closeDrawer" id="step-1--编写并注入-serviceworker-到前端页面中-nav">
+										 Step 1 / 编写并注入 ServiceWorker 到前端页面中
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-2--%e7%bc%96%e5%86%99-service-workerjs" v-on:click="closeDrawer" id="step-2--编写-service-workerjs-nav">
+										 Step 2 / 编写 service-worker.js
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-3--%e7%94%9f%e6%88%90-asset-manifestjson" v-on:click="closeDrawer" id="step-3--生成-asset-manifestjson-nav">
+										 Step 3 / 生成 asset-manifest.json
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-4--%e5%86%99%e5%a5%bd-manifestjson" v-on:click="closeDrawer" id="step-4--写好-manifestjson-nav">
+										 Step 4 / 写好 manifest.json
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#finally" v-on:click="closeDrawer" id="finally-nav">
+										 Finally
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e-pwa" v-on:click="closeDrawer" id="关于-pwa-nav">
+										 关于 PWA
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#service-worker" v-on:click="closeDrawer" id="service-worker-nav">
+										 Service Worker
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#in-action" v-on:click="closeDrawer" id="in-action-nav">
+										 In Action
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-1--%e7%bc%96%e5%86%99%e5%b9%b6%e6%b3%a8%e5%85%a5-serviceworker-%e5%88%b0%e5%89%8d%e7%ab%af%e9%a1%b5%e9%9d%a2%e4%b8%ad" v-on:click="closeDrawer" id="step-1--编写并注入-serviceworker-到前端页面中-nav">
+										 Step 1 / 编写并注入 ServiceWorker 到前端页面中
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-2--%e7%bc%96%e5%86%99-service-workerjs" v-on:click="closeDrawer" id="step-2--编写-service-workerjs-nav">
+										 Step 2 / 编写 service-worker.js
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-3--%e7%94%9f%e6%88%90-asset-manifestjson" v-on:click="closeDrawer" id="step-3--生成-asset-manifestjson-nav">
+										 Step 3 / 生成 asset-manifest.json
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-4--%e5%86%99%e5%a5%bd-manifestjson" v-on:click="closeDrawer" id="step-4--写好-manifestjson-nav">
+										 Step 4 / 写好 manifest.json
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#finally" v-on:click="closeDrawer" id="finally-nav">
+										 Finally
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    Progressive Web App 初体验
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2018-01-14 16:33
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/frontend">frontend</a>
+                                &nbsp;
+                            
+                                <a href="/tags/progressive-web-app">progressive-web-app</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>最近访问 <a href="https://mobile.twitter.com/">Twitter Mobile</a> 和 <a href="https://m.weibo.cn/beta">微博 HTML5 版</a> 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。</p>
+<h1 id="关于-pwa">关于 PWA</h1>
+<p>不仅仅是微博，国内的饿了么等站也同样支持 PWA，个人看来 PWA 的应用场景和前景都是相当广泛的。甚至，从微信小程序当中你也能看到它和 PWA 之间有着概念的重合。至于 PWA 的诞生背景就不多做介绍。各位可以尝试一下 Twitter 的 PWA，体验真的很好。</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/46690207">如何看待 Progressive Web Apps 的发展前景？</a></p>
+</blockquote>
+<p>传统 WebApp 在移动端上的体验不是很好一直为人所诟病，问题在于移动端浏览器在对页面的渲染和 DOM 的操作上有性能方面的差距，以及并不能做一些高级的事情，例如驻后台更新数据、推送通知等等。如果说 RN/Weex 是用前端的技术栈做移动端的原生应用，以此来作为移动端 App 的功能、性能与开发成本之间的权衡，那么 PWA 和前两者便有一些区别，在前两者向 NativeApp 妥协的时候，它另辟蹊径，坚守 WebApp，而把目光着重于优化和实现一些 WebApp 做不到的事情。某种意义上说有点类似于 Hybrid？但是壳什么的，浏览器已经帮你准备好了。你只需要在访问支持 PWA 的站点的时候按一下“添加到主屏幕”，它就如同一个 App 一样躺在你的桌面了。</p>
+<p>讲了很多 PWA 的优点（总结一下就是：支持添加到主屏，可以完成通知推送等工作（甚至支持 GCM）；其他的还有诸如离线缓存等），PWA 也存在一些不足的地方。首先一个比较大的问题就是兼容性，作为 Google 首推的东西 Chrome 自然是支持的，新版本的 FF 目测也可以，但是对于别的浏览器来说就十分难受了：</p>
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1fng8t2ltorj20y60dn0tk.jpg" alt="Can I Use 中关于 Service Worker 的兼容性报告"></p>
+<p>从 <a href="https://caniuse.com/#search=service%20worker">caniuse</a> 的报告中可以看到兼容性有些感人。</p>
+<h1 id="service-worker">Service Worker</h1>
+<p>刚刚说到的一些 PWA 的特性，例如后台消息推送、离线缓存等等，都是由 Service Worker 来实现的。所以说一个 PWA 应用的核心就在于 Service Worker，完全不过分。</p>
+<blockquote>
+<p>一个 Service Worker是一段运行在浏览器后台进程里的脚本，他独立于当前页面，提供了那些不需要与 web 页面交互的功能在网页背后悄悄执行的能力。在将来，基于它可以实现消息推送，静静更新以及地理围栏等服务，但是目前它首先要具备的功能是拦截和处理网络请求的功能，包括可编程的消息缓存管理能力。</p>
+</blockquote>
+<p>通俗地讲，Service Worker 就是挂在后台的一段脚本，你在前台该干嘛干嘛，它可以在后台搞一些事情，比如缓存你看的页面或者资源啊，接收到通知的时候推送给你啊，转发你的请求啊，这些都是目前比较多见的应用；当你关掉了页面之后，它还是会在后台待着继续做上面这些事情。</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API">Service Worker API - MDN</a>
+Service worker是一个注册在指定源和路径下的事件驱动worker。它采用JavaScript控制关联的页面或者网站，拦截并修改访问和资源请求，细粒度地缓存资源。你可以完全控制应用在特定情形（最常见的情形是网络不可用）下的表现。Service worker运行在worker上下文，因此它不能访问DOM。相对于驱动应用的主JavaScript线程，它运行在其他线程中，所以不会造成阻塞。它设计为完全异步，同步API（如XHR和localStorage）不能在service worker中使用。</p>
+</blockquote>
+<p>可以看到，Service Worker 不具备对 DOM 的访问权限，工作完全都在后台。同时因为 Service Worker 运行在后台的特性，它的操作都是异步的，因此 Promise 在这里非常好用。无法使用 XHR 这样的同步 API 还怎么和服务器通信呢，我们有 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">fetch</a> 呀。在 Service Worker 中 fetch 也扮演了一个很重要的角色。</p>
+<p>Service Worker 的工作机制是这样的：用户访问一个具有 Service Worker 的页面，浏览器就会下载这个 Service Worker 并尝试安装、激活。一旦激活，Service Worker 就会到后台开始工作。接下来用户访问这个页面或者每隔一个时段浏览器都会下载这个 Service Worker，如果监测到 Service Worker 有更新，就会重新安装并激活新的 Service Worker，同时 revoke 掉旧的 Service Worker，这就是 SW 的生命周期。</p>
+<p>因为 Service Worker 有着最近的权限接触数据，因此 Service Worker 只能被安装在 HTTPS 加密的页面中，虽然无形当中提高了 PWA 的门槛，不过也是为了安全做考虑。GitHub Pages 等服务默认支持 HTTPS，所以各位如果想尝试 Service Worker 又被需要 HTTPS 所烦恼的话，可以考虑一下。</p>
+<h1 id="in-action">In Action</h1>
+<p>多说一句，一些用 React/Vue 这类框架做的 SPA 原本就有很完整的体验, 如果加上 ServiceWorker，让它成为一个 PWA，岂不美哉 <!-- raw HTML omitted -->开发移动端的经费都省了<!-- raw HTML omitted -->。事实上刚才说到的 Twitter(基于 React) 和新版微博(基于 Vue) 便是很好的实践的例子。而 create-react-app 创建的 React App 默认也会启用 ServiceWorker 特性，在 cra 创建的应用中，你可以看到和 ServiceWorker 安装激活有关的代码，同时 webpack 中也有相应的配置。</p>
+<p>我的 Blog 默认采用 HTTPS 安全连接，前端也是用 webpack 构建的，用来尝试 PWA 一些基础的功能（例如离线缓存，生成单独的 App 图标）完全可以，所以我就以博客为<!-- raw HTML omitted -->小白鼠<!-- raw HTML omitted -->试了一下，只做了十分基本的离线缓存。</p>
+<h2 id="step-1--编写并注入-serviceworker-到前端页面中">Step 1 / 编写并注入 ServiceWorker 到前端页面中</h2>
+<p>这块我们就直接抄走 create-react-app 生成的 App 的代码好啦。在 src 目录下有一个 registerServiceWorker.js，就是用来管理安装/激活/检查/注销 ServiceWorker 的，我们来看看它：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// In production, we register a service worker to serve assets from local cache.
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// This lets the app load faster on subsequent visits in production, and gives
+</span><span style="color:#75715e"></span><span style="color:#75715e">// it offline capabilities. However, it also means that developers (and users)
+</span><span style="color:#75715e"></span><span style="color:#75715e">// will only see deployed updates on the &#34;N+1&#34; visit to a page, since previously
+</span><span style="color:#75715e"></span><span style="color:#75715e">// cached resources are updated in the background.
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
+</span><span style="color:#75715e"></span><span style="color:#75715e">// This link also includes instructions on opting out of this behavior.
+</span></code></pre></div><p>这里告诉我们它用 registerWorker 的目的在于缓存一些资源，但是呢会导致如果生产环境的页面被开发者更新了之后，看到新效果之前可能有延迟。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isLocalhost</span> <span style="color:#f92672">=</span> Boolean(
+  window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;localhost&#39;</span> <span style="color:#f92672">||</span>
+    window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;[::1]&#39;</span> <span style="color:#f92672">||</span>
+    window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hostname</span>.<span style="color:#a6e22e">match</span>(
+      <span style="color:#e6db74">/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/</span>
+    )
+);
+<span style="color:#75715e">// 执行注册 ServiceWorker 的操作，可以看出只有在生产环境下才做这件事
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>() {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NODE_ENV</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;production&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#39;serviceWorker&#39;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">navigator</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">publicUrl</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">URL</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PUBLIC_URL</span>, window.<span style="color:#a6e22e">location</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">publicUrl</span>.<span style="color:#a6e22e">origin</span> <span style="color:#f92672">!==</span> window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">origin</span>) {
+      <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#75715e">// 页面加载完成后，执行注册操作
+</span><span style="color:#75715e"></span>    window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;load&#39;</span>, () =&gt; {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">swUrl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PUBLIC_URL</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/service-worker.js</span><span style="color:#e6db74">`</span>;
+      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isLocalhost</span>) {
+        <span style="color:#a6e22e">registerValidSW</span>(<span style="color:#a6e22e">swUrl</span>);
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#a6e22e">checkValidServiceWorker</span>(<span style="color:#a6e22e">swUrl</span>);
+      }
+    });
+  }
+}
+</code></pre></div><p>我们看看注册操作的主函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">registerValidSW</span>(<span style="color:#a6e22e">swUrl</span>) {
+  <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>
+    .<span style="color:#a6e22e">register</span>(<span style="color:#a6e22e">swUrl</span>)
+    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">registration</span> =&gt; {
+      <span style="color:#a6e22e">registration</span>.<span style="color:#a6e22e">onupdatefound</span> <span style="color:#f92672">=</span> () =&gt; {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">installingWorker</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">registration</span>.<span style="color:#a6e22e">installing</span>;
+        <span style="color:#a6e22e">installingWorker</span>.<span style="color:#a6e22e">onstatechange</span> <span style="color:#f92672">=</span> () =&gt; {
+          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">installingWorker</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;installed&#39;</span>) {
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">controller</span>) {
+              <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New content is available; please refresh.&#39;</span>);
+            } <span style="color:#66d9ef">else</span> {
+              <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Content is cached for offline use.&#39;</span>);
+            }
+          }
+        };
+      };
+    })
+    .<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span> =&gt; {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#39;Error during service worker registration:&#39;</span>, <span style="color:#a6e22e">error</span>);
+    });
+}
+</code></pre></div><p>可以看到我们<strong>用 <code>navigator.serviceWorker.register(serviceWorkerJsUrl)</code> 告诉浏览器应该注册从 serviceWorkerJsUrl 注册这个 ServiceWorker</strong>, 然后指定当浏览器监测到 serviceWorker 更新之后该做的事情（事实上没有什么东西，就是 console.log 告诉用户内容是否有更新，以及当前页面的内容已经被缓存了）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">checkValidServiceWorker</span>(<span style="color:#a6e22e">swUrl</span>) {
+  <span style="color:#75715e">// Check if the service worker can be found. If it can&#39;t reload the page.
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">swUrl</span>)
+    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; {
+      <span style="color:#75715e">// Ensure service worker exists, and that we really are getting a JS file.
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (
+        <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">404</span> <span style="color:#f92672">||</span>
+        <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;content-type&#39;</span>).<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;javascript&#39;</span>) <span style="color:#f92672">===</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+      ) {
+        <span style="color:#75715e">// No service worker found. Probably a different app. Reload the page.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">ready</span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">registration</span> =&gt; {
+          <span style="color:#a6e22e">registration</span>.<span style="color:#a6e22e">unregister</span>().<span style="color:#a6e22e">then</span>(() =&gt; {
+            window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">reload</span>();
+          });
+        });
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">// Service worker found. Proceed as normal.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">registerValidSW</span>(<span style="color:#a6e22e">swUrl</span>);
+      }
+    })
+    .<span style="color:#66d9ef">catch</span>(() =&gt; {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(
+        <span style="color:#e6db74">&#39;No internet connection found. App is running in offline mode.&#39;</span>
+      );
+    });
+}
+</code></pre></div><p>这段代码是检查 Service Worker 的有效性。首先对 serviceWorkerJsUrl 发出 fetch 请求，如果 serviceWorker 不存在了（返回 404，或者类型不是 JS 文件），那么程序会认为已经不再需要 ServiceWorker 了，那么就调用 <code>registration.unregister()</code> 执行注销操作并刷新页面。如果 fetch 不成功，程序会认为当前没有可用的网络，运行在离线模式 (offline mode) 中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">unregister</span>() {
+  <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;serviceWorker&#39;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">navigator</span>) {
+    <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">ready</span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">registration</span> =&gt; {
+      <span style="color:#a6e22e">registration</span>.<span style="color:#a6e22e">unregister</span>();
+    });
+  }
+}
+</code></pre></div><p>这一段是注销的函数，当你不再需要的时候也可以人工调用这个函数注销 ServiceWorker.</p>
+<p>然后我们在自己项目的 src 里引用这个文件，注册 service worker. 例如，采用 ES6 的写法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">registerServiceWorker</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./registerServiceWorker&#39;</span>;
+<span style="color:#a6e22e">registerServiceWorker</span>();
+</code></pre></div><p>这样就注册完成了，很简单。</p>
+<h2 id="step-2--编写-service-workerjs">Step 2 / 编写 service-worker.js</h2>
+<p>因为这里我们要做的只是缓存，所以我们把要缓存的东西以及相关的代码写入 service-worker.js 中就可以了，如果你要推送东西，同样可以参照一下 API 然后写在这里。这个 js 脚本便是即将在浏览器的后台执行的脚本了。当然，如果在很简单的需求下，我们不需要手写 service-worker.js，可以直接生成的。</p>
+<p>webpack 有一个插件叫做 <code>sw-precache-webpack-plugin</code>, 我们可以用它来生成 service-worker.js 以便用 SW 缓存我们的资源。首先我们安装这个插件：<code>yarn add sw-precache-webpack-plugin --dev</code>.</p>
+<p>然后修改 <code>webpack.config</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SWPrecacheWebpackPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;sw-precache-webpack-plugin&#39;</span>);
+
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SWPrecacheWebpackPlugin</span>({
+        <span style="color:#a6e22e">dontCacheBustUrlsMatching</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.\w{8}\./</span>,
+        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;service-worker.js&#39;</span>,
+        <span style="color:#a6e22e">logger</span>(<span style="color:#a6e22e">message</span>) {
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;Total precache size is&#39;</span>) <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span>;
+            }
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;Skipping static resource&#39;</span>) <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span>;
+            }
+        },
+        <span style="color:#a6e22e">minify</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+        <span style="color:#a6e22e">navigateFallback</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/index.html&#39;</span>,
+        <span style="color:#a6e22e">navigateFallbackWhitelist</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">/^(?!\/__).*/</span>],
+        <span style="color:#a6e22e">staticFileGlobsIgnorePatterns</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">/\.map$/</span>, <span style="color:#e6db74">/asset-manifest\.json$/</span>]
+        }),
+    ],
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>这段代码会在 webpack 打包进程中自动帮我们生成 service-worker.js, 通过看代码我们发现这个 js 告诉了浏览器我们可以离线哪些资源，并且注册了安装、激活、更新时应该做的事情，等等。</p>
+<p>完成后打开浏览器，打开 DevTools 切到 Application 窗口，再点左边的 ServiceWorker，如果没有出错的话就可以看到 ServiceWorker 被安装并激活了。你也可以在这个窗格调试你的 ServiceWorker.</p>
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fngags88u3j20hb0dp3z8.jpg" alt="devtools service-worker"></p>
+<p>你可以转到 <code>chrome://inspect</code> 查看当前所有站点注册的 ServiceWorker 的情况。</p>
+<h2 id="step-3--生成-asset-manifestjson">Step 3 / 生成 asset-manifest.json</h2>
+<p>这一步我们同样用插件：<code>webpack-manifest-plugin</code>, 用法同样很简单：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ManifestPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;webpack-manifest-plugin&#39;</span>);
+<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ManifestPlugin</span>({
+      <span style="color:#a6e22e">fileName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;asset-manifest.json&#39;</span>
+    }),
+]
+</code></pre></div><p>打包完后根目录下便会有一个 asset-manifest.json 文件，这个文件告诉了浏览器有哪些静态文件。</p>
+<h2 id="step-4--写好-manifestjson">Step 4 / 写好 manifest.json</h2>
+<p>最后一步，如果要让我们的应用在手机端访问 Chrome 的时候，提示安装的横幅（就是添加到主屏幕的提示），我们还需要做一件事——为你的 WebApp 写一个 <code>manifest.json</code>，这里不同于上一步的 <code>asset-manifest.json</code>，<code>manifest.json</code> 主要是告诉浏览器这个站点的一些信息，包括名称、图标、首页、主题色等等。加上这个文件之后才能算是一个完整的 PWA。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+  <span style="color:#e6db74">&#34;short_name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;YumeのDiary&#34;</span>,
+  <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;吟梦酱的 Blog&#34;</span>,
+  <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;是吟梦酱的 Blog 的说~&#34;</span>,
+  <span style="color:#e6db74">&#34;icons&#34;</span><span style="color:#f92672">:</span> [
+    {
+      <span style="color:#e6db74">&#34;src&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;favicon.png&#34;</span>,
+      <span style="color:#e6db74">&#34;sizes&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;192x192&#34;</span>,
+      <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;image/png&#34;</span>
+    }
+  ],
+  <span style="color:#e6db74">&#34;start_url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/&#34;</span>,
+  <span style="color:#e6db74">&#34;display&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;standalone&#34;</span>,
+  <span style="color:#e6db74">&#34;theme_color&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#FF98A8&#34;</span>,
+  <span style="color:#e6db74">&#34;background_color&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#ffffff&#34;</span>
+}
+</code></pre></div><p>这是我的 manifest 文件。这些配置项都很简单易懂，看的懂英文的人都知道是什么意思了。例如，<code>short_name</code> 是被添加到手机桌面时显示的标签， <code>name</code> 就是 App 的名称，<code>display</code> 设置为 <code>standalone</code> 表示不打开浏览器界面而单独打开此 App（就是传说中的套壳2333），<code>background_color</code> 是从桌面启动 PWA 时第一屏的背景色……</p>
+<p>然后在 HTML 中链接 manifest.json:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;manifest&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/manifest.json&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+</code></pre></div><p>把 manifest.json 放在根目录，完成之后你可以打开 DevTool -&gt; Application -&gt; Manifest 查看情况，也可以测试一下是否可以正常添加。</p>
+<blockquote>
+<p><a href="https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android">Installable Web Apps with the Web App Manifest in Chrome for Android</a></p>
+</blockquote>
+<h1 id="finally">Finally</h1>
+<p>做完了这一切，我们可以试试是否正常。如果正常的话，使用移动版 Chrome(&gt;=42) 打开你的页面，你可以看到“添加到主屏幕”的提示：</p>
+<p><img src="https://ws3.sinaimg.cn/large/9f1137b1gy1fngas27pusj20k00zkn1z.jpg" alt="add-to-homescreen: kirainmoe.com pwa"></p>
+<p>如果看到了提示，说明成功了。如果没有看到的话，可能有以下原因：</p>
+<ol>
+<li>ServiceWorker 没有被正常加载。使用桌面端的 Chrome 看看是否成功加载了 ServiceWorker、console 是否报错等等。</li>
+<li>当前页面不是 HTTPS 协议。只有 HTTPS 协议才能激活 ServiceWorker 并提示安装 PWA。</li>
+<li>Chrome 无法正确识别 manifest.json. 有很多原因导致，可以在上文讲到的 DevTool -&gt; Application -&gt; Manifest 中尝试添加，看看控制台是否报错和报错内容。比如说：你的图标有问题（需要 mime-type 为 image/png，并且尺寸一定要 100% 符合，且尺寸要大于 144x144）……等等。</li>
+</ol>
+<p>解决了上面这些问题之后再试一次，应该就没有问题了。</p>
+<p>新技能 get√ 感觉逼格又提升了一些（wu <code>_(:з」∠)_</code></p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2018-01-14</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/no-title/">
+                    Next<br>No Title
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/">
+                    Previous<br>环境变量导致的 webpack 打包时不压缩 CSS 文件
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

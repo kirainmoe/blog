@@ -1,136 +1,838 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北 - 宇宙よりも遠い場所" property="og:title">
-<title>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#20197-%e6%9b%b4%e6%96%b0" v-on:click="closeDrawer" id="20197-更新-nav">
+										 2019/7 更新
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#info" v-on:click="closeDrawer" id="info-nav">
+										 Info
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#preparation" v-on:click="closeDrawer" id="preparation-nav">
+										 Preparation
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#whats-working" v-on:click="closeDrawer" id="whats-working-nav">
+										 What’s working
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#whats-not-working" v-on:click="closeDrawer" id="whats-not-working-nav">
+										 What’s not working
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#details" v-on:click="closeDrawer" id="details-nav">
+										 Details
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e-coffeelake-uhd630-%e5%92%8c%e4%ba%ae%e5%ba%a6%e8%b0%83%e8%8a%82" v-on:click="closeDrawer" id="关于-coffeelake-uhd630-和亮度调节-nav">
+										 关于 CoffeeLake UHD630 和亮度调节
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e7%94%b5%e6%b1%a0" v-on:click="closeDrawer" id="关于电池-nav">
+										 关于电池
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e5%a3%b0%e5%8d%a1" v-on:click="closeDrawer" id="关于声卡-nav">
+										 关于声卡
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e8%a7%a6%e6%91%b8%e6%9d%bf" v-on:click="closeDrawer" id="关于触摸板-nav">
+										 关于触摸板
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e7%bd%91%e7%bb%9c%e8%93%9d%e7%89%99" v-on:click="closeDrawer" id="关于网络蓝牙-nav">
+										 关于网络/蓝牙
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e-cpu-%e5%8f%98%e9%a2%91%e5%92%8c%e7%9d%bf%e9%a2%91" v-on:click="closeDrawer" id="关于-cpu-变频和睿频-nav">
+										 关于 CPU 变频和睿频
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e7%9d%a1%e7%9c%a0" v-on:click="closeDrawer" id="关于睡眠-nav">
+										 关于睡眠
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">January 23, 2019</h2>
-      <h1 class="title">神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/hackintosh">hackintosh</a>
-    
-        <a class="button is-link" href="/tags/macos">macos</a>
-    
-        <a class="button is-link" href="/tags/hasee">hasee</a>
-    
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#20197-%e6%9b%b4%e6%96%b0" v-on:click="closeDrawer" id="20197-更新-nav">
+										 2019/7 更新
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#info" v-on:click="closeDrawer" id="info-nav">
+										 Info
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#preparation" v-on:click="closeDrawer" id="preparation-nav">
+										 Preparation
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#whats-working" v-on:click="closeDrawer" id="whats-working-nav">
+										 What’s working
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#whats-not-working" v-on:click="closeDrawer" id="whats-not-working-nav">
+										 What’s not working
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#details" v-on:click="closeDrawer" id="details-nav">
+										 Details
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e-coffeelake-uhd630-%e5%92%8c%e4%ba%ae%e5%ba%a6%e8%b0%83%e8%8a%82" v-on:click="closeDrawer" id="关于-coffeelake-uhd630-和亮度调节-nav">
+										 关于 CoffeeLake UHD630 和亮度调节
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e7%94%b5%e6%b1%a0" v-on:click="closeDrawer" id="关于电池-nav">
+										 关于电池
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e5%a3%b0%e5%8d%a1" v-on:click="closeDrawer" id="关于声卡-nav">
+										 关于声卡
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e8%a7%a6%e6%91%b8%e6%9d%bf" v-on:click="closeDrawer" id="关于触摸板-nav">
+										 关于触摸板
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e7%bd%91%e7%bb%9c%e8%93%9d%e7%89%99" v-on:click="closeDrawer" id="关于网络蓝牙-nav">
+										 关于网络/蓝牙
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e-cpu-%e5%8f%98%e9%a2%91%e5%92%8c%e7%9d%bf%e9%a2%91" v-on:click="closeDrawer" id="关于-cpu-变频和睿频-nav">
+										 关于 CPU 变频和睿频
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%85%b3%e4%ba%8e%e7%9d%a1%e7%9c%a0" v-on:click="closeDrawer" id="关于睡眠-nav">
+										 关于睡眠
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
 
-      
-      <div class="content">
-        <h1 id="2019-7-更新"><sup>2019</sup>&frasl;<sub>7</sub> 更新</h1>
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
 
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2019-01-23 20:14
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/hackintosh">hackintosh</a>
+                                &nbsp;
+                            
+                                <a href="/tags/macos">macos</a>
+                                &nbsp;
+                            
+                                <a href="/tags/hasee">hasee</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="20197-更新">2019/7 更新</h1>
 <p>八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover
-配置文件安装：<a href="https://github.com/kirainmoe/hasee-tongfang-macos">https://github.com/kirainmoe/hasee-tongfang-macos</a> .</p>
-
+配置文件安装：https://github.com/kirainmoe/hasee-tongfang-macos .</p>
 <p>EFI 配置文件替换教程参见 <a href="https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B">GitHub Wiki</a>.</p>
-
 <p>以下内容可能已经过时。</p>
-
 <p>RT. 这篇文章主要用来记录一下这个机型安装 macOS 的一些要点和注意事项。</p>
-
 <p>以下内容基于神舟战神 Z7-KP7GZ (i7-8750H + GTX1060) 版摸索得到，安装的 macOS 版本为 Mojave (10.14.2).该文章理论适用于使用该模具的其它机器，如 Z7m-KP7GZ / Z7m-KP5GZ.</p>
-
 <p>国际惯例先上张图：</p>
-
-<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fzgszolhkqj21hc0u0ap2.jpg" alt="macOS mojave" /></p>
-
+<p><img src="https://wx2.sinaimg.cn/large/9f1137b1gy1fzgszolhkqj21hc0u0ap2.jpg" alt="macOS mojave"></p>
 <p>虽然目前关于该机型的黑苹果资源较少，但因为神舟战神 Z7-KP7GZ 及其同系列的机型都是同方模具，并且和机械革命 Z2/Z2Air/X8Ti 都是同款模具，所以这些机型的一些资源我们可以直接拿来用。整体完成度的话大概接近 95%.</p>
-
 <h1 id="info">Info</h1>
-
 <p>先贴一发机器配置：</p>
-
 <table>
 <thead>
 <tr>
@@ -138,53 +840,40 @@
 <th>Model</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>CPU</td>
-<td>Intel Core&trade; i7-8750H</td>
+<td>Intel Core(TM) i7-8750H</td>
 </tr>
-
 <tr>
 <td>GPU</td>
 <td>Intel UHD630 / Nvidia GTX1060</td>
 </tr>
-
 <tr>
 <td>RAM</td>
 <td>8GB</td>
 </tr>
-
 <tr>
 <td>Wireless</td>
 <td>Intel AC9560</td>
 </tr>
-
 <tr>
 <td>Ethernet</td>
 <td>Realtek RTL8168H</td>
 </tr>
-
 <tr>
 <td>Audio</td>
 <td>Realtek ALC269vc</td>
 </tr>
 </tbody>
 </table>
-
 <h1 id="preparation">Preparation</h1>
-
 <p>首先镜像文件是肯定需要的啦，这里推荐下载<a href="https://blog.daliansky.net/categories/%E4%B8%8B%E8%BD%BD/">黑果小兵集成 Clover 的镜像</a>，或到远景论坛下载 Len&rsquo;s DMG.
 注意，不推荐使用任何“X苹果乐园”的镜像。</p>
-
 <p>同时下载 TransMac 用于写入镜像。注意写入镜像需要一个 8GB 以上的 U 盘。</p>
-
 <p>驱动 Z7-KP7GZ 用到的相关 Kext, Patch 等文件都可以在 <a href="https://github.com/kirainmoe/hasee-z7-kp7gz-macos">https://github.com/kirainmoe/hasee-z7-kp7gz-macos</a> 找到。建议在一个有线网络的环境下安装，或者提前下载好所有需要的东西。</p>
-
-<h1 id="what-s-working">What&rsquo;s working</h1>
-
+<h1 id="whats-working">What&rsquo;s working</h1>
 <p>以下部分是已经完美或者部分工作的：</p>
-
 <ul>
 <li>CPU 变频、睿频</li>
 <li>UHD630 核显</li>
@@ -198,56 +887,34 @@
 <li>睡眠</li>
 <li>etc.</li>
 </ul>
-
-<h1 id="what-s-not-working">What&rsquo;s not working</h1>
-
+<h1 id="whats-not-working">What&rsquo;s not working</h1>
 <p>以下部分是工作不正常或无解的：</p>
-
 <ul>
 <li>独显 GTX1060 (1. BIOS 不支持禁用核显；2. Nvidia 没有推出 10.14 可用的 WebDriver)</li>
 <li>无线网卡 AC9462 (Intel 嘛……你知道的，全球无解……)</li>
 </ul>
-
 <h1 id="details">Details</h1>
-
 <p>接下来记录一些安装细节和几个常见的问题的解决方案。</p>
-
 <h2 id="关于-coffeelake-uhd630-和亮度调节">关于 CoffeeLake UHD630 和亮度调节</h2>
-
 <p>首先，CoffeeLake 的 UHD630 驱动难度不大，部分是白果原生支持的。以往需要注入 ig-platform-id 或者给 Framebuffer 打补丁来驱动 CoffeeLake 的核显，现在驱动只需要使用 Lilu + WhateverGreen 即可。</p>
-
 <p>8 代平台的 UHD630 驱动下比较经常遇到的问题是开机跑完条后黑屏 3 分钟的问题。对此新版本的 Lilu 和 WhateverGreen 已经解决了这个问题。将上述两个 kext 的最新版本（或者上文链接提供的版本）放到 Clover 的 Kexts 文件夹中，然后编辑 Clover 的引导配置文件 config.plist:</p>
-
 <ul>
 <li>去除勾选 <code>Clover FixMask</code> 中的 <code>Add PNLF</code></li>
 <li>在 Boot Args 中添加 <code>igfxcflbklt=1</code> 参数</li>
 <li>在 Devices/Properties 中添加 <code>enable-cfl-backlight-fix</code> 项，数值为 <code>01000000</code>, 类型为 DATA.</li>
 </ul>
-
 <p>但是，使用上面的方法有个缺点，就是能解决开机黑屏，但是不能调节亮度，因为调节亮度需要 <code>PNLF</code>. CoffeeLake 需要特定的 SSDT-PNLF 补丁 <a href="https://github.com/kirainmoe/hasee-z7-kp7gz-macos/raw/master/ACPI/patched/SSDT-UIAC.aml">SSDT-PNLFCFL.aml</a>, 将其放入 ACPI/patched 中。在 Clover 的 Boot Args 中去掉 <code>igfxcflbklt=1</code> 的参数，安装最新 lilu / WhateverGreen / <strong>AppleBacklightFixup</strong> 三个驱动，然后都 Clover ACPI 的 SortOrder 中添加 SSDT-PNLFCFL.aml，保存，重启，就可以调节亮度了。</p>
-
 <p>关于亮度调节的小太阳快捷键：需要外接一个 USB 键盘，然后到设置——键盘——快捷键中，左侧会出现一个“显示器”的项，修改热键为你喜欢的键即可。注意修改为 Fn+F11, Fn+F12 时似乎无效。此外快捷键还可以用其它内核拓展驱动来解决。</p>
-
 <h2 id="关于电池">关于电池</h2>
-
 <p>电池的话一般使用 Clover Hotpatch 给 DSDT 打补丁来解决。然而，在我尝试驱动该电池的时候，我发现 Z7-KP7GZ 的电池 ACPI 部分和机械革命 X6Ti 的电池 ACPI 部分惊人的相似，而且 MaciASL 的补丁源中就提供了 X6Ti 的电池补丁，补丁的重合度非常高，因此稍作修改即可使用。所以这里是通过给 DSDT 打补丁的方法来驱动的。电池补丁的内容在上文提供的 GitHub 链接中的 dsdt-patch.txt.</p>
-
 <p>系统安装完成后，使用 Clover 按 F4 提取 DSDT，进入系统下载并打开 MaciASL，打开你提取的 DSDT（位于 /EFI/CLOVER/ACPI/origin 中），点击上方的 Patch，找到本仓库内的 battery-patch.txt，将里面的内容粘贴到 Patch 中，然后点击 Apply 应用即可，检查并编译没有错误后，保存新的 DSDT 到 patched 目录中。记得配合 ACPIBatteryManager.kext 使用哦。</p>
-
 <h2 id="关于声卡">关于声卡</h2>
-
 <p>ALC269vc 虽然可以直接使用 VoodooHDA 驱动，但是呢需要手动切换外放和耳机，不是太完美（如果不想折腾可以直接 VoodooHDA 2.9.1 走起），因此考虑使用 AppleALC 仿冒来驱动。经过测试，使用最新版 AppleALC (在 1.3.4 测试可用)下，Clover 注入 layout-id 为 88 即可（注入 ID 需要在 Devices-&gt;Audio 或 Audio turning 中把 Inject 的 layout-id 设置为 88，同时 Properties 中也要设置 layout-id(ps2. 注意不是<code>#layout-id</code>，没有 <code>#</code> 字符) 值为 88）。外放、耳机、麦克风均正常。</p>
-
 <h2 id="关于触摸板">关于触摸板</h2>
-
-<p>Z7-KP7GZ 使用的是 I2C HID 的触摸板，需要 VoodooI2CHID.kext 和 VoodooI2C.kext 两个内核扩展来驱动。<s>安装这两个内核扩展之后，就可以使用触摸板和手势了，支持的手势和 Windows Precision 差不多，除了从右向左滑打开通知中心之类的无法实现之外。不需要 AppleSmartPS2Touchpad.kext 驱动。</s> 现在使用 SSDT 仿冒触摸板可以驱动大部分手势。</p>
-
+<p>Z7-KP7GZ 使用的是 I2C HID 的触摸板，需要 VoodooI2CHID.kext 和 VoodooI2C.kext 两个内核扩展来驱动。<!-- raw HTML omitted -->安装这两个内核扩展之后，就可以使用触摸板和手势了，支持的手势和 Windows Precision 差不多，除了从右向左滑打开通知中心之类的无法实现之外。不需要 AppleSmartPS2Touchpad.kext 驱动。<!-- raw HTML omitted --> 现在使用 SSDT 仿冒触摸板可以驱动大部分手势。</p>
 <p>需要注意的是，要设置触摸板手势的话，需要先驱动电池。虽然我也不知道这是什么操作，总之搞就完事了。没有驱动电池的话打开触摸板设置会提示你找不到触摸板并搜索蓝牙触摸板；如果没有设置，默认辅助点按等等手势是不可用的。</p>
-
-<h2 id="关于网络-蓝牙">关于网络/蓝牙</h2>
-
+<h2 id="关于网络蓝牙">关于网络/蓝牙</h2>
 <p>因为 Z7-KP7GZ 喜闻乐见地用了 Intel 家的无线网卡，是全球无解的，所以如何联网也是我们比较头疼的地方。</p>
-
 <ol>
 <li>有线网络。幸运的是 Z7-KP7GZ 的有线网卡使用的是比较大众的 Realtek RT8168H, 驱动得比较完美，所以如果不介意牵着根线连电脑的话有线网络一定是最好的选择；</li>
 <li>更换无线网卡。这台机器没有网卡白名单，所以只要某宝找一块免驱的无线网卡就行，推荐博通的无线网卡；可能需要安装额外的 fix 驱动，具体自己爬远景好了；</li>
@@ -255,90 +922,83 @@
 <li>使用蓝牙共享网络。虽然这块无线网卡附带的蓝牙在 macOS 下也是半残状态，但好歹还能工作，所以凑合用吧；偶尔会碰到共享网络连接失败的情况，似乎全看玄学；</li>
 <li>使用 USB 共享网络。Android 机福利，安装一个叫做 HoRNDIS 的驱动就让 Android 手机与 mac 通过 USB 共享网络。</li>
 </ol>
-
 <p>PS1. 对于方案 3 使用小米/360/小度等的用户，虽然在 10.14.1+ 系统无法打开 WirelessUtility, 但是可以用 BearExtender 代替，只是稳定性没有那么好而已。</p>
-
 <p>关于蓝牙：虽然基本可用，但是不太稳定，只能用半残来形容了= =</p>
-
 <h2 id="关于-cpu-变频和睿频">关于 CPU 变频和睿频</h2>
-
 <p>8 代 CPU 算是比较容易驱动的，直接使用 MacBook 15,1 的 SMBIOS 即可（也就是 Macbook Pro 2018, 15-inch），自带从 1.3GHz-4.1GHz 的 16 档变频。因为 8750H 的默频是 2.2GHz，能上到 4.1GHz 说明睿频也是正常的。</p>
-
 <h2 id="关于睡眠">关于睡眠</h2>
-
 <p>正常的睡眠功能需要正确驱动 USB，注入 USB Connector 的信息，并且打上 USB _PRW 的补丁。这台机器上比较特殊，必须要给 GLAN/XDCI/HDAS/CVNW 下的 _PRW 全部修改或者删除才可以正常睡眠，否则会一睡眠就立刻唤醒……（天知道为了解决这个问题我花了多少天、爬了多少的帖子……）使用仓库中的 dsdt-patch.txt 同时可以解决睡眠立刻唤醒 (instant wake) 的问题。</p>
-
 <p>如果还有无法让睡眠工作的，可以在文章下评论让我知道。</p>
-
-<hr />
-
+<hr>
 <p>以上差不多就是这台机型的安装要点。还有一些问题没有解决。解决之后或者说想到什么别的再来补充~</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2019-01-23</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/">
+                    Next<br>修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/">
+                    Previous<br>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

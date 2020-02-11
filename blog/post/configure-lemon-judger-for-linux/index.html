@@ -1,250 +1,532 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="在 Linux 下配置 lemon 评测系统 - 宇宙よりも遠い場所" property="og:title">
-<title>在 Linux 下配置 lemon 评测系统 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>在 Linux 下配置 lemon 评测系统</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">November 10, 2017</h2>
-      <h1 class="title">在 Linux 下配置 lemon 评测系统</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/lemon">lemon</a>
-    
-        <a class="button is-link" href="/tags/linux">linux</a>
-    
-        <a class="button is-link" href="/tags/oi">oi</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。</p>
-
-<h1 id="编译">编译</h1>
-
-<p>lemon 基于 qt4 开发（<s>怪不得可以跨平台</s>），所以我们先安装 qt4 的环境。当然你需要有一个 DE/WM 来运行。</p>
-
-<pre><code class="language-bash"># pacman -S qt4
-</code></pre>
-
-<p>然后我们搞到 lemon 的源代码。GitHub 上可以找到，一个是原版，一个是做了一些修改的：</p>
-
-<blockquote>
-<p>原版 project-lemon: <a href="https://github.com/zhipeng-jia/project-lemon">https://github.com/zhipeng-jia/project-lemon</a>
-修改版 project-lemon: <a href="https://github.com/Sojiv/Project_lemon">https://github.com/Sojiv/Project_lemon</a></p>
-</blockquote>
-
-<p>其中原版的话需要修改文件，否则会编译出错，具体是修改<code>qtsingleapplication/qtlocalpeer.cpp:96:54</code>文件，把以下代码：</p>
-
-<pre><code class="language-cpp">socketName += QLatin1Char('-') + QString::number(::getuid(), 16);
-</code></pre>
-
-<p>修改为：</p>
-
-<pre><code class="language-cpp">socketName += QLatin1Char('-') + QString::number(QtLP_Private::getuid(), 16);
-</code></pre>
-
-<p>接着 qmake 一下，然后就可以编译了：</p>
-
-<pre><code class="language-bash"># qmake-qt4 lemon.pro
-# make
-</code></pre>
-
-<p>编译完之后，可以在目录下找到一个可执行文件 <code>lemon</code>，这就是编译好的程序了。所以我们可以把这个程序搞到<code>/usr/bin/</code>里去，这样我们下次运行直接在终端里敲<code>lemon</code>就可以了。</p>
-
-<h1 id="配置数据">配置数据</h1>
-
-<p>首先新建一个测试，然后把数据复制到测试文件夹下的 <code>data</code> 目录里。例如我要配置一道名为 <code>events</code> 的试题，则我把以下格式的数据文件复制到 <code>data/events</code> 目录下：</p>
-
-<pre><code>events1.in   events1.ans   events2.in   events2.ans   events3.in   events3.ans
-...
-</code></pre>
-
-<p>然后我们首先新建试题，填好试题信息、时空限制、比较方式等等，然后右键该试题，选择添加多个测试点，然后接下来会让我们键入能匹配所有输入输出数据文件名的一个正则表达式。以上面那个为例，我们写出来的应该是下面这样的：</p>
-
-<pre><code>input file: events/events&lt;1&gt;.in
-output file: events/events&lt;1&gt;.ans
-
-&lt;1&gt; .*
-</code></pre>
-
-<p>这里需要一点正则表达式的知识，如果你不会的话，那就按照上面的模板来就可以了。</p>
-
-<h1 id="评测时无法运行程序">评测时无法运行程序</h1>
-
-<p>配置完数据把 std 复制到 source 文件夹里。然后尝试评测，提示<code>Can not start program (无法运行程序)</code>。这个问题我们需要修改编译参数，如果不修改编译参数，lemon 默认是这样编译一个 C++ 程序的：</p>
-
-<pre><code class="language-bash">g++ -o %s %s.cpp
-</code></pre>
-
-<p>我们在编译参数里加上一个<code>-lm</code>，这样编译出来的程序就可以运行了。如果是 Windows 上就加上一个<code>-m32</code>参数。</p>
-
-<h1 id="栈溢出等问题">栈溢出等问题</h1>
-
-<p>一开始没注意这个，开了 -O2 才发现原来不开 -O2 能 AC 的程序居然 RE 了。一查发现是栈溢出，原来 Linux 下默认栈是 8MB= =这个当然不够用啦，所以我们可以修改评测时栈空间的限制。参考 NOIP2016 D1T2 附件提供的 Linux 下开栈的做法，退出 lemon 并打开终端，运行以下命令：</p>
-
-<pre><code class="language-bash">$ ulimit -s 233333
-</code></pre>
-
-<p>这里嘛就是把我们的栈调用空间开大，大概开到 200MB 多（后面那一串数字单位是 KB）。然后重新在当前终端里运行 lemon，就不会爆栈了。需要注意的是 ulimit 只对当前终端窗口有效，如果你退出了终端或者开了另一个终端窗口，就需要重新设置。</p>
-
-<p>暂时就遇到了这些问题喵。 &gt; &lt;</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%bc%96%e8%af%91" v-on:click="closeDrawer" id="编译-nav">
+										 编译
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%85%8d%e7%bd%ae%e6%95%b0%e6%8d%ae" v-on:click="closeDrawer" id="配置数据-nav">
+										 配置数据
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%af%84%e6%b5%8b%e6%97%b6%e6%97%a0%e6%b3%95%e8%bf%90%e8%a1%8c%e7%a8%8b%e5%ba%8f" v-on:click="closeDrawer" id="评测时无法运行程序-nav">
+										 评测时无法运行程序
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%88%e6%ba%a2%e5%87%ba%e7%ad%89%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="栈溢出等问题-nav">
+										 栈溢出等问题
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%bc%96%e8%af%91" v-on:click="closeDrawer" id="编译-nav">
+										 编译
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%85%8d%e7%bd%ae%e6%95%b0%e6%8d%ae" v-on:click="closeDrawer" id="配置数据-nav">
+										 配置数据
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%af%84%e6%b5%8b%e6%97%b6%e6%97%a0%e6%b3%95%e8%bf%90%e8%a1%8c%e7%a8%8b%e5%ba%8f" v-on:click="closeDrawer" id="评测时无法运行程序-nav">
+										 评测时无法运行程序
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%88%e6%ba%a2%e5%87%ba%e7%ad%89%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="栈溢出等问题-nav">
+										 栈溢出等问题
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    在 Linux 下配置 lemon 评测系统
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-11-10 19:45
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/lemon">lemon</a>
+                                &nbsp;
+                            
+                                <a href="/tags/linux">linux</a>
+                                &nbsp;
+                            
+                                <a href="/tags/oi">oi</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。</p>
+<h1 id="编译">编译</h1>
+<p>lemon 基于 qt4 开发（<!-- raw HTML omitted -->怪不得可以跨平台<!-- raw HTML omitted -->），所以我们先安装 qt4 的环境。当然你需要有一个 DE/WM 来运行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># pacman -S qt4</span>
+</code></pre></div><p>然后我们搞到 lemon 的源代码。GitHub 上可以找到，一个是原版，一个是做了一些修改的：</p>
+<blockquote>
+<p>原版 project-lemon: <a href="https://github.com/zhipeng-jia/project-lemon">https://github.com/zhipeng-jia/project-lemon</a>
+修改版 project-lemon: <a href="https://github.com/Sojiv/Project_lemon">https://github.com/Sojiv/Project_lemon</a></p>
+</blockquote>
+<p>其中原版的话需要修改文件，否则会编译出错，具体是修改<code>qtsingleapplication/qtlocalpeer.cpp:96:54</code>文件，把以下代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">socketName <span style="color:#f92672">+</span><span style="color:#f92672">=</span> QLatin1Char(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">+</span> QString<span style="color:#f92672">:</span><span style="color:#f92672">:</span>number(<span style="color:#f92672">:</span><span style="color:#f92672">:</span>getuid(), <span style="color:#ae81ff">16</span>);
+</code></pre></div><p>修改为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">socketName <span style="color:#f92672">+</span><span style="color:#f92672">=</span> QLatin1Char(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">+</span> QString<span style="color:#f92672">:</span><span style="color:#f92672">:</span>number(QtLP_Private<span style="color:#f92672">:</span><span style="color:#f92672">:</span>getuid(), <span style="color:#ae81ff">16</span>);
+</code></pre></div><p>接着 qmake 一下，然后就可以编译了：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># qmake-qt4 lemon.pro</span>
+<span style="color:#75715e"># make</span>
+</code></pre></div><p>编译完之后，可以在目录下找到一个可执行文件 <code>lemon</code>，这就是编译好的程序了。所以我们可以把这个程序搞到<code>/usr/bin/</code>里去，这样我们下次运行直接在终端里敲<code>lemon</code>就可以了。</p>
+<h1 id="配置数据">配置数据</h1>
+<p>首先新建一个测试，然后把数据复制到测试文件夹下的 <code>data</code> 目录里。例如我要配置一道名为 <code>events</code> 的试题，则我把以下格式的数据文件复制到 <code>data/events</code> 目录下：</p>
+<pre><code>events1.in   events1.ans   events2.in   events2.ans   events3.in   events3.ans
+...
+</code></pre><p>然后我们首先新建试题，填好试题信息、时空限制、比较方式等等，然后右键该试题，选择添加多个测试点，然后接下来会让我们键入能匹配所有输入输出数据文件名的一个正则表达式。以上面那个为例，我们写出来的应该是下面这样的：</p>
+<pre><code>input file: events/events&lt;1&gt;.in
+output file: events/events&lt;1&gt;.ans
+
+&lt;1&gt; .*
+</code></pre><p>这里需要一点正则表达式的知识，如果你不会的话，那就按照上面的模板来就可以了。</p>
+<h1 id="评测时无法运行程序">评测时无法运行程序</h1>
+<p>配置完数据把 std 复制到 source 文件夹里。然后尝试评测，提示<code>Can not start program (无法运行程序)</code>。这个问题我们需要修改编译参数，如果不修改编译参数，lemon 默认是这样编译一个 C++ 程序的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">g++ -o %s %s.cpp
+</code></pre></div><p>我们在编译参数里加上一个<code>-lm</code>，这样编译出来的程序就可以运行了。如果是 Windows 上就加上一个<code>-m32</code>参数。</p>
+<h1 id="栈溢出等问题">栈溢出等问题</h1>
+<p>一开始没注意这个，开了 -O2 才发现原来不开 -O2 能 AC 的程序居然 RE 了。一查发现是栈溢出，原来 Linux 下默认栈是 8MB= =这个当然不够用啦，所以我们可以修改评测时栈空间的限制。参考 NOIP2016 D1T2 附件提供的 Linux 下开栈的做法，退出 lemon 并打开终端，运行以下命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ulimit -s 233333
+</code></pre></div><p>这里嘛就是把我们的栈调用空间开大，大概开到 200MB 多（后面那一串数字单位是 KB）。然后重新在当前终端里运行 lemon，就不会爆栈了。需要注意的是 ulimit 只对当前终端窗口有效，如果你退出了终端或者开了另一个终端窗口，就需要重新设置。</p>
+<p>暂时就遇到了这些问题喵。 &gt; &lt;</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-11-10</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/noip-retired-feeling/">
+                    Next<br>“不悔梦归处，只恨太匆匆”
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/angry-birds-state-compressing/">
+                    Previous<br>愤怒的小鸟 (Review / NOIP2016 D2T3)
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

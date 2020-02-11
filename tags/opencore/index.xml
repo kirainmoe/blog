@@ -6,7 +6,7 @@
     <description>Recent content in opencore on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Thu, 06 Feb 2020 15:08:48 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/opencore/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,7 @@
       
       <guid>https://kirainmoe.com/blog/post/opencore-migration-experience/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;前言：OpenCore 引导（下文简称 OC）出来了很长一段时间了。但是最近不知什么原因，对新技术特别不敏感，所以观望了很久，也一直没有动手从 Clover 转 OpenCore. 嗯？那为什么会有这篇文章呢？&lt;s&gt;这件事还要从一只蝙蝠说起……&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;前言：OpenCore 引导（下文简称 OC）出来了很长一段时间了。但是最近不知什么原因，对新技术特别不敏感，所以观望了很久，也一直没有动手从 Clover 转 OpenCore. 嗯？那为什么会有这篇文章呢？&lt;!-- raw HTML omitted --&gt;这件事还要从一只蝙蝠说起……&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
     </item>
     

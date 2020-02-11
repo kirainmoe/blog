@@ -1,212 +1,450 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势 - 宇宙よりも遠い場所" property="og:title">
-<title>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">January 1, 2019</h2>
-      <h1 class="title">为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/touchpad">touchpad</a>
-    
-        <a class="button is-link" href="/tags/windows">windows</a>
-    
-        <a class="button is-link" href="/tags/windows-precision">windows precision</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达<s>一半</s>的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。</p>
-
-<h1 id="安装">安装</h1>
-
-<p>笔者的笔记本是 n 年前的 HP Probook 4321s(4420s)，搭配的是 Synaptics 的触摸板（并未原生支持 Windows Precision, 在 Windows 10 的系统设置触摸板一项中没有手势设置）。使用 Windows 10 自带的 Synaptics 定点装置驱动时，在 UWP 应用下无法使用任何触摸板手势，于是乎打算更新一下触摸板的驱动。偶然间心血来潮，想找找是否有能让触摸板支持 Windows 10 手势或者模拟手势的驱动，于是就找到了一个支持 Windows Precision 的 Syanptics 驱动。安装之后效果如下：</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fyto54unjzj20uq0hsgqu.jpg" alt="windows precision support" /></p>
-
-<p>试用了一下简直是爽的不行。为此特别开一篇文记录一下过程。</p>
-
-<p>以下是 Synaptics 触摸板安装支持 Windows Precision 驱动的步骤：</p>
-
-<ol>
-<li><p>下载来自<s>美帝良心想</s>的适用于 Lenovo Thinkpad Synaptics 定点装置的驱动：<a href="https://download.lenovo.com/pccbbs/mobiles/n1mgx14w.zip">https://download.lenovo.com/pccbbs/mobiles/n1mgx14w.zip</a></p></li>
-
-<li><p>解压到某个文件夹，打开设备管理器，在“鼠标和其它指针设备”中找到带有 Synaptics 字样的触摸板设备；</p></li>
-
-<li><p>点击右键 ==&gt; 更新驱动程序，依次选择“浏览我的计算机以查找驱动程序文件” ==&gt; “让我从计算机上的可用驱动程序列表中选取” ==&gt; “从磁盘安装”</p></li>
-
-<li><p>定位到下载的文件中的 autorun.inf</p></li>
-
-<li><p>选择 “Synaptics Pointing Device” (注意不要选择 ThinkPad 的那一个)，下一步安装</p></li>
-
-<li><p>重启电脑</p></li>
-</ol>
-
-<p>重启后打开系统设置的触摸板设置中，如果看到了“您的电脑有一块精确式触摸板”字样，则说明安装成功。</p>
-
-<h1 id="后记">后记</h1>
-
-<p>乡下 Windows 用户终于体验到了三指手势的好用之处……现在在 UWP 应用里也可以使用触摸板手势了。</p>
-
-<p>这个驱动虽然来自联想，但是在我的 HP 上也能用，而且只要不是特别老的触摸板，兼容性一般都不错。不过因为我的触摸板最多似乎只支持 3 点触控，所以就只能使用三指手势，并且灵敏度也不是那么高。不过既然已经是很老的机子了，所以也就不要什么自行车了。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%89%e8%a3%85" v-on:click="closeDrawer" id="安装-nav">
+										 安装
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%90%8e%e8%ae%b0" v-on:click="closeDrawer" id="后记-nav">
+										 后记
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%89%e8%a3%85" v-on:click="closeDrawer" id="安装-nav">
+										 安装
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%90%8e%e8%ae%b0" v-on:click="closeDrawer" id="后记-nav">
+										 后记
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2019-01-01 20:18
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/touchpad">touchpad</a>
+                                &nbsp;
+                            
+                                <a href="/tags/windows">windows</a>
+                                &nbsp;
+                            
+                                <a href="/tags/windows-precision">windows precision</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达<!-- raw HTML omitted -->一半<!-- raw HTML omitted -->的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。</p>
+<h1 id="安装">安装</h1>
+<p>笔者的笔记本是 n 年前的 HP Probook 4321s(4420s)，搭配的是 Synaptics 的触摸板（并未原生支持 Windows Precision, 在 Windows 10 的系统设置触摸板一项中没有手势设置）。使用 Windows 10 自带的 Synaptics 定点装置驱动时，在 UWP 应用下无法使用任何触摸板手势，于是乎打算更新一下触摸板的驱动。偶然间心血来潮，想找找是否有能让触摸板支持 Windows 10 手势或者模拟手势的驱动，于是就找到了一个支持 Windows Precision 的 Syanptics 驱动。安装之后效果如下：</p>
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1fyto54unjzj20uq0hsgqu.jpg" alt="windows precision support"></p>
+<p>试用了一下简直是爽的不行。为此特别开一篇文记录一下过程。</p>
+<p>以下是 Synaptics 触摸板安装支持 Windows Precision 驱动的步骤：</p>
+<ol>
+<li>
+<p>下载来自<!-- raw HTML omitted -->美帝良心想<!-- raw HTML omitted -->的适用于 Lenovo Thinkpad Synaptics 定点装置的驱动：https://download.lenovo.com/pccbbs/mobiles/n1mgx14w.zip</p>
+</li>
+<li>
+<p>解压到某个文件夹，打开设备管理器，在“鼠标和其它指针设备”中找到带有 Synaptics 字样的触摸板设备；</p>
+</li>
+<li>
+<p>点击右键 ==&gt; 更新驱动程序，依次选择“浏览我的计算机以查找驱动程序文件” ==&gt; “让我从计算机上的可用驱动程序列表中选取” ==&gt; “从磁盘安装”</p>
+</li>
+<li>
+<p>定位到下载的文件中的 autorun.inf</p>
+</li>
+<li>
+<p>选择 “Synaptics Pointing Device” (注意不要选择 ThinkPad 的那一个)，下一步安装</p>
+</li>
+<li>
+<p>重启电脑</p>
+</li>
+</ol>
+<p>重启后打开系统设置的触摸板设置中，如果看到了“您的电脑有一块精确式触摸板”字样，则说明安装成功。</p>
+<h1 id="后记">后记</h1>
+<p>乡下 Windows 用户终于体验到了三指手势的好用之处……现在在 UWP 应用里也可以使用触摸板手势了。</p>
+<p>这个驱动虽然来自联想，但是在我的 HP 上也能用，而且只要不是特别老的触摸板，兼容性一般都不错。不过因为我的触摸板最多似乎只支持 3 点触控，所以就只能使用三指手势，并且灵敏度也不是那么高。不过既然已经是很老的机子了，所以也就不要什么自行车了。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2019-01-01</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/">
+                    Next<br>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/">
+                    Previous<br>BeagleBone Black 开发入门实验
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

@@ -1,314 +1,641 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="开发一个简单的 webpack 插件 - 宇宙よりも遠い場所" property="og:title">
-<title>开发一个简单的 webpack 插件 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>开发一个简单的 webpack 插件</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">September 2, 2017</h2>
-      <h1 class="title">开发一个简单的 webpack 插件</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/webpack">webpack</a>
-    
-        <a class="button is-link" href="/tags/frontend">frontend</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>之前为了尝试实现 <a href="https://kotori.love">dalao</a> 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。</p>
-
-<h1 id="前言">前言</h1>
-
-<p>首先呢，webpack 的强大功能其中有很大的一部分是离不开插件的，通过插件你几乎可以<s>为所欲为</s>，也能更充分地利用 webpack. 事实上 webpack 的配置什么的很多看起来很复杂，文档也很多，所以会给很多人一种它的插件也很难搞的错觉……和其它的程序类似， webpack 的插件也有一个模子，也就是基本框架。</p>
-
-<p>为了让整理出来的东西看起来具体一些，我以前文提到的那个想法为例，这个想法具体如下：</p>
-
-<blockquote>
-<p>在我们使用 webpack-dev-server 结合 webpack 开发的时候，webpack-dev-server 会把 console 中的错误和警告信息转发到浏览器端，但是单纯用 <code>webpack --watch</code> 的时候，webpack 除了会检测文件变动重新 compile 之外并不会把其他信息转发到浏览器上，以至于有时候我们发现了一些问题，到最后切到 console 才发现是编译的过程出现了偏差。所以有没有什么办法让 <code>webpack --watch</code> 的时候也能把错误和警告显示到浏览器的 console？</p>
-
-<p>当然我不把具体的实现过程展开了。这样的需求显然可以通过 webpack 插件实现，监听 webpack 的 compile 事件，获取异常信息，然后前端和后端建立一个 socket 连接，实时输出这些信息。</p>
-
-<h1 id="实现">实现</h1>
-
-<p>是的，以上所有的步骤都可以通过一个 webpack 插件做到。不多说废话，在开发之前稍微浏览一下 webpack 的官方开发文档还是很重要的：</p>
-
-<blockquote>
-<p>How to write a plugin: <a href="https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation">https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation</a>
-Plugin API: <a href="https://webpack.js.org/api/">https://webpack.js.org/api/</a></p>
-</blockquote>
-
-<p>先来看看我们是怎么在 webpack 中应用插件的：</p>
-
-<pre><code class="language-js">// webpack.config.js
-plugins: [
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoEmitOnErrorsPlugin()
-],
-</code></pre>
-
-<p>可以看到，我们在 <code>webpack config</code> 中的 <code>plugins</code> 字段里实例化一个对象来应用插件，所以我们的新插件也应该有一个 class. 官方文档中用的是 ES5 的 <code>function + prototype</code> 的写法，我们可以直接用上 ES6 的 class. 假设插件名字为 <code>MyAwesomePlugin</code>, 首先我们创建一个 *MyAwesomePlugin.js*：
-```js
-module.exports = class MyAwesomePlugin {
-	constructor(options) {
-		this.options = options;
-	}</p>
-</blockquote>
-
-<p>	apply(compiler) {
-		console.log(&lsquo;Hello world!&rsquo;);
-	}
-};</p>
-
-<pre><code>在这个文件里我们 export 了一个叫做 ```MyAwesomePlugin``` 的类。其中有一个 ```apply()``` 方法，它表示在 webpack 初次加载完此插件的时候应该做的事情，也就是只会在 webpack 启动的时候被执行一次。接下来如果我们监听 compile 的事件等等，首先就要在这里写一下；假如我们的插件依赖于一个 express 的后端服务器，那么我们也可以在 ```apply()``` 里初始化 express。
-
-然后我们试着应用这个插件，在你的 ```webpack.config.js``` 中：
-</code></pre>
-
-<p>js
-const MyAwesomePlugin = require(&lsquo;./MyAwesomePlugin&rsquo;);</p>
-
-<p>// &hellip;</p>
-
-<p>plugins: [
-	// &hellip;
-	new MyAwesomePlugin()
-]</p>
-
-<pre><code>然后尝试着启动 webpack，如果一切正常，你应该在 console 中看到 ```Hello, world!``` 了。
-
-接下来我们就开始做实事了，回头看看我们的需求，这是一个需要前后端配合的工作，首先我们需要在后端拥有一个 socket 服务器，然后监听 webpack 每次编译完后的结果，把信息通过这个 socket 服务器发送到浏览器。要实现这一步，还需要浏览器加载和后端服务器通信的相关 JS.启动 socket 服务器这件事我们在 ```apply()``` 方法中完成就可以了，接下来是事件监听。
-
-说到事件监听，首先这里要区分一下 webpack 中的两个概念：```compiler``` 和 ```compilation```.
-
----
-
-## compiler
-
-首先你一定已经注意到上文的代码中，```apply()``` 方法传入了一个叫 ```compiler``` 的参数。这个所谓的 ```compiler``` 对象从字面意思上看是编译器的意思，实际上它也就指向了当前运行的 webpack 实例。这个实例包含了 webpack 的所有 options, loaders 和 plugins, 它随着 webpack 的启动而产生，可以说是 webpack 的“灵魂”。当我们运用一个插件时（即插件类被实例化，同时类中的 ```apply()``` 方法被调用的时候），```apply()``` 方法便会接收到一个指向这个 ```compiler``` 的参数，我们可以通过这个 ```compiler``` 访问整个 webpack 环境。
-
-### compilation
-
-对 ```compiler``` 有了一定的了解之后，大概我们就可以猜到 ```compilation``` 是干什么用的了。所谓 ```compilation``` 包含了 webpack 每次 build 后的详细信息，包括编译出的结果、错误信息、模块、编译后的资源、改变的文件和依赖等的当前状态，同时它提供了很多的事件挂钩，以便于插件来执行一些&lt;s&gt;黑魔法&lt;/s&gt;。
-
----
-
-具体的 API 可以在上文给出的链接中找到，这里我们直接贴出代码后再解释：
-
-</code></pre>
-
-<p>js
-apply(compiler) {
-	compiler.plugin(&lsquo;compilation&rsquo;, this.injectScriptToBundle.bind(this));
-	compiler.plugin(&lsquo;done&rsquo;, this.onBuildCompleted.bind(this));
-}</p>
-
-<pre><code>
-这一段代码中我们监听了 ```compiler``` 的两个事件（可以看到我们是用 ```compiler.plugin(hook, method)``` 方法注册事件的）：
-
- - 第一是在每次文件变动，重新编译的时候，执行 ```this.injectScriptToBundle()``` 方法；
- - 第二是编译完成之后，执行 ```this.onBuildCompleted()``` 方法。
-
-根据方法名我们大致可以构想一下，前一个方法用于把前端与后端交互用的 JS 代码注入到 bundle 中（显然，我们是不会直接把这样的调试用代码写到源代码里的），后一个方法大概就是把编译完成之后异常信息发送出去了。
-
-我们先来看看 ```injectScriptToBundle()``` 方法：
-
-</code></pre>
-
-<p>js
-injectScriptToBundle(compilation) {
-	compilation.mainTemplate(&lsquo;startup&rsquo;, source =&gt; {
-		return &ldquo;\nconsole.log(&lsquo;Hello world!&rsquo;);\n&rdquo; + source;
-	});
-}</p>
-
-<pre><code>我已经截掉了一些对这篇文章没有什么用的代码。首先我们可以看到这个方法有一个参数，而这个参数正是上文提到的 ```compilation```. 这一段代码的作用就是在即将编译的源代码的开头部分插入一段我们自定义的 JS 代码。
-
-对了，这里面出现了一个 ```mainTemplate``` 方法，具体可以看看 webpack 的官方文档：https://webpack.js.org/api/plugins/template/#src/components/Sidebar/Sidebar.jsx
-
-然后接下来我们只需要在 ```onBuildCompleted()``` 方法中获取并向前端发送信息即可：
-
-</code></pre>
-
-<p>js
-onBuildCompleted(stats) {
-	const detail = stats.toJson({
-		errorDetails: false
-	});</p>
-
-<p>	this.sendWarnings(statsJson.warnings);
-	this.sendErrors(statsJson.errors);
-}
-```</p>
-
-<p>忽略掉发送信息那部分的代码，我们只要看上半部分就好了。<code>stats</code> 参数随着 <code>compiler</code> 的 <code>done</code> 事件被触发后产生，包含本次编译的结果统计信息。它提供了一个 <code>toJson()</code> 方法，可以把这些信息转换成直观的 JSON，然后我们也就可以从这个 JSON 里拿到我们想要的内容了。</p>
-
-<p>做好了这一切之后，大概已经实现了我们的目标了。上文的示例代码可以在<a href="https://github.com/moefront/webpack-plugin-console-to-browser">这里</a>找到。</p>
-
-<h1 id="推荐阅读">推荐阅读</h1>
-
-<ul>
-<li>细说webpack之流程篇：<a href="http://www.cnblogs.com/yxy99/p/5852987.html">http://www.cnblogs.com/yxy99/p/5852987.html</a></li>
-<li>Compiler and Compilation: <a href="https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation">https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation</a></li>
-<li>Accessing the compilation: <a href="https://webpack.js.org/development/how-to-write-a-plugin/#accessing-the-compilation">https://webpack.js.org/development/how-to-write-a-plugin/#accessing-the-compilation</a></li>
-<li>webpack 插件开发简要：<a href="http://www.cnblogs.com/sampapa/p/6958166.html">http://www.cnblogs.com/sampapa/p/6958166.html</a></li>
-</ul>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%89%8d%e8%a8%80" v-on:click="closeDrawer" id="前言-nav">
+										 前言
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="实现-nav">
+										 实现
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#compiler" v-on:click="closeDrawer" id="compiler-nav">
+										 compiler
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#compilation" v-on:click="closeDrawer" id="compilation-nav">
+										 compilation
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%8e%a8%e8%8d%90%e9%98%85%e8%af%bb" v-on:click="closeDrawer" id="推荐阅读-nav">
+										 推荐阅读
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%89%8d%e8%a8%80" v-on:click="closeDrawer" id="前言-nav">
+										 前言
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="实现-nav">
+										 实现
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#compiler" v-on:click="closeDrawer" id="compiler-nav">
+										 compiler
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#compilation" v-on:click="closeDrawer" id="compilation-nav">
+										 compilation
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%8e%a8%e8%8d%90%e9%98%85%e8%af%bb" v-on:click="closeDrawer" id="推荐阅读-nav">
+										 推荐阅读
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    开发一个简单的 webpack 插件
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-09-02 11:59
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/webpack">webpack</a>
+                                &nbsp;
+                            
+                                <a href="/tags/frontend">frontend</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>之前为了尝试实现 <a href="https://kotori.love">dalao</a> 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。</p>
+<h1 id="前言">前言</h1>
+<p>首先呢，webpack 的强大功能其中有很大的一部分是离不开插件的，通过插件你几乎可以<!-- raw HTML omitted -->为所欲为<!-- raw HTML omitted -->，也能更充分地利用 webpack. 事实上 webpack 的配置什么的很多看起来很复杂，文档也很多，所以会给很多人一种它的插件也很难搞的错觉……和其它的程序类似， webpack 的插件也有一个模子，也就是基本框架。</p>
+<p>为了让整理出来的东西看起来具体一些，我以前文提到的那个想法为例，这个想法具体如下：</p>
+<blockquote>
+<p>在我们使用 webpack-dev-server 结合 webpack 开发的时候，webpack-dev-server 会把 console 中的错误和警告信息转发到浏览器端，但是单纯用 <code>webpack --watch</code> 的时候，webpack 除了会检测文件变动重新 compile 之外并不会把其他信息转发到浏览器上，以至于有时候我们发现了一些问题，到最后切到 console 才发现是编译的过程出现了偏差。所以有没有什么办法让 <code>webpack --watch</code> 的时候也能把错误和警告显示到浏览器的 console？</p>
+</blockquote>
+<p>当然我不把具体的实现过程展开了。这样的需求显然可以通过 webpack 插件实现，监听 webpack 的 compile 事件，获取异常信息，然后前端和后端建立一个 socket 连接，实时输出这些信息。</p>
+<h1 id="实现">实现</h1>
+<p>是的，以上所有的步骤都可以通过一个 webpack 插件做到。不多说废话，在开发之前稍微浏览一下 webpack 的官方开发文档还是很重要的：</p>
+<blockquote>
+<p>How to write a plugin: <a href="https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation">https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation</a>
+Plugin API: <a href="https://webpack.js.org/api/">https://webpack.js.org/api/</a></p>
+</blockquote>
+<p>先来看看我们是怎么在 webpack 中应用插件的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// webpack.config.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">webpack</span>.<span style="color:#a6e22e">HotModuleReplacementPlugin</span>(),
+  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">webpack</span>.<span style="color:#a6e22e">NoEmitOnErrorsPlugin</span>()
+],
+</code></pre></div><p>可以看到，我们在 <code>webpack config</code> 中的 <code>plugins</code> 字段里实例化一个对象来应用插件，所以我们的新插件也应该有一个 class. 官方文档中用的是 ES5 的 <code>function + prototype</code> 的写法，我们可以直接用上 ES6 的 class. 假设插件名字为 <code>MyAwesomePlugin</code>, 首先我们创建一个 <em>MyAwesomePlugin.js</em>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyAwesomePlugin</span> {
+	<span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">options</span>) {
+		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">options</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">options</span>;
+	}
+
+	<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">compiler</span>) {
+		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Hello world!&#39;</span>);
+	}
+};
+</code></pre></div><p>在这个文件里我们 export 了一个叫做 <code>MyAwesomePlugin</code> 的类。其中有一个 <code>apply()</code> 方法，它表示在 webpack 初次加载完此插件的时候应该做的事情，也就是只会在 webpack 启动的时候被执行一次。接下来如果我们监听 compile 的事件等等，首先就要在这里写一下；假如我们的插件依赖于一个 express 的后端服务器，那么我们也可以在 <code>apply()</code> 里初始化 express。</p>
+<p>然后我们试着应用这个插件，在你的 <code>webpack.config.js</code> 中：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyAwesomePlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./MyAwesomePlugin&#39;</span>);
+
+<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+	<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MyAwesomePlugin</span>()
+]
+</code></pre></div><p>然后尝试着启动 webpack，如果一切正常，你应该在 console 中看到 <code>Hello, world!</code> 了。</p>
+<p>接下来我们就开始做实事了，回头看看我们的需求，这是一个需要前后端配合的工作，首先我们需要在后端拥有一个 socket 服务器，然后监听 webpack 每次编译完后的结果，把信息通过这个 socket 服务器发送到浏览器。要实现这一步，还需要浏览器加载和后端服务器通信的相关 JS.启动 socket 服务器这件事我们在 <code>apply()</code> 方法中完成就可以了，接下来是事件监听。</p>
+<p>说到事件监听，首先这里要区分一下 webpack 中的两个概念：<code>compiler</code> 和 <code>compilation</code>.</p>
+<hr>
+<h2 id="compiler">compiler</h2>
+<p>首先你一定已经注意到上文的代码中，<code>apply()</code> 方法传入了一个叫 <code>compiler</code> 的参数。这个所谓的 <code>compiler</code> 对象从字面意思上看是编译器的意思，实际上它也就指向了当前运行的 webpack 实例。这个实例包含了 webpack 的所有 options, loaders 和 plugins, 它随着 webpack 的启动而产生，可以说是 webpack 的“灵魂”。当我们运用一个插件时（即插件类被实例化，同时类中的 <code>apply()</code> 方法被调用的时候），<code>apply()</code> 方法便会接收到一个指向这个 <code>compiler</code> 的参数，我们可以通过这个 <code>compiler</code> 访问整个 webpack 环境。</p>
+<h3 id="compilation">compilation</h3>
+<p>对 <code>compiler</code> 有了一定的了解之后，大概我们就可以猜到 <code>compilation</code> 是干什么用的了。所谓 <code>compilation</code> 包含了 webpack 每次 build 后的详细信息，包括编译出的结果、错误信息、模块、编译后的资源、改变的文件和依赖等的当前状态，同时它提供了很多的事件挂钩，以便于插件来执行一些<!-- raw HTML omitted -->黑魔法<!-- raw HTML omitted -->。</p>
+<hr>
+<p>具体的 API 可以在上文给出的链接中找到，这里我们直接贴出代码后再解释：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">compiler</span>) {
+	<span style="color:#a6e22e">compiler</span>.<span style="color:#a6e22e">plugin</span>(<span style="color:#e6db74">&#39;compilation&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">injectScriptToBundle</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
+	<span style="color:#a6e22e">compiler</span>.<span style="color:#a6e22e">plugin</span>(<span style="color:#e6db74">&#39;done&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onBuildCompleted</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
+}
+</code></pre></div><p>这一段代码中我们监听了 <code>compiler</code> 的两个事件（可以看到我们是用 <code>compiler.plugin(hook, method)</code> 方法注册事件的）：</p>
+<ul>
+<li>第一是在每次文件变动，重新编译的时候，执行 <code>this.injectScriptToBundle()</code> 方法；</li>
+<li>第二是编译完成之后，执行 <code>this.onBuildCompleted()</code> 方法。</li>
+</ul>
+<p>根据方法名我们大致可以构想一下，前一个方法用于把前端与后端交互用的 JS 代码注入到 bundle 中（显然，我们是不会直接把这样的调试用代码写到源代码里的），后一个方法大概就是把编译完成之后异常信息发送出去了。</p>
+<p>我们先来看看 <code>injectScriptToBundle()</code> 方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">injectScriptToBundle</span>(<span style="color:#a6e22e">compilation</span>) {
+	<span style="color:#a6e22e">compilation</span>.<span style="color:#a6e22e">mainTemplate</span>(<span style="color:#e6db74">&#39;startup&#39;</span>, <span style="color:#a6e22e">source</span> =&gt; {
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;\nconsole.log(&#39;Hello world!&#39;);\n&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">source</span>;
+	});
+}
+</code></pre></div><p>我已经截掉了一些对这篇文章没有什么用的代码。首先我们可以看到这个方法有一个参数，而这个参数正是上文提到的 <code>compilation</code>. 这一段代码的作用就是在即将编译的源代码的开头部分插入一段我们自定义的 JS 代码。</p>
+<p>对了，这里面出现了一个 <code>mainTemplate</code> 方法，具体可以看看 webpack 的官方文档：https://webpack.js.org/api/plugins/template/#src/components/Sidebar/Sidebar.jsx</p>
+<p>然后接下来我们只需要在 <code>onBuildCompleted()</code> 方法中获取并向前端发送信息即可：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">onBuildCompleted</span>(<span style="color:#a6e22e">stats</span>) {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">detail</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">stats</span>.<span style="color:#a6e22e">toJson</span>({
+		<span style="color:#a6e22e">errorDetails</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>
+	});
+
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sendWarnings</span>(<span style="color:#a6e22e">statsJson</span>.<span style="color:#a6e22e">warnings</span>);
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sendErrors</span>(<span style="color:#a6e22e">statsJson</span>.<span style="color:#a6e22e">errors</span>);
+}
+</code></pre></div><p>忽略掉发送信息那部分的代码，我们只要看上半部分就好了。<code>stats</code> 参数随着 <code>compiler</code> 的 <code>done</code> 事件被触发后产生，包含本次编译的结果统计信息。它提供了一个 <code>toJson()</code> 方法，可以把这些信息转换成直观的 JSON，然后我们也就可以从这个 JSON 里拿到我们想要的内容了。</p>
+<p>做好了这一切之后，大概已经实现了我们的目标了。上文的示例代码可以在<a href="https://github.com/moefront/webpack-plugin-console-to-browser">这里</a>找到。</p>
+<h1 id="推荐阅读">推荐阅读</h1>
+<ul>
+<li>细说webpack之流程篇：http://www.cnblogs.com/yxy99/p/5852987.html</li>
+<li>Compiler and Compilation: <a href="https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation">https://webpack.js.org/development/how-to-write-a-plugin/#compiler-and-compilation</a></li>
+<li>Accessing the compilation: <a href="https://webpack.js.org/development/how-to-write-a-plugin/#accessing-the-compilation">https://webpack.js.org/development/how-to-write-a-plugin/#accessing-the-compilation</a></li>
+<li>webpack 插件开发简要：http://www.cnblogs.com/sampapa/p/6958166.html</li>
+</ul>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-09-02</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/">
+                    Next<br>每周解题报告 (4th, 8/20~9/10)
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/hachigatsu-no-if/">
+                    Previous<br>八月のif
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

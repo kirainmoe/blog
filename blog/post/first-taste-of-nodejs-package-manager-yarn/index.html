@@ -1,265 +1,784 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="初探全新的 Node.js 包管理器 Yarn - 宇宙よりも遠い場所" property="og:title">
-<title>初探全新的 Node.js 包管理器 Yarn | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>初探全新的 Node.js 包管理器 Yarn</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">October 12, 2016</h2>
-      <h1 class="title">初探全新的 Node.js 包管理器 Yarn</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/nodejs">nodejs</a>
-    
-        <a class="button is-link" href="/tags/yarn">yarn</a>
-    
-        <a class="button is-link" href="/tags/npm">npm</a>
-    
-</div>
-
-      
-      <div class="content">
-        <blockquote>
-<p><strong>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.</strong></p>
-</blockquote>
-
-<p>就在昨天，<strong><em>Facebook</em></strong> 发布了新的 **<em>node.js</em> <strong>包管理器 <a href="https://yarnpkg.com/"><strong><em>Yarn</em></strong></a> 用以替代 <strong><em>npm</em></strong>。咱虽然是个半桶水的咸鱼前端，不过也得跟上** <em>Javascript</em> <strong>这股潮</strong><em>(hong)</em></strong>流<strong><em>(huang)</em></strong> 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 <strong><em>npm</em></strong> 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/0*fOeA4Ko_Z2f8vFAd.png" alt="" /></p>
-
-<h3 id="installation">Installation</h3>
-
-<p>首先当然是安装啦。跟 **<em>npm</em> <strong>这种被钦点而随</strong> <em>nodejs</em> <strong>一起被安装的包管理器不同，</strong><em>Yarn</em>** 需要自行手动安装。这也可以理解吧，毕竟是全新的东西。不过老实说，安装体验是不太好的……吧。</p>
-
-<p>为什么怎么说呢……因为我的开发环境是 <strong><em>Arch Linux</em></strong>，而官方文档只提供了** <em>apt-get</em> <strong>系</strong> <em>Linux</em> **和 <strong><em>yum</em></strong> 系** <em>Linux</em> **的安装方式……</p>
-
-<p>既然志在取代 <strong><em>npm</em></strong>，那么肯定有全平台的兼容方案咯，果然有适用于所有发行版的手动安装脚本，于是我就尝试这个，可是装了三次没有一次成功，各种问题……</p>
-
-<p>最后发现，其实 <strong><em>yarn</em></strong> 可以直接像装模块那样用 <strong><em>npm</em></strong> 装：</p>
-
-<pre name="80b3" id="80b3" class="graf graf--pre graf-after--p">npm install -g yarn</pre>
-
-<p>啊嘞？一个要取代** <em>npm</em> **的东西，居然还要用 <strong><em>npm</em></strong> 来装？<strong><em>excuse me</em></strong>？好吧，不管怎么讲总之是这样装上了，所以我说安装体验一般般……也许可能对其他的发行版来说会好一些吧，可能对于一些大众的发行版和** <em>macOS</em> **来说，安装就是一条命令打进终端的事情。</p>
-
-<p>虽然截止到我写这篇文章的时候，已经有了** <em>Arch Linux</em> **上的安装方式，不过是通过 <strong><em>yaourt(AUR)</em></strong> 的方式，我并不觉得对于新手来说手动装一下 <strong><em>yaourt</em></strong> 再装 <strong><em>yarn</em></strong> 比直接用 **<em>pacman</em> **装 **<em>nodejs</em> **然后 <strong><em>npm install</em></strong> 简单。也许在现阶段，相比什么 <strong><em>Debian/Ubuntu/CentOS</em></strong> 来说 <strong><em>Arch</em></strong> 还是个小众的发行版吧……</p>
-
-<h3 id="dependencies-management">Dependencies Management</h3>
-
-<p>安装部分就这样告一段落。既然作为一个包管理，就要做好自己的职责。接下来就想要试试这个新包管理是否真的有它所宣传的那样神奇。接下来我在同样的环境下，将** <em>yarn</em> **和 <strong><em>npm</em></strong> 以及** <em>cnpm</em> **做对比。</p>
-
-<h4 id="faster">FASTER</h4>
-
-<blockquote>
-<p>updated at 2016.10.14 13:10</p>
-</blockquote>
-
-<p><strong><em>Yarn</em></strong> 和 <strong><em>npm</em></strong> 的包仓库是同步的，所以 <strong><em>npm 的 registry 同样对 yarn 适用。</em></strong>执行以下命令就可以把 <strong><em>yarn</em></strong> 的源设置为 <strong><em>taobao</em></strong> 的 <strong><em>npm registry</em></strong>。但是我发现改了之后并没有加快 <strong><em>yarn</em></strong> 的速度多少，所以以下 <strong><em>yarn</em></strong> 使用的依旧是默认源。</p>
-
-<pre name="1583" id="1583" class="graf graf--pre graf-after--p">yarn config set registry **_https://registry.npm.taobao.org_**</pre>
-
-<p><strong><em>Yarn</em></strong> 既然是 <strong><em>Facebook</em></strong> 家的东西，那我们就首先试一下安装他家的 <strong><em>React</em></strong> 好了：</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/600/1*t3JKasHT_Tg4MP2nh8WCWg.png" alt="" /></p>
-
-<p>首先当然是主角 <strong><em>yarn</em></strong> 啦。需要注意的是 <strong><em>yarn</em></strong> 安装依赖的方式不同于 <strong><em>npm</em></strong>，你需要执行以下命令来安装依赖：</p>
-
-<pre name="b5e2" id="b5e2" class="graf graf--pre graf-after--p">yarn add react</pre>
-
-<p>可以看到 <strong><em>yarn</em></strong> 安装** <em>React</em> <strong>用了</strong> <em>13.3s</em>**，这速度也着实令人满意。</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/600/1*uRYA4dr0CBNu_-ZAFR01dA.png" alt="" /></p>
-
-<p>接下来是 <strong><em>npm</em></strong>。因为** <em>npm</em> **并不显示命令时间，所以我掐了一下秒表，大概 <strong><em>45s</em></strong> 的样子，是 <strong><em>yarn</em></strong> 的好几倍多。好像比起** <em>npm</em> <strong>来说，</strong> <em>yarn</em>** 的速度确实快了一些呢，而且** <em>npm</em> **用的还是国内的源。</p>
-
-<p>不过** <em>cnpm</em> <strong>的速度就更快了，只用了</strong> <em>4s</em>** 便完成了整个安装过程。但是毕竟 <strong><em>cnpm</em></strong> 是 <strong><em>npm</em></strong> 的衍生产物，处于情理之中。既然这东西可以改善 <strong><em>npm</em></strong> 的速度，谁知道以后会不会有** <em>cyarn</em> <strong>呢？但是通过这个测试我们可以看出，</strong><em>yarn</em> **的速度相比原生 **<em>npm</em> **着实是一个质的飞跃，FASTER 并不是浪得虚名。</p>
-
-<p>接下来我又尝试了安装其他的包，多次对比了一下，<strong><em>平均下来 yarn 会比 npm 快上 3–6 倍（这是安装体积小一些的包的情况）。</em></strong></p>
-
-<h4 id="reliable-secure">RELIABLE/SECURE</h4>
-
-<p>至于这个包管理是否 <strong><em>reliable/secure</em></strong>，这个我暂时没想到怎么测试。我只知道在我用的时候，偶尔有几率会报一些莫名其妙的错误，但是反复执行两遍命令，就又正常工作了。毕竟 **<em>yarn</em> **是新出的东西嘛，可以理解。不过就在这一天之内，yarn 的 GitHub 项目主页已经赢得了 9K star，issues 和 pull request 也有了上千个，可见其火热的程度，所以对于它的前景，我还是很看好的。</p>
-
-<h3 id="offline-mode">Offline mode</h3>
-
-<p><span class="graf-dropCap">Y</span><strong><em>arn</em></strong> 的一个亮点就是可以离线安装依赖，当然，前提是曾经安装过这个依赖。<strong><em>Yarn</em></strong> 会缓存安装过的包，下次安装的时候如果指定了 <strong><em>-offline</em></strong> 参数，<strong><em>Yarn</em></strong> 就会直接从缓存中取出这个包，这样将大大缩短安装依赖的时间。</p>
-
-<p>遗憾的是，尽管官方文档我看了一遍又一遍，这个功能还是无法正常在我的环境上工作。我会找一下原因，这一段稍后补充。</p>
-
-<p>但是这个** <em>feature</em>** 真的是让人眼前一亮，可以说解决了** <em>npm</em> **的一个短板，很致命的短板。有了这样的功能之后，以后在没有网络的环境下也能够安装已有的依赖的。而且省去了下载的时间，大大提高了效率。想象一下以后执行 <strong><em>react-native init</em></strong> 的时候不用漫长等待 15 分钟了，是不是很开心（当然，什么时候** <em>Facebook</em> <strong>把</strong> <em>react-native init</em> **的安装依赖过程换成自家的包管理安装还是未知数喔）。</p>
-
-<h3 id="yarn-lock-文件">yarn.lock 文件</h3>
-
-<p><span class="graf-dropCap">Y</span><strong><em>arn</em></strong> 通过一个 <strong><em>yarn.lock</em></strong> 文件，来使得你的程序得以在不同的机器上获得一致的体验。虽然这个解释很牵强，好歹我没有机翻给大家看，已经很良心了（雾）。感觉这好像是个很高端的东西，其实主要是对 **<em>package.json</em> **的一个补充。</p>
-
-<p>有兴趣的话，可以看这里的详细介绍（需要英文好一些哟）：</p>
-
-<p><a href="https://yarnpkg.com/en/docs/yarn-lock" title="https://yarnpkg.com/en/docs/yarn-lock"><strong>Yarn</strong>
-_Fast, reliable, and secure dependency management._yarnpkg.com</a></p>
-
-<h3 id="summary">Summary</h3>
-
-<p>忽如一夜春风来，千树万树梨花开。有时候就是眼睛一睁一闭之间，一个新的东西就这样在你全然不知的时候悄然面世了。今天出了 yarn，明天指不定又会出现什么。庆幸的是，我们还能赶上这个新玩意的早班车。</p>
-
-<p>记得近几日的一篇高端黑文（大雾），描述了在 2016 年学习 Javascript 这门语言的感受（看这里：<a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.mkiou6jtq"><strong><em>How it feels to learn Javascript in 2016</em></strong></a>），确实，这门语言单单一年的发展，就足以呛死不少人。</p>
-
-<p>但是必须要说** <em>yarn</em> **的出现确实是有进步意义的，他解决了 <strong><em>npm</em></strong> 已知的一些问题，拓展出了新的特性。既然如此，它就是值得去接触和学习的。尽管距离取代 <strong><em>npm</em></strong> 还有好长的一段时间，走好长的一段路，但是可以预见它的前途将是一片的光明。</p>
-
-<p>所以，来吧，你需要尝试一些新的东西。 <strong><em>yarn</em></strong> 未来的成长，将由我们共同见证。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#installation" v-on:click="closeDrawer" id="installation-nav">
+										 Installation
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#dependencies-management" v-on:click="closeDrawer" id="dependencies-management-nav">
+										 Dependencies Management
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#faster" v-on:click="closeDrawer" id="faster-nav">
+										 FASTER
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#reliablesecure" v-on:click="closeDrawer" id="reliablesecure-nav">
+										 RELIABLE/SECURE
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#offline-mode" v-on:click="closeDrawer" id="offline-mode-nav">
+										 Offline mode
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#yarnlock-%e6%96%87%e4%bb%b6" v-on:click="closeDrawer" id="yarnlock-文件-nav">
+										 yarn.lock 文件
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#summary" v-on:click="closeDrawer" id="summary-nav">
+										 Summary
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#installation" v-on:click="closeDrawer" id="installation-nav">
+										 Installation
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#dependencies-management" v-on:click="closeDrawer" id="dependencies-management-nav">
+										 Dependencies Management
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#faster" v-on:click="closeDrawer" id="faster-nav">
+										 FASTER
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#reliablesecure" v-on:click="closeDrawer" id="reliablesecure-nav">
+										 RELIABLE/SECURE
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#offline-mode" v-on:click="closeDrawer" id="offline-mode-nav">
+										 Offline mode
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#yarnlock-%e6%96%87%e4%bb%b6" v-on:click="closeDrawer" id="yarnlock-文件-nav">
+										 yarn.lock 文件
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#summary" v-on:click="closeDrawer" id="summary-nav">
+										 Summary
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    初探全新的 Node.js 包管理器 Yarn
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2016-10-12 17:33
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/nodejs">nodejs</a>
+                                &nbsp;
+                            
+                                <a href="/tags/yarn">yarn</a>
+                                &nbsp;
+                            
+                                <a href="/tags/npm">npm</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <blockquote>
+<p><strong>FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.</strong></p>
+</blockquote>
+<p>就在昨天，**_Facebook_** 发布了新的 <strong>_node.js_ <strong>包管理器 </strong><em>Yarn</em></strong><a href="https://yarnpkg.com/"></a> 用以替代 <strong><em>npm</em></strong>。咱虽然是个半桶水的咸鱼前端，不过也得跟上** _Javascript_ **这股潮**_(hong)_**流**_(huang)_** 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 **_npm_** 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*fOeA4Ko_Z2f8vFAd.png" alt=""></p>
+<h3 id="installation">Installation</h3>
+<p>首先当然是安装啦。跟 <strong><em>npm</em> <strong>这种被钦点而随</strong> <em>nodejs</em> <strong>一起被安装的包管理器不同，</strong><em>Yarn</em></strong> 需要自行手动安装。这也可以理解吧，毕竟是全新的东西。不过老实说，安装体验是不太好的……吧。</p>
+<p>为什么怎么说呢……因为我的开发环境是 <strong><em>Arch Linux</em></strong>，而官方文档只提供了** _apt-get_ **系** _Linux_ **和 **_yum_** 系** _Linux_ **的安装方式……</p>
+<p>既然志在取代 <strong><em>npm</em></strong>，那么肯定有全平台的兼容方案咯，果然有适用于所有发行版的手动安装脚本，于是我就尝试这个，可是装了三次没有一次成功，各种问题……</p>
+<p>最后发现，其实 <strong><em>yarn</em></strong> 可以直接像装模块那样用 <strong><em>npm</em></strong> 装：</p>
+<!-- raw HTML omitted -->
+<p>啊嘞？一个要取代** _npm_ **的东西，居然还要用 **_npm_** 来装？**_excuse me_**？好吧，不管怎么讲总之是这样装上了，所以我说安装体验一般般……也许可能对其他的发行版来说会好一些吧，可能对于一些大众的发行版和** _macOS_ **来说，安装就是一条命令打进终端的事情。</p>
+<p>虽然截止到我写这篇文章的时候，已经有了** _Arch Linux_ **上的安装方式，不过是通过 **_yaourt(AUR)_** 的方式，我并不觉得对于新手来说手动装一下 **_yaourt_** 再装 **_yarn_** 比直接用 **_pacman_ **装 **_nodejs_ **然后 **_npm install_** 简单。也许在现阶段，相比什么 **_Debian/Ubuntu/CentOS_** 来说 **_Arch_** 还是个小众的发行版吧……</p>
+<h3 id="dependencies-management">Dependencies Management</h3>
+<p>安装部分就这样告一段落。既然作为一个包管理，就要做好自己的职责。接下来就想要试试这个新包管理是否真的有它所宣传的那样神奇。接下来我在同样的环境下，将** _yarn_ **和 **_npm_** 以及** _cnpm_ **做对比。</p>
+<h4 id="faster">FASTER</h4>
+<blockquote>
+<p>updated at 2016.10.14 13:10</p>
+</blockquote>
+<p><strong><em>Yarn</em></strong> 和 <strong><em>npm</em></strong> 的包仓库是同步的，所以 **<em>npm 的 registry 同样对 yarn 适用。</em>**执行以下命令就可以把 <strong><em>yarn</em></strong> 的源设置为 <strong><em>taobao</em></strong> 的 <strong><em>npm registry</em></strong>。但是我发现改了之后并没有加快 <strong><em>yarn</em></strong> 的速度多少，所以以下 <strong><em>yarn</em></strong> 使用的依旧是默认源。</p>
+<!-- raw HTML omitted -->
+<p><strong><em>Yarn</em></strong> 既然是 <strong><em>Facebook</em></strong> 家的东西，那我们就首先试一下安装他家的 <strong><em>React</em></strong> 好了：</p>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*t3JKasHT_Tg4MP2nh8WCWg.png" alt=""></p>
+<p>首先当然是主角 <strong><em>yarn</em></strong> 啦。需要注意的是 <strong><em>yarn</em></strong> 安装依赖的方式不同于 <strong><em>npm</em></strong>，你需要执行以下命令来安装依赖：</p>
+<!-- raw HTML omitted -->
+<p>可以看到 <strong><em>yarn</em></strong> 安装** _React_ **用了** _13.3s_**，这速度也着实令人满意。</p>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*uRYA4dr0CBNu_-ZAFR01dA.png" alt=""></p>
+<p>接下来是 <strong><em>npm</em></strong>。因为** _npm_ **并不显示命令时间，所以我掐了一下秒表，大概 **_45s_** 的样子，是 **_yarn_** 的好几倍多。好像比起** _npm_ **来说，** _yarn_** 的速度确实快了一些呢，而且** _npm_ **用的还是国内的源。</p>
+<p>不过** _cnpm_ **的速度就更快了，只用了** _4s_** 便完成了整个安装过程。但是毕竟 **_cnpm_** 是 **_npm_** 的衍生产物，处于情理之中。既然这东西可以改善 **_npm_** 的速度，谁知道以后会不会有** _cyarn_ **呢？但是通过这个测试我们可以看出，**_yarn_ **的速度相比原生 **_npm_ **着实是一个质的飞跃，FASTER 并不是浪得虚名。</p>
+<p>接下来我又尝试了安装其他的包，多次对比了一下，<strong><em>平均下来 yarn 会比 npm 快上 3–6 倍（这是安装体积小一些的包的情况）。</em></strong></p>
+<h4 id="reliablesecure">RELIABLE/SECURE</h4>
+<p>至于这个包管理是否 <strong><em>reliable/secure</em></strong>，这个我暂时没想到怎么测试。我只知道在我用的时候，偶尔有几率会报一些莫名其妙的错误，但是反复执行两遍命令，就又正常工作了。毕竟 **<em>yarn</em> **是新出的东西嘛，可以理解。不过就在这一天之内，yarn 的 GitHub 项目主页已经赢得了 9K star，issues 和 pull request 也有了上千个，可见其火热的程度，所以对于它的前景，我还是很看好的。</p>
+<h3 id="offline-mode">Offline mode</h3>
+<p><!-- raw HTML omitted -->Y<!-- raw HTML omitted -->**_arn_** 的一个亮点就是可以离线安装依赖，当然，前提是曾经安装过这个依赖。**_Yarn_** 会缓存安装过的包，下次安装的时候如果指定了 **_-offline_** 参数，**_Yarn_** 就会直接从缓存中取出这个包，这样将大大缩短安装依赖的时间。</p>
+<p>遗憾的是，尽管官方文档我看了一遍又一遍，这个功能还是无法正常在我的环境上工作。我会找一下原因，这一段稍后补充。</p>
+<p>但是这个** _feature_** 真的是让人眼前一亮，可以说解决了** _npm_ **的一个短板，很致命的短板。有了这样的功能之后，以后在没有网络的环境下也能够安装已有的依赖的。而且省去了下载的时间，大大提高了效率。想象一下以后执行 **_react-native init_** 的时候不用漫长等待 15 分钟了，是不是很开心（当然，什么时候** _Facebook_ **把** _react-native init_ **的安装依赖过程换成自家的包管理安装还是未知数喔）。</p>
+<h3 id="yarnlock-文件">yarn.lock 文件</h3>
+<p><!-- raw HTML omitted -->Y<!-- raw HTML omitted -->**_arn_** 通过一个 **_yarn.lock_** 文件，来使得你的程序得以在不同的机器上获得一致的体验。虽然这个解释很牵强，好歹我没有机翻给大家看，已经很良心了（雾）。感觉这好像是个很高端的东西，其实主要是对 **_package.json_ **的一个补充。</p>
+<p>有兴趣的话，可以看这里的详细介绍（需要英文好一些哟）：</p>
+<p><a href="https://yarnpkg.com/en/docs/yarn-lock" title="https://yarnpkg.com/en/docs/yarn-lock"><strong>Yarn</strong>
+_Fast, reliable, and secure dependency management._yarnpkg.com</a></p>
+<h3 id="summary">Summary</h3>
+<p>忽如一夜春风来，千树万树梨花开。有时候就是眼睛一睁一闭之间，一个新的东西就这样在你全然不知的时候悄然面世了。今天出了 yarn，明天指不定又会出现什么。庆幸的是，我们还能赶上这个新玩意的早班车。</p>
+<p>记得近几日的一篇高端黑文（大雾），描述了在 2016 年学习 Javascript 这门语言的感受（看这里：<a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.mkiou6jtq"><strong><em>How it feels to learn Javascript in 2016</em></strong></a>），确实，这门语言单单一年的发展，就足以呛死不少人。</p>
+<p>但是必须要说** _yarn_ **的出现确实是有进步意义的，他解决了 **_npm_** 已知的一些问题，拓展出了新的特性。既然如此，它就是值得去接触和学习的。尽管距离取代 **_npm_** 还有好长的一段时间，走好长的一段路，但是可以预见它的前途将是一片的光明。</p>
+<p>所以，来吧，你需要尝试一些新的东西。 <strong><em>yarn</em></strong> 未来的成长，将由我们共同见证。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2016-10-12</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/">
+                    Next<br>修改 React-Native Android App 包名
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/pages/friends/">
+                    Previous<br>Friends
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

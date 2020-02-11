@@ -1,119 +1,721 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="【APIO2009 前缀和/预处理/动态规划】 采油区域 - 宇宙よりも遠い場所" property="og:title">
-<title>【APIO2009 前缀和/预处理/动态规划】 采油区域 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>【APIO2009 前缀和/预处理/动态规划】 采油区域</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%8f%8f%e8%bf%b0" v-on:click="closeDrawer" id="描述-nav">
+										 描述
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="格式-nav">
+										 格式
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%85%a5%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输入格式-nav">
+										 输入格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输出格式-nav">
+										 输出格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b" v-on:click="closeDrawer" id="样例-nav">
+										 样例
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%85%a51" v-on:click="closeDrawer" id="样例输入1-nav">
+										 样例输入1
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%87%ba1" v-on:click="closeDrawer" id="样例输出1-nav">
+										 样例输出1
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%99%90%e5%88%b6" v-on:click="closeDrawer" id="限制-nav">
+										 限制
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#solution" v-on:click="closeDrawer" id="solution-nav">
+										 Solution
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#code" v-on:click="closeDrawer" id="code-nav">
+										 Code
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">February 18, 2019</h2>
-      <h1 class="title">【APIO2009 前缀和/预处理/动态规划】 采油区域</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/dynamic-programming">dynamic programming</a>
-    
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%8f%8f%e8%bf%b0" v-on:click="closeDrawer" id="描述-nav">
+										 描述
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="格式-nav">
+										 格式
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%85%a5%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输入格式-nav">
+										 输入格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" v-on:click="closeDrawer" id="输出格式-nav">
+										 输出格式
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b" v-on:click="closeDrawer" id="样例-nav">
+										 样例
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%85%a51" v-on:click="closeDrawer" id="样例输入1-nav">
+										 样例输入1
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%b7%e4%be%8b%e8%be%93%e5%87%ba1" v-on:click="closeDrawer" id="样例输出1-nav">
+										 样例输出1
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e9%99%90%e5%88%b6" v-on:click="closeDrawer" id="限制-nav">
+										 限制
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#solution" v-on:click="closeDrawer" id="solution-nav">
+										 Solution
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#code" v-on:click="closeDrawer" id="code-nav">
+										 Code
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
 
-      
-      <div class="content">
-        <p>OJ 地址：<a href="https://vijos.org/p/2002">https://vijos.org/p/2002</a></p>
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
 
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    【APIO2009 前缀和/预处理/动态规划】 采油区域
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2019-02-18 08:43
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/algorithm">algorithm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/dynamic-programming">dynamic programming</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>OJ 地址：https://vijos.org/p/2002</p>
 <h1 id="描述">描述</h1>
-
 <p>Siruseri政府决定将石油资源丰富的Navalur省的土地拍卖给私人承包商以建立油井。被拍卖的整块土地为一个矩形区域，被划分为M×N个小块。 Siruseri地质调查局有关于Navalur土地石油储量的估测数据。这些数据表示为M×N个正整数，即对每一小块土地石油储量的估计值。为了避免出现垄断，政府规定每一个承包商只能承包一个由K×K块相连的土地构成的正方形区域。AoE石油联合公司由三个承包商组成，他们想选择三块互不相交的K×K的区域使得总的收益最大。</p>
-
 <p>例如，假设石油储量的估计值如下：</p>
-
 <pre><code>1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1
 1 8 8 8 8 8 1 1 1
@@ -123,25 +725,15 @@
 1 1 1 1 1 1 8 8 8
 1 1 1 1 1 1 9 9 9
 1 1 1 1 1 1 9 9 9
-</code></pre>
-
-<p>如果K = 2, AoE公司可以承包的区域的石油储量总和为100, 如果K = 3, AoE公司可以承包的区域的石油储量总和为208。
+</code></pre><p>如果K = 2, AoE公司可以承包的区域的石油储量总和为100, 如果K = 3, AoE公司可以承包的区域的石油储量总和为208。
 AoE公司雇佣你来写一个程序，帮助计算出他们可以承包的区域的石油储量之和的最大值。</p>
-
 <h1 id="格式">格式</h1>
-
 <h3 id="输入格式">输入格式</h3>
-
 <p>输入第一行包含三个整数M, N, K，其中M和N是矩形区域的行数和列数，K是每一个承包商承包的正方形的大小（边长的块数）。接下来M行，每行有N个正整数表示这一行每一小块土地的石油储量的估计值。</p>
-
 <h3 id="输出格式">输出格式</h3>
-
 <p>输出只包含一个正整数，表示AoE公司可以承包的区域的石油储量之和的最大值。</p>
-
 <h1 id="样例">样例</h1>
-
 <h3 id="样例输入1">样例输入1</h3>
-
 <pre><code>9 9 3
 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1
@@ -152,60 +744,37 @@ AoE公司雇佣你来写一个程序，帮助计算出他们可以承包的区�
 1 1 1 1 1 1 8 8 8
 1 1 1 1 1 1 9 9 9
 1 1 1 1 1 1 9 9 9
-</code></pre>
-
-<h3 id="样例输出1">样例输出1</h3>
-
+</code></pre><h3 id="样例输出1">样例输出1</h3>
 <pre><code>208
-</code></pre>
-
-<h1 id="限制">限制</h1>
-
-<p>数据保证K≤M且K≤N并且至少有三个K×K的互不相交的正方形区域。<br />
-其中16%的输入数据，M, N≤ 12。<br />
-所有的输入数据, M, N≤ 1500。<br />
+</code></pre><h1 id="限制">限制</h1>
+<p>数据保证K≤M且K≤N并且至少有三个K×K的互不相交的正方形区域。<br>
+其中16%的输入数据，M, N≤ 12。<br>
+所有的输入数据, M, N≤ 1500。<br>
 每一小块土地的石油储量的估计值是非负整数且≤ 500。</p>
-
 <h1 id="solution">Solution</h1>
-
 <p>题意即找出三个不相交的 K×K 正方形，使这三个正方形的价值之和在所有的可能性中最大。数据是 1500 级别，暴力枚举所有的情况撑死能过其中的 16%。那么基本可以确定这是一道需要使用 DP 的题目。</p>
-
 <p>现在考虑三个正方形的位置：既然三个正方形两两不相交，由简单的画图可知，一定能将整个大矩形分成三个互不相交的部分，使这三个正方形分别位于其中一个部分内。并且这三个部分以两条直线为分界。进一步作图我们可以得到所有可能的六种划分情况如下：</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g0aawct6i4j20ks0bm0tb.jpg" alt="all circumstances" /></p>
-
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g0aawct6i4j20ks0bm0tb.jpg" alt="all circumstances"></p>
 <p>将大的矩形分成三部分，是因为题目要求的是三个正方形，我们只需要枚举大矩形分部的情况，求出每个部分的价值最优 K×K 正方形，最后相加即可；使用一横一竖或两横或两竖两条线来分界的目的是便于枚举。</p>
-
 <p>分部了之后如何找答案呢？我们可以发现前面四种情况中，两条分界线会相交于一个点，设该点为 (i, j)，我们只需要枚举该点的坐标，就可以枚举所有的分界情况。以第一种情况（一横一竖将大矩形分成左边两个、右边一个三部分）为例，假设枚举的分界点为 (i, j)，那么在该分界点下，这种情况的最佳答案是：</p>
-
 <blockquote>
 <p>从左上角 (0,0) 到 (i,j) 的矩形中  K×K 正方形的最大值 + 从左下角 (m, 0) 到 (i+1, j) 的矩形中  K×K 正方形的最大值 + 从右上角 (0, n) 到竖分界线与大矩形下边的交点 (m, j+1) 的矩形中  K×K 正方形的最大值。</p>
 </blockquote>
-
 <p>其它四种一横一竖分界的情况则以此类推。再考虑分界线为两横或两竖时的情况，这种情况下我们只需要枚举其中一条边，并规定另一条边界与枚举边的距离为 k 即可（这样并不会对答案有任何影响，画图就容易发现无论两条线距离为何值，总有距离为 k 的等价情况）。以第五种情况（两横将大矩形分成三部分）为例，假设枚举的下边界为第 i 行 (i &gt;= 2k)，那么上边界为第 i-k 行，这种情况的最佳答案是：</p>
-
 <blockquote>
 <p>从左上角 （0, 0) 到 (i-k, n) 的矩形中  K×K 正方形的最大值 + 以第 i 行为底的 K×K 正方形的最大值 + 从左下角 (m, 0) 到 (i + 1, n) 的矩形中 K×K 正方形的最大值。</p>
 </blockquote>
-
 <p>那么到这里我们已经解决了答案转移和枚举策略的问题。接下来考虑预处理的内容。在上面的思路中，我们需要知道的东西如下：</p>
-
 <pre><code>ul[i][j] --- 表示从左上角开始到以点 (i, j) 为右下角的矩形中所包含的 K×K 正方形的最大值
 ur[i][j] --- 表示从右上角开始到以点 (i, j) 为左下角的矩形中所包含的 K×K 正方形的最大值
 dl[i][j] --- 表示从左下角开始到以点 (i, j) 为右上角的矩形中所包含的 K×K 正方形的最大值
 dr[i][j] --- 表示从右下角开始到以点 (i, j) 为左上角的矩形中所包含的 K×K 正方形的最大值
 r[i] --- 表示以第 i 行为下底的 K×K 正方形的最大值
 c[i] --- 表示以第 i 列为右边的 K×K 正方形的最大值
-</code></pre>
-
-<p>为了得到上面这些内容，我们考虑令 <code>sum[i][j]</code> 表示：从 (0, 0) 到点 (i, j) 的矩形所有价值的前缀和；令 <code>s[i][j]</code> 表示：以 (i, j) 为右下角的 K×K 正方形价值。设 <code>val[i][j]</code> 表示点 (i, j) 的价值，则有如下的递推式：</p>
-
+</code></pre><p>为了得到上面这些内容，我们考虑令 <code>sum[i][j]</code> 表示：从 (0, 0) 到点 (i, j) 的矩形所有价值的前缀和；令 <code>s[i][j]</code> 表示：以 (i, j) 为右下角的 K×K 正方形价值。设 <code>val[i][j]</code> 表示点 (i, j) 的价值，则有如下的递推式：</p>
 <pre><code>sum[i][j] = sum[i-1][j] - sum[i-1][j-1] + sum[i][j-1] + val[i][j]
 s[i][j] = sum[i][j] - sum[i-k][j] - sum[i][j-k] + sum[i-k][j-k]
-</code></pre>
-
-<p>然后上面的式子就可以很方便地计算了：</p>
-
+</code></pre><p>然后上面的式子就可以很方便地计算了：</p>
 <pre><code>ul[i][j] = max(max(ul[i-1][j], ul[i][j-1]), s[i][j])
 ur[i][j] = max(max(ur[i-1][j], ur[i][j+1]), s[i][j + k - 1])
 dl[i][j] = max(max(dl[i+1][j], dl[i][j-1]), s[i + k - 1][j])
@@ -213,175 +782,172 @@ dr[i][j] = max(max(dr[i+1][j], dr[i][j+1]), s[i + k - 1][j + k - 1])
 
 r[i] = max(r[i], s[i][j])
 c[j] = max(c[j], s[i][j])
-</code></pre>
-
-<p>最后，注意一下 <code>ul, ur, dl, dr</code> 的枚举顺序，<code>ul</code> 从左上角开始枚举，<code>ur</code> 从右上角开始枚举，<code>dl</code> 从左下角开始枚举，<code>dr</code> 从右下角开始枚举。只有这样才能保证上述式子有意义。</p>
-
+</code></pre><p>最后，注意一下 <code>ul, ur, dl, dr</code> 的枚举顺序，<code>ul</code> 从左上角开始枚举，<code>ur</code> 从右上角开始枚举，<code>dl</code> 从左下角开始枚举，<code>dr</code> 从右下角开始枚举。只有这样才能保证上述式子有意义。</p>
 <h1 id="code">Code</h1>
-
 <p>理解了之后一发 AC，有点爽到。特别提醒一下，蓝桥杯练习系统里的这道题疑似有锅。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define LL long long</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string;
 
-<pre><code class="language-cpp">#include &lt;cstdio&gt; 
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;algorithm&gt;
-#define LL long long
-using std::max;
-using std::string;
-
-const int MAXN = 1510;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1510</span>;
 LL val[MAXN][MAXN];
-LL s[MAXN][MAXN];		//  以(i,j)为右下角的 k*k 正方形价值前缀和
-LL sum[MAXN][MAXN];	// 从 (0,0) 到 (i,j) 的矩形的价值前缀和 
-LL ul[MAXN][MAXN],		// up-left
-	ur[MAXN][MAXN],		// up-right
-	dl[MAXN][MAXN],		// down-left
-	dr[MAXN][MAXN],		// down-right
-	r[MAXN],			// row max
-	c[MAXN];			// col max
-int m, n, k;
+LL s[MAXN][MAXN];		<span style="color:#75715e">//  以(i,j)为右下角的 k*k 正方形价值前缀和
+</span><span style="color:#75715e"></span>LL sum[MAXN][MAXN];	<span style="color:#75715e">// 从 (0,0) 到 (i,j) 的矩形的价值前缀和 
+</span><span style="color:#75715e"></span>LL ul[MAXN][MAXN],		<span style="color:#75715e">// up-left
+</span><span style="color:#75715e"></span>	ur[MAXN][MAXN],		<span style="color:#75715e">// up-right
+</span><span style="color:#75715e"></span>	dl[MAXN][MAXN],		<span style="color:#75715e">// down-left
+</span><span style="color:#75715e"></span>	dr[MAXN][MAXN],		<span style="color:#75715e">// down-right
+</span><span style="color:#75715e"></span>	r[MAXN],			<span style="color:#75715e">// row max
+</span><span style="color:#75715e"></span>	c[MAXN];			<span style="color:#75715e">// col max
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> m, n, k;
 
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-	scanf(&quot;%d%d%d&quot;, &amp;m, &amp;n, &amp;k);	// line, col, unit
-	for (int i = 1; i &lt;= m; i++) {
-		for (int j = 1; j &lt;= n; j++) {
-			scanf(&quot;%lld&quot;, &amp;val[i][j]);
-			sum[i][j] = sum[i-1][j] - sum[i-1][j-1] + sum[i][j-1] + val[i][j];// 处理前缀和 
+	scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>k);	<span style="color:#75715e">// line, col, unit
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+			scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%lld</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>val[i][j]);
+			sum[i][j] <span style="color:#f92672">=</span> sum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j] <span style="color:#f92672">-</span> sum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> sum[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> val[i][j];<span style="color:#75715e">// 处理前缀和 
+</span><span style="color:#75715e"></span>		}
+	}
+	
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> k; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+			s[i][j] <span style="color:#f92672">=</span> sum[i][j] <span style="color:#f92672">-</span> sum[i<span style="color:#f92672">-</span>k][j] <span style="color:#f92672">-</span> sum[i][j<span style="color:#f92672">-</span>k] <span style="color:#f92672">+</span> sum[i<span style="color:#f92672">-</span>k][j<span style="color:#f92672">-</span>k];
 		}
 	}
 	
-	for (int i = k; i &lt;= m; i++) {
-		for (int j = k; j &lt;= n; j++) {
-			s[i][j] = sum[i][j] - sum[i-k][j] - sum[i][j-k] + sum[i-k][j-k];
+	<span style="color:#75715e">// up-left
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> k; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+			ul[i][j] <span style="color:#f92672">=</span> max(max(ul[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j], ul[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), s[i][j]);
 		}
 	}
 	
-	// up-left
-	for (int i = k; i &lt;= m; i++) {
-		for (int j = k; j &lt;= n; j++) {
-			ul[i][j] = max(max(ul[i-1][j], ul[i][j-1]), s[i][j]);
+	<span style="color:#75715e">// up-right
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> (n <span style="color:#f92672">-</span> k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
+			ur[i][j] <span style="color:#f92672">=</span> max(max(ur[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j], ur[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]), s[i][j <span style="color:#f92672">+</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
 		}
 	}
 	
-	// up-right
-	for (int i = 1; i &lt;= m; i++) {
-		for (int j = (n - k + 1); j &gt;= 1; j--) {
-			ur[i][j] = max(max(ur[i-1][j], ur[i][j+1]), s[i][j + k - 1]);
+	<span style="color:#75715e">// down-left
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> (m <span style="color:#f92672">-</span> k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+			dl[i][j] <span style="color:#f92672">=</span> max(max(dl[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j], dl[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), s[i <span style="color:#f92672">+</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j]);
 		}
 	}
 	
-	// down-left
-	for (int i = (m - k + 1); i &gt;= 1; i--) {
-		for (int j = 1; j &lt;= n; j++) {
-			dl[i][j] = max(max(dl[i+1][j], dl[i][j-1]), s[i + k - 1][j]);
+	<span style="color:#75715e">// down-right
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> (m <span style="color:#f92672">-</span> k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> (n <span style="color:#f92672">-</span> k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
+			dr[i][j] <span style="color:#f92672">=</span> max(max(dr[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j], dr[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]), s[i <span style="color:#f92672">+</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j <span style="color:#f92672">+</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
 		}
 	}
 	
-	// down-right
-	for (int i = (m - k + 1); i &gt;= 1; i--) {
-		for (int j = (n - k + 1); j &gt;= 1; j--) {
-			dr[i][j] = max(max(dr[i+1][j], dr[i][j+1]), s[i + k - 1][j + k - 1]);
+	<span style="color:#75715e">// line &amp; col
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+			r[i] <span style="color:#f92672">=</span> max(r[i], s[i][j]);
+			c[j] <span style="color:#f92672">=</span> max(c[j], s[i][j]);
 		}
 	}
 	
-	// line &amp; col
-	for (int i = 1; i &lt;= m; i++) {
-		for (int j = 1; j &lt;= n; j++) {
-			r[i] = max(r[i], s[i][j]);
-			c[j] = max(c[j], s[i][j]);
+	<span style="color:#75715e">// enumerate boundary
+</span><span style="color:#75715e"></span>	LL ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> (m <span style="color:#f92672">-</span> k); i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> k; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> (n <span style="color:#f92672">-</span> k); j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+			ans <span style="color:#f92672">=</span> max(ans, ul[i][j] <span style="color:#f92672">+</span> dl[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][j] <span style="color:#f92672">+</span> ur[m][j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
+			ans <span style="color:#f92672">=</span> max(ans, ur[i][j] <span style="color:#f92672">+</span> dr[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][j] <span style="color:#f92672">+</span> ul[m][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+			ans <span style="color:#f92672">=</span> max(ans, ul[i][j] <span style="color:#f92672">+</span> ur[i][j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> dl[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][n]);
+			ans <span style="color:#f92672">=</span> max(ans, dl[i][j] <span style="color:#f92672">+</span> dr[i][j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> ul[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][m]);
 		}
 	}
 	
-	// enumerate boundary
-	LL ans = 0LL;
-	for (int i = k; i &lt;= (m - k); i++) {
-		for (int j = k; j &lt;= (n - k); j++) {
-			ans = max(ans, ul[i][j] + dl[i + 1][j] + ur[m][j + 1]);
-			ans = max(ans, ur[i][j] + dr[i + 1][j] + ul[m][j - 1]);
-			ans = max(ans, ul[i][j] + ur[i][j + 1] + dl[i + 1][n]);
-			ans = max(ans, dl[i][j] + dr[i][j + 1] + ul[i - 1][m]);
-		}
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> k; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m <span style="color:#f92672">-</span> k; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		ans <span style="color:#f92672">=</span> max(ans, ul[i <span style="color:#f92672">-</span> k][n] <span style="color:#f92672">+</span> r[i] <span style="color:#f92672">+</span> dl[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][n]);
+	}
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> k; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> k; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+		ans <span style="color:#f92672">=</span> max(ans, ul[m][i <span style="color:#f92672">-</span> k] <span style="color:#f92672">+</span> c[i] <span style="color:#f92672">+</span> ur[m][i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
 	}
 	
-	for (int i = 2 * k; i &lt;= m - k; i++) {
-		ans = max(ans, ul[i - k][n] + r[i] + dl[i + 1][n]);
-	}
-	for (int i = 2 * k; i &lt;= n - k; i++) {
-		ans = max(ans, ul[m][i - k] + c[i] + ur[m][i + 1]);
-	}
+	printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%lld</span><span style="color:#e6db74">&#34;</span>, ans);
 	
-	printf(&quot;%lld&quot;, ans);
-	
-	return 0;
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+</code></pre></div>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2019-02-18</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/">
+                    Next<br>从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/">
+                    Previous<br>修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

@@ -1,296 +1,520 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="使用 Typescript 写 React 遇到的一些坑 - 宇宙よりも遠い場所" property="og:title">
-<title>使用 Typescript 写 React 遇到的一些坑 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>使用 Typescript 写 React 遇到的一些坑</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">December 19, 2017</h2>
-      <h1 class="title">使用 Typescript 写 React 遇到的一些坑</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/typescript">typescript</a>
-    
-        <a class="button is-link" href="/tags/javascript">javascript</a>
-    
-        <a class="button is-link" href="/tags/react">react</a>
-    
-        <a class="button is-link" href="/tags/frontend">frontend</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&ndash;）……这里就简单的记录一下。</p>
-
-<h2 id="使用-es7-装饰符-decorator-时提示返回类型未定义">使用 ES7 装饰符 (decorator) 时提示返回类型未定义</h2>
-
-<p>这个问题发生在使用 <a href="https://github.com/concretesolutions/redux-zero">redux-zero</a> （大概是个懒人版的 Redux）的时候。</p>
-
-<p>一般来说，connect 一个组件大概要这样写，不管是用 react-redux 还是 redux-zero：</p>
-
-<pre><code class="language-javascript">import { connect } from 'redux-zero/react';
-
-/* ... */
-
-class MyComponent extends React.Compoent {
-	render() {
-		return (/* ... */);
-	}
-}
-
-export default connect(mapStateToProps, actions)(MyComponent);
-</code></pre>
-
-<p>有时候我们可以偷懒用上 ES7 的 decorator 特性写得简洁一些：</p>
-
-<pre><code class="language-javascript">@connect(mapStateToProps, actions)
-export default class MyCompoent extends React.Component {
-	// ...
-}
-</code></pre>
-
-<p>这两种写法效果是一样的。然而在 Typescript 中，以上代码会报这样的错误：</p>
-
-<pre><code>[ts] Unable to resolve signature of class decorator when called as an expression.
-</code></pre>
-
-<p>点一下 <code>connect</code> 方法的定义，可以看到在 <code>connect.d.ts</code> 的 17 行有这样的一句：</p>
-
-<pre><code class="language-javascript">export default function connect(mapToProps: any, actions?: {}): (Child: any) =&gt; (props: any) =&gt; JSX.Element;
-</code></pre>
-
-<p>看着似乎没什么问题，但是：</p>
-
-<pre><code class="language-javascript">// test 1
-const test = (component: any) =&gt; {
-	console.log(component);
-}
-@test
-class MyComponent extends React.Component {
-	// ...
-}
-// passed
-</code></pre>
-
-<p>把定义 <code>test</code> 的方法换一下：</p>
-
-<pre><code class="language-javascript">// test 2
-function test(component: any) {
-	console.log(component);
-}
-@test
-class MyComponent extends React.Component {
-	// ...
-}
-// compile failed
-</code></pre>
-
-<p>看起来 Typescript 并不允许把用 function 定义的函数作为装饰符来使用呢。但是我们总不能去改依赖的代码吧，这个时候怎么办呢w</p>
-
-<p>如果一些项目有 DefinitelyTyped 的 typing 文件的话，可以尝试安装 <code>@types/xxxxx</code>, 例如 <code>@types/react-redux</code>。</p>
-
-<p>如果没有的话，答案就是自己再包上一层，以 <code>redux-zero</code> 的 <code>connect()</code> 为例：</p>
-
-<pre><code class="language-javascript">// utils/connect.ts
-import { connect as connectComponent } from 'redux-zero/react';
-
-export const connect = (mapStateToProps: any, actions: any) =&gt; {
-  return (target: any) =&gt; (
-    connectComponent(mapStateToProps, actions)(target) as any
-  );
-};
-
-// component
-import { connect } from 'utils/connect';
-/* ... */
-@connect(mapStateToProps, actions)
-export defalt class MyComponent extends React.Component {
-	// ...
-}
-</code></pre>
-
-<p>这样就可以啦。</p>
-
-<h2 id="自定义-jsx-元素在-jsx-intrinsicelements-不存在">自定义 JSX 元素在 JSX.IntrinsicElements 不存在</h2>
-
-<p>我并不知道怎么描述这个问题比较合适，场景是需要批量渲染一个对象中所有的组件：</p>
-
-<pre><code class="language-javascript">const components = {
-	comp1: Compnent1,
-	comp2: Component2,
-	// ...
-},
-	keys = Object.keys(components);
-
-const res: Array&lt;any&gt; = [];
-keys.forEach(key =&gt; {
-	const tmp: any = components[key];
-	res.push(&lt;tmp key={key} /&gt;);
-});
-</code></pre>
-
-<p>上面的代码会返回这样的错误：</p>
-
-<pre><code>[ts] Property 'tmp' does not exist on type 'JSX.IntrinsicElements'.
-</code></pre>
-
-<p>原因是 Typescript 要求 JSX 组件变量名的第一个字母为大写，如果不是的话 TS 便认为它不是个合法的 JSX 元素。所以把 <code>tmp</code> 改成 <code>Tmp</code> 就可以惹。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8-es7-%e8%a3%85%e9%a5%b0%e7%ac%a6-decorator-%e6%97%b6%e6%8f%90%e7%a4%ba%e8%bf%94%e5%9b%9e%e7%b1%bb%e5%9e%8b%e6%9c%aa%e5%ae%9a%e4%b9%89" v-on:click="closeDrawer" id="使用-es7-装饰符-decorator-时提示返回类型未定义-nav">
+										 使用 ES7 装饰符 (decorator) 时提示返回类型未定义
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-jsx-%e5%85%83%e7%b4%a0%e5%9c%a8-jsxintrinsicelements-%e4%b8%8d%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="自定义-jsx-元素在-jsxintrinsicelements-不存在-nav">
+										 自定义 JSX 元素在 JSX.IntrinsicElements 不存在
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%bd%bf%e7%94%a8-es7-%e8%a3%85%e9%a5%b0%e7%ac%a6-decorator-%e6%97%b6%e6%8f%90%e7%a4%ba%e8%bf%94%e5%9b%9e%e7%b1%bb%e5%9e%8b%e6%9c%aa%e5%ae%9a%e4%b9%89" v-on:click="closeDrawer" id="使用-es7-装饰符-decorator-时提示返回类型未定义-nav">
+										 使用 ES7 装饰符 (decorator) 时提示返回类型未定义
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-jsx-%e5%85%83%e7%b4%a0%e5%9c%a8-jsxintrinsicelements-%e4%b8%8d%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="自定义-jsx-元素在-jsxintrinsicelements-不存在-nav">
+										 自定义 JSX 元素在 JSX.IntrinsicElements 不存在
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    使用 Typescript 写 React 遇到的一些坑
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2017-12-19 22:12
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/typescript">typescript</a>
+                                &nbsp;
+                            
+                                <a href="/tags/javascript">javascript</a>
+                                &nbsp;
+                            
+                                <a href="/tags/react">react</a>
+                                &nbsp;
+                            
+                                <a href="/tags/frontend">frontend</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&ndash;）……这里就简单的记录一下。</p>
+<h2 id="使用-es7-装饰符-decorator-时提示返回类型未定义">使用 ES7 装饰符 (decorator) 时提示返回类型未定义</h2>
+<p>这个问题发生在使用 <a href="https://github.com/concretesolutions/redux-zero">redux-zero</a> （大概是个懒人版的 Redux）的时候。</p>
+<p>一般来说，connect 一个组件大概要这样写，不管是用 react-redux 还是 redux-zero：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">connect</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;redux-zero/react&#39;</span>;
+
+<span style="color:#75715e">/* ... */</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Compoent</span> {
+	<span style="color:#a6e22e">render</span>() {
+		<span style="color:#66d9ef">return</span> (<span style="color:#75715e">/* ... */</span>);
+	}
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">actions</span>)(<span style="color:#a6e22e">MyComponent</span>);
+</code></pre></div><p>有时候我们可以偷懒用上 ES7 的 decorator 特性写得简洁一些：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">actions</span>)
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyCompoent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+	<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>这两种写法效果是一样的。然而在 Typescript 中，以上代码会报这样的错误：</p>
+<pre><code>[ts] Unable to resolve signature of class decorator when called as an expression.
+</code></pre><p>点一下 <code>connect</code> 方法的定义，可以看到在 <code>connect.d.ts</code> 的 17 行有这样的一句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapToProps</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>, <span style="color:#a6e22e">actions</span><span style="color:#f92672">?</span><span style="color:#f92672">:</span> {})<span style="color:#f92672">:</span> (<span style="color:#a6e22e">Child</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; (<span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; <span style="color:#a6e22e">JSX</span>.<span style="color:#a6e22e">Element</span>;
+</code></pre></div><p>看着似乎没什么问题，但是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test 1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">test</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">component</span>);
+}
+<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">test</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+	<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+<span style="color:#75715e">// passed
+</span></code></pre></div><p>把定义 <code>test</code> 的方法换一下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test 2
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">component</span>);
+}
+<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">test</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+	<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+<span style="color:#75715e">// compile failed
+</span></code></pre></div><p>看起来 Typescript 并不允许把用 function 定义的函数作为装饰符来使用呢。但是我们总不能去改依赖的代码吧，这个时候怎么办呢w</p>
+<p>如果一些项目有 DefinitelyTyped 的 typing 文件的话，可以尝试安装 <code>@types/xxxxx</code>, 例如 <code>@types/react-redux</code>。</p>
+<p>如果没有的话，答案就是自己再包上一层，以 <code>redux-zero</code> 的 <code>connect()</code> 为例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// utils/connect.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">connect</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">connectComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;redux-zero/react&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connect</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">mapStateToProps</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>, <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">target</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; (
+    <span style="color:#a6e22e">connectComponent</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">actions</span>)(<span style="color:#a6e22e">target</span>) <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">any</span>
+  );
+};
+
+<span style="color:#75715e">// component
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">connect</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;utils/connect&#39;</span>;
+<span style="color:#75715e">/* ... */</span>
+<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">actions</span>)
+<span style="color:#66d9ef">export</span> <span style="color:#a6e22e">defalt</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+	<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>这样就可以啦。</p>
+<h2 id="自定义-jsx-元素在-jsxintrinsicelements-不存在">自定义 JSX 元素在 JSX.IntrinsicElements 不存在</h2>
+<p>我并不知道怎么描述这个问题比较合适，场景是需要批量渲染一个对象中所有的组件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">components</span> <span style="color:#f92672">=</span> {
+	<span style="color:#a6e22e">comp1</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Compnent1</span>,
+	<span style="color:#a6e22e">comp2</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Component2</span>,
+	<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>},
+	<span style="color:#a6e22e">keys</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">components</span>);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span><span style="color:#f92672">:</span> Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> [];
+<span style="color:#a6e22e">keys</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">key</span> =&gt; {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tmp</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">components</span>[<span style="color:#a6e22e">key</span>];
+	<span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">push</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">tmp</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">key</span>} <span style="color:#f92672">/</span><span style="color:#f92672">&gt;</span>);
+});
+</code></pre></div><p>上面的代码会返回这样的错误：</p>
+<pre><code>[ts] Property 'tmp' does not exist on type 'JSX.IntrinsicElements'.
+</code></pre><p>原因是 Typescript 要求 JSX 组件变量名的第一个字母为大写，如果不是的话 TS 便认为它不是个合法的 JSX 元素。所以把 <code>tmp</code> 改成 <code>Tmp</code> 就可以惹。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2017-12-19</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/">
+                    Next<br>环境变量导致的 webpack 打包时不压缩 CSS 文件
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/">
+                    Previous<br>使用 React 制作全站单页主题的实践
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

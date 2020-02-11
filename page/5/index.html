@@ -1,166 +1,446 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="宇宙よりも遠い場所" property="og:title">
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.64.1" />
 <title>宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container">
-      
-      <article>
-        <h2 class="subtitle is-6">July 19, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/">奇怪的道路 (FCS2017 D2T1)</a></h1>
         
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/algorithms">algorithms</a>
-    
-        <a class="button is-link" href="/tags/divide">divide</a>
-    
-</div>
+    </a>
 
+    <div class="nav-link-list">
         
-        <div class="content">
-          emmm&hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        
+            <div class="pagination-indicator">
+                <span style="text-align: center">
+                    5<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>5
+                </span>
+            </div>
+            
+            
+            <a class="pagination-action" href="/page/4/">
+                <i class="material-icons pagination-action-icon">
+                    chevron_left
+                </i>
+            </a>
+            
+
+            
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-no-background">
+        
+            
+            <a href="https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                奇怪的道路 (FCS2017 D2T1)
+                            </div>
+                            <div class="post-item-summary">
+                                emmm&hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……
 由于我比较啰嗦，以及我太弱了导致文章有可能有一些部分讲错了，所以，大家将就着看一下吧（虽然我不相信有人看）。
 
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">June 6, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/">从根源缩小 webpack 打包的 React App 体积</a></h1>
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/algorithms">#algorithms</a>
+                                
+                                <a class="tags" href="/tags/divide">#divide</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2017-07-19
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
         
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/react">react</a>
-    
-        <a class="button is-link" href="/tags/webpack">webpack</a>
-    
-        <a class="button is-link" href="/tags/volume">volume</a>
-    
-        <a class="button is-link" href="/tags/react-lite">react-lite</a>
-    
-        <a class="button is-link" href="/tags/preact">preact</a>
-    
-</div>
+            
+            <a href="https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                从根源缩小 webpack 打包的 React App 体积
+                            </div>
+                            <div class="post-item-summary">
+                                用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。
 
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/react">#react</a>
+                                
+                                <a class="tags" href="/tags/webpack">#webpack</a>
+                                
+                                <a class="tags" href="/tags/volume">#volume</a>
+                                
+                                <a class="tags" href="/tags/react-lite">#react-lite</a>
+                                
+                                <a class="tags" href="/tags/preact">#preact</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2017-06-06
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
         
-        <div class="content">
-          用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。
+            
+            <a href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                导出 Typecho 的数据到 Canvas：typecho-to-canvas
+                            </div>
+                            <div class="post-item-summary">
+                                通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。
 
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">April 9, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/pages/friends/">Friends</a></h1>
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2017-04-09
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
         
-        <div class="content">
-          MoeFront Family そら
+            
+            <a href="https://kirainmoe.com/blog/post/leetcode-praticing-record/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                LeetCode Praticing Record
+                            </div>
+                            <div class="post-item-summary">
+                                _(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 LeetCode 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/leetcode">#leetcode</a>
+                                
+                                <a class="tags" href="/tags/algorithm">#algorithm</a>
+                                
+                                <a class="tags" href="/tags/cpp">#cpp</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2017-03-01
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                只读属性引起的 state 不随 setState 的触发而变化
+                            </div>
+                            <div class="post-item-summary">
+                                这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 &lt;input&gt; 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 this.state.val 赋值，用 this.setState() 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。
+
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2017-02-19
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                修改 React-Native Android App 包名
+                            </div>
+                            <div class="post-item-summary">
+                                不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。 不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。
+
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2017-02-17
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                初探全新的 Node.js 包管理器 Yarn
+                            </div>
+                            <div class="post-item-summary">
+                                 FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.
+ 就在昨天，**_Facebook_** 发布了新的 _node.js_ 包管理器 Yarn 用以替代 npm。咱虽然是个半桶水的咸鱼前端，不过也得跟上** _Javascript_ **这股潮**_(hong)_**流**_(huang)_** 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 **_npm_** 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/nodejs">#nodejs</a>
+                                
+                                <a class="tags" href="/tags/yarn">#yarn</a>
+                                
+                                <a class="tags" href="/tags/npm">#npm</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2016-10-12
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/pages/friends/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Friends
+                            </div>
+                            <div class="post-item-summary">
+                                MoeFront Family そら
 TyanBoot
 CDog
 柚子
@@ -192,232 +472,112 @@ Kira
 OZOO
 Rin404
 zoengjinnbiu
-var playList = [ { "title": "イニシャル", "artist": "Poppin'Party", "cover": "//p1.music.126.net/r9RXZsu37irUEPsBuvZ1yA==/109951164615885431.jpg", "src": "https://api.kotori.love/netease/1415751355.mp3", "lyric": "[by:Sippher]\n[00:00.000] 作曲 : 上松範康(Elements Garden)\n[00:01.000] 作词 : 中村航\n[00:03.61]イニシャル\n[00:05.21]ホンキの自分譲れなくて\n[00:08.67]​衝動 指先からE↗mo↑tion↘！\n[00:23.48]​あの日わたしは少女でも 大人でもなく\n[00:28.12]混じりけのない眼差しで 夢だけ見てた\n[00:33.44]めらめらゆらゆらり 燃え滾る夜\n[00:38.54]勇気を噛み締めて\n[00:40.69]冒険に出たんだ\n[00:43.39]イニシャル\n[00:45.4] 初めて湧き上がったものは\n[00:48.38]震え体中からEmotion\n[00:53.40]何故に\n[00:55.19]果てなき夜空に向かって\n[00:58.30]何度も同じ言葉を叫び続けるのか?\n[01:04.74]ときに曖昧で 見失う\n[01:07.76]戸惑いがちな自分でも\n[01:10.75]\"手にしたもの\"は\n[01:12.79]今でもここに\n[01:15.28]イニシャルの その先へ\n[01:18.3]星の鼓動感じて\n[01:20.6](キミは)強く掻き鳴らしている\n[01:25.2](今も)心震わせて\n[01:27.95]ア·イ·シ·テ·イ·ル!\n[01:30.25]そしてわたしは初めての挫折に堕ちて\n[01:35.49]星ひとつない暗闇に 立ち竦んでた\n[01:40.75]ふらふらくらくらり 倒れた身体\n[01:45.68]それでも立ち上がり夜空を指した\n[01:50.68]イニシャル\n[01:52.47]今でもキミ探している\n[01:55.54]触れるくちびるからEmotion\n[02:00.39]何故に幾多の星屑の中で\n[02:05.51]それが一番キレイに輝いていた のか?\n[02:11.80]こんな密やかで淑やかな\n[02:14.99]一人ぼっちの夜だけど\n[02:17.90]キミがいるなら それだけでいい\n[02:22.
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/pages/friends/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">April 9, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/pages/guestbook/">Guestbook</a></h1>
+  
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2016-04-09
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
         
-        <div class="content">
-          Profile  Yume Maruyama (Y.H. Qiu), —— aka. @kirainmoe, @AyAmita
-Studying Computer Science in Xiamen University School of Informatics.
-Nickname inspired from the character Maruyama Aya of BanG Dream!
- Skills  C/C++/Golang(✽), PHP(✽✽), Javascript/Node(✽✽✽). Used to be a Front-End. A newbee in CCPC / ICPC. Technical geek.  Experience  2016.4 ~ 2018.9, Zhangzhou No.1 Middle School OI Team.
-2018.11 ~ 2019.11, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/pages/guestbook/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">April 9, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/">导出 Typecho 的数据到 Canvas：typecho-to-canvas</a></h1>
+            
+            <a href="https://kirainmoe.com/pages/about/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                About Me &amp; This Site
+                            </div>
+                            <div class="post-item-summary">
+                                ME: Maruyama Yume 丸山（まるやま） 夢（ゆめ） // aka. @kirainmoe, @AyAmita
+目前于 厦门大学信息学院 就读计算机科学专业.
+昵称受启发于 BanG Dream! 企划中的角色 丸山彩.
+Skills  C/C++/Golang(✽), PHP(✽✽), Javascript/Node(✽✽✽). Used to be a Front-End. A newbee in CCPC / ICPC. Technical geek.  Experience  2016.4 ~ 2018.9, Zhangzhou No.1 Middle School OI Team.
+  2018.11 ~ 2019.11, Xiamen Univeristy ACM Team, as a member of xmu_otaku_trinity with @RealR and @Donald.John.Trump.
+Participated in 2019 China Collegiate Programming Contest, Qinghuangdao Site / Bronze Medal (2019.
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2016-04-09
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
         
-        <div class="content">
-          通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">March 1, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/leetcode-praticing-record/">LeetCode Praticing Record</a></h1>
+            
+            <a href="https://kirainmoe.com/pages/guestbook/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Guestbook
+                            </div>
+                            <div class="post-item-summary">
+                                一个简单的留言板。
+ps: 评论系统采用 Disqus，若无法正常加载，请先连接到国际互联网。
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2016-04-09
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
         
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/leetcode">leetcode</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/cpp">cpp</a>
-    
-</div>
-
-        
-        <div class="content">
-          _(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 LeetCode 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/leetcode-praticing-record/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">February 19, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/">只读属性引起的 state 不随 setState 的触发而变化</a></h1>
-        
-        <div class="content">
-          这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 &lt;input&gt; 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 this.state.val 赋值，用 this.setState() 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">February 17, 2017</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/">修改 React-Native Android App 包名</a></h1>
-        
-        <div class="content">
-          不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。 不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">October 12, 2016</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/">初探全新的 Node.js 包管理器 Yarn</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/nodejs">nodejs</a>
-    
-        <a class="button is-link" href="/tags/yarn">yarn</a>
-    
-        <a class="button is-link" href="/tags/npm">npm</a>
-    
-</div>
-
-        
-        <div class="content">
-           FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.
- 就在昨天，Facebook 发布了新的 **node.js 包管理器 Yarn 用以替代 npm。咱虽然是个半桶水的咸鱼前端，不过也得跟上** Javascript 这股潮(hong)流(huang) 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 npm 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
+        </a>
     </div>
-    <section class="section">
-  <div class="container">
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-          
-          <a class="button" href="/page/4/">
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-left"></i>
-            </span>
-            Newer
-          </a>
-          
+</div>
+
+            </div>
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/page/4/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>5/5</span>
         </div>
-      </div>
-      <div class="level-right is-marginless">
-        <div class="level-item">
-          
-          <a class="button is-disabled">
-            Older
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </div>
-    </nav>
-  </div>
-</section>
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
+        
+            <a class="pagination-action" style="opacity:0">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
 
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
+<div id="single-column-footer">&copy;
 	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+	2016-2020 宇宙よりも遠い場所
+	
 
+/
 
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
 
-</body>
+<br>
 
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

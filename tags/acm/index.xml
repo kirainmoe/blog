@@ -6,7 +6,7 @@
     <description>Recent content in acm on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy;2016-2019&amp;nbsp;&amp;nbsp;&lt;a href=&#39;https://kirainmoe.com&#39;&gt;宇宙よりも遠い場所&lt;/a&gt; </copyright>
+    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Sat, 26 Oct 2019 16:08:20 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/acm/index.xml" rel="self" type="application/rss+xml" />
@@ -28,9 +28,7 @@
       
       <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-4/</guid>
       <description>&lt;p&gt;本期主要内容：整除性、模运算性质、唯一分解定理、拓展欧几里得算法、乘法逆元、威尔逊定理、费马小定理、二次剩余。&lt;/p&gt;
-
 &lt;p&gt;因为这只是我自己的笔记，因此我会补充一些必要的证明过程，但考虑到效率问题，不会把所有的概念都讲成白话。&lt;/p&gt;
-
 &lt;p&gt;emmm……这篇文章似乎鸽了很久。&lt;/p&gt;</description>
     </item>
     
@@ -41,7 +39,6 @@
       
       <guid>https://kirainmoe.com/blog/post/tarjan-algorithm-learning-note/</guid>
       <description>&lt;p&gt;这次，我想用尽量简明的语言，来记录一下 Tarjan 算法的学习。&lt;/p&gt;
-
 &lt;p&gt;本文篇幅较长，完整阅读大约需要 15-20 分钟。&lt;/p&gt;</description>
     </item>
     
@@ -51,7 +48,7 @@
       <pubDate>Sat, 16 Mar 2019 12:15:33 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-3/</guid>
-      <description>&lt;p&gt;本期主要内容：图论基础，拓扑排序，欧拉回路和哈密顿回路，最小生成树及其性质与变种，最短路，强连通分量的分解（Tarjan &amp;amp; Kasaraju），二分图匹配的匈牙利算法，二分图最大匹配及其相关问题（最大匹配关键点/边、最大独立集、最小点/边覆盖、DAG 最小路径覆盖、经典问题中的二分图建图）。&lt;br /&gt;
+      <description>&lt;p&gt;本期主要内容：图论基础，拓扑排序，欧拉回路和哈密顿回路，最小生成树及其性质与变种，最短路，强连通分量的分解（Tarjan &amp;amp; Kasaraju），二分图匹配的匈牙利算法，二分图最大匹配及其相关问题（最大匹配关键点/边、最大独立集、最小点/边覆盖、DAG 最小路径覆盖、经典问题中的二分图建图）。&lt;br&gt;
 现在是第三周，每周的内容和难度基本呈现指数级增长……&lt;/p&gt;</description>
     </item>
     
@@ -62,7 +59,6 @@
       
       <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-2/</guid>
       <description>&lt;p&gt;本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。&lt;/p&gt;
-
 &lt;p&gt;前方持续高能中……&lt;/p&gt;</description>
     </item>
     
@@ -72,8 +68,7 @@
       <pubDate>Tue, 05 Mar 2019 22:52:52 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-1/</guid>
-      <description>&lt;p&gt;嗯哼，接下来如果没有意外&lt;s&gt;以及我不咕咕咕&lt;/s&gt;的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。&lt;/p&gt;
-
+      <description>&lt;p&gt;嗯哼，接下来如果没有意外&lt;!-- raw HTML omitted --&gt;以及我不咕咕咕&lt;!-- raw HTML omitted --&gt;的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。&lt;/p&gt;
 &lt;p&gt;本期主要内容：基础数据结构，卡特兰数，表达式处理，单调队列和单调栈，优先队列和堆，二分法。&lt;/p&gt;</description>
     </item>
     

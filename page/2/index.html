@@ -1,464 +1,607 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="宇宙よりも遠い場所" property="og:title">
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.64.1" />
 <title>宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container">
-      
-      <article>
-        <h2 class="subtitle is-6">March 5, 2019</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/">[19-3-2] XMU ACM 集训队笔记(1)</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/acm">acm</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-</div>
-
-        
-        <div class="content">
-          嗯哼，接下来如果没有意外以及我不咕咕咕的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。
-本期主要内容：基础数据结构，卡特兰数，表达式处理，单调队列和单调栈，优先队列和堆，二分法。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">February 28, 2019</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/">从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/search">search</a>
-    
-        <a class="button is-link" href="/tags/hash">hash</a>
-    
-</div>
-
-        
-        <div class="content">
-          八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">February 18, 2019</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/">【APIO2009 前缀和/预处理/动态规划】 采油区域</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/dynamic-programming">dynamic programming</a>
-    
-</div>
-
-        
-        <div class="content">
-          OJ 地址：https://vijos.org/p/2002
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">February 16, 2019</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/">修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/bios">bios</a>
-    
-        <a class="button is-link" href="/tags/uefi">uefi</a>
-    
-        <a class="button is-link" href="/tags/hasee">hasee</a>
-    
-</div>
-
-        
-        <div class="content">
-          如题。修改 BIOS 有风险，请谨慎操作。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">January 23, 2019</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/">神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/hackintosh">hackintosh</a>
-    
-        <a class="button is-link" href="/tags/macos">macos</a>
-    
-        <a class="button is-link" href="/tags/hasee">hasee</a>
-    
-</div>
-
-        
-        <div class="content">
-          2019&frasl;7 更新 八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover 配置文件安装：https://github.com/kirainmoe/hasee-tongfang-macos .
-EFI 配置文件替换教程参见 GitHub Wiki.
-以下内容可能已经过时。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">January 1, 2019</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/">为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/touchpad">touchpad</a>
-    
-        <a class="button is-link" href="/tags/windows">windows</a>
-    
-        <a class="button is-link" href="/tags/windows-precision">windows precision</a>
-    
-</div>
-
-        
-        <div class="content">
-          Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达一半的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">December 23, 2018</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/">BeagleBone Black 开发入门实验</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/beaglebone">beaglebone</a>
-    
-        <a class="button is-link" href="/tags/tutorial">tutorial</a>
-    
-</div>
-
-        
-        <div class="content">
-          写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……
-以下内容为图省事大量地摘编自我的实验报告。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">November 25, 2018</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/">Xiamen GDG DevFest 2018 repo</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/google">google</a>
-    
-        <a class="button is-link" href="/tags/devfest">devfest</a>
-    
-</div>
-
-        
-        <div class="content">
-          这是厦门 2018 谷歌开发者嘉年华 参会报告~
-（多图预警，流量环境谨慎点开~）
-ps. 由于在大会上做笔记不是很方便和不完全，因此下面的内容可能有错误或者不周，敬请谅解。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">July 28, 2018</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/golang-note/">Golang 学习笔记 （1）</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/note">note</a>
-    
-        <a class="button is-link" href="/tags/golang">golang</a>
-    
-</div>
-
-        
-        <div class="content">
-          把 Hexo 换成了基于 Go 的 Hugo，所以有必要学一下 Golang 了（
-之前也一直在想学个新的语言，一直在纠结选什么好，刚巧就是你了。
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/golang-note/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-      <article>
-        <h2 class="subtitle is-6">July 27, 2018</h2>
-        <h1 class="title"><a href="https://kirainmoe.com/blog/post/exgcd-and-gauss/">被迫学习之拓展欧几里得算法 &amp; 高斯消元</a></h1>
-        
-        <div class="tags">
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
-        <a class="button is-link" href="/tags/math">math</a>
-    
-</div>
-
-        
-        <div class="content">
-          为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音
-
-          
-          ...<a class="button is-link" href="https://kirainmoe.com/blog/post/exgcd-and-gauss/" style="height:28px">
-            Read more
-            <span class="icon is-small">
-              <i class="fa fa-angle-double-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </article>
-      
-    </div>
-    <section class="section">
-  <div class="container">
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-          
-          <a class="button" href="/">
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-left"></i>
-            </span>
-            Newer
-          </a>
-          
-        </div>
-      </div>
-      <div class="level-right is-marginless">
-        <div class="level-item">
-          
-          <a class="button" href="/page/3/">
-            Older
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </div>
-    </nav>
-  </div>
-</section>
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
 
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        
+            <div class="pagination-indicator">
+                <span style="text-align: center">
+                    2<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>5
+                </span>
+            </div>
+            
+            
+            <a class="pagination-action" href="/">
+                <i class="material-icons pagination-action-icon">
+                    chevron_left
+                </i>
+            </a>
+            
+
+            
+            <a class="pagination-action" href="/page/3/">
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+            
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-no-background">
+        
+            
+            <a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                [19-3-2] XMU ACM 集训队笔记(1)
+                            </div>
+                            <div class="post-item-summary">
+                                嗯哼，接下来如果没有意外以及我不咕咕咕的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。
+本期主要内容：基础数据结构，卡特兰数，表达式处理，单调队列和单调栈，优先队列和堆，二分法。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/acm">#acm</a>
+                                
+                                <a class="tags" href="/tags/algorithm">#algorithm</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2019-03-05
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用
+                            </div>
+                            <div class="post-item-summary">
+                                八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/algorithm">#algorithm</a>
+                                
+                                <a class="tags" href="/tags/search">#search</a>
+                                
+                                <a class="tags" href="/tags/hash">#hash</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2019-02-28
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                【APIO2009 前缀和/预处理/动态规划】 采油区域
+                            </div>
+                            <div class="post-item-summary">
+                                OJ 地址：https://vijos.org/p/2002
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/algorithm">#algorithm</a>
+                                
+                                <a class="tags" href="/tags/dynamic-programming">#dynamic programming</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2019-02-18
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo
+                            </div>
+                            <div class="post-item-summary">
+                                如题。修改 BIOS 有风险，请谨慎操作。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/bios">#bios</a>
+                                
+                                <a class="tags" href="/tags/uefi">#uefi</a>
+                                
+                                <a class="tags" href="/tags/hasee">#hasee</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2019-02-16
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北
+                            </div>
+                            <div class="post-item-summary">
+                                2019/7 更新 八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover 配置文件安装：https://github.com/kirainmoe/hasee-tongfang-macos .
+EFI 配置文件替换教程参见 GitHub Wiki.
+以下内容可能已经过时。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/hackintosh">#hackintosh</a>
+                                
+                                <a class="tags" href="/tags/macos">#macos</a>
+                                
+                                <a class="tags" href="/tags/hasee">#hasee</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2019-01-23
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势
+                            </div>
+                            <div class="post-item-summary">
+                                Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达一半的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/touchpad">#touchpad</a>
+                                
+                                <a class="tags" href="/tags/windows">#windows</a>
+                                
+                                <a class="tags" href="/tags/windows-precision">#windows precision</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2019-01-01
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                BeagleBone Black 开发入门实验
+                            </div>
+                            <div class="post-item-summary">
+                                写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……
+以下内容为图省事大量地摘编自我的实验报告。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/beaglebone">#beaglebone</a>
+                                
+                                <a class="tags" href="/tags/tutorial">#tutorial</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2018-12-23
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Xiamen GDG DevFest 2018 repo
+                            </div>
+                            <div class="post-item-summary">
+                                这是厦门 2018 谷歌开发者嘉年华 参会报告~
+（多图预警，流量环境谨慎点开~）
+ps. 由于在大会上做笔记不是很方便和不完全，因此下面的内容可能有错误或者不周，敬请谅解。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/google">#google</a>
+                                
+                                <a class="tags" href="/tags/devfest">#devfest</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2018-11-25
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/golang-note/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Golang 学习笔记 （1）
+                            </div>
+                            <div class="post-item-summary">
+                                把 Hexo 换成了基于 Go 的 Hugo，所以有必要学一下 Golang 了（
+之前也一直在想学个新的语言，一直在纠结选什么好，刚巧就是你了。
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/note">#note</a>
+                                
+                                <a class="tags" href="/tags/golang">#golang</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2018-07-28
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+            
+            <a href="https://kirainmoe.com/blog/post/exgcd-and-gauss/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                被迫学习之拓展欧几里得算法 &amp; 高斯消元
+                            </div>
+                            <div class="post-item-summary">
+                                为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音
+
+                            </div>
+                            
+                            <div class="post-item-tags">
+                                
+                                <a class="tags" href="/tags/algorithm">#algorithm</a>
+                                
+                                <a class="tags" href="/tags/math">#math</a>
+                                
+                            </div>
+                            
+                            <div class="post-item-meta">
+                                2018-07-27
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            
+        
+        </a>
+    </div>
+</div>
+
+            </div>
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>2/5</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/page/3/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+<div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

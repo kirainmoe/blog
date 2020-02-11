@@ -1,170 +1,587 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="[19-3-2] XMU ACM 集训队笔记(1) - 宇宙よりも遠い場所" property="og:title">
-<title>[19-3-2] XMU ACM 集训队笔记(1) | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>[19-3-2] XMU ACM 集训队笔记(1)</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%88%e4%b8%8e%e6%8b%ac%e5%8f%b7%e5%ba%8f%e5%88%97%e5%8c%b9%e9%85%8d--%e5%8d%a1%e7%89%b9%e5%85%b0%e6%95%b0" v-on:click="closeDrawer" id="栈与括号序列匹配--卡特兰数-nav">
+										 栈与括号序列匹配 —— 卡特兰数
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%88%e4%b8%8e%e8%a1%a8%e8%be%be%e5%bc%8f%e5%a4%84%e7%90%86" v-on:click="closeDrawer" id="栈与表达式处理-nav">
+										 栈与表达式处理
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%85%88%e4%b8%ad%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86" v-on:click="closeDrawer" id="二叉树的先中后序遍历-nav">
+										 二叉树的先、中、后序遍历
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8d%95%e8%b0%83%e9%98%9f%e5%88%97%e4%b8%8e%e5%8d%95%e8%b0%83%e6%a0%88%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e6%9c%80%e5%b0%8f%e5%80%bc%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="单调队列与单调栈滑动窗口最小值问题-nav">
+										 单调队列与单调栈——滑动窗口最小值问题
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8d%95%e8%b0%83%e6%80%a7%e4%b8%8e%e4%ba%8c%e5%88%86%e6%b3%95" v-on:click="closeDrawer" id="单调性与二分法-nav">
+										 单调性与二分法
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a0%86%e5%92%8c%e4%bc%98%e5%85%88%e9%98%9f%e5%88%97" v-on:click="closeDrawer" id="堆和优先队列-nav">
+										 堆和优先队列
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">March 5, 2019</h2>
-      <h1 class="title">[19-3-2] XMU ACM 集训队笔记(1)</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/acm">acm</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%88%e4%b8%8e%e6%8b%ac%e5%8f%b7%e5%ba%8f%e5%88%97%e5%8c%b9%e9%85%8d--%e5%8d%a1%e7%89%b9%e5%85%b0%e6%95%b0" v-on:click="closeDrawer" id="栈与括号序列匹配--卡特兰数-nav">
+										 栈与括号序列匹配 —— 卡特兰数
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%a0%88%e4%b8%8e%e8%a1%a8%e8%be%be%e5%bc%8f%e5%a4%84%e7%90%86" v-on:click="closeDrawer" id="栈与表达式处理-nav">
+										 栈与表达式处理
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%85%88%e4%b8%ad%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86" v-on:click="closeDrawer" id="二叉树的先中后序遍历-nav">
+										 二叉树的先、中、后序遍历
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8d%95%e8%b0%83%e9%98%9f%e5%88%97%e4%b8%8e%e5%8d%95%e8%b0%83%e6%a0%88%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e6%9c%80%e5%b0%8f%e5%80%bc%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="单调队列与单调栈滑动窗口最小值问题-nav">
+										 单调队列与单调栈——滑动窗口最小值问题
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%8d%95%e8%b0%83%e6%80%a7%e4%b8%8e%e4%ba%8c%e5%88%86%e6%b3%95" v-on:click="closeDrawer" id="单调性与二分法-nav">
+										 单调性与二分法
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%a0%86%e5%92%8c%e4%bc%98%e5%85%88%e9%98%9f%e5%88%97" v-on:click="closeDrawer" id="堆和优先队列-nav">
+										 堆和优先队列
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
 
-      
-      <div class="content">
-        <p>嗯哼，接下来如果没有意外<s>以及我不咕咕咕</s>的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。</p>
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
 
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    [19-3-2] XMU ACM 集训队笔记(1)
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2019-03-05 22:52
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/acm">acm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/algorithm">algorithm</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>嗯哼，接下来如果没有意外<!-- raw HTML omitted -->以及我不咕咕咕<!-- raw HTML omitted -->的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。</p>
 <p>本期主要内容：基础数据结构，卡特兰数，表达式处理，单调队列和单调栈，优先队列和堆，二分法。</p>
-
-<h2 id="栈与括号序列匹配-卡特兰数">栈与括号序列匹配 —— 卡特兰数</h2>
-
+<h2 id="栈与括号序列匹配--卡特兰数">栈与括号序列匹配 —— 卡特兰数</h2>
 <blockquote>
 <p>进出栈序列：n 个元素按照 $1, 2, &hellip;, n$ 的顺序进栈，问有多少种可能的出栈序列？</p>
 </blockquote>
-
 <p>显然，对于 $n = 1$ 的情况下，只可能有一种出栈序列；对 $n = 2$ 的情况，可能是：<code>1进1出，2进2出</code> 或 <code>1进2进，2出1出</code>，有两种不同的序列。那么对于更多的 $n$ 呢？</p>
-
 <blockquote>
 <p>括号序列匹配：有 $n$ 对左右括号，请求出合法的排列有多少个？</p>
 </blockquote>
-
 <p>它基于这样的一个原则：每出现一个左括号，必定有一个右括号与它匹配。并且，一定先出现左括号，再出现对应的右括号。例如，当括号序列数目 $n=1$ 的时候，合法的匹配序列：$()$, 不合法的匹配序列：$)($.</p>
-
 <p>可以看出，这两个问题属于同一个模型，这个问题模型与组合数学的一个经典概念——<strong>卡特兰数</strong>有关。首先是卡特兰数的结论：递推公式 $f(n)=\Sigma_{k=0}^{n-1}f(k)\cdot f(n-k-1), f(0) = 1$;</p>
-
 <p>展开递推公式得到 $f(n)=C_{2n}^{n}x-C_{2n}^{n+1}=\frac{1}{n+1}C_{2n}^{n}$.</p>
-
 <p>以进出栈序列的问题为例，设 $f(n)$ 为序列个数为 $n$ 的出栈序列数，假定这 $n$ 个元素的其中一个元素 $k$ 为<strong>最后出栈的元素</strong>，那么：首先进栈了 $k-1$ 个元素 $1, 2, &hellip;, k-1$，然后全部弹出，弹出栈的顺序序列记为 $s_1$；然后让 $k$ 入栈；再由剩下的 $n-k$ 个元素 $k+1, &hellip;, n$ 进栈，再全部弹出，最后 $k$ 出栈。这部分弹出的顺序序列记为 $s_2 + k$。</p>
-
 <p>在这种情况下，因为 $s_1$ 和 $s_2$ 互不影响，它们各自独立，因此这种情况下总的出栈序列 $s_k = s_1 + s_2 + k$，$s_k$ 可能的出栈序列数目便是 $s_1, s_2$ 两个序列数量的相乘，即 $f_{s_k}(n) = f(k-1) \cdot f(n-k)$（注意卡特兰数的递推公式是从 $x=0$ 开始定义的）. 那么，让最后一个出栈的序列为第 $0, 1, &hellip;, n-1$ 个；</p>
-
 <p>令 k 取 $0, &hellip;, n-1$，我们就能得到卡特兰数的递归定义，从而可以直接套公式解决该问题。</p>
-
 <p>括号序列匹配数量的问题事实上是相同的，区别就在于将进栈、出栈分别视为左右括号；括号数目视为元素 $1, 2, &hellip;, n$，问题就转化为了上面的模型。</p>
-
 <p>例题链接：<a href="https://vijos.org/p/1122">Vijos P1122 出栈序列统计</a></p>
-
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-double getCatalan(int x)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getCatalan</span>(<span style="color:#66d9ef">int</span> x)
 {
-    double res = 1.0;
-    for (int i = x + 1; i &lt;= 2 * x; i++)
-        res *= ((double)i / (double)(i-x));
-    return (res / (x + 1));
+    <span style="color:#66d9ef">double</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> x; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        res <span style="color:#f92672">*</span><span style="color:#f92672">=</span> ((<span style="color:#66d9ef">double</span>)i <span style="color:#f92672">/</span> (<span style="color:#66d9ef">double</span>)(i<span style="color:#f92672">-</span>x));
+    <span style="color:#66d9ef">return</span> (res <span style="color:#f92672">/</span> (x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
 }
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    printf(&quot;%.0lf&quot;, getCatalan(n));
-    return 0;
+    <span style="color:#66d9ef">int</span> n;
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%.0lf</span><span style="color:#e6db74">&#34;</span>, getCatalan(n));
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<h2 id="栈与表达式处理">栈与表达式处理</h2>
-
+</code></pre></div><h2 id="栈与表达式处理">栈与表达式处理</h2>
 <p>表达式处理与解析这个问题在讲栈的时候已经老生常谈了，这里就直接复述一遍大概思路就好了。</p>
-
 <p>首先是集训的时候讲的，处理简单表达式(没有括号，加法和乘法)的思路：从左到右扫描表达式，遇到操作数先加入栈中；如果遇到加法运算符，则先不做任何操作；如果遇到乘号，则将栈顶的元素取出、并取乘号后的一个数，相乘后丢进栈中。最后再将栈中的所有元素相加。</p>
-
 <p>对于大部分表达式都适用的解析处理操作如下：</p>
-
 <p>首先将中缀表达式转化为后缀表达式：</p>
-
 <ol>
 <li>从左到右扫描表达式，每遇到一个操作数，就直接添加到后缀表达式中。</li>
 <li>栈为空的时候，若遇到运算符，直接入栈。</li>
@@ -172,366 +589,342 @@ int main()
 <li>栈不为空时，遇到加减乘除运算符，弹出栈顶<strong>所有优先级大于等于该运算符</strong>的运算符加入表达式，直到栈为空或遇到左括号为止，再将该运算符入栈。</li>
 <li>表达式扫描完成后将栈顶元素全部弹出，加入后缀表达式中。</li>
 </ol>
-
 <p>那么，计算后缀表达式呢？这就很简单啦：</p>
-
 <ol>
 <li>从左到右扫描表达式，遇到操作数就将其加入栈中</li>
 <li>遇到操作符，则弹出栈顶的两个数 $s_2, s_1$（注意先后顺序），进行运算后将新的结果加入栈中</li>
+<li>最后栈中的数即为结果。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stack&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cout;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>endl;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>stack;
 
-<li><p>最后栈中的数即为结果。</p>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-
-using std::string;
-using std::cout;
-using std::endl;
-using std::stack;
-
-bool shouldPopFromStack(char current, char fromStack) {
-int p1 = (current == '*' || current == '/') ? 1 : 0;
-int p2 = (fromStack == '*' || fromStack == '/') ? 1 : 0;
-return p1 &lt;= p2;
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">shouldPopFromStack</span>(<span style="color:#66d9ef">char</span> current, <span style="color:#66d9ef">char</span> fromStack) {
+    <span style="color:#66d9ef">int</span> p1 <span style="color:#f92672">=</span> (current <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> current <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">?</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">int</span> p2 <span style="color:#f92672">=</span> (fromStack <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> fromStack <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">?</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> p1 <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> p2;
 }
 
-string convert(string raw)
+string <span style="color:#a6e22e">convert</span>(string raw)
 {
-int length = raw.length();
-stack&lt;char&gt; s;
-string res = &quot;&quot;;
+    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> raw.length();
+    stack<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> s;
+    string res <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>;
 
-for (int i = 0; i &lt; length; i++) {
-    // 遇到数字，直接加入后缀表达式中 
-    if (raw[i] &gt;= '0' &amp;&amp; raw[i] &lt;= '9') {
-        res += raw[i];
-        continue;
-    }
-    else {
-        res += ' ';
-    }
-    // 遇到左括号，入栈 
-    if (raw[i] == '(') {
-        s.push('(');
-    }
-    // 遇到右括号，本身不加入表达式， 让栈中元素出栈，直至遇到左括号
-    else if (raw[i] == ')')  {
-        while (true) {
-            char now = s.top();
-            s.pop();
-            if (now == '(') {
-                break;
-            } else {
-                res += now;
-            }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> length; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#75715e">// 遇到数字，直接加入后缀表达式中 
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (raw[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> raw[i] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+            res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> raw[i];
+            <span style="color:#66d9ef">continue</span>;
         }
-    }
-    // 运算符 
-    else {
-        // 分为栈为空与不为空两种情况讨论 
-        if (s.empty()) {
-            s.push(raw[i]);          // 栈为空，直接加入 
-        } else {
-            // 否则，弹出栈顶元素加入表达式，直到遇见左括号，然后自己入栈 
-            while (!s.empty()) {
-                char now = s.top();
-                if (now == '(' || !shouldPopFromStack(raw[i], now)) {
-                    break;
-                } else {
-                    s.pop();
-                    res += now;
+        <span style="color:#66d9ef">else</span> {
+            res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>;
+        }
+        <span style="color:#75715e">// 遇到左括号，入栈 
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (raw[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">(</span><span style="color:#e6db74">&#39;</span>) {
+            s.push(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">(</span><span style="color:#e6db74">&#39;</span>);
+        }
+        <span style="color:#75715e">// 遇到右括号，本身不加入表达式， 让栈中元素出栈，直至遇到左括号
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (raw[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#39;</span>)  {
+            <span style="color:#66d9ef">while</span> (true) {
+                <span style="color:#66d9ef">char</span> now <span style="color:#f92672">=</span> s.top();
+                s.pop();
+                <span style="color:#66d9ef">if</span> (now <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">(</span><span style="color:#e6db74">&#39;</span>) {
+                    <span style="color:#66d9ef">break</span>;
+                } <span style="color:#66d9ef">else</span> {
+                    res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> now;
                 }
             }
-            s.push(raw[i]);         // 最后别忘了把自己加进去 
+        }
+        <span style="color:#75715e">// 运算符 
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e">// 分为栈为空与不为空两种情况讨论 
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (s.empty()) {
+                s.push(raw[i]);          <span style="color:#75715e">// 栈为空，直接加入 
+</span><span style="color:#75715e"></span>            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#75715e">// 否则，弹出栈顶元素加入表达式，直到遇见左括号，然后自己入栈 
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>s.empty()) {
+                    <span style="color:#66d9ef">char</span> now <span style="color:#f92672">=</span> s.top();
+                    <span style="color:#66d9ef">if</span> (now <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">(</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> <span style="color:#f92672">!</span>shouldPopFromStack(raw[i], now)) {
+                        <span style="color:#66d9ef">break</span>;
+                    } <span style="color:#66d9ef">else</span> {
+                        s.pop();
+                        res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> now;
+                    }
+                }
+                s.push(raw[i]);         <span style="color:#75715e">// 最后别忘了把自己加进去 
+</span><span style="color:#75715e"></span>            }
         }
     }
-}
-res += ' ';
-// 完成后把栈中剩余符号加入表达式
-while (!s.empty()) {
-    char now = s.top();
-    s.pop();
-    res += now;
+    res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>;
+    <span style="color:#75715e">// 完成后把栈中剩余符号加入表达式
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>s.empty()) {
+        <span style="color:#66d9ef">char</span> now <span style="color:#f92672">=</span> s.top();
+        s.pop();
+        res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> now;
+    }
+
+    <span style="color:#66d9ef">return</span> res;
 }
 
-return res;
-}
-
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-string raw;
-std::cin &gt;&gt; raw;
-std::cout &lt;&lt; &quot;Original expression: &quot; &lt;&lt; raw &lt;&lt; endl;
+    string raw;
+    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> raw;
+    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Original expression: </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> raw <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-string res = convert(raw);
-std::cout &lt;&lt; &quot;Parsed expression: &quot; &lt;&lt; res &lt;&lt; endl;
+    string res <span style="color:#f92672">=</span> convert(raw);
+    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Parsed expression: </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> res <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
     
-stack&lt;long long&gt; s;
-int length = res.length();
-long long cur = 0;
-for (int i = 0; i &lt; length; i++) {
-    // 遇到数字就入栈 
-    if (res[i] &gt;= '0' &amp;&amp; res[i] &lt;= '9') {
-        cur = cur * 10 + res[i] - '0';
-    } else if (res[i] == ' ') {
-        s.push(cur);
-        cur = 0;
-    }
-    // 否则，弹出栈顶的两个数计算，注意先后顺序 
-    else {
-        long long s2 = s.top();
-        s.pop();
-        long long s1 = s.top();
-        s.pop();
+    stack<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span><span style="color:#f92672">&gt;</span> s;
+    <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> res.length();
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> length; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#75715e">// 遇到数字就入栈 
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (res[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> res[i] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+            cur <span style="color:#f92672">=</span> cur <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> res[i] <span style="color:#f92672">-</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>;
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (res[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) {
+            s.push(cur);
+            cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#75715e">// 否则，弹出栈顶的两个数计算，注意先后顺序 
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> s2 <span style="color:#f92672">=</span> s.top();
+            s.pop();
+            <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> s1 <span style="color:#f92672">=</span> s.top();
+            s.pop();
 
-        switch (res[i]) {
-            case '+':
-                s.push(s1 + s2);
-                break;
-            case '-':
-                s.push(s1 - s2);
-                break;
-            case '*':
-                s.push(s1 * s2);
-                break;
-            case '/':
-                s.push(s1 / s2);   // 可能会有小数
-                break;
+            <span style="color:#66d9ef">switch</span> (res[i]) {
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">+</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+                    s.push(s1 <span style="color:#f92672">+</span> s2);
+                    <span style="color:#66d9ef">break</span>;
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+                    s.push(s1 <span style="color:#f92672">-</span> s2);
+                    <span style="color:#66d9ef">break</span>;
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+                    s.push(s1 <span style="color:#f92672">*</span> s2);
+                    <span style="color:#66d9ef">break</span>;
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+                    s.push(s1 <span style="color:#f92672">/</span> s2);   <span style="color:#75715e">// 可能会有小数
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">break</span>;
+            }
         }
     }
+
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> s.top();
+    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> ans;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-long long ans = s.top();
-std::cout &lt;&lt; ans;
 
-return 0;
-}
-
-
-</code></pre></li>
-</ol>
-
-<p>例题链接：<a href="https://vijos.org/p/1849">Vijos 1849 表达式求值</a></p>
-
+</code></pre></div><p>例题链接：<a href="https://vijos.org/p/1849">Vijos 1849 表达式求值</a></p>
 <p>这道题没有括号，只有加乘没有减除，所以属于我们刚刚提到的最简单的一类情况：</p>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-using std::string;
-using std::stack;
-using std::cin;
-using std::cout;
-stack&lt;long long&gt; s;
-int main()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stack&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>stack;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cin;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cout;
+stack<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span><span style="color:#f92672">&gt;</span> s;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
     string exp;
-    cin &gt;&gt; exp;
+    cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> exp;
 
-    int len = exp.length();
-    bool flag = 0;
-    long long cur = 0;
-    for (int i = 0; i &lt; len; i++) {
-        if (exp[i] &gt;= '0' &amp;&amp; exp[i] &lt;= '9') {
-            cur = cur * 10 + exp[i] - '0';
-        } else {
-            if (flag) {
-                long long next = s.top();
+    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> exp.length();
+    <span style="color:#66d9ef">bool</span> flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (exp[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> exp[i] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+            cur <span style="color:#f92672">=</span> cur <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> exp[i] <span style="color:#f92672">-</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> (flag) {
+                <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> next <span style="color:#f92672">=</span> s.top();
                 s.pop();
-                cur = (next * cur) % 10000;
-                flag = 0;
+                cur <span style="color:#f92672">=</span> (next <span style="color:#f92672">*</span> cur) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10000</span>;
+                flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
             }
             s.push(cur);
-            cur = 0;
+            cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
         }
 
-        if (exp[i] == '+') {
-            flag = 0;
-            continue;
-        } else if (exp[i] == '*') {
-            flag = 1;
-            continue;
+        <span style="color:#66d9ef">if</span> (exp[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">+</span><span style="color:#e6db74">&#39;</span>) {
+            flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">continue</span>;
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (exp[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span>) {
+            flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">continue</span>;
         }
     }
 
-    if (flag) {
-        cur = (cur * s.top()) % 10000;
+    <span style="color:#66d9ef">if</span> (flag) {
+        cur <span style="color:#f92672">=</span> (cur <span style="color:#f92672">*</span> s.top()) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10000</span>;
         s.pop();
     }
     s.push(cur);
 
-    long long ans = s.top();
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> s.top();
     s.pop();
-    while (!s.empty()) {
-        ans = (ans + s.top()) % 10000;
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>s.empty()) {
+        ans <span style="color:#f92672">=</span> (ans <span style="color:#f92672">+</span> s.top()) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10000</span>;
         s.pop();
     }
-    cout &lt;&lt; ans % 10000;
+    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> ans <span style="color:#f92672">%</span> <span style="color:#ae81ff">10000</span>;
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<h2 id="二叉树的先-中-后序遍历">二叉树的先、中、后序遍历</h2>
-
+</code></pre></div><h2 id="二叉树的先中后序遍历">二叉树的先、中、后序遍历</h2>
 <p>有关先序、中序、后序遍历的概念这里就不细讲了，总之先序是根-左-右，中序是左-根-右，后序是左-右-根。给定中序和后序遍历可以确定先序，给定中序和先序遍历可以确定后序。</p>
-
 <p>例题链接：<a href="https://vijos.org/p/1132">Vijos 1132 求二叉树的先序序列</a></p>
-
 <p>根据中序遍历和后序遍历的结果把二叉树建出来就行了，建树的思路是这样的：考虑一颗子树序列 $s_c$，后序遍历的最后一个字母一定是根节点；再到中序遍历中找这个字母，设其在位置 $k$ 处，那么 0~k-1 就是左子树，k+1~n-1 就是右子树。设左子树的节点数为 $k-1$，右子树的节点数为 $n-k$, 则又可以得到这两棵子树在后序遍历中的对应位置。最后递归建树即可。</p>
-
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-
-char post[10], mid[10];
-/**
-* l1: 中序起点; l2: 后序起点 
-* r1: 中序终点; r2: 后序终点 
-*/
-void build(int l1, int r1, int l2, int r2)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">char</span> post[<span style="color:#ae81ff">10</span>], mid[<span style="color:#ae81ff">10</span>];
+<span style="color:#75715e">/**
+</span><span style="color:#75715e">* l1: 中序起点; l2: 后序起点 
+</span><span style="color:#75715e">* r1: 中序终点; r2: 后序终点 
+</span><span style="color:#75715e">*/</span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">build</span>(<span style="color:#66d9ef">int</span> l1, <span style="color:#66d9ef">int</span> r1, <span style="color:#66d9ef">int</span> l2, <span style="color:#66d9ef">int</span> r2)
 {
-  if (l1 &gt; r1)
-    return;
-  // print root
-  printf(&quot;%c&quot;, post[r2]);
-  // find root
-  int i = l1;
-  while (mid[i] != post[r2])
-    i++;
+  <span style="color:#66d9ef">if</span> (l1 <span style="color:#f92672">&gt;</span> r1)
+    <span style="color:#66d9ef">return</span>;
+  <span style="color:#75715e">// print root
+</span><span style="color:#75715e"></span>  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%c</span><span style="color:#e6db74">&#34;</span>, post[r2]);
+  <span style="color:#75715e">// find root
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> l1;
+  <span style="color:#66d9ef">while</span> (mid[i] <span style="color:#f92672">!</span><span style="color:#f92672">=</span> post[r2])
+    i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
 
-  int cnt = i - l1;
-  // build left child
-  build(l1, i - 1, l2, l2 + cnt - 1);
-  // build right child
-  build(i + 1, r1, l2 + cnt, r2 - 1);
+  <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> l1;
+  <span style="color:#75715e">// build left child
+</span><span style="color:#75715e"></span>  build(l1, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, l2, l2 <span style="color:#f92672">+</span> cnt <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+  <span style="color:#75715e">// build right child
+</span><span style="color:#75715e"></span>  build(i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r1, l2 <span style="color:#f92672">+</span> cnt, r2 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
 }
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  scanf(&quot;%s%s&quot;, mid, post);
-  build(0, strlen(mid) - 1, 0, strlen(mid) - 1);
-  return 0;
+  scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s%s</span><span style="color:#e6db74">&#34;</span>, mid, post);
+  build(<span style="color:#ae81ff">0</span>, strlen(mid) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, strlen(mid) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<h2 id="单调队列与单调栈-滑动窗口最小值问题">单调队列与单调栈——滑动窗口最小值问题</h2>
-
+</code></pre></div><h2 id="单调队列与单调栈滑动窗口最小值问题">单调队列与单调栈——滑动窗口最小值问题</h2>
 <p>问题背景：输入正整数 $k$ 和一个长度为 $n$ 的整数序列 $A_1, A_2, &hellip;, A_n$, 定义 **$f(i)$ 表示从元素 $i$ 开始的连续 $k$ 个元素的最小值，即 $f(i)=min{A_i, A_{i+1}, &hellip;, A_{i+k-1}}$. 要求计算 $f(1), f(2)&hellip;f(n-k+1)$. （参见紫书 P241）</p>
-
 <p>例题链接：<a href="https://www.luogu.org/problemnew/show/P1886">洛谷 P1886 滑动窗口</a></p>
-
 <p>显然，这道题如果用定义计算，对于每个 $i$ 用 $O(n)$ 枚举一次序列的最小值，是很耗时的。因此我们可以考虑用数据结构来解决这个问题。我们发现每次窗口滑动都有一个元素“滑出”窗口，有一个新的元素“滑入”窗口，并且我们要维护的是窗口中元素的最小值——听起来是不是很像优先队列？但是，优先队列好像也不太符合题意，因为被滑出去的元素不一定是最小的，所以删除元素的操作是比较难实现的。那么有没有什么数据结构可以方便地做到呢？</p>
-
 <p>此时我们引入一个叫做单调队列的东西——它是在普通队列基础上的改进，具有：队列中的元素从头到尾单调递增/递减的性质。这个单调性显然要我们自己去维护，以维护一个单调增加的队列为例，从队头到队尾元素单调递增。当我们向队尾插入元素的时候，如果该元素比队尾元素大，我们可以直接插入，此时因为先前队列已经有了单调性，我们再插入一个更大的元素，队列仍然是单调递增的；但如果新元素比队友元素小，那么就不断地从队尾删除比它大的元素，直到队尾元素比它小或队列为空后再将新元素插入。使用双端队列可以让我们很方便地完成这个操作。</p>
-
 <p>具体到滑动窗口这道题上，思路就很清晰了——维护一个单调递增列，当 $i$ 等于 1 的时候，将 $1$ ~ $k$ 个元素按照单调性加入队列。如果新加入的的元素比前面的元素更小，说明前面更大的元素已经不可能是答案了——后面有比它更小且比它更晚出队的，那么它还有什么存在队列中的必要吗（大嘘）；接下来每滑动一次就按照相同的规则处理一次。同时，我们需要一个标记数组，来标记元素是否在队列中。如果元素在队列中，且此时需要删除该元素（该元素已从窗口左端滑出），那么很显然它一定在队首；如果元素不在队列中而需要删除它，那就不做任何操作。或者，我们也可以直接往队列里塞对应数组的下标，这样只需要判断 $q.front() + k \gt i$ 时移除队首元素即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;deque&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>deque;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>pair;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>make_pair;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000005</span>;
+<span style="color:#66d9ef">int</span> n, k;
+<span style="color:#66d9ef">int</span> a[MAXN];
+<span style="color:#66d9ef">bool</span> inq[MAXN], inq2[MAXN];
 
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;deque&gt;
-#include &lt;utility&gt;
-using std::deque;
-using std::pair;
-using std::make_pair;
-const int MAXN = 1000005;
-int n, k;
-int a[MAXN];
-bool inq[MAXN], inq2[MAXN];
+deque<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> q;
+deque<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> q1;
 
-deque&lt;pair&lt;int, int&gt; &gt; q;
-deque&lt;pair&lt;int, int&gt; &gt; q1;
-
-void push(int i, int cmp)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">int</span> i, <span style="color:#66d9ef">int</span> cmp)
 {
-    if (i == 0) {
-        if (cmp == 0) {
+    <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> (cmp <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
             q.push_back(make_pair(a[i], i));
-            inq[i] = 1;
-        } else {
+            inq[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        } <span style="color:#66d9ef">else</span> {
             q1.push_back(make_pair(a[i], i));
-            inq2[i] = 1;
+            inq2[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
         }
 
-    } else {
-        if (cmp == 0) {
-            while ((!q.empty() &amp;&amp; q.back().first &gt;= a[i]) || q.size() &gt;= k) {
-                inq[q.back().second] = 0;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span> (cmp <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">while</span> ((<span style="color:#f92672">!</span>q.empty() <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> q.back().first <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> a[i]) <span style="color:#f92672">|</span><span style="color:#f92672">|</span> q.size() <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> k) {
+                inq[q.back().second] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
                 q.pop_back();
             }
-            inq[i] = 1;
+            inq[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
             q.push_back(make_pair(a[i], i));
-        } else {
-            while ((!q1.empty() &amp;&amp; q1.back().first &lt;= a[i]) || q1.size() &gt;= k) {
-                inq2[q1.back().second] = 0;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">while</span> ((<span style="color:#f92672">!</span>q1.empty() <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> q1.back().first <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> a[i]) <span style="color:#f92672">|</span><span style="color:#f92672">|</span> q1.size() <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> k) {
+                inq2[q1.back().second] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
                 q1.pop_back();
             }
-            inq2[i] = 1;
+            inq2[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
             q1.push_back(make_pair(a[i], i));
         }
     }
 }
 
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
-    for (int i = 0; i &lt; n; i++)
-        scanf(&quot;%d&quot;, &amp;a[i]);
-    for (int i = 0; i &lt; k; i++) {
-        push(i, 0);
-        push(i, 1);
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>k);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a[i]);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        push(i, <span style="color:#ae81ff">0</span>);
+        push(i, <span style="color:#ae81ff">1</span>);
     }
-    printf(&quot;%d &quot;, q.front().first);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, q.front().first);
 
-    for (int i = k; i &lt; n; i++) {
-        if (inq[i-k]) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (inq[i<span style="color:#f92672">-</span>k]) {
             q.pop_front();
-            inq[i-k] = 0;
+            inq[i<span style="color:#f92672">-</span>k] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
         }
-        push(i, 0);
-        printf(&quot;%d &quot;, q.front().first);
+        push(i, <span style="color:#ae81ff">0</span>);
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, q.front().first);
     }
-    printf(&quot;\n%d &quot;, q1.front().first);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, q1.front().first);
 
-    for (int i = k; i &lt; n; i++) {
-        if (inq2[i-k]) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (inq2[i<span style="color:#f92672">-</span>k]) {
             q1.pop_front();
-            inq2[i-k] = 0;
+            inq2[i<span style="color:#f92672">-</span>k] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
         }
-        push(i, 1);
-        printf(&quot;%d &quot;, q1.front().first);
+        push(i, <span style="color:#ae81ff">1</span>);
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, q1.front().first);
     }    
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;deque&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>deque;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000005</span>;
+<span style="color:#66d9ef">int</span> n, k;
+<span style="color:#66d9ef">int</span> a[MAXN];
 
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;deque&gt;
-using std::deque;
-const int MAXN = 1000005;
-int n, k;
-int a[MAXN];
+deque<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q1, q2;
 
-deque&lt;int&gt; q1, q2;
-
-void push(int i, int cmp)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">int</span> i, <span style="color:#66d9ef">int</span> cmp)
 {
-    if (i == 0) {
-        if (cmp == 0) {
+    <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> (cmp <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
             q1.push_back(i);
-        } else {
+        } <span style="color:#66d9ef">else</span> {
             q2.push_back(i);
         }
-    } else {
-        if (cmp == 0) {
-            while ((!q1.empty() &amp;&amp; a[q1.back()] &gt;= a[i]) || q1.size() &gt;= k) {
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span> (cmp <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">while</span> ((<span style="color:#f92672">!</span>q1.empty() <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> a[q1.back()] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> a[i]) <span style="color:#f92672">|</span><span style="color:#f92672">|</span> q1.size() <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> k) {
                 q1.pop_back();
             }
             q1.push_back(i);
-        } else {
-            while ((!q2.empty() &amp;&amp; a[q2.back()] &lt;= a[i]) || q2.size() &gt;= k) {
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">while</span> ((<span style="color:#f92672">!</span>q2.empty() <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> a[q2.back()] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> a[i]) <span style="color:#f92672">|</span><span style="color:#f92672">|</span> q2.size() <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> k) {
                 q2.pop_back();
             }
             q2.push_back(i);
@@ -539,157 +932,127 @@ void push(int i, int cmp)
     }
 }
 
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
-    for (int i = 0; i &lt; n; i++)
-        scanf(&quot;%d&quot;, &amp;a[i]);
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>k);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a[i]);
 
-    for (int i = 0; i &lt; n; i++) {
-        while (!q1.empty() &amp;&amp; q1.front() + k &lt;= i) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q1.empty() <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> q1.front() <span style="color:#f92672">+</span> k <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> i) {
             q1.pop_front();
         }
-        push(i, 0);
-        if (i &gt;= k - 1)
-            printf(&quot;%d &quot;, a[q1.front()]);
+        push(i, <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, a[q1.front()]);
     }
-    printf(&quot;\n&quot;);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 
-    for (int i = 0; i &lt; n; i++) {
-        while (!q2.empty() &amp;&amp; q2.front() + k &lt;= i) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q2.empty() <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> q2.front() <span style="color:#f92672">+</span> k <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> i) {
             q2.pop_front();
         }
-        push(i, 1);
-        if (i &gt;= k - 1)
-            printf(&quot;%d &quot;, a[q2.front()]);
+        push(i, <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, a[q2.front()]);
     }    
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<h2 id="单调性与二分法">单调性与二分法</h2>
-
+</code></pre></div><h2 id="单调性与二分法">单调性与二分法</h2>
 <blockquote>
-<p><s>&ldquo;说到二分我就想到二分答案，就想到单调性，今年下半年……&rdquo;</s></p>
+<p><!-- raw HTML omitted -->&quot;说到二分我就想到二分答案，就想到单调性，今年下半年……&ldquo;<!-- raw HTML omitted --></p>
 </blockquote>
-
 <p>二分我好像还真的没什么好说的……大概就像下面这样：</p>
-
-<pre><code class="language-cpp">int x, y, flag, m, ans = -1;
-int a[MAXN];
-while (x &lt; y) {
-    m = x + (y - x) / 2;        // 找中点，向下取整
-    if (a[m] == flag) {         // 恰好中点就是结果
-        ans = m;
-        break;
-    } else if (a[m] &gt; flag) {
-        y = m;                  // 往左边找
-    } else {
-        x = m + 1;              // 往右边找，注意起点 +1
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> x, y, flag, m, ans <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">int</span> a[MAXN];
+<span style="color:#66d9ef">while</span> (x <span style="color:#f92672">&lt;</span> y) {
+    m <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> (y <span style="color:#f92672">-</span> x) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;        <span style="color:#75715e">// 找中点，向下取整
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (a[m] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> flag) {         <span style="color:#75715e">// 恰好中点就是结果
+</span><span style="color:#75715e"></span>        ans <span style="color:#f92672">=</span> m;
+        <span style="color:#66d9ef">break</span>;
+    } <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span> (a[m] <span style="color:#f92672">&gt;</span> flag) {
+        y <span style="color:#f92672">=</span> m;                  <span style="color:#75715e">// 往左边找
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+        x <span style="color:#f92672">=</span> m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;              <span style="color:#75715e">// 往右边找，注意起点 +1
+</span><span style="color:#75715e"></span>    }
 }
-</code></pre>
-
-<p>二分答案的话，就是修改一下上面二分的条件：上面的条件是 <code>a[m] == flag</code> 就停，二分答案一般在这里用一个函数判断答案的合法性。至于例题……<s>疫情控制了解下</s>。</p>
-
+</code></pre></div><p>二分答案的话，就是修改一下上面二分的条件：上面的条件是 <code>a[m] == flag</code> 就停，二分答案一般在这里用一个函数判断答案的合法性。至于例题……<!-- raw HTML omitted -->疫情控制了解下<!-- raw HTML omitted -->。</p>
 <p>例题：<a href="https://vijos.org/p/1116">Vijos P1116 一元三次方程求解</a></p>
-
 <p>题目给了好多个特殊约束，比如根之间绝对值差 &gt;= 1, 而且根属于 $[-100, 100]$，那么我们就在区间 $[-100, 100]$ 以步长 1 枚举，然后二分这个区间就行了。</p>
-
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cmath&gt;
-double a, b, c, d;
-double eps = 1e-6;
-double func(double x)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> a, b, c, d;
+<span style="color:#66d9ef">double</span> eps <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-6</span>;
+<span style="color:#66d9ef">double</span> <span style="color:#a6e22e">func</span>(<span style="color:#66d9ef">double</span> x)
 {
-    return a * x * x * x + b * x * x + c * x + d;
+    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> b <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> c <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> d;
 }
-void find(double left, double right)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">find</span>(<span style="color:#66d9ef">double</span> left, <span style="color:#66d9ef">double</span> right)
 {
-    if (fabs(right - left) &lt;= eps) {
-        printf(&quot;%.2lf &quot;, left);
-        return;
+    <span style="color:#66d9ef">if</span> (fabs(right <span style="color:#f92672">-</span> left) <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> eps) {
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%.2lf </span><span style="color:#e6db74">&#34;</span>, left);
+        <span style="color:#66d9ef">return</span>;
     }
-    double mid = (left + right) / 2;
-    if (fabs(func(mid)) &lt;= eps) {
-        printf(&quot;%.2lf &quot;, mid);
-        return;
-    } else {
-        if (func(left) * func(mid) &lt; 0) {
+    <span style="color:#66d9ef">double</span> mid <span style="color:#f92672">=</span> (left <span style="color:#f92672">+</span> right) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">if</span> (fabs(func(mid)) <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> eps) {
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%.2lf </span><span style="color:#e6db74">&#34;</span>, mid);
+        <span style="color:#66d9ef">return</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span> (func(left) <span style="color:#f92672">*</span> func(mid) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
             find(left, mid);
-        } else if (func(mid) * func(right) &lt; 0) {
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (func(mid) <span style="color:#f92672">*</span> func(right) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
             find(mid, right);
         }
     }
 }
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    scanf(&quot;%lf%lf%lf%lf&quot;, &amp;a, &amp;b, &amp;c, &amp;d);
-    for (double x = -100.0; x &lt; 100.0; x++) {
-        if (func(x) == 0) {
-            printf(&quot;%.2lf &quot;, x);
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%lf%lf%lf%lf</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#f92672">&amp;</span>c, <span style="color:#f92672">&amp;</span>d);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100.0</span>; x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100.0</span>; x<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (func(x) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%.2lf </span><span style="color:#e6db74">&#34;</span>, x);
         }
-        if (func(x) * func(x + 1) &lt; 0) {
-            find(x, x + 1);
+        <span style="color:#66d9ef">if</span> (func(x) <span style="color:#f92672">*</span> func(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+            find(x, x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
         }
     }
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>既然二分法没啥好说的，我们来说说三分法。所谓三分查找就是在二分查找分出了两个区间（左区间，右区间）的情况下，再对左区间或右区间进行一次二分。通常三分法可以用来<strong>快速确定最值</strong>。</p>
-
-<p>二分法要求二分的序列要具有单调性，而三分法不同，三分法要求序列是一个<strong>有凹凸性的函数</strong>（空间想象能力告诉我们有凹凸性的函数就是图形上上凸一块或下凹一块的函数；高等数学告诉我们凹凸函数就是 $f&rdquo;(x) &gt;(&lt;) 0$ 的函数）。这样的函数拥有一个最大值（或最小值）。</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g0s8ms3uk0j20v50bytak.jpg" alt="三分法条件示意图" /></p>
-
+</code></pre></div><p>既然二分法没啥好说的，我们来说说三分法。所谓三分查找就是在二分查找分出了两个区间（左区间，右区间）的情况下，再对左区间或右区间进行一次二分。通常三分法可以用来<strong>快速确定最值</strong>。</p>
+<p>二分法要求二分的序列要具有单调性，而三分法不同，三分法要求序列是一个<strong>有凹凸性的函数</strong>（空间想象能力告诉我们有凹凸性的函数就是图形上上凸一块或下凹一块的函数；高等数学告诉我们凹凸函数就是 $f&rsquo;'(x) &gt;(&lt;) 0$ 的函数）。这样的函数拥有一个最大值（或最小值）。</p>
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g0s8ms3uk0j20v50bytak.jpg" alt="三分法条件示意图"></p>
 <p>三分法的算法步骤是这样的：</p>
-
 <ol>
 <li>首先取得整个区间的中间值 $mid=\lfloor(left + right) / 2\rfloor$</li>
 <li>先取右区间的中间值 $mid2 = \lfloor(mid + right) / 2 \rfloor$，将区间分成三个部分</li>
-
-<li><p>判断 $a[mid2]$ 与 $a[mid]$ 的关系。若 $a[mid]$ 比 $a[mid2]$ 更接近最值，则我们舍弃右区间，转而搜索左区间；否则就搜索左区间。以求区间最大值为例：</p>
-
-<pre><code class="language-cpp">if (check(mid) &gt; check(mid2)) {
-right = mid2;
-} else {
-left = mid2
-}
-</code></pre></li>
-
-<li><p>重复 1~3, 边界为 $left == right$ 或两者的差距达到某个控制值，如 $eps$.</p></li>
+<li>判断 $a[mid2]$ 与 $a[mid]$ 的关系。若 $a[mid]$ 比 $a[mid2]$ 更接近最值，则我们舍弃右区间，转而搜索左区间；否则就搜索左区间。以求区间最大值为例：</li>
 </ol>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span> (check(mid) <span style="color:#f92672">&gt;</span> check(mid2)) {
+    right <span style="color:#f92672">=</span> mid2;
+} <span style="color:#66d9ef">else</span> {
+    left <span style="color:#f92672">=</span> mid2
+}
+</code></pre></div><ol start="4">
+<li>重复 1~3, 边界为 $left == right$ 或两者的差距达到某个控制值，如 $eps$.</li>
+</ol>
 <h2 id="堆和优先队列">堆和优先队列</h2>
-
 <p>堆是基于完全二叉树衍生出来的数据结构（啥叫完全二叉树？：）</p>
-
 <blockquote>
-<p>定义：对一棵具有 n 个结点的二叉树按层序从左到右排号，如果编号为 i 的结点与同样深度的满二叉树编号为 i 结点在二叉树中位置完全相同，称为完全二叉树。<strong>若结点起始序号为 1，完全二叉树及其子树满足 $left\_child = (root * 2)$，$right\_child = (root * 2) + 1$</strong>。<br />
-<img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0sadgpxf4j20ij08w3zv.jpg" alt="完全二叉树示意图" /><br />
+<p>定义：对一棵具有 n 个结点的二叉树按层序从左到右排号，如果编号为 i 的结点与同样深度的满二叉树编号为 i 结点在二叉树中位置完全相同，称为完全二叉树。<strong>若结点起始序号为 1，完全二叉树及其子树满足 $left\_child = (root * 2)$，$right\_child = (root * 2) + 1$</strong>。<br>
+<img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0sadgpxf4j20ij08w3zv.jpg" alt="完全二叉树示意图"><br>
 (图源网络，找不到出处了，侵删)</p>
 </blockquote>
-
 <p>堆就是拥有如下性质的二叉树：</p>
-
 <ol>
 <li>所有节点中的最大值/最小值一定位于根节点。这样的堆分别称作大根堆和小根堆。</li>
 <li>子树也是相应性质的大根堆/小根堆。</li>
 </ol>
-
 <p>堆的效率是很高的，无论是排序也好，还是什么都好。堆结构的平均操作复杂度是 $O(log n)$, 不知道高效到哪里去了。</p>
-
-<p>那么这么牛逼的数据结构怎么写呢？<s>什么？堆？using std::priority_queue;</s> 众所周知 STL 的 priority_queue 优先队列就是我们需要用这类数据结构时的最佳选择，但是今天我们不要当搬运工了，我们要来手写堆，顺便来理一下堆是怎么实现的。好了，前方灵魂画手上线。以小根堆为例：</p>
-
+<p>那么这么牛逼的数据结构怎么写呢？<!-- raw HTML omitted -->什么？堆？using std::priority_queue;<!-- raw HTML omitted --> 众所周知 STL 的 priority_queue 优先队列就是我们需要用这类数据结构时的最佳选择，但是今天我们不要当搬运工了，我们要来手写堆，顺便来理一下堆是怎么实现的。好了，前方灵魂画手上线。以小根堆为例：</p>
 <p>首先，完全二叉树的表示与顺序存储：我们刚刚说到完全二叉树及其子树的性质，那么我们可以开一个从 1 开始编号的节点数组 <code>node[i]</code>, 这样满足 <code>node[2*i]</code> 是其左子树的根节点，<code>node[2*i+1]</code> 是其右子树的根节点。</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0tz2wospuj20oy081wf4.jpg" alt="save" /></p>
-
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0tz2wospuj20oy081wf4.jpg" alt="save"></p>
 <p>其次，数据的查询。因为我们要查询的最值就在根节点，因此返回 <code>node[1]</code> 即为所求。</p>
-
 <p>再来，数据的插入。数据的插入分两步，第一步是追加树叶结点存储新元素，第二步是将新元素与其他元素交换到它应该在的位置：</p>
-
 <ol>
 <li>用 <code>cnt</code> 记录当前最大的结点编号，初始时 <code>cnt = 0</code></li>
 <li>将新元素 <code>x</code> 插入到 <code>cnt</code> 之后：<code>node[++cnt] = x</code></li>
@@ -697,11 +1060,8 @@ left = mid2
 <li>令 <code>par</code> 表示 <code>x</code> 的父节点，如果 <code>node[par] &gt; x</code>，说明 <code>x</code> 应该顶替其父节点的位置，将两者交换，可以发现这样做并不破坏堆的性质；</li>
 <li>直到 <code>node[par] &lt;= x</code> 或 <code>x</code> 成为根节点时，退出循环。</li>
 </ol>
-
-<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0tz36obrrj216k1jgn3p.jpg" alt="insert" /></p>
-
+<p><img src="https://ws4.sinaimg.cn/large/9f1137b1gy1g0tz36obrrj216k1jgn3p.jpg" alt="insert"></p>
 <p>最后，数据的删除。数据的删除分几步：</p>
-
 <ol>
 <li>把当前编号最大的结点提到根节点处，这样根节点的值就被覆盖掉了：<code>node[1] = node[cnt]</code></li>
 <li>处理其它结点的关系，令 <code>tmp = 1</code></li>
@@ -709,171 +1069,167 @@ left = mid2
 <li>如果 <code>node[tmp]</code> 的左儿子比右儿子小，判断 <code>node[tmp]</code> 与 <code>node[tmp * 2 + 1]</code>（右儿子） 的关系，如果 <code>node[tmp] &gt; node[tmp * 2 + 1]</code>，则交换两个结点并令 <code>tmp = tmp * 2 + 1</code>，否则退出循环</li>
 <li>最后令 <code>cnt</code> 减一：<code>cnt--;</code></li>
 </ol>
-
-<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0tz3ku007j20vt0eqwir.jpg" alt="delete" /></p>
-
+<p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0tz3ku007j20vt0eqwir.jpg" alt="delete"></p>
 <p>所以说……写这玩意还是很麻烦的……除非题目特别，否则为啥放着好好的 <code>priority_queue</code> 不用来写这么长一串东西……</p>
-
 <p>OK, 来最后一道例题吧，经典的 <a href="https://vijos.org/p/1097">Vijos P1097 合并果子</a>, 理论上这道题用单调队列解题应该是更优的，优先队列也是可以的。但是这里可以测试一下我们手撸的最小堆：</p>
-
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-const int MAXN = 10010;
-struct Heap {
-    long long val[MAXN];
-    int cnt;
-    void init()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10010</span>;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Heap</span> {
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> val[MAXN];
+    <span style="color:#66d9ef">int</span> cnt;
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>()
     {
-        memset(val, 0, sizeof val);
-        cnt = 0;
+        memset(val, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> val);
+        cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     }
 
-    void insert(int x)
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insert</span>(<span style="color:#66d9ef">int</span> x)
     {
-        val[++cnt] = x;
-        int tmp = cnt;
-        while (tmp != 0) {
-            int par = tmp / 2;
-            if (val[par] &gt; x) {
-                std::swap(val[par], val[tmp]);
-            } else
-                break;
-            tmp = par;
+        val[<span style="color:#f92672">+</span><span style="color:#f92672">+</span>cnt] <span style="color:#f92672">=</span> x;
+        <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> cnt;
+        <span style="color:#66d9ef">while</span> (tmp <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">int</span> par <span style="color:#f92672">=</span> tmp <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">if</span> (val[par] <span style="color:#f92672">&gt;</span> x) {
+                std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap(val[par], val[tmp]);
+            } <span style="color:#66d9ef">else</span>
+                <span style="color:#66d9ef">break</span>;
+            tmp <span style="color:#f92672">=</span> par;
         }
     }
 
-    int top()
+    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">top</span>()
     {
-        return val[1];
+        <span style="color:#66d9ef">return</span> val[<span style="color:#ae81ff">1</span>];
     }
 
-    void pop()
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pop</span>()
     {
-        if (cnt == 0)    // empty
-            return;
-        int rt = 1;
-        val[rt] = val[cnt];
-        while (2 * rt &lt; cnt)
+        <span style="color:#66d9ef">if</span> (cnt <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)    <span style="color:#75715e">// empty
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span>;
+        <span style="color:#66d9ef">int</span> rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        val[rt] <span style="color:#f92672">=</span> val[cnt];
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> rt <span style="color:#f92672">&lt;</span> cnt)
         {
-            int lc = rt &lt;&lt; 1, rc = (rt &lt;&lt; 1) + 1;
-            if (rc &gt;= cnt || val[lc] &lt; val[rc]) {
-                if (val[rt] &gt; val[lc]) {
-                    std::swap(val[rt], val[lc]);
-                    rt = lc;
-                } else
-                    break;
-            } else {
-                if (val[rt] &gt; val[rc]) {
-                    std::swap(val[rt], val[rc]);
-                    rt = rc;
-                } else {
-                    break;
+            <span style="color:#66d9ef">int</span> lc <span style="color:#f92672">=</span> rt <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>, rc <span style="color:#f92672">=</span> (rt <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">if</span> (rc <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> cnt <span style="color:#f92672">|</span><span style="color:#f92672">|</span> val[lc] <span style="color:#f92672">&lt;</span> val[rc]) {
+                <span style="color:#66d9ef">if</span> (val[rt] <span style="color:#f92672">&gt;</span> val[lc]) {
+                    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap(val[rt], val[lc]);
+                    rt <span style="color:#f92672">=</span> lc;
+                } <span style="color:#66d9ef">else</span>
+                    <span style="color:#66d9ef">break</span>;
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">if</span> (val[rt] <span style="color:#f92672">&gt;</span> val[rc]) {
+                    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap(val[rt], val[rc]);
+                    rt <span style="color:#f92672">=</span> rc;
+                } <span style="color:#66d9ef">else</span> {
+                    <span style="color:#66d9ef">break</span>;
                 }
             }
         }
-        cnt--;
+        cnt<span style="color:#f92672">-</span><span style="color:#f92672">-</span>;
     }
 
-    bool empty()
+    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">empty</span>()
     {
-        return cnt == 0;
+        <span style="color:#66d9ef">return</span> cnt <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     }
 };
 Heap hp;
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    int n, tmp;
-    long long ans = 0;
-    scanf(&quot;%d&quot;, &amp;n);
-    for (int i = 0; i &lt; n; i++) {
-        scanf(&quot;%d&quot;, &amp;tmp);
-        hp.insert((long long)tmp);
+    <span style="color:#66d9ef">int</span> n, tmp;
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>tmp);
+        hp.insert((<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)tmp);
     }
-    while (!hp.empty()) {
-        int c1 = hp.top();
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>hp.empty()) {
+        <span style="color:#66d9ef">int</span> c1 <span style="color:#f92672">=</span> hp.top();
         hp.pop();
-        int c2 = hp.top();
+        <span style="color:#66d9ef">int</span> c2 <span style="color:#f92672">=</span> hp.top();
         hp.pop();
-        ans += (c1 + c2);
-        if (hp.empty()) {
-            printf(&quot;%lld&quot;, ans);
-            return 0;
-        } else {
-            hp.insert(c1 + c2);
+        ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> (c1 <span style="color:#f92672">+</span> c2);
+        <span style="color:#66d9ef">if</span> (hp.empty()) {
+            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%lld</span><span style="color:#e6db74">&#34;</span>, ans);
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        } <span style="color:#66d9ef">else</span> {
+            hp.insert(c1 <span style="color:#f92672">+</span> c2);
         }
     }
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
+</code></pre></div><p>最后一些比较高深的内容和作业的部分，后面补上。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2019-03-05</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-<p>最后一些比较高深的内容和作业的部分，后面补上。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/xmu-acm-training-record-2/">
+                    Next<br>[19-3-9] XMU ACM 集训队笔记(2)
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/">
+                    Previous<br>从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

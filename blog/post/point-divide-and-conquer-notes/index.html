@@ -1,656 +1,1117 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="点分治学习笔记 - 宇宙よりも遠い場所" property="og:title">
-<title>点分治学习笔记 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html><head>
+<title>点分治学习笔记</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
 </script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
         </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
+        
+    </a>
 
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%ad%a5%e9%aa%a4" v-on:click="closeDrawer" id="步骤-nav">
+										 步骤
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%89%be%e9%87%8d%e5%bf%83" v-on:click="closeDrawer" id="第一步找重心-nav">
+										 第一步：找重心
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%89%be%e9%87%8d%e5%bf%83%e7%9a%84%e6%ad%a5%e9%aa%a4" v-on:click="closeDrawer" id="找重心的步骤-nav">
+										 找重心的步骤
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e7%bb%9f%e8%ae%a1%e7%ad%94%e6%a1%88" v-on:click="closeDrawer" id="第二步统计答案-nav">
+										 第二步：统计答案
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%88%a9%e7%94%a8%e5%ae%b9%e6%96%a5%e5%8e%9f%e7%90%86%e5%8e%bb%e9%99%a4%e9%9d%9e%e6%b3%95%e8%b7%af%e5%be%84" v-on:click="closeDrawer" id="利用容斥原理去除非法路径-nav">
+										 利用容斥原理去除非法路径
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e5%88%86%e6%b2%bb%e6%b1%82%e8%a7%a3" v-on:click="closeDrawer" id="第三步分治求解-nav">
+										 第三步：分治求解
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%be%8b%e9%a2%98" v-on:click="closeDrawer" id="例题-nav">
+										 例题
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%ae%a1%e7%ae%97%e4%b8%80%e6%a3%b5%e6%a0%91%e4%b8%8a%e8%b7%9d%e7%a6%bb%e4%b8%ba-k-%e7%9a%84%e7%82%b9%e6%98%af%e5%90%a6%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="计算一棵树上距离为-k-的点是否存在-nav">
+										 计算一棵树上距离为 $k$ 的点是否存在
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
 
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">October 26, 2019</h2>
-      <h1 class="title">点分治学习笔记</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/acm">acm</a>
-    
-        <a class="button is-link" href="/tags/algorithm">algorithm</a>
-    
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%ad%a5%e9%aa%a4" v-on:click="closeDrawer" id="步骤-nav">
+										 步骤
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%89%be%e9%87%8d%e5%bf%83" v-on:click="closeDrawer" id="第一步找重心-nav">
+										 第一步：找重心
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e6%89%be%e9%87%8d%e5%bf%83%e7%9a%84%e6%ad%a5%e9%aa%a4" v-on:click="closeDrawer" id="找重心的步骤-nav">
+										 找重心的步骤
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e7%bb%9f%e8%ae%a1%e7%ad%94%e6%a1%88" v-on:click="closeDrawer" id="第二步统计答案-nav">
+										 第二步：统计答案
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e5%88%a9%e7%94%a8%e5%ae%b9%e6%96%a5%e5%8e%9f%e7%90%86%e5%8e%bb%e9%99%a4%e9%9d%9e%e6%b3%95%e8%b7%af%e5%be%84" v-on:click="closeDrawer" id="利用容斥原理去除非法路径-nav">
+										 利用容斥原理去除非法路径
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e5%88%86%e6%b2%bb%e6%b1%82%e8%a7%a3" v-on:click="closeDrawer" id="第三步分治求解-nav">
+										 第三步：分治求解
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e4%be%8b%e9%a2%98" v-on:click="closeDrawer" id="例题-nav">
+										 例题
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#%e8%ae%a1%e7%ae%97%e4%b8%80%e6%a3%b5%e6%a0%91%e4%b8%8a%e8%b7%9d%e7%a6%bb%e4%b8%ba-k-%e7%9a%84%e7%82%b9%e6%98%af%e5%90%a6%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="计算一棵树上距离为-k-的点是否存在-nav">
+										 计算一棵树上距离为 $k$ 的点是否存在
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
 
-      
-      <div class="content">
-        <p>点分治是大规模处理树上路径问题的工具。大意是找到一个点，递归统计其所有子树的答案，然后利用容斥原理或其它方式合并答案，最后得到整棵树的答案。</p>
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
 
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    点分治学习笔记
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2019-10-26 16:08
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/acm">acm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/algorithm">algorithm</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>点分治是大规模处理树上路径问题的工具。大意是找到一个点，递归统计其所有子树的答案，然后利用容斥原理或其它方式合并答案，最后得到整棵树的答案。</p>
 <h1 id="步骤">步骤</h1>
-
 <p>点分治的大体代码框架是这样的：首先对整棵树找重心点 $rt$，然后从 $rt$ 开始，向下递归求解。</p>
-
 <p>首先，统计以 $rt$ 为根的树的答案，再对 $rt$ 的每棵子树 $ch_i$ 求解，统计得到以 $ch_i$ 为根的子树答案；根据容斥原理，$ans_{rt} - \Sigma _{i=0}^{chsize}ans_i$ 即为整棵树的答案。</p>
-
-<h2 id="第一步-找重心">第一步：找重心</h2>
-
+<h2 id="第一步找重心">第一步：找重心</h2>
 <blockquote>
 <p>重心的定义：在一棵树上找一个点，使得该点所有的子树中，最大的子树节点数最少，那么这个点就是这棵树的重心。</p>
 </blockquote>
-
 <p>找重心的意义：点分治的过程中，要找到一个起始点统计答案，并且从这个点向子树递归。那么选择合理的起始点是很有必要的。</p>
-
 <p>如果数据呈链状结构的时候，头铁地选两端的节点作为根，那么子树的层数是 $O(n)$ 的，对于每个点统计其子树的答案也是 $O(n)$ 的，总时间复杂度是 $O(n^2)$。</p>
-
 <p>而如果选择重心为根，那么每棵子树的大小都不超过 $\frac{n}{2}$，总的递归层数不会超过 $O(log n)$，这样就将复杂度从 $O(n^2)$ 降低到了 $O(nlogn)$。对复杂度的证明在<a href="https://www.cnblogs.com/bztMinamoto/p/9489473.html">这篇文章</a>。</p>
-
 <h3 id="找重心的步骤">找重心的步骤</h3>
-
 <p>根据重心性质，我们只需要进行一次 DFS，在搜索的过程中记录以节点 $i$ 为根的子树大小 $size[i]$ 和 $i$ 的最大子树的大小 $son[i]$ ，最后选出 $son[i]$ 最小的节点即可。</p>
-
 <p>注意，因为进行点分治的树一般是无根树，而我们 DFS 只能朝一个方向统计，因此计算 $son[i]$ 的时候，还要考虑其另一端的节点大小。假设当前统计的子树共有 $sz$ 个节点，那么对 $i$ 下方的所有子树统计完 $son[i]$ 后，需要额外考虑上端的节点，所以最终 $son[i] = max(son[i], sz - son[i])$.</p>
-
 <p>记得在找重心的过程中，跳过已经被打标记的点和父节点。正确地运用 $vis$ 标记是点分治复杂度正确的保证。</p>
-
-<pre><code class="language-cpp">void findRoot(int u, int p) {
-    size[u] = 1, son[u] = 0;
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || v == p)
-            continue;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">findRoot</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p) {
+    size[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, son[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> v <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p)
+            <span style="color:#66d9ef">continue</span>;
         findRoot(v, u);
-        size[u] += size[v];
-        son[u] = max(son[u], size[v]);
+        size[u] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> size[v];
+        son[u] <span style="color:#f92672">=</span> max(son[u], size[v]);
     }
-    son[u] = max(son[u], tot - size[u]);
-    if (son[u] &lt; minv)
-        minv = son[u], rt = u;		
+    son[u] <span style="color:#f92672">=</span> max(son[u], tot <span style="color:#f92672">-</span> size[u]);
+    <span style="color:#66d9ef">if</span> (son[u] <span style="color:#f92672">&lt;</span> minv)
+        minv <span style="color:#f92672">=</span> son[u], rt <span style="color:#f92672">=</span> u;		
 }
-</code></pre>
-
-<h2 id="第二步-统计答案">第二步：统计答案</h2>
-
+</code></pre></div><h2 id="第二步统计答案">第二步：统计答案</h2>
 <p>现在我们考虑从一个任意点开始，如何统计答案。以 <a href="http://poj.org/problem?id=1741">POJ1741 Tree</a> 为例题。</p>
-
 <blockquote>
 <p>给定一个 $n$ 个顶点的树，每条边有一个长度 $w$。定义 $dist(u,v)$ 为点 $u, v$ 之间的最短距离。现给一个整数 $k$，问有多少对 $(u, v)$ 满足 $dist(u, v) \le k$. $(n \le 10000)$.</p>
 </blockquote>
-
 <p>这道题目的数据范围显然要求我们使用 $O(n^2)$ 以下的复杂度解决，所以考虑点分治。</p>
-
 <p>现在我们考虑：如何统计以点重心点 $i$ 为根的子树下，满足 $dist(u, v) \le k$ 的点对 $(u, v)$ 的个数。</p>
-
 <p>要求符合条件的点个数，那么首先需要知道两点路径长度。直接暴力枚举两个点算距离当然是不可行的，时间复杂度高达 $O(n^3)$。即便使用 LCA 优化，也会达到 $O(n^2logn)$.</p>
-
 <p>此时就要运用点分治的思想：<strong>每次考虑一个点，统计该点的答案。所以我们在统计某个点 $i$ 的时候，只需要考虑经过 $i$ 的路径即可。</strong></p>
-
 <p>那么首先 DFS 在 $O(n)$ 时间内，求出 $i$ 的子树下每个点 $j$ 到 $i$ 的距离 $dist(i, j)$。</p>
-
-<pre><code class="language-cpp">void getDist(int u, int p) {
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || v == p)	
-            continue;
-        dep[v] = dep[u] + e[i].w;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getDist</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> v <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p)	
+            <span style="color:#66d9ef">continue</span>;
+        dep[v] <span style="color:#f92672">=</span> dep[u] <span style="color:#f92672">+</span> e[i].w;
         getDist(v, u);
     }
 }
-</code></pre>
-
-<p>此时，假设在以 $i$ 为根的子树中，存在符合条件的点对路径 $(u,v), u \neq v$，那么可能有以下两种情况：</p>
-
+</code></pre></div><p>此时，假设在以 $i$ 为根的子树中，存在符合条件的点对路径 $(u,v), u \neq v$，那么可能有以下两种情况：</p>
 <ol>
 <li>$dist(u, i) + dist(i, v) \le k$ ，即在 $i$ 的两棵<strong>不同</strong>子树中各找两个点，这两个点到 $i$ 的路径之和小于等于 $k$.</li>
 <li>$dist(u, x) + dist(x, v) \le k$，$x$ 是 $i$ 子树中一个异于 $u, v$ 的节点。</li>
 </ol>
-
 <p>根据最小路径的定义，因为 $x$ 是 $i$ 的一个子节点，所以路径 $(u,x,v)$ 不会经过 $i$，从而 $u, v, x$ 一定在 $i$ 的某个子树中。那么对于情况 2 的这部分答案，我们只要对 $i$ 的子树进行递归处理，就可以将其转化为某个节点的情况 1。</p>
-
 <p>也就是说，我们统计的时候只要考虑计算情况 1 中的<strong>合法答案</strong>就可以了。</p>
-
 <p>怎样统计呢？对于这道题目而言，我们将每次对重心点 $i$ 使用 <code>getDist(i, 0)</code> 求出其所有子节点到它自己的距离，存进一个数组 $d$ 中（不要忘记 $i$ 到自身的距离为 0）。要统计有多少点对满足 $dist(u, i) + dist(i, v) \le k$，也就是计算 $d$ 数组中有多少点对之和不超过 $k$。</p>
-
 <p>计算答案的时候可以使用双指针移动法：首先将 $d$ 数组排序。假设当前 $d$ 数组中元素个数为 $dcnt$：</p>
-
 <ul>
 <li>令 $i = 1 \to dcnt-2, j = dcnt - 1$；</li>
 <li>对于每一个 $i$，判断 $d[i] + d[j]$ 是否不超过 $k$.</li>
 <li>如果超过 $k$ 则将 $j$ 前移，否则当前的 $i, j$ 会贡献 $j-i$ 个答案，然后可以对 $i$ 后移继续统计。</li>
 </ul>
-
 <p>上述方法的复杂度是 $O(dcnt)$ 的。当然，对于每一个 $i$，也可以直接二分搜索得到最后一个符合条件的 $j$.</p>
-
-<pre><code class="language-cpp">void getDist(int u, int p) {
-    d[dcnt++] = dep[u];
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || v == p)	
-            continue;
-        dep[v] = dep[u] + e[i].w;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getDist</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p) {
+    d[dcnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>] <span style="color:#f92672">=</span> dep[u];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> v <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p)	
+            <span style="color:#66d9ef">continue</span>;
+        dep[v] <span style="color:#f92672">=</span> dep[u] <span style="color:#f92672">+</span> e[i].w;
         getDist(v, u);
     }
 }
 
-int getAns(int u) {
-    int tmpans = 0;
-    dcnt = 0;
-    getDist(u, 0);
-    sort(d, d + dcnt);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAns</span>(<span style="color:#66d9ef">int</span> u) {
+    <span style="color:#66d9ef">int</span> tmpans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    dcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    getDist(u, <span style="color:#ae81ff">0</span>);
+    sort(d, d <span style="color:#f92672">+</span> dcnt);
     
-    int i = 0, j = dcnt - 1;
-    while (i &lt; j) {
-        if (d[i] + d[j] &lt;= k)
-            tmpans += j - i, i++;
-        else
-            j--;
+    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> dcnt <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> j) {
+        <span style="color:#66d9ef">if</span> (d[i] <span style="color:#f92672">+</span> d[j] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> k)
+            tmpans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> j <span style="color:#f92672">-</span> i, i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        <span style="color:#66d9ef">else</span>
+            j<span style="color:#f92672">-</span><span style="color:#f92672">-</span>;
     }
-    return tmpans;
+    <span style="color:#66d9ef">return</span> tmpans;
 }
-</code></pre>
-
-<p>细心的读者一定发现，刚刚说到考虑情况 1 的时候，有四个字被加粗了——“合法答案”。</p>
-
+</code></pre></div><p>细心的读者一定发现，刚刚说到考虑情况 1 的时候，有四个字被加粗了——“合法答案”。</p>
 <p>为什么说是合法答案？根据题意，我们发现最小距离的定义，本质上其实是两个点的 LCA 到各自的距离之和，即：</p>
-
 <p>$$dist(u, v) = dist(u, lca(u, v)) + dist(v, lca(u, v))$$</p>
-
 <p>但因为我们只计算了 $dist(u, i)$ 和 $dist(v, i)$，有可能 $u, v$ 的最近公共祖先是 $i$ 子树中的另一个节点 $j$ 而不是 $i$。</p>
-
 <p>也就是说实际上存在 $dist(u, v) = dist(u, j) + dist(v, j) &lt; dist(u, i) + dist(v, i)$ 的情况。因此，我们并不能得到 $dist(i, *)$ 后，就简单相加来统计答案。</p>
-
 <p>怎么解决这个问题呢？</p>
-
 <h3 id="利用容斥原理去除非法路径">利用容斥原理去除非法路径</h3>
-
 <p>假设我们对当前树根节点 $i$ 统计答案，求出了一个点对 $(u, v)$ 满足 $dist(u, i) + dist(i, v) \le k$.</p>
-
 <p>同时对于 $i$ 的某一个直接子节点 $j$ ，满足 $dist(u, j) + dist(j, v) \le k$.</p>
-
 <p>那么显然我们不应该在统计 $i$ 的时候将点对 $(u, v)$ 计入答案中，一个原因是 $dist(u, i) + dist(i, v)$ 不满足最短距离的定义，另一个原因是等会如果我们统计 $j$ 所在的子树的时候会将点对 $(u, v)$ 重复计算。</p>
-
 <p>这样一来，去掉它的方法就很显然了：</p>
-
 <ul>
-<li><p>我们首先统计 $i$ 的答案，即满足 $dist(u, i) + dist(i, v) \le k$ 的点对数，记为 $ans_i$.</p></li>
-
-<li><p>然后，对于 $i$ 的所有直接子节点 $j$，统计同时经过 $i,j$ 且满足条件的点对，即经过 $i,j$ 且满足 $dist(u, i) + dist(i, v) \le k$ 的点对数，记为 $ans_j$.</p></li>
-
-<li><p>那么最终 $i$ 点贡献的情况 1 的总答案数为 $ans_i - \Sigma ans_j$.</p></li>
+<li>
+<p>我们首先统计 $i$ 的答案，即满足 $dist(u, i) + dist(i, v) \le k$ 的点对数，记为 $ans_i$.</p>
+</li>
+<li>
+<p>然后，对于 $i$ 的所有直接子节点 $j$，统计同时经过 $i,j$ 且满足条件的点对，即经过 $i,j$ 且满足 $dist(u, i) + dist(i, v) \le k$ 的点对数，记为 $ans_j$.</p>
+</li>
+<li>
+<p>那么最终 $i$ 点贡献的情况 1 的总答案数为 $ans_i - \Sigma ans_j$.</p>
+</li>
 </ul>
-
 <p>也就是像这样：</p>
-
-<pre><code class="language-cpp">solve(int u) {
-    ans += getAns(u);
-    for (auto j : son(u))
-        ans -= getAns(j);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">solve(<span style="color:#66d9ef">int</span> u) {
+    ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> getAns(u);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> j : son(u))
+        ans <span style="color:#f92672">-</span><span style="color:#f92672">=</span> getAns(j);
 }
-</code></pre>
-
-<p>这样我们就去除了理应在 $i$ 的子树中被统计的那部分重复答案。</p>
-
+</code></pre></div><p>这样我们就去除了理应在 $i$ 的子树中被统计的那部分重复答案。</p>
 <p>注意的是，我们在统计经过 $i$ 和 $i$ 的子节点 $j$ 的时候，求的仍然是满足条件 $dist(u, i) + dist(i, v) \le k$ 的节点，而不是满足 $dist(u, j) + dist(j, v) \le k$ 的节点（后者是我们递归子节点时候才统计的）。</p>
-
 <p>也就是说，这里满足的条件始终是相对 $i$ 而言的，所以容斥合并的过程，并不是一个递归的过程，只需要减去 $i$ 的所有直接子节点 $j$ 的 $ans_j$，而不需要对 $j$ 的子节点继续容斥合并。</p>
-
 <blockquote>
 <p>实际上，利用容斥原理合并答案只是一个比较常用的处理方法。对于其他题目，也可以有不同的处理方法——例如，对来自每个子树的答案染色，合并时不处理两个来自同一个子树的结果即可。</p>
 </blockquote>
-
-<h2 id="第三步-分治求解">第三步：分治求解</h2>
-
+<h2 id="第三步分治求解">第三步：分治求解</h2>
 <p>要注意的是，我们分治求解的节点，永远是整棵树的重心节点，或者是上一次递归处理的节点的子树的重心节点。所以分治求解的步骤很简单：</p>
-
 <p>找重心 $rt$ → 统计重心答案 $ans_{rt}$ → 对于 $rt$ 的每一棵子树 $T_i$ 找重心 $rt_i$ → 递归分治求解 $rt_i$.</p>
-
 <p>统计答案的思想在上一步我们已经解决了。所以代码我们可以很容易地写出来：</p>
-
-<pre><code class="language-cpp">void solve(int u) {
-    dep[u] = 0;
-    ans += getAns(u);
-    vis[u] = 1;
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)])
-            continue;
-        ans -= getAns(v);
-        tot = size[v];
-        mins = INF;
-        findRoot(v, 0);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>(<span style="color:#66d9ef">int</span> u) {
+    dep[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> getAns(u);
+    vis[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)])
+            <span style="color:#66d9ef">continue</span>;
+        ans <span style="color:#f92672">-</span><span style="color:#f92672">=</span> getAns(v);
+        tot <span style="color:#f92672">=</span> size[v];
+        mins <span style="color:#f92672">=</span> INF;
+        findRoot(v, <span style="color:#ae81ff">0</span>);
         solve(rt);
     }
 }
-</code></pre>
-
-<p>现在来说说，刚刚我们一直没有说到 $vis$ 标记的作用。注意到我们每一次分治的下一个点都是子树的重心，这个重心点极有可能不是当前点 $u$ 的子节点，那么对这个节点分治的时候，方向是不确定的，有可能会向后回到 $u$，所以使用 $vis$ 对处理过的点进行标记，才能保证点分治的时间复杂度和正确性。</p>
-
+</code></pre></div><p>现在来说说，刚刚我们一直没有说到 $vis$ 标记的作用。注意到我们每一次分治的下一个点都是子树的重心，这个重心点极有可能不是当前点 $u$ 的子节点，那么对这个节点分治的时候，方向是不确定的，有可能会向后回到 $u$，所以使用 $vis$ 对处理过的点进行标记，才能保证点分治的时间复杂度和正确性。</p>
 <p>另外，当我们统计点 $u$ 的时候要算的是其它子节点到 $u$ 的距离，而 $u$ 到自身的距离为 $0$, 所以统计的时候要初始化 $dep[u] = 0$.</p>
-
 <p>总的代码会像下面这样：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-struct Edge {
-    int u, v, w, next;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span> {
+    <span style="color:#66d9ef">int</span> u, v, w, next;
 };
 
-const int MAXN = 10050,
-    INF = 0x3f3f3f3f;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10050</span>,
+    INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
 
-int n, k, cnt = 1, dcnt = 0, rt = 0, mins = INF, tot = 0, ans = 0;
+<span style="color:#66d9ef">int</span> n, k, cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, dcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, mins <span style="color:#f92672">=</span> INF, tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-int head[MAXN], son[MAXN], size[MAXN], d[MAXN], dep[MAXN];
-bool vis[MAXN];
-Edge e[MAXN &lt;&lt; 1];
+<span style="color:#66d9ef">int</span> head[MAXN], son[MAXN], size[MAXN], d[MAXN], dep[MAXN];
+<span style="color:#66d9ef">bool</span> vis[MAXN];
+Edge e[MAXN <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>];
 
-template&lt;class T&gt; void read(T &amp;x) {
-    T a = 0, f = 1;
-    char ch = getchar();
-    while (ch &lt; '0' || ch &gt; '9') {
-        if (ch == '-')
-            f = -1;
-        ch = getchar();
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> read(T <span style="color:#f92672">&amp;</span>x) {
+    T a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, f <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+    <span style="color:#66d9ef">while</span> (ch <span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> ch <span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+        <span style="color:#66d9ef">if</span> (ch <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span>)
+            f <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        ch <span style="color:#f92672">=</span> getchar();
     }
-    while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {
-        a = a * 10 + ch - '0';
-        ch = getchar();
+    <span style="color:#66d9ef">while</span> (ch <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> ch <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+        a <span style="color:#f92672">=</span> a <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>;
+        ch <span style="color:#f92672">=</span> getchar();
     }
-    x = a * f;
+    x <span style="color:#f92672">=</span> a <span style="color:#f92672">*</span> f;
 }
 
-void findRoot(int u, int p) {
-    size[u] = 1, son[u] = 0;
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || v == p)
-            continue;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">findRoot</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p) {
+    size[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, son[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> v <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p)
+            <span style="color:#66d9ef">continue</span>;
         findRoot(v, u);
-        size[u] += size[v];
-        son[u] = max(son[u], size[v]);
+        size[u] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> size[v];
+        son[u] <span style="color:#f92672">=</span> max(son[u], size[v]);
     }
-    son[u] = max(son[u], tot - son[u]);
-    if (son[u] &lt; mins)
-        mins = son[u], rt = u;
+    son[u] <span style="color:#f92672">=</span> max(son[u], tot <span style="color:#f92672">-</span> son[u]);
+    <span style="color:#66d9ef">if</span> (son[u] <span style="color:#f92672">&lt;</span> mins)
+        mins <span style="color:#f92672">=</span> son[u], rt <span style="color:#f92672">=</span> u;
 }
 
-void getDist(int u, int p) {
-    d[dcnt++] = dep[u];
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || v == p)	
-            continue;
-        dep[v] = dep[u] + e[i].w;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getDist</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p) {
+    d[dcnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>] <span style="color:#f92672">=</span> dep[u];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> v <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p)	
+            <span style="color:#66d9ef">continue</span>;
+        dep[v] <span style="color:#f92672">=</span> dep[u] <span style="color:#f92672">+</span> e[i].w;
         getDist(v, u);
     }
 }
 
-int getAns(int u) {
-    int tmpans = 0;
-    dcnt = 0;
-    getDist(u, 0);
-    sort(d, d + dcnt);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAns</span>(<span style="color:#66d9ef">int</span> u) {
+    <span style="color:#66d9ef">int</span> tmpans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    dcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    getDist(u, <span style="color:#ae81ff">0</span>);
+    sort(d, d <span style="color:#f92672">+</span> dcnt);
     
-    int i = 0, j = dcnt - 1;
-    while (i &lt; j) {
-        if (d[i] + d[j] &lt;= k)
-            tmpans += j - i, i++;
-        else
-            j--;
+    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> dcnt <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> j) {
+        <span style="color:#66d9ef">if</span> (d[i] <span style="color:#f92672">+</span> d[j] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> k)
+            tmpans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> j <span style="color:#f92672">-</span> i, i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        <span style="color:#66d9ef">else</span>
+            j<span style="color:#f92672">-</span><span style="color:#f92672">-</span>;
     }
-    return tmpans;
+    <span style="color:#66d9ef">return</span> tmpans;
 }
 
-void solve(int u) {
-    dep[u] = 0;
-    ans += getAns(u);
-    vis[u] = 1;
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)])
-            continue;
-        ans -= getAns(v);
-        tot = size[v];
-        mins = INF;
-        findRoot(v, 0);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>(<span style="color:#66d9ef">int</span> u) {
+    dep[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> getAns(u);
+    vis[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)])
+            <span style="color:#66d9ef">continue</span>;
+        ans <span style="color:#f92672">-</span><span style="color:#f92672">=</span> getAns(v);
+        tot <span style="color:#f92672">=</span> size[v];
+        mins <span style="color:#f92672">=</span> INF;
+        findRoot(v, <span style="color:#ae81ff">0</span>);
         solve(rt);
     }
 }
 
-void add_edge(int u, int v, int w) {
-    e[cnt] = (Edge){ u, v, w, head[u] };
-    head[u] = cnt++;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_edge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
+    e[cnt] <span style="color:#f92672">=</span> (Edge){ u, v, w, head[u] };
+    head[u] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
 }
 
-int main() {
-    while (1) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
         read(n), read(k);
-        if (n == 0 &amp;&amp; k == 0)	
-            break;
-        memset(head, 0, sizeof head);
-        memset(vis, 0, sizeof vis);
-        memset(size, 0, sizeof size);
-        memset(son, 0, sizeof son);
-        memset(dep, 0, sizeof dep);
+        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> k <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)	
+            <span style="color:#66d9ef">break</span>;
+        memset(head, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> head);
+        memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+        memset(size, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> size);
+        memset(son, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> son);
+        memset(dep, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dep);
         
-        cnt = 1, dcnt = 0, rt = 0, mins = INF, tot = 0, ans = 0;
+        cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, dcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, mins <span style="color:#f92672">=</span> INF, tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
         
-        for (int i = 0, u, v, w; i &lt; n - 1; i++) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, u, v, w; i <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
             read(u), read(v), read(w);
             add_edge(u, v, w), add_edge(v, u, w);
         }
         
-        tot = n;
-        findRoot(1, 0);
+        tot <span style="color:#f92672">=</span> n;
+        findRoot(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
         solve(rt);
         
-        printf(&quot;%d\n&quot;, ans);
+        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
     }
     
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<h1 id="例题">例题</h1>
-
+</code></pre></div><h1 id="例题">例题</h1>
 <h2 id="计算一棵树上距离为-k-的点是否存在">计算一棵树上距离为 $k$ 的点是否存在</h2>
-
 <p><a href="https://www.luogu.org/problem/P3806">luogu P3806 【模板】点分治1</a></p>
-
 <blockquote>
 <p>给定一棵有 $n$ 个点的树，$m$ 次询问树上距离为 $k$ 的点对是否存在。($n \le 10000, m \le 100$)</p>
 </blockquote>
-
-<p>这道题和树上距离（路径）相关，并且 $n$ 的规模达到了 $10000$, 所以我们考虑使用点分治解决（<s>废话那不然怎么叫点分治模板</s>）.</p>
-
+<p>这道题和树上距离（路径）相关，并且 $n$ 的规模达到了 $10000$, 所以我们考虑使用点分治解决（<!-- raw HTML omitted -->废话那不然怎么叫点分治模板<!-- raw HTML omitted -->）.</p>
 <p>找重心和分治的步骤大家都差不多，关键是统计答案的步骤。首先如何统计距离为 $k$ 的点对个数，显然我们还是对于每一个重心点 $i$ 求其他点到 $i$ 的距离 $d[i]$，然后在 $d$ 中找两个来自不同子树的点 $d[u], d[v]$ 且满足 $d[u] + d[v] = k$.</p>
-
 <p>虽然这道题不像上面那道题一样求小于等于的情况，不适合用双指针移动的线性方法统计；但 $O(n^2)$ 的暴力枚举法及其优化都是很显然的——很自然地想到用二分查找就可以计数了，对吧。首先我们枚举每一个 $d[i]$，在 $d$ 数组中二分查找 $k - d[i]$ 是否存在（只需要找到一个即可），用 STL 的 <code>lower_bound</code> 函数就可以啦。</p>
-
 <p>接下来是去掉不合法的答案。可以用上面那道题的的方法；但因为这道题是要判断存在性，我们可以直接用染色法：计算 $d$ 数组的时候同时记录其来自重心点 $rt$ 的哪一个子节点 $j$，然后在处理 $d[i]$、判断 $k - d[i]$ 的存在性时，忽略那些与 $d[i]$ 来自同一个子节点的 $k - d[i]$ 即可。</p>
-
 <p>最后，因为这道题要询问多个 $k$，但是询问数量 $m$ 是很小的，因此我们每次统计答案的时候就把所有的询问都扫一遍，一个个判断是否符合并标记；若对于已经存在的询问 $k$ 则可以直接跳过。</p>
-
 <p>参考代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-using namespace std;
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ll;
 
-typedef long long ll;
-
-struct Edge {
-    int u, v, next;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span> {
+    <span style="color:#66d9ef">int</span> u, v, next;
     ll w;
 };
 
-struct Dist {
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Dist</span> {
     ll w;
-    int par;
+    <span style="color:#66d9ef">int</span> par;
     
-    bool operator &lt; (const Dist &amp;b) const {
-        return w &lt; b.w;
+    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">const</span> Dist <span style="color:#f92672">&amp;</span>b) <span style="color:#66d9ef">const</span> {
+        <span style="color:#66d9ef">return</span> w <span style="color:#f92672">&lt;</span> b.w;
     }
 };
 
-const int MAXN = 10050,
-    MAXM = 150,
-    INF = 0x3f3f3f3f;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10050</span>,
+    MAXM <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>,
+    INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
     
-int n, m, cnt = 1, minv = INF, rt = 0, tot = 0, dcnt = 0;
+<span style="color:#66d9ef">int</span> n, m, cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, minv <span style="color:#f92672">=</span> INF, rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, dcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-bool vis[MAXN];
-int head[MAXN], qry[MAXM], ans[MAXM], size[MAXN], son[MAXN];
-Edge e[MAXN &lt;&lt; 1];
+<span style="color:#66d9ef">bool</span> vis[MAXN];
+<span style="color:#66d9ef">int</span> head[MAXN], qry[MAXM], ans[MAXM], size[MAXN], son[MAXN];
+Edge e[MAXN <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>];
 Dist d[MAXN];
 
-template&lt;class T&gt; void read(T &amp;x) {
-    T a = 0, f = 1;
-    char ch = getchar();
-    while (ch &lt; '0' || ch &gt; '9') {
-        if (ch == '-')
-            f = -1;
-        ch = getchar();
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> read(T <span style="color:#f92672">&amp;</span>x) {
+    T a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, f <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+    <span style="color:#66d9ef">while</span> (ch <span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> ch <span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+        <span style="color:#66d9ef">if</span> (ch <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span>)
+            f <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        ch <span style="color:#f92672">=</span> getchar();
     }
-    while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {
-        a = a * 10 + ch - '0';
-        ch = getchar();
+    <span style="color:#66d9ef">while</span> (ch <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> ch <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>) {
+        a <span style="color:#f92672">=</span> a <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>;
+        ch <span style="color:#f92672">=</span> getchar();
     }
-    x = a * f;
+    x <span style="color:#f92672">=</span> a <span style="color:#f92672">*</span> f;
 }
 
-void add_edge(int u, int v, ll w) {
-    e[cnt] = (Edge){ u, v, head[u], w };
-    head[u] = cnt++;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_edge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, ll w) {
+    e[cnt] <span style="color:#f92672">=</span> (Edge){ u, v, head[u], w };
+    head[u] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
 }
 
-void findRoot(int u, int p) {
-    size[u] = 1, son[u] = 0;
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || v == p)
-            continue;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">findRoot</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p) {
+    size[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, son[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> v <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p)
+            <span style="color:#66d9ef">continue</span>;
         findRoot(v, u);
-        size[u] += size[v];
-        son[u] = max(son[u], size[v]);
+        size[u] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> size[v];
+        son[u] <span style="color:#f92672">=</span> max(son[u], size[v]);
     }
-    son[u] = max(son[u], tot - size[u]);
-    if (son[u] &lt; minv)
-        minv = son[u], rt = u;		
+    son[u] <span style="color:#f92672">=</span> max(son[u], tot <span style="color:#f92672">-</span> size[u]);
+    <span style="color:#66d9ef">if</span> (son[u] <span style="color:#f92672">&lt;</span> minv)
+        minv <span style="color:#f92672">=</span> son[u], rt <span style="color:#f92672">=</span> u;		
 }
 
-void getDist(int u, int p, int par, ll dt) {
-    d[dcnt++] = (Dist) { dt, par };
-    for (int i = head[u], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)] || p == v)
-            continue;
-        getDist(v, u, par, dt + e[i].w);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getDist</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> p, <span style="color:#66d9ef">int</span> par, ll dt) {
+    d[dcnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>] <span style="color:#f92672">=</span> (Dist) { dt, par };
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)] <span style="color:#f92672">|</span><span style="color:#f92672">|</span> p <span style="color:#f92672">=</span><span style="color:#f92672">=</span> v)
+            <span style="color:#66d9ef">continue</span>;
+        getDist(v, u, par, dt <span style="color:#f92672">+</span> e[i].w);
     }
 }
 
-void solve(int cur) {
-    dcnt = 0;
-    for (int i = head[cur], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)])
-            continue;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>(<span style="color:#66d9ef">int</span> cur) {
+    dcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[cur], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)])
+            <span style="color:#66d9ef">continue</span>;
         getDist(v, cur, v, e[i].w);
     }
-    d[dcnt++] = (Dist){ 0ll, 0 };
-    sort(d, d + dcnt);
+    d[dcnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>] <span style="color:#f92672">=</span> (Dist){ <span style="color:#ae81ff">0ll</span>, <span style="color:#ae81ff">0</span> };
+    sort(d, d <span style="color:#f92672">+</span> dcnt);
     
-    for (int i = 0; i &lt; m; i++) {
-        if (ans[i])
-            continue;
-        int l = 0;
-        while (l &lt; dcnt &amp;&amp; d[l].w + d[dcnt-1].w &lt; qry[i])
-            l++;
-        while (l &lt; dcnt &amp;&amp; !ans[i]) {
-            if (qry[i] - d[l].w &lt; d[l].w)
-                break;
-            int pos = lower_bound(d, d + dcnt, (Dist){ qry[i] - d[l].w, 0 }) - d;
-            while (pos &lt; dcnt &amp;&amp; d[pos].par == d[l].par)
-                pos++;
-            if (pos &lt; dcnt &amp;&amp; d[pos].w + d[l].w == qry[i])
-                ans[i] = 1;
-            l++;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (ans[i])
+            <span style="color:#66d9ef">continue</span>;
+        <span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;</span> dcnt <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> d[l].w <span style="color:#f92672">+</span> d[dcnt<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>].w <span style="color:#f92672">&lt;</span> qry[i])
+            l<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;</span> dcnt <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#f92672">!</span>ans[i]) {
+            <span style="color:#66d9ef">if</span> (qry[i] <span style="color:#f92672">-</span> d[l].w <span style="color:#f92672">&lt;</span> d[l].w)
+                <span style="color:#66d9ef">break</span>;
+            <span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> lower_bound(d, d <span style="color:#f92672">+</span> dcnt, (Dist){ qry[i] <span style="color:#f92672">-</span> d[l].w, <span style="color:#ae81ff">0</span> }) <span style="color:#f92672">-</span> d;
+            <span style="color:#66d9ef">while</span> (pos <span style="color:#f92672">&lt;</span> dcnt <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> d[pos].par <span style="color:#f92672">=</span><span style="color:#f92672">=</span> d[l].par)
+                pos<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+            <span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&lt;</span> dcnt <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> d[pos].w <span style="color:#f92672">+</span> d[l].w <span style="color:#f92672">=</span><span style="color:#f92672">=</span> qry[i])
+                ans[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            l<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
         }
     }
 }
 
-void work(int x) {
-    vis[x] = 1;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">work</span>(<span style="color:#66d9ef">int</span> x) {
+    vis[x] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
     solve(x);
-    for (int i = head[x], v; i; i = e[i].next) {
-        if (vis[(v = e[i].v)])
-            continue;
-        rt = 0, minv = INF, tot = size[v];
-        findRoot(v, 0);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[x], v; i; i <span style="color:#f92672">=</span> e[i].next) {
+        <span style="color:#66d9ef">if</span> (vis[(v <span style="color:#f92672">=</span> e[i].v)])
+            <span style="color:#66d9ef">continue</span>;
+        rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, minv <span style="color:#f92672">=</span> INF, tot <span style="color:#f92672">=</span> size[v];
+        findRoot(v, <span style="color:#ae81ff">0</span>);
         work(rt);
     }
 }
 
-int main() {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
     read(n), read(m);
-    for (int i = 0, u, v; i &lt; n-1; i++) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, u, v; i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
         ll w;
         read(u), read(v), read(w);
         add_edge(u, v, w);
         add_edge(v, u, w);
     }
     
-    for (int i = 0; i &lt; m; i++)
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
         read(qry[i]);
 
-    tot = n;
-    findRoot(1, 0);
+    tot <span style="color:#f92672">=</span> n;
+    findRoot(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
     work(rt);
     
-    for (int i = 0; i &lt; m; i++)
-        printf(ans[i] ? &quot;AYE\n&quot; : &quot;NAY\n&quot;);
-    return 0;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        printf(ans[i] <span style="color:#f92672">?</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">AYE</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">NAY</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+</code></pre></div>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2019-10-26</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
-
-
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/">
+                    Next<br>【趣味向】MATLAB 实现函数卷积演示动画
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/">
+                    Previous<br>バンドリ!ガールズバンドパーティ!（BanG Dream! 少女乐团派对）游戏资源/歌曲解包
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
 <script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
 
 
-</body>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>

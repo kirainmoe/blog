@@ -1,224 +1,355 @@
-<body class="line-numbers">
-  <!DOCTYPE html>
-<html lang="en-us">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta content="" name="keywords">
-<meta content="环境变量导致的 webpack 打包时不压缩 CSS 文件 - 宇宙よりも遠い場所" property="og:title">
-<title>环境变量导致的 webpack 打包时不压缩 CSS 文件 | 宇宙よりも遠い場所</title>
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://kirainmoe.com//css/style.css">
-<link rel="stylesheet" href="https://kirainmoe.com//css/custom.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", 
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"], 
-          showMathMenu: false
-        }
-	  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<!DOCTYPE html>
+<html><head>
+<title>环境变量导致的 webpack 打包时不压缩 CSS 文件</title>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
-
-<style type="text/css">
-	.nav-left {	display: block; text-align: left; }
-	.nav-link { display: inline-block; margin: 0px 20px 0px 0px;  }
-	.nav-item { justify-content: flex-start;  }
-	.nav-title { margin: 0px; font-size: 28px; font-weight: bold;  }
-	.nav-title a { padding: 10px 0px;  }
-	@media screen and (max-width: 700px) {
-		.nav { display: block; text-align: center;  }
-		.nav-title > .nav-item { display: block;  text-align: center; }
-		.nav-left { text-align: center;  }
-	}
-</style>
-
-  <section class="section navigator">
-  <div class="navigator-background"></div>
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <h1 class="nav-title"><a class="nav-item" href="https://kirainmoe.com/">宇宙よりも遠い場所</a></h1>
-        <div class="nav-links">
-          <a class="nav-link" href="/pages/guestbook/">Guestbook</a>
-          <a class="nav-link" href="/pages/friends/">Friends</a>        
-          <a class="nav-link" href="https://about.me/kirainmoe">About</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/kirainmoe">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="https://weibo.com/returnnnn">
-            <span class="icon">
-              <i class="fa fa-weibo"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
-    </nav>
-  </div>
-</section>
-
-<div class="return-top">
-  <i class="fa fa-angle-up"></i>
-</div>
-
-<div class="loading-progress"></div>
-  <section class="section content-container">
-    <div class="container article-here">
-      <h2 class="subtitle is-6">January 7, 2018</h2>
-      <h1 class="title">环境变量导致的 webpack 打包时不压缩 CSS 文件</h1>
-      
-      <div class="tags">
-    
-        <a class="button is-link" href="/tags/webpack">webpack</a>
-    
-        <a class="button is-link" href="/tags/frontend">frontend</a>
-    
-</div>
-
-      
-      <div class="content">
-        <p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。</p>
-
-<p>通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：</p>
-
-<pre><code class="language-js">{
-  test: /(\.styl)$/,
-  loaders: [
-    'style-loader',
-    {
-      loader: 'css-loader',
-      options: {
-        minimize: process.env.NODE_ENV === 'production'
-      }
-    }
-    'postcss-loader',
-    'stylus-loader'
-  ]
-}
-</code></pre>
-
-<p>因为个人习惯，我一般不把 <code>minimize</code> 属性直接设置为 true，而是判断当前是否将要打包成生产环境用的文件，如果是才压缩 CSS. 然而就在这个地方出了锅，发现弄出来的 CSS 根本没压缩。一开始以为是 ExtractTextPlugin 的问题，后来发现如果直接把 minimize 的值设置为 true 的时候就会压缩，那么问题就在于 <code>process.env.NODE_ENV === 'production'</code> 表达式返回了不正确的值。</p>
-
-<p>导致这个原因的问题在于没有设置 <code>NODE_ENV</code> 环境变量= =这个变量需要在运行 webpack 的时候设置，之前一直以为使用 <code>webpack.DefinePlugin</code> 定义 <code>process.env.NODE_ENV</code> 就可以的：</p>
-
-<pre><code class="language-js">  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production')
-  })
-</code></pre>
-
-<p>猜测 <code>webpack.DefinePlugin</code> 插件定义的变量只对项目的代码有效（就是对要打包的目标生效），但是对打包工具 webpack 自身似乎是无效的，所以即便在项目中 <code>process.env.NODE_ENV</code> 能取到正常的值，但是对于其他情况下 <code>process.env.NODE_ENV</code> 就没有定义了。</p>
-
-<p>解决方法就是手动在终端中定义 <code>process.env.NODE_ENV</code> 变量，但是这样太麻烦了，而且还有跨系统兼容性的问题。可以使用 <a href="https://github.com/kentcdodds/cross-env">cross-env</a> 来定义环境变量，然后再通过其启动 webpack.</p>
-
-<pre><code class="language-bash">yarn add --dev cross-env
-</code></pre>
-
-<p>然后修改 <code>package.json</code> 中的 <code>script</code> 字段，在执行打包命令的时候先调用 cross-env 设置环境变量，然后再唤起 webpack. 例如：</p>
-
-<pre><code class="language-js">&quot;scripts&quot;: {
-  &quot;dist&quot;: &quot;cross-env NODE_ENV=production webpack --config config/webpack.config.js --env=production&quot;,
-  &quot;serve&quot;: &quot;cross-env NODE_ENV=dev webpack-dev-server --progress --config config/webpack.config.js --env=dev&quot;,
-  &quot;serve:dist&quot;: &quot;cross-env NODE_ENV=dist wepack-dev-server --progress --config config/webpack.config.js --env=production&quot;,
-  &quot;watch&quot;: &quot;cross-env NODE_ENV=dev webpack --progress --watch --config config/webpack.config.js --env=dev&quot;
-},
-</code></pre>
-
-<p>这样子再运行打包生产环境文件的命令的时候，webpack 就能获取到正确的 <code>process.env.NODE_ENV</code> 环境变量，就能正常压缩 CSS 了。</p>
-      </div>
-    </div>
-  
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'yume-diary';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
 
-  </section>
-  <section class="section footblock">
-  <img src="https://secure.gravatar.com/avatar/c47187d311099868de825697fa419654?s=200&r=G" width="70px" height="70px" class="avatar">
-  <div class="container has-text-centered">
-    <p>&copy;2016-2019&nbsp;&nbsp;<a href='https://kirainmoe.com'>宇宙よりも遠い場所</a>  / Published with <a href="https://gohugo.io">Hugo</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a> Licensed</p>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" integrity="sha256-HWJnMZHGx7U1jmNfxe4yaQedmpo/mtxWSIXvcJkLIf4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
-
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-matlab.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-c.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-cpp.min.js"></script>
-
-
-<canvas id="live2d" width="300" height="300"></canvas>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script src="https://kirainmoe.com//index.js"></script>
-<script type="text/javascript" src="https://kirainmoe.com//js/live2d.js"></script>
-<script type="text/javascript">
-  if (!window.mobilecheck())
-  loadlive2d("live2d", "https:\/\/kirainmoe.com\//model/aya/model.json");
-</script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-111347233-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
-</body>
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.75e350a979186b10ecf739a405199a5eaf37fd6bd3463a78ae5c70c634963fde.css" integrity="sha256-deNQqXkYaxDs9zmkBRmaXq83/WvTRjp4rlxwxjSWP94=" media="screen">
+
+<script src="https://kirainmoe.com//js/loadCSS.js"></script>
+<script src="https://kirainmoe.com//js/table.js"></script>
+
+
+<script src="https://kirainmoe.com//js/toc.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none", 
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], 
+        showMathMenu: false
+      }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://kirainmoe.com/">
+    
+        <div class="nav-title">
+            宇宙よりも遠い場所
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/guestbook">
+                    留言板
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/friends">
+                    友情链接
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/tags">
+                    标签
+                </a>
+        
+            
+                
+                
+                <a class="a-block nav-link-item false" href="/pages/about">
+                    关于
+                </a>
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        &copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
+                        留言板
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
+                        友情链接
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/tags">
+                        标签
+                    </a>
+            
+                
+                    
+                    
+                    <a class="a-block drawer-menu-item false" href="/pages/about">
+                        关于
+                    </a>
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
+            宇宙よりも遠い場所
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://kirainmoe.com/">
+        <div class="single-column-header-title">宇宙よりも遠い場所</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                <div class="post-title">
+                    环境变量导致的 webpack 打包时不压缩 CSS 文件
+                    <div class="post-meta">
+                        <time itemprop="datePublished">
+                            2018-01-07 15:23
+                        </time>
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/webpack">webpack</a>
+                                &nbsp;
+                            
+                                <a href="/tags/frontend">frontend</a>
+                                &nbsp;
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。</p>
+<p>通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+  <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/(\.styl)$/</span>,
+  <span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#39;style-loader&#39;</span>,
+    {
+      <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css-loader&#39;</span>,
+      <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">minimize</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NODE_ENV</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;production&#39;</span>
+      }
+    }
+    <span style="color:#e6db74">&#39;postcss-loader&#39;</span>,
+    <span style="color:#e6db74">&#39;stylus-loader&#39;</span>
+  ]
+}
+</code></pre></div><p>因为个人习惯，我一般不把 <code>minimize</code> 属性直接设置为 true，而是判断当前是否将要打包成生产环境用的文件，如果是才压缩 CSS. 然而就在这个地方出了锅，发现弄出来的 CSS 根本没压缩。一开始以为是 ExtractTextPlugin 的问题，后来发现如果直接把 minimize 的值设置为 true 的时候就会压缩，那么问题就在于 <code>process.env.NODE_ENV === 'production'</code> 表达式返回了不正确的值。</p>
+<p>导致这个原因的问题在于没有设置 <code>NODE_ENV</code> 环境变量= =这个变量需要在运行 webpack 的时候设置，之前一直以为使用 <code>webpack.DefinePlugin</code> 定义 <code>process.env.NODE_ENV</code> 就可以的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">webpack</span>.<span style="color:#a6e22e">DefinePlugin</span>({
+    <span style="color:#e6db74">&#39;process.env.NODE_ENV&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#e6db74">&#39;production&#39;</span>)
+  })
+</code></pre></div><p>猜测 <code>webpack.DefinePlugin</code> 插件定义的变量只对项目的代码有效（就是对要打包的目标生效），但是对打包工具 webpack 自身似乎是无效的，所以即便在项目中 <code>process.env.NODE_ENV</code> 能取到正常的值，但是对于其他情况下 <code>process.env.NODE_ENV</code> 就没有定义了。</p>
+<p>解决方法就是手动在终端中定义 <code>process.env.NODE_ENV</code> 变量，但是这样太麻烦了，而且还有跨系统兼容性的问题。可以使用 <a href="https://github.com/kentcdodds/cross-env">cross-env</a> 来定义环境变量，然后再通过其启动 webpack.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yarn add --dev cross-env
+</code></pre></div><p>然后修改 <code>package.json</code> 中的 <code>script</code> 字段，在执行打包命令的时候先调用 cross-env 设置环境变量，然后再唤起 webpack. 例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+  <span style="color:#e6db74">&#34;dist&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=production webpack --config config/webpack.config.js --env=production&#34;</span>,
+  <span style="color:#e6db74">&#34;serve&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=dev webpack-dev-server --progress --config config/webpack.config.js --env=dev&#34;</span>,
+  <span style="color:#e6db74">&#34;serve:dist&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=dist wepack-dev-server --progress --config config/webpack.config.js --env=production&#34;</span>,
+  <span style="color:#e6db74">&#34;watch&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=dev webpack --progress --watch --config config/webpack.config.js --env=dev&#34;</span>
+},
+</code></pre></div><p>这样子再运行打包生产环境文件的命令的时候，webpack 就能获取到正确的 <code>process.env.NODE_ENV</code> 环境变量，就能正常压缩 CSS 了。</p>
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2018-01-07</p>
+                </div>
+                
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/">
+                    Next<br>Progressive Web App 初体验
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/">
+                    Previous<br>使用 Typescript 写 React 遇到的一些坑
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="post-comment-wrapper">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">&copy;
+	
+	2016-2020 宇宙よりも遠い場所
+	
+
+/
+
+<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
+
+<br>
+
+Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
+</div>
+    	</div>
+    <script src="https://kirainmoe.com//js/journal.js"></script>
+    </body>
+</html>
