@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2016-2020 宇宙よりも遠い場所</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 16:08:20 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2020 18:35:07 +0800</lastBuildDate>
     
 	<atom:link href="https://kirainmoe.com/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【学习笔记】线性规划的单纯形算法</title>
+      <link>https://kirainmoe.com/blog/post/simplex-algorithm/</link>
+      <pubDate>Tue, 11 Feb 2020 18:35:07 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/simplex-algorithm/</guid>
+      <description>&lt;h1 id=&#34;单纯形算法干啥用的&#34;&gt;单纯形算法？干啥用的？&lt;/h1&gt;
+&lt;p&gt;它可以用于求解多维线性规划问题。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>点分治学习笔记</title>
