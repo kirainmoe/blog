@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Friends</title>
+<title>使用 fetch 实现带进度的文件下载</title>
 
 <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
@@ -95,9 +95,7 @@ if (!doNotTrack) {
             
                 
                 
-                    
-                
-                <a class="a-block nav-link-item active" href="/pages/friends">
+                <a class="a-block nav-link-item false" href="/pages/friends">
                     友情链接
                 </a>
         
@@ -156,8 +154,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#moefront-family" v-on:click="closeDrawer" id="moefront-family-nav">
-										 MoeFront Family
+				 					<a href="#%e8%83%8c%e6%99%af%e6%95%85%e4%ba%8b" v-on:click="closeDrawer" id="背景故事-nav">
+										 背景故事
 									</a>
 								</li>
 						
@@ -175,8 +173,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#oiacm" v-on:click="closeDrawer" id="oiacm-nav">
-										 OI/ACM
+				 					<a href="#fetch-%e5%ae%9e%e7%8e%b0%e6%96%87%e4%bb%b6%e4%b8%8b%e8%bd%bd" v-on:click="closeDrawer" id="fetch-实现文件下载-nav">
+										 fetch() 实现文件下载
 									</a>
 								</li>
 						
@@ -194,8 +192,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#other" v-on:click="closeDrawer" id="other-nav">
-										 Other
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e8%bf%9b%e5%ba%a6%e6%98%be%e7%a4%ba" v-on:click="closeDrawer" id="实现进度显示-nav">
+										 实现进度显示
 									</a>
 								</li>
 						
@@ -232,9 +230,7 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
                 
                     
                     
-                        
-                    
-                    <a class="a-block drawer-menu-item active" href="/pages/friends">
+                    <a class="a-block drawer-menu-item false" href="/pages/friends">
                         友情链接
                     </a>
             
@@ -272,8 +268,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#moefront-family" v-on:click="closeDrawer" id="moefront-family-nav">
-										 MoeFront Family
+				 					<a href="#%e8%83%8c%e6%99%af%e6%95%85%e4%ba%8b" v-on:click="closeDrawer" id="背景故事-nav">
+										 背景故事
 									</a>
 								</li>
 						
@@ -291,8 +287,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#oiacm" v-on:click="closeDrawer" id="oiacm-nav">
-										 OI/ACM
+				 					<a href="#fetch-%e5%ae%9e%e7%8e%b0%e6%96%87%e4%bb%b6%e4%b8%8b%e8%bd%bd" v-on:click="closeDrawer" id="fetch-实现文件下载-nav">
+										 fetch() 实现文件下载
 									</a>
 								</li>
 						
@@ -310,8 +306,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#other" v-on:click="closeDrawer" id="other-nav">
-										 Other
+				 					<a href="#%e5%ae%9e%e7%8e%b0%e8%bf%9b%e5%ba%a6%e6%98%be%e7%a4%ba" v-on:click="closeDrawer" id="实现进度显示-nav">
+										 实现进度显示
 									</a>
 								</li>
 						
@@ -362,14 +358,23 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-head-wrapper-text-only"
                  style="background-image: url('/')">
                 <div class="post-title">
-                    Friends
+                    使用 fetch 实现带进度的文件下载
                     <div class="post-meta">
                         <time itemprop="datePublished">
-                            2016-04-09 17:43
+                            2020-03-18 20:16
                         </time>
 
                         
 
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/front-end">front-end</a>
+                                &nbsp;
+                            
+                                <a href="/tags/fetch">fetch</a>
+                                &nbsp;
+                            
                         
                     </div>
                 </div>
@@ -377,51 +382,24 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             
             <div class="post-body-wrapper">
                 <div class="post-body">
-                    <!-- raw HTML omitted -->
-<h1 id="moefront-family">MoeFront Family</h1>
-<p><a href="https://kotori.love">そら</a><br>
-<a href="https://snowstar.org">TyanBoot</a><br>
-<a href="https://blog.cdog.me">CDog</a><br>
-<a href="http://elven.coding.me">柚子</a><br>
-<a href="http://ihux.cn">祀画</a><br>
-<a href="http://freedom.moe">立华</a><br>
-<a href="http://pennyren.me/">团子</a></p>
-<h1 id="oiacm">OI/ACM</h1>
-<p><a href="https://www.luogu.org/blog/pantw/">Pantw</a><br>
-<a href="http://ringoer.com">Ringoer</a><br>
-<a href="http://raffica.top/wordpress">Raffica</a><br>
-<a href="https://xeonacid.xyz">Xeonacid</a>
-<a href="https://ksmeow.moe/">KSKun</a></p>
-<h1 id="other">Other</h1>
-<p><a href="http://undsf.com">Arathi</a><br>
-<a href="https://balthild.com">Balthild</a><br>
-<a href="https://kenvix.com">Kenvix</a><br>
-<a href="http://www.mokeyjay.com">mokeyjay</a><br>
-<a href="https://alien.bz">Alien</a><br>
-<a href="https://servernotfound.net/">Lin</a><br>
-<a href="http://izgq.net">ZGQ</a><br>
-<a href="https://nlzy.net">纳兰泽雨</a><br>
-<a href="https://blog.nekohand.moe">Tokei</a><br>
-<a href="https://diygod.me">diygod</a><br>
-<a href="https://jcl.moe">JclMiku</a><br>
-<a href="https://blog.853lab.com/">Sonic853</a><br>
-<a href="http://blog.ixnet.work/">Howard</a><br>
-<a href="https://qqdie.com/">QQDie</a><br>
-<a href="https://www.julydate.com">七夏浅笑</a><br>
-<a href="https://blog.tse.moe/">Tsez</a><br>
-<a href="https://www.bysb.net">Handle</a><br>
-<a href="https://moekira.com/">Kira</a><br>
-<a href="https://runtua.cn/">OZOO</a><br>
-<a href="https://m.rin404.com">Rin404</a><br>
-<a href="https://pur.dog">zoengjinnbiu</a><br>
-<a href="https://idealclover.top/">idealclover</a></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
-
+                    <h1 id="背景故事">背景故事</h1>
+<p>在用 Electron 写某个小东西的时候需要实现文件下载功能，因为下载源在国外，国内下载得太慢而被吐槽……于是觉得在下载的时候给一个进度提示会好一些。</p>
+<h1 id="fetch-实现文件下载">fetch() 实现文件下载</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">download</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">save</span>) =&gt; {
+    <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">url</span>, {
+        <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;GET&#34;</span>,
+        <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;Content-Type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/octet-stream&#34;</span> }
+    })
+        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> =&gt; <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">buffer</span>())
+        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
+            <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">data</span>);
+        });
+};
+</code></pre></div><h1 id="实现进度显示">实现进度显示</h1>
+<p>首先说说在传统的 XHR 请求中，存在一个 <code>onprogress</code> 事件。这个事件会在 XHR 请求完成前被循环调用。可以通过事件属性 <code>event.loaded</code> 和 <code>event.total</code> 分别获取 XHR 请求已加载的长度和总长度，从而很方便地实现进度显示。</p>
+<p>而在使用 <code>fetch</code> 的情况下，</p>
                     <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2016-04-09</p>
+                    <p style="color:#777;">Last modified on 2020-03-18</p>
                 </div>
                 
             </div>
@@ -430,14 +408,14 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/">
-                    Next<br>初探全新的 Node.js 包管理器 Yarn
+                <a class="newer-posts">
+                    Next<br>No newer posts.
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://kirainmoe.com/pages/about/">
-                    Previous<br>About Me &amp; This Site
+                <a class="older-posts" href="https://kirainmoe.com/blog/post/simplex-algorithm/">
+                    Previous<br>【学习笔记】线性规划的单纯形算法
                 </a>
                 
             </nav>
