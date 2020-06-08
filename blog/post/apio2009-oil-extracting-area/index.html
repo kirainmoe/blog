@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -712,9 +715,12 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             
             <div class="post-body-wrapper">
                 <div class="post-body">
-                    <p>OJ 地址：https://vijos.org/p/2002</p>
+                    <p>OJ 地址：<a href="https://vijos.org/p/2002">https://vijos.org/p/2002</a></p>
+
 <h1 id="描述">描述</h1>
+
 <p>Siruseri政府决定将石油资源丰富的Navalur省的土地拍卖给私人承包商以建立油井。被拍卖的整块土地为一个矩形区域，被划分为M×N个小块。 Siruseri地质调查局有关于Navalur土地石油储量的估测数据。这些数据表示为M×N个正整数，即对每一小块土地石油储量的估计值。为了避免出现垄断，政府规定每一个承包商只能承包一个由K×K块相连的土地构成的正方形区域。AoE石油联合公司由三个承包商组成，他们想选择三块互不相交的K×K的区域使得总的收益最大。</p>
+
 <p>例如，假设石油储量的估计值如下：</p>
 <pre><code>1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1
@@ -724,15 +730,22 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 1 1 1 1 8 8 8 1 1
 1 1 1 1 1 1 8 8 8
 1 1 1 1 1 1 9 9 9
-1 1 1 1 1 1 9 9 9
-</code></pre><p>如果K = 2, AoE公司可以承包的区域的石油储量总和为100, 如果K = 3, AoE公司可以承包的区域的石油储量总和为208。
+1 1 1 1 1 1 9 9 9</code></pre>
+<p>如果K = 2, AoE公司可以承包的区域的石油储量总和为100, 如果K = 3, AoE公司可以承包的区域的石油储量总和为208。
 AoE公司雇佣你来写一个程序，帮助计算出他们可以承包的区域的石油储量之和的最大值。</p>
+
 <h1 id="格式">格式</h1>
+
 <h3 id="输入格式">输入格式</h3>
+
 <p>输入第一行包含三个整数M, N, K，其中M和N是矩形区域的行数和列数，K是每一个承包商承包的正方形的大小（边长的块数）。接下来M行，每行有N个正整数表示这一行每一小块土地的石油储量的估计值。</p>
+
 <h3 id="输出格式">输出格式</h3>
+
 <p>输出只包含一个正整数，表示AoE公司可以承包的区域的石油储量之和的最大值。</p>
+
 <h1 id="样例">样例</h1>
+
 <h3 id="样例输入1">样例输入1</h3>
 <pre><code>9 9 3
 1 1 1 1 1 1 1 1 1
@@ -743,47 +756,60 @@ AoE公司雇佣你来写一个程序，帮助计算出他们可以承包的区�
 1 1 1 1 8 8 8 1 1
 1 1 1 1 1 1 8 8 8
 1 1 1 1 1 1 9 9 9
-1 1 1 1 1 1 9 9 9
-</code></pre><h3 id="样例输出1">样例输出1</h3>
-<pre><code>208
-</code></pre><h1 id="限制">限制</h1>
-<p>数据保证K≤M且K≤N并且至少有三个K×K的互不相交的正方形区域。<br>
-其中16%的输入数据，M, N≤ 12。<br>
-所有的输入数据, M, N≤ 1500。<br>
+1 1 1 1 1 1 9 9 9</code></pre>
+<h3 id="样例输出1">样例输出1</h3>
+<pre><code>208</code></pre>
+<h1 id="限制">限制</h1>
+
+<p>数据保证K≤M且K≤N并且至少有三个K×K的互不相交的正方形区域。<br />
+其中16%的输入数据，M, N≤ 12。<br />
+所有的输入数据, M, N≤ 1500。<br />
 每一小块土地的石油储量的估计值是非负整数且≤ 500。</p>
+
 <h1 id="solution">Solution</h1>
+
 <p>题意即找出三个不相交的 K×K 正方形，使这三个正方形的价值之和在所有的可能性中最大。数据是 1500 级别，暴力枚举所有的情况撑死能过其中的 16%。那么基本可以确定这是一道需要使用 DP 的题目。</p>
+
 <p>现在考虑三个正方形的位置：既然三个正方形两两不相交，由简单的画图可知，一定能将整个大矩形分成三个互不相交的部分，使这三个正方形分别位于其中一个部分内。并且这三个部分以两条直线为分界。进一步作图我们可以得到所有可能的六种划分情况如下：</p>
-<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g0aawct6i4j20ks0bm0tb.jpg" alt="all circumstances"></p>
+
+<p><img src="https://wx1.sinaimg.cn/large/9f1137b1gy1g0aawct6i4j20ks0bm0tb.jpg" alt="all circumstances" /></p>
+
 <p>将大的矩形分成三部分，是因为题目要求的是三个正方形，我们只需要枚举大矩形分部的情况，求出每个部分的价值最优 K×K 正方形，最后相加即可；使用一横一竖或两横或两竖两条线来分界的目的是便于枚举。</p>
+
 <p>分部了之后如何找答案呢？我们可以发现前面四种情况中，两条分界线会相交于一个点，设该点为 (i, j)，我们只需要枚举该点的坐标，就可以枚举所有的分界情况。以第一种情况（一横一竖将大矩形分成左边两个、右边一个三部分）为例，假设枚举的分界点为 (i, j)，那么在该分界点下，这种情况的最佳答案是：</p>
+
 <blockquote>
 <p>从左上角 (0,0) 到 (i,j) 的矩形中  K×K 正方形的最大值 + 从左下角 (m, 0) 到 (i+1, j) 的矩形中  K×K 正方形的最大值 + 从右上角 (0, n) 到竖分界线与大矩形下边的交点 (m, j+1) 的矩形中  K×K 正方形的最大值。</p>
 </blockquote>
+
 <p>其它四种一横一竖分界的情况则以此类推。再考虑分界线为两横或两竖时的情况，这种情况下我们只需要枚举其中一条边，并规定另一条边界与枚举边的距离为 k 即可（这样并不会对答案有任何影响，画图就容易发现无论两条线距离为何值，总有距离为 k 的等价情况）。以第五种情况（两横将大矩形分成三部分）为例，假设枚举的下边界为第 i 行 (i &gt;= 2k)，那么上边界为第 i-k 行，这种情况的最佳答案是：</p>
+
 <blockquote>
 <p>从左上角 （0, 0) 到 (i-k, n) 的矩形中  K×K 正方形的最大值 + 以第 i 行为底的 K×K 正方形的最大值 + 从左下角 (m, 0) 到 (i + 1, n) 的矩形中 K×K 正方形的最大值。</p>
 </blockquote>
+
 <p>那么到这里我们已经解决了答案转移和枚举策略的问题。接下来考虑预处理的内容。在上面的思路中，我们需要知道的东西如下：</p>
 <pre><code>ul[i][j] --- 表示从左上角开始到以点 (i, j) 为右下角的矩形中所包含的 K×K 正方形的最大值
 ur[i][j] --- 表示从右上角开始到以点 (i, j) 为左下角的矩形中所包含的 K×K 正方形的最大值
 dl[i][j] --- 表示从左下角开始到以点 (i, j) 为右上角的矩形中所包含的 K×K 正方形的最大值
 dr[i][j] --- 表示从右下角开始到以点 (i, j) 为左上角的矩形中所包含的 K×K 正方形的最大值
 r[i] --- 表示以第 i 行为下底的 K×K 正方形的最大值
-c[i] --- 表示以第 i 列为右边的 K×K 正方形的最大值
-</code></pre><p>为了得到上面这些内容，我们考虑令 <code>sum[i][j]</code> 表示：从 (0, 0) 到点 (i, j) 的矩形所有价值的前缀和；令 <code>s[i][j]</code> 表示：以 (i, j) 为右下角的 K×K 正方形价值。设 <code>val[i][j]</code> 表示点 (i, j) 的价值，则有如下的递推式：</p>
+c[i] --- 表示以第 i 列为右边的 K×K 正方形的最大值</code></pre>
+<p>为了得到上面这些内容，我们考虑令 <code>sum[i][j]</code> 表示：从 (0, 0) 到点 (i, j) 的矩形所有价值的前缀和；令 <code>s[i][j]</code> 表示：以 (i, j) 为右下角的 K×K 正方形价值。设 <code>val[i][j]</code> 表示点 (i, j) 的价值，则有如下的递推式：</p>
 <pre><code>sum[i][j] = sum[i-1][j] - sum[i-1][j-1] + sum[i][j-1] + val[i][j]
-s[i][j] = sum[i][j] - sum[i-k][j] - sum[i][j-k] + sum[i-k][j-k]
-</code></pre><p>然后上面的式子就可以很方便地计算了：</p>
+s[i][j] = sum[i][j] - sum[i-k][j] - sum[i][j-k] + sum[i-k][j-k]</code></pre>
+<p>然后上面的式子就可以很方便地计算了：</p>
 <pre><code>ul[i][j] = max(max(ul[i-1][j], ul[i][j-1]), s[i][j])
 ur[i][j] = max(max(ur[i-1][j], ur[i][j+1]), s[i][j + k - 1])
 dl[i][j] = max(max(dl[i+1][j], dl[i][j-1]), s[i + k - 1][j])
 dr[i][j] = max(max(dr[i+1][j], dr[i][j+1]), s[i + k - 1][j + k - 1])
 
 r[i] = max(r[i], s[i][j])
-c[j] = max(c[j], s[i][j])
-</code></pre><p>最后，注意一下 <code>ul, ur, dl, dr</code> 的枚举顺序，<code>ul</code> 从左上角开始枚举，<code>ur</code> 从右上角开始枚举，<code>dl</code> 从左下角开始枚举，<code>dr</code> 从右下角开始枚举。只有这样才能保证上述式子有意义。</p>
+c[j] = max(c[j], s[i][j])</code></pre>
+<p>最后，注意一下 <code>ul, ur, dl, dr</code> 的枚举顺序，<code>ul</code> 从左上角开始枚举，<code>ur</code> 从右上角开始枚举，<code>dl</code> 从左下角开始枚举，<code>dr</code> 从右下角开始枚举。只有这样才能保证上述式子有意义。</p>
+
 <h1 id="code">Code</h1>
+
 <p>理解了之后一发 AC，有点爽到。特别提醒一下，蓝桥杯练习系统里的这道题疑似有锅。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">

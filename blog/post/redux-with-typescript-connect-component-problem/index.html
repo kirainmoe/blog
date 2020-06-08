@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -253,8 +256,10 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             
             <div class="post-body-wrapper">
                 <div class="post-body">
-                    <p><!-- raw HTML omitted -->Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码<!-- raw HTML omitted --></p>
+                    <p><s>Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码</s></p>
+
 <p>真香</p>
+
 <p>考虑以下在 Typescript 语法下使用 redux 的代码片段：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
 <span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">connect</span>, <span style="color:#a6e22e">Dispatch</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>;
@@ -288,20 +293,27 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 </span><span style="color:#75715e"></span>});
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">mapDispatchToProps</span>)(<span style="color:#a6e22e">MyComponent</span>);
-</code></pre></div><p>这是个很简单的把组件和 redux 连接起来的部分代码。以上的代码是可以通过编译的，也可以运行。</p>
+</code></pre></div>
+<p>这是个很简单的把组件和 redux 连接起来的部分代码。以上的代码是可以通过编译的，也可以运行。</p>
+
 <p>现在假如我们有另一个 Component 引入了这个 Component：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./MyComponent&#39;</span>;
 
 <span style="color:#75715e">// ....
 </span><span style="color:#75715e"></span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">MyComponent</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;example-id&#39;</span>} <span style="color:#f92672">/</span><span style="color:#f92672">&gt;</span>
-</code></pre></div><p>看起来没毛病啊，MyComponent 确实需要一个叫 id 的参数，也在组件里声明过了，然而 Typescript 会提示编译错误：</p>
+</code></pre></div>
+<p>看起来没毛病啊，MyComponent 确实需要一个叫 id 的参数，也在组件里声明过了，然而 Typescript 会提示编译错误：</p>
+
 <blockquote>
-<p>类型“IntrinsicAttributes &amp; IntrinsicClassAttributes&lt;Component&lt;Pick&lt;Props, never&gt;, ComponentState, any&gt;&hellip;”上不存在属性“id”。</p>
+<p>类型“IntrinsicAttributes &amp; IntrinsicClassAttributes<Component<Pick<Props, never>, ComponentState, any&gt;&hellip;”上不存在属性“id”。</p>
 </blockquote>
+
 <p>这里不是因为编译器瞎了，回看我们的 MyComponent 中，export 的是 <code>connect()</code> 处理过的 HOC 而不是我们原始的组件，而 经过 <code>connect()</code> 之后的组件会把 state 和 dispatch 映射到新组件的 props 里，但这个组件原有 props 的类型就丢掉了。</p>
+
 <p>解决方法之一就是把 id 这个 props 写到 reducer 的 state 中；但有时候为了代码的整洁性，这个 props 只在这个组件中需要并起作用，便没有必要弄到全局的 state 里。事实上，<code>connect()</code> 函数在 Typescript 中也可以指定类型：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">mapDispatchToProps</span>)(<span style="color:#a6e22e">MyComponent</span>);
-</code></pre></div><p>以上代码等效为：</p>
+</code></pre></div>
+<p>以上代码等效为：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TypeOfState</span> {
     <span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>}
@@ -314,7 +326,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
     <span style="color:#a6e22e">mapStateToProps</span>,
     <span style="color:#a6e22e">mapDispatchToProps</span>
 )(<span style="color:#a6e22e">MyComponent</span>);
-</code></pre></div><p>注意在后者的 <code>connect()</code> 中我们为其指定了 3 个类型，分别是 <strong><code>mapStateToProps()</code> 返回值的类型</strong>、<strong><code>mapDispatchToProps()</code> 返回值的类型</strong>，但最后一个 <code>void</code> 有什么作用？<strong>第三个类型实际上指定的就是目标组件原本需要的 Props 的类型</strong>。所以我们可以通过改写成如下的代码：</p>
+</code></pre></div>
+<p>注意在后者的 <code>connect()</code> 中我们为其指定了 3 个类型，分别是 <strong><code>mapStateToProps()</code> 返回值的类型</strong>、<strong><code>mapDispatchToProps()</code> 返回值的类型</strong>，但最后一个 <code>void</code> 有什么作用？<strong>第三个类型实际上指定的就是目标组件原本需要的 Props 的类型</strong>。所以我们可以通过改写成如下的代码：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TypeOfState</span> {
     <span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>}
@@ -327,7 +340,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
     <span style="color:#a6e22e">mapStateToProps</span>,
     <span style="color:#a6e22e">mapDispatchToProps</span>
 )(<span style="color:#a6e22e">MyComponent</span>);
-</code></pre></div><p>即可解决上述问题。</p>
+</code></pre></div>
+<p>即可解决上述问题。</p>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2018-06-28</p>
                 </div>

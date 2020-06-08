@@ -19,7 +19,7 @@
       
       <guid>https://kirainmoe.com/blog/post/opencore-migration-experience/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;前言：OpenCore 引导（下文简称 OC）出来了很长一段时间了。但是最近不知什么原因，对新技术特别不敏感，所以观望了很久，也一直没有动手从 Clover 转 OpenCore. 嗯？那为什么会有这篇文章呢？&lt;!-- raw HTML omitted --&gt;这件事还要从一只蝙蝠说起……&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;前言：OpenCore 引导（下文简称 OC）出来了很长一段时间了。但是最近不知什么原因，对新技术特别不敏感，所以观望了很久，也一直没有动手从 Clover 转 OpenCore. 嗯？那为什么会有这篇文章呢？&lt;s&gt;这件事还要从一只蝙蝠说起……&lt;/s&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
     </item>
     
@@ -29,10 +29,13 @@
       <pubDate>Wed, 23 Jan 2019 20:14:54 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</guid>
-      <description>&lt;h1 id=&#34;20197-更新&#34;&gt;2019/7 更新&lt;/h1&gt;
+      <description>&lt;h1 id=&#34;2019-7-更新&#34;&gt;&lt;sup&gt;2019&lt;/sup&gt;&amp;frasl;&lt;sub&gt;7&lt;/sub&gt; 更新&lt;/h1&gt;
+
 &lt;p&gt;八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover
-配置文件安装：https://github.com/kirainmoe/hasee-tongfang-macos .&lt;/p&gt;
+配置文件安装：&lt;a href=&#34;https://github.com/kirainmoe/hasee-tongfang-macos&#34;&gt;https://github.com/kirainmoe/hasee-tongfang-macos&lt;/a&gt; .&lt;/p&gt;
+
 &lt;p&gt;EFI 配置文件替换教程参见 &lt;a href=&#34;https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B&#34;&gt;GitHub Wiki&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;以下内容可能已经过时。&lt;/p&gt;</description>
     </item>
     

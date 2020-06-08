@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -424,40 +427,53 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。</p>
+
 <h1 id="编译">编译</h1>
-<p>lemon 基于 qt4 开发（<!-- raw HTML omitted -->怪不得可以跨平台<!-- raw HTML omitted -->），所以我们先安装 qt4 的环境。当然你需要有一个 DE/WM 来运行。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># pacman -S qt4</span>
-</code></pre></div><p>然后我们搞到 lemon 的源代码。GitHub 上可以找到，一个是原版，一个是做了一些修改的：</p>
+
+<p>lemon 基于 qt4 开发（<s>怪不得可以跨平台</s>），所以我们先安装 qt4 的环境。当然你需要有一个 DE/WM 来运行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># pacman -S qt4</span></code></pre></div>
+<p>然后我们搞到 lemon 的源代码。GitHub 上可以找到，一个是原版，一个是做了一些修改的：</p>
+
 <blockquote>
 <p>原版 project-lemon: <a href="https://github.com/zhipeng-jia/project-lemon">https://github.com/zhipeng-jia/project-lemon</a>
 修改版 project-lemon: <a href="https://github.com/Sojiv/Project_lemon">https://github.com/Sojiv/Project_lemon</a></p>
 </blockquote>
+
 <p>其中原版的话需要修改文件，否则会编译出错，具体是修改<code>qtsingleapplication/qtlocalpeer.cpp:96:54</code>文件，把以下代码：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">socketName <span style="color:#f92672">+</span><span style="color:#f92672">=</span> QLatin1Char(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">+</span> QString<span style="color:#f92672">:</span><span style="color:#f92672">:</span>number(<span style="color:#f92672">:</span><span style="color:#f92672">:</span>getuid(), <span style="color:#ae81ff">16</span>);
-</code></pre></div><p>修改为：</p>
+</code></pre></div>
+<p>修改为：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">socketName <span style="color:#f92672">+</span><span style="color:#f92672">=</span> QLatin1Char(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">+</span> QString<span style="color:#f92672">:</span><span style="color:#f92672">:</span>number(QtLP_Private<span style="color:#f92672">:</span><span style="color:#f92672">:</span>getuid(), <span style="color:#ae81ff">16</span>);
-</code></pre></div><p>接着 qmake 一下，然后就可以编译了：</p>
+</code></pre></div>
+<p>接着 qmake 一下，然后就可以编译了：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># qmake-qt4 lemon.pro</span>
-<span style="color:#75715e"># make</span>
-</code></pre></div><p>编译完之后，可以在目录下找到一个可执行文件 <code>lemon</code>，这就是编译好的程序了。所以我们可以把这个程序搞到<code>/usr/bin/</code>里去，这样我们下次运行直接在终端里敲<code>lemon</code>就可以了。</p>
+<span style="color:#75715e"># make</span></code></pre></div>
+<p>编译完之后，可以在目录下找到一个可执行文件 <code>lemon</code>，这就是编译好的程序了。所以我们可以把这个程序搞到<code>/usr/bin/</code>里去，这样我们下次运行直接在终端里敲<code>lemon</code>就可以了。</p>
+
 <h1 id="配置数据">配置数据</h1>
+
 <p>首先新建一个测试，然后把数据复制到测试文件夹下的 <code>data</code> 目录里。例如我要配置一道名为 <code>events</code> 的试题，则我把以下格式的数据文件复制到 <code>data/events</code> 目录下：</p>
 <pre><code>events1.in   events1.ans   events2.in   events2.ans   events3.in   events3.ans
-...
-</code></pre><p>然后我们首先新建试题，填好试题信息、时空限制、比较方式等等，然后右键该试题，选择添加多个测试点，然后接下来会让我们键入能匹配所有输入输出数据文件名的一个正则表达式。以上面那个为例，我们写出来的应该是下面这样的：</p>
-<pre><code>input file: events/events&lt;1&gt;.in
-output file: events/events&lt;1&gt;.ans
+...</code></pre>
+<p>然后我们首先新建试题，填好试题信息、时空限制、比较方式等等，然后右键该试题，选择添加多个测试点，然后接下来会让我们键入能匹配所有输入输出数据文件名的一个正则表达式。以上面那个为例，我们写出来的应该是下面这样的：</p>
+<pre><code>input file: events/events<1>.in
+output file: events/events<1>.ans
 
-&lt;1&gt; .*
-</code></pre><p>这里需要一点正则表达式的知识，如果你不会的话，那就按照上面的模板来就可以了。</p>
+<1> .*</code></pre>
+<p>这里需要一点正则表达式的知识，如果你不会的话，那就按照上面的模板来就可以了。</p>
+
 <h1 id="评测时无法运行程序">评测时无法运行程序</h1>
+
 <p>配置完数据把 std 复制到 source 文件夹里。然后尝试评测，提示<code>Can not start program (无法运行程序)</code>。这个问题我们需要修改编译参数，如果不修改编译参数，lemon 默认是这样编译一个 C++ 程序的：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">g++ -o %s %s.cpp
-</code></pre></div><p>我们在编译参数里加上一个<code>-lm</code>，这样编译出来的程序就可以运行了。如果是 Windows 上就加上一个<code>-m32</code>参数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">g++ -o %s %s.cpp</code></pre></div>
+<p>我们在编译参数里加上一个<code>-lm</code>，这样编译出来的程序就可以运行了。如果是 Windows 上就加上一个<code>-m32</code>参数。</p>
+
 <h1 id="栈溢出等问题">栈溢出等问题</h1>
+
 <p>一开始没注意这个，开了 -O2 才发现原来不开 -O2 能 AC 的程序居然 RE 了。一查发现是栈溢出，原来 Linux 下默认栈是 8MB= =这个当然不够用啦，所以我们可以修改评测时栈空间的限制。参考 NOIP2016 D1T2 附件提供的 Linux 下开栈的做法，退出 lemon 并打开终端，运行以下命令：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ulimit -s 233333
-</code></pre></div><p>这里嘛就是把我们的栈调用空间开大，大概开到 200MB 多（后面那一串数字单位是 KB）。然后重新在当前终端里运行 lemon，就不会爆栈了。需要注意的是 ulimit 只对当前终端窗口有效，如果你退出了终端或者开了另一个终端窗口，就需要重新设置。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ulimit -s <span style="color:#ae81ff">233333</span></code></pre></div>
+<p>这里嘛就是把我们的栈调用空间开大，大概开到 200MB 多（后面那一串数字单位是 KB）。然后重新在当前终端里运行 lemon，就不会爆栈了。需要注意的是 ulimit 只对当前终端窗口有效，如果你退出了终端或者开了另一个终端窗口，就需要重新设置。</p>
+
 <p>暂时就遇到了这些问题喵。 &gt; &lt;</p>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2017-11-10</p>

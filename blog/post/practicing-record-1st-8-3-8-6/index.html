@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -154,8 +157,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#1200-hdu1003-max-sum" v-on:click="closeDrawer" id="1200-hdu1003-max-sum-nav">
-										 1/200, HDU1003, Max Sum
+				 					<a href="#1-200-hdu1003-max-sum" v-on:click="closeDrawer" id="1-200-hdu1003-max-sum-nav">
+										 1⁄200, HDU1003, Max Sum
 									</a>
 								</li>
 						
@@ -173,8 +176,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#2200-hdu1004-let-the-balloon-raise" v-on:click="closeDrawer" id="2200-hdu1004-let-the-balloon-raise-nav">
-										 2/200, HDU1004, Let the Balloon Raise
+				 					<a href="#2-200-hdu1004-let-the-balloon-raise" v-on:click="closeDrawer" id="2-200-hdu1004-let-the-balloon-raise-nav">
+										 2⁄200, HDU1004, Let the Balloon Raise
 									</a>
 								</li>
 						
@@ -192,8 +195,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#3200-hdu1005-number-sequence" v-on:click="closeDrawer" id="3200-hdu1005-number-sequence-nav">
-										 3/200, HDU1005, Number Sequence
+				 					<a href="#3-200-hdu1005-number-sequence" v-on:click="closeDrawer" id="3-200-hdu1005-number-sequence-nav">
+										 3⁄200, HDU1005, Number Sequence
 									</a>
 								</li>
 						
@@ -268,8 +271,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#1200-hdu1003-max-sum" v-on:click="closeDrawer" id="1200-hdu1003-max-sum-nav">
-										 1/200, HDU1003, Max Sum
+				 					<a href="#1-200-hdu1003-max-sum" v-on:click="closeDrawer" id="1-200-hdu1003-max-sum-nav">
+										 1⁄200, HDU1003, Max Sum
 									</a>
 								</li>
 						
@@ -287,8 +290,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#2200-hdu1004-let-the-balloon-raise" v-on:click="closeDrawer" id="2200-hdu1004-let-the-balloon-raise-nav">
-										 2/200, HDU1004, Let the Balloon Raise
+				 					<a href="#2-200-hdu1004-let-the-balloon-raise" v-on:click="closeDrawer" id="2-200-hdu1004-let-the-balloon-raise-nav">
+										 2⁄200, HDU1004, Let the Balloon Raise
 									</a>
 								</li>
 						
@@ -306,8 +309,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#3200-hdu1005-number-sequence" v-on:click="closeDrawer" id="3200-hdu1005-number-sequence-nav">
-										 3/200, HDU1005, Number Sequence
+				 					<a href="#3-200-hdu1005-number-sequence" v-on:click="closeDrawer" id="3-200-hdu1005-number-sequence-nav">
+										 3⁄200, HDU1005, Number Sequence
 									</a>
 								</li>
 						
@@ -383,15 +386,23 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。</p>
-<p>这一阶段的话主要是挑 <a href="http://acm.hdu.edu.cn/">HDUOJ</a> 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（<!-- raw HTML omitted -->比如 A+B Problem<!-- raw HTML omitted -->），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（</p>
-<h1 id="1200-hdu1003-max-sum">1/200, HDU1003, Max Sum</h1>
+
+<p>这一阶段的话主要是挑 <a href="http://acm.hdu.edu.cn/">HDUOJ</a> 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（<s>比如 A+B Problem</s>），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（</p>
+
+<h1 id="1-200-hdu1003-max-sum"><sup>1</sup>&frasl;<sub>200</sub>, HDU1003, Max Sum</h1>
+
 <p>题意大概是给一个很长的数列，有正有负，然后要求这个数列的子序列的和的最大值。然后范围大概是 1e5 以内。有个比较迷的地方就是不仅要求最大值，而且还要求出取得最大值的时候，子区间的位置。时间 1s, 内存 64M.</p>
+
 <p>第一反应是不是区间 DP 的题啊，然后看了一下数据范围果断把这个白痴的想法扔回肚子里去了。子序列最大值倒是会求啊，但是一开始没有反应过来要怎么统计位置。后来想了一下，开不下二维数组那我开一维的总可以了吧。所以这就是一道最大连续子区间和的动态规划问题了。</p>
+
 <p>设 <code>dp[i]</code> 表示以 <code>a[i]</code> 为区间终点时能取到的和的最大值，然后开两个辅助数组 <code>left[i]</code> 和 <code>right[i]</code> 来表示当取到这个最大值的时候的区间左界和右界分别在哪里，然后最后 for 一遍统计最大值就做完了。需要注意这里一个地方就是数据可正可负，那么考虑一种情况就是假设 <code>dp[i-1]</code> 小于 0 的时候，那么无论 <code>a[i]</code> 是正数还是负数，显然只取 <code>a[i]</code> 的结果会比取 <code>d[i-1] + a[i]</code> 的结果更优，所以遇到这种情况就要重置一下区间的左右界。</p>
+
 <p>还有一个要注意的地方就是输出的格式，当时做的时候各种 PE……</p>
+
 <p>转移方程为 <code>dp[i] = max(dp[i-1] + a[i], a[i])</code>.</p>
+
 <p>Code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
 <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
 
@@ -462,12 +473,15 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
   }
   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
+</code></pre></div>
+<h1 id="2-200-hdu1004-let-the-balloon-raise"><sup>2</sup>&frasl;<sub>200</sub>, HDU1004, Let the Balloon Raise</h1>
 
-</code></pre></div><h1 id="2200-hdu1004-let-the-balloon-raise">2/200, HDU1004, Let the Balloon Raise</h1>
 <p>题意就是已知有 n 个气球和它们的颜色，然后要问最受欢迎的气球（也就是出现次数最多的颜色种类）是哪个，颜色用字符串表示且长度不超过 15，有多个子任务，且对于每个子任务保证只有一个合法答案。</p>
+
 <p>嘛，简单的字符串计数嘛。这个用什么方法达到都可以的，你开心就好了。在这里我是用一个奇怪的做法，首先用 STL 的 string 保存每个气球的颜色，然后再按字典序用 <code>sort()</code> 排序一下，最后就可以很方便地统计出出现次数最多的那种气球来了。</p>
+
 <p>Code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1010</span>;
 string balloons[MAXN];
@@ -507,13 +521,17 @@ string balloons[MAXN];
   
   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
+</code></pre></div>
+<h1 id="3-200-hdu1005-number-sequence"><sup>3</sup>&frasl;<sub>200</sub>, HDU1005, Number Sequence</h1>
 
-</code></pre></div><h1 id="3200-hdu1005-number-sequence">3/200, HDU1005, Number Sequence</h1>
 <p>题意是对于一个函数 f(n), 满足 f(1) = 1, f(2) = 1, f(n) = (A * f(n-1) + B * f(n-2)) % 7, 然后求对于给定的 A, B 和 N, f(N) 的值是多少。1 &lt;= n &lt;= 1e8, 有多个子任务。</p>
+
 <p>看数据范围我想没人敢一个一个算过去吧……而且还有好多个子任务，直接就 T 了。</p>
+
 <p>这题的话一看我就猜到是递推……手推了 7 个之后发现好像没有什么规律……开始怀疑人生.jpg 后来才知道，因为结果要模 7，那么对于 f(n-1) 有 7 种可能的值 (0-6)，对于 f(n-2) 也是有 7 种可能的值，那么 f(n-1) 和 f(n-2) 一共有 7^2=49 种不同的组合可能，也就是最多 49 次就会出现一个循环节……找到循环节，接下来就可以直接算 f(N) 了，然后就做完了。</p>
+
 <p>做的时候不知道为啥各种 RE，把计算输出的那部分改了一下就 AC 了。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> arr[<span style="color:#ae81ff">55</span>];
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
@@ -547,7 +565,6 @@ string balloons[MAXN];
   }
   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-
 </code></pre></div>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2017-08-07</p>

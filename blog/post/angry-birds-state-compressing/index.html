@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -254,31 +257,43 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)</p>
-<p>题目：https://www.luogu.org/problemnew/show/2831</p>
+
+<p>题目：<a href="https://www.luogu.org/problemnew/show/2831">https://www.luogu.org/problemnew/show/2831</a></p>
+
 <p>题目就是呢，要构造最少条的抛物线，消灭掉所有的小猪~然后求最少的抛物线数量~观察题目我们可以发现——特殊指令 m 是没有什么卵用的= =</p>
+
 <p>然后接下来我们分析题目：求构造的最少抛物线数量 → 构造抛物线直到把所有的猪都打掉 → 每个猪打一次就没了，而且抛物线的轨迹不会改变 → 对于一条抛物线，如果能打掉尽可能多的猪那么再好不过 → n &lt;= 18 → ……</p>
+
 <p>好的，看到数据范围大家应该有一些想法了。大部分人会想到搜索 + 剪枝，也有写记忆化搜索的……然而这两种都不太好写，但是能解是肯定的，这里就不多说这个了。</p>
+
 <p>n 才 18，还有另一种做法呀~那就是状态压缩 DP！( ＞ω＜) 表示对于能理解状态压缩的玩家们，把这题写成状态压缩比写成搜索题好写多了~而且效率也很高的说。如果不能理解状压的话想写就比较麻烦辣。</p>
-<p>那么我们要做什么呢？先设计个 DP 状态和方程呗，显然我们应该**用<code>dp[i]</code>来表示击败的猪的二进制状态为 i 的时候，需要构造的抛物线的最小数目。**二进制状态为 i 是什么概念呢，这里简单地说一下，比如说总共有 3 只猪，这时候你把第一只（标号为 0）和第二只（标号为 1）的猪打掉了，那么 i 就是<code>011</code>咯（打掉第几只猪，状态 i 的二进制下第几位就是 1），同理如果你把三只猪都打死了，那么 i 就是<code>111</code>.</p>
+
+<p>那么我们要做什么呢？先设计个 DP 状态和方程呗，显然我们应该<strong>用<code>dp[i]</code>来表示击败的猪的二进制状态为 i 的时候，需要构造的抛物线的最小数目。</strong>二进制状态为 i 是什么概念呢，这里简单地说一下，比如说总共有 3 只猪，这时候你把第一只（标号为 0）和第二只（标号为 1）的猪打掉了，那么 i 就是<code>011</code>咯（打掉第几只猪，状态 i 的二进制下第几位就是 1），同理如果你把三只猪都打死了，那么 i 就是<code>111</code>.</p>
+
 <p>所以，根据状态压缩 DP 的原理，我们先枚举合法的每一个状态，也就是 <code>i = 1</code> 到 <code>(1 &lt;&lt; n) - 1</code>。对于每一个状态，随便举出其中包含的一个点 k，那么 <code>dp[i]</code> 最坏的情况应该是：在没打掉第 k 只猪之前的最小值 + 1，我们把这个值作为初值赋给 <code>dp[i]</code>: <code>dp[i] = dp[i &amp; ~(1 &lt;&lt; k)] + 1</code>, 或者表示成<code>dp[i] = dp[i - (1 &lt;&lt; k)] + 1</code>.</p>
+
 <p>然后我们再枚举出当前状态包含的另一个点 t (t != k), 取<code>dp[i]</code>（上文已经更新过了）和<code>dp[j] + 1</code>的最小值即可。因为我们知道，两点构成一条抛物线，所以我们可以找两个，这两个点一定可以勾出一条抛物线，然后从当前状态 i 中去掉<strong>这条抛物线经过的所有的小猪</strong>，这样就得到了状态 j （╯‵□′）╯︵┴─┴ ：<code>dp[i] = min(dp[i], dp[i - (i &amp; fstate[i][j])] + 1)</code>, 这里 <code>fstate[i][j]</code> 的意思请往下看。</p>
+
 <p>那么还有一个问题，就是我们怎么知道 k 和 t 构成的那条抛物线经过了哪些猪呢？这时候我们可以枚举任意两个点算出经过这两个点的形如<code>y=ax^2+bx, a &lt; 0</code>的抛物线，再计算这条抛物线对其他点的影响，把它们整理成一个二进制状态；简言之，两点（当然，还有原点 0, 0）可以确定一条抛物线，我们用<code>fstate[i][j]</code>表示能干掉第 i 和第 j 只小猪的这条抛物线，最终能打掉的猪的状态，这样上面的 j 就可以推出来了。<code>fstate</code>数组的计算就是，选取两个点计算 a 和 b，然后枚举其他的点，如果<code>aXk^2 + bXk = Yk</code>成立的话，那么就把这个点 k 合并到<code>fstate[i][j]</code>里去：<code>fstate[i][j] |= (1 &lt;&lt; k)</code>.</p>
+
 <p>好了。至此这道题已经做得差不多了，还有一个很关键的地方可能就是——抛物线怎么算 (￣▽￣)~这里主要要 care 一下精度的问题: <code>const double eps = 1e-7;</code>.</p>
+
 <p>然后我们对于两个已知点 A(x1, y1), B(x2, y2)，我们可以得到两个等式：</p>
 <pre><code>y1 = a * x1^2 + b * x1
-y2 = a * x2^2 + b * x2
-</code></pre><p>移项变形一下，我们可以得到：</p>
+y2 = a * x2^2 + b * x2</code></pre>
+<p>移项变形一下，我们可以得到：</p>
 <pre><code>b = (y1 - a * x1^2) / x1
-b = (y2 - a * x2^2) / x2
-</code></pre><p>消去参数 b，然后得到关于 a 的一个等式，整理之后我们可以得到：</p>
-<pre><code>a = (x2 * y1 - x1 * y2) / (x1 * x2 * (x1 - x2))
-</code></pre><p>其中 x1, x2, x1-x2 均不为 0. 得到 a 之后把 a 带回上面一个含 b 的式子就可以了(o ° ω ° O ) 。</p>
+b = (y2 - a * x2^2) / x2</code></pre>
+<p>消去参数 b，然后得到关于 a 的一个等式，整理之后我们可以得到：</p>
+<pre><code>a = (x2 * y1 - x1 * y2) / (x1 * x2 * (x1 - x2))</code></pre>
+<p>其中 x1, x2, x1-x2 均不为 0. 得到 a 之后把 a 带回上面一个含 b 的式子就可以了(o ° ω ° O ) 。</p>
+
 <p>然后这道题就做完啦。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define db double</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define db double</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
 <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;

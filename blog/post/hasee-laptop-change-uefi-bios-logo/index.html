@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -638,81 +641,112 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>如题。修改 BIOS 有风险，请谨慎操作。</p>
+
 <h1 id="前言">前言</h1>
+
 <h2 id="为啥要改开机-logo">为啥要改开机 Logo?</h2>
+
 <p>这还用问吗，当然是因为神船的默认开机 Logo 看起来太太太太太太太不顺眼了，虽然我的电脑原来开机 Logo 是白色的战神字样而不是勤俭之眼，但是看起来还是很违和。</p>
+
 <h2 id="修改开机-logo-的原理">修改开机 Logo 的原理</h2>
+
 <p>现在较新的电脑都使用了 UEFI BIOS, 而开机的厂家 Logo 是储存在 BIOS 中的。所以我们先提取一下本机的 BIOS，用工具替换掉原 BIOS 中的图片文件，然后再将修改过的 BIOS 刷入 BIOS 芯片中，这样就起到替换的效果啦。</p>
+
 <h2 id="适用于哪些机型">适用于哪些机型？</h2>
+
 <p>理论上适用于所有采用了 AMI BIOS 的机型。</p>
-<hr>
+
+<hr />
+
 <h1 id="准备">准备</h1>
+
 <ul>
 <li>一张大小为 400x300，背景为黑色，颜色为 24 位深，格式为 bmp 的自定义 Logo 图片。如果你不知道什么图片适合，那么下面给你一张 jpg 格式的示例。</li>
-<li>用于修改 BIOS 的 UEFITools，这里用的是 0.25.0 版本：https://www.lanzous.com/i5ljt2b</li>
+<li>用于修改 BIOS 的 UEFITools，这里用的是 0.25.0 版本：<a href="https://www.lanzous.com/i5ljt2b">https://www.lanzous.com/i5ljt2b</a></li>
 <li>用于备份/提取本机 BIOS 的特定版本的 AfuWin64: <a href="https://www.lanzous.com/i5ljsve">https://www.lanzous.com/i5ljsve</a></li>
-<li>用于刷新 BIOS 的 FPTW64：https://www.lanzous.com/i5ljsxg</li>
+<li>用于刷新 BIOS 的 FPTW64：<a href="https://www.lanzous.com/i5ljsxg">https://www.lanzous.com/i5ljsxg</a></li>
 </ul>
-<p><img src="https://i.loli.net/2019/08/16/V56DiyCoL2TGZNt.jpg" alt="Hasee.jpg"></p>
-<hr>
+
+<p><img src="https://i.loli.net/2019/08/16/V56DiyCoL2TGZNt.jpg" alt="Hasee.jpg" /></p>
+
+<hr />
+
 <h1 id="注意事项">注意事项</h1>
+
 <ul>
-<li>
-<p>刷入修改版的 BIOS 有风险。有可能因为修改过程的失误或者刷写过程中的意外，导致写入的 BIOS 程序损坏，从而导致电脑无法开机。当出现这种情况时，你只能通过拆机后使用编程器物理刷入厂商提供的 BIOS 或原机备份的 BIOS 来恢复。这里建议无法承担后果的用户三思而后行。</p>
-</li>
-<li>
-<p>以下步骤在我的 8 代同方机型 Z7-KP7GZ 上测试正常，理论上适用于其他同方机型。注意，部分同方机型无法使用网上下载的 AfuWin64 直接在 Windows 下提取 BIOS，请使用我上面提供的链接，这是从神舟官网的 BIOS 下载站下载的对应机型的刷写和备份工具。</p>
-</li>
-<li>
-<p>AfuWin64 无法支持刷写修改版的 BIOS（无法通过签名验证），所以我们需要使用 FPTW64 使用命令刷写 BIOS.</p>
-</li>
-<li>
-<p>刷入相同版本的修改版 BIOS 不需要刷写 EC.</p>
-</li>
-<li>
-<p>部分蓝天模具的笔记本可能带有 BIOS 写入保护，你必须先关闭该保护才能刷写 BIOS.</p>
-</li>
-<li>
-<p>部分同方模具可能出现新主板不兼容旧 BIOS 的情况。请务必在原机 BIOS 的基础上修改。</p>
-</li>
-<li>
-<p>刷写 BIOS 的过程中请确认你的电脑电量充足，并退出所有安全软件和其它无关程序，防止出现意外。</p>
-</li>
-<li>
-<p>请严格按照步骤操作。万一翻车了且你没有备份原机 BIOS，可以在神舟官网客服站下载到 BIOS（仅限 8 代以上机器，且只有特定版本）：http://kfgl.hasee.com/lookup/bios/bios_nb.asp</p>
-</li>
+<li><p>刷入修改版的 BIOS 有风险。有可能因为修改过程的失误或者刷写过程中的意外，导致写入的 BIOS 程序损坏，从而导致电脑无法开机。当出现这种情况时，你只能通过拆机后使用编程器物理刷入厂商提供的 BIOS 或原机备份的 BIOS 来恢复。这里建议无法承担后果的用户三思而后行。</p></li>
+
+<li><p>以下步骤在我的 8 代同方机型 Z7-KP7GZ 上测试正常，理论上适用于其他同方机型。注意，部分同方机型无法使用网上下载的 AfuWin64 直接在 Windows 下提取 BIOS，请使用我上面提供的链接，这是从神舟官网的 BIOS 下载站下载的对应机型的刷写和备份工具。</p></li>
+
+<li><p>AfuWin64 无法支持刷写修改版的 BIOS（无法通过签名验证），所以我们需要使用 FPTW64 使用命令刷写 BIOS.</p></li>
+
+<li><p>刷入相同版本的修改版 BIOS 不需要刷写 EC.</p></li>
+
+<li><p>部分蓝天模具的笔记本可能带有 BIOS 写入保护，你必须先关闭该保护才能刷写 BIOS.</p></li>
+
+<li><p>部分同方模具可能出现新主板不兼容旧 BIOS 的情况。请务必在原机 BIOS 的基础上修改。</p></li>
+
+<li><p>刷写 BIOS 的过程中请确认你的电脑电量充足，并退出所有安全软件和其它无关程序，防止出现意外。</p></li>
+
+<li><p>请严格按照步骤操作。万一翻车了且你没有备份原机 BIOS，可以在神舟官网客服站下载到 BIOS（仅限 8 代以上机器，且只有特定版本）：<a href="http://kfgl.hasee.com/lookup/bios/bios_nb.asp">http://kfgl.hasee.com/lookup/bios/bios_nb.asp</a></p></li>
 </ul>
-<hr>
+
+<hr />
+
 <h1 id="让我们开始吧">让我们开始吧</h1>
+
 <p>第一步，提取原机当前 BIOS. 首先打开 AfuWin64 (AFUWINGUIx64.exe)，点击下面的“储存”按钮，首先备份当前 BIOS. 程序会自动读取 BIOS ROM 备份 BIOS，如图所示。</p>
-<p><img src="https://i.loli.net/2019/08/16/XyUAcC9aEJ3tzRp.jpg" alt="TIM截图20190816121405.jpg"></p>
-<p><img src="https://i.loli.net/2019/08/16/pQhJlHA4odrbu1N.jpg" alt="TIM截图20190816121446.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/XyUAcC9aEJ3tzRp.jpg" alt="TIM截图20190816121405.jpg" /></p>
+
+<p><img src="https://i.loli.net/2019/08/16/pQhJlHA4odrbu1N.jpg" alt="TIM截图20190816121446.jpg" /></p>
+
 <p>请务必确保程序提示 Done， 且没有任何报错的时候，再进行下面的操作. 如果有报错（如提示验证错误等），请重新打开 AfuWin64 程序操作。得到的原机 BIOS 先拷贝一份到移动存储设备上，以防万一备用；然后拷贝一份副本，用于接下来的修改。</p>
+
 <p>第二步，修改 BIOS 并替换图片。打开 UEFITools，首先点击左上角的 File -&gt; Open image File，打开刚才备份的 BIOS 的待修改副本。我们首先要寻找 UEFI 启动 logo 的位置，因为 logo 图片文件名的格式是固定的，因此我们直接按 Ctrl+F 搜索，选择 &ldquo;Text&rdquo; 类型，搜索 &ldquo;Logo.bmp&rdquo; (不含引号)：</p>
-<p><img src="https://i.loli.net/2019/08/16/sBrijKVHuXY46Wf.jpg" alt="TIM截图20190816122313.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/sBrijKVHuXY46Wf.jpg" alt="TIM截图20190816122313.jpg" /></p>
+
 <p>完成搜索后我们会在下方看到类似 <code>Unicode text &quot;Logo.bmp&quot; found in User interface section at offset 0h</code> 的信息：</p>
-<p><img src="https://i.loli.net/2019/08/16/xnWJ6U5a3EgmHAy.jpg" alt="TIM截图20190816122324.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/xnWJ6U5a3EgmHAy.jpg" alt="TIM截图20190816122324.jpg" /></p>
+
 <p>双击这条信息可以定位到搜索的位置。这里我只找到了一个 Logo.bmp；如果你有多个搜索结果，请找到 GUID 为 <code>7BB28B99-61BB-11D5-9A5D-0090273FC14D</code> 的那一个，如图所示：</p>
-<p><img src="https://i.loli.net/2019/08/16/kwF1gGpNBuDlIS7.jpg" alt="TIM截图20190816122554.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/kwF1gGpNBuDlIS7.jpg" alt="TIM截图20190816122554.jpg" /></p>
+
 <p>右键点击 <code>User interface section</code> 上方的 <code>Raw section</code>，然后点击 <code>Replace Body</code>, 选择你准备好的 Logo.bmp 文件替换：</p>
-<p><img src="https://i.loli.net/2019/08/16/DUBeqwXOGKWLZ4n.jpg" alt="TIM截图20190816122736.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/DUBeqwXOGKWLZ4n.jpg" alt="TIM截图20190816122736.jpg" /></p>
+
 <p>这里再说明一下图片，格式在上文有提到了，但并不确定对图片的大小是否有限制。一般来说，不适合放大小太大的图片（因为 BIOS ROM 的大小总共只有 10MB）。我替换成功的图片大小为 351KB，因此小于等于这个大小的图片应该都是没有问题的。</p>
+
 <p>完成替换之后，在保存之前，会有两个 <code>Raw section</code>. 此时可以保存修改后的 BIOS ROM 文件。打开新的文件就会变成一个 <code>Raw section</code> 了。</p>
+
 <p>第三步，刷入 BIOS. 解压下载得到的 FPTW64，然后把修改完成后的 BIOS ROM 复制到解压目录下，确保 BIOS 文件和 FPTW64.exe 等在同一级目录下。然后<strong>使用管理员权限运行命令提示符</strong>，定位到 FPT 所在目录下。首先用 FPTW64 将 BIOS 完整地再备份一遍（包括 EEPROM, ME 和 BIOS 程序等），使用如下命令备份：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">FPTW64 -D all.bin
-</code></pre></div><p>这样，程序会备份出一个 <code>all.bin</code> 的文件，检查一下它的大小是不是 16M。这一步是为了防止你万一输错命令还是出现什么意外导致翻车，然后得到一块黑砖。完成之后将这个文件复制到你的移动存储设备上，以备不时之需，在翻车时可以通过其他电脑使用编程器救回。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">FPTW64 -D all.bin</code></pre></div>
+<p>这样，程序会备份出一个 <code>all.bin</code> 的文件，检查一下它的大小是不是 16M。这一步是为了防止你万一输错命令还是出现什么意外导致翻车，然后得到一块黑砖。完成之后将这个文件复制到你的移动存储设备上，以备不时之需，在翻车时可以通过其他电脑使用编程器救回。</p>
+
 <p>接下来使用命令刷入 BIOS. 例如，我修改后的 BIOS 文件名为 <code>modified.rom</code>，则运行下列命令，注意空格和大小写，<strong>务必添加 -BIOS 参数，否则程序会将 EEPROM, ME 等部分覆盖导致开机掉电！</strong>：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-batch" data-lang="batch">FPTW64 -F modified.rom -BIOS
-</code></pre></div><blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-batch" data-lang="batch">FPTW64 -F modified.rom -BIOS</code></pre></div>
+<blockquote>
 <p>Tips: 如果你上面的操作一不小心没加参数，可以重刷一遍刚刚备份的完整文件救回：<code>FPTW64 -F all.bin</code></p>
 </blockquote>
+
 <p>效果图如下。</p>
-<p><img src="https://i.loli.net/2019/08/16/omTh7Q4JgxGKjZz.png" alt="TIM图片20190816123444.png"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/omTh7Q4JgxGKjZz.png" alt="TIM图片20190816123444.png" /></p>
+
 <p>当看到绿色的 <code>FPT Operation Successful.</code> 时，BIOS 就已经刷新成功了，快重启看看你是成功了还是成仁了吧。</p>
+
 <h1 id="最终效果图">最终效果图</h1>
-<p><img src="https://i.loli.net/2019/08/16/8Ou3TY9JamvchEi.jpg" alt="TIM图片201908161123471.jpg"></p>
-<p><img src="https://i.loli.net/2019/08/16/DY94d7phNjSwkF2.jpg" alt="TIM图片20190816112400.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/08/16/8Ou3TY9JamvchEi.jpg" alt="TIM图片201908161123471.jpg" /></p>
+
+<p><img src="https://i.loli.net/2019/08/16/DY94d7phNjSwkF2.jpg" alt="TIM图片20190816112400.jpg" /></p>
+
 <h1 id="其它">其它</h1>
+
 <p>特别感谢群友 @浅笔向阳 的 BIOS 刷写经验。</p>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2019-02-16</p>

@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -475,22 +478,35 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……</p>
+
 <blockquote>
 <p>“除了上面这些作业之外，要求大家额外做一个附加题，来实现两个函数图解法求卷积动画演示。”</p>
 </blockquote>
+
 <p>差不多像这样子（$f_1(t) = u(t) - u(t-2), f_2(t) = u(t-1) - u(t-3), f_1 * f_2$）：</p>
-<p><img src="https://i.loli.net/2019/11/23/3NHmXJZhRqckQa4.gif" alt="bandicam 2019-11-23 12-44-47-680.gif"></p>
+
+<p><img src="https://i.loli.net/2019/11/23/3NHmXJZhRqckQa4.gif" alt="bandicam 2019-11-23 12-44-47-680.gif" /></p>
+
 <p>然而我们既不知道这东西具体如何实现，也并没有学过怎么用 MATLAB 做动画，那咋办嘛。</p>
+
 <blockquote>
 <p>老师：“我希望每个人都要做这个附加题，<strong>有 问 题 自 己 去 解 决</strong>。”</p>
 </blockquote>
+
 <p>反正当时我的表情是这样的：</p>
-<p><img src="https://i.loli.net/2019/11/23/rB3LbTUwgOCQJvY.png" alt="TIM截图20191123125051.png"></p>
+
+<p><img src="https://i.loli.net/2019/11/23/rB3LbTUwgOCQJvY.png" alt="TIM截图20191123125051.png" /></p>
+
 <p>好呗，既然整了这么个好活，那我们就来看看这东西到底咋搞咯。</p>
+
 <h1 id="前置知识">前置知识</h1>
+
 <h2 id="图解法求卷积">图解法求卷积</h2>
+
 <p>定义：函数 $f_1(t)$ 和 $f_2(t)$ 的卷积 $f_1(t) * f_2(t) = \int _{-\infty}^{\infty} f_1(\tau)f_2(t-\tau) d\tau$.</p>
+
 <p>为了求解 $f_1(t) * f_2(t)$，我们可以使用图解法，将卷积运算中一些抽象的关系形象化。具体有以下几个步骤：</p>
+
 <ol>
 <li>换元：将横坐标变元由 $t$ 变换为 $\tau$：$f_1(t) \to f_1(\tau)$，$f_2(t) \to f_2(\tau)$</li>
 <li>固定其中一个信号（如 $f_2(\tau)$），对另一个信号关于纵轴反折：$f_1(\tau) \to f_1(-\tau)$</li>
@@ -498,22 +514,39 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <li>增大 $t$，将 $f_1$ 向右移动，使得 $f_1(t-\tau)$ 和 $f_2(\tau)$ 发生重叠，将两信号重叠的部分相乘：$f_1(t-\tau)f_2(\tau)$</li>
 <li>积分：两个信号在该点重叠部分的面积 $\int _{-\infty} ^{\infty}f_1(t-\tau)f_2(\tau) d\tau$ 即为 $f_1 * f_2$ 在点 $t$ 处的函数值</li>
 </ol>
+
 <h2 id="matlab-创建动画">MATLAB 创建动画</h2>
+
 <p>所谓动画，就是很多张静态图片，以一定帧数播放而产生的动态效果。</p>
+
 <p>而在 MATLAB 里创建动画的基本原理，也是将使用 plot 等函数绘出来的结果一张张地保存，然后一帧帧地播放，就能产生动态的动画。MATLAB 对此功能的实现提供了一些关键函数，如 <code>getframe, movie</code> 等。</p>
+
 <p>当然，也可以在循环绘图的时候直接指定短暂的停留时间，以此产生动画。可以使用 <code>pause</code> 函数产生短暂的停留。</p>
+
 <h1 id="思路分析">思路分析</h1>
+
 <p>大概有人会说，这不是按照上面图解法的步骤一步一步来就好了嘛。</p>
-<p><img src="https://i.loli.net/2019/11/23/ABVwao46OPxfuEK.jpg" alt="46CE3F2663B1474DE1F9438A5C64D5A2.jpg"></p>
+
+<p><img src="https://i.loli.net/2019/11/23/ABVwao46OPxfuEK.jpg" alt="46CE3F2663B1474DE1F9438A5C64D5A2.jpg" /></p>
+
 <p>这样吧，我们最终的目的是要弄出一个动画对吧，这个动画呢它是一帧帧、一张张图组成的，那我们先绘出所有时刻的图吧。</p>
+
 <p>那绘出所有时刻的图，跟画某个时刻的图的区别就在于，其中一个函数会从左到右逐渐平移咯。</p>
+
 <p>对于 $f_1(t-\tau)$ 而言，从左到右平移就相当于将 $t$ 逐渐由小增大。那么我们要实现平移的效果，只要让 $t$ 缓慢、线性地从一个小值 $from$ 变到一个大值 $end$ 就可以了。</p>
+
 <p>然后我们对每个 $t_0$ 值都画一幅 $f_1(t_0-\tau)$ 的图，并且计算 $f_{13}(t) = f_1(t_0-\tau) \cdot f_2(\tau)$ 在 $(-\infty, \infty)$ 的积分值 $f_{14}$，</p>
+
 <p>将 $f_{14}$ 与 $t$ 对应起来，绘在图上就可以了。</p>
+
 <p>两个函数 $f_1, f_2$ 的表示，我们可以用 MATLAB 的符号计算功能，这样我们可以让我们的代码对所有的函数都适用而不需要计算各种向量，并且我们在实现换元、反折和平移的时候也很容易，只要使用 <code>subs()</code> 函数替换自变量即可。</p>
+
 <p>至于符号计算的绘图，那当然是 <code>ezplot</code> 就解决啦……什么？<code>ezplot</code> 是不推荐的函数了？那就用 <code>fplot</code> 呗.</p>
+
 <p>然后把每张图存起来，或者在画连续的两张图的时候有一个小小的时间间隔，就可以了做出动画的效果啦。</p>
+
 <h1 id="实现">实现</h1>
+
 <p>让我们首先定义一下我们要卷积的函数。假设我们有了两个函数 $f_1(t) = u(t) - u(t-2), f_2(t) = u(t-1) - u(t-3)$，要用图解法求 $f_1 * f_2$.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#75715e">% 定义符号变量 t 和两个符号函数 f1, f2</span>
 <span style="color:#75715e">% heaviside(t) 就是 u(t) 啦</span>
@@ -523,10 +556,10 @@ f2 = heaviside(t<span style="color:#f92672">-</span><span style="color:#ae81ff">
 
 d = <span style="color:#ae81ff">0.05</span>;           <span style="color:#75715e">% 采样间隔</span>
 t1 = <span style="color:#ae81ff">0</span> : d : <span style="color:#ae81ff">2</span>;     <span style="color:#75715e">% f1 的卷积时域范围</span>
-t2 = <span style="color:#ae81ff">1</span> : d : <span style="color:#ae81ff">3</span>;     <span style="color:#75715e">% f2 的卷积时域范围</span>
-</code></pre></div><p>为了让我们写的东西具有普遍适用性，我们将它封装成一个如下的函数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [] = <span style="color:#a6e22e">convolution_example</span>(f1, f2, t1, t2, d)
-</code></pre></div><p>函数的参数与上文定义的含义相同。具体函数实现如下：</p>
+t2 = <span style="color:#ae81ff">1</span> : d : <span style="color:#ae81ff">3</span>;     <span style="color:#75715e">% f2 的卷积时域范围</span></code></pre></div>
+<p>为了让我们写的东西具有普遍适用性，我们将它封装成一个如下的函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [] = <span style="color:#a6e22e">convolution_example</span>(f1, f2, t1, t2, d)</code></pre></div>
+<p>函数的参数与上文定义的含义相同。具体函数实现如下：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [] = <span style="color:#a6e22e">convolution_example</span>(f1, f2, t1, t2, d)
     syms t tao;         <span style="color:#75715e">% 定义用于符号计算的变量</span>
     figure;             <span style="color:#75715e">% 在一个新的窗体上执行绘图</span>
@@ -577,13 +610,19 @@ t2 = <span style="color:#ae81ff">1</span> : d : <span style="color:#ae81ff">3</s
         
         pause(<span style="color:#ae81ff">0.0001</span>);                          <span style="color:#75715e">% 短暂暂停，产生动画</span>
     <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>这里有几个小细节。第一是，如果循环的时候不将 $t$ 和 $f_{14}$ 都添加到一个向量中，而直接使用 plot 函数的话，会发生只能画散点图的情况，画出来的图像不连续：</p>
-<p><img src="https://i.loli.net/2019/11/23/8bf52iUaoGvpHD7.png" alt="image.png"></p>
+<span style="color:#66d9ef">end</span></code></pre></div>
+<p>这里有几个小细节。第一是，如果循环的时候不将 $t$ 和 $f_{14}$ 都添加到一个向量中，而直接使用 plot 函数的话，会发生只能画散点图的情况，画出来的图像不连续：</p>
+
+<p><img src="https://i.loli.net/2019/11/23/8bf52iUaoGvpHD7.png" alt="image.png" /></p>
+
 <p>因此每次循环都将 $t$ 和 $f_{14}$ 加到已经计算过的向量 $dt$ 和 $ft$ 中，再次调用 plot 函数就能绘出光滑的直线/曲线：</p>
-<p><img src="https://i.loli.net/2019/11/23/zlneq9kv8hDZdIC.png" alt="image.png"></p>
+
+<p><img src="https://i.loli.net/2019/11/23/zlneq9kv8hDZdIC.png" alt="image.png" /></p>
+
 <p>还有就是将卷积曲线下半部分填充的方式，MATLAB 可以用 <code>fill([x_coordinate], [y_coordinate], color)</code> 来填充一个多边形，根据简单的几何知识，我们只要填充一个小梯形即可：</p>
-<p><img src="https://i.loli.net/2019/11/23/lfZGAk8XKpWDJz1.png" alt="image.png"></p>
+
+<p><img src="https://i.loli.net/2019/11/23/lfZGAk8XKpWDJz1.png" alt="image.png" /></p>
+
 <p>OK，现在让我们拿两个任意函数来卷积一下，看看效果如何。不如我们令 $f_1(t) = \frac{1}{2}t[u(t)-u(t-2)], f_2(t) = (1-\frac{|t|}{2})[u(t+2)-u(t-2)]$ ，演示一下 $f_1 * f_2$ 吧：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab">syms t;
 f1 = <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> t <span style="color:#f92672">*</span> (heaviside(t) <span style="color:#f92672">-</span> heaviside(t <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>));
@@ -591,13 +630,19 @@ f2 = (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> 
 d = <span style="color:#ae81ff">0.1</span>;
 t1 = <span style="color:#ae81ff">0</span> : d : <span style="color:#ae81ff">2</span>;
 t2 = <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> : d : <span style="color:#ae81ff">2</span>;
-convolution_example(f1, f2, t1, t2, d);
-</code></pre></div><p>效果图：</p>
-<p><img src="https://i.loli.net/2019/11/23/YdvVFJkIyiBtZNO.gif" alt="bandicam 2019-11-23 13-48-00-013.gif"></p>
+convolution_example(f1, f2, t1, t2, d);</code></pre></div>
+<p>效果图：</p>
+
+<p><img src="https://i.loli.net/2019/11/23/YdvVFJkIyiBtZNO.gif" alt="bandicam 2019-11-23 13-48-00-013.gif" /></p>
+
 <p>对比一下我们用普通连续信号卷积函数计算出来的结果图：</p>
-<p><img src="https://i.loli.net/2019/11/23/eBsYxE5vbMLtDka.png" alt="image.png"></p>
+
+<p><img src="https://i.loli.net/2019/11/23/eBsYxE5vbMLtDka.png" alt="image.png" /></p>
+
 <p>似乎挺不错。一个多小时的折腾似乎没白干。</p>
-<p><!-- raw HTML omitted -->那么问题来了，我为什么不直接去网上 Ctrl+C Ctrl+V 一份别人写好的呢？<!-- raw HTML omitted --></p>
+
+<p><s>那么问题来了，我为什么不直接去网上 Ctrl+C Ctrl+V 一份别人写好的呢？</s></p>
+
 <p>别问，问就是吃饱撑着。</p>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2019-11-23</p>

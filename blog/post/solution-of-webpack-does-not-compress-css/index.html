@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -251,6 +254,7 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。</p>
+
 <p>通过为 css-loader 指定参数，可以在打包的时候压缩 CSS 样式文件。例如：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
   <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/(\.styl)$/</span>,
@@ -266,22 +270,27 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
     <span style="color:#e6db74">&#39;stylus-loader&#39;</span>
   ]
 }
-</code></pre></div><p>因为个人习惯，我一般不把 <code>minimize</code> 属性直接设置为 true，而是判断当前是否将要打包成生产环境用的文件，如果是才压缩 CSS. 然而就在这个地方出了锅，发现弄出来的 CSS 根本没压缩。一开始以为是 ExtractTextPlugin 的问题，后来发现如果直接把 minimize 的值设置为 true 的时候就会压缩，那么问题就在于 <code>process.env.NODE_ENV === 'production'</code> 表达式返回了不正确的值。</p>
+</code></pre></div>
+<p>因为个人习惯，我一般不把 <code>minimize</code> 属性直接设置为 true，而是判断当前是否将要打包成生产环境用的文件，如果是才压缩 CSS. 然而就在这个地方出了锅，发现弄出来的 CSS 根本没压缩。一开始以为是 ExtractTextPlugin 的问题，后来发现如果直接把 minimize 的值设置为 true 的时候就会压缩，那么问题就在于 <code>process.env.NODE_ENV === 'production'</code> 表达式返回了不正确的值。</p>
+
 <p>导致这个原因的问题在于没有设置 <code>NODE_ENV</code> 环境变量= =这个变量需要在运行 webpack 的时候设置，之前一直以为使用 <code>webpack.DefinePlugin</code> 定义 <code>process.env.NODE_ENV</code> 就可以的：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">webpack</span>.<span style="color:#a6e22e">DefinePlugin</span>({
     <span style="color:#e6db74">&#39;process.env.NODE_ENV&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#e6db74">&#39;production&#39;</span>)
   })
-</code></pre></div><p>猜测 <code>webpack.DefinePlugin</code> 插件定义的变量只对项目的代码有效（就是对要打包的目标生效），但是对打包工具 webpack 自身似乎是无效的，所以即便在项目中 <code>process.env.NODE_ENV</code> 能取到正常的值，但是对于其他情况下 <code>process.env.NODE_ENV</code> 就没有定义了。</p>
+</code></pre></div>
+<p>猜测 <code>webpack.DefinePlugin</code> 插件定义的变量只对项目的代码有效（就是对要打包的目标生效），但是对打包工具 webpack 自身似乎是无效的，所以即便在项目中 <code>process.env.NODE_ENV</code> 能取到正常的值，但是对于其他情况下 <code>process.env.NODE_ENV</code> 就没有定义了。</p>
+
 <p>解决方法就是手动在终端中定义 <code>process.env.NODE_ENV</code> 变量，但是这样太麻烦了，而且还有跨系统兼容性的问题。可以使用 <a href="https://github.com/kentcdodds/cross-env">cross-env</a> 来定义环境变量，然后再通过其启动 webpack.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yarn add --dev cross-env
-</code></pre></div><p>然后修改 <code>package.json</code> 中的 <code>script</code> 字段，在执行打包命令的时候先调用 cross-env 设置环境变量，然后再唤起 webpack. 例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yarn add --dev cross-env</code></pre></div>
+<p>然后修改 <code>package.json</code> 中的 <code>script</code> 字段，在执行打包命令的时候先调用 cross-env 设置环境变量，然后再唤起 webpack. 例如：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
   <span style="color:#e6db74">&#34;dist&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=production webpack --config config/webpack.config.js --env=production&#34;</span>,
   <span style="color:#e6db74">&#34;serve&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=dev webpack-dev-server --progress --config config/webpack.config.js --env=dev&#34;</span>,
   <span style="color:#e6db74">&#34;serve:dist&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=dist wepack-dev-server --progress --config config/webpack.config.js --env=production&#34;</span>,
   <span style="color:#e6db74">&#34;watch&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cross-env NODE_ENV=dev webpack --progress --watch --config config/webpack.config.js --env=dev&#34;</span>
 },
-</code></pre></div><p>这样子再运行打包生产环境文件的命令的时候，webpack 就能获取到正确的 <code>process.env.NODE_ENV</code> 环境变量，就能正常压缩 CSS 了。</p>
+</code></pre></div>
+<p>这样子再运行打包生产环境文件的命令的时候，webpack 就能获取到正确的 <code>process.env.NODE_ENV</code> 环境变量，就能正常压缩 CSS 了。</p>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2018-01-07</p>
                 </div>

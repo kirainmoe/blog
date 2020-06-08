@@ -18,7 +18,7 @@
       <pubDate>Thu, 28 Feb 2019 20:59:37 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</guid>
-      <description>&lt;p&gt;八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，&lt;!-- raw HTML omitted --&gt;最近又很寂寞&lt;!-- raw HTML omitted --&gt;，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。&lt;/p&gt;</description>
+      <description>&lt;p&gt;八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，&lt;s&gt;最近又很寂寞&lt;/s&gt;，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。&lt;/p&gt;</description>
     </item>
     
   </channel>

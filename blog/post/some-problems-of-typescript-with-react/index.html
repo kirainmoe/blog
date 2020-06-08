@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -179,7 +182,7 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-jsx-%e5%85%83%e7%b4%a0%e5%9c%a8-jsxintrinsicelements-%e4%b8%8d%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="自定义-jsx-元素在-jsxintrinsicelements-不存在-nav">
+				 					<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-jsx-%e5%85%83%e7%b4%a0%e5%9c%a8-jsx-intrinsicelements-%e4%b8%8d%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="自定义-jsx-元素在-jsx-intrinsicelements-不存在-nav">
 										 自定义 JSX 元素在 JSX.IntrinsicElements 不存在
 									</a>
 								</li>
@@ -282,7 +285,7 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 						
 						
 								<li>
-				 					<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-jsx-%e5%85%83%e7%b4%a0%e5%9c%a8-jsxintrinsicelements-%e4%b8%8d%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="自定义-jsx-元素在-jsxintrinsicelements-不存在-nav">
+				 					<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-jsx-%e5%85%83%e7%b4%a0%e5%9c%a8-jsx-intrinsicelements-%e4%b8%8d%e5%ad%98%e5%9c%a8" v-on:click="closeDrawer" id="自定义-jsx-元素在-jsx-intrinsicelements-不存在-nav">
 										 自定义 JSX 元素在 JSX.IntrinsicElements 不存在
 									</a>
 								</li>
@@ -367,8 +370,11 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&ndash;）……这里就简单的记录一下。</p>
+
 <h2 id="使用-es7-装饰符-decorator-时提示返回类型未定义">使用 ES7 装饰符 (decorator) 时提示返回类型未定义</h2>
+
 <p>这个问题发生在使用 <a href="https://github.com/concretesolutions/redux-zero">redux-zero</a> （大概是个懒人版的 Redux）的时候。</p>
+
 <p>一般来说，connect 一个组件大概要这样写，不管是用 react-redux 还是 redux-zero：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">connect</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;redux-zero/react&#39;</span>;
 
@@ -381,16 +387,19 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 }
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">actions</span>)(<span style="color:#a6e22e">MyComponent</span>);
-</code></pre></div><p>有时候我们可以偷懒用上 ES7 的 decorator 特性写得简洁一些：</p>
+</code></pre></div>
+<p>有时候我们可以偷懒用上 ES7 的 decorator 特性写得简洁一些：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">actions</span>)
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyCompoent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
 	<span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>}
-</code></pre></div><p>这两种写法效果是一样的。然而在 Typescript 中，以上代码会报这样的错误：</p>
-<pre><code>[ts] Unable to resolve signature of class decorator when called as an expression.
-</code></pre><p>点一下 <code>connect</code> 方法的定义，可以看到在 <code>connect.d.ts</code> 的 17 行有这样的一句：</p>
+</code></pre></div>
+<p>这两种写法效果是一样的。然而在 Typescript 中，以上代码会报这样的错误：</p>
+<pre><code>[ts] Unable to resolve signature of class decorator when called as an expression.</code></pre>
+<p>点一下 <code>connect</code> 方法的定义，可以看到在 <code>connect.d.ts</code> 的 17 行有这样的一句：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapToProps</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>, <span style="color:#a6e22e">actions</span><span style="color:#f92672">?</span><span style="color:#f92672">:</span> {})<span style="color:#f92672">:</span> (<span style="color:#a6e22e">Child</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; (<span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; <span style="color:#a6e22e">JSX</span>.<span style="color:#a6e22e">Element</span>;
-</code></pre></div><p>看着似乎没什么问题，但是：</p>
+</code></pre></div>
+<p>看着似乎没什么问题，但是：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test 1
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">test</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) =&gt; {
 	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">component</span>);
@@ -400,7 +409,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 	<span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>}
 <span style="color:#75715e">// passed
-</span></code></pre></div><p>把定义 <code>test</code> 的方法换一下：</p>
+</span></code></pre></div>
+<p>把定义 <code>test</code> 的方法换一下：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test 2
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span>) {
 	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">component</span>);
@@ -410,8 +420,11 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 	<span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>}
 <span style="color:#75715e">// compile failed
-</span></code></pre></div><p>看起来 Typescript 并不允许把用 function 定义的函数作为装饰符来使用呢。但是我们总不能去改依赖的代码吧，这个时候怎么办呢w</p>
+</span></code></pre></div>
+<p>看起来 Typescript 并不允许把用 function 定义的函数作为装饰符来使用呢。但是我们总不能去改依赖的代码吧，这个时候怎么办呢w</p>
+
 <p>如果一些项目有 DefinitelyTyped 的 typing 文件的话，可以尝试安装 <code>@types/xxxxx</code>, 例如 <code>@types/react-redux</code>。</p>
+
 <p>如果没有的话，答案就是自己再包上一层，以 <code>redux-zero</code> 的 <code>connect()</code> 为例：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// utils/connect.ts
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">connect</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">connectComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;redux-zero/react&#39;</span>;
@@ -429,8 +442,11 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <span style="color:#66d9ef">export</span> <span style="color:#a6e22e">defalt</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
 	<span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>}
-</code></pre></div><p>这样就可以啦。</p>
-<h2 id="自定义-jsx-元素在-jsxintrinsicelements-不存在">自定义 JSX 元素在 JSX.IntrinsicElements 不存在</h2>
+</code></pre></div>
+<p>这样就可以啦。</p>
+
+<h2 id="自定义-jsx-元素在-jsx-intrinsicelements-不存在">自定义 JSX 元素在 JSX.IntrinsicElements 不存在</h2>
+
 <p>我并不知道怎么描述这个问题比较合适，场景是需要批量渲染一个对象中所有的组件：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">components</span> <span style="color:#f92672">=</span> {
 	<span style="color:#a6e22e">comp1</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Compnent1</span>,
@@ -444,9 +460,10 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tmp</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">components</span>[<span style="color:#a6e22e">key</span>];
 	<span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">push</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">tmp</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">key</span>} <span style="color:#f92672">/</span><span style="color:#f92672">&gt;</span>);
 });
-</code></pre></div><p>上面的代码会返回这样的错误：</p>
-<pre><code>[ts] Property 'tmp' does not exist on type 'JSX.IntrinsicElements'.
-</code></pre><p>原因是 Typescript 要求 JSX 组件变量名的第一个字母为大写，如果不是的话 TS 便认为它不是个合法的 JSX 元素。所以把 <code>tmp</code> 改成 <code>Tmp</code> 就可以惹。</p>
+</code></pre></div>
+<p>上面的代码会返回这样的错误：</p>
+<pre><code>[ts] Property 'tmp' does not exist on type 'JSX.IntrinsicElements'.</code></pre>
+<p>原因是 Typescript 要求 JSX 组件变量名的第一个字母为大写，如果不是的话 TS 便认为它不是个合法的 JSX 元素。所以把 <code>tmp</code> 改成 <code>Tmp</code> 就可以惹。</p>
                     <HR width="100%" id="EOF">
                     <p style="color:#777;">Last modified on 2017-12-19</p>
                 </div>

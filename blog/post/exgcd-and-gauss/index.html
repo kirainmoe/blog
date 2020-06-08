@@ -132,6 +132,9 @@ if (!doNotTrack) {
 Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
 
     </div>
+
+    
+    <script src="https://tj.kirainmoe.com/cgi-bin/inject_scriipt.cgi"></script>
     
 </div><div ref="extraContainer" class="extra-container">
     
@@ -345,43 +348,51 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
             <div class="post-body-wrapper">
                 <div class="post-body">
                     <p>为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音</p>
+
 <h1 id="拓展欧几里得算法-exgcd">拓展欧几里得算法 (exgcd)</h1>
+
 <p>对于不全为 \(0\) 的非负整数 \(a, b\)，\(gcd(a, b)\) 表示 \(a, b\) 的最大公约数，则<strong>必然存在整数对 \(x, y\) ，使得 \(gcd(a, b)= ax + by\)</strong>。</p>
+
 <p>比如 \(a = 3, b = 5\) 的时候，\(gcd(a, b) = 1\), 那么有 \(x, y\) 的一组解为 \(x = 2, y = -1\) 使得 \(ax + by = 6 - 5 = 1 = gcd(a, b)\).</p>
+
 <p>拓展欧几里得算法就是用来求解 x, y 的。那么它是如何做到的？现在我们已知一组非负整数 \(a, b (a \geq b)\):</p>
+
 <ol>
-<li>
-<p>显然当 \(b = 0\) 的时候，\(gcd(a, b) = a\)，此时容易知道当 \(x = 1, y = 0\) 时为一组解。</p>
-</li>
-<li>
-<p>否则，当 \(a &gt; b &gt; 0\) 的时候，设 \(ax\<em>{1} + by\</em>{1} = gcd(a, b)\)</p>
-</li>
-<li>
-<p>那么有 \(bx_{2} + (a \mod b) \cdot y_{2} = gcd(b, a \mod b)\)</p>
-</li>
-<li>
-<p>根据欧几里得原理，容易知道 \(gcd(a, b) = gcd(b, a \mod b)\)；</p>
-</li>
-<li>
-<p>从而 \(ax_{1} + by_{1} = bx_{2} + (a \mod b) \cdot y_{2}\),</p>
-</li>
-<li>
-<p>有 \(ax_{1} + by_{1} = bx_{2} + (a - [a \div b] \cdot b) \cdot y_{2} = ay_{2} + bx_{2} - [a \div b] \times by_{2}\), 其中 \([]\) 表示向下取整符号。</p>
-</li>
-<li>
-<p>消去系数，最后求得 \(x_{1}  = y_{2}\), \(y_{1} = x_{2} - [a \div b]y_{2}\).</p>
-</li>
+<li><p>显然当 \(b = 0\) 的时候，\(gcd(a, b) = a\)，此时容易知道当 \(x = 1, y = 0\) 时为一组解。</p></li>
+
+<li><p>否则，当 \(a &gt; b &gt; 0\) 的时候，设 \(ax\_{1} + by\_{1} = gcd(a, b)\)</p></li>
+
+<li><p>那么有 \(bx_{2} + (a \mod b) \cdot y_{2} = gcd(b, a \mod b)\)</p></li>
+
+<li><p>根据欧几里得原理，容易知道 \(gcd(a, b) = gcd(b, a \mod b)\)；</p></li>
+
+<li><p>从而 \(ax_{1} + by_{1} = bx_{2} + (a \mod b) \cdot y_{2}\),</p></li>
+
+<li><p>有 \(ax_{1} + by_{1} = bx_{2} + (a - [a \div b] \cdot b) \cdot y_{2} = ay_{2} + bx_{2} - [a \div b] \times by_{2}\), 其中 \([]\) 表示向下取整符号。</p></li>
+
+<li><p>消去系数，最后求得 \(x_{1}  = y_{2}\), \(y_{1} = x_{2} - [a \div b]y_{2}\).</p></li>
 </ol>
+
 <p>我们得到了 \(x1, y1\) 和 \(x2, y2\) 的关系，也就是 \(x1, y1\) 可以由 \(x2, y2\) 表示。其中 \(x2, y2\) 是 \(bx + (a \mod b)y = gcd(b, a \mod b)\) 的一组解。但我们两组解都不知道，此时我们可以倒回去推。</p>
+
 <p>可以证明在求解 \(gcd(a, b)\) 的递归过程中最后 \(b\) 一定等于 0, 此时 \(x = 1, y = 0\), 然后我们可以据此倒着推回去。</p>
-<hr>
+
+<hr />
+
 <p>如求解 \(exgcd(6, 4)\), 即求使 \(6x + 4y = gcd(6, 4) = 2\) 成立的 \(x, y\)，</p>
+
 <p>由 \(gcd(6, 4) = gcd(4, 2)\)  得当 \(a&rsquo; = 4, b&rsquo; = 2\) 时，\(a&rsquo;x&rsquo; + b&rsquo;y&rsquo; = gcd(4, 2) = 2\)，根据上面的推断式不难得到 \(x = y&rsquo;, y = x&rsquo; - [6 \div 4]y&rsquo;\)</p>
-<p>由 \(gcd(4, 2) = gcd(2, 0)\) 得当 \(a&rsquo;&rsquo; = 2, b&rsquo;&rsquo; = 0\) 时，\(a'&lsquo;x&rsquo;&rsquo; + b'&lsquo;y&rsquo;&rsquo; = gcd(2, 0) = 2\)，此时由于 \(b&rsquo;&rsquo; = 0\)，可得 \(x&rsquo;&rsquo; = 1, y&rsquo;&rsquo; = 0\).</p>
-<p>再由上面的推断式 \(x&rsquo; = y&rsquo;', y&rsquo; = x&rsquo;&rsquo; - [4 \div 2]y&rsquo;'\)，代入 \(x&rsquo;', y&rsquo;'\) 得到 \(x&rsquo; = 0, y&rsquo; = 1 - 2 \times 0 = 1\)</p>
+
+<p>由 \(gcd(4, 2) = gcd(2, 0)\) 得当 \(a&rdquo; = 2, b&rdquo; = 0\) 时，\(a&rdquo;x&rdquo; + b&rdquo;y&rdquo; = gcd(2, 0) = 2\)，此时由于 \(b&rdquo; = 0\)，可得 \(x&rdquo; = 1, y&rdquo; = 0\).</p>
+
+<p>再由上面的推断式 \(x&rsquo; = y&rdquo;, y&rsquo; = x&rdquo; - [4 \div 2]y&rdquo;\)，代入 \(x&rdquo;, y&rdquo;\) 得到 \(x&rsquo; = 0, y&rsquo; = 1 - 2 \times 0 = 1\)</p>
+
 <p>最后把 \(x&rsquo; = 0, y&rsquo; = 1\) 代入 \(x = y&rsquo;, y = x&rsquo; - [6 \div 4]y&rsquo;\) 得到 \(x = 1, y = 0 - 1 \times 1 = -1\).</p>
+
 <p>将 \(x = 1, y = -1\) 代入 \(6x + 4y = gcd(6, 4) = 2\)，此组解有效。</p>
-<hr>
+
+<hr />
+
 <p>可以看到我们的求解过程是层层递归的，我们利用欧几里得定理，不断让 \(a&rsquo; = b, b&rsquo; = a \mod b\)，直到 \(b = 0\) 得到 \(x = 1, y = 0\)，再用这个 \(x, y\) 层层回溯根据推导式，计算出上一层的 \(x, y\) 直到得到结果。明白了这样的思想之后，我们就可以像下面这样实现拓展欧几里得算法：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> x, y, a, b;
@@ -406,9 +417,10 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
     std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> x <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> y;
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><p>输出：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">1 -1
-</code></pre></div><p>有时候，exgcd 可以简化如下, 其中 <code>d = gcd(a, b)</code>:</p>
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">1 -1</code></pre></div>
+<p>有时候，exgcd 可以简化如下, 其中 <code>d = gcd(a, b)</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exgcd</span> (<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>d, <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>x, <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>y) {
     <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>b) {
         d <span style="color:#f92672">=</span> a, x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
@@ -417,9 +429,12 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 </span><span style="color:#75715e"></span>        y <span style="color:#f92672">-</span><span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> (a <span style="color:#f92672">/</span> b);               <span style="color:#75715e">// 原理与上文相同
 </span><span style="color:#75715e"></span>    }
 }
-</code></pre></div><p>显然，我们求出的这个 x, y 可能是不唯一的。出现多解原因在于我们规定当 \(b = 0\) 的时候 \(y = 0\)，实际上此时 \(y\) 可以取任何整数。</p>
+</code></pre></div>
+<p>显然，我们求出的这个 x, y 可能是不唯一的。出现多解原因在于我们规定当 \(b = 0\) 的时候 \(y = 0\)，实际上此时 \(y\) 可以取任何整数。</p>
+
 <p>那么这个算法有什么卵用？它可以用来解二元一次的不定方程。对于不定方程 \(ax + by = c\)，设 \(gcd(a, b) = d\)，如果 \(ax + by = c\) 有解，那么 \(d\) 是 \(c\) 的约数，即 \(d|c, c = n \cdot d\) （充分必要条件）.</p>
-<p>那么我们只要先求出 \(ax&rsquo; + by&rsquo; = gcd(a, b) = d\) 的 \(x&rsquo;, y&rsquo;\)，分别对 \(x&rsquo;', y\) 乘 \(\frac{c}{d}\) 倍即可。或者，我们可以让 \(b = 0\) 时的 exgcd 结果为 \(\frac{c}/{d}\) ，这样一遍 exgcd 跑完之后的 x, y 就是方程的解了。</p>
+
+<p>那么我们只要先求出 \(ax&rsquo; + by&rsquo; = gcd(a, b) = d\) 的 \(x&rsquo;, y&rsquo;\)，分别对 \(x&rdquo;, y\) 乘 \(\frac{c}{d}\) 倍即可。或者，我们可以让 \(b = 0\) 时的 exgcd 结果为 \(\frac{c}/{d}\) ，这样一遍 exgcd 跑完之后的 x, y 就是方程的解了。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> a, b, x, y, c;      <span style="color:#75715e">// ax+by = c
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exgcd</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
     <span style="color:#66d9ef">if</span> (b <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
@@ -431,7 +446,8 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
         x <span style="color:#f92672">=</span> tmp;
     }
 }
-</code></pre></div><p>因为 exgcd 所求得的 x, y 可以不唯一，而有些题目要求我们输出符合某些条件的解，所以我们还可以对求得的最终结果加以限定条件。例如题目要求 x &lt; 某一个特定的数 p 时：</p>
+</code></pre></div>
+<p>因为 exgcd 所求得的 x, y 可以不唯一，而有些题目要求我们输出符合某些条件的解，所以我们还可以对求得的最终结果加以限定条件。例如题目要求 x &lt; 某一个特定的数 p 时：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">y <span style="color:#f92672">=</span> x <span style="color:#f92672">-</span> (a <span style="color:#f92672">/</span> b) <span style="color:#f92672">*</span> y;
 x <span style="color:#f92672">=</span> tmp;
 <span style="color:#75715e">// ------
@@ -440,37 +456,49 @@ x <span style="color:#f92672">=</span> tmp;
 </span><span style="color:#75715e"></span>    x <span style="color:#f92672">-</span><span style="color:#f92672">=</span> t <span style="color:#f92672">*</span> p;         <span style="color:#75715e">// 从 x 中减去 tp
 </span><span style="color:#75715e"></span>    y <span style="color:#f92672">+</span><span style="color:#f92672">=</span> t <span style="color:#f92672">*</span> p <span style="color:#f92672">*</span> a <span style="color:#f92672">/</span> b;     <span style="color:#75715e">// 根据 ax+by=c, a(x-tp) + b(y+k) = c, 得 -atp+bk = 0, k = tpa/b
 </span><span style="color:#75715e"></span>}
-</code></pre></div><p>或者，求最小正整数解，参考 <a href="https://blog.csdn.net/qq">https://blog.csdn.net/qq</a>_20200047/article/details/71159677：</p>
+</code></pre></div>
+<p>或者，求最小正整数解，参考 <a href="https://blog.csdn.net/qq_20200047/article/details/71159677：">https://blog.csdn.net/qq_20200047/article/details/71159677：</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span> (c <span style="color:#f92672">%</span> d <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
     x <span style="color:#f92672">*</span><span style="color:#f92672">=</span> c <span style="color:#f92672">/</span> d;
     <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> b <span style="color:#f92672">/</span> d;
     x <span style="color:#f92672">=</span> (x <span style="color:#f92672">%</span> t <span style="color:#f92672">+</span> t) <span style="color:#f92672">%</span> t;        <span style="color:#75715e">// x
 </span><span style="color:#75715e"></span>    y <span style="color:#f92672">=</span> (c <span style="color:#f92672">-</span> (a <span style="color:#f92672">*</span> x)) <span style="color:#f92672">/</span> b;      <span style="color:#75715e">// y
 </span><span style="color:#75715e"></span>}
-</code></pre></div><h1 id="高斯消元">高斯消元</h1>
+</code></pre></div>
+<h1 id="高斯消元">高斯消元</h1>
+
 <p>高斯消元法是用来解线性规划（线性方程组）的算法。</p>
+
 <p>高斯消元的思想和我们解多元方程其实是差不多的。我们来看一个例子，用数学的方法解下列方程组：</p>
+
 <p>\(\begin{cases}\ 2x + y + z = 1 (1)\ 6x + 2y + z = -1 (2)\ \ -2x + 2y + z = 7 (3)\  \end{cases}\)</p>
+
 <ol>
 <li>消去 \(x\):</li>
 </ol>
+
 <p>\((1) \times (-3) + (2)\) 得到 \(0x - y - 2z = -4\);</p>
+
 <p>\((1) + (3)\) 得到 \(0x + 3y + 2z = 8\)，有：</p>
+
 <p>\(\begin{cases}\ 2x + y + z = 1\ 0x - y - 2z = -4\ 0x + 3y + 2z = 8\end{cases}\)</p>
-<ol start="2">
+
+<ol>
 <li>消去 \(y\):</li>
 </ol>
+
 <p>\((2) \times 3 + (3)\) 得到 \(0x + 0y - 4z = -4\)，有：</p>
+
 <p>\(\begin{cases}\ 2x + y + z = 1\ 0x - y - 2z = -4\ 0x + 0y - 4z = -4\end{cases}\)</p>
-<ol start="3">
-<li>
-<p>从而我们得到 \(z = 1\)，将 \(z = 1\) 回带到 (2) 得到 \(y = 2\).</p>
-</li>
-<li>
-<p>再把 \(z = 1, y = 2\) 回带到 (1) 得到 \(x = -1\).</p>
-</li>
+
+<ol>
+<li><p>从而我们得到 \(z = 1\)，将 \(z = 1\) 回带到 (2) 得到 \(y = 2\).</p></li>
+
+<li><p>再把 \(z = 1, y = 2\) 回带到 (1) 得到 \(x = -1\).</p></li>
 </ol>
+
 <p>在我们具体的求解中，我们是把方程组的系数和值存储在数组中的：</p>
+
 <table>
 <thead>
 <tr>
@@ -481,6 +509,7 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
@@ -489,6 +518,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>1</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>6</td>
@@ -496,6 +526,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>1</td>
 <td>-1</td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>-2</td>
@@ -505,7 +536,9 @@ x <span style="color:#f92672">=</span> tmp;
 </tr>
 </tbody>
 </table>
+
 <p>因此，我们希望这个方程组最终变为如下的矩阵：</p>
+
 <table>
 <thead>
 <tr>
@@ -516,6 +549,7 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
@@ -524,6 +558,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>0</td>
 <td>x</td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>0</td>
@@ -531,6 +566,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>0</td>
 <td>y</td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>0</td>
@@ -540,8 +576,11 @@ x <span style="color:#f92672">=</span> tmp;
 </tr>
 </tbody>
 </table>
+
 <p>使用高斯消元法, 是以列为单位消元的。最终，第 i 行的 val 表示的就是第 i 个未知数的解。所以第一步我们需要枚举每一个式子 (i, 竖直行方向);</p>
+
 <p>为了减少浮点误差，我们规定第 i 个式子往下的式子中，第 i 个未知数中系数最大的一个式子应当排在当前被减的这一行,假设其在第 k 行，那么我们就需要把 a[i][*] 与 a[k][*] 交换。以 i + 1 为起点枚举找到符合条件的 k，交换即可。例如当 i = 0 时执行上述交换，得到的新矩阵为：</p>
+
 <table>
 <thead>
 <tr>
@@ -552,6 +591,7 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
@@ -560,6 +600,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>1</td>
 <td>-1</td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>2</td>
@@ -567,6 +608,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>1</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>-2</td>
@@ -576,7 +618,9 @@ x <span style="color:#f92672">=</span> tmp;
 </tr>
 </tbody>
 </table>
+
 <p>然后将正在处理的方程式化简，让正被处理的系数化 1:</p>
+
 <table>
 <thead>
 <tr>
@@ -587,14 +631,16 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
 <td>1</td>
-<td>1/3</td>
-<td>1/6</td>
-<td>-1/6</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>1</sup>&frasl;<sub>6</sub></td>
+<td>-<sup>1</sup>&frasl;<sub>6</sub></td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>2</td>
@@ -602,6 +648,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>1</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>-2</td>
@@ -611,7 +658,9 @@ x <span style="color:#f92672">=</span> tmp;
 </tr>
 </tbody>
 </table>
+
 <p>再使用加减法，将剩下式子的第一个系数化 0。如化简 1 式时，因为 x 的系数为 2，那么就让 \(a[1][k] -= a[0][k] * 2\); 化简 3 式时，因为 x 的系数为 -2，那么就让 \(a[2][k] -= a[0][k] * (-2)\)，结果如下：</p>
+
 <table>
 <thead>
 <tr>
@@ -622,31 +671,36 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
 <td>1</td>
-<td>1/3</td>
-<td>1/6</td>
-<td>-1/6</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>1</sup>&frasl;<sub>6</sub></td>
+<td>-<sup>1</sup>&frasl;<sub>6</sub></td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>0</td>
-<td>1/3</td>
-<td>2/3</td>
-<td>4/3</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>2</sup>&frasl;<sub>3</sub></td>
+<td><sup>4</sup>&frasl;<sub>3</sub></td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>0</td>
-<td>8/3</td>
-<td>4/3</td>
-<td>20/3</td>
+<td><sup>8</sup>&frasl;<sub>3</sub></td>
+<td><sup>4</sup>&frasl;<sub>3</sub></td>
+<td><sup>20</sup>&frasl;<sub>3</sub></td>
 </tr>
 </tbody>
 </table>
+
 <p>同理，用这样的方法继续处理第 1,2 行，最后即可得到结果。例如处理第 1 行，把 \(y\) 项系数最大的式子提前：</p>
+
 <table>
 <thead>
 <tr>
@@ -657,31 +711,36 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
 <td>1</td>
-<td>1/3</td>
-<td>1/6</td>
-<td>-1/6</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>1</sup>&frasl;<sub>6</sub></td>
+<td>-<sup>1</sup>&frasl;<sub>6</sub></td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>0</td>
-<td>8/3</td>
-<td>4/3</td>
-<td>20/3</td>
+<td><sup>8</sup>&frasl;<sub>3</sub></td>
+<td><sup>4</sup>&frasl;<sub>3</sub></td>
+<td><sup>20</sup>&frasl;<sub>3</sub></td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>0</td>
-<td>1/3</td>
-<td>2/3</td>
-<td>4/3</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>2</sup>&frasl;<sub>3</sub></td>
+<td><sup>4</sup>&frasl;<sub>3</sub></td>
 </tr>
 </tbody>
 </table>
+
 <p>让第二个未知数 \(y\) 的系数为 1：</p>
+
 <table>
 <thead>
 <tr>
@@ -692,31 +751,36 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
 <td>1</td>
-<td>1/3</td>
-<td>1/6</td>
-<td>-1/6</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>1</sup>&frasl;<sub>6</sub></td>
+<td>-<sup>1</sup>&frasl;<sub>6</sub></td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>0</td>
 <td>1</td>
-<td>1/2</td>
-<td>5/2</td>
+<td><sup>1</sup>&frasl;<sub>2</sub></td>
+<td><sup>5</sup>&frasl;<sub>2</sub></td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>0</td>
-<td>1/3</td>
-<td>2/3</td>
-<td>4/3</td>
+<td><sup>1</sup>&frasl;<sub>3</sub></td>
+<td><sup>2</sup>&frasl;<sub>3</sub></td>
+<td><sup>4</sup>&frasl;<sub>3</sub></td>
 </tr>
 </tbody>
 </table>
+
 <p>然后使用加减法将剩余的式子化零：</p>
+
 <table>
 <thead>
 <tr>
@@ -727,6 +791,7 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
@@ -735,23 +800,27 @@ x <span style="color:#f92672">=</span> tmp;
 <td>0</td>
 <td>-1</td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>0</td>
 <td>1</td>
-<td>1/2</td>
-<td>5/2</td>
+<td><sup>1</sup>&frasl;<sub>2</sub></td>
+<td><sup>5</sup>&frasl;<sub>2</sub></td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>1/2</td>
-<td>1/2</td>
+<td><sup>1</sup>&frasl;<sub>2</sub></td>
+<td><sup>1</sup>&frasl;<sub>2</sub></td>
 </tr>
 </tbody>
 </table>
+
 <p>最后按照上面的步骤处理第 2 行的式子。最终我们得到的矩阵如下：</p>
+
 <table>
 <thead>
 <tr>
@@ -762,6 +831,7 @@ x <span style="color:#f92672">=</span> tmp;
 <th>val (3)</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>0</td>
@@ -770,6 +840,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>0</td>
 <td>-1</td>
 </tr>
+
 <tr>
 <td>1</td>
 <td>0</td>
@@ -777,6 +848,7 @@ x <span style="color:#f92672">=</span> tmp;
 <td>0</td>
 <td>2</td>
 </tr>
+
 <tr>
 <td>2</td>
 <td>0</td>
@@ -786,7 +858,9 @@ x <span style="color:#f92672">=</span> tmp;
 </tr>
 </tbody>
 </table>
+
 <p>要注意一下，高斯消元存在无解/多解的情况：如果有一个未知数在所有式子中，它的系数都是 0，那么该未知数是无法求解的，那么方程组也就不存在唯一解了。</p>
+
 <p><a href="https://www.luogu.org/problemnew/show/P3389">luogu P3389 模板：高斯消元法</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cmath&gt; </span><span style="color:#75715e">
