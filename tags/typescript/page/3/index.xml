@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>typescript on 宇宙よりも遠い場所</title>
+    <link>https://kirainmoe.com/tags/typescript/</link>
+    <description>Recent content in typescript on 宇宙よりも遠い場所</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 28 Jun 2018 19:34:48 +0000</lastBuildDate>
+    
+        <atom:link href="https://kirainmoe.com/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>每周解题报告 (1st, 8/3~8/6)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</link>
+      <pubDate>Mon, 07 Aug 2017 12:49:06 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</guid>
+      <description>&lt;p&gt;RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。&lt;/p&gt;
+
+&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一次搭建内部 Online Judge 及调优的笔记</title>
+      <link>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</link>
+      <pubDate>Sat, 05 Aug 2017 21:05:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</guid>
+      <description>&lt;p&gt;嗯，就是搭 OJ 这破事把我拽进了 Python 和 docker 的大坑中……
+为了给本校 OI 学员的交流和练(gao)习(shi)提供条件，便有了搭建 OJ 的这么一个想法。以前一直以为这种事情就和装个 WordPress 什么的差不多嘛，真正跳进去才发现，woc 这水居然这么深。
+关于 OJ 的选择，这里我用的是青岛大学 (QingdaoU) 的开源项目 &lt;a href=&#34;https://github.com/QingdaoU/OnlineJudge&#34;&gt;qduoj&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>奇怪的道路 (FCS2017 D2T1)</title>
+      <link>https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/</link>
+      <pubDate>Wed, 19 Jul 2017 20:12:30 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/strange-road-fcs2017-d2-solution/</guid>
+      <description>&lt;p&gt;emmm&amp;hellip; FCS2017 夏令营的一道题目……用的是分治的算法，为了题目的一些细节本蒟蒻足足推了两个小时QAQ……所以要写篇文章记录一下不然哪天自己就看不明白了……&lt;/p&gt;
+
+&lt;p&gt;由于我比较啰嗦，以及我太弱了导致文章有可能有一些部分讲错了，所以，大家将就着看一下吧（虽然我不相信有人看）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从根源缩小 webpack 打包的 React App 体积</title>
+      <link>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</link>
+      <pubDate>Tue, 06 Jun 2017 10:51:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</guid>
+      <description>&lt;p&gt;用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>导出 Typecho 的数据到 Canvas：typecho-to-canvas</title>
+      <link>https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/</link>
+      <pubDate>Sun, 09 Apr 2017 16:28:10 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/export-data-of-typecho-to-canvas/</guid>
+      <description>&lt;p&gt;通过简单几步，将 Typecho 博客程序的数据（文章，标签一类）轻松转换到由 Laravel 驱动的 Canvas 博客平台。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LeetCode Praticing Record</title>
+      <link>https://kirainmoe.com/blog/post/leetcode-praticing-record/</link>
+      <pubDate>Wed, 01 Mar 2017 17:38:39 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/leetcode-praticing-record/</guid>
+      <description>&lt;p&gt;_(:з」∠)_ 因为实在是太久没有写文章但是又找不到有什么东西好写的，正好最近被某 Tyanboot 带入了 &lt;a href=&#34;https://leetcode.com&#34;&gt;LeetCode&lt;/a&gt; 刷题的坑，所以想了想，索性就开了这个帖子记录一下在 LeetCode 的刷题历程好了。因为不想用一题一篇文章的记录方式，所以就直接扔在一整篇博文里。因为时间比较少（被续掉的（不是））&lt;s&gt;所以大概就是 1~2 周做一题、更一题的样子。当然遇到更难的题目另外说……&lt;/s&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>只读属性引起的 state 不随 setState 的触发而变化</title>
+      <link>https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/</link>
+      <pubDate>Sun, 19 Feb 2017 17:32:16 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/state-does-not-chage-by-setstate-due-to-the-readonly-props/</guid>
+      <description>&lt;p&gt;这个是写某项目过程当中偶然遇到的，具体需求是随着数据的变化，实时改变一个 &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt; 输入框的 value。因为用 React.js，自然很快就想到利用 React 组件的 state 特性就可以很方便的做到了。然而由此却引发了一些问题，就是我发现用 &lt;code&gt;this.state.val&lt;/code&gt; 赋值，用 &lt;code&gt;this.setState()&lt;/code&gt; 改变组件状态的时候，更新并没有实时展现出来（其实是根本没有展示出来），输入框里的内容并没有实时更新。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>修改 React-Native Android App 包名</title>
+      <link>https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/</link>
+      <pubDate>Fri, 17 Feb 2017 17:31:03 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/</guid>
+      <description>&lt;p&gt;不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。
+不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>初探全新的 Node.js 包管理器 Yarn</title>
+      <link>https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/</link>
+      <pubDate>Wed, 12 Oct 2016 17:33:58 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/first-taste-of-nodejs-package-manager-yarn/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;就在昨天，&lt;strong&gt;&lt;em&gt;Facebook&lt;/em&gt;&lt;/strong&gt; 发布了新的 **&lt;em&gt;node.js&lt;/em&gt; &lt;strong&gt;包管理器 &lt;a href=&#34;https://yarnpkg.com/&#34;&gt;&lt;strong&gt;&lt;em&gt;Yarn&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt; 用以替代 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt;。咱虽然是个半桶水的咸鱼前端，不过也得跟上** &lt;em&gt;Javascript&lt;/em&gt; &lt;strong&gt;这股潮&lt;/strong&gt;&lt;em&gt;(hong)&lt;/em&gt;&lt;/strong&gt;流&lt;strong&gt;&lt;em&gt;(huang)&lt;/em&gt;&lt;/strong&gt; 的脚步，所以便有了下面这篇文章。大概的浅尝了一下这个自称是又快又可信赖又安全的包管理，所以写的内容不会很详细，更多的可能只是针对这个全新的包管理与 &lt;strong&gt;&lt;em&gt;npm&lt;/em&gt;&lt;/strong&gt; 的不同之处来对比。也可能有些地方写得不对，如果有的话，欢(lai)迎(da)指(wo)正(a)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Friends</title>
+      <link>https://kirainmoe.com/pages/friends/</link>
+      <pubDate>Sat, 09 Apr 2016 17:43:54 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/pages/friends/</guid>
+      <description>MoeFront Family そら TyanBoot CDog 柚子 祀画 立华 团子 OI/ACM Pantw Ringoer Raffica Xeonacid KSKun Other Arathi Balthild Kenvix mokeyjay Alien Lin ZGQ 纳兰泽雨 Tokei diygod JclMiku Sonic853 Howard QQDie 七夏浅笑 Tsez Handle Kira OZOO Rin404 zoengjinnbiu idealclover var playList = [ { &#34;title&#34;: &#34;イニシャル&#34;, &#34;artist&#34;: &#34;Poppin&#39;Party&#34;, &#34;cover&#34;: &#34;//p1.music.126.net/r9RXZsu37irUEPsBuvZ1yA==/109951164615885431.jpg&#34;, &#34;src&#34;: &#34;https://api.kotori.love/netease/1415751355.mp3&#34;, &#34;lyric&#34;:</description>
+    </item>
+    
+    <item>
+      <title>About Me &amp; This Site</title>
+      <link>https://kirainmoe.com/pages/about/</link>
+      <pubDate>Sat, 09 Apr 2016 17:09:35 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/pages/about/</guid>
+      <description>ME: Maruyama Yume 丸山（まるやま） 夢（ゆめ） // aka. @kirainmoe, @AyAmita 目前于 厦门大学信息学院 就读计算机科学专业. 昵称受启发于 BanG Dream! 企划中的角色 丸山彩. Skills C/C++/Gola</description>
+    </item>
+    
+    <item>
+      <title>Guestbook</title>
+      <link>https://kirainmoe.com/pages/guestbook/</link>
+      <pubDate>Sat, 09 Apr 2016 17:09:35 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/pages/guestbook/</guid>
+      <description>一个简单的留言板。 ps: 评论系统采用 Disqus，若无法正常加载，请先连接到国际互联网。</description>
+    </item>
+    
+  </channel>
+</rss>

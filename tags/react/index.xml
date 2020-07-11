@@ -1,53 +1,233 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>react on 宇宙よりも遠い場所</title>
     <link>https://kirainmoe.com/tags/react/</link>
     <description>Recent content in react on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>2016-2020 宇宙よりも遠い場所</copyright>
     <lastBuildDate>Thu, 28 Jun 2018 19:34:48 +0000</lastBuildDate>
     
-	<atom:link href="https://kirainmoe.com/tags/react/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://kirainmoe.com/tags/react/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Typescript 下 Redux connect 带有 Props 组件的问题</title>
-      <link>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</link>
-      <pubDate>Thu, 28 Jun 2018 19:34:48 +0000</pubDate>
+      <title>【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</title>
+      <link>https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/</link>
+      <pubDate>Sun, 12 Jul 2020 00:58:58 +0800</pubDate>
       
-      <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
-      <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
+      <guid>https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前言：为了整活好玩的东西，没有数学功底和深度学习经验的萌新开始学 NLP 了！&lt;br /&gt;
+看的课程链接是这个：&lt;a href=&#34;https://www.deeplearning.ai/natural-language-processing-specialization/&#34;&gt;https://www.deeplearning.ai/natural-language-processing-specialization/&lt;/a&gt;&lt;br /&gt;
+然后呢，大概会不定期更新一下学的过程中记下来的一些东西。顺便安利一下 &lt;a href=&#34;https://notion.so&#34;&gt;Notion&lt;/a&gt; 这个笔记软件，实在是太好用啦。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>【学习笔记】线性规划的单纯形算法</title>
+      <link>https://kirainmoe.com/blog/post/simplex-algorithm/</link>
+      <pubDate>Tue, 11 Feb 2020 18:35:07 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/simplex-algorithm/</guid>
+      <description>&lt;h1 id=&#34;单纯形算法-干啥用的&#34;&gt;单纯形算法？干啥用的？&lt;/h1&gt;
 
-&lt;p&gt;真香&lt;/p&gt;</description>
+&lt;p&gt;它可以用于求解多维线性规划问题。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>使用 Typescript 写 React 遇到的一些坑</title>
-      <link>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</link>
-      <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
+      <title>OpenCore 引导迁移折腾记录</title>
+      <link>https://kirainmoe.com/blog/post/opencore-migration-experience/</link>
+      <pubDate>Thu, 06 Feb 2020 15:08:48 +0800</pubDate>
       
-      <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
-      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;</description>
+      <guid>https://kirainmoe.com/blog/post/opencore-migration-experience/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前言：OpenCore 引导（下文简称 OC）出来了很长一段时间了。但是最近不知什么原因，对新技术特别不敏感，所以观望了很久，也一直没有动手从 Clover 转 OpenCore. 嗯？那为什么会有这篇文章呢？&lt;s&gt;这件事还要从一只蝙蝠说起……&lt;/s&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     
     <item>
-      <title>使用 React 制作全站单页主题的实践</title>
-      <link>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</link>
-      <pubDate>Sun, 17 Dec 2017 20:23:36 +0000</pubDate>
+      <title>过去·现在·未来——2019 年度回顾</title>
+      <link>https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/</link>
+      <pubDate>Wed, 01 Jan 2020 01:18:33 +0800</pubDate>
       
-      <guid>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</guid>
-      <description>&lt;p&gt;算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。&lt;/p&gt;</description>
+      <guid>https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/</guid>
+      <description>&lt;p&gt;突然很想瞎写点什么。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>从根源缩小 webpack 打包的 React App 体积</title>
-      <link>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</link>
-      <pubDate>Tue, 06 Jun 2017 10:51:43 +0000</pubDate>
+      <title>【趣味向】MATLAB 实现函数卷积演示动画</title>
+      <link>https://kirainmoe.com/blog/post/matlab-convolution-example-animation/</link>
+      <pubDate>Sat, 23 Nov 2019 12:28:43 +0800</pubDate>
       
-      <guid>https://kirainmoe.com/blog/post/reduce-react-webpack-app-volume-in-an-extreme-way/</guid>
-      <description>&lt;p&gt;用 webpack 打包 React App 可谓是 React 开发中的最佳实践，但是有个令人十分头疼的问题就是在堆上了一堆依赖之后，用 webpack 打包出来的东西体积非常非常非常大，加载和首屏渲染的时间就要非常非常非常久，用户体验自然也就非……很不好。有很多前辈已经研究了很多缩小 webpack 打包出的 React App 体积的办法，这里我想讲一下自己踩这个大坑的经历以及发现的一个可行的方案。&lt;/p&gt;</description>
+      <guid>https://kirainmoe.com/blog/post/matlab-convolution-example-animation/</guid>
+      <description>&lt;p&gt;这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【学习笔记】点分治</title>
+      <link>https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/</link>
+      <pubDate>Sat, 26 Oct 2019 16:08:20 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/</guid>
+      <description>&lt;p&gt;点分治是大规模处理树上路径问题的工具。大意是找到一个点，递归统计其所有子树的答案，然后利用容斥原理或其它方式合并答案，最后得到整棵树的答案。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>バンドリ!ガールズバンドパーティ!（BanG Dream! 少女乐团派对）游戏资源/歌曲解包</title>
+      <link>https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/</link>
+      <pubDate>Sat, 15 Jun 2019 13:57:11 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/06/15/5d04f02dbd06449617.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;解包 《バンドリ!ガールズバンドパーティ!》（即 BanG Dream! 梦想协奏曲 少女乐团派对，以下简称 garupa）游戏的资源文件。&lt;/p&gt;
+
+&lt;p&gt;其实这不是什么新东西，网上已经有很多相关的教程了，只是因为整个过程有点繁琐，所以写一篇新的文章记录一下过程和补充一些细节。&lt;/p&gt;
+
+&lt;p&gt;下文以 Android 版本的日服和国服为例。以下内容仅供学习使用，请勿用于商业等用途。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[19-3-23] XMU ACM 集训队笔记(4) 基础数论</title>
+      <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-4/</link>
+      <pubDate>Thu, 25 Apr 2019 12:37:16 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-4/</guid>
+      <description>&lt;p&gt;本期主要内容：整除性、模运算性质、唯一分解定理、拓展欧几里得算法、乘法逆元、威尔逊定理、费马小定理、二次剩余。&lt;/p&gt;
+
+&lt;p&gt;因为这只是我自己的笔记，因此我会补充一些必要的证明过程，但考虑到效率问题，不会把所有的概念都讲成白话。&lt;/p&gt;
+
+&lt;p&gt;emmm……这篇文章似乎鸽了很久。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[2019] TF Dev Summit Ext</title>
+      <link>https://kirainmoe.com/blog/post/tfug-tensorflow-dev-summit-ext/</link>
+      <pubDate>Mon, 01 Apr 2019 17:18:32 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/tfug-tensorflow-dev-summit-ext/</guid>
+      <description>&lt;p&gt;这是 2019 TensorFlow Dev Summit Extended 的活动记录。&lt;/p&gt;
+
+&lt;p&gt;本文同步发布于 厦门GDG 微信公众号、TFUG厦门 微信公众号。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【学习笔记】Tarjan 算法</title>
+      <link>https://kirainmoe.com/blog/post/tarjan-algorithm-learning-note/</link>
+      <pubDate>Mon, 18 Mar 2019 21:44:38 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/tarjan-algorithm-learning-note/</guid>
+      <description>&lt;p&gt;这次，我想用尽量简明的语言，来记录一下 Tarjan 算法的学习。&lt;/p&gt;
+
+&lt;p&gt;本文篇幅较长，完整阅读大约需要 15-20 分钟。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[19-3-16] XMU ACM 集训队笔记(3)</title>
+      <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-3/</link>
+      <pubDate>Sat, 16 Mar 2019 12:15:33 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-3/</guid>
+      <description>&lt;p&gt;本期主要内容：图论基础，拓扑排序，欧拉回路和哈密顿回路，最小生成树及其性质与变种，最短路，强连通分量的分解（Tarjan &amp;amp; Kasaraju），二分图匹配的匈牙利算法，二分图最大匹配及其相关问题（最大匹配关键点/边、最大独立集、最小点/边覆盖、DAG 最小路径覆盖、经典问题中的二分图建图）。&lt;br /&gt;
+现在是第三周，每周的内容和难度基本呈现指数级增长……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[19-3-9] XMU ACM 集训队笔记(2)</title>
+      <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-2/</link>
+      <pubDate>Sun, 10 Mar 2019 10:42:18 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-2/</guid>
+      <description>&lt;p&gt;本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。&lt;/p&gt;
+
+&lt;p&gt;前方持续高能中……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[19-3-2] XMU ACM 集训队笔记(1)</title>
+      <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-1/</link>
+      <pubDate>Tue, 05 Mar 2019 22:52:52 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-1/</guid>
+      <description>&lt;p&gt;嗯哼，接下来如果没有意外&lt;s&gt;以及我不咕咕咕&lt;/s&gt;的话，每周都有一篇这样的集训队笔记和解题报告（停了大半年又要回归啦）。写这个东西一来是巩固一下上课学到的知识，二来是存下一点代码和思路以后做题想不起来就翻一下；三是丰富一下博客的内容。如果没有意外的话，更新会隔一周。&lt;/p&gt;
+
+&lt;p&gt;本期主要内容：基础数据结构，卡特兰数，表达式处理，单调队列和单调栈，优先队列和堆，二分法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</title>
+      <link>https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</link>
+      <pubDate>Thu, 28 Feb 2019 20:59:37 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</guid>
+      <description>&lt;p&gt;八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，&lt;s&gt;最近又很寂寞&lt;/s&gt;，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【APIO2009 前缀和/预处理/动态规划】 采油区域</title>
+      <link>https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/</link>
+      <pubDate>Mon, 18 Feb 2019 08:43:14 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/</guid>
+      <description>&lt;p&gt;OJ 地址：&lt;a href=&#34;https://vijos.org/p/2002&#34;&gt;https://vijos.org/p/2002&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>修改神舟笔记本（也许适用于其他机型） UEFI BIOS 开机 Logo</title>
+      <link>https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/</link>
+      <pubDate>Sat, 16 Feb 2019 10:57:54 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/hasee-laptop-change-uefi-bios-logo/</guid>
+      <description>&lt;p&gt;如题。修改 BIOS 有风险，请谨慎操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北</title>
+      <link>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</link>
+      <pubDate>Wed, 23 Jan 2019 20:14:54 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</guid>
+      <description>&lt;h1 id=&#34;2019-7-更新&#34;&gt;&lt;sup&gt;2019&lt;/sup&gt;&amp;frasl;&lt;sub&gt;7&lt;/sub&gt; 更新&lt;/h1&gt;
+
+&lt;p&gt;八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover
+配置文件安装：&lt;a href=&#34;https://github.com/kirainmoe/hasee-tongfang-macos&#34;&gt;https://github.com/kirainmoe/hasee-tongfang-macos&lt;/a&gt; .&lt;/p&gt;
+
+&lt;p&gt;EFI 配置文件替换教程参见 &lt;a href=&#34;https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B&#34;&gt;GitHub Wiki&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;以下内容可能已经过时。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势</title>
+      <link>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</link>
+      <pubDate>Tue, 01 Jan 2019 20:18:50 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</guid>
+      <description>&lt;p&gt;Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达&lt;s&gt;一半&lt;/s&gt;的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BeagleBone Black 开发入门实验</title>
+      <link>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</link>
+      <pubDate>Sun, 23 Dec 2018 11:31:15 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</guid>
+      <description>&lt;p&gt;写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……&lt;/p&gt;
+
+&lt;p&gt;以下内容&lt;s&gt;为图省事大量地摘编自我的实验报告&lt;/s&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Xiamen GDG DevFest 2018 repo</title>
+      <link>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</link>
+      <pubDate>Sun, 25 Nov 2018 22:43:30 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</guid>
+      <description>&lt;p&gt;这是厦门 2018 谷歌开发者嘉年华 参会报告~&lt;/p&gt;
+
+&lt;p&gt;（多图预警，流量环境谨慎点开~）&lt;/p&gt;
+
+&lt;p&gt;ps. 由于在大会上做笔记不是很方便和不完全，因此下面的内容可能有错误或者不周，敬请谅解。&lt;/p&gt;</description>
     </item>
     
   </channel>

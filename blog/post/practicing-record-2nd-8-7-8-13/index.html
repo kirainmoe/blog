@@ -1,919 +1,541 @@
 <!DOCTYPE html>
-<html><head>
-<title>每周解题报告 (2nd, 8/7~8/13)</title>
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        每周解题报告 (2nd, 8/7~8/13) - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
 
 
 
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>每周解题报告 (2nd, 8/7~8/13) - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="每周解题报告 (2nd, 8/7~8/13)" />
+<meta property="og:description" content="这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/" />
+<meta property="article:published_time" content="2017-08-13T16:46:17+00:00" />
+<meta property="article:modified_time" content="2017-08-13T16:46:17+00:00" />
+<meta itemprop="name" content="每周解题报告 (2nd, 8/7~8/13)">
+<meta itemprop="description" content="这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。">
+<meta itemprop="datePublished" content="2017-08-13T16:46:17&#43;00:00" />
+<meta itemprop="dateModified" content="2017-08-13T16:46:17&#43;00:00" />
+<meta itemprop="wordCount" content="3562">
 
-<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.d1b323a5bdb0e7b05730834eb664c761432cfb57d618b4efeb5a9417a66a4b44.css" integrity="sha256-0bMjpb2w57BXMINOtmTHYUMs&#43;1fWGLTv61qUF6ZqS0Q=" media="screen">
-
-<script src="https://kirainmoe.com//js/loadCSS.js"></script>
-<script src="https://kirainmoe.com//js/table.js"></script>
 
 
-<script src="https://kirainmoe.com//js/toc.js"></script>
+<meta itemprop="keywords" content="oi,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="每周解题报告 (2nd, 8/7~8/13)"/>
+<meta name="twitter:description" content="这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。"/>
 
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      showProcessingMessages: false,
-      messageStyle: "none", 
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], 
-        showMathMenu: false
-      }
-  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
 
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+  
+  
 
-<script>
-    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
-
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
-    
-    <a class="a-block nav-head false" href="https://kirainmoe.com/">
-    
-        <div class="nav-title">
-            宇宙よりも遠い場所
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
         </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/guestbook">
-                    留言板
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/friends">
-                    友情链接
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/tags">
-                    标签
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/about">
-                    关于
-                </a>
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        &copy;
-	
-	2016-2020 宇宙よりも遠い場所
-	
-
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-
-    </div>
-
-    
-    <script src="https://tj.kirainmoe.com/cgi-bin/inject_script.cgi"></script>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%81%b6%e7%84%b6%e5%ad%a6%e5%88%b0%e7%9a%84%e9%bb%91%e7%a7%91%e6%8a%80" v-on:click="closeDrawer" id="偶然学到的黑科技-nav">
-										 偶然学到的黑科技
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#stl-%e7%9a%84-unique" v-on:click="closeDrawer" id="stl-的-unique-nav">
-										 STL 的 unique()
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#stl-lower-bound-%e5%92%8c-upper-bound" v-on:click="closeDrawer" id="stl-lower-bound-和-upper-bound-nav">
-										 STL lower_bound() 和 upper_bound()
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%9b%9b%e8%a1%8c%e5%86%99%e5%87%ba%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97-lis-%e7%9a%84-o-nlogn-%e8%a7%a3%e6%b3%95" v-on:click="closeDrawer" id="四行写出最长上升子序列-lis-的-o-nlogn-解法-nav">
-										 四行写出最长上升子序列 (LIS) 的 O(nlogn) 解法
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#4-200-hdu1024-max-sum-plus-plus" v-on:click="closeDrawer" id="4-200-hdu1024-max-sum-plus-plus-nav">
-										 4⁄200, HDU1024, Max Sum Plus Plus
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%a2%98%e6%84%8f-%e6%89%af%e6%b7%a1" v-on:click="closeDrawer" id="题意-扯淡-nav">
-										 题意 &amp; 扯淡
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%bc%80%e5%a7%8b%e6%ad%a3%e6%96%87" v-on:click="closeDrawer" id="开始正文-nav">
-										 开始正文
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bb%a3%e7%a0%81" v-on:click="closeDrawer" id="代码-nav">
-										 代码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#5-200-hdu1028-ignatius-and-the-princess-iii" v-on:click="closeDrawer" id="5-200-hdu1028-ignatius-and-the-princess-iii-nav">
-										 5⁄200, HDU1028, Ignatius and the Princess III
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%a2%98%e6%84%8f-%e6%89%af%e6%b7%a1-1" v-on:click="closeDrawer" id="题意-扯淡-1-nav">
-										 题意 &amp; 扯淡
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%ad%a3%e6%96%87" v-on:click="closeDrawer" id="正文-nav">
-										 正文
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bb%a3%e7%a0%81-1" v-on:click="closeDrawer" id="代码-1-nav">
-										 代码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#6-200-hdu1025-constructing-roads-in-jgshining-s-kingdom" v-on:click="closeDrawer" id="6-200-hdu1025-constructing-roads-in-jgshining-s-kingdom-nav">
-										 6⁄200, HDU1025 Constructing Roads In JGShining’s Kingdom
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#6-1-hdu1029-ignatius-and-the-princess-iv" v-on:click="closeDrawer" id="6-1-hdu1029-ignatius-and-the-princess-iv-nav">
-										 6.1, HDU1029, Ignatius and the Princess IV
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#6-5-200-hdu1232-%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8b" v-on:click="closeDrawer" id="6-5-200-hdu1232-畅通工程-nav">
-										 6.5⁄200, HDU1232, 畅通工程
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
-                        留言板
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/friends">
-                        友情链接
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/tags">
-                        标签
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/about">
-                        关于
-                    </a>
-            
-            
-            <div class="toc">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%81%b6%e7%84%b6%e5%ad%a6%e5%88%b0%e7%9a%84%e9%bb%91%e7%a7%91%e6%8a%80" v-on:click="closeDrawer" id="偶然学到的黑科技-nav">
-										 偶然学到的黑科技
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#stl-%e7%9a%84-unique" v-on:click="closeDrawer" id="stl-的-unique-nav">
-										 STL 的 unique()
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#stl-lower-bound-%e5%92%8c-upper-bound" v-on:click="closeDrawer" id="stl-lower-bound-和-upper-bound-nav">
-										 STL lower_bound() 和 upper_bound()
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%9b%9b%e8%a1%8c%e5%86%99%e5%87%ba%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97-lis-%e7%9a%84-o-nlogn-%e8%a7%a3%e6%b3%95" v-on:click="closeDrawer" id="四行写出最长上升子序列-lis-的-o-nlogn-解法-nav">
-										 四行写出最长上升子序列 (LIS) 的 O(nlogn) 解法
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#4-200-hdu1024-max-sum-plus-plus" v-on:click="closeDrawer" id="4-200-hdu1024-max-sum-plus-plus-nav">
-										 4⁄200, HDU1024, Max Sum Plus Plus
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%a2%98%e6%84%8f-%e6%89%af%e6%b7%a1" v-on:click="closeDrawer" id="题意-扯淡-nav">
-										 题意 &amp; 扯淡
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%bc%80%e5%a7%8b%e6%ad%a3%e6%96%87" v-on:click="closeDrawer" id="开始正文-nav">
-										 开始正文
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bb%a3%e7%a0%81" v-on:click="closeDrawer" id="代码-nav">
-										 代码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#5-200-hdu1028-ignatius-and-the-princess-iii" v-on:click="closeDrawer" id="5-200-hdu1028-ignatius-and-the-princess-iii-nav">
-										 5⁄200, HDU1028, Ignatius and the Princess III
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%a2%98%e6%84%8f-%e6%89%af%e6%b7%a1-1" v-on:click="closeDrawer" id="题意-扯淡-1-nav">
-										 题意 &amp; 扯淡
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%ad%a3%e6%96%87" v-on:click="closeDrawer" id="正文-nav">
-										 正文
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bb%a3%e7%a0%81-1" v-on:click="closeDrawer" id="代码-1-nav">
-										 代码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#6-200-hdu1025-constructing-roads-in-jgshining-s-kingdom" v-on:click="closeDrawer" id="6-200-hdu1025-constructing-roads-in-jgshining-s-kingdom-nav">
-										 6⁄200, HDU1025 Constructing Roads In JGShining’s Kingdom
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#6-1-hdu1029-ignatius-and-the-princess-iv" v-on:click="closeDrawer" id="6-1-hdu1029-ignatius-and-the-princess-iv-nav">
-										 6.1, HDU1029, Ignatius and the Princess IV
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#6-5-200-hdu1232-%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8b" v-on:click="closeDrawer" id="6-5-200-hdu1232-畅通工程-nav">
-										 6.5⁄200, HDU1232, 畅通工程
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
-            宇宙よりも遠い場所
-        </a>
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://kirainmoe.com/">
-        <div class="single-column-header-title">宇宙よりも遠い場所</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post">
-            
-            
-            
-
-            <div class="post-head-wrapper-text-only"
-                 style="background-image: url('/')">
-                <div class="post-title">
-                    每周解题报告 (2nd, 8/7~8/13)
-                    <div class="post-meta">
-                        <time itemprop="datePublished">
-                            2017-08-13 16:46
-                        </time>
-
-                        
-
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/oi">oi</a>
-                                &nbsp;
-                            
-                                <a href="/tags/algorithm">algorithm</a>
-                                &nbsp;
-                            
-                        
-                    </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
                 </div>
             </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
             
-            <div class="post-body-wrapper">
-                <div class="post-body">
-                    <p>这一周主要在看 DP 的题目，嘛，都是一些我觉得很好<s>但是我写不出来的</s>题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。</p>
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/practicing-record-2nd-8-7-8-13/"
+    >每周解题报告 (2nd, 8/7~8/13)</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/" class="article-date">
+  <time datetime="2017-08-13 16:46:17 &#43;0000 UTC" itemprop="datePublished">2017-08-13</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/oi/"> oi </a>
+    <a class="article-tag-link" href="/tags/algorithm/"> algorithm </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/practicing-record-2nd-8-7-8-13/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3562words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 8minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>这一周主要在看 DP 的题目，嘛，都是一些我觉得很好<s>但是我写不出来的</s>题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。</p>
 
 <h1 id="偶然学到的黑科技">偶然学到的黑科技</h1>
 
@@ -936,11 +558,13 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <p>LIS 的话，传统的写法是 O(n^2) 的，用二分优化过后可以降到 O(nlogn). 至于具体的原理我就不想详细在这里记录了，不然文章又要很长。</p>
 
 <p>设 arr[] 为要求 LIS 的数列，lis[] 为保存 LIS 的数组。那么我们可以通过下面的代码来求 LIS：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">fill(lis, lis <span style="color:#f92672">+</span> n, INF);
-<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-	<span style="color:#f92672">*</span>lower_bound(lis, lis <span style="color:#f92672">+</span> n, arr[i]) <span style="color:#f92672">=</span> arr[i];
-<span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> lower_bound(lis, lis <span style="color:#f92672">+</span> n, INF) <span style="color:#f92672">-</span> lis;			<span style="color:#75715e">// LIS 的长度
-</span></code></pre></div>
+
+<pre><code class="language-cpp">fill(lis, lis + n, INF);
+for (int i = 0; i &lt; n; i++)
+	*lower_bound(lis, lis + n, arr[i]) = arr[i];
+int len = lower_bound(lis, lis + n, INF) - lis;			// LIS 的长度
+</code></pre>
+
 <p>简单快捷。</p>
 
 <h1 id="4-200-hdu1024-max-sum-plus-plus"><sup>4</sup>&frasl;<sub>200</sub>, HDU1024, Max Sum Plus Plus</h1>
@@ -967,9 +591,15 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 2.将第 j 个数单独划一个区间，此时区间个数由 i-1 变为 i，最大和为当区间长度为 i-1 的时候能取到的最大值 (也就是 dp[i-1][k]) 加上 a[j].</p>
 
 <p>我们可以得到这样的状态转移方程：</p>
-<pre><code>dp[i][j] = max(dp[i][j-1] + a[j], dp[i-1][k] + a[j]), 其中 k∈[i-1, j-1]</code></pre>
+
+<pre><code>dp[i][j] = max(dp[i][j-1] + a[j], dp[i-1][k] + a[j]), 其中 k∈[i-1, j-1]
+</code></pre>
+
 <p>也即</p>
-<pre><code>dp[i-1][k] = max(dp[i-1][i-1], dp[i-1][i], ....., dp[i-1][j-1]).</code></pre>
+
+<pre><code>dp[i-1][k] = max(dp[i-1][i-1], dp[i-1][i], ....., dp[i-1][j-1]).
+</code></pre>
+
 <p>意思是，<strong>dp[i][j] 的取值只和 dp[i][j-1] 和 dp[i-1][k] 有关</strong>。由于 i = 1 =&gt; m，那么我们事实上可以将数组降成两个一维的，也就是运用滚动数组来解这道题目：</p>
 
 <p>设 d[j] 表示第 j 个数一定取的时候的最大值(dp[i][j])，premax[j] 表示 max(dp[i][i], &hellip;, dp[i][j])。那么原方程就可以化为 <code>dp[j] = max(dp[j-1] + a[j], premax[j-1] + a[j]);</code></p>
@@ -979,62 +609,67 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <p>接着，我们枚举剩余的所有没有划分区间的数，每次枚举首先计算 dp[j]，然后再将 premax[j-1] 设为 curmax，然后更新 curmax 的值为 max(curmax, dp[j]). curmax 在这里的作用就相当于表示了 max(dp[i-1][i-1], &hellip;, dp[i-1][j-1])，我们可以利用滚动数组边 DP 边计算 curmax，然后把 curmax 更新给 premax 来保存. 全部计算完之后最后的结果就是最后一次更新后的 curmax 值了。</p>
 
 <p>核心的伪代码如下：</p>
+
 <pre><code>initialize curmax
-for (i = 1 => m)
+for (i = 1 =&gt; m)
     let curmax = -infinity
-    for (j = i => n)
+    for (j = i =&gt; n)
         calculate dp[j] = max(dp[j-1] + a[j], premax[j-1] + a[j])
         update    premax[j-1] = curmax
         update    curmax = max(dp[j], curmax)
-print curmax</code></pre>
+print curmax
+</code></pre>
+
 <h2 id="代码">代码</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/**
-</span><span style="color:#75715e">* HDU1024 DP 最大连续 m 区间和 
-</span><span style="color:#75715e">*/</span>
-<span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
+<pre><code class="language-cpp">/**
+* HDU1024 DP 最大连续 m 区间和 
+*/
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
 
-<span style="color:#66d9ef">int</span> n, m;
-<span style="color:#66d9ef">int</span> a[MAXN];
-<span style="color:#66d9ef">int</span> dp[MAXN];
-<span style="color:#66d9ef">int</span> premax[MAXN];
+const int MAXN = 1e6 + 10;
+const int INF = 1e9 + 7;
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int n, m;
+int a[MAXN];
+int dp[MAXN];
+int premax[MAXN];
+
+int main()
 {
-  <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> EOF)
+  while (scanf(&quot;%d%d&quot;, &amp;m, &amp;n) != EOF)
   {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    for (int i = 1; i &lt;= n; i++)
     {
-      scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a[i]);
+      scanf(&quot;%d&quot;, &amp;a[i]);
     }
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    for (int i = 0; i &lt;= n; i++)
     {
-      dp[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      premax[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      dp[i] = 0;
+      premax[i] = 0;
     }
     
- 		<span style="color:#75715e">// start solution
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> curmax;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+ 		// start solution
+    int curmax;
+    for (int i = 1; i &lt;= m; i++)
     {
-      curmax <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>INF;
-      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+      curmax = -INF;
+      for (int j = i; j &lt;= n; j++)
       {
-        dp[j] <span style="color:#f92672">=</span> max(dp[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> a[j], premax[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> a[j]);
-        premax[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> curmax;
-        curmax <span style="color:#f92672">=</span> max(curmax, dp[j]);
+        dp[j] = max(dp[j-1] + a[j], premax[j-1] + a[j]);
+        premax[j-1] = curmax;
+        curmax = max(curmax, dp[j]);
       }
     }
     
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, curmax);
+    printf(&quot;%d\n&quot;, curmax);
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h1 id="5-200-hdu1028-ignatius-and-the-princess-iii"><sup>5</sup>&frasl;<sub>200</sub>, HDU1028, Ignatius and the Princess III</h1>
 
 <h2 id="题意-扯淡-1">题意 &amp; 扯淡</h2>
@@ -1076,39 +711,42 @@ print curmax</code></pre>
 <p>&ldquo;这样我们就完美地解决了这个问题。&rdquo;</p>
 
 <h2 id="代码-1">代码</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> dp[MAXN][MAXN];
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+const int MAXN = 120 + 5;
+int n;
+int dp[MAXN][MAXN];
+
+int main()
 {
-  <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> EOF)
+  while (scanf(&quot;%d&quot;, &amp;n) != EOF)
   {
-    memset(dp, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(dp));
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    memset(dp, 0, sizeof(dp));
+    for (int i = 1; i &lt;= n; i++)
     {
-      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+      for (int j = 1; j &lt;= n; j++)
       {
-        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&lt;</span> j)
+        if (i &lt; j)
         {
-          dp[i][j] <span style="color:#f92672">=</span> dp[i][i];
+          dp[i][j] = dp[i][i];
         }
-        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> j)
+        if (i == j)
         {
-          dp[i][j] <span style="color:#f92672">=</span> dp[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+          dp[i][j] = dp[i][j-1] + 1;
         }
-        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span> j)
+        if (i &gt; j)
         {
-          dp[i][j] <span style="color:#f92672">=</span> dp[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> dp[i<span style="color:#f92672">-</span>j][j];
+          dp[i][j] = dp[i][j-1] + dp[i-j][j];
         }
       }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dp[n][n]);
+    printf(&quot;%d\n&quot;, dp[n][n]);
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div>
+
+</code></pre>
+
 <h1 id="6-200-hdu1025-constructing-roads-in-jgshining-s-kingdom"><sup>6</sup>&frasl;<sub>200</sub>, HDU1025 Constructing Roads In JGShining&rsquo;s Kingdom</h1>
 
 <p>还是 DP。懒得翻题意了，自己戳原链接看好了QAQ：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1025">http://acm.hdu.edu.cn/showproblem.php?pid=1025</a></p>
@@ -1116,62 +754,65 @@ print curmax</code></pre>
 <p>也就是在上文提到的最长上升子序列了，但是这一题的话用 O(n^2) 的解法是会 T 的。有两组数嘛，首先对一组排序（当然要保持和另外一组的对应关系），然后对另一组数做 LIS 就可以了。为什么是 LIS 自己画个图就知道了。</p>
 
 <p>甚至可以，不用排序：在输入的时候只保存一组数据，而把另一组数作为数组的 key 即可，因为两组数是一一对应的，没有一对多的情况。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
 
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, kases <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> maps[MAXN];
-<span style="color:#66d9ef">int</span> dp[MAXN];
-<span style="color:#66d9ef">int</span> LIS[MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+const int MAXN = 5 * 1e5 + 10;
+const int INF = 1e9 + 10;
+
+int n;
+int ans = 0, kases = 0;
+int maps[MAXN];
+int dp[MAXN];
+int LIS[MAXN];
+int main()
 {
-  <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+  while (scanf(&quot;%d&quot;, &amp;n) == 1)
   {
-    kases<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+    kases++;
     
-    <span style="color:#75715e">// read data
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    // read data
+    for (int i = 1; i &lt;= n; i++)
     {
-      <span style="color:#66d9ef">int</span> x, y;
-      scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>x, <span style="color:#f92672">&amp;</span>y);
-      maps[x] <span style="color:#f92672">=</span> y;
+      int x, y;
+      scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+      maps[x] = y;
     }
     
-    <span style="color:#75715e">// initialize
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    // initialize
+    for (int i = 0; i &lt;= n; i++)
     {
-      dp[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      LIS[i] <span style="color:#f92672">=</span> INF;
+      dp[i] = 0;
+      LIS[i] = INF;
     }
-    dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    dp[0] = 0;
     
-    <span style="color:#75715e">// LIS
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    // LIS
+    for (int i = 1; i &lt;= n; i++)
     {
-      <span style="color:#f92672">*</span>lower_bound(LIS <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, LIS <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> n, maps[i]) <span style="color:#f92672">=</span> maps[i];
+      *lower_bound(LIS + 1, LIS + 1 + n, maps[i]) = maps[i];
     }
-    ans <span style="color:#f92672">=</span> lower_bound(LIS <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, LIS <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> n, INF) <span style="color:#f92672">-</span> LIS <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    ans = lower_bound(LIS + 1, LIS + 1 + n, INF) - LIS - 1;
     
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Case %d:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kases);
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">My king, at most %d </span><span style="color:#e6db74">&#34;</span>, ans);
-    <span style="color:#66d9ef">if</span> (ans <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+    printf(&quot;Case %d:\n&quot;, kases);
+    printf(&quot;My king, at most %d &quot;, ans);
+    if (ans == 1)
     {
-      printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">road can be built.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+      printf(&quot;road can be built.\n&quot;);
     }
-    <span style="color:#66d9ef">else</span>
+    else
     {
-      printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">roads can be built.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+      printf(&quot;roads can be built.\n&quot;);
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    printf(&quot;\n&quot;);
   }
   
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div>
+
+</code></pre>
+
 <p>以下是自己写的时候顺手 YY 的注释:</p>
 
 <blockquote>
@@ -1188,163 +829,269 @@ print curmax</code></pre>
 <h1 id="6-1-hdu1029-ignatius-and-the-princess-iv">6.1, HDU1029, Ignatius and the Princess IV</h1>
 
 <p>之所以是 6.1 是因为这题实在是太。水。了。不是一般的水。要不是某个题目分类的帖子里说这题是 DP，我才不会做呢（</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/**
-</span><span style="color:#75715e">* HDU1029 水题，谁说是 DP 的给我出来我保证打不死你 
-</span><span style="color:#75715e">* 明明是这么简单的计数题！！ 
-</span><span style="color:#75715e">*/</span>
-<span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
-<span style="color:#66d9ef">int</span> data[MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+
+<pre><code class="language-cpp">/**
+* HDU1029 水题，谁说是 DP 的给我出来我保证打不死你 
+* 明明是这么简单的计数题！！ 
+*/
+#include &lt;bits/stdc++.h&gt; 
+const int MAXN = 1e6 + 5;
+int data[MAXN];
+int main()
 {
-  <span style="color:#66d9ef">int</span> n, flag;
-  <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> EOF)
+  int n, flag;
+  while (scanf(&quot;%d&quot;, &amp;n) != EOF)
   {
-    <span style="color:#66d9ef">bool</span> state <span style="color:#f92672">=</span> true;
-    flag <span style="color:#f92672">=</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    bool state = true;
+    flag = (n + 1) / 2;
     
-    memset(data, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(data));
+    memset(data, 0, sizeof(data));
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    for (int i = 0; i &lt; n; i++)
     {
-      <span style="color:#66d9ef">int</span> x;
-      scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>x);
-      data[x]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-      <span style="color:#66d9ef">if</span> (data[x] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> flag <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> state)
+      int x;
+      scanf(&quot;%d&quot;, &amp;x);
+      data[x]++;
+      if (data[x] &gt;= flag &amp;&amp; state)
       {
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
-        state <span style="color:#f92672">=</span> false;
+        printf(&quot;%d\n&quot;, x);
+        state = false;
       }
     }
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div>
+
+</code></pre>
+
 <h1 id="6-5-200-hdu1232-畅通工程">6.<sup>5</sup>&frasl;<sub>200</sub>, HDU1232, 畅通工程</h1>
 
 <p>畅通工程系列的第一题，这是一道裸的并查集 OvO. 只要理解并查集的都会写啦。题目有个“温馨提示”，但是并不影响我们做题，管他什么多条道路连接的输入合不合法呢。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
-<span style="color:#66d9ef">int</span> p[MAXN];
-<span style="color:#66d9ef">int</span> n, m;
-<span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>()
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+
+const int MAXN = 1e3 + 10;
+int p[MAXN];
+int n, m;
+int cnt = 0;
+
+void init()
 {
-  cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MAXN; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+  cnt = 0;
+  for (int i = 0; i &lt; MAXN; i++)
   {
-    p[i] <span style="color:#f92672">=</span> i;
+    p[i] = i;
   }
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find</span>(<span style="color:#66d9ef">int</span> x)
+int find(int x)
 {
-  <span style="color:#66d9ef">return</span> x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> p[x] <span style="color:#f92672">?</span> x : p[x] <span style="color:#f92672">=</span> find(p[x]);
+  return x == p[x] ? x : p[x] = find(p[x]);
 }
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">unions</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
+void unions(int x, int y)
 {
-  <span style="color:#66d9ef">int</span> px <span style="color:#f92672">=</span> find(x),
-      py <span style="color:#f92672">=</span> find(y);
-  <span style="color:#66d9ef">if</span> (px <span style="color:#f92672">=</span><span style="color:#f92672">=</span> py)
+  int px = find(x),
+      py = find(y);
+  if (px == py)
   {
-    <span style="color:#66d9ef">return</span>;
+    return;
   }
-  <span style="color:#66d9ef">else</span>
+  else
   {
-    p[px] <span style="color:#f92672">=</span> py;
-    cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+    p[px] = py;
+    cnt++;
   }
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-  <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> EOF <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> n <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+  while (scanf(&quot;%d&quot;, &amp;n) != EOF &amp;&amp; n != 0)
   {
     init(); 
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>m);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    scanf(&quot;%d&quot;, &amp;m);
+    for (int i = 0; i &lt; m; i++)
     {
-      <span style="color:#66d9ef">int</span> x, y;
-      scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>x, <span style="color:#f92672">&amp;</span>y);
+      int x, y;
+      scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
       unions(x, y);
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, (n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> cnt));
+    printf(&quot;%d\n&quot;, (n - 1 - cnt));
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div>
-<p>剩下的是一些旧题重做的，然后就不贴上来了。</p>
-                    <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2017-08-13</p>
-                </div>
-                
-            </div>
-            
-            
-            <nav class="post-pagination">
 
-                
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/">
-                    Next<br>每周解题报告 (3rd, 8/14~8/20)
+</code></pre>
+
+<p>剩下的是一些旧题重做的，然后就不贴上来了。</p>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/" title="每周解题报告 (2nd, 8/7~8/13)" target="_blank" rel="external">https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/" title="每周解题报告 (1st, 8/3~8/6)"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/"
+                    title="每周解题报告 (3rd, 8/14~8/20)"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
                 </a>
-                
-                
-                
-                <a class="older-posts" href="https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/">
-                    Previous<br>每周解题报告 (1st, 8/3~8/6)
-                </a>
-                
-            </nav>
-            <div class="post-comment-wrapper">
-                
-<div class="post-comment-wrapper">
-<div id="disqus_thread"></div>
-<script type="application/javascript">
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
     var disqus_config = function () {
-    
-    
-    
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/practicing-record-2nd-8-7-8-13\/';
+        this.page.identifier = 'yume-diary';
     };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div><div id="single-column-footer">&copy;
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
 	
-	2016-2020 宇宙よりも遠い場所
-	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-</div>
-    	</div>
-    <script src="https://kirainmoe.com//js/journal.js"></script>
-    </body>
+  </body>
 </html>

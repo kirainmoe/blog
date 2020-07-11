@@ -1,1065 +1,548 @@
 <!DOCTYPE html>
-<html><head>
-<title>BeagleBone Black 开发入门实验</title>
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        BeagleBone Black 开发入门实验 - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……
+以下内容为图省事大量地摘编自我的实验报告。
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
 
 
 
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>BeagleBone Black 开发入门实验 - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="BeagleBone Black 开发入门实验" />
+<meta property="og:description" content="写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……
 
-<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.d1b323a5bdb0e7b05730834eb664c761432cfb57d618b4efeb5a9417a66a4b44.css" integrity="sha256-0bMjpb2w57BXMINOtmTHYUMs&#43;1fWGLTv61qUF6ZqS0Q=" media="screen">
+以下内容为图省事大量地摘编自我的实验报告。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/" />
+<meta property="article:published_time" content="2018-12-23T11:31:15+08:00" />
+<meta property="article:modified_time" content="2018-12-23T11:31:15+08:00" />
+<meta itemprop="name" content="BeagleBone Black 开发入门实验">
+<meta itemprop="description" content="写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……
 
-<script src="https://kirainmoe.com//js/loadCSS.js"></script>
-<script src="https://kirainmoe.com//js/table.js"></script>
+以下内容为图省事大量地摘编自我的实验报告。">
+<meta itemprop="datePublished" content="2018-12-23T11:31:15&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-23T11:31:15&#43;08:00" />
+<meta itemprop="wordCount" content="4877">
 
 
-<script src="https://kirainmoe.com//js/toc.js"></script>
 
+<meta itemprop="keywords" content="beaglebone,tutorial," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BeagleBone Black 开发入门实验"/>
+<meta name="twitter:description" content="写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      showProcessingMessages: false,
-      messageStyle: "none", 
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], 
-        showMathMenu: false
-      }
-  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+以下内容为图省事大量地摘编自我的实验报告。"/>
 
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
 
-<script>
-    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
 
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
-    
-    <a class="a-block nav-head false" href="https://kirainmoe.com/">
-    
-        <div class="nav-title">
-            宇宙よりも遠い場所
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
         </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/guestbook">
-                    留言板
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/friends">
-                    友情链接
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/tags">
-                    标签
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/about">
-                    关于
-                </a>
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        &copy;
-	
-	2016-2020 宇宙よりも遠い場所
-	
-
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-
-    </div>
-
-    
-    <script src="https://tj.kirainmoe.com/cgi-bin/inject_script.cgi"></script>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6-beaglebone-black-%e8%87%aa%e5%b8%a6%e7%9a%84-led-%e7%81%af" v-on:click="closeDrawer" id="使用脚本程序控制-beaglebone-black-自带的-led-灯-nav">
-										 使用脚本程序控制 BeagleBone Black 自带的 LED 灯
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%8f%8a%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标及所需硬件资源-nav">
-										 实现目标及所需硬件资源
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%bd%af%e4%bb%b6%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="软件流程-nav">
-										 软件流程
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c" v-on:click="closeDrawer" id="关键代码分析及现象结果-nav">
-										 关键代码分析及现象结果
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bd%bf%e7%94%a8c%e8%af%ad%e8%a8%80%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%a4%96%e6%8e%a5-led-%e8%ae%be%e5%a4%87" v-on:click="closeDrawer" id="使用c语言程序控制外接-led-设备-nav">
-										 使用C语言程序控制外接 LED 设备
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%92%8c%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标和所需硬件资源-nav">
-										 实现目标和所需硬件资源
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-black-%e7%9a%84-gpio-%e5%92%8c%e5%bc%95%e8%84%9a%e6%8e%a5%e5%8f%a3" v-on:click="closeDrawer" id="beaglebone-black-的-gpio-和引脚接口-nav">
-										 BeagleBone Black 的 GPIO 和引脚接口
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%a1%ac%e4%bb%b6%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="硬件连线-nav">
-										 硬件连线
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="实现流程-nav">
-										 实现流程
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c-c-%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="关键代码分析及现象结果-c-实现-nav">
-										 关键代码分析及现象结果 (C&#43;&#43; 实现)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%89%a9%e8%81%94%e7%bd%91%e6%a6%82%e5%bf%b5%e5%8f%8a%e5%85%b6%e5%9c%a8-beaglebone-black-%e4%b8%8b%e7%9a%84%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="物联网概念及其在-beaglebone-black-下的实现-nav">
-										 物联网概念及其在 BeagleBone Black 下的实现
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-black-%e5%ae%9e%e7%8e%b0%e7%89%a9%e8%81%94%e7%bd%91%e7%9a%84%e5%87%a0%e7%a7%8d%e6%9e%b6%e6%9e%84" v-on:click="closeDrawer" id="beaglebone-black-实现物联网的几种架构-nav">
-										 BeagleBone Black 实现物联网的几种架构
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8a%a8%e6%80%81-cgi-%e9%a1%b5%e9%9d%a2%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="动态-cgi-页面实现-nav">
-										 动态 CGI 页面实现
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-black-%e4%b8%8e-windows-%e5%ae%bf%e4%b8%bb%e6%9c%ba%e5%85%b1%e4%ba%ab%e7%bd%91%e7%bb%9c" v-on:click="closeDrawer" id="beaglebone-black-与-windows-宿主机共享网络-nav">
-										 BeagleBone Black 与 Windows 宿主机共享网络
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-%e5%ae%9e%e7%8e%b0%e5%ae%9e%e6%97%b6%e6%b8%a9%e5%ba%a6%e6%a3%80%e6%b5%8b%e7%b3%bb%e7%bb%9f" v-on:click="closeDrawer" id="beaglebone-实现实时温度检测系统-nav">
-										 BeagleBone 实现实时温度检测系统
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%9b%ae%e7%9a%84%e5%8f%8a%e5%8e%9f%e7%90%86" v-on:click="closeDrawer" id="目的及原理-nav">
-										 目的及原理
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="连线-nav">
-										 连线
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e4%bb%a3%e7%a0%81" v-on:click="closeDrawer" id="实现代码-nav">
-										 实现代码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
-                        留言板
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/friends">
-                        友情链接
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/tags">
-                        标签
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/about">
-                        关于
-                    </a>
-            
-            
-            <div class="toc">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6-beaglebone-black-%e8%87%aa%e5%b8%a6%e7%9a%84-led-%e7%81%af" v-on:click="closeDrawer" id="使用脚本程序控制-beaglebone-black-自带的-led-灯-nav">
-										 使用脚本程序控制 BeagleBone Black 自带的 LED 灯
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%8f%8a%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标及所需硬件资源-nav">
-										 实现目标及所需硬件资源
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%bd%af%e4%bb%b6%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="软件流程-nav">
-										 软件流程
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c" v-on:click="closeDrawer" id="关键代码分析及现象结果-nav">
-										 关键代码分析及现象结果
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bd%bf%e7%94%a8c%e8%af%ad%e8%a8%80%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%a4%96%e6%8e%a5-led-%e8%ae%be%e5%a4%87" v-on:click="closeDrawer" id="使用c语言程序控制外接-led-设备-nav">
-										 使用C语言程序控制外接 LED 设备
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e7%9b%ae%e6%a0%87%e5%92%8c%e6%89%80%e9%9c%80%e7%a1%ac%e4%bb%b6%e8%b5%84%e6%ba%90" v-on:click="closeDrawer" id="实现目标和所需硬件资源-nav">
-										 实现目标和所需硬件资源
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-black-%e7%9a%84-gpio-%e5%92%8c%e5%bc%95%e8%84%9a%e6%8e%a5%e5%8f%a3" v-on:click="closeDrawer" id="beaglebone-black-的-gpio-和引脚接口-nav">
-										 BeagleBone Black 的 GPIO 和引脚接口
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%a1%ac%e4%bb%b6%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="硬件连线-nav">
-										 硬件连线
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b" v-on:click="closeDrawer" id="实现流程-nav">
-										 实现流程
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%85%b3%e9%94%ae%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90%e5%8f%8a%e7%8e%b0%e8%b1%a1%e7%bb%93%e6%9e%9c-c-%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="关键代码分析及现象结果-c-实现-nav">
-										 关键代码分析及现象结果 (C&#43;&#43; 实现)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%89%a9%e8%81%94%e7%bd%91%e6%a6%82%e5%bf%b5%e5%8f%8a%e5%85%b6%e5%9c%a8-beaglebone-black-%e4%b8%8b%e7%9a%84%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="物联网概念及其在-beaglebone-black-下的实现-nav">
-										 物联网概念及其在 BeagleBone Black 下的实现
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-black-%e5%ae%9e%e7%8e%b0%e7%89%a9%e8%81%94%e7%bd%91%e7%9a%84%e5%87%a0%e7%a7%8d%e6%9e%b6%e6%9e%84" v-on:click="closeDrawer" id="beaglebone-black-实现物联网的几种架构-nav">
-										 BeagleBone Black 实现物联网的几种架构
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8a%a8%e6%80%81-cgi-%e9%a1%b5%e9%9d%a2%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="动态-cgi-页面实现-nav">
-										 动态 CGI 页面实现
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-black-%e4%b8%8e-windows-%e5%ae%bf%e4%b8%bb%e6%9c%ba%e5%85%b1%e4%ba%ab%e7%bd%91%e7%bb%9c" v-on:click="closeDrawer" id="beaglebone-black-与-windows-宿主机共享网络-nav">
-										 BeagleBone Black 与 Windows 宿主机共享网络
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#beaglebone-%e5%ae%9e%e7%8e%b0%e5%ae%9e%e6%97%b6%e6%b8%a9%e5%ba%a6%e6%a3%80%e6%b5%8b%e7%b3%bb%e7%bb%9f" v-on:click="closeDrawer" id="beaglebone-实现实时温度检测系统-nav">
-										 BeagleBone 实现实时温度检测系统
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%9b%ae%e7%9a%84%e5%8f%8a%e5%8e%9f%e7%90%86" v-on:click="closeDrawer" id="目的及原理-nav">
-										 目的及原理
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%bf%9e%e7%ba%bf" v-on:click="closeDrawer" id="连线-nav">
-										 连线
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0%e4%bb%a3%e7%a0%81" v-on:click="closeDrawer" id="实现代码-nav">
-										 实现代码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
-            宇宙よりも遠い場所
-        </a>
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://kirainmoe.com/">
-        <div class="single-column-header-title">宇宙よりも遠い場所</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post">
-            
-            
-            
-
-            <div class="post-head-wrapper-text-only"
-                 style="background-image: url('/')">
-                <div class="post-title">
-                    BeagleBone Black 开发入门实验
-                    <div class="post-meta">
-                        <time itemprop="datePublished">
-                            2018-12-23 11:31
-                        </time>
-
-                        
-
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/beaglebone">beaglebone</a>
-                                &nbsp;
-                            
-                                <a href="/tags/tutorial">tutorial</a>
-                                &nbsp;
-                            
-                        
-                    </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
                 </div>
             </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
             
-            <div class="post-body-wrapper">
-                <div class="post-body">
-                    <p>写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……</p>
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/beaglebone-black-dev-tutorial/"
+    >BeagleBone Black 开发入门实验</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/" class="article-date">
+  <time datetime="2018-12-23 11:31:15 &#43;0800 CST" itemprop="datePublished">2018-12-23</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/beaglebone/"> beaglebone </a>
+    <a class="article-tag-link" href="/tags/tutorial/"> tutorial </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/beaglebone-black-dev-tutorial/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 4877words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 10minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……</p>
 
 <p>以下内容<s>为图省事大量地摘编自我的实验报告</s>。</p>
 
@@ -1098,61 +581,67 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 </ol>
 
 <p>以下 Bash 程序实现了让 BeagleBone Black 的四个指示灯一个接一个亮起、熄灭的功能：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span><span style="color:#75715e"># reset leds&#39; trigger</span>
-echo <span style="color:#e6db74">&#34;Setting LEDs trigger to none...&#34;</span>
-<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
-<span style="color:#66d9ef">do</span>
-    echo none &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/trigger
-<span style="color:#66d9ef">done</span>
 
-<span style="color:#75715e"># turn on leds, controlling by sleep</span>
-echo <span style="color:#e6db74">&#34;Turning on/off LEDs one after another...&#34;</span>
-<span style="color:#66d9ef">while</span> :
-<span style="color:#66d9ef">do</span>
-    <span style="color:#75715e"># turn on leds</span>
-    <span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">do</span>
-        echo <span style="color:#ae81ff">1</span> &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/brightness
-        sleep 0.5s      <span style="color:#75715e"># pause for 500 milliseconds</span>
-    <span style="color:#66d9ef">done</span>
+<pre><code class="language-bash">#!/bin/bash
+# reset leds' trigger
+echo &quot;Setting LEDs trigger to none...&quot;
+for i in {0..3}
+do
+    echo none &gt; /sys/class/leds/beaglebone\:green\:usr$i/trigger
+done
+
+# turn on leds, controlling by sleep
+echo &quot;Turning on/off LEDs one after another...&quot;
+while :
+do
+    # turn on leds
+    for i in {0..3}
+    do
+        echo 1 &gt; /sys/class/leds/beaglebone\:green\:usr$i/brightness
+        sleep 0.5s      # pause for 500 milliseconds
+    done
 
     sleep 0.5s
 
-    <span style="color:#75715e"># turn off leds</span>
-    <span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>3..0<span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">do</span>
-        echo <span style="color:#ae81ff">0</span> &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/brightness
+    # turn off leds
+    for i in {3..0}
+    do
+        echo 0 &gt; /sys/class/leds/beaglebone\:green\:usr$i/brightness
         sleep 0.5s
-    <span style="color:#66d9ef">done</span>
+    done
     sleep 0.5s
-<span style="color:#66d9ef">done</span></code></pre></div>
+done
+</code></pre>
+
 <p>代码分析：首先将 LED 的触发器设置为 “none” 断开 LED 与其它硬件设备间的关联，然后不断执行两段循环：第一段循环会将编号为 0-3 的 LED 分别亮起；每亮起一颗 LED 后，sleep 命令会使得程序暂停 0.5s，然后再亮起下一颗 LED. 第二段循环则每隔 0.5s 按照 3, 2, 1, 0 的顺序熄灭一颗 LED. 一轮操作完成后，四颗 LED 回到全部熄灭的初始状态，然后重复上述步骤。</p>
 
 <p>除了使用系统自带的 sleep 命令以外，还可以设置 delay_on 和 delay_off 来控制延时亮灭。以下 Bash 程序实现了让四颗 LED 灯按不同的间隔时间分别闪烁的功能：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span><span style="color:#75715e">#reset leds&#39; trigger</span>
-<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
-<span style="color:#66d9ef">do</span>
-    echo none &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/trigger
-<span style="color:#66d9ef">done</span>
 
-<span style="color:#75715e"># set triggers to &#39;timer&#39;</span>
-<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
-<span style="color:#66d9ef">do</span>
-    echo timer &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/trigger
-<span style="color:#66d9ef">done</span>
+<pre><code class="language-bash">#!/bin/bash
+#reset leds' trigger
+for i in {0..3}
+do
+    echo none &gt; /sys/class/leds/beaglebone\:green\:usr$i/trigger
+done
 
-<span style="color:#75715e"># set delay time for triggers</span>
-<span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>0..3<span style="color:#f92672">}</span>
-<span style="color:#66d9ef">do</span>
-    <span style="color:#75715e"># calculate current led&#39;s delay time</span>
-    base<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>
-    multiply<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr $multiply + 1<span style="color:#e6db74">`</span>
-    delaytime<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr $multiply <span style="color:#ae81ff">\*</span> $base<span style="color:#e6db74">`</span>
-    echo $delaytime &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/delay_on
-    echo $delaytime &gt; /sys/class/leds/beaglebone<span style="color:#ae81ff">\:</span>green<span style="color:#ae81ff">\:</span>usr$i/delay_off
-<span style="color:#66d9ef">done</span></code></pre></div>
+# set triggers to 'timer'
+for i in {0..3}
+do
+    echo timer &gt; /sys/class/leds/beaglebone\:green\:usr$i/trigger
+done
+
+# set delay time for triggers
+for i in {0..3}
+do
+    # calculate current led's delay time
+    base=200
+    multiply=`expr $multiply + 1`
+    delaytime=`expr $multiply \* $base`
+    echo $delaytime &gt; /sys/class/leds/beaglebone\:green\:usr$i/delay_on
+    echo $delaytime &gt; /sys/class/leds/beaglebone\:green\:usr$i/delay_off
+done
+</code></pre>
+
 <p>代码分析：首先将 LED 的触发器设置为 “none” 断开 LED 与其它硬件设备间的关联，然后再将其设置为 “time”设置 LED 的触发规则为延时模式，此时在对应 LED 的目录下会多出 delay_on, delay_off 两个文件。接下来执行一个循环，循环体内首先根据当前操作的 LED 的编号 (0, 1, 2, 3) 计算对应的间隔时间（上述代码中，对于编号为 i 的 LED，亮起和熄灭的间隔时间定义为 \(\left(i+1\right)\times200 ms\)，再将这个间隔时间写入到 delay_on 和 delay_off 两个文件中。执行该程序的现象：四颗 LED 分别以 200, 400, 600, 800ms 的亮灭间隔闪烁。</p>
 
 <h1 id="使用c语言程序控制外接-led-设备">使用C语言程序控制外接 LED 设备</h1>
@@ -1200,150 +689,155 @@ echo <span style="color:#e6db74">&#34;Turning on/off LEDs one after another...&#
 </ol>
 
 <h2 id="关键代码分析及现象结果-c-实现">关键代码分析及现象结果 (C++ 实现)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define GPIO_PATH &#34;</span><span style="color:#75715e">/</span><span style="color:#75715e">sys</span><span style="color:#75715e">/</span><span style="color:#75715e">class</span><span style="color:#75715e">/</span><span style="color:#75715e">gpio</span><span style="color:#75715e">/</span><span style="color:#75715e">&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> gpio_ports[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">26</span>};
-<span style="color:#66d9ef">int</span> gpio_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * 导出对应编号的 GPIO 设备文件
-</span><span style="color:#75715e"> * @param number 要导出的 GPIO 编号
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">export_gpio</span>(<span style="color:#66d9ef">int</span> number) {
-    <span style="color:#75715e">// do not use `w+` or you will meet segmatation fault for permission denied
-</span><span style="color:#75715e"></span>    FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(GPIO_PATH<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">export</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">export</span><span style="color:#e6db74">&#34;</span>);
-    fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, number);
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">gpio port %d exported.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, number);
-    fclose(f);
-}
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * 熄灭 RGB, 原理是设置 GPIO 为高电平
-</span><span style="color:#75715e"> * @param index RGB所对应的GPIO编号
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stop_light</span>(<span style="color:#66d9ef">int</span> index) {
-    <span style="color:#66d9ef">char</span> path[<span style="color:#ae81ff">200</span>];
-    sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/value</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, index);
 
-    FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
-    fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#34;</span>);
-    fclose (f);
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">stopping light at gpio %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, index);
-}
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * 亮起 RGB, 原理是设置 GPIO 为低电平
-</span><span style="color:#75715e"> * @param index    RGB所对应的GPIO编号
-</span><span style="color:#75715e"> * @param need_out 是否需要先设置 direction 为 out
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start_light</span>(<span style="color:#66d9ef">int</span> index, <span style="color:#66d9ef">bool</span> need_out) {
-    <span style="color:#66d9ef">char</span> path[<span style="color:#ae81ff">200</span>];
-    <span style="color:#66d9ef">if</span> (need_out) {
-        sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/direction</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, index);
-    
-        <span style="color:#75715e">// set direction to out
-</span><span style="color:#75715e"></span>        FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
-        fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">out</span><span style="color:#e6db74">&#34;</span>);
-        fclose(f);
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">setting direction to &#39;out&#39; for gpio %d...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, index);
-    }
-    memset(path, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> path);
-    FILE <span style="color:#f92672">*</span>f;
-    sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/value</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, index);
-    f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
-    fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#34;</span>);
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#define GPIO_PATH &quot;/sys/class/gpio/&quot;
+int gpio_ports[] = {60, 48, 49, 26};
+int gpio_count = 4;
+/**
+ * 导出对应编号的 GPIO 设备文件
+ * @param number 要导出的 GPIO 编号
+ */
+void export_gpio(int number) {
+    // do not use `w+` or you will meet segmatation fault for permission denied
+    FILE *f = fopen(GPIO_PATH&quot;export&quot;, &quot;w&quot;);
+    printf(&quot;%s&quot;, GPIO_PATH&quot;export&quot;);
+    fprintf(f, &quot;%d&quot;, number);
+    printf(&quot;gpio port %d exported.\n&quot;, number);
     fclose(f);
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">led connected at gpio %d should be lighted now.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, index);
 }
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * 闪烁 RGB LED
-</span><span style="color:#75715e"> * @param limit 闪烁次数限制，-1 表示无限
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">flash_lights</span>(<span style="color:#66d9ef">int</span> limit) {
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">show time!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#75715e">// before flash, stop all lights
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-            stop_light(gpio_ports[i]);
-        usleep(<span style="color:#ae81ff">500000</span>);
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            start_light(gpio_ports[i], cnt <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
-            usleep(<span style="color:#ae81ff">200000</span>);
-        }
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            stop_light(gpio_ports[i]);
-            usleep(<span style="color:#ae81ff">200000</span>);
-        }
-        cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-        <span style="color:#66d9ef">if</span> (cnt <span style="color:#f92672">&gt;</span> limit <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> limit <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
-            <span style="color:#66d9ef">break</span>;
-    }
+/**
+ * 熄灭 RGB, 原理是设置 GPIO 为高电平
+ * @param index RGB所对应的GPIO编号
+ */
+void stop_light(int index) {
+    char path[200];
+    sprintf(path, &quot;%sgpio%d/value&quot;, GPIO_PATH, index);
+
+    FILE *f = fopen(path, &quot;w&quot;);
+    fprintf(f, &quot;1&quot;);
+    fclose (f);
+    printf(&quot;stopping light at gpio %d...\n&quot;, index);
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[]) {
-    <span style="color:#75715e">// 判断参数个数
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Usage: led [on/off/flash/keymode]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        exit(<span style="color:#ae81ff">0</span>);
-    }
-    <span style="color:#75715e">// 导出 GPIO 设备文件
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        export_gpio(gpio_ports[i]);
-    <span style="color:#75715e">// 根据 argv[1] 参数内容不同，执行不同的操作
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-            start_light(gpio_ports[i], true);       <span style="color:#75715e">// 亮灯
-</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">off</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-            stop_light(gpio_ports[i]);              <span style="color:#75715e">// 灭灯
-</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">flash</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-        flash_lights(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);                           <span style="color:#75715e">// 闪烁
-</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (strcmp(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">keymode</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#75715e">// 按键模式，点按按键闪烁，松开按键停止
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-            stop_light(gpio_ports[i]); 
-        <span style="color:#75715e">// 设置 direction 为 in
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">char</span> path[<span style="color:#ae81ff">200</span>];
-        sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/direction</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, gpio_ports[<span style="color:#ae81ff">3</span>]);
-        FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>);
-        fprintf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">in</span><span style="color:#e6db74">&#34;</span>);
+/**
+ * 亮起 RGB, 原理是设置 GPIO 为低电平
+ * @param index    RGB所对应的GPIO编号
+ * @param need_out 是否需要先设置 direction 为 out
+ */
+void start_light(int index, bool need_out) {
+    char path[200];
+    if (need_out) {
+        sprintf(path, &quot;%sgpio%d/direction&quot;, GPIO_PATH, index);
+    
+        // set direction to out
+        FILE *f = fopen(path, &quot;w&quot;);
+        fprintf(f, &quot;out&quot;);
         fclose(f);
-        <span style="color:#75715e">// set path to stream
-</span><span style="color:#75715e"></span>        memset(path, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> path);
-        sprintf(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%sgpio%d/value</span><span style="color:#e6db74">&#34;</span>, GPIO_PATH, gpio_ports[<span style="color:#ae81ff">3</span>]);
-        <span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">10</span>];
-        <span style="color:#66d9ef">bool</span> isFlashing <span style="color:#f92672">=</span> false, changed <span style="color:#f92672">=</span> false;
-        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-            f <span style="color:#f92672">=</span> fopen(path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r+</span><span style="color:#e6db74">&#34;</span>);
-            fscanf(f, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, a);
-            <span style="color:#75715e">// 如果接收到按键信号，且当前仍在闪烁，则停止闪烁
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> isFlashing) {
-                isFlashing <span style="color:#f92672">=</span> false;
-                printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">stopped flash:) farewell </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gpio_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+        printf(&quot;setting direction to 'out' for gpio %d...\n&quot;, index);
+    }
+    memset(path, 0, sizeof path);
+    FILE *f;
+    sprintf(path, &quot;%sgpio%d/value&quot;, GPIO_PATH, index);
+    f = fopen(path, &quot;w&quot;);
+    fprintf(f, &quot;0&quot;);
+    fclose(f);
+    printf(&quot;led connected at gpio %d should be lighted now.\n&quot;, index);
+}
+/**
+ * 闪烁 RGB LED
+ * @param limit 闪烁次数限制，-1 表示无限
+ */
+void flash_lights(int limit) {
+    printf(&quot;show time!\n&quot;);
+    long long cnt = 0LL;
+    while (1) {
+        // before flash, stop all lights
+        for (int i = 0; i &lt; gpio_count - 1; i++)
+            stop_light(gpio_ports[i]);
+        usleep(500000);
+        for (int i = 0; i &lt; gpio_count - 1; i++) {
+            start_light(gpio_ports[i], cnt == 0);
+            usleep(200000);
+        }
+        for (int i = 0; i &lt; gpio_count - 1; i++) {
+            stop_light(gpio_ports[i]);
+            usleep(200000);
+        }
+        cnt++;
+        if (cnt &gt; limit &amp;&amp; limit != -1)
+            break;
+    }
+}
+int main(int argc, char* argv[]) {
+    // 判断参数个数
+    if (argc != 2) {
+        printf(&quot;Usage: led [on/off/flash/keymode]\n&quot;);
+        exit(0);
+    }
+    // 导出 GPIO 设备文件
+    for (int i = 0; i &lt; gpio_count; i++)
+        export_gpio(gpio_ports[i]);
+    // 根据 argv[1] 参数内容不同，执行不同的操作
+    if (strcmp(&quot;on&quot;, argv[1]) == 0) {
+        for (int i = 0; i &lt; gpio_count - 1; i++)
+            start_light(gpio_ports[i], true);       // 亮灯
+    } else if (strcmp(&quot;off&quot;, argv[1]) == 0) {
+        for (int i = 0; i &lt; gpio_count - 1; i++)
+            stop_light(gpio_ports[i]);              // 灭灯
+    } else if (strcmp(&quot;flash&quot;, argv[1]) == 0) {
+        flash_lights(-1);                           // 闪烁
+    } else if (strcmp(&quot;keymode&quot;, argv[1]) == 0) {
+        // 按键模式，点按按键闪烁，松开按键停止
+        for (int i = 0; i &lt; gpio_count - 1; i++)
+            stop_light(gpio_ports[i]); 
+        // 设置 direction 为 in
+        char path[200];
+        sprintf(path, &quot;%sgpio%d/direction&quot;, GPIO_PATH, gpio_ports[3]);
+        FILE *f = fopen(path, &quot;w&quot;);
+        fprintf(f, &quot;in&quot;);
+        fclose(f);
+        // set path to stream
+        memset(path, 0, sizeof path);
+        sprintf(path, &quot;%sgpio%d/value&quot;, GPIO_PATH, gpio_ports[3]);
+        char a[10];
+        bool isFlashing = false, changed = false;
+        while (1) {
+            f = fopen(path, &quot;r+&quot;);
+            fscanf(f, &quot;%s&quot;, a);
+            // 如果接收到按键信号，且当前仍在闪烁，则停止闪烁
+            if (a[0] == '1' &amp;&amp; isFlashing) {
+                isFlashing = false;
+                printf(&quot;stopped flash:) farewell \n&quot;);
+                for (int i = 0; i &lt; gpio_count - 1; i++)
                     stop_light(gpio_ports[i]);
-                sleep(<span style="color:#ae81ff">2</span>);
+                sleep(2);
             }
-            <span style="color:#75715e">// 如果接收到按键型号，且当前没有闪烁，则开始闪烁
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#f92672">!</span>isFlashing) {
-                isFlashing <span style="color:#f92672">=</span> true;
-                flash_lights(<span style="color:#ae81ff">1</span>);
+            // 如果接收到按键型号，且当前没有闪烁，则开始闪烁
+            else if (a[0] == '1' &amp;&amp; !isFlashing) {
+                isFlashing = true;
+                flash_lights(1);
             }
-            <span style="color:#75715e">// 如果没有接收到按键信号，则继续闪烁
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (isFlashing) {
-                flash_lights(<span style="color:#ae81ff">1</span>);
+            // 如果没有接收到按键信号，则继续闪烁
+            else if (isFlashing) {
+                flash_lights(1);
             }
-            usleep(<span style="color:#ae81ff">100000</span>);
+            usleep(100000);
         }
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>在终端执行编译命令：g++ -o led led.cpp，编译上述程序，然后执行：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./led on      <span style="color:#75715e"># 亮起LED</span>
-./led off     <span style="color:#75715e"># 熄灭LED</span>
-./led flash   <span style="color:#75715e"># 闪烁LED</span>
-./led keymode <span style="color:#75715e"># 按键模式，按下闪烁，再按熄灭</span></code></pre></div>
+
+<pre><code class="language-bash">./led on      # 亮起LED
+./led off     # 熄灭LED
+./led flash   # 闪烁LED
+./led keymode # 按键模式，按下闪烁，再按熄灭
+</code></pre>
+
 <h1 id="物联网概念及其在-beaglebone-black-下的实现">物联网概念及其在 BeagleBone Black 下的实现</h1>
 
 <h2 id="beaglebone-black-实现物联网的几种架构">BeagleBone Black 实现物联网的几种架构</h2>
@@ -1363,23 +857,26 @@ echo <span style="color:#e6db74">&#34;Turning on/off LEDs one after another...&#
 <p>在 BeagleBone Black 中，利用 CGI 可以实现 Web 页面与物理环境的交互：如读取传感器，驱动 LED 等。CGI 脚本的位置默认位于 /usr/lib/cgi-bin 中，可以通过 Apache 2 服务器访问，地址是 <a href="http://192.168.7.2:8000/cgi-bin/">http://192.168.7.2:8000/cgi-bin/</a> .</p>
 
 <p>如，在该目录下创建一个 CGI 脚本页面，使我们访问该页面时，显示 BeagleBone Black 的运行时间、用户、负载等信息。在 /usr/lib/cgi-bin 创建文件 info.cgi, 插入以下代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>echo <span style="color:#e6db74">&#34;Content-Type: text/html&#34;</span>
-echo <span style="color:#e6db74">&#34;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;!doctype html&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;html&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;head&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;meta charset=\&#34;utf-8\&#34;&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;title&gt;BeagleBone Black System Info&lt;/title&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;/head&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;body&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;h1&gt;BeagleBone Black system info&lt;/h1&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;Host&#34;</span> 
+
+<pre><code class="language-bash">#!/bin/bash
+echo &quot;Content-Type: text/html&quot;
+echo &quot;&quot;
+echo &quot;&lt;!doctype html&gt;&quot;
+echo &quot;&lt;html&gt;&quot;
+echo &quot;&lt;head&gt;&quot;
+echo &quot;&lt;meta charset=\&quot;utf-8\&quot;&gt;&quot;
+echo &quot;&lt;title&gt;BeagleBone Black System Info&lt;/title&gt;&quot;
+echo &quot;&lt;/head&gt;&quot;
+echo &quot;&lt;body&gt;&quot;
+echo &quot;&lt;h1&gt;BeagleBone Black system info&lt;/h1&gt;&quot;
+echo &quot;Host&quot; 
 hostname
-echo <span style="color:#e6db74">&#34; has been up &#34;</span>
+echo &quot; has been up &quot;
 uptime
-echo <span style="color:#e6db74">&#34;&lt;/body&gt;&#34;</span>
-echo <span style="color:#e6db74">&#34;&lt;/html&gt;&#34;</span></code></pre></div>
+echo &quot;&lt;/body&gt;&quot;
+echo &quot;&lt;/html&gt;&quot;
+</code></pre>
+
 <p>执行命令：chmod +x /usr/lib/cgi-bin/info.cgi, 然后浏览器访问页面 <a href="http://192.168.7.2:8080/cgi-bin/info.cgi">http://192.168.7.2:8080/cgi-bin/info.cgi</a> 即可。</p>
 
 <p>CGI 脚本还可以调用 C/C++ 程序，只需在脚本中调用目标程序的路径即可，目标程序的标准输出则会被转发到浏览器中。</p>
@@ -1391,9 +888,12 @@ echo <span style="color:#e6db74">&#34;&lt;/html&gt;&#34;</span></code></pre></di
 <p>Windows 下：安装 BBB 的驱动，设置可访问互联网的网络适配器与 BeagleBone Black 共享网络，如宿主机与互联网建立连接的网卡为 “WLAN”， BeagleBone Black 在系统中的适配器为“以太网3 (Linux USB Ethernet/RNDIS Gadget)”, 则需要：右击 WLAN =&gt; 属性 =&gt; 共享 =&gt; 允许其它用户通过此计算机的 Internet 连接来连接 =&gt; 勾选“以太网3”。再设置“以太网3”的 IP 地址为 192.168.7.1, 子网掩码为 255.255.255.0.</p>
 
 <p>Linux 下：执行命令 route add default gw 192.168.7.1 添加路由表；然后编辑/etc/resolv.conf，在文件头部加入：</p>
+
 <pre><code>nameserver 127.0.0.1 
 nameserver 8.8.8.8
-nameserver 114.114.114.114</code></pre>
+nameserver 114.114.114.114
+</code></pre>
+
 <p>配置 BBB 的 DNS 解析服务器。</p>
 
 <h1 id="beaglebone-实现实时温度检测系统">BeagleBone 实现实时温度检测系统</h1>
@@ -1421,74 +921,174 @@ nameserver 114.114.114.114</code></pre>
 <h2 id="实现代码">实现代码</h2>
 
 <p>实现的方案代码已托管于 GitHub: <a href="https://github.com/kirainmoe/beaglebone-temperature-monitor">https://github.com/kirainmoe/beaglebone-temperature-monitor</a></p>
-                    <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2018-12-23</p>
-                </div>
-                
-            </div>
-            
-            
-            <nav class="post-pagination">
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/" title="BeagleBone Black 开发入门实验" target="_blank" rel="external">https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
 
-                
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/">
-                    Next<br>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/" title="Xiamen GDG DevFest 2018 repo"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/"
+                    title="为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
                 </a>
-                
-                
-                
-                <a class="older-posts" href="https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/">
-                    Previous<br>Xiamen GDG DevFest 2018 repo
-                </a>
-                
-            </nav>
-            <div class="post-comment-wrapper">
-                
-<div class="post-comment-wrapper">
-<div id="disqus_thread"></div>
-<script type="application/javascript">
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
     var disqus_config = function () {
-    
-    
-    
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/beaglebone-black-dev-tutorial\/';
+        this.page.identifier = 'yume-diary';
     };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div><div id="single-column-footer">&copy;
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
 	
-	2016-2020 宇宙よりも遠い場所
-	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-</div>
-    	</div>
-    <script src="https://kirainmoe.com//js/journal.js"></script>
-    </body>
+  </body>
 </html>

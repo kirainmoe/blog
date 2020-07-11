@@ -1,483 +1,541 @@
 <!DOCTYPE html>
-<html><head>
-<title>【趣味向】MATLAB 实现函数卷积演示动画</title>
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        【趣味向】MATLAB 实现函数卷积演示动画 - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
 
 
 
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>【趣味向】MATLAB 实现函数卷积演示动画 - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="【趣味向】MATLAB 实现函数卷积演示动画" />
+<meta property="og:description" content="这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" />
+<meta property="article:published_time" content="2019-11-23T12:28:43+08:00" />
+<meta property="article:modified_time" content="2019-11-23T12:28:43+08:00" />
+<meta itemprop="name" content="【趣味向】MATLAB 实现函数卷积演示动画">
+<meta itemprop="description" content="这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……">
+<meta itemprop="datePublished" content="2019-11-23T12:28:43&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-23T12:28:43&#43;08:00" />
+<meta itemprop="wordCount" content="2341">
 
-<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.d1b323a5bdb0e7b05730834eb664c761432cfb57d618b4efeb5a9417a66a4b44.css" integrity="sha256-0bMjpb2w57BXMINOtmTHYUMs&#43;1fWGLTv61qUF6ZqS0Q=" media="screen">
-
-<script src="https://kirainmoe.com//js/loadCSS.js"></script>
-<script src="https://kirainmoe.com//js/table.js"></script>
 
 
-<script src="https://kirainmoe.com//js/toc.js"></script>
+<meta itemprop="keywords" content="matlab,experiment," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【趣味向】MATLAB 实现函数卷积演示动画"/>
+<meta name="twitter:description" content="这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……"/>
 
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      showProcessingMessages: false,
-      messageStyle: "none", 
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], 
-        showMathMenu: false
-      }
-  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
 
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+  
+  
 
-<script>
-    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
-
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
-    
-    <a class="a-block nav-head false" href="https://kirainmoe.com/">
-    
-        <div class="nav-title">
-            宇宙よりも遠い場所
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
         </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/guestbook">
-                    留言板
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/friends">
-                    友情链接
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/tags">
-                    标签
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/about">
-                    关于
-                </a>
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        &copy;
-	
-	2016-2020 宇宙よりも遠い場所
-	
-
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-
-    </div>
-
-    
-    <script src="https://tj.kirainmoe.com/cgi-bin/inject_script.cgi"></script>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%89%8d%e7%bd%ae%e7%9f%a5%e8%af%86" v-on:click="closeDrawer" id="前置知识-nav">
-										 前置知识
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%9b%be%e8%a7%a3%e6%b3%95%e6%b1%82%e5%8d%b7%e7%a7%af" v-on:click="closeDrawer" id="图解法求卷积-nav">
-										 图解法求卷积
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#matlab-%e5%88%9b%e5%bb%ba%e5%8a%a8%e7%94%bb" v-on:click="closeDrawer" id="matlab-创建动画-nav">
-										 MATLAB 创建动画
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90" v-on:click="closeDrawer" id="思路分析-nav">
-										 思路分析
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="实现-nav">
-										 实现
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
-                        留言板
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/friends">
-                        友情链接
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/tags">
-                        标签
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/about">
-                        关于
-                    </a>
-            
-            
-            <div class="toc">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%89%8d%e7%bd%ae%e7%9f%a5%e8%af%86" v-on:click="closeDrawer" id="前置知识-nav">
-										 前置知识
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%9b%be%e8%a7%a3%e6%b3%95%e6%b1%82%e5%8d%b7%e7%a7%af" v-on:click="closeDrawer" id="图解法求卷积-nav">
-										 图解法求卷积
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#matlab-%e5%88%9b%e5%bb%ba%e5%8a%a8%e7%94%bb" v-on:click="closeDrawer" id="matlab-创建动画-nav">
-										 MATLAB 创建动画
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90" v-on:click="closeDrawer" id="思路分析-nav">
-										 思路分析
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%9e%e7%8e%b0" v-on:click="closeDrawer" id="实现-nav">
-										 实现
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
-            宇宙よりも遠い場所
-        </a>
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://kirainmoe.com/">
-        <div class="single-column-header-title">宇宙よりも遠い場所</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post">
-            
-            
-            
-
-            <div class="post-head-wrapper-text-only"
-                 style="background-image: url('/')">
-                <div class="post-title">
-                    【趣味向】MATLAB 实现函数卷积演示动画
-                    <div class="post-meta">
-                        <time itemprop="datePublished">
-                            2019-11-23 12:28
-                        </time>
-
-                        
-
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/matlab">matlab</a>
-                                &nbsp;
-                            
-                                <a href="/tags/experiment">experiment</a>
-                                &nbsp;
-                            
-                        
-                    </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
                 </div>
             </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
             
-            <div class="post-body-wrapper">
-                <div class="post-body">
-                    <p>这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……</p>
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/matlab-convolution-example-animation/"
+    >【趣味向】MATLAB 实现函数卷积演示动画</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="article-date">
+  <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/matlab/"> matlab </a>
+    <a class="article-tag-link" href="/tags/experiment/"> experiment </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/matlab-convolution-example-animation/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 2341words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 5minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>这件事要从上一节的信号与系统实验课说起。在老师把连续函数卷积的内容讲完布置作业的时候，他给我们整了一个好活……</p>
 
 <blockquote>
 <p>“除了上面这些作业之外，要求大家额外做一个附加题，来实现两个函数图解法求卷积动画演示。”</p>
@@ -548,69 +606,78 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <h1 id="实现">实现</h1>
 
 <p>让我们首先定义一下我们要卷积的函数。假设我们有了两个函数 $f_1(t) = u(t) - u(t-2), f_2(t) = u(t-1) - u(t-3)$，要用图解法求 $f_1 * f_2$.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#75715e">% 定义符号变量 t 和两个符号函数 f1, f2</span>
-<span style="color:#75715e">% heaviside(t) 就是 u(t) 啦</span>
+
+<pre><code class="language-matlab">% 定义符号变量 t 和两个符号函数 f1, f2
+% heaviside(t) 就是 u(t) 啦
 syms t;
-f1 = heaviside(t) <span style="color:#f92672">-</span> heaviside(t<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
-f2 = heaviside(t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> heaviside(t<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>);
+f1 = heaviside(t) - heaviside(t-2);
+f2 = heaviside(t-1) - heaviside(t-3);
 
-d = <span style="color:#ae81ff">0.05</span>;           <span style="color:#75715e">% 采样间隔</span>
-t1 = <span style="color:#ae81ff">0</span> : d : <span style="color:#ae81ff">2</span>;     <span style="color:#75715e">% f1 的卷积时域范围</span>
-t2 = <span style="color:#ae81ff">1</span> : d : <span style="color:#ae81ff">3</span>;     <span style="color:#75715e">% f2 的卷积时域范围</span></code></pre></div>
+d = 0.05;           % 采样间隔
+t1 = 0 : d : 2;     % f1 的卷积时域范围
+t2 = 1 : d : 3;     % f2 的卷积时域范围
+</code></pre>
+
 <p>为了让我们写的东西具有普遍适用性，我们将它封装成一个如下的函数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [] = <span style="color:#a6e22e">convolution_example</span>(f1, f2, t1, t2, d)</code></pre></div>
+
+<pre><code class="language-matlab">function [] = convolution_example(f1, f2, t1, t2, d)
+</code></pre>
+
 <p>函数的参数与上文定义的含义相同。具体函数实现如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [] = <span style="color:#a6e22e">convolution_example</span>(f1, f2, t1, t2, d)
-    syms t tao;         <span style="color:#75715e">% 定义用于符号计算的变量</span>
-    figure;             <span style="color:#75715e">% 在一个新的窗体上执行绘图</span>
+
+<pre><code class="language-matlab">function [] = convolution_example(f1, f2, t1, t2, d)
+    syms t tao;         % 定义用于符号计算的变量
+    figure;             % 在一个新的窗体上执行绘图
     grid on;
-    hold on;            <span style="color:#75715e">% 因为要多用多次 plot 和 fplot，所以要打开 hold</span>
+    hold on;            % 因为要多用多次 plot 和 fplot，所以要打开 hold
     
-    <span style="color:#75715e">% 以下计算，可参照连续信号的卷积函数</span>
-    time_start = t1(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> t2(<span style="color:#ae81ff">1</span>);                              <span style="color:#75715e">% 计算卷积结果序列非 0 值的起始位置</span>
-    time_length = length(t1) <span style="color:#f92672">+</span> length(t2) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>;               <span style="color:#75715e">% 计算卷积结果序列非 0 值得宽度</span>
+    % 以下计算，可参照连续信号的卷积函数
+    time_start = t1(1) + t2(1);                              % 计算卷积结果序列非 0 值的起始位置
+    time_length = length(t1) + length(t2) - 2;               % 计算卷积结果序列非 0 值得宽度
     
-    f = time_start;                          <span style="color:#75715e">% 时域起始位置 from</span>
-    e = time_start <span style="color:#f92672">+</span> time_length <span style="color:#f92672">*</span> d;        <span style="color:#75715e">% 时域终止位置 end</span>
-    ymin = <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
-    ymax = <span style="color:#ae81ff">5</span>;
+    f = time_start;                          % 时域起始位置 from
+    e = time_start + time_length * d;        % 时域终止位置 end
+    ymin = -5;
+    ymax = 5;
     
-    f11 = subs(f1, t, t <span style="color:#f92672">-</span> tao);             <span style="color:#75715e">% 对 f1 进行换元、反折和位移：f1(t) =&gt; f1(tau) =&gt; f1(-tau) =&gt; f1(t-tau)</span>
-    fplot(f2, [f, e]);                      <span style="color:#75715e">% f2 是固定的，可以先画到图上</span>
+    f11 = subs(f1, t, t - tao);             % 对 f1 进行换元、反折和位移：f1(t) =&gt; f1(tau) =&gt; f1(-tau) =&gt; f1(t-tau)
+    fplot(f2, [f, e]);                      % f2 是固定的，可以先画到图上
     
-    vec = f : d : e;                        <span style="color:#75715e">% 生成卷积结果的时域向量</span>
-    p1 = fplot(f2, [f, e]);                 <span style="color:#75715e">% 定义 p1 绘图句柄</span>
+    vec = f : d : e;                        % 生成卷积结果的时域向量
+    p1 = fplot(f2, [f, e]);                 % 定义 p1 绘图句柄
 
-    dt = [<span style="color:#ae81ff">0</span>];     ft = [<span style="color:#ae81ff">0</span>];
+    dt = [0];     ft = [0];
     
-    <span style="color:#75715e">% 循环绘图动画，对于卷积结果的时域向量中的每一个 t，都绘制一张该时刻的图</span>
-    <span style="color:#66d9ef">for</span> i = <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">1</span> : length(vec)
-        f12 = subs(f11, {t tao}, {vec(i) t});   <span style="color:#75715e">% 令 t0 = vec(i)，此时 f12 = f1(t0-tau)，即位移量为 t0</span>
-        f13 = f12 <span style="color:#f92672">*</span> f2;                         <span style="color:#75715e">% 计算位移 t0 后的 f1 与 f2 的相乘结果</span>
+    % 循环绘图动画，对于卷积结果的时域向量中的每一个 t，都绘制一张该时刻的图
+    for i = 1 : 1 : length(vec)
+        f12 = subs(f11, {t tao}, {vec(i) t});   % 令 t0 = vec(i)，此时 f12 = f1(t0-tau)，即位移量为 t0
+        f13 = f12 * f2;                         % 计算位移 t0 后的 f1 与 f2 的相乘结果
 
-        delete(p1);                             <span style="color:#75715e">% 先删除上一个 f12 的图像</span>
-        p1 = fplot(f12, [f e]);                 <span style="color:#75715e">% 绘制新的 f12</span>
+        delete(p1);                             % 先删除上一个 f12 的图像
+        p1 = fplot(f12, [f e]);                 % 绘制新的 f12
         axis([f, e, ymin, ymax]);
-        set(p1, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Color&#39;</span>, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">r&#39;</span>);
+        set(p1, 'Color', 'r');
 
-        f14 = int(f13, f, e);                   <span style="color:#75715e">% 计算积分值，即为在 t 时刻的 f1*f2 值</span>
+        f14 = int(f13, f, e);                   % 计算积分值，即为在 t 时刻的 f1*f2 值
 
-        <span style="color:#75715e">% 为了使得绘出的图像平滑，将当前的 (t, f14) 添加到数组（向量）中，然后调用 plot 就可以绘出光滑的曲线</span>
-        <span style="color:#75715e">% 否则，只调用 plot(t, f14) 只能绘出散点图</span>
+        % 为了使得绘出的图像平滑，将当前的 (t, f14) 添加到数组（向量）中，然后调用 plot 就可以绘出光滑的曲线
+        % 否则，只调用 plot(t, f14) 只能绘出散点图
 
-        <span style="color:#75715e">% 并且，填充曲线下方到 x 轴的区域。根据简单的几何知识，因为间隔 d 足够小，所以只要填充一个梯形即可</span>
-        <span style="color:#75715e">% 设当前的 t 值为 v(i)，当前函数值为 f(i)，那么只要填充梯形 (v(i), f(i)), (v(i), 0), (v(i-1), 0), (v(i-1), f(i-1)) 即可</span>
-        p2 = fill([dt(length(dt)), dt(length(dt)), vec(i), vec(i)], [<span style="color:#ae81ff">0</span>, ft(length(ft)), f14, <span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">y&#39;</span>);
-        set(p2, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">LineStyle&#39;</span>, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">none&#39;</span>);
+        % 并且，填充曲线下方到 x 轴的区域。根据简单的几何知识，因为间隔 d 足够小，所以只要填充一个梯形即可
+        % 设当前的 t 值为 v(i)，当前函数值为 f(i)，那么只要填充梯形 (v(i), f(i)), (v(i), 0), (v(i-1), 0), (v(i-1), f(i-1)) 即可
+        p2 = fill([dt(length(dt)), dt(length(dt)), vec(i), vec(i)], [0, ft(length(ft)), f14, 0], 'y');
+        set(p2, 'LineStyle', 'none');
         dt = [dt vec(i)];
         ft = [ft f14];
 
-        plot(dt, ft, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-b&#39;</span>);                     <span style="color:#75715e">% 最后绘制图形</span>
+        plot(dt, ft, '-b');                     % 最后绘制图形
         axis([f e ymin ymax]);
         
-        pause(<span style="color:#ae81ff">0.0001</span>);                          <span style="color:#75715e">% 短暂暂停，产生动画</span>
-    <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span></code></pre></div>
+        pause(0.0001);                          % 短暂暂停，产生动画
+    end
+end
+</code></pre>
+
 <p>这里有几个小细节。第一是，如果循环的时候不将 $t$ 和 $f_{14}$ 都添加到一个向量中，而直接使用 plot 函数的话，会发生只能画散点图的情况，画出来的图像不连续：</p>
 
 <p><img src="https://i.loli.net/2019/11/23/8bf52iUaoGvpHD7.png" alt="image.png" /></p>
@@ -624,13 +691,16 @@ t2 = <span style="color:#ae81ff">1</span> : d : <span style="color:#ae81ff">3</s
 <p><img src="https://i.loli.net/2019/11/23/lfZGAk8XKpWDJz1.png" alt="image.png" /></p>
 
 <p>OK，现在让我们拿两个任意函数来卷积一下，看看效果如何。不如我们令 $f_1(t) = \frac{1}{2}t[u(t)-u(t-2)], f_2(t) = (1-\frac{|t|}{2})[u(t+2)-u(t-2)]$ ，演示一下 $f_1 * f_2$ 吧：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab">syms t;
-f1 = <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> t <span style="color:#f92672">*</span> (heaviside(t) <span style="color:#f92672">-</span> heaviside(t <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>));
-f2 = (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (abs(t))) <span style="color:#f92672">*</span> (heaviside(t <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">-</span> heaviside(t <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>));
-d = <span style="color:#ae81ff">0.1</span>;
-t1 = <span style="color:#ae81ff">0</span> : d : <span style="color:#ae81ff">2</span>;
-t2 = <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> : d : <span style="color:#ae81ff">2</span>;
-convolution_example(f1, f2, t1, t2, d);</code></pre></div>
+
+<pre><code class="language-matlab">syms t;
+f1 = 1/2 * t * (heaviside(t) - heaviside(t - 2));
+f2 = (1 - 1/2 * (abs(t))) * (heaviside(t + 2) - heaviside(t - 2));
+d = 0.1;
+t1 = 0 : d : 2;
+t2 = -2 : d : 2;
+convolution_example(f1, f2, t1, t2, d);
+</code></pre>
+
 <p>效果图：</p>
 
 <p><img src="https://i.loli.net/2019/11/23/YdvVFJkIyiBtZNO.gif" alt="bandicam 2019-11-23 13-48-00-013.gif" /></p>
@@ -644,74 +714,174 @@ convolution_example(f1, f2, t1, t2, d);</code></pre></div>
 <p><s>那么问题来了，我为什么不直接去网上 Ctrl+C Ctrl+V 一份别人写好的呢？</s></p>
 
 <p>别问，问就是吃饱撑着。</p>
-                    <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2019-11-23</p>
-                </div>
-                
-            </div>
-            
-            
-            <nav class="post-pagination">
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" title="【趣味向】MATLAB 实现函数卷积演示动画" target="_blank" rel="external">https://kirainmoe.com/blog/post/matlab-convolution-example-animation/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
 
-                
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/">
-                    Next<br>过去·现在·未来——2019 年度回顾
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/" title="【学习笔记】点分治"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/"
+                    title="过去·现在·未来——2019 年度回顾"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
                 </a>
-                
-                
-                
-                <a class="older-posts" href="https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/">
-                    Previous<br>【学习笔记】点分治
-                </a>
-                
-            </nav>
-            <div class="post-comment-wrapper">
-                
-<div class="post-comment-wrapper">
-<div id="disqus_thread"></div>
-<script type="application/javascript">
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
     var disqus_config = function () {
-    
-    
-    
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/matlab-convolution-example-animation\/';
+        this.page.identifier = 'yume-diary';
     };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div><div id="single-column-footer">&copy;
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
 	
-	2016-2020 宇宙よりも遠い場所
-	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-</div>
-    	</div>
-    <script src="https://kirainmoe.com//js/journal.js"></script>
-    </body>
+  </body>
 </html>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 宇宙よりも遠い場所</title>
+    <link>https://kirainmoe.com/tags/</link>
+    <description>Recent content in Tags on 宇宙よりも遠い場所</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Jul 2020 00:58:58 +0800</lastBuildDate>
+    
+        <atom:link href="https://kirainmoe.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang 学习笔记 （1）</title>
+      <link>https://kirainmoe.com/blog/post/golang-note/</link>
+      <pubDate>Sat, 28 Jul 2018 09:51:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/golang-note/</guid>
+      <description>&lt;p&gt;把 Hexo 换成了基于 Go 的 Hugo，所以有必要学一下 Golang 了（&lt;/p&gt;
+
+&lt;p&gt;之前也一直在想学个新的语言，一直在纠结选什么好，刚巧就是你了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>被迫学习之拓展欧几里得算法 &amp; 高斯消元</title>
+      <link>https://kirainmoe.com/blog/post/exgcd-and-gauss/</link>
+      <pubDate>Fri, 27 Jul 2018 20:43:27 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/exgcd-and-gauss/</guid>
+      <description>&lt;p&gt;为了在我自己什么都不会的背景下给 OI 队学弟学妹写材料，“被迫”去翻出书本和课件，重新啃了数论的内容学这两个东西……（发出退役咸鱼的声音&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Typescript 下 Redux connect 带有 Props 组件的问题</title>
+      <link>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</link>
+      <pubDate>Thu, 28 Jun 2018 19:34:48 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/redux-with-typescript-connect-component-problem/</guid>
+      <description>&lt;p&gt;&lt;s&gt;Typescript 什么辣鸡，类型这么复杂，坑这么多，我绝不用 TS 写一行代码&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;真香&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>第三方 Android ROM 无法连接 Google Play 的原因排查</title>
+      <link>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</link>
+      <pubDate>Sun, 04 Mar 2018 11:28:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</guid>
+      <description>&lt;p&gt;现在用的手机已经服役快要四年了，这年头这种的手机大概也就真的只能拿来当手机用了，于是就刷了个第三方适配的 Flyme 好好用着。虽然平时不太从 Google Play 下载软件，必要时也可以用 APKPure 代替，但是聊聊 LINE 什么的没有 GCM 的推送十分不方便，有时候打开提示一条消息，结果已经是三小时前的了。于是想了想还是决定安装 Google 的那一套东西。然而，无论我用任何第三方工具安装，或者是下载 opengapps 的卡刷包刷入，Google Play 都无法工作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>No Title</title>
+      <link>https://kirainmoe.com/blog/post/no-title/</link>
+      <pubDate>Fri, 16 Feb 2018 23:14:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/no-title/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;世上无所谓正解
+我们只是
+在做自己
+想做的事罢了&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Progressive Web App 初体验</title>
+      <link>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</link>
+      <pubDate>Sun, 14 Jan 2018 16:33:20 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/first-taste-of-progressive-web-app/</guid>
+      <description>&lt;p&gt;最近访问 &lt;a href=&#34;https://mobile.twitter.com/&#34;&gt;Twitter Mobile&lt;/a&gt; 和 &lt;a href=&#34;https://m.weibo.cn/beta&#34;&gt;微博 HTML5 版&lt;/a&gt; 的时候，发现两者纷纷都兼容了 PWA(Progressive Web App) 特性，得益于 Service Worker，PWA 具有了一些以往传统 WebApp 做不到的，诸如离线消息推送等等的功能，如果在 WebApp 和原生应用性能和功能相差不大的情况下，已经可以直接把 Web 端当成简洁版的客户端使用了（尤其是 Twitter Mobile，移动 Web 端的体验和 Android 原生 App 的体验几乎 90% 一致）。毫无疑问 PWA 接下来将会带来更大的应用场景，于是为了跟上前端圈技术的泥石流，本辣鸡接触了一下这项新的技术。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>环境变量导致的 webpack 打包时不压缩 CSS 文件</title>
+      <link>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</link>
+      <pubDate>Sun, 07 Jan 2018 15:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/solution-of-webpack-does-not-compress-css/</guid>
+      <description>&lt;p&gt;项目上线的时候一般要把 JS 和 CSS 压缩一下，用 webpack 的 uglifyJSPlugin 和 css-loader 的 minimize 选项可以分别压缩 JS 和 CSS. 但是偶然发现一个项目里的 CSS 并没有被压缩。最后发现是一个环境变量在不同的系统下不统一的锅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Typescript 写 React 遇到的一些坑</title>
+      <link>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</link>
+      <pubDate>Tue, 19 Dec 2017 22:12:18 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/some-problems-of-typescript-with-react/</guid>
+      <description>&lt;p&gt;自从学了 Typescript 之后，写 React 项目什么的就一直没离开过 TS 了。虽然 Typescript 大法好，不过鉴于 Typescript 严格的类型机制（事实上从某种意义上说一点都不严），导致在使用 Typescript 开发 React 的时候遇到了一些小小的问题（对 TS 好感度&amp;ndash;）……这里就简单的记录一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 React 制作全站单页主题的实践</title>
+      <link>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</link>
+      <pubDate>Sun, 17 Dec 2017 20:23:36 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/experiment-of-building-spa-theme-using-react/</guid>
+      <description>&lt;p&gt;算起来已经有很长一段时间没有折腾过主题了。之前一直都没有什么大变化的原因是，我一直在想一种能否把整个站都做成真正意义上的单页 App（就是不依靠 PJAX 实现）。也想过很多实现的方法，只是一直没有把这些方法真正写成实物验证一下可行性。前一段时间在把 Canvas 的主题用 webpack 重构之后，突发奇想到了一种可行度很高的策略。你现在看到的这个主题，大概就是这个脑洞的产物了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>“不悔梦归处，只恨太匆匆”</title>
+      <link>https://kirainmoe.com/blog/post/noip-retired-feeling/</link>
+      <pubDate>Mon, 13 Nov 2017 21:41:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/noip-retired-feeling/</guid>
+      <description>&lt;p&gt;呐。听说按照 OI 界的传统，每位 OIer 退役的时候，都要写一篇退役感言。
+于是，当我们从这一场梦中醒来的时候，日子又将恢复成从前的样子。
+不悔梦归处，只恨太匆匆。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 Linux 下配置 lemon 评测系统</title>
+      <link>https://kirainmoe.com/blog/post/configure-lemon-judger-for-linux/</link>
+      <pubDate>Fri, 10 Nov 2017 19:45:59 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/configure-lemon-judger-for-linux/</guid>
+      <description>&lt;p&gt;Linux 下那种能用来批量评测的软件看起来很少的样子，找了很久只找到了一个 CCF 官方的 arbiter 和跨平台的 lemon. arbiter 在 Arch Linux 上死活装不成（主要是老旧的 qt3），于是就只能把目光投向 lemon 了。虽然 lemon 用起来比较危险（因为 lemon 没有沙箱机制），不过本着能用就行的原则，就尝试着配置了一下它。这里只讲讲它在 Arch Linux 下的配置和使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>愤怒的小鸟 (Review / NOIP2016 D2T3)</title>
+      <link>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</link>
+      <pubDate>Fri, 03 Nov 2017 20:36:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/angry-birds-state-compressing/</guid>
+      <description>&lt;p&gt;嘛。去年考场上遇到这题的时候一脸懵逼……现在回过头来看就好多了，但是有一些细节还是要做清楚。 (/ω＼)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记自己的第一次差点翻车的出题经历</title>
+      <link>https://kirainmoe.com/blog/post/my-first-contest-problem/</link>
+      <pubDate>Sun, 29 Oct 2017 21:01:52 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/my-first-contest-problem/</guid>
+      <description>&lt;p&gt;复赛在即，我们学校里面的四个撒币不知道是谁突发奇想，说要出一套模拟题。于是我们四个人分别出了一道要多恶心有多恶心的题= =本来嘛是要在学校内部自己测的，不过人太少，不好玩，于是就连夜 py 到洛谷上搞了公开赛。从早上 8 点到中午 12 点，虽然出了很多的锅，不过还是要记录一下我的第一次出题经历（&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>浅谈 KMP 字符串匹配算法</title>
+      <link>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</link>
+      <pubDate>Tue, 17 Oct 2017 13:01:43 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</guid>
+      <description>&lt;p&gt;因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 LaTeX &#43; Beamer 制作幻灯片 (Windows)</title>
+      <link>https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/</link>
+      <pubDate>Sun, 17 Sep 2017 16:32:47 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/</guid>
+      <description>&lt;p&gt;因为这周的演讲涉及到一些很难用嘴巴讲明白的东西，就打算做一个幻灯片在演讲的时候放映辅助理解。看着自己在 PowerPoint 下这里调调那里改改，挣扎了两天之后才憋出了 3 页的效率，于是果断打算另寻一种方法来做幻灯片。突然想到前几个月省夏的时候讲师的幻灯片都做得很漂亮（但是很明显不是 PPT 做的），于是去查找了一下相关的资料，就发现了下文中制作幻灯片的一个神器：LaTeX + Beamer.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (4th, 8/20~9/10)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/</link>
+      <pubDate>Sun, 10 Sep 2017 11:16:22 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-4th-8-20-9-10/</guid>
+      <description>&lt;p&gt;经过了一周阶段考的折磨过后，这一周终于有时间更新解题报告了。上一周因为时间太少，加上填 MUSE 的坑，只做了一题，索性都屯到这一周来发了，但虽然这样这周的题量还是没有多到哪里去……&lt;/p&gt;
+
+&lt;p&gt;有些比较简单的题目我就两句话带过就好了。特地在 GitHub 上开了个仓库，这一篇包括之前那些解题报告中题目的所有完整代码（以及部分题的数据）以及接下来做的 HDU 的题都会汇总在&lt;a href=&#34;https://github.com/kirainmoe/oh-my-hdu&#34;&gt;这个地方&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开发一个简单的 webpack 插件</title>
+      <link>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</link>
+      <pubDate>Sat, 02 Sep 2017 11:59:44 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</guid>
+      <description>&lt;p&gt;之前为了尝试实现 &lt;a href=&#34;https://kotori.love&#34;&gt;dalao&lt;/a&gt; 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>八月のif</title>
+      <link>https://kirainmoe.com/blog/post/hachigatsu-no-if/</link>
+      <pubDate>Sat, 26 Aug 2017 18:27:16 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/hachigatsu-no-if/</guid>
+      <description>&lt;p&gt;炎夏的阳光在远处悠悠荡荡地摇曳
+注视着西下的夕阳 心中无限遐思
+倘若当初我们没有相遇相识
+等待着我们的会是怎样的夏天呢&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (3rd, 8/14~8/20)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</link>
+      <pubDate>Sun, 20 Aug 2017 14:43:46 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</guid>
+      <description>&lt;p&gt;这周主要是尝试了一些新的东西（ 做了一些之前一直想看但是一直没看懂和没做的题目。依旧是做 HDU 的题。虽然写得不是很熟练，不过慢慢来应该也是可以的。
+另外下周由于要阶段考试这样子，可能就没有时间做题目了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>每周解题报告 (2nd, 8/7~8/13)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</link>
+      <pubDate>Sun, 13 Aug 2017 16:46:17 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</guid>
+      <description>&lt;p&gt;这一周主要在看 DP 的题目，嘛，都是一些我觉得很好&lt;s&gt;但是我写不出来的&lt;/s&gt;题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

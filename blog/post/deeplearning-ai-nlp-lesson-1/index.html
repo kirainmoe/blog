@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间 - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content=" 前言：为了整活好玩的东西，没有数学功底和深度学习经验的萌新开始学 NLP 了！
+看的课程链接是这个：https://www.deeplearning.ai/natural-language-processing-specialization/
+然后呢，大概会不定期更新一下学的过程中记下来的一些东西。顺便安利一下 Notion 这个笔记软件，实在是太好用啦。
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
+
+
+
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间 - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间" />
+<meta property="og:description" content="
+前言：为了整活好玩的东西，没有数学功底和深度学习经验的萌新开始学 NLP 了！
+看的课程链接是这个：https://www.deeplearning.ai/natural-language-processing-specialization/
+然后呢，大概会不定期更新一下学的过程中记下来的一些东西。顺便安利一下 Notion 这个笔记软件，实在是太好用啦。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" />
+<meta property="article:published_time" content="2020-07-12T00:58:58+08:00" />
+<meta property="article:modified_time" content="2020-07-12T00:58:58+08:00" />
+<meta itemprop="name" content="【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间">
+<meta itemprop="description" content="
+前言：为了整活好玩的东西，没有数学功底和深度学习经验的萌新开始学 NLP 了！
+看的课程链接是这个：https://www.deeplearning.ai/natural-language-processing-specialization/
+然后呢，大概会不定期更新一下学的过程中记下来的一些东西。顺便安利一下 Notion 这个笔记软件，实在是太好用啦。
+">
+<meta itemprop="datePublished" content="2020-07-12T00:58:58&#43;08:00" />
+<meta itemprop="dateModified" content="2020-07-12T00:58:58&#43;08:00" />
+<meta itemprop="wordCount" content="1880">
+
+
+
+<meta itemprop="keywords" content="nlp,deep learning," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间"/>
+<meta name="twitter:description" content="
+前言：为了整活好玩的东西，没有数学功底和深度学习经验的萌新开始学 NLP 了！
+看的课程链接是这个：https://www.deeplearning.ai/natural-language-processing-specialization/
+然后呢，大概会不定期更新一下学的过程中记下来的一些东西。顺便安利一下 Notion 这个笔记软件，实在是太好用啦。
+"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
+
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/deeplearning-ai-nlp-lesson-1/"
+    >【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="article-date">
+  <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/nlp/"> nlp </a>
+    <a class="article-tag-link" href="/tags/deep-learning/"> deep learning </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/deeplearning-ai-nlp-lesson-1/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1880words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <blockquote>
+<p>前言：为了整活好玩的东西，没有数学功底和深度学习经验的萌新开始学 NLP 了！<br />
+看的课程链接是这个：<a href="https://www.deeplearning.ai/natural-language-processing-specialization/">https://www.deeplearning.ai/natural-language-processing-specialization/</a><br />
+然后呢，大概会不定期更新一下学的过程中记下来的一些东西。顺便安利一下 <a href="https://notion.so">Notion</a> 这个笔记软件，实在是太好用啦。</p>
+</blockquote>
+
+<h1 id="sentiment-analysis-情感分析">Sentiment analysis 情感分析</h1>
+
+<p>任务：预测一个语句带有正面情绪 (positive, 1) 或负面情绪 (negative, 0)。</p>
+
+<h2 id="vocabulary-词汇表">Vocabulary 词汇表</h2>
+
+<p>假设你有一个语句的集合 $S$，那么词汇表 (vocabulary) $V$ 包含了 $S$ 中的每个独立的单词。</p>
+
+<p>示例：</p>
+
+<p>$$V = {I, am, happy, because, learning, NLP, &hellip;, hated, the, movie}$$</p>
+
+<h2 id="feature-extraction-特征提取">Feature extraction 特征提取</h2>
+
+<h3 id="方法一-稀疏表示-sparse-representation">方法一：稀疏表示 Sparse Representation</h3>
+
+<p>将一个句子 (tweet) 表征成一个向量 (vector). 例如，将一个句子中所出现的所有词汇，使用一个长度为 $|V|$ 的向量 $\vec{v}$ 表示；$\textbf{v}_i$ 为词汇表 $V$ 中第 $i$ 个元素的出现次数。</p>
+
+<p>使用上述方法表征句子的特征时，向量 $\vec{v}$ 中会有大量的 0 元素，是一个 <strong>稀疏表示 (sparse representation)</strong>。</p>
+
+<p>稀疏表示带来了一些问题，如果使用此方法表示特征，则线性回归模型需要学习 $n+1$ 个参数 $\theta_0, \theta_1, &hellip;, \theta_n$ （$n = |V|$）；当词汇表的数量 $|V|$ 很大时，将会产生更长的训练时间和更长的预测时间。</p>
+
+<h3 id="方法二-生成计数-generate-count">方法二：生成计数 Generate Count</h3>
+
+<p>假设标签分为两类：positive 和 negative.</p>
+
+<p>定义词汇表中每个单词具有两个属性： <strong>PosFreq</strong> 和 <strong>NegFreq</strong>，分别表示该单词在所有表达正面情绪的句子中出现的次数，和在负面情绪的句子中出现的次数。简而言之，</p>
+
+<p>$$freqs = (word, class) ⇒ frequency.$$</p>
+
+<p>接下来，将一个句子表征成一个具有 $c+1$ 个维度的向量（$c$ 是分类的数量）。此时，线性回归模型不需要学习 $|V|$ 个特征，而只需要学习 $3$ 个特征。对于任意的句子 $m$，它的特征向量 $X_m$ 可以表示为：</p>
+
+<p>$$X_m = [1, \sum_w freqs(w,1), \sum_w freqs(w, 0)]$$</p>
+
+<p>解释一下上面这个向量表示，其中：</p>
+
+<ul>
+<li>第一维元素 1 表示 <strong>偏置(bias)</strong></li>
+<li>第二维元素 $\sum_w freqs(w, 1)$ 表示词汇表中的每个词汇 $w$ 在正面情绪 (label=1) 的句子集合中出现的次数之和</li>
+<li>第三维元素 $\sum_w freqs(w, 0)$ 表示词汇表中的每个词汇 $w$ 在负面情绪 (label=0) 的句子集合中出现的次数之和</li>
+</ul>
+
+<h2 id="preprocessing-预处理">Preprocessing 预处理</h2>
+
+<h3 id="1-删除停顿词和标点符号">1. 删除停顿词和标点符号</h3>
+
+<p>为了删除所有的停顿词（如 and, is, are, at &hellip;）和标点符号，需要有两个含有停顿词和标点符号的词汇。</p>
+
+<p>但需要注意的是，有些时候并不一定需要删除标点符号，因为有些时候标点符号会为特定的 NLP 任务提供重要信息（如可能改变语义）。</p>
+
+<h3 id="2-提取词干-转变为小写">2. 提取词干、转变为小写</h3>
+
+<p>提取词干 （Stemming）：通俗地说就是将各种不同形式的词汇转化为原型，例如 tune, tuning, tuned，提取词干后会变成 tun. 提取词干后会使得词汇表中所包含的词汇减少。</p>
+
+<p>为了减少词汇表中的单词数量，需要将词汇转变为小写。</p>
+
+<h2 id="generate-feature-matrix-生成特征矩阵">Generate Feature Matrix 生成特征矩阵</h2>
+
+<p>假设语料库中有 $m$ 个句子，对所有的句子执行上述预处理操作，并将其表示为一个三维特征向量，最终会得到一个 $m \times 3$ 的 $X$ 矩阵。大体过程如下：</p>
+
+<pre><code class="language-python">freqs = build_freqs(tweets, labels)    # build frequencies dictionary
+X = np.zeros((m, 3))
+for i in range(m):
+		p_tweet = process_tweet(tweet[i])
+    X[i,:] = extract_features(p_tweet, freqs)
+</code></pre>
+
+<h2 id="logistic-regression-逻辑回归">Logistic Regression 逻辑回归</h2>
+
+<p>逻辑回归的过程示意图：</p>
+
+<p><img src="/assets/img/L1%207d289702a85f4ff1b8050a3d11256334/Untitled.png" alt="/assets/img/L1%207d289702a85f4ff1b8050a3d11256334/Untitled.png" /></p>
+
+<p>函数 $F$ 是一个 $sigmoid$ 函数 （S 形生长曲线，将变量映射到 $[0, 1]$ 之间）：</p>
+
+<p>$$h(x^{(i)}, \theta) = \frac{1}{1 + e^{-\theta ^T x^{(i)}}}$$</p>
+
+<p>其中 $\theta ^T x^{(i)}$ 是参数列向量 $\theta$ 转置后与第 $i$ 个句子的特征向量 $x^{(i)}$ 的乘积。</p>
+
+<p>一般认为阈值为 0.5。</p>
+
+<h2 id="training-logistic-regression-classifier-训练分类器">Training Logistic Regression Classifier 训练分类器</h2>
+
+<p>任务：不断迭代寻找使得代价函数最小的参数 $\theta_i$ 。</p>
+
+<p><img src="/assets/img/L1%207d289702a85f4ff1b8050a3d11256334/Untitled%201.png" alt="/assets/img/L1%207d289702a85f4ff1b8050a3d11256334/Untitled%201.png" /></p>
+
+<p>左图为 $\theta_1, \theta_2$ 的不同取值下，代价函数的等高线（越靠近中心点，代价函数越小）；</p>
+
+<ul>
+<li>首先取 $\theta_i$ 在任意一个点开始，得到 $h = h(X, \theta)$</li>
+<li>然后计算 $\theta_1, \theta_2$ 在该点的梯度 $\nabla = \frac{1}{m} X^T (h-y)$</li>
+<li>使用梯度更新参数 $\theta = \theta-\nabla$</li>
+<li>然后计算 loss （损失）函数 $J(\theta)$，重复上述步骤直到 $J(\theta)$ 足够好。</li>
+</ul>
+
+<p>上述算法称为梯度下降法（收敛性证明可以看吴恩达的机器学习教程）。右图表示随着迭代次数增加，代价函数 Cost 将降低，且下降速度与梯度有关。</p>
+
+<p><img src="/assets/img/L1%207d289702a85f4ff1b8050a3d11256334/Untitled%202.png" alt="/assets/img/L1%207d289702a85f4ff1b8050a3d11256334/Untitled%202.png" /></p>
+
+<h2 id="testing-logistic-regression-测试逻辑回归">Testing Logistic Regression 测试逻辑回归</h2>
+
+<p>验证集 (validate)：$X<em>{val}, Y</em>{val}, \theta$</p>
+
+<ul>
+<li>首先计算参数为 $\theta$、自变量为 $X_{val}$ 的 $sigmoid$ 函数</li>
+<li>计算 $pred = (h(X_{val}, \theta) \ge 0.5)$，0.5 为阈值</li>
+<li>对比 $pred$ 和 $Y<em>{val}$ ，计算准确率 (accuracy) = $\sum</em>{i=1}^{|val|} \frac{(pred^i == y_{val}^{i})}{m}$</li>
+</ul>
+
+<h2 id="cost-function-代价函数">Cost Function 代价函数</h2>
+
+<p>代价函数可以表示为以下形式：</p>
+
+<p>$$J(\theta) = -\frac{1}{m} \sum_{i=1}^m [y^{(i)} \log h(x^{(i)}, \theta) + (1 - y^{(i)}) \log (1 - h(x^{(i)}, \theta))]$$</p>
+
+<p>其中 $m$ 是训练集中的句子个数 （size）。</p>
+
+<p>可以看出代价函数 $J(\theta)$ 是对训练集中所有的句子计算某一个值，然后取平均值。负号的作用是让代价函数始终取非负数。</p>
+
+<p>$y$ 的取值可能是 0 或 1，考虑第一项对代价函数的贡献：</p>
+
+<ul>
+<li>如果 $y^{(i)}$ 为 0，那么第一项无论 $h$ 取何值都为 0；</li>
+<li>如果 $y^{(i)}$ 为 1，且 $h$ 接近于 1，则第一项会趋近于 0；</li>
+<li>如果 $y^{(i)}$ 为 1，且 $h$ 接近于 0，则第一项中的对数会趋于  $-\infty$，从而使得第一项趋于 $-\infty$.</li>
+</ul>
+
+<p>再考虑第二项对代价函数的贡献：</p>
+
+<ul>
+<li>如果 $y^{(i)}$ 为 1，则 $1-y^{(i)}$ 为 0，那么第二项无论 $h$ 取何值都为 0；</li>
+<li>如果 $y^{(i)}$ 为 0，且  $h$ 接近于 0，则第二项会趋近于 0；</li>
+<li>如果 $y^{(i)}$ 为 0，且  $h$ 接近于 1，则第二项中的对数会趋于 $-\infty$﻿，从而使得第二项趋于 $-\infty$﻿.</li>
+</ul>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" title="【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间" target="_blank" rel="external">https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" title="【学习笔记】线性规划的单纯形算法"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/deeplearning-ai-nlp-lesson-1\/';
+        this.page.identifier = 'yume-diary';
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

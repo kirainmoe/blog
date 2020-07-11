@@ -1,835 +1,541 @@
 <!DOCTYPE html>
-<html><head>
-<title>浅谈 KMP 字符串匹配算法</title>
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        浅谈 KMP 字符串匹配算法 - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
 
 
 
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>浅谈 KMP 字符串匹配算法 - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="浅谈 KMP 字符串匹配算法" />
+<meta property="og:description" content="因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/" />
+<meta property="article:published_time" content="2017-10-17T13:01:43+00:00" />
+<meta property="article:modified_time" content="2017-10-17T13:01:43+00:00" />
+<meta itemprop="name" content="浅谈 KMP 字符串匹配算法">
+<meta itemprop="description" content="因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。">
+<meta itemprop="datePublished" content="2017-10-17T13:01:43&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-17T13:01:43&#43;00:00" />
+<meta itemprop="wordCount" content="4049">
 
-<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.d1b323a5bdb0e7b05730834eb664c761432cfb57d618b4efeb5a9417a66a4b44.css" integrity="sha256-0bMjpb2w57BXMINOtmTHYUMs&#43;1fWGLTv61qUF6ZqS0Q=" media="screen">
-
-<script src="https://kirainmoe.com//js/loadCSS.js"></script>
-<script src="https://kirainmoe.com//js/table.js"></script>
 
 
-<script src="https://kirainmoe.com//js/toc.js"></script>
+<meta itemprop="keywords" content="algorithm,kmp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="浅谈 KMP 字符串匹配算法"/>
+<meta name="twitter:description" content="因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。"/>
 
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      showProcessingMessages: false,
-      messageStyle: "none", 
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], 
-        showMathMenu: false
-      }
-  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
 
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+  
+  
 
-<script>
-    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
-
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
-    
-    <a class="a-block nav-head false" href="https://kirainmoe.com/">
-    
-        <div class="nav-title">
-            宇宙よりも遠い場所
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
         </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/guestbook">
-                    留言板
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/friends">
-                    友情链接
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/tags">
-                    标签
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/about">
-                    关于
-                </a>
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        &copy;
-	
-	2016-2020 宇宙よりも遠い場所
-	
-
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-
-    </div>
-
-    
-    <script src="https://tj.kirainmoe.com/cgi-bin/inject_script.cgi"></script>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#kmp-%e7%ae%97%e6%b3%95" v-on:click="closeDrawer" id="kmp-算法-nav">
-										 KMP 算法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8e%9f%e5%a7%8b%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8c%b9%e9%85%8d%e6%96%b9%e6%b3%95" v-on:click="closeDrawer" id="原始的字符串匹配方法-nav">
-										 原始的字符串匹配方法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bc%98%e5%8c%96%e7%9a%84%e6%80%9d%e6%83%b3" v-on:click="closeDrawer" id="优化的思想-nav">
-										 优化的思想
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#kmp-%e7%ae%97%e6%b3%95%e7%9a%84%e7%81%b5%e9%ad%82-j-%e6%8c%87%e9%92%88%e7%a7%bb%e5%8a%a8%e7%9a%84%e4%bd%8d%e7%bd%ae" v-on:click="closeDrawer" id="kmp-算法的灵魂-j-指针移动的位置-nav">
-										 KMP 算法的灵魂 —— j 指针移动的位置
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#next-%e6%95%b0%e7%bb%84%e7%9a%84%e8%ae%a1%e7%ae%97" v-on:click="closeDrawer" id="next-数组的计算-nav">
-										 next 数组的计算
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88-p-j-p-k-%e7%9a%84%e6%97%b6%e5%80%99-next-j-1-next-j-1-%e5%91%a2" v-on:click="closeDrawer" id="为什么-p-j-p-k-的时候-next-j-1-next-j-1-呢-nav">
-										 为什么 P[j] = P[k] 的时候，next[j&#43;1] = next[j] &#43; 1 呢？
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%82%a3-p-j-p-k-%e7%9a%84%e6%97%b6%e5%80%99%e5%91%a2" v-on:click="closeDrawer" id="那-p-j-p-k-的时候呢-nav">
-										 那 P[j] != P[k] 的时候呢？
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%82%a3%e4%b9%88-%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e6%95%b4%e7%90%86%e5%87%ba%e8%ae%a1%e7%ae%97-next-%e6%95%b0%e7%bb%84%e7%9a%84%e6%95%b4%e4%b8%aa%e8%bf%87%e7%a8%8b%e4%ba%86" v-on:click="closeDrawer" id="那么-我们可以整理出计算-next-数组的整个过程了-nav">
-										 那么，我们可以整理出计算 next 数组的整个过程了：
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bc%98%e5%8c%96-next-%e6%95%b0%e7%bb%84%e7%9a%84%e6%b1%82%e8%a7%a3" v-on:click="closeDrawer" id="优化-next-数组的求解-nav">
-										 优化 next 数组的求解
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#kmp-%e4%b8%bb%e7%ae%97%e6%b3%95" v-on:click="closeDrawer" id="kmp-主算法-nav">
-										 KMP 主算法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%a7%a3%e5%86%b3%e5%ae%9e%e9%99%85%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="解决实际问题-nav">
-										 解决实际问题
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#hdu2087" v-on:click="closeDrawer" id="hdu2087-nav">
-										 HDU2087
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#luogu-3375" v-on:click="closeDrawer" id="luogu-3375-nav">
-										 luogu 3375
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
-                        留言板
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/friends">
-                        友情链接
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/tags">
-                        标签
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/about">
-                        关于
-                    </a>
-            
-            
-            <div class="toc">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#kmp-%e7%ae%97%e6%b3%95" v-on:click="closeDrawer" id="kmp-算法-nav">
-										 KMP 算法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8e%9f%e5%a7%8b%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8c%b9%e9%85%8d%e6%96%b9%e6%b3%95" v-on:click="closeDrawer" id="原始的字符串匹配方法-nav">
-										 原始的字符串匹配方法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bc%98%e5%8c%96%e7%9a%84%e6%80%9d%e6%83%b3" v-on:click="closeDrawer" id="优化的思想-nav">
-										 优化的思想
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#kmp-%e7%ae%97%e6%b3%95%e7%9a%84%e7%81%b5%e9%ad%82-j-%e6%8c%87%e9%92%88%e7%a7%bb%e5%8a%a8%e7%9a%84%e4%bd%8d%e7%bd%ae" v-on:click="closeDrawer" id="kmp-算法的灵魂-j-指针移动的位置-nav">
-										 KMP 算法的灵魂 —— j 指针移动的位置
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#next-%e6%95%b0%e7%bb%84%e7%9a%84%e8%ae%a1%e7%ae%97" v-on:click="closeDrawer" id="next-数组的计算-nav">
-										 next 数组的计算
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88-p-j-p-k-%e7%9a%84%e6%97%b6%e5%80%99-next-j-1-next-j-1-%e5%91%a2" v-on:click="closeDrawer" id="为什么-p-j-p-k-的时候-next-j-1-next-j-1-呢-nav">
-										 为什么 P[j] = P[k] 的时候，next[j&#43;1] = next[j] &#43; 1 呢？
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%82%a3-p-j-p-k-%e7%9a%84%e6%97%b6%e5%80%99%e5%91%a2" v-on:click="closeDrawer" id="那-p-j-p-k-的时候呢-nav">
-										 那 P[j] != P[k] 的时候呢？
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%82%a3%e4%b9%88-%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e6%95%b4%e7%90%86%e5%87%ba%e8%ae%a1%e7%ae%97-next-%e6%95%b0%e7%bb%84%e7%9a%84%e6%95%b4%e4%b8%aa%e8%bf%87%e7%a8%8b%e4%ba%86" v-on:click="closeDrawer" id="那么-我们可以整理出计算-next-数组的整个过程了-nav">
-										 那么，我们可以整理出计算 next 数组的整个过程了：
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bc%98%e5%8c%96-next-%e6%95%b0%e7%bb%84%e7%9a%84%e6%b1%82%e8%a7%a3" v-on:click="closeDrawer" id="优化-next-数组的求解-nav">
-										 优化 next 数组的求解
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#kmp-%e4%b8%bb%e7%ae%97%e6%b3%95" v-on:click="closeDrawer" id="kmp-主算法-nav">
-										 KMP 主算法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%a7%a3%e5%86%b3%e5%ae%9e%e9%99%85%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="解决实际问题-nav">
-										 解决实际问题
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#hdu2087" v-on:click="closeDrawer" id="hdu2087-nav">
-										 HDU2087
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#luogu-3375" v-on:click="closeDrawer" id="luogu-3375-nav">
-										 luogu 3375
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
-            宇宙よりも遠い場所
-        </a>
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://kirainmoe.com/">
-        <div class="single-column-header-title">宇宙よりも遠い場所</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post">
-            
-            
-            
-
-            <div class="post-head-wrapper-text-only"
-                 style="background-image: url('/')">
-                <div class="post-title">
-                    浅谈 KMP 字符串匹配算法
-                    <div class="post-meta">
-                        <time itemprop="datePublished">
-                            2017-10-17 13:01
-                        </time>
-
-                        
-
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/algorithm">algorithm</a>
-                                &nbsp;
-                            
-                                <a href="/tags/kmp">kmp</a>
-                                &nbsp;
-                            
-                        
-                    </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
                 </div>
             </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
             
-            <div class="post-body-wrapper">
-                <div class="post-body">
-                    <p>因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。</p>
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/kmp-algorithm-for-matching-string/"
+    >浅谈 KMP 字符串匹配算法</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/" class="article-date">
+  <time datetime="2017-10-17 13:01:43 &#43;0000 UTC" itemprop="datePublished">2017-10-17</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/algorithm/"> algorithm </a>
+    <a class="article-tag-link" href="/tags/kmp/"> kmp </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/kmp-algorithm-for-matching-string/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 4049words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 9minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>因为上周末 MFE 群里有位成员提到了这个算法，所以那天晚上就稍微认识了一下这个算法，感觉 KMP 对于匹配字符串上的做法还是好神奇的，值得水篇文章整理一下。</p>
 
 <blockquote>
 <p>很久没有更文了w 最近真的是非常非常非常忙qwq，刚刚送走了第二次阶段考就迎来了 NOIP 的初赛，然后接下来的一整个月都要在忙碌的准备中度过，11 月回来又是期中考qwq 所以你们会发现我的解题报告停更了半个月，这篇文章权当是补偿吧（</p>
@@ -861,16 +567,23 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <h1 id="优化的思想">优化的思想</h1>
 
 <p>下文中，我们把目标串 target 记作 T, 模式串 pattern 记作 P. 首先，让我们考虑这样两个字符串：</p>
+
 <pre><code>target (T): ABCABCABDAB
-pattern(P): ABCABD</code></pre>
+pattern(P): ABCABD
+</code></pre>
+
 <p>我们用上面的方法匹配的时候，让 i = j = 0，然后当 T[i] == P[j] 的时候，我们不断让 i, j 右移，直到 i = j = 5 的时候，我们发现 T[i](C) != P[j](D) 了。</p>
 
 <p>按照我们上面的思路，我们会把 i 和 j 回溯：</p>
+
 <pre><code> ↓ i = 1
 ABCABCABDAB
  ABCABD
- ↑ j = 0</code></pre>
+ ↑ j = 0
+</code></pre>
+
 <p>这时候第一个字符就不匹配了，所以 i 继续右移，直到 i = 3, j = 0 的时候往下匹配，最后 i = 8, j = 5 的时候匹配成功：</p>
+
 <pre><code>   ↓ i = 3
 ABCABCABDAB
    ABCABD
@@ -881,20 +594,28 @@ ABCABCABDAB
         ↓ i = 8
 ABCABCABDAB
    ABCABD
-        ↑ j = 5</code></pre>
+        ↑ j = 5
+</code></pre>
+
 <p>但是我们发现了一件有趣的事情，就是，如果这件事让我们人为来做的话，当 i, j 从 0 开始匹配到 5 失败的时候，我们不会让 i = 1, 2, &hellip; 这样一直试到匹配为止。
 因为我们发现我们在 i = 5 的时候匹配失败，P[0] = A, 但是 i = 5 的前面只有 i = 3 的时候 T[i] = A，所以 i = 1, 2 的时候我们根本不需要去匹配。我们能这么想，是因为我们已经知道匹配过的 i = 0~5 的情况了——这也正是 KMP 算法的精髓所在，<strong>KMP 算法高效的原因之一正是由于它能够利用已经匹配到的有效信息。</strong></p>
 
 <p>所以呢，上面提到的三个人就想到了一个方案：i 指针可以不动呀，我们只要移动 j 指针就可以了。</p>
+
 <pre><code>     ↓ i = 5
 ABCABCABDAB
 ABCABD
-     ↑ j = 5</code></pre>
+     ↑ j = 5
+</code></pre>
+
 <p>这个时候让 i 不动，只移动 j：</p>
+
 <pre><code>     ↓ i = 5
 ABCABCABDAB
    ABCABD
-     ↑ j = 2</code></pre>
+     ↑ j = 2
+</code></pre>
+
 <p>哎，你会发现这样比一起移动 i 和 j 快多了，对吗？这就是 KMP 算法的思想：</p>
 
 <blockquote>
@@ -915,19 +636,26 @@ ABCABCABDAB
 <p>我们用 k 表示当 T[i] 与 P[j] 不匹配的时候，j 要移动的下一个位置，则 next[j] = k. 现在你可以猜到，<strong>next[j] 存储的是：当 T[i] 与 P[j] 匹配失败时，j 将要移动的下一个位置。</strong></p>
 
 <p>我们还是举上面那个例子吧：</p>
+
 <pre><code>ABCABD
      ↑ j = 5，匹配失败
 
 ABCABD
-  ↑ j = 2，把 j 移动到这个位置</code></pre>
+  ↑ j = 2，把 j 移动到这个位置
+</code></pre>
+
 <p>有没有发现什么？没错， P[0~1] 和 P[3~4] 是重合的！</p>
 
 <p>再比如说：</p>
+
 <pre><code>       ↓ i = 7
 ABCDABCDNAIVE
 ABCDABCB
-       ↑ j = 7</code></pre>
+       ↑ j = 7
+</code></pre>
+
 <p>这个时候又匹配失败了。虽然我们作为人类，很容易看出这两个字符串无论怎么移动都不能匹配。不过我们这个时候还是要<s>假装尝试一下</s>，我们会这样移动 j 指针：</p>
+
 <pre><code>移动前：
        ↓ i = 7
 ABCDABCDNAIVE
@@ -937,7 +665,9 @@ ABCDABCB
        ↓ i = 7
 ABCDABCDNAIVE
     ABCDABCB
-       ↑ j = 3</code></pre>
+       ↑ j = 3
+</code></pre>
+
 <p>哎，是不是还是刚才的那个规律呢，模式串的 P[0~2] 和 P[4~6] 是重合的，而恰恰又是 j 移动的位置 3 把它们隔开了。</p>
 
 <p>现在我们可以总结出这样的性质了：<strong>当 T[i] 与 P[j] 匹配失败的时候，j 移动到下一个位置 k，k 即为使得 <code>P[0, k-1] = P[j-k, j-1] (或者说 P[k+1, j-1])</code> 的那个值。</strong></p>
@@ -975,9 +705,12 @@ ABCDABCDNAIVE
 <h3 id="为什么-p-j-p-k-的时候-next-j-1-next-j-1-呢">为什么 P[j] = P[k] 的时候，next[j+1] = next[j] + 1 呢？</h3>
 
 <p>考虑这样一个字符串：</p>
+
 <pre><code>index 0 1 2 3 4 5 6 7 8
 str   A B C D A B C D E
-next -1 0 0 0 0 0 0 3 4  </code></pre>
+next -1 0 0 0 0 0 0 3 4  
+</code></pre>
+
 <p>通过计算我们可以发现 next[7] = 3, 因为 3 的左边和右边都是 ABC，这个时候我们发现 P[7] = P[3] = D.</p>
 
 <p>所以，我们发现，当 j = j+1 = 8 之后，next[8] = 4 = next[7] + 1. 这个规律也是可以证明的。这个证明同样是引用：</p>
@@ -996,86 +729,101 @@ next -1 0 0 0 0 0 0 3 4  </code></pre>
 <p>鉴于……这个东西我也讲不清楚qwq 所以我找到了一篇总结的挺好的文章：<a href="https://www.zhihu.com/question/21474082。">https://www.zhihu.com/question/21474082。</a> 虽然内容不长，但是我就不贴过来了。</p>
 
 <h2 id="那么-我们可以整理出计算-next-数组的整个过程了">那么，我们可以整理出计算 next 数组的整个过程了：</h2>
+
 <pre><code>初始化 next[] = 0
 next[0] ← -1
 j ← 0, k ← -1, len ← (pattern 长度 - 1)
-while j < len do
+while j &lt; len do
   if k = -1 || pattern[j] = pattern[k] then
     j ← j+1, k ← k+1
     next[j] = k
   else
-    k ← next[k]</code></pre>
+    k ← next[k]
+</code></pre>
+
 <p>下面是一个用 C++ 实现的方式：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">calcNextArr</span>()
+
+<pre><code class="language-cpp">void calcNextArr()
 {
-  next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-  <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, k <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, len <span style="color:#f92672">=</span> strlen(pattern) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-  <span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;</span> len)
+  next[0] = -1;
+  int j = 0, k = -1, len = strlen(pattern) - 1;
+  while (j &lt; len)
   {
-    <span style="color:#66d9ef">if</span> (k <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> pattern[j] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-      next[<span style="color:#f92672">+</span><span style="color:#f92672">+</span>j] <span style="color:#f92672">=</span> <span style="color:#f92672">+</span><span style="color:#f92672">+</span>k;
-      <span style="color:#75715e">// 如果要做时间复杂度优化，就加上下面的代码
-</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (pattern[j] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-        next[j] <span style="color:#f92672">=</span> next[k];
+    if (k == -1 || pattern[j] == pattern[k]) {
+      next[++j] = ++k;
+      // 如果要做时间复杂度优化，就加上下面的代码
+      if (pattern[j] == pattern[k]) {
+        next[j] = next[k];
       }
-    } <span style="color:#66d9ef">else</span> {
-      k <span style="color:#f92672">=</span> next[k];
+    } else {
+      k = next[k];
     }
   }
 }
-</code></pre></div>
+</code></pre>
+
 <h2 id="优化-next-数组的求解">优化 next 数组的求解</h2>
 
 <p>注意到我们在实现上面的伪代码的时候多了两句：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span> (pattern[j] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-  next[j] <span style="color:#f92672">=</span> next[k];
+
+<pre><code class="language-cpp">if (pattern[j] == pattern[k]) {
+  next[j] = next[k];
 }
-</code></pre></div>
+</code></pre>
+
 <p>为什么要加这一句呢？我们可以看出如果 P[j] = P[k] 的时候，让 next[j] = next[k]. 但是我们上文不是说到，如果 P[j] = P[k] 的时候，next[j+1] = next[j] + 1 嘛，为什么又回去了呐？考虑这样的一个模式串：</p>
+
 <pre><code>ABCABDNAIVE
 ABCABCABDAB
-     ↑ j = 5</code></pre>
+     ↑ j = 5
+</code></pre>
+
 <p>如上，当我们在 j = 5 的地方匹配失败的时候，按照我们上面的算法，next[j] = 2，所以 j 会回溯到 2 的地方，指向 C. 但是我们发现就算 j 回溯到 j = 2 的时候，P[j] 仍然等于 C，依旧不能和目标串匹配啊。所以我们还是要把 j 继续回溯，那么这时候 next[j] = 0. 相信大家想到了，只要我们让 j = 5 的时候直接跳回 0，就可以省去多跳一步的步骤了，这就是这段代码的作用。</p>
 
 <h1 id="kmp-主算法">KMP 主算法</h1>
 
 <p>了解了 next[] 数组之后，你已经完全了解 KMP 不远了。 接下来是 KMP 算法的整个流程
 ：</p>
+
 <pre><code>T ← 目标串，P ← 模式串
 i ← 0, j ← 0
 next[] ← calcNext(P)                   // 对模式串 P 计算其 next 数组的值
-while i < T.length && j < P.length do
+while i &lt; T.length &amp;&amp; j &lt; P.length do
   // 如果 j 已经指向模式串的起点了，就把 i 下移一位，j 置零；或者 T[i] 和 P[j] 匹配了，那么就把 i, j 一起下移一位
   if j == -1 || T[i] == P[j] then
     i ← i+1, j ← j+1
   // 如果不匹配，那就让 j 回溯到 next[j] 位置
   else
     j ← next[j]
-if j >= P.length                  // 此时匹配成功
+if j &gt;= P.length                  // 此时匹配成功
   return i-j                      // i-j 即为 T 与 P 匹配时 T 串开始的位置
 else
-  return -1                       // 否则返回不匹配，用 -1 表示</code></pre>
+  return -1                       // 否则返回不匹配，用 -1 表示
+</code></pre>
+
 <p>仍旧是一份 C++ 实现的模板：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">KMP</span>()
+
+<pre><code class="language-cpp">int KMP()
 {
-  <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#66d9ef">int</span> tlen <span style="color:#f92672">=</span> strlen(target), plen <span style="color:#f92672">=</span> strlen(pattern);
-  <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> tlen <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> j <span style="color:#f92672">&lt;</span> plen)
+  int i = 0, j = 0;
+  int tlen = strlen(target), plen = strlen(pattern);
+  while (i &lt; tlen &amp;&amp; j &lt; plen)
   {
-    <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> target[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[j]) {
-      i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>, j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-    } <span style="color:#66d9ef">else</span> {
-      j <span style="color:#f92672">=</span> next[j];
+    if (j == -1 || target[i] == pattern[j]) {
+      i++, j++;
+    } else {
+      j = next[j];
     }
   }
   
-  <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">=</span><span style="color:#f92672">=</span> plen) {
-    <span style="color:#66d9ef">return</span> i <span style="color:#f92672">-</span> j;
-  } <span style="color:#66d9ef">else</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+  if (j == plen) {
+    return i - j;
+  } else {
+    return -1;
   }
 }
-</code></pre></div>
+</code></pre>
+
 <h1 id="解决实际问题">解决实际问题</h1>
 
 <h2 id="hdu2087">HDU2087</h2>
@@ -1083,205 +831,311 @@ else
 <p>地址在这里：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2087">http://acm.hdu.edu.cn/showproblem.php?pid=2087</a></p>
 
 <p>分析题目我们可以发现这就是一道简单的裸题字符串匹配，我们当然可以直接上 KMP 啦。下面是这题的 AC 代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
-<span style="color:#66d9ef">int</span> n[MAXN];
-<span style="color:#66d9ef">char</span> target[MAXN], pattern[MAXN];
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>()
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+
+const int MAXN = 1e3 + 10;
+int n[MAXN];
+char target[MAXN], pattern[MAXN];
+
+void init()
 {
-  memset(target, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> target);
-  memset(pattern, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> pattern);
-  memset(n, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> n);
+  memset(target, 0, sizeof target);
+  memset(pattern, 0, sizeof pattern);
+  memset(n, 0, sizeof n);
 }
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">calcNext</span>()
+void calcNext()
 {
-  n[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-  <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, k <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, len <span style="color:#f92672">=</span> strlen(pattern) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-  <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> len)
+  n[0] = -1;
+  int i = 0, k = -1, len = strlen(pattern) - 1;
+  while (i &lt; len)
   {
-    <span style="color:#66d9ef">if</span> (k <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> pattern[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-      n[<span style="color:#f92672">+</span><span style="color:#f92672">+</span>i] <span style="color:#f92672">=</span> <span style="color:#f92672">+</span><span style="color:#f92672">+</span>k;
-      <span style="color:#66d9ef">if</span> (pattern[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-        n[i] <span style="color:#f92672">=</span> n[k];
+    if (k == -1 || pattern[i] == pattern[k]) {
+      n[++i] = ++k;
+      if (pattern[i] == pattern[k]) {
+        n[i] = n[k];
       }
-    } <span style="color:#66d9ef">else</span> {
-      k <span style="color:#f92672">=</span> n[k];
+    } else {
+      k = n[k];
     }
   }
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">KMP</span>()
+int KMP()
 {
-  <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#66d9ef">int</span> tlen <span style="color:#f92672">=</span> strlen(target), plen <span style="color:#f92672">=</span> strlen(pattern);
+  int ans = 0, i = 0, j = 0;
+  int tlen = strlen(target), plen = strlen(pattern);
   
-  <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> tlen)
+  while (i &lt; tlen)
   {
-    <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> target[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[j]) {
-      i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>, j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-    } <span style="color:#66d9ef">else</span> {
-      j <span style="color:#f92672">=</span> n[j];
+    if (j == -1 || target[i] == pattern[j]) {
+      i++, j++;
+    } else {
+      j = n[j];
     }
-    <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">=</span><span style="color:#f92672">=</span> plen) {
-      j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      ans<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+    if (j == plen) {
+      j = 0;
+      ans++;
     }    
   }
-  <span style="color:#66d9ef">return</span> ans;
+  return ans;
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-  <span style="color:#66d9ef">while</span> (<span style="color:#f92672">~</span>scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, target))
+  while (~scanf(&quot;%s&quot;, target))
   {
-    <span style="color:#66d9ef">if</span> (target[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">#</span><span style="color:#e6db74">&#39;</span>)
-      <span style="color:#66d9ef">break</span>;
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, pattern);
+    if (target[0] == '#')
+      break;
+    scanf(&quot;%s&quot;, pattern);
     calcNext();
-    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> KMP();
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+    int ans = KMP();
+    printf(&quot;%d\n&quot;, ans);
     init();
   }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  return 0;
 }
-</code></pre></div>
+
+</code></pre>
+
 <h2 id="luogu-3375">luogu 3375</h2>
 
 <p>这题也是个 KMP，可能有多个匹配，那么它要输出每个匹配的位置；以及这题的 next 数组不能优化，因为他还要输出= =我就是用了优化的 next 数组然后 WA 了好多次（
 总之写起来大概像下面这样：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000050</span>;
-<span style="color:#66d9ef">int</span> next[MAXN], n[MAXN];
-<span style="color:#66d9ef">int</span> len1, len2;
-<span style="color:#66d9ef">char</span> target[MAXN], pattern[MAXN];
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">calcNext</span>()
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const int MAXN = 1000050;
+int next[MAXN], n[MAXN];
+int len1, len2;
+char target[MAXN], pattern[MAXN];
+
+void calcNext()
 {
-    <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, k <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, n[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;</span> len2)
+    int j = 0, k = -1;
+    next[0] = -1, n[0] = -1;
+    while (j &lt; len2)
     {
-        <span style="color:#66d9ef">if</span> (k <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> pattern[j] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-            next[<span style="color:#f92672">+</span><span style="color:#f92672">+</span>j] <span style="color:#f92672">=</span> <span style="color:#f92672">+</span><span style="color:#f92672">+</span>k;
-            n[j] <span style="color:#f92672">=</span> k;
-            <span style="color:#66d9ef">if</span> (pattern[j] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[k]) {
-                n[j] <span style="color:#f92672">=</span> n[k];
+        if (k == -1 || pattern[j] == pattern[k]) {
+            next[++j] = ++k;
+            n[j] = k;
+            if (pattern[j] == pattern[k]) {
+                n[j] = n[k];
             }
-        } <span style="color:#66d9ef">else</span> {
-            k <span style="color:#f92672">=</span> next[k];
+        } else {
+            k = next[k];
         }
     }
 }
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">kmp</span>()
+void kmp()
 {
-    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> len1)
+    int i = 0, j = 0;
+    while (i &lt; len1)
     {
-        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> target[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> pattern[j]) {
-            i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>, j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-        } <span style="color:#66d9ef">else</span> {
-            j <span style="color:#f92672">=</span> n[j];
+        if (j == -1 || target[i] == pattern[j]) {
+            i++, j++;
+        } else {
+            j = n[j];
         }
         
-        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">=</span><span style="color:#f92672">=</span> len2) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i <span style="color:#f92672">-</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-            j <span style="color:#f92672">=</span> n[j];
+        if (j == len2) {
+            printf(&quot;%d\n&quot;, i - j + 1);
+            j = n[j];
         }
     }
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s%s</span><span style="color:#e6db74">&#34;</span>, target, pattern);
-    len1 <span style="color:#f92672">=</span> strlen(target);
-    len2 <span style="color:#f92672">=</span> strlen(pattern);
+    scanf(&quot;%s%s&quot;, target, pattern);
+    len1 = strlen(target);
+    len2 = strlen(pattern);
     calcNext();
     kmp();
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> len2; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    for (int i = 1; i &lt;= len2; i++)
     {
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, next[i]);
+        printf(&quot;%d &quot;, next[i]);
     }    
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;\n&quot;);
+    return 0;
 }
-</code></pre></div>
-<p>至此，我们对 KMP 的算法就有了一个比较完整的了解了。</p>
-                    <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2017-10-17</p>
-                </div>
-                
-            </div>
-            
-            
-            <nav class="post-pagination">
 
-                
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/my-first-contest-problem/">
-                    Next<br>记自己的第一次差点翻车的出题经历
+</code></pre>
+
+<p>至此，我们对 KMP 的算法就有了一个比较完整的了解了。</p>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/" title="浅谈 KMP 字符串匹配算法" target="_blank" rel="external">https://kirainmoe.com/blog/post/kmp-algorithm-for-matching-string/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/" title="使用 LaTeX &#43; Beamer 制作幻灯片 (Windows)"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kirainmoe.com/blog/post/my-first-contest-problem/"
+                    title="记自己的第一次差点翻车的出题经历"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
                 </a>
-                
-                
-                
-                <a class="older-posts" href="https://kirainmoe.com/blog/post/making-slider-with-latex-beamer-on-windows/">
-                    Previous<br>使用 LaTeX &#43; Beamer 制作幻灯片 (Windows)
-                </a>
-                
-            </nav>
-            <div class="post-comment-wrapper">
-                
-<div class="post-comment-wrapper">
-<div id="disqus_thread"></div>
-<script type="application/javascript">
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
     var disqus_config = function () {
-    
-    
-    
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/kmp-algorithm-for-matching-string\/';
+        this.page.identifier = 'yume-diary';
     };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div><div id="single-column-footer">&copy;
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
 	
-	2016-2020 宇宙よりも遠い場所
-	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-</div>
-    	</div>
-    <script src="https://kirainmoe.com//js/journal.js"></script>
-    </body>
+  </body>
 </html>

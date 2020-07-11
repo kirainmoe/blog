@@ -1,524 +1,542 @@
 <!DOCTYPE html>
-<html><head>
-<title>从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</title>
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用 - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
 
 
 
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用 - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用" />
+<meta property="og:description" content="八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" />
+<meta property="article:published_time" content="2019-02-28T20:59:37+08:00" />
+<meta property="article:modified_time" content="2019-02-28T20:59:37+08:00" />
+<meta itemprop="name" content="从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用">
+<meta itemprop="description" content="八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。">
+<meta itemprop="datePublished" content="2019-02-28T20:59:37&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-28T20:59:37&#43;08:00" />
+<meta itemprop="wordCount" content="5817">
 
-<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.d1b323a5bdb0e7b05730834eb664c761432cfb57d618b4efeb5a9417a66a4b44.css" integrity="sha256-0bMjpb2w57BXMINOtmTHYUMs&#43;1fWGLTv61qUF6ZqS0Q=" media="screen">
-
-<script src="https://kirainmoe.com//js/loadCSS.js"></script>
-<script src="https://kirainmoe.com//js/table.js"></script>
 
 
-<script src="https://kirainmoe.com//js/toc.js"></script>
+<meta itemprop="keywords" content="algorithm,search,hash," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用"/>
+<meta name="twitter:description" content="八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，最近又很寂寞，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。"/>
 
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      showProcessingMessages: false,
-      messageStyle: "none", 
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], 
-        showMathMenu: false
-      }
-  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
 
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+  
+  
 
-<script>
-    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
-
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
-    
-    <a class="a-block nav-head false" href="https://kirainmoe.com/">
-    
-        <div class="nav-title">
-            宇宙よりも遠い場所
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
         </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/guestbook">
-                    留言板
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/friends">
-                    友情链接
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/tags">
-                    标签
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/about">
-                    关于
-                </a>
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        &copy;
-	
-	2016-2020 宇宙よりも遠い場所
-	
-
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-
-    </div>
-
-    
-    <script src="https://tj.kirainmoe.com/cgi-bin/inject_script.cgi"></script>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%85%ab%e6%95%b0%e7%a0%81%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="什么是八数码问题-nav">
-										 什么是八数码问题？
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%8a%b6%e6%80%81%e4%b9%8b%e9%97%b4%e6%98%af%e5%90%a6%e5%8f%af%e8%be%be" v-on:click="closeDrawer" id="状态之间是否可达-nav">
-										 状态之间是否可达
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%b8%a4%e4%b8%aa%e7%8a%b6%e6%80%81%e9%97%b4%e7%9a%84%e6%9c%80%e5%b0%91%e7%a7%bb%e5%8a%a8%e6%ac%a1%e6%95%b0" v-on:click="closeDrawer" id="两个状态间的最少移动次数-nav">
-										 两个状态间的最少移动次数
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8f%8c%e5%90%91%e5%b9%bf%e6%90%9c-dbfs" v-on:click="closeDrawer" id="双向广搜-dbfs-nav">
-										 双向广搜 (DBFS)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%90%af%e5%8f%91%e5%bc%8f%e6%90%9c%e7%b4%a2-a" v-on:click="closeDrawer" id="启发式搜索-a-nav">
-										 启发式搜索 (A*)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%80%bb%e7%bb%93" v-on:click="closeDrawer" id="总结-nav">
-										 总结
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
-                        留言板
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/friends">
-                        友情链接
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/tags">
-                        标签
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/about">
-                        关于
-                    </a>
-            
-            
-            <div class="toc">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%85%ab%e6%95%b0%e7%a0%81%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="什么是八数码问题-nav">
-										 什么是八数码问题？
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%8a%b6%e6%80%81%e4%b9%8b%e9%97%b4%e6%98%af%e5%90%a6%e5%8f%af%e8%be%be" v-on:click="closeDrawer" id="状态之间是否可达-nav">
-										 状态之间是否可达
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%b8%a4%e4%b8%aa%e7%8a%b6%e6%80%81%e9%97%b4%e7%9a%84%e6%9c%80%e5%b0%91%e7%a7%bb%e5%8a%a8%e6%ac%a1%e6%95%b0" v-on:click="closeDrawer" id="两个状态间的最少移动次数-nav">
-										 两个状态间的最少移动次数
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8f%8c%e5%90%91%e5%b9%bf%e6%90%9c-dbfs" v-on:click="closeDrawer" id="双向广搜-dbfs-nav">
-										 双向广搜 (DBFS)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%90%af%e5%8f%91%e5%bc%8f%e6%90%9c%e7%b4%a2-a" v-on:click="closeDrawer" id="启发式搜索-a-nav">
-										 启发式搜索 (A*)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%80%bb%e7%bb%93" v-on:click="closeDrawer" id="总结-nav">
-										 总结
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
-            宇宙よりも遠い場所
-        </a>
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://kirainmoe.com/">
-        <div class="single-column-header-title">宇宙よりも遠い場所</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post">
-            
-            
-            
-
-            <div class="post-head-wrapper-text-only"
-                 style="background-image: url('/')">
-                <div class="post-title">
-                    从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用
-                    <div class="post-meta">
-                        <time itemprop="datePublished">
-                            2019-02-28 20:59
-                        </time>
-
-                        
-
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/algorithm">algorithm</a>
-                                &nbsp;
-                            
-                                <a href="/tags/search">search</a>
-                                &nbsp;
-                            
-                                <a href="/tags/hash">hash</a>
-                                &nbsp;
-                            
-                        
-                    </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
                 </div>
             </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
             
-            <div class="post-body-wrapper">
-                <div class="post-body">
-                    <p>八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，<s>最近又很寂寞</s>，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。</p>
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/"
+    >从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" class="article-date">
+  <time datetime="2019-02-28 20:59:37 &#43;0800 CST" itemprop="datePublished">2019-02-28</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/algorithm/"> algorithm </a>
+    <a class="article-tag-link" href="/tags/search/"> search </a>
+    <a class="article-tag-link" href="/tags/hash/"> hash </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 5817words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 12minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>八数码和十五数码问题是搜索算法中比较经典的问题。这个问题涉及的方面比较广，而且解答的方法也比较多。最近因为在一次 team contest 中遇到了相关的题目，之前一直没有好好钻研一下这类问题，<s>最近又很寂寞</s>，因此就在这星期找了一个时间，以八数码问题为载体，研究了该问题涉及的几个经典算法。</p>
 
 <h1 id="什么是八数码问题">什么是八数码问题？</h1>
 
@@ -572,62 +590,64 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <p>这个问题也能推广到 $n \times m$ 的数码问题中。</p>
 
 <p>说到求逆序对，在八数码和十五数码问题中，事实上用 $O(n^2)$ 的方法效率也不会太低，因为 $n$ 比较小。然而在遇到 $n$ 规模比较大的问题就比较麻烦。此时最好的办法还是用对序列归并排序的方式来求逆序对。例如：<a href="http://poj.org/problem?id=2893">POJ2893</a>, 这是一个 $n \times m$ 的棋盘下的问题。根据我们的分析，我们可以对列数 $m$ 进行分类讨论: 如果 $m$ 为奇数，则直接求状态逆序对数是否为偶数（因为本题中初状态的逆序对数量为 0）；如果 $m$ 是偶数，则找到 0 所在的行数 $t$，判断 $ans + n - t$ 是否为偶数即可。至于归并排序求逆序对的代码，我觉得紫书里那个写的很简洁，因此可以直接抄来。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
-<span style="color:#66d9ef">int</span> a[MAXN], b[MAXN], c[MAXN];
-<span style="color:#66d9ef">int</span> n, m, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge_sort</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int MAXN = 1000000;
+int a[MAXN], b[MAXN], c[MAXN];
+int n, m, ans = 0;
+void merge_sort(int x, int y)
 {
-	<span style="color:#66d9ef">if</span> (y <span style="color:#f92672">-</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
-		<span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> (y <span style="color:#f92672">-</span> x) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-		<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> x, q <span style="color:#f92672">=</span> m, i <span style="color:#f92672">=</span> x;
+	if (y - x &gt; 1) {
+		int m = x + (y - x) / 2;
+		int p = x, q = m, i = x;
 		merge_sort(x, m);
 		merge_sort(m, y);
-		<span style="color:#66d9ef">while</span> (p <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">|</span><span style="color:#f92672">|</span> q <span style="color:#f92672">&lt;</span> y) {
-			<span style="color:#66d9ef">if</span> (q <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> y <span style="color:#f92672">|</span><span style="color:#f92672">|</span> (p <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> a[p] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> a[q]))
-				b[i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>] <span style="color:#f92672">=</span> a[p<span style="color:#f92672">+</span><span style="color:#f92672">+</span>];
-			<span style="color:#66d9ef">else</span> {
-				b[i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>]<span style="color:#f92672">=</span> a[q<span style="color:#f92672">+</span><span style="color:#f92672">+</span>];
-				ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> m <span style="color:#f92672">-</span> p;
+		while (p &lt; m || q &lt; y) {
+			if (q &gt;= y || (p &lt; m &amp;&amp; a[p] &lt;= a[q]))
+				b[i++] = a[p++];
+			else {
+				b[i++]= a[q++];
+				ans += m - p;
 			}
 		}
-		<span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> x; i <span style="color:#f92672">&lt;</span> y; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-			a[i] <span style="color:#f92672">=</span> b[i];
+		for (i = x; i &lt; y; i++)
+			a[i] = b[i];
 	}
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-	<span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> EOF <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> n <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-		<span style="color:#66d9ef">int</span> tmp, cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, line <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-		ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-				scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>tmp);
-				<span style="color:#66d9ef">if</span> (tmp <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-					line <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-					<span style="color:#66d9ef">continue</span>;
+	while (scanf(&quot;%d%d&quot;, &amp;n, &amp;m) != EOF &amp;&amp; n != 0) {
+		int tmp, cnt = 0, line = -1;
+		ans = 0;
+		for (int i = 0; i &lt; n; i++) {
+			for (int j = 0; j &lt; m; j++) {
+				scanf(&quot;%d&quot;, &amp;tmp);
+				if (tmp == 0) {
+					line = i + 1;
+					continue;
 				}
-				a[cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>] <span style="color:#f92672">=</span> tmp;
+				a[cnt++] = tmp;
 			}
 		}
-		merge_sort(<span style="color:#ae81ff">0</span>, cnt);
-		<span style="color:#66d9ef">if</span> (m <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-			<span style="color:#66d9ef">if</span> ((ans <span style="color:#f92672">+</span> n <span style="color:#f92672">-</span> line) <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-				printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">YES</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-			} <span style="color:#66d9ef">else</span> {
-				printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">NO</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		merge_sort(0, cnt);
+		if (m % 2 == 0) {
+			if ((ans + n - line) % 2 == 0) {
+				printf(&quot;YES\n&quot;);
+			} else {
+				printf(&quot;NO\n&quot;);
 			}
-		} <span style="color:#66d9ef">else</span> {
-			<span style="color:#66d9ef">if</span> (ans <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-				printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">YES</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-			} <span style="color:#66d9ef">else</span> {
-				printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">NO</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		} else {
+			if (ans % 2 == 0) {
+				printf(&quot;YES\n&quot;);
+			} else {
+				printf(&quot;NO\n&quot;);
 			}
 		}
 	}
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h1 id="两个状态间的最少移动次数">两个状态间的最少移动次数</h1>
 
 <p>接下来讨论的第二个问题就是一个经典的搜索问题了。这里为了叙述的方便，我们只讨论八数码问题，并且假定已知两个状态是相互可达的。如果题目未知相互可达，则只需要加上 (1) 的代码判断即可。并且给出一道例题：<a href="https://vijos.org/p/1360">https://vijos.org/p/1360</a> 。</p>
@@ -639,96 +659,98 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <p>首先考虑重复搜索的避免，为了方便状态的表示，我们还是将 $3 \times 3$ 方格里的 9 个数写成一个整型数的序列，方便我们后面的操作。这里有两个状态判重策略：一个是用 STL 中的 map 判重，定义 <code>map&lt;int, int&gt; mp</code> 来判断某个序列是否已搜索过或在队列中，从而避免重复拓展队列中的状态；第二个是通过 Hash + 链表的方式，找一个 Hash 函数，将状态整数映射到一个节点数不超过 $9!=362880$ (由于没有重复数字出现，因此有效的状态数量不超过 9 的全排列数 $9!$)的链表中。</p>
 
 <p>先上一个最简单的 STL map 的做法。需要注意，当我们把状态写成一个序列的时候，要注意处理边界的问题。例如当 0 位于 (2, 1) 的时候，它不能左移；位于 (1, 3) 的时候，它不能上移，也不能右移……所以这个细节需要特别处理一下。程序如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>queue;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>map;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap;
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">s</span> {
-	<span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">10</span>];
-	<span style="color:#66d9ef">int</span> step;
-	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getState</span>() {
-		<span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-		sscanf(a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>res);
-		<span style="color:#66d9ef">return</span> res;
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+
+using std::queue;
+using std::map;
+using std::swap;
+
+struct s {
+	char a[10];
+	int step;
+	int getState() {
+		int res = 0;
+		sscanf(a, &quot;%d&quot;, &amp;res);
+		return res;
 	}
 };
-queue<span style="color:#f92672">&lt;</span>s<span style="color:#f92672">&gt;</span> q;
-map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> mp;
+queue&lt;s&gt; q;
+map&lt;int, int&gt; mp;
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
 	s init;
-	<span style="color:#66d9ef">int</span> fin <span style="color:#f92672">=</span> <span style="color:#ae81ff">123804765</span>;
-	scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, init.a);
-	init.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	int fin = 123804765;
+	scanf(&quot;%s&quot;, init.a);
+	init.step = 0;
 	
-	mp[init.getState()]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+	mp[init.getState()]++;
 	q.push(init);
 	
-	<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q.empty()) {
-		s cur <span style="color:#f92672">=</span> q.front();
+	while (!q.empty()) {
+		s cur = q.front();
 		q.pop();
-		<span style="color:#75715e">// 到达最终状态，由 BFS 性质可知此时一定最小 
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> (cur.getState() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> fin) {
-			printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, cur.step);
-			<span style="color:#66d9ef">break</span>;
+		// 到达最终状态，由 BFS 性质可知此时一定最小 
+		if (cur.getState() == fin) {
+			printf(&quot;%d&quot;, cur.step);
+			break;
 		}
-		cur.step<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-		<span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-			<span style="color:#66d9ef">if</span> (cur.a[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>) { 
-				pos <span style="color:#f92672">=</span> i;
-				<span style="color:#66d9ef">break</span>; 
+		cur.step++;
+		int pos = -1;
+		for (int i = 0; i &lt; 9; i++)
+			if (cur.a[i] == '0') { 
+				pos = i;
+				break; 
 			}
-		<span style="color:#66d9ef">int</span> state;
-		<span style="color:#75715e">// 将 0 与上下左右四个数交换得到四个新状态，注意判断合法性 
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		int state;
+		// 将 0 与上下左右四个数交换得到四个新状态，注意判断合法性 
+		if (pos % 3 != 0) {
+			swap(cur.a[pos], cur.a[pos - 1]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				q.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos - 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		if (pos % 3 != 2) {
+			swap(cur.a[pos], cur.a[pos + 1]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				q.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos + 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		if (pos &gt; 2) {
+			swap(cur.a[pos], cur.a[pos - 3]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				q.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos - 3]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		if (pos &lt; 6) {
+			swap(cur.a[pos], cur.a[pos + 3]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				q.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos + 3]);
 		}
 	}
 	
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>上面的代码在 Vijos 上跑了最多 60 多 ms. 当然，用 STL map 的工业做法显然不是我们今天的重点。让我们来尝试一些新的东西吧，比如用哈希表判重。所谓哈希表，就是 Hash + 链表的简称，它的实现思路是这样的：</p>
 
 <ol>
@@ -739,110 +761,112 @@ map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>
 </ol>
 
 <p>写 Hash 表要求我们对链表的基本操作比较熟悉。至于哈希函数的寻找，因为我们这里的状态比较少，所以直接应用最简单的哈希函数：$h(x) = x \% p$ 即可。在其它的题目中，我们也可以选取例如这样的哈希函数：$h(a[]) = (\Sigma_{i=0}^{len(a)-1}a[i] \% p + (\Pi _{i=0}^{len(a)-1} a[i]) \% p)$&hellip; 哈希函数的选取是既有技巧又玄学的，选取的好对程序的效率有很大的影响。按照这个思想我们来实现它：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>queue;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap;
 
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">362881</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MOD <span style="color:#f92672">=</span> <span style="color:#ae81ff">362867</span>;
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+using std::queue;
+using std::swap;
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">s</span>{
-	<span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">9</span>];
-	<span style="color:#66d9ef">int</span> step;
+const int MAXN = 362881;
+const int MOD = 362867;
+
+struct s{
+	char a[9];
+	int step;
 	
-	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getState</span>() {
-		<span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-		sscanf(a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>res);
-		<span style="color:#66d9ef">return</span> res;
+	int getState() {
+		int res = 0;
+		sscanf(a, &quot;%d&quot;, &amp;res);
+		return res;
 	}
 };
 
-<span style="color:#66d9ef">int</span> head[MAXN], next[MAXN], state[MAXN], cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-queue<span style="color:#f92672">&lt;</span>s<span style="color:#f92672">&gt;</span> q; 
+int head[MAXN], next[MAXN], state[MAXN], cnt = 1;
+queue&lt;s&gt; q; 
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getHash</span>(<span style="color:#66d9ef">int</span> x)
+int getHash(int x)
 {
-	<span style="color:#66d9ef">return</span> x <span style="color:#f92672">%</span> MOD;
+	return x % MOD;
 }
-<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">insert</span>(<span style="color:#66d9ef">int</span> st)
+bool insert(int st)
 {
-	<span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> getHash(st);
-	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[val]; i; i <span style="color:#f92672">=</span> next[i]) {
-		<span style="color:#66d9ef">if</span> (state[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> st) {
-			<span style="color:#66d9ef">return</span> true;
+	int val = getHash(st);
+	for (int i = head[val]; i; i = next[i]) {
+		if (state[i] == st) {
+			return true;
 		}
 	}
-	state[cnt] <span style="color:#f92672">=</span> st;
-	next[cnt] <span style="color:#f92672">=</span> head[val];
-	head[val] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+	state[cnt] = st;
+	next[cnt] = head[val];
+	head[val] = cnt++;
 	 
-	<span style="color:#66d9ef">return</span> false;
+	return false;
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-	memset(head, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> head);
+	memset(head, 0, sizeof head);
 	
-	<span style="color:#66d9ef">int</span> finalState <span style="color:#f92672">=</span> <span style="color:#ae81ff">123804765</span>;
+	int finalState = 123804765;
 	s init;
-	init.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, init.a);
+	init.step = 0;
+	scanf(&quot;%s&quot;, init.a);
 	
 	insert(init.getState());
 	q.push(init);
 	
-	<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q.empty()) {
-		s cur <span style="color:#f92672">=</span> q.front();
+	while (!q.empty()) {
+		s cur = q.front();
 		q.pop();
 		
-		<span style="color:#66d9ef">if</span> (cur.getState() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> finalState) {
-			printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, cur.step);
-			<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+		if (cur.getState() == finalState) {
+			printf(&quot;%d&quot;, cur.step);
+			return 0;
 		}
-		cur.step<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+		cur.step++;
 		
-		<span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-			<span style="color:#66d9ef">if</span> (cur.a[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>) { 
-				pos <span style="color:#f92672">=</span> i;
-				<span style="color:#66d9ef">break</span>; 
+		int pos = -1;
+		for (int i = 0; i &lt; 9; i++)
+			if (cur.a[i] == '0') { 
+				pos = i;
+				break; 
 			}
 
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>insert(cur.getState()))  {
+		if (pos % 3 != 0) {
+			swap(cur.a[pos], cur.a[pos - 1]);
+			if (!insert(cur.getState()))  {
 				q.push(cur);
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos - 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>insert(cur.getState()))  {
+		if (pos % 3 != 2) {
+			swap(cur.a[pos], cur.a[pos + 1]);
+			if (!insert(cur.getState()))  {
 				q.push(cur);
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos + 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>insert(cur.getState()))  {
+		if (pos &gt; 2) {
+			swap(cur.a[pos], cur.a[pos - 3]);
+			if (!insert(cur.getState()))  {
 				q.push(cur);
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos - 3]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>insert(cur.getState()))  {
+		if (pos &lt; 6) {
+			swap(cur.a[pos], cur.a[pos + 3]);
+			if (!insert(cur.getState()))  {
 				q.push(cur);
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos + 3]);
 		}		
 	}
 	
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>这个代码相对 STL map 的版本效率有些许提高，但仍然还是跑了 50 多 ms。有没有什么更好的优化策略？既然判重的问题我们已经解决了，接下来我们就考虑从搜索的算法上下手着手优化。我们还在一直用着最朴素的 BFS 呢，现在是时候优化一下它了。</p>
 
 <h2 id="双向广搜-dbfs">双向广搜 (DBFS)</h2>
@@ -856,131 +880,133 @@ queue<span style="color:#f92672">&lt;</span>s<span style="color:#f92672">&gt;</s
 </ol>
 
 <p>具体到这道题中，我们的操作是这样的：初状态放入 q1, 末状态丢进 q2，并分别用 map 容器 mp1 和 mp2 记录 q1 和 q2 搜索过的节点（状态）；如果某个状态在另一个队列中出现过（也即在对应的 map 容器中计数不为 0），说明找到了答案，并且最小移动次数即为双向搜索的步数之和。至于记录步数，我们只需要将 mp1, mp2 的 value 设为“搜索到某状态所需的步数”即可。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>queue;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>map;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap;
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">s</span>{
-	<span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">9</span>];
-	<span style="color:#66d9ef">int</span> step;
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;map&gt;
+using std::queue;
+using std::map;
+using std::swap;
+
+struct s{
+	char a[9];
+	int step;
 	
-	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getState</span>() {
-		<span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-		sscanf(a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>res);
-		<span style="color:#66d9ef">return</span> res;
+	int getState() {
+		int res = 0;
+		sscanf(a, &quot;%d&quot;, &amp;res);
+		return res;
 	}
 };
 
-queue<span style="color:#f92672">&lt;</span>s<span style="color:#f92672">&gt;</span> q1, q2;
+queue&lt;s&gt; q1, q2;
 s init, fin;
-map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> mp1, mp2;
-<span style="color:#66d9ef">int</span> finState;
+map&lt;int, int&gt; mp1, mp2;
+int finState;
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">extend</span>(<span style="color:#66d9ef">int</span> x)
+void extend(int x)
 {
-	s cur <span style="color:#f92672">=</span> x <span style="color:#f92672">?</span> q2.front() <span style="color:#f92672">:</span> q1.front();
-	x <span style="color:#f92672">?</span> q2.pop() <span style="color:#f92672">:</span> q1.pop();
+	s cur = x ? q2.front() : q1.front();
+	x ? q2.pop() : q1.pop();
 	
-	<span style="color:#66d9ef">int</span> state <span style="color:#f92672">=</span> cur.getState();
-	<span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> mp1.count(state)) {
-		printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, mp1[state] <span style="color:#f92672">+</span> cur.step);
-		exit(<span style="color:#ae81ff">0</span>);
-	} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>x <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> mp2.count(state)) {
-		printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, mp2[state] <span style="color:#f92672">+</span> cur.step);
-		exit(<span style="color:#ae81ff">0</span>);
+	int state = cur.getState();
+	if (x &amp;&amp; mp1.count(state)) {
+		printf(&quot;%d&quot;, mp1[state] + cur.step);
+		exit(0);
+	} else if (!x &amp;&amp; mp2.count(state)) {
+		printf(&quot;%d&quot;, mp2[state] + cur.step);
+		exit(0);
 	}
-	cur.step<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+	cur.step++;
 	
-	<span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-		<span style="color:#66d9ef">if</span> (cur.a[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>) { 
-			pos <span style="color:#f92672">=</span> i;
-			<span style="color:#66d9ef">break</span>; 
+	int pos = -1;
+	for (int i = 0; i &lt; 9; i++)
+		if (cur.a[i] == '0') { 
+			pos = i;
+			break; 
 		}
-	<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(x <span style="color:#f92672">?</span> mp2.count(state) <span style="color:#f92672">:</span> mp1.count(state))) {
-				x <span style="color:#f92672">?</span> q2.push(cur) <span style="color:#f92672">:</span> q1.push(cur);
-				<span style="color:#66d9ef">if</span> (x) {
-					mp2[state] <span style="color:#f92672">=</span> cur.step;
-				} <span style="color:#66d9ef">else</span> {
-					mp1[state] <span style="color:#f92672">=</span> cur.step;
+	if (pos % 3 != 0) {
+			swap(cur.a[pos], cur.a[pos - 1]);
+			state = cur.getState();
+			if (!(x ? mp2.count(state) : mp1.count(state))) {
+				x ? q2.push(cur) : q1.push(cur);
+				if (x) {
+					mp2[state] = cur.step;
+				} else {
+					mp1[state] = cur.step;
 				}
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos - 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(x <span style="color:#f92672">?</span> mp2.count(state) <span style="color:#f92672">:</span> mp1.count(state))) {
-				x <span style="color:#f92672">?</span> q2.push(cur) <span style="color:#f92672">:</span> q1.push(cur);
-				<span style="color:#66d9ef">if</span> (x) {
-					mp2[state] <span style="color:#f92672">=</span> cur.step;
-				} <span style="color:#66d9ef">else</span> {
-					mp1[state] <span style="color:#f92672">=</span> cur.step;
+		if (pos % 3 != 2) {
+			swap(cur.a[pos], cur.a[pos + 1]);
+			state = cur.getState();
+			if (!(x ? mp2.count(state) : mp1.count(state))) {
+				x ? q2.push(cur) : q1.push(cur);
+				if (x) {
+					mp2[state] = cur.step;
+				} else {
+					mp1[state] = cur.step;
 				}				
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos + 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(x <span style="color:#f92672">?</span> mp2.count(state) <span style="color:#f92672">:</span> mp1.count(state))) {
-				x <span style="color:#f92672">?</span> q2.push(cur) <span style="color:#f92672">:</span> q1.push(cur);
-				<span style="color:#66d9ef">if</span> (x) {
-					mp2[state] <span style="color:#f92672">=</span> cur.step;
-				} <span style="color:#66d9ef">else</span> {
-					mp1[state] <span style="color:#f92672">=</span> cur.step;
+		if (pos &gt; 2) {
+			swap(cur.a[pos], cur.a[pos - 3]);
+			state = cur.getState();
+			if (!(x ? mp2.count(state) : mp1.count(state))) {
+				x ? q2.push(cur) : q1.push(cur);
+				if (x) {
+					mp2[state] = cur.step;
+				} else {
+					mp1[state] = cur.step;
 				}				
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos - 3]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(x <span style="color:#f92672">?</span> mp2.count(state) <span style="color:#f92672">:</span> mp1.count(state))) {
-				x <span style="color:#f92672">?</span> q2.push(cur) <span style="color:#f92672">:</span> q1.push(cur);
-				<span style="color:#66d9ef">if</span> (x) {
-					mp2[state] <span style="color:#f92672">=</span> cur.step;
-				} <span style="color:#66d9ef">else</span> {
-					mp1[state] <span style="color:#f92672">=</span> cur.step;
+		if (pos &lt; 6) {
+			swap(cur.a[pos], cur.a[pos + 3]);
+			state = cur.getState();
+			if (!(x ? mp2.count(state) : mp1.count(state))) {
+				x ? q2.push(cur) : q1.push(cur);
+				if (x) {
+					mp2[state] = cur.step;
+				} else {
+					mp1[state] = cur.step;
 				}				
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos + 3]);
 		}			
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-	init.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	fin.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, init.a);
-	sprintf(fin.a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">123804765</span><span style="color:#e6db74">&#34;</span>);
-	finState <span style="color:#f92672">=</span> fin.getState();
+	init.step = 0;
+	fin.step = 0;
+	scanf(&quot;%s&quot;, init.a);
+	sprintf(fin.a, &quot;%s&quot;, &quot;123804765&quot;);
+	finState = fin.getState();
 	
 	q1.push(init);
-	mp1[init.getState()] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	mp1[init.getState()] = 0;
 	q2.push(fin);
-	mp2[fin.getState()] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	mp2[fin.getState()] = 0;
 	
-	<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q1.empty() <span style="color:#f92672">|</span><span style="color:#f92672">|</span> <span style="color:#f92672">!</span>q2.empty()) {
-		<span style="color:#66d9ef">if</span> (q1.size() <span style="color:#f92672">&lt;</span> q2.size()) {
-			extend(<span style="color:#ae81ff">0</span>);
-		} <span style="color:#66d9ef">else</span> {
-			extend(<span style="color:#ae81ff">1</span>);
+	while (!q1.empty() || !q2.empty()) {
+		if (q1.size() &lt; q2.size()) {
+			extend(0);
+		} else {
+			extend(1);
 		}
 	}
 	
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>这样的优化看起来思想很简单，但是——在 Vijos 上这个程序的峰值运行时间高达 3ms! 从 50+ms 到个位数的飞跃，简直让人懵逼了有没有！那么话说回来，为什么双向广搜的效率比普通的 BFS 高了这么多倍呢？看下面这张示意图：</p>
 
 <p><img src="https://ws2.sinaimg.cn/large/9f1137b1gy1g0mj4hoalaj20il0j9dg3.jpg" alt="dbfs" /></p>
@@ -1004,191 +1030,293 @@ map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>
 </ol>
 
 <p>在这道题中，我们的估价函数选取策略是这样的：$g(x)$ 表示当前的搜索步数，$h(x)$ 表示<strong>当前状态与目标状态对应位置不同数的个数</strong>，如状态 $123456780$ 和 $123450786$, $h(x) = 2$. 我们希望 $f(x)$ 越小越好，因为这样有利于我们搜索到答案。如果这里方向搞错的话，那么会得到很大的结果，显然就不是我们想要的答案了。按照这个思路，我们事先的代码如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>priority_queue;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>map;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>swap;
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">s</span> {
-	<span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">9</span>];
-	<span style="color:#66d9ef">int</span> step, ecost;
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;map&gt;
+using std::priority_queue;
+using std::map;
+using std::swap;
+
+struct s {
+	char a[9];
+	int step, ecost;
 	
-	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getState</span>() {
-		<span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-		sscanf(a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>res);
-		<span style="color:#66d9ef">return</span> res;
+	int getState() {
+		int res = 0;
+		sscanf(a, &quot;%d&quot;, &amp;res);
+		return res;
 	}
 	
-	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">evaluate</span>(s fin) {
-		ecost <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-			<span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">!</span><span style="color:#f92672">=</span> fin.a[i])
-				ecost<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+	void evaluate(s fin) {
+		ecost = 0; 
+		for (int i = 0; i &lt; 9; i++)
+			if (a[i] != fin.a[i])
+				ecost++;
 	}
 	
-	<span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">const</span> s a) <span style="color:#66d9ef">const</span> {
-		<span style="color:#66d9ef">return</span> step <span style="color:#f92672">+</span> ecost <span style="color:#f92672">&gt;</span> a.step <span style="color:#f92672">+</span> a.ecost;
+	bool operator &lt; (const s a) const {
+		return step + ecost &gt; a.step + a.ecost;
 	}
 };
 
-<span style="color:#66d9ef">int</span> finState;
-map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> mp;
-priority_queue<span style="color:#f92672">&lt;</span>s<span style="color:#f92672">&gt;</span> pq;
+int finState;
+map&lt;int, int&gt; mp;
+priority_queue&lt;s&gt; pq;
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
 	s fin, init;
-	init.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	fin.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, init.a);
-	sprintf(fin.a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">123804765</span><span style="color:#e6db74">&#34;</span>);
-	finState <span style="color:#f92672">=</span> fin.getState();
+	init.step = 0;
+	fin.step = 0;
+	scanf(&quot;%s&quot;, init.a);
+	sprintf(fin.a, &quot;%s&quot;, &quot;123804765&quot;);
+	finState = fin.getState();
 	
 	init.evaluate(fin);
-	init.step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	init.step = 0;
 	
 	pq.push(init);
-	mp[init.getState()]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+	mp[init.getState()]++;
 	
-	<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>pq.empty()) {
-		s cur <span style="color:#f92672">=</span> pq.top();
+	while (!pq.empty()) {
+		s cur = pq.top();
 		pq.pop();
-		<span style="color:#66d9ef">if</span> (cur.getState() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> finState) {
-			printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, cur.step);
-			<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+		if (cur.getState() == finState) {
+			printf(&quot;%d&quot;, cur.step);
+			return 0;
 		}
-		cur.step<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+		cur.step++;
 		
-		<span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-			<span style="color:#66d9ef">if</span> (cur.a[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>) { 
-				pos <span style="color:#f92672">=</span> i;
-				<span style="color:#66d9ef">break</span>; 
+		int pos = -1;
+		for (int i = 0; i &lt; 9; i++)
+			if (cur.a[i] == '0') { 
+				pos = i;
+				break; 
 			}
-		<span style="color:#66d9ef">int</span> state;
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		int state;
+		if (pos % 3 != 0) {
+			swap(cur.a[pos], cur.a[pos - 1]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				cur.evaluate(fin);
 				pq.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos - 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		if (pos % 3 != 2) {
+			swap(cur.a[pos], cur.a[pos + 1]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				cur.evaluate(fin);
 				pq.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
+			swap(cur.a[pos], cur.a[pos + 1]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		if (pos &gt; 2) {
+			swap(cur.a[pos], cur.a[pos - 3]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				cur.evaluate(fin);
 				pq.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos - 3]);
 		}
-		<span style="color:#66d9ef">if</span> (pos <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
-			state <span style="color:#f92672">=</span> cur.getState();
-			<span style="color:#66d9ef">if</span> (mp.count(state) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)  {
+		if (pos &lt; 6) {
+			swap(cur.a[pos], cur.a[pos + 3]);
+			state = cur.getState();
+			if (mp.count(state) == 0)  {
 				cur.evaluate(fin);
 				pq.push(cur);
-				mp[state]<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+				mp[state]++;
 			}
-			swap(cur.a[pos], cur.a[pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>]);
+			swap(cur.a[pos], cur.a[pos + 3]);
 		}
 	}
 	
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>这道题中 A* 算法的耗时也是个位数的。</p>
 
 <h1 id="总结">总结</h1>
 
 <p>通过这样一道看似很简单的题目就可以发掘出很多衍生的问题和优化的策略，其实在刷算法题的过程中也有很多其他的题目也像这道题一样，虽然很简洁，但是又包含了很多知识点，这样的问题就很值得钻研。</p>
-                    <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2019-02-28</p>
-                </div>
-                
-            </div>
-            
-            
-            <nav class="post-pagination">
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/" title="从八数码问题探寻 逆序对 / Hash / 双向广搜 / A* 算法的应用" target="_blank" rel="external">https://kirainmoe.com/blog/post/review-hash-dbfs-astar-algorithm-from-eight-puzzle/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
 
-                
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/">
-                    Next<br>[19-3-2] XMU ACM 集训队笔记(1)
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/" title="【APIO2009 前缀和/预处理/动态规划】 采油区域"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/"
+                    title="[19-3-2] XMU ACM 集训队笔记(1)"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
                 </a>
-                
-                
-                
-                <a class="older-posts" href="https://kirainmoe.com/blog/post/apio2009-oil-extracting-area/">
-                    Previous<br>【APIO2009 前缀和/预处理/动态规划】 采油区域
-                </a>
-                
-            </nav>
-            <div class="post-comment-wrapper">
-                
-<div class="post-comment-wrapper">
-<div id="disqus_thread"></div>
-<script type="application/javascript">
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
     var disqus_config = function () {
-    
-    
-    
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/review-hash-dbfs-astar-algorithm-from-eight-puzzle\/';
+        this.page.identifier = 'yume-diary';
     };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div><div id="single-column-footer">&copy;
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
 	
-	2016-2020 宇宙よりも遠い場所
-	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-</div>
-    	</div>
-    <script src="https://kirainmoe.com//js/journal.js"></script>
-    </body>
+  </body>
 </html>

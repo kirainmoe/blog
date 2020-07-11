@@ -1,951 +1,548 @@
 <!DOCTYPE html>
-<html><head>
-<title>[19-3-9] XMU ACM 集训队笔记(2)</title>
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111347233-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        [19-3-9] XMU ACM 集训队笔记(2) - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。
+前方持续高能中……
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
 
 
 
+  
+  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <title>[19-3-9] XMU ACM 集训队笔记(2) - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="[19-3-9] XMU ACM 集训队笔记(2)" />
+<meta property="og:description" content="本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。
 
-<link rel="stylesheet" href="https://kirainmoe.com/scss/journal.min.d1b323a5bdb0e7b05730834eb664c761432cfb57d618b4efeb5a9417a66a4b44.css" integrity="sha256-0bMjpb2w57BXMINOtmTHYUMs&#43;1fWGLTv61qUF6ZqS0Q=" media="screen">
+前方持续高能中……" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/xmu-acm-training-record-2/" />
+<meta property="article:published_time" content="2019-03-10T10:42:18+08:00" />
+<meta property="article:modified_time" content="2019-03-10T10:42:18+08:00" />
+<meta itemprop="name" content="[19-3-9] XMU ACM 集训队笔记(2)">
+<meta itemprop="description" content="本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。
 
-<script src="https://kirainmoe.com//js/loadCSS.js"></script>
-<script src="https://kirainmoe.com//js/table.js"></script>
+前方持续高能中……">
+<meta itemprop="datePublished" content="2019-03-10T10:42:18&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-10T10:42:18&#43;08:00" />
+<meta itemprop="wordCount" content="12319">
 
 
-<script src="https://kirainmoe.com//js/toc.js"></script>
 
+<meta itemprop="keywords" content="acm,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[19-3-9] XMU ACM 集训队笔记(2)"/>
+<meta name="twitter:description" content="本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      showProcessingMessages: false,
-      messageStyle: "none", 
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], 
-        showMathMenu: false
-      }
-  });
-</script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+前方持续高能中……"/>
 
-<script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
 
-<script>
-    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
 
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
-    
-    <a class="a-block nav-head false" href="https://kirainmoe.com/">
-    
-        <div class="nav-title">
-            宇宙よりも遠い場所
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
         </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/guestbook">
-                    留言板
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/friends">
-                    友情链接
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/tags">
-                    标签
-                </a>
-        
-            
-                
-                
-                <a class="a-block nav-link-item false" href="/pages/about">
-                    关于
-                </a>
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        &copy;
-	
-	2016-2020 宇宙よりも遠い場所
-	
-
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-
-    </div>
-
-    
-    <script src="https://tj.kirainmoe.com/cgi-bin/inject_script.cgi"></script>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%b4%aa%e5%bf%83%e7%ae%97%e6%b3%95" v-on:click="closeDrawer" id="贪心算法-nav">
-										 贪心算法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%83%a8%e5%88%86%e8%83%8c%e5%8c%85%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="部分背包问题-nav">
-										 部分背包问题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%b4%bb%e5%8a%a8%e5%ae%89%e6%8e%92%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="活动安排问题-nav">
-										 活动安排问题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%88%92%e8%88%b9%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="划船问题-nav">
-										 划船问题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%bc%82%e6%88%96%e6%9c%80%e5%a4%a7%e5%92%8c%e5%ad%97%e5%85%b8%e5%ba%8f%e8%ae%a1%e6%95%b0" v-on:click="closeDrawer" id="异或最大和字典序计数-nav">
-										 异或最大和字典序计数
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e7%bc%96%e7%a0%81" v-on:click="closeDrawer" id="哈夫曼编码-nav">
-										 哈夫曼编码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%be%8b%e9%a2%98" v-on:click="closeDrawer" id="例题-nav">
-										 例题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" v-on:click="closeDrawer" id="动态规划-nav">
-										 动态规划
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#01-%e8%83%8c%e5%8c%85" v-on:click="closeDrawer" id="01-背包-nav">
-										 01 背包
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%8c%e5%85%a8%e8%83%8c%e5%8c%85" v-on:click="closeDrawer" id="完全背包-nav">
-										 完全背包
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%9c%80%e9%95%bf%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97-longest-common-subsequence" v-on:click="closeDrawer" id="最长公共子序列-longest-common-subsequence-nav">
-										 最长公共子序列 (Longest Common Subsequence)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97-longest-incresing-subsequence" v-on:click="closeDrawer" id="最长上升子序列-longest-incresing-subsequence-nav">
-										 最长上升子序列 (Longest Incresing Subsequence)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8c%ba%e9%97%b4-dp" v-on:click="closeDrawer" id="区间-dp-nav">
-										 区间 DP
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%a0%91%e5%bd%a2-dp" v-on:click="closeDrawer" id="树形-dp-nav">
-										 树形 DP
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%8a%b6%e6%80%81%e5%8e%8b%e7%bc%a9-dp" v-on:click="closeDrawer" id="状态压缩-dp-nav">
-										 状态压缩 DP
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/guestbook">
-                        留言板
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/friends">
-                        友情链接
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/tags">
-                        标签
-                    </a>
-            
-                
-                    
-                    
-                    <a class="a-block drawer-menu-item false" href="/pages/about">
-                        关于
-                    </a>
-            
-            
-            <div class="toc">
-
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- CATALOG -</center>
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e8%b4%aa%e5%bf%83%e7%ae%97%e6%b3%95" v-on:click="closeDrawer" id="贪心算法-nav">
-										 贪心算法
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e9%83%a8%e5%88%86%e8%83%8c%e5%8c%85%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="部分背包问题-nav">
-										 部分背包问题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%b4%bb%e5%8a%a8%e5%ae%89%e6%8e%92%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="活动安排问题-nav">
-										 活动安排问题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%88%92%e8%88%b9%e9%97%ae%e9%a2%98" v-on:click="closeDrawer" id="划船问题-nav">
-										 划船问题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%bc%82%e6%88%96%e6%9c%80%e5%a4%a7%e5%92%8c%e5%ad%97%e5%85%b8%e5%ba%8f%e8%ae%a1%e6%95%b0" v-on:click="closeDrawer" id="异或最大和字典序计数-nav">
-										 异或最大和字典序计数
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e7%bc%96%e7%a0%81" v-on:click="closeDrawer" id="哈夫曼编码-nav">
-										 哈夫曼编码
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e4%be%8b%e9%a2%98" v-on:click="closeDrawer" id="例题-nav">
-										 例题
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" v-on:click="closeDrawer" id="动态规划-nav">
-										 动态规划
-									</a>
-								</li>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#01-%e8%83%8c%e5%8c%85" v-on:click="closeDrawer" id="01-背包-nav">
-										 01 背包
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%ae%8c%e5%85%a8%e8%83%8c%e5%8c%85" v-on:click="closeDrawer" id="完全背包-nav">
-										 完全背包
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%9c%80%e9%95%bf%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97-longest-common-subsequence" v-on:click="closeDrawer" id="最长公共子序列-longest-common-subsequence-nav">
-										 最长公共子序列 (Longest Common Subsequence)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97-longest-incresing-subsequence" v-on:click="closeDrawer" id="最长上升子序列-longest-incresing-subsequence-nav">
-										 最长上升子序列 (Longest Incresing Subsequence)
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e5%8c%ba%e9%97%b4-dp" v-on:click="closeDrawer" id="区间-dp-nav">
-										 区间 DP
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e6%a0%91%e5%bd%a2-dp" v-on:click="closeDrawer" id="树形-dp-nav">
-										 树形 DP
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-				
-				
-					
-						
-						
-							<ul>
-						
-							<ul>
-						
-						
-								<li>
-				 					<a href="#%e7%8a%b6%e6%80%81%e5%8e%8b%e7%bc%a9-dp" v-on:click="closeDrawer" id="状态压缩-dp-nav">
-										 状态压缩 DP
-									</a>
-								</li>
-						
-							</ul>
-						
-							</ul>
-						
-					
-				
-			
-	</div>
-
-</div>
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://kirainmoe.com/">
-            宇宙よりも遠い場所
-        </a>
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://kirainmoe.com/">
-        <div class="single-column-header-title">宇宙よりも遠い場所</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post">
-            
-            
-            
-
-            <div class="post-head-wrapper-text-only"
-                 style="background-image: url('/')">
-                <div class="post-title">
-                    [19-3-9] XMU ACM 集训队笔记(2)
-                    <div class="post-meta">
-                        <time itemprop="datePublished">
-                            2019-03-10 10:42
-                        </time>
-
-                        
-
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/acm">acm</a>
-                                &nbsp;
-                            
-                                <a href="/tags/algorithm">algorithm</a>
-                                &nbsp;
-                            
-                        
-                    </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
                 </div>
             </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/pages/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/pages/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/pages/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
             
-            <div class="post-body-wrapper">
-                <div class="post-body">
-                    <p>本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。</p>
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
+                    class="tag-list-count">7</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
+                    class="tag-list-count">18</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
+                    class="tag-list-count">9</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/past-present-future-2019-annual-review/" class="title">过去·现在·未来——2019 年度回顾</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-01 01:18:33 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/matlab-convolution-example-animation/" class="title">【趣味向】MATLAB 实现函数卷积演示动画</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-11-23 12:28:43 &#43;0800 CST" itemprop="datePublished">2019-11-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/xmu-acm-training-record-2/"
+    >[19-3-9] XMU ACM 集训队笔记(2)</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-2/" class="article-date">
+  <time datetime="2019-03-10 10:42:18 &#43;0800 CST" itemprop="datePublished">2019-03-10</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/acm/"> acm </a>
+    <a class="article-tag-link" href="/tags/algorithm/"> algorithm </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/xmu-acm-training-record-2/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 12319words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 25minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>本期主要内容：贪心算法典例（部分背包，活动安排，划船，字典序相关）、异或最大、哈夫曼编码；动态规划（01背包，完全背包，LCS 和 LIS，区间 DP, 树形 DP， 状压 DP）。</p>
 
 <p>前方持续高能中……</p>
 
@@ -987,11 +584,14 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 </blockquote>
 
 <p>让我们先来看看样例是怎么做的，这样有助于我们分析问题。</p>
+
 <pre><code>首先 1 2 过河，用时为 2；       // start
 然后 1 回来，总用时为 3；
 接着 5 10 过河，用时 10；
 然后 2 回来，总用时 15；        // here
-最后 1 2 过去，最后答案 17.</code></pre>
+最后 1 2 过去，最后答案 17.
+</code></pre>
+
 <p>因为时间取决于船上划船较慢的人所用的时间，我们可以发现：过河的时候船坐满最好，但是船回来的时候带一个人回来就好，而且如果这个回来的人划船越快，总耗时就越短。因此我们不如让划得快的人做个好人，帮忙把所有人带过去，最后再自己过去。</p>
 
 <p>分析样例我们能发现：一轮过河中（从 start 到 here 为一轮），先让较小的两个过去，再让最小的回来接最大的两个过去，然后第二小的人回来，最后最小的和第二小的一起过去——这是我们初步得到的策略。接下来我们要完善它，因为这个策略还有一些不合理的地方。</p>
@@ -1001,58 +601,60 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <p>只剩下两个人的时候好解决，两个人可以同时过去，用时是两个人中用时较长的哪一个。而剩三个人的时候，最佳策略是这样的：先让时间最短的带最长的过去，然后最短的回来，最后最短和次短的一起过去。</p>
 
 <p>其次，考虑这样一组数据：<code>1 10 15 20</code>，按照我们的策略，让 1, 10 过去，1 回来；15 20 过去，10 回来；1 10 过去，这样的用时为 51. <strong>但我们发现，1 20 过去 1 回来，1 15 过去 1 回来，1 10 过去的总用时为 47</strong>，这样的策略好像更优。问题出在哪里呢？问题在于，我们让最小和次小充当摆渡者的时候，过去的代价是 $v_{max} + v_{2nd min}$，回来的代价是 $v_{min} + v_{2nd min}$，而上面的样例过去的代价是 $v_{max} + v_{2nd max} + v_{2nd min}$, 回来的代价是 $v_{min} \times 2$, 我们发现如果 $v_{min} + v_{2nd max} &lt; 2 \times v_{2nd min}$ 的时候，让时间最小的人跑两趟，而不是让次小的人跑，花的时间更少。发现了这一点，我们的策略就比较完善了，按照上述策略模拟把代码写出来即可：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1050</span>;
-<span style="color:#66d9ef">int</span> a[MAXN], n;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 1050;
+int a[MAXN], n;
+int main()
 {
-    <span style="color:#66d9ef">int</span> t;
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>t);
-    <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-        memset(a, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> a);
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-            scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a[i]);
-        std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>sort(a, a <span style="color:#f92672">+</span> n);
-        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, tmp <span style="color:#f92672">=</span> n;
-        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> n <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
-            <span style="color:#66d9ef">continue</span>;
+    int t;
+    scanf(&quot;%d&quot;, &amp;t);
+    while (t--) {
+        memset(a, 0, sizeof a);
+        scanf(&quot;%d&quot;, &amp;n);
+        for (int i = 0; i &lt; n; i++)
+            scanf(&quot;%d&quot;, &amp;a[i]);
+        std::sort(a, a + n);
+        int ans = 0;
+        int i = 0, j = n-1, tmp = n;
+        if (n == 1 || n == 2) {
+            printf(&quot;%d\n&quot;, a[n-1]);
+            continue;
         } 
-        <span style="color:#66d9ef">while</span> (tmp <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>) {	<span style="color:#75715e">// 剩四个以上 
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 如果用最小运两次的代价比用最小和次小运的代价大，就用普通的策略 
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> a[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> a[<span style="color:#ae81ff">1</span>]) {
-                <span style="color:#75715e">// 总代价=次小（往）+最小（返）+最大（往）+次小（返） 
-</span><span style="color:#75715e"></span>                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">1</span>];
-                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
-                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[j];
-                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">1</span>];
-            } <span style="color:#66d9ef">else</span> {	<span style="color:#75715e">// 否则就用最小的运两次 
-</span><span style="color:#75715e"></span>                <span style="color:#75715e">// 总代价=最大（往）+最小（返）+次大（往）+最小（返） 
-</span><span style="color:#75715e"></span>                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[j];
-                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
-                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-                ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
+        while (tmp &gt;= 4) {	// 剩四个以上 
+            // 如果用最小运两次的代价比用最小和次小运的代价大，就用普通的策略 
+            if (a[0] + a[j-1] &gt;= 2 * a[1]) {
+                // 总代价=次小（往）+最小（返）+最大（往）+次小（返） 
+                ans += a[1];
+                ans += a[0];
+                ans += a[j];
+                ans += a[1];
+            } else {	// 否则就用最小的运两次 
+                // 总代价=最大（往）+最小（返）+次大（往）+最小（返） 
+                ans += a[j];
+                ans += a[0];
+                ans += a[j-1];
+                ans += a[0];
             }
-            j <span style="color:#f92672">-</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; 
-            tmp <span style="color:#f92672">-</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;			<span style="color:#75715e">// 每轮运走两个人 
-</span><span style="color:#75715e"></span>        }
-        <span style="color:#66d9ef">if</span> (tmp <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) {		<span style="color:#75715e">// 剩三个 
-</span><span style="color:#75715e"></span>            ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">2</span>];
-            ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
-            ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">1</span>];
+            j -= 2; 
+            tmp -= 2;			// 每轮运走两个人 
         }
-        <span style="color:#66d9ef">else</span> {				<span style="color:#75715e">// 剩两个或一个 
-</span><span style="color:#75715e"></span>            ans <span style="color:#f92672">+</span><span style="color:#f92672">=</span> a[<span style="color:#ae81ff">1</span>];
+        if (tmp == 3) {		// 剩三个 
+            ans += a[2];
+            ans += a[0];
+            ans += a[1];
         }
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+        else {				// 剩两个或一个 
+            ans += a[1];
+        }
+        printf(&quot;%d\n&quot;, ans);
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h2 id="异或最大和字典序计数">异或最大和字典序计数</h2>
 
 <p>说到这个问题，童年噩梦 Trie 树要上线了。没错，从 17 年夏令营到现在，我依旧不会写 Trie. 好吧，正视现实了，我们写个简单点的，01 Trie树——就是只含有 0 和 1 两个支路的 Trie 树。</p>
@@ -1066,43 +668,49 @@ Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://git
 <p>每个节点都可以通过走 0 或 1 的支路（图中省略了部分没有子节点支路）代表二进制的下一位，如从根节点沿着 1-0-1 的支路走，最后得到的二进制数是 101，也就是 5.</p>
 
 <p>那么，这个“支路”怎么表示呢？我们可以对每个节点开一个长度为 2 的数组 a, a[0] 代表走 0 支路后到达的节点的编号，a[1] 则同理。一般的，如果有 $n$ 个最大值小于 $2^{31}$ 的数，则节点池数组的大小开到 $n \times 31$ 即可：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TrieNode</span> {
-    <span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">2</span>];   <span style="color:#75715e">// a[i] 表示走 i 支路到达下一个节点的编号
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> val;    <span style="color:#75715e">// 表示以当前节点为最后一个节点的数的十进制表示
-</span><span style="color:#75715e"></span>};
-TrieNode node[<span style="color:#ae81ff">32</span> <span style="color:#f92672">*</span> MAXN];
 
-<span style="color:#66d9ef">int</span> tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;    <span style="color:#75715e">// 总结点编号，用于插入时指定新结点的位置
-</span></code></pre></div>
+<pre><code class="language-cpp">struct TrieNode {
+    int a[2];   // a[i] 表示走 i 支路到达下一个节点的编号
+    int val;    // 表示以当前节点为最后一个节点的数的十进制表示
+};
+TrieNode node[32 * MAXN];
+
+int tot = 1;    // 总结点编号，用于插入时指定新结点的位置
+</code></pre>
+
 <p>（2）插入。向 01 字典树中插入一个新的十进制数 $x$，首先将其转化为 31 位长的二进制数（高位不足补 0），然后再从根节点开始，根据第 $i$ 位为 0 或 1，往下一位一位走，直到走完。我们定义，编号 1 的节点为根节点。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insert</span>(<span style="color:#66d9ef">int</span> x)
+
+<pre><code class="language-cpp">void insert(int x)
 {
-    <span style="color:#66d9ef">int</span> rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;                     <span style="color:#75715e">// 从根节点开始
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>; i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-        <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> (x <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> i) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;       <span style="color:#75715e">// 取 x 第 i 位的数
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (node[rt].a[t]) {          <span style="color:#75715e">// 对应支路指向的结点是否已存在
-</span><span style="color:#75715e"></span>            rt <span style="color:#f92672">=</span> node[rt].a[t];
-        } <span style="color:#66d9ef">else</span> {                    <span style="color:#75715e">// 否则就创建对应的节点
-</span><span style="color:#75715e"></span>            node[rt].a[t] <span style="color:#f92672">=</span> <span style="color:#f92672">+</span><span style="color:#f92672">+</span>tot;
-            rt <span style="color:#f92672">=</span> node[rt].a[t];     <span style="color:#75715e">// 将树根交给新结点，在子树中继续插入剩余部分
-</span><span style="color:#75715e"></span>        }
+    int rt = 1;                     // 从根节点开始
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;       // 取 x 第 i 位的数
+        if (node[rt].a[t]) {          // 对应支路指向的结点是否已存在
+            rt = node[rt].a[t];
+        } else {                    // 否则就创建对应的节点
+            node[rt].a[t] = ++tot;
+            rt = node[rt].a[t];     // 将树根交给新结点，在子树中继续插入剩余部分
+        }
     }
-    node[rt].val <span style="color:#f92672">=</span> x;               <span style="color:#75715e">// 在最后一个节点的 val 中记录当前数
-</span><span style="color:#75715e"></span>}
-</code></pre></div>
-<p>（3）查询。对于不同的题目，查询的目的是不同的。这里就给出一个查询某个数是否在字典树中、并返回最后一个节点的编号的模板，大体思路还是将目标数字按位拆分，然后从根节点走对应支路看看节点是否存在。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">search</span>(<span style="color:#66d9ef">int</span> x)
-{
-    <span style="color:#66d9ef">int</span> rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>; i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-        <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> (x <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> i) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>node[rt].a[t])
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-        rt <span style="color:#f92672">=</span> node[rt].a[t];
-    }
-    <span style="color:#66d9ef">return</span> rt;
+    node[rt].val = x;               // 在最后一个节点的 val 中记录当前数
 }
-</code></pre></div>
+</code></pre>
+
+<p>（3）查询。对于不同的题目，查询的目的是不同的。这里就给出一个查询某个数是否在字典树中、并返回最后一个节点的编号的模板，大体思路还是将目标数字按位拆分，然后从根节点走对应支路看看节点是否存在。</p>
+
+<pre><code class="language-cpp">int search(int x)
+{
+    int rt = 1;
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;
+        if (!node[rt].a[t])
+            return 0;
+        rt = node[rt].a[t];
+    }
+    return rt;
+}
+</code></pre>
+
 <p>好啦！ 01 字典树就这么结束啦！是不是很简单（x</p>
 
 <p><img src="https://wx3.sinaimg.cn/large/9f1137b1gy1g0xvxu2inzj20ec08twex.jpg" alt="表情包" /></p>
@@ -1117,58 +725,60 @@ TrieNode node[<span style="color:#ae81ff">32</span> <span style="color:#f92672">
 
 <p>首先我们要把集合中的所有数都丢进一棵字典树里。接下来我们先来看看怎么异或会最大——显然，对于两个数 $i_x$ 和 $i_t$，如果他们的二进制表示下，“同位不同数”现象出现的位数越高、出现得越多，那么异或的结果显然就越大。因此我们想要找一个 $i_t$，使之<strong>尽可能地在二进制位下的更高位与 $i_t$ 不同</strong>。<br />
 那么我们建完树后，就把 $i_x$ 的每一位拆出来：如果 $i_x$ 的二进制下第 $j$ 位为 0，那么我们就尝试在字典树中往 1 走，如果走不通再走 0；反之同理。——这就是我们的贪心策略。并且，在二进制高位下异或为 1，比在二进制低位下异或为 1，最终得到的数更大。（$11111$ 和 $10111$ 异或结果为 $1000$, $11111$ 和 $11000$ 异或结果为 $111$，虽然后者同位不同数更多，但是因为前者的高位异或结果为 1，显然前者得到的结果更大）。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">100050</span>;
-<span style="color:#66d9ef">int</span> a[MAXN];
-<span style="color:#66d9ef">int</span> t, n, m;
-<span style="color:#66d9ef">int</span> trie[<span style="color:#ae81ff">32</span> <span style="color:#f92672">*</span> MAXN][<span style="color:#ae81ff">2</span>], tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, value[<span style="color:#ae81ff">32</span> <span style="color:#f92672">*</span> MAXN];
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insert</span>(<span style="color:#66d9ef">int</span> x) {
-    <span style="color:#66d9ef">int</span> rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>; i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-        <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> (x <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> i) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>trie[rt][t])
-            trie[rt][t] <span style="color:#f92672">=</span> <span style="color:#f92672">+</span><span style="color:#f92672">+</span>tot;
-        rt <span style="color:#f92672">=</span> trie[rt][t];
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 100050;
+int a[MAXN];
+int t, n, m;
+int trie[32 * MAXN][2], tot = 1, value[32 * MAXN];
+void insert(int x) {
+    int rt = 1;
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;
+        if (!trie[rt][t])
+            trie[rt][t] = ++tot;
+        rt = trie[rt][t];
     }
-    value[rt] <span style="color:#f92672">=</span> x;
+    value[rt] = x;
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">search</span>(<span style="color:#66d9ef">int</span> x) {
-    <span style="color:#66d9ef">int</span> rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>; i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-        <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> (x <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> i) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> (trie[rt][t <span style="color:#f92672">^</span> <span style="color:#ae81ff">1</span>])
-            rt <span style="color:#f92672">=</span> trie[rt][t <span style="color:#f92672">^</span> <span style="color:#ae81ff">1</span>];
-        <span style="color:#66d9ef">else</span>
-            rt <span style="color:#f92672">=</span> trie[rt][t];
+int search(int x) {
+    int rt = 1;
+    for (int i = 31; i &gt;= 0; i--) {
+        int t = (x &gt;&gt; i) &amp; 1;
+        if (trie[rt][t ^ 1])
+            rt = trie[rt][t ^ 1];
+        else
+            rt = trie[rt][t];
     }
-    <span style="color:#66d9ef">return</span> value[rt];
+    return value[rt];
     
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>t);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; x <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> t; x<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
-        memset(a, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> a);
-        memset(trie, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> trie);
-        memset(value, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> value);
-        tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Case #%d:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, a <span style="color:#f92672">+</span> i);
+    scanf(&quot;%d&quot;, &amp;t);
+    for (int x = 1; x &lt;= t; x++) {
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        memset(a, 0, sizeof a);
+        memset(trie, 0, sizeof trie);
+        memset(value, 0, sizeof value);
+        tot = 1;
+        printf(&quot;Case #%d:\n&quot;, x);
+        for (int i = 0; i &lt; n; i++) {
+            scanf(&quot;%d&quot;, a + i);
             insert(a[i]);
         }
-        <span style="color:#66d9ef">int</span> tmp;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>tmp);
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, search(tmp));
+        int tmp;
+        for (int i = 0; i &lt; m; i++) {
+            scanf(&quot;%d&quot;, &amp;tmp);
+            printf(&quot;%d\n&quot;, search(tmp));
         }
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>再多讲(chao)一些<a href="https://blog.csdn.net/izumi_hanako/article/details/79317653">网上</a>看到的 01字典树的应用技巧：</p>
 
 <blockquote>
@@ -1203,62 +813,64 @@ TrieNode node[<span style="color:#ae81ff">32</span> <span style="color:#f92672">
 对于阶段 A，每个零件被加工的时刻取决于机器空闲的时刻，所以这就是典型的接水问题的变种——哪台机器有空，就到哪台机器加工，优先选择效率比较高的机器。<br />
 而对于阶段 B，因为每个零件被加工的时刻还取决于这个零件完成工序 A 的时刻，因此要使总时间最小，越后面开始加工的零件花费的时间就要更小。因此我们对于最晚完成工序 A 的零件，给它分配完成工序 B 效率最高的机器。这个策略的正确性是显然的，假设最后一个零件在 $t$ 时刻完成 A 工序的加工，此时可用的机器加工时间分别为 $b_1, b_2 (b_1 \lt b_2)$, 那么无论该零件是不是最后一个完成 B 工序的，总时间一定最小。（因为，如果它不是最后一个完成的，显然最后一个完成的零件开始加工 B 的时刻一定比它更早，如果两者使用的机器交换，总时间一定更长）<br />
 我们对优先队列重载运算符来定义选择“效率最高的机器”的规则。要注意，这里的“效率最高”，并不一定是指耗时最短的机器，而是指加入该机器后，完成的时间是所有机器中最快的。因为完成时间受到开始时间、步长的影响，所以特别注意一下下文代码的比较条件。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1050</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXM <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span>;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>priority_queue;
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">mech</span> {
-    <span style="color:#66d9ef">int</span> step;
-    <span style="color:#66d9ef">int</span> sum;
-    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">const</span> mech a) <span style="color:#66d9ef">const</span> {
-        <span style="color:#66d9ef">if</span> (step <span style="color:#f92672">+</span> sum <span style="color:#f92672">=</span><span style="color:#f92672">=</span> a.step <span style="color:#f92672">+</span> a.sum) {
-            <span style="color:#66d9ef">return</span> step <span style="color:#f92672">&gt;</span> a.step;
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+const int MAXN = 1050;
+const int MAXM = 80;
+using std::priority_queue;
+struct mech {
+    int step;
+    int sum;
+    bool operator &lt; (const mech a) const {
+        if (step + sum == a.step + a.sum) {
+            return step &gt; a.step;
         }
-        <span style="color:#66d9ef">return</span> step <span style="color:#f92672">+</span> sum <span style="color:#f92672">&gt;</span> a.step <span style="color:#f92672">+</span> a.sum;
+        return step + sum &gt; a.step + a.sum;
     }
 }; 
 mech a[MAXM], b[MAXM];
-<span style="color:#66d9ef">int</span> n, m1, m2;
-<span style="color:#66d9ef">int</span> done[MAXN]; 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int n, m1, m2;
+int done[MAXN]; 
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m1, <span style="color:#f92672">&amp;</span>m2);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m1; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a[i].step);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m2; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>b[i].step);
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m1, &amp;m2);
+    for (int i = 0; i &lt; m1; i++)
+        scanf(&quot;%d&quot;, &amp;a[i].step);
+    for (int i = 0; i &lt; m2; i++)
+        scanf(&quot;%d&quot;, &amp;b[i].step);
         
-    priority_queue<span style="color:#f92672">&lt;</span>mech<span style="color:#f92672">&gt;</span> pq1, pq2;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m1; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    priority_queue&lt;mech&gt; pq1, pq2;
+    for (int i = 0; i &lt; m1; i++)
         pq1.push(a[i]);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m2; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    for (int i = 0; i &lt; m2; i++)
         pq2.push(b[i]);		
         
-    <span style="color:#66d9ef">int</span> ansa <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, ansb <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        mech cur <span style="color:#f92672">=</span> pq1.top();
+    int ansa = -1, ansb = -1;
+    for (int i = 0; i &lt; n; i++) {
+        mech cur = pq1.top();
         pq1.pop();
-        <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> cur.sum <span style="color:#f92672">+</span> cur.step;
-        cur.sum <span style="color:#f92672">=</span> t;
-        done[i] <span style="color:#f92672">=</span> t;
+        int t = cur.sum + cur.step;
+        cur.sum = t;
+        done[i] = t;
         pq1.push(cur);
-        ansa <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max(ansa, cur.sum);
+        ansa = std::max(ansa, cur.sum);
     }
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-        mech cur <span style="color:#f92672">=</span> pq2.top();
+    for (int i = n-1; i &gt;= 0; i--) {
+        mech cur = pq2.top();
         pq2.pop();
-        cur.sum <span style="color:#f92672">+</span><span style="color:#f92672">=</span> cur.step;
-        ansb <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max(ansb, cur.sum <span style="color:#f92672">+</span> done[i]);
+        cur.sum += cur.step;
+        ansb = std::max(ansb, cur.sum + done[i]);
         pq2.push(cur);
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d %d</span><span style="color:#e6db74">&#34;</span>, ansa, ansb);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d %d&quot;, ansa, ansb);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <hr />
 
 <p><a href="https://www.luogu.org/problemnew/show/P1750">洛谷 P1750：出栈序列</a></p>
@@ -1266,50 +878,52 @@ mech a[MAXM], b[MAXM];
 <p>老实说我觉得这道题挺没意思的……虽然考察的是字典序相关，但我总觉得它没考到点上。</p>
 
 <p>给定元素的入栈顺序，求字典序最小的出栈顺序。这个题的做法是这样的：设定 $left$ 和 $right$ 两个下标指针，最开始分别指向第 $1$ 个元素和第 $c$ 个元素（$c$ 为栈容量），并标记所有元素都在栈中。每次从 $left$ 到 $right$ 找到一个未出栈的最小的数输出它，并将其标记为已出栈，然后让 $left$ 向前移到指向起点或下一个没有出栈的元素（如果 $left$ 前面已经没有未出栈的元素了，就向 $right$ 的方向找），并将 $right += 1$ 表示下一个元素入栈，直到 $n$ 个数全部被输出为止。你要说这道题是贪心……emmm……勉强算吧。不知道为什么，反正我就觉得这题没那么有意思。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10500</span>;
-<span style="color:#66d9ef">bool</span> instack[MAXN];
-<span style="color:#66d9ef">int</span> a[MAXN], left, right, n, c;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+const int MAXN = 10500;
+bool instack[MAXN];
+int a[MAXN], left, right, n, c;
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>c);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>a[i]);
-        instack[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;c);
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&quot;%d&quot;, &amp;a[i]);
+        instack[i] = 1;
     }
-    left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, right <span style="color:#f92672">=</span> c <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (cnt <span style="color:#f92672">&lt;</span> n) {
-        <span style="color:#66d9ef">int</span> min <span style="color:#f92672">=</span> a[left], idx <span style="color:#f92672">=</span> left;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> right; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            <span style="color:#66d9ef">if</span> (min <span style="color:#f92672">&gt;</span> a[i] <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> instack[i]) {
-                min <span style="color:#f92672">=</span> a[i];
-                idx <span style="color:#f92672">=</span> i;
+    left = 0, right = c - 1;
+    int cnt = 0;
+    while (cnt &lt; n) {
+        int min = a[left], idx = left;
+        for (int i = left + 1; i &lt;= right; i++) {
+            if (min &gt; a[i] &amp;&amp; instack[i]) {
+                min = a[i];
+                idx = i;
             }
         }
-        instack[idx] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        left <span style="color:#f92672">=</span> idx;
-        <span style="color:#66d9ef">while</span> (left <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-            left<span style="color:#f92672">-</span><span style="color:#f92672">-</span>;
-            <span style="color:#66d9ef">if</span> (instack[left])
-                <span style="color:#66d9ef">break</span>;
+        instack[idx] = 0;
+        left = idx;
+        while (left &gt; 0) {
+            left--;
+            if (instack[left])
+                break;
         }
-        <span style="color:#66d9ef">if</span> (right <span style="color:#f92672">&lt;</span> n)
-            right<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>instack[left]) {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> right; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-                <span style="color:#66d9ef">if</span> (instack[i]) {
-                    left <span style="color:#f92672">=</span> i;
-                    <span style="color:#66d9ef">break</span>;
+        if (right &lt; n)
+            right++;
+        if (!instack[left]) {
+            for (int i = idx + 1; i &lt;= right; i++)
+                if (instack[i]) {
+                    left = i;
+                    break;
                 }
         }
         
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d </span><span style="color:#e6db74">&#34;</span>, min);
-        cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        printf(&quot;%d &quot;, min);
+        cnt++;
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h1 id="动态规划">动态规划</h1>
 
 <p>比较简单的动态规划我就不再讲了，什么数字三角形、记忆化搜索什么的……这次的重点是几个常见的 DP 模型：</p>
@@ -1326,100 +940,108 @@ mech a[MAXM], b[MAXM];
 <p>01 背包的优化：观察状态转移方程，我们发现 $f(i, j)$ 只和 $f(i-1, j)$、$f(i-1, j-v_{i})$ 有关，而和 $f(i-2, *)$ 没有任何关系。于是我们就想， $f(0, *)&hellip;f(i-2, *)$ 这些数据能不能“阅后即焚”呢？能不能不要开 <code>f[0...n][0...v]</code> 这么大的数组，开 <code>f[0,1][0...v]</code> 呢？</p>
 
 <p>说到 01 背包自然是 01 背包的经典题 <a href="https://vijos.org/p/1104">Vijos P1104 采药</a> 啦。二维的标准做法是这样的：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1005</span>;
-<span style="color:#66d9ef">int</span> cost[MAXN], value[MAXN];
-<span style="color:#66d9ef">int</span> t, m;
-<span style="color:#66d9ef">int</span> dp[MAXN][MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
-    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">&gt;</span> b <span style="color:#f92672">?</span> a : b;
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int MAXN = 1005;
+int cost[MAXN], value[MAXN];
+int t, m;
+int dp[MAXN][MAXN];
+int max(int a, int b) {
+    return a &gt; b ? a : b;
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>t, <span style="color:#f92672">&amp;</span>m);
-    <span style="color:#66d9ef">int</span> i, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, cost <span style="color:#f92672">+</span> i, value <span style="color:#f92672">+</span> i);
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;t, &amp;m);
+    int i, j = 0;
+    for (i = 1; i &lt;= m; i++) {
+        scanf(&quot;%d%d&quot;, cost + i, value + i);
     }
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> t; j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-            <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> cost[i])
-                dp[i][j] <span style="color:#f92672">=</span> max(dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j], dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j <span style="color:#f92672">-</span> cost[i]] <span style="color:#f92672">+</span> value[i]);
-            <span style="color:#66d9ef">else</span>
-                dp[i][j] <span style="color:#f92672">=</span> dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j];
+    for (i = 1; i &lt;= m; i++) {
+        for (j = t; j &gt;= 0; j--) {
+            if (j &gt;= cost[i])
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j - cost[i]] + value[i]);
+            else
+                dp[i][j] = dp[i-1][j];
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, dp[m][t]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, dp[m][t]);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>我们试着把数组的第一维优化到只有两个长度，利用模 2 运算来决定利用哪一维的空间：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1005</span>;
-<span style="color:#66d9ef">int</span> cost[MAXN], value[MAXN];
-<span style="color:#66d9ef">int</span> t, m;
-<span style="color:#66d9ef">int</span> dp[<span style="color:#ae81ff">3</span>][MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
-    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">&gt;</span> b <span style="color:#f92672">?</span> a : b;
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int MAXN = 1005;
+int cost[MAXN], value[MAXN];
+int t, m;
+int dp[3][MAXN];
+int max(int a, int b) {
+    return a &gt; b ? a : b;
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>t, <span style="color:#f92672">&amp;</span>m);
-    <span style="color:#66d9ef">int</span> i, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, cost <span style="color:#f92672">+</span> i, value <span style="color:#f92672">+</span> i);
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;t, &amp;m);
+    int i, j = 0;
+    for (i = 1; i &lt;= m; i++) {
+        scanf(&quot;%d%d&quot;, cost + i, value + i);
     }
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> t; j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j<span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {
-            <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> cost[i])
-                dp[i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>][j] <span style="color:#f92672">=</span> max(dp[<span style="color:#f92672">!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>)][j], dp[<span style="color:#f92672">!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>)][j <span style="color:#f92672">-</span> cost[i]] <span style="color:#f92672">+</span> value[i]);
-            <span style="color:#66d9ef">else</span>
-                dp[i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>][j] <span style="color:#f92672">=</span> dp[<span style="color:#f92672">!</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>)][j];
+    for (i = 1; i &lt;= m; i++) {
+        for (j = t; j &gt;= 0; j--) {
+            if (j &gt;= cost[i])
+                dp[i % 2][j] = max(dp[!(i % 2)][j], dp[!(i % 2)][j - cost[i]] + value[i]);
+            else
+                dp[i % 2][j] = dp[!(i % 2)][j];
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, dp[m <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>][t]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, dp[m % 2][t]);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>实际上，我们上面的代码，在状态转移的时候做了两件事：第一是把 i-1 的状态复制到 i 中，第二部分才是通过转移方程转移。转移的部分覆盖了原先的状态，但是还有一部分无法被转移 ($j &lt; cost[i]$， 当前物品无法入选) 的状态需要从 i-1 中直接复制。因此实际上上面的代码状态转移的部分拆开来写是这样的：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> t; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        dp[i][j] <span style="color:#f92672">=</span> dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j];
+
+<pre><code class="language-cpp">for (int i = 1; i &lt;= m; i++) {
+    for (int j = 0; j &lt;= t; j++) {
+        dp[i][j] = dp[i-1][j];
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> cost[i]; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> t; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        dp[i][j] <span style="color:#f92672">=</span> max(dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j], dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span>cost[i]] <span style="color:#f92672">+</span> value[i]);
+    for (int j = cost[i]; j &lt;= t; j++) {
+        dp[i][j] = max(dp[i-1][j], dp[i-1][j-cost[i]] + value[i]);
     }
 }
-</code></pre></div>
+</code></pre>
+
 <p>那么问题来了，既然还没有开始阶段 $i$ 的转移决策之前，我们要把 $i-1$ 的结果复制过来，那不如用一维数组来表示状态就好了，这样 $i-1$ 轮的转移完成之后，直接在原数组上开始第 $i$ 轮的转移。这样的空间复杂度直接降到了 O(n)。我们令 $f(j)$ 表示背包使用容量为 $j$ 时所取得物品的最大值，在第 $i$ 轮决策的时候，我们有如下的转移方程：$f(j) = max\{f(j), f(j-v_i) + w_i\}$. 该方法称为“滚动数组优化”。</p>
 
 <p>这里注意一个细节，朴素做法中，$j$ 的枚举顺序其实可以是任意的，因为转移过的状态 $f(i, j_1)$ 并不会影响任何未转移的状态 $f(i, j_2)$（后者计算时，取的是 $f(i-1, j_x)$ 的值）. 而当我们用滚动数组优化后，我们在还没开始第 $i$ 个物品的决策之前，滚动数组中保存的是第 $i-1$ 个物品决策转移后的状态，为了保证我们的状态转移方程得到正确地结果，我们要求<strong>计算 $f(j)$ 时 $f(j-v_i)$ 还没有被计算</strong>。$j-v_i \lt j$，为了保证 $f(j)$ 不被影响，我们要求 $j$ 必须<strong>逆序枚举</strong>，即 $j$ 从背包最大容量 $V$ 枚举到当前物品重量 $v_i$. 这样我们才能保证计算 $f(j)$ 的时候，$f(j-v_i)$ 还没有被更新；如果正序枚举的话，完整的状态转移方程就会变成 $f(i, j) = max\{f(i-1, j), f(i, j-v_i) + w_i\}$, 等于用阶段 $i$ 更新后的状态来更新该阶段的其它状态，<strong>物品 $i$ 就可能会被拿很多次</strong>，显然会得到错误的结果。</p>
 
 <p>使用滚动数组优化的代码应该像这样：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">define MAXN 1005</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> cost[MAXN], value[MAXN];
-<span style="color:#66d9ef">int</span> t, m;
-<span style="color:#66d9ef">int</span> dp[MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
-    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">&gt;</span> b <span style="color:#f92672">?</span> a : b;
+
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define MAXN 1005
+int cost[MAXN], value[MAXN];
+int t, m;
+int dp[MAXN];
+int max(int a, int b) {
+    return a &gt; b ? a : b;
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>t, <span style="color:#f92672">&amp;</span>m);
-    <span style="color:#66d9ef">int</span> i, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, cost <span style="color:#f92672">+</span> i, value <span style="color:#f92672">+</span> i);
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;t, &amp;m);
+    int i, j = 0;
+    for (i = 0; i &lt; m; i++) {
+        scanf(&quot;%d%d&quot;, cost + i, value + i);
     }
-    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> t; j <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> cost[i]; j <span style="color:#f92672">-</span><span style="color:#f92672">-</span>) {       <span style="color:#75715e">// 这里必须逆序枚举~
-</span><span style="color:#75715e"></span>            dp[j] <span style="color:#f92672">=</span> max(dp[j], dp[j <span style="color:#f92672">-</span> cost[i]] <span style="color:#f92672">+</span> value[i]);
+    for (i = 0; i &lt; m; i++) {
+        for (j = t; j &gt;= cost[i]; j --) {       // 这里必须逆序枚举~
+            dp[j] = max(dp[j], dp[j - cost[i]] + value[i]);
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, dp[t]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, dp[t]);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h2 id="完全背包">完全背包</h2>
 
 <blockquote>
@@ -1431,32 +1053,34 @@ mech a[MAXM], b[MAXM];
 <p>刚刚我们在讲 01 背包的滚动数组的时候说到，如果正序枚举 $j$ 的话，相当于第 $i$ 件物品可能会被拿很多次……emmm，等等，这好像正是我们想要的结果呀。如果正序枚举的话，$j-w_i$ 一定在 $j$ 前被枚举，这样 $f(j)$ 就变成了：在已经放过至少一件 $i$ 物品、背包容量变为 $j-w_i$ 后，再放入一件物品使背包已用容量变为 $j$ 时，所获得的最大价值。那是不是把 01 背包 <code>for (int j = t; j &gt;= cost[i]; j--)</code> 改成 <code>for (int j = cost[i]; j &lt;= t; j++)</code> 就可以了呢……</p>
 
 <p>看一道例题：<a href="https://www.luogu.org/problemnew/show/P1616">luogu 1616 疯狂的采药</a>，这就是一道完全背包的问题，代码如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXT <span style="color:#f92672">=</span> <span style="color:#ae81ff">100050</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10050</span>;
-<span style="color:#66d9ef">int</span> T, M;
-<span style="color:#66d9ef">int</span> dp[MAXT];
-<span style="color:#66d9ef">int</span> cost[MAXN], val[MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;algorithm&gt;
+using namespace std;
+const int MAXT = 100050;
+const int MAXN = 10050;
+int T, M;
+int dp[MAXT];
+int cost[MAXN], val[MAXN];
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>T, <span style="color:#f92672">&amp;</span>M);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> M; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    scanf(&quot;%d%d&quot;, &amp;T, &amp;M);
+    for (int i = 1; i &lt;= M; i++)
     {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>cost[i], <span style="color:#f92672">&amp;</span>val[i]);
+        scanf(&quot;%d%d&quot;, &amp;cost[i], &amp;val[i]);
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> M; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    for (int i = 1; i &lt;= M; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> cost[i]; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> T; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)      <span style="color:#75715e">// here
-</span><span style="color:#75715e"></span>        {
-            dp[j] <span style="color:#f92672">=</span> max(dp[j], dp[j <span style="color:#f92672">-</span> cost[i]] <span style="color:#f92672">+</span> val[i]);
+        for (int j = cost[i]; j &lt;= T; j++)      // here
+        {
+            dp[j] = max(dp[j], dp[j - cost[i]] + val[i]);
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, dp[T]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, dp[T]);
+    return 0;
 } 
-</code></pre></div>
+</code></pre>
+
 <p>hmmm.. 就是这么简单，只需要改变一个枚举顺序就可以解决完全背包问题辣。</p>
 
 <h2 id="最长公共子序列-longest-common-subsequence">最长公共子序列 (Longest Common Subsequence)</h2>
@@ -1503,21 +1127,22 @@ $$</p>
 <li>重复上述步骤，直至所有数都被处理完成.</li>
 
 <li><p>此时栈中的元素个数 $s.size$ 即为 LIS 的答案，但注意<strong>栈中元素并不是组成 LIS 的元素</strong>。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> stk[MAXN], top <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a;
 
-stk[top] <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
-<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> a.size(); i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-<span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">&gt;</span> stk[top]) {
-    stk[<span style="color:#f92672">+</span><span style="color:#f92672">+</span>top] <span style="color:#f92672">=</span> a[i];
-} <span style="color:#66d9ef">else</span> {
-    <span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> lower_bound(stk, stk <span style="color:#f92672">+</span> top <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, a[i]) <span style="color:#f92672">-</span> stk;
-    stk[pos] <span style="color:#f92672">=</span> a[i];
+<pre><code class="language-cpp">int stk[MAXN], top = 0;
+vector&lt;int&gt; a;
+
+stk[top] = a[0];
+for (int i = 1; i &lt; a.size(); i++) {
+if (a[i] &gt; stk[top]) {
+    stk[++top] = a[i];
+} else {
+    int pos = lower_bound(stk, stk + top + 1, a[i]) - stk;
+    stk[pos] = a[i];
 }
 }
 
-<span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> top <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;		<span style="color:#75715e">// stk.size 即为答案
-</span></code></pre></div></li>
+int ans = top + 1;		// stk.size 即为答案
+</code></pre></li>
 </ol>
 
 <p>上述方法的合法之处在于，替换栈中的元素并不会改变栈元素的数量，如果后面没有更优的答案，最终答案仍然是之前找到的 LIS 序列的数量。但如果后面有更好的答案，那么替换栈中已有较大的元素之后，新元素就可以再加入到栈顶，更新答案。至于二分，当然是 STL <code>lower_bound</code> 大法好啦。</p>
@@ -1525,139 +1150,148 @@ stk[top] <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</s
 <p>说到 LIS 当然不能缺少 LIS 的经典例题 <a href="https://www.luogu.org/problemnew/show/P1020">luogu P1020 导弹拦截</a>, 这个题是一道比较早的 NOIP 提高组复赛题。这道题的第一问比较简单，反正就是求一个最长<strong>非升</strong>子序列（这个把上面的比较改个符号就是了；第二问才是难点所在，想当年看了好久的第二问愣是不知道为什么第二问等价于求最长上升子序列，原因是应用了 Dilworth 定理的命题：<strong>偏序集能划分成的最少的全序集的个数与最大反链的元素个数相等。</strong>虽然我还是看不懂就是了。</p>
 
 <p>来一份上古代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;functional&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>greater;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">300005</span>;
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> a[MAXN], dp1[MAXN], dp2[MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;utility&gt;
+#include &lt;functional&gt;
+using std::greater;
+const int MAXN = 300005;
+int n;
+int a[MAXN], dp1[MAXN], dp2[MAXN];
+int main()
 {
-    <span style="color:#75715e">#</span><span style="color:#75715e">ifndef ONLINE_JUDGE</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1074.in</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>, stdin);
-    <span style="color:#75715e">#</span><span style="color:#75715e">endif</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>    n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">~</span>scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, a <span style="color:#f92672">+</span> n)) {
-        n<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+    #ifndef ONLINE_JUDGE
+    freopen(&quot;1074.in&quot;, &quot;r&quot;, stdin);
+    #endif
+    n = 0;
+    while (~scanf(&quot;%d&quot;, a + n)) {
+        n++;
     }
-    memset(dp1, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dp1);
-    memset(dp2, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dp2);
-    dp1[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">int</span> ldsLength <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> dp1[ldsLength]) {
-            ldsLength<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-            dp1[ldsLength] <span style="color:#f92672">=</span> a[i];
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>upper_bound(dp1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, dp1 <span style="color:#f92672">+</span> ldsLength, a[i], greater<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>() ) <span style="color:#f92672">-</span> dp1;
-            dp1[index] <span style="color:#f92672">=</span> a[i];
+    memset(dp1, 0, sizeof dp1);
+    memset(dp2, 0, sizeof dp2);
+    dp1[1] = a[0];
+    int ldsLength = 1;
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] &lt;= dp1[ldsLength]) {
+            ldsLength++;
+            dp1[ldsLength] = a[i];
+        } else {
+            int index = std::upper_bound(dp1 + 1, dp1 + ldsLength, a[i], greater&lt;int&gt;() ) - dp1;
+            dp1[index] = a[i];
         }
     }
 
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ldsLength);
-    <span style="color:#66d9ef">int</span> lisLength <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    dp2[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">&gt;</span> dp2[lisLength]) {
-            lisLength<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-            dp2[lisLength] <span style="color:#f92672">=</span> a[i];
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>lower_bound(dp2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, dp2 <span style="color:#f92672">+</span> lisLength, a[i]) <span style="color:#f92672">-</span> dp2;
-            dp2[index] <span style="color:#f92672">=</span> a[i];
+    printf(&quot;%d\n&quot;, ldsLength);
+    int lisLength = 1;
+    dp2[1] = a[0];
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] &gt; dp2[lisLength]) {
+            lisLength++;
+            dp2[lisLength] = a[i];
+        } else {
+            int index = std::lower_bound(dp2 + 1, dp2 + lisLength, a[i]) - dp2;
+            dp2[index] = a[i];
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, lisLength);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, lisLength);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <hr />
 
 <p>一道例题：<a href="https://www.luogu.org/problemnew/show/P1439">luogu P1439 模板：最长公共子序列</a></p>
 
 <p>在做题之前先看看数据范围，$n \leq 10^6$&hellip;??? 这样的数据范围，别说 $O(n^2)$ 的时间复杂度能不能过了，二维数组 $dp[i][j]$ 根本就开不下啊。但是，这道题里还有 $50%$ 的数据 $n \leq 1000$, 可以用朴素的 LCS 做法，我们先解决这 50 分：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1050</span>;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max;
-<span style="color:#66d9ef">int</span> a[MAXN], b[MAXN];
-<span style="color:#66d9ef">int</span> dp[MAXN][MAXN];
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-    <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000</span>)
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, a <span style="color:#f92672">+</span> i);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, b <span style="color:#f92672">+</span> i);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            dp[i][j] <span style="color:#f92672">=</span> max(dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j], dp[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
-            <span style="color:#66d9ef">if</span> (a[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> b[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
-                dp[i][j] <span style="color:#f92672">=</span> max(dp[i][j], dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 1050;
+using std::max;
+int a[MAXN], b[MAXN];
+int dp[MAXN][MAXN];
+int n;
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    if (n &gt; 1000)
+        return 0;
+
+    for (int i = 0; i &lt; n; i++)
+        scanf(&quot;%d&quot;, a + i);
+    for (int i = 0; i &lt; n; i++)
+        scanf(&quot;%d&quot;, b + i);
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+            if (a[i-1] == b[j-1]) {
+                dp[i][j] = max(dp[i][j], dp[i-1][j-1] + 1);
             }
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, dp[n][n]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, dp[n][n]);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>好了，50 分到手。接下来我们看看剩下的 50 分到底怎么拿。什么？啥二维偏序？什(wo)么(shi)花(zhen)里(de)胡(bu)哨(hui)的？弱鸡只能先从特例找规律入手了：</p>
+
 <pre><code>5 
 3 2 1 4 5
-5 3 2 4 1</code></pre>
+5 3 2 4 1
+</code></pre>
+
 <p>这个样例的答案是 3. 发现了什么规律吗？没有。但我们发现两个序列都是全排列，没有重复的数字。现在我们把令 $pa[i]$ 表示 $a[i]$ 在 $b[i]$ 中的位置，得到：<code>2 3 5 4 1</code>. 多手模几组样例，我们就会发现：这道题要求的 LCS，恰好是<strong>$pa$ 的 LIS 数量</strong>！那么，我们只需要对 $b[i]$ 计数排序，得到 $b[i]$ 的所在的位置 $pb[i]$，再构造数组 $pa[i] = pb[a[i]]$，最后对 $pa$ 数组用 $O(nlogn)$ 的方法求 LIS 就解决啦。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">100050</span>;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>sort;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>lower_bound;
-<span style="color:#66d9ef">int</span> a[MAXN], b[MAXN], pa[MAXN], pb[MAXN];
-<span style="color:#66d9ef">int</span> stk[MAXN], top <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">cmp</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> i, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> j) {
-    <span style="color:#66d9ef">return</span> b[i] <span style="color:#f92672">&lt;</span> b[j];
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 100050;
+using std::max;
+using std::sort;
+using std::lower_bound;
+int a[MAXN], b[MAXN], pa[MAXN], pb[MAXN];
+int stk[MAXN], top = 0;
+int n;
+bool cmp(const int i, const int j) {
+    return b[i] &lt; b[j];
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    scanf(&quot;%d&quot;, &amp;n);
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, a <span style="color:#f92672">+</span> i);
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&quot;%d&quot;, a + i);
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, b <span style="color:#f92672">+</span> i);
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&quot;%d&quot;, b + i);
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        pb[b[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> i;
+    for (int i = 0; i &lt; n; i++) {
+        pb[b[i] - 1] = i;
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        pa[i] <span style="color:#f92672">=</span> pb[a[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+    for (int i = 0; i &lt; n; i++) {
+        pa[i] = pb[a[i] - 1];
     }
     
-    stk[top] <span style="color:#f92672">=</span> pa[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">if</span> (pa[i] <span style="color:#f92672">&gt;</span> stk[top]) {
-            stk[<span style="color:#f92672">+</span><span style="color:#f92672">+</span>top] <span style="color:#f92672">=</span> pa[i];
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> lower_bound(stk, stk <span style="color:#f92672">+</span> top <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, pa[i]) <span style="color:#f92672">-</span> stk;
-            stk[pos] <span style="color:#f92672">=</span> pa[i];
+    stk[top] = pa[0];
+    for (int i = 1; i &lt; n; i++) {
+        if (pa[i] &gt; stk[top]) {
+            stk[++top] = pa[i];
+        } else {
+            int pos = lower_bound(stk, stk + top + 1, pa[i]) - stk;
+            stk[pos] = pa[i];
         }
     }
     
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, top <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    printf(&quot;%d&quot;, top + 1);
     
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h2 id="区间-dp">区间 DP</h2>
 
 <p>区间 DP 是一类比较特殊的 DP。顾名思义，区间 DP 是一类以“区间长度”作为决策阶段的动态规划。在区间 DP 中，一个区间的状态由若干个比它小、被它包含的区间的状态转移而来，所以区间 DP 的决策一般就是划分区间的策略。区间 DP 一般需要有区间长、区间左端点（由前两者可以得到右端点）这几个要素，一般以区间长度作为阶段，以左端点的位置作为状态，以区间划分位置作为决策依据。</p>
@@ -1667,34 +1301,36 @@ stk[top] <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</s
 <p>例题：<a href="https://www.luogu.org/problemnew/show/P3146">[USACO16OPEN]248</a></p>
 
 <p>这道区间 DP 的例题比较简单，用 $f(i, j)$ 表示合并区间 $[i, j]$ 可得到的数的最大值。注意这道题两个相同的数合并只会 +1 而不是翻倍。有状态转移方程 $f(i, j) = max\{f(i, j), f(i, k) + 1\}$，其中 $k$ 是区间划分点，当且仅当 $f(i, k) == f(k+1, j)$ 的时候，上面的式子才能被执行。另外这道题据说还有别的解法，有时间可以研究一下。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>;
-<span style="color:#66d9ef">int</span> a[MAXN], dp[MAXN][MAXN], n;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 300;
+int a[MAXN], dp[MAXN][MAXN], n;
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, a <span style="color:#f92672">+</span> i);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        dp[i][i] <span style="color:#f92672">=</span> a[i];
-    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; k <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; k<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; l <span style="color:#f92672">+</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; l<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            <span style="color:#66d9ef">int</span> r <span style="color:#f92672">=</span> l <span style="color:#f92672">+</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> l; j <span style="color:#f92672">&lt;</span> r; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-                <span style="color:#66d9ef">if</span> (dp[l][j] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> dp[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r]) {
-                    dp[l][r] <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max(dp[l][r], dp[l][j] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-                    ans <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>max(ans, dp[l][r]);
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++)
+        scanf(&quot;%d&quot;, a + i);
+    for (int i = 1; i &lt;= n; i++)
+        dp[i][i] = a[i];
+    int ans = -1;
+    for (int k = 2; k &lt;= n; k++) {
+        for (int l = 1; l + k - 1 &lt;= n; l++) {
+            int r = l + k - 1;
+            for (int j = l; j &lt; r; j++) {
+                if (dp[l][j] == dp[j+1][r]) {
+                    dp[l][r] = std::max(dp[l][r], dp[l][j] + 1);
+                    ans = std::max(ans, dp[l][r]);
                 }
             }
         }
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, ans);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, ans);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <h2 id="树形-dp">树形 DP</h2>
 
 <p>树形 DP 是一类非线性的 DP，它依赖于树这种数据结构。通常我们在有 $n-1$ 条无向边的无根树上，任意选择一个节点作为根节点，定义出每个节点的深度后由浅到深进行 DFS 遍历，遍历到子节点的时候由递推关系更新子树根节点的状态。一般我们以节点由深到浅（从下向上）的递推顺序作为阶段。树形 DP 的状态设计也是根据题目的不同而异的，但一般一定有一维是<strong>节点的编号</strong>（代表以该节点为根的子树）。</p>
@@ -1716,85 +1352,87 @@ stk[top] <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</s
 <p>这是一道需要根据递推关系换根的题目。状态表示是这样的：记 $f(i)$ 为以 $i$ 为根节点的所有子树中的所有奶牛到 $i$ 号节点聚集所花费的代价，则对于<strong>一次以 rt 为根节点的树形 DP</strong>，有状态转移方程：$f(i) = \Sigma_{j=1}^{|son(i)|}(cnt_j * w_{i, j})$, 其中 $|son(i)|$ 表示以 $i$ 为根节点的子树节点数量，$cnt_j$ 表示编号为 $j$ 的子节点及其子树聚集的奶牛数目，$w_{i, j}$ 表示从 $i$ 到 $j$ 的无向边的长度。</p>
 
 <p>进行一轮 DFS 之后我们开始换根操作，考虑以 $i$ 为根，将根换到 $i$ 的儿子 $j$ 的情况，首先要从 $f(i)$ 中减去原先走到 $j$ 节点的奶牛走到 $i$ 节点的价值 $cnt_j * e_{i, j}$; 其次还要加上 $i$ 本身的奶牛及其它 $i$ 的子节点的奶牛走到 $j$ 的价值，即 $(cnt_i - cnt_j) * e_{i, j}$。然后再以 $j$ 为根节点，令 $j$ 和 $j$ 可达的、除 $i$ 之外的子节点进行换根。具体代码如下（这道题因为数据量比较大，所以记得开 long long, 不开 LL 一时爽，提交一下全 WA 光）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt; </span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">100050</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> INF <span style="color:#f92672">=</span> LLONG_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">233</span>;
-<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ll;
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span> {
-    <span style="color:#66d9ef">int</span> u, v, w, next;
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt; 
+#include &lt;cstring&gt;
+#include &lt;climits&gt;
+#include &lt;algorithm&gt;
+const int MAXN = 100050;
+const long long INF = LLONG_MAX - 233;
+typedef long long ll;
+struct Edge {
+    int u, v, w, next;
     Edge() {}
-    Edge(<span style="color:#66d9ef">int</span> tu, <span style="color:#66d9ef">int</span> tv, <span style="color:#66d9ef">int</span> tw, <span style="color:#66d9ef">int</span> tn)<span style="color:#f92672">:</span> u(tu), v(tv), w(tw), next(tn) {}
+    Edge(int tu, int tv, int tw, int tn): u(tu), v(tv), w(tw), next(tn) {}
 };
-Edge e[MAXN <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>];
-<span style="color:#66d9ef">int</span> n, c[MAXN], head[MAXN], cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-<span style="color:#66d9ef">bool</span> vis[MAXN];
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cc[MAXN], ans <span style="color:#f92672">=</span> INF;
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> dp[MAXN];
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertEdge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
-    e[cnt] <span style="color:#f92672">=</span> Edge(u, v, w, head[u]);
-    head[u] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
-    e[cnt] <span style="color:#f92672">=</span> Edge(v, u, w, head[v]);
-    head[v] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+Edge e[MAXN &lt;&lt; 1];
+int n, c[MAXN], head[MAXN], cnt = 1;
+bool vis[MAXN];
+long long cc[MAXN], ans = INF;
+long long dp[MAXN];
+void insertEdge(int u, int v, int w) {
+    e[cnt] = Edge(u, v, w, head[u]);
+    head[u] = cnt++;
+    e[cnt] = Edge(v, u, w, head[v]);
+    head[v] = cnt++;
 }
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> rt) {
-    cc[rt] <span style="color:#f92672">=</span> (ll)c[rt];
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>head[rt]) {
-        <span style="color:#66d9ef">return</span>;
+void dfs(int rt) {
+    cc[rt] = (ll)c[rt];
+    if (!head[rt]) {
+        return;
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[rt]; i <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">=</span> e[i].next) {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>vis[e[i].v]) {
-            vis[e[i].v] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    for (int i = head[rt]; i != 0; i = e[i].next) {
+        if (!vis[e[i].v]) {
+            vis[e[i].v] = 1;
             dfs(e[i].v);
-            dp[rt] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> dp[e[i].v] <span style="color:#f92672">+</span> (ll)cc[e[i].v] <span style="color:#f92672">*</span> e[i].w;
-            cc[rt] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> cc[e[i].v];
+            dp[rt] += dp[e[i].v] + (ll)cc[e[i].v] * e[i].w;
+            cc[rt] += cc[e[i].v];
         }
     }
 }
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">change_root</span>(<span style="color:#66d9ef">int</span> rt) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>head[rt]) {
-        <span style="color:#66d9ef">return</span>;
+void change_root(int rt) {
+    if (!head[rt]) {
+        return;
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[rt]; i <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">=</span> e[i].next) {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>vis[e[i].v]) {
-            vis[e[i].v] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> tmp <span style="color:#f92672">=</span> cc[rt], v <span style="color:#f92672">=</span> e[i].v, tmp2 <span style="color:#f92672">=</span> cc[v];
-            <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> delta <span style="color:#f92672">=</span> cc[rt] <span style="color:#f92672">-</span> cc[v];
-            cc[rt] <span style="color:#f92672">=</span> delta;
-            cc[v] <span style="color:#f92672">=</span> tmp;
-            dp[v] <span style="color:#f92672">=</span> dp[rt] <span style="color:#f92672">-</span> tmp2 <span style="color:#f92672">*</span> (ll)e[i].w <span style="color:#f92672">+</span> cc[rt] <span style="color:#f92672">*</span> e[i].w;
-            ans <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>min(ans, dp[v]);
+    for (int i = head[rt]; i != 0; i = e[i].next) {
+        if (!vis[e[i].v]) {
+            vis[e[i].v] = 1;
+            long long tmp = cc[rt], v = e[i].v, tmp2 = cc[v];
+            long long delta = cc[rt] - cc[v];
+            cc[rt] = delta;
+            cc[v] = tmp;
+            dp[v] = dp[rt] - tmp2 * (ll)e[i].w + cc[rt] * e[i].w;
+            ans = std::min(ans, dp[v]);
             change_root(v);
             
-            cc[rt] <span style="color:#f92672">=</span> tmp, cc[v] <span style="color:#f92672">=</span> tmp2;
+            cc[rt] = tmp, cc[v] = tmp2;
         }
     }
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>c[i]);
-    <span style="color:#66d9ef">int</span> u, v, w;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d%d%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++)
+        scanf(&quot;%d&quot;, &amp;c[i]);
+    int u, v, w;
+    for (int i = 1; i &lt; n; i++) {
+        scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
         insertEdge(u, v, w);
     }
-    <span style="color:#66d9ef">int</span> rt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    vis[rt] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, cc[rt] <span style="color:#f92672">=</span> c[rt];
+    int rt = 1;
+    vis[rt] = 1, cc[rt] = c[rt];
     dfs(rt);
-    ans <span style="color:#f92672">=</span> dp[rt];
+    ans = dp[rt];
     
-    memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
-    vis[rt] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    memset(vis, 0, sizeof vis);
+    vis[rt] = 1;
     change_root(rt);
 
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%lld</span><span style="color:#e6db74">&#34;</span>, ans);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%lld&quot;, ans);
+    return 0;
 }
-</code></pre></div>
+</code></pre>
+
 <p>树形 DP 的变化形式多种多样，难度不一，不可能通过做一道题就能掌握到精髓，所以还要多加练习其它类型的题，如背包依赖树形 DP 等，尤其要好好品味一下状态的设计和状态转移的策略。</p>
 
 <h2 id="状态压缩-dp">状态压缩 DP</h2>
@@ -1844,117 +1482,218 @@ Edge e[MAXN <span style="color:#f92672">&lt;</span><span style="color:#f92672">&
 <p>虽然 TSP 问题 $n$ 比较小的时候是个比较经典的状态压缩 DP 模型，但是这个题有一个 $n=20$ 的点，普通的状态压缩会 TLE，怎么办呢……<s>开 O2 就好了</s>。否则的话就要加其它的玄学优化，或者用别的方法……emmm，我选择开 O2.</p>
 
 <p>用 $dp[s][j]$ 表示当前走的城市状态为 $s$, 且最后一个去的城市为 $j$ 时的最小代价，初始化时 $dp[*][*] = INF, dp[1][0] = 1$。从外到内分别枚举 $s(0\sim(1 &lt;&lt; n) - 1)$, $i (0 \sim n-1)$ $ s \&amp; (1 &lt;&lt; i) \neq 0$, $j (0 \sim n-1), i \neq j, s \&amp; (1 &lt;&lt; j) == 0$，则有转移方程 $dp[s | (1 &lt;&lt; j)][j] = min\{dp[s | (1 &lt;&lt; j)][j], dp[s][i] + dist[i][j]\}$. 最终答案是 $min\{dp[(1 &lt;&lt; n) - 1\}[i] + dist[i][0], i \in [0, n), i \in N$.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>;
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> dist[MAXN][MAXN];
-<span style="color:#66d9ef">int</span> dp[MAXS][MAXN];
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">min</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
-    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">&gt;</span> b <span style="color:#f92672">?</span> b : a;
+
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+const int INF = 1e9 + 7;
+const int MAXS = 1 &lt;&lt; 20;
+const int MAXN = 21;
+int n;
+int dist[MAXN][MAXN];
+int dp[MAXS][MAXN];
+int min(int a, int b) {
+    return a &gt; b ? b : a;
 }
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+int main()
 {
-    scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>dist[i][j]);
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            scanf(&quot;%d&quot;, &amp;dist[i][j]);
         }
     }
     
-    memset(dp, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dp);
-    dp[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    memset(dp, 0x3f, sizeof dp);
+    dp[1][0] = 0;
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; s <span style="color:#f92672">&lt;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> n); s<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-            <span style="color:#66d9ef">if</span> (s <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> i)) {
-                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-                    <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> j <span style="color:#f92672">|</span><span style="color:#f92672">|</span> s <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> j))
-                        <span style="color:#66d9ef">continue</span>;
-                    dp[s <span style="color:#f92672">|</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> j)][j] <span style="color:#f92672">=</span> min(dp[s <span style="color:#f92672">|</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> j)][j], dp[s][i] <span style="color:#f92672">+</span> dist[i][j]);
+    for (int s = 1; s &lt; (1 &lt;&lt; n); s++) {
+        for (int i = 0; i &lt; n; i++) {
+            if (s &amp; (1 &lt;&lt; i)) {
+                for (int j = 0; j &lt; n; j++) {
+                    if (i == j || s &amp; (1 &lt;&lt; j))
+                        continue;
+                    dp[s | (1 &lt;&lt; j)][j] = min(dp[s | (1 &lt;&lt; j)][j], dp[s][i] + dist[i][j]);
                 }
             }
         }
     }
 
-    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> INF;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
-        ans <span style="color:#f92672">=</span> min(ans, dp[(<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> n) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][i] <span style="color:#f92672">+</span> dist[i][<span style="color:#ae81ff">0</span>]);
+    int ans = INF;
+    for (int i = 1; i &lt; n; i++) {
+        ans = min(ans, dp[(1 &lt;&lt; n) - 1][i] + dist[i][0]);
     }
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>, ans);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;%d&quot;, ans);
+    return 0;
 }
-</code></pre></div>
-                    <HR width="100%" id="EOF">
-                    <p style="color:#777;">Last modified on 2019-03-10</p>
-                </div>
-                
-            </div>
-            
-            
-            <nav class="post-pagination">
+</code></pre>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-2/" title="[19-3-9] XMU ACM 集训队笔记(2)" target="_blank" rel="external">https://kirainmoe.com/blog/post/xmu-acm-training-record-2/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
 
-                
-                <a class="newer-posts" href="https://kirainmoe.com/blog/post/xmu-acm-training-record-3/">
-                    Next<br>[19-3-16] XMU ACM 集训队笔记(3)
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/" title="[19-3-2] XMU ACM 集训队笔记(1)"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://kirainmoe.com/blog/post/xmu-acm-training-record-3/"
+                    title="[19-3-16] XMU ACM 集训队笔记(3)"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
                 </a>
-                
-                
-                
-                <a class="older-posts" href="https://kirainmoe.com/blog/post/xmu-acm-training-record-1/">
-                    Previous<br>[19-3-2] XMU ACM 集训队笔记(1)
-                </a>
-                
-            </nav>
-            <div class="post-comment-wrapper">
-                
-<div class="post-comment-wrapper">
-<div id="disqus_thread"></div>
-<script type="application/javascript">
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script>
     var disqus_config = function () {
-    
-    
-    
+        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/xmu-acm-training-record-2\/';
+        this.page.identifier = 'yume-diary';
     };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yume-diary" + '.disqus.com/embed.js';
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div><div id="single-column-footer">&copy;
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
 	
-	2016-2020 宇宙よりも遠い場所
-	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-/
-
-<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC-BY-SA 4.0</a>
-
-<br>
-
-Published with <a href="https://gohugo.io">Hugo</a> / Theme <a href="https://github.com/amazingrise/hugo-theme-diary" title="Author: Rise @ amazingrise.net">Diary</a>
-</div>
-    	</div>
-    <script src="https://kirainmoe.com//js/journal.js"></script>
-    </body>
+  </body>
 </html>
