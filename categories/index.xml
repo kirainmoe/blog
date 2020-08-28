@@ -5,12 +5,13 @@
     <link>https://kirainmoe.com/categories/</link>
     <description>Recent content in Categories on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Jul 2020 00:58:58 +0800</lastBuildDate>
     
         <atom:link href="https://kirainmoe.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</title>
+      <title>【从零开始的 NLP】理论篇 L1. 分类和向量空间</title>
       <link>https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/</link>
       <pubDate>Sun, 12 Jul 2020 00:58:58 +0800</pubDate>
       
@@ -28,9 +29,7 @@
       <pubDate>Tue, 11 Feb 2020 18:35:07 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/simplex-algorithm/</guid>
-      <description>&lt;h1 id=&#34;单纯形算法-干啥用的&#34;&gt;单纯形算法？干啥用的？&lt;/h1&gt;
-
-&lt;p&gt;它可以用于求解多维线性规划问题。&lt;/p&gt;</description>
+      <description>&lt;p&gt;单纯形算法？干啥用的？它可以用于求解多维线性规划问题。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -77,13 +76,20 @@
       <pubDate>Sat, 15 Jun 2019 13:57:11 +0800</pubDate>
       
       <guid>https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/06/15/5d04f02dbd06449617.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;解包 《バンドリ!ガールズバンドパーティ!》（即 BanG Dream! 梦想协奏曲 少女乐团派对，以下简称 garupa）游戏的资源文件。&lt;/p&gt;
+      <description>&lt;p&gt;解包 《バンドリ!ガールズバンドパーティ!》（即 BanG Dream! 梦想协奏曲 少女乐团派对，以下简称 garupa）游戏的资源文件。&lt;/p&gt;
 
 &lt;p&gt;其实这不是什么新东西，网上已经有很多相关的教程了，只是因为整个过程有点繁琐，所以写一篇新的文章记录一下过程和补充一些细节。&lt;/p&gt;
 
 &lt;p&gt;下文以 Android 版本的日服和国服为例。以下内容仅供学习使用，请勿用于商业等用途。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[19/5/9]XMU ACM 集训队笔记(5) 网络流初步</title>
+      <link>https://kirainmoe.com/blog/post/xmu-acm-training-record-5/</link>
+      <pubDate>Thu, 09 May 2019 23:22:56 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/xmu-acm-training-record-5/</guid>
+      <description>&lt;p&gt;本期主要内容：二分图（染色法判定二分图，二分图的最大匹配、多重匹配、带权匹配；二分图最大独立集、最小点覆盖、最大团；二分图的最大匹配边与可行边，有向无环图的最小路径覆盖）；网络流初步（最大流、最小割、最大流最小割定理，EK, Dinic, ISAP 算法）。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -214,19 +220,6 @@
       <description>&lt;p&gt;写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……&lt;/p&gt;
 
 &lt;p&gt;以下内容&lt;s&gt;为图省事大量地摘编自我的实验报告&lt;/s&gt;。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Xiamen GDG DevFest 2018 repo</title>
-      <link>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</link>
-      <pubDate>Sun, 25 Nov 2018 22:43:30 +0800</pubDate>
-      
-      <guid>https://kirainmoe.com/blog/post/xiamen-gdg-devfest-2018-repo/</guid>
-      <description>&lt;p&gt;这是厦门 2018 谷歌开发者嘉年华 参会报告~&lt;/p&gt;
-
-&lt;p&gt;（多图预警，流量环境谨慎点开~）&lt;/p&gt;
-
-&lt;p&gt;ps. 由于在大会上做笔记不是很方便和不完全，因此下面的内容可能有错误或者不周，敬请谅解。&lt;/p&gt;</description>
     </item>
     
   </channel>

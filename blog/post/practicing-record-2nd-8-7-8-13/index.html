@@ -31,11 +31,11 @@
 
 
   
-  <meta name="generator" content="Hugo 0.64.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>每周解题报告 (2nd, 8/7~8/13) - 宇宙よりも遠い場所</title>
   
   
-  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.7dc20efbc53647d41aa9ddea0c48e59300223d084e66ea0cbe7c30bd88903acc.css">
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.cd26449540593beba8e46289ec0989fcc571725eebea8e6115f3746a8a60222b.css">
   
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
@@ -47,13 +47,14 @@
 <meta property="article:modified_time" content="2017-08-13T16:46:17+00:00" />
 <meta itemprop="name" content="每周解题报告 (2nd, 8/7~8/13)">
 <meta itemprop="description" content="这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。">
-<meta itemprop="datePublished" content="2017-08-13T16:46:17&#43;00:00" />
-<meta itemprop="dateModified" content="2017-08-13T16:46:17&#43;00:00" />
+<meta itemprop="datePublished" content="2017-08-13T16:46:17+00:00" />
+<meta itemprop="dateModified" content="2017-08-13T16:46:17+00:00" />
 <meta itemprop="wordCount" content="3562">
 
 
 
-<meta itemprop="keywords" content="oi,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="oi,algorithm," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="每周解题报告 (2nd, 8/7~8/13)"/>
 <meta name="twitter:description" content="这一周主要在看 DP 的题目，嘛，都是一些我觉得很好但是我写不出来的题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。"/>
 
@@ -72,16 +73,16 @@
   
   
 
-  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <body class="main-center theme-white" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
     <div class="slimContent">
       <div class="navbar-header">
         <div class="profile-block text-center">
           <a id="avatar" href="https://kirainmoe.com" target="_blank">
-            <img class="img-circle img-rotate" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+            <img class="img-circle" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
           </a>
-          <h2 id="name" class="hidden-xs hidden-sm">Yume Maruyama</h2>
+          <h2 id="name" class="hidden-xs hidden-sm">宇宙よりも遠い場所</h2>
           <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
-          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>比宇宙更远的地方</small>
+          
         </div><div class="search" id="search-form-wrap">
     <form class="search-form sidebar-form">
         <div class="input-group">
@@ -123,13 +124,13 @@
                 </a>
             </li>
             <li class="menu-item menu-item-friends">
-                <a href="/pages/friends/">
+                <a href="/blog/post/friends/">
                     <i class="icon icon-link"></i>
                   <span class="menu-title">Friends</span>
                 </a>
             </li>
             <li class="menu-item menu-item-guestbook">
-                <a href="/pages/guestbook/">
+                <a href="/blog/post/guestbook/">
                     <i class="icon icon-stackexchange"></i>
                   <span class="menu-title">Guestbook</span>
                 </a>
@@ -147,7 +148,7 @@
                 </a>
             </li>
             <li class="menu-item menu-item-about">
-                <a href="/pages/about/">
+                <a href="/blog/post/about/">
                     <i class="icon icon-cup-fill"></i>
                   <span class="menu-title">About</span>
                 </a>
@@ -161,272 +162,26 @@
   <div class="slimContent">
     
       <div class="widget">
-    <h3 class="widget-title"> Tags</h3>
+    <h3 class="widget-title"> Categories</h3>
     <div class="widget-body">
-        <ul class="tag-list">
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/2019/" class="tag-list-link">2019</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/acm/" class="tag-list-link">acm</a><span
-                    class="tag-list-count">7</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithm/" class="tag-list-link">algorithm</a><span
-                    class="tag-list-count">18</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/algorithms/" class="tag-list-link">algorithms</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/android/" class="tag-list-link">android</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bang-dream/" class="tag-list-link">bang-dream</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beaglebone/" class="tag-list-link">beaglebone</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/beamer/" class="tag-list-link">beamer</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/bios/" class="tag-list-link">bios</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/cpp/" class="tag-list-link">cpp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/deep-learning/" class="tag-list-link">deep-learning</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/devfest/" class="tag-list-link">devfest</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/diary/" class="tag-list-link">diary</a><span
-                    class="tag-list-count">4</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/divide/" class="tag-list-link">divide</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/docker/" class="tag-list-link">docker</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/dynamic-programming/" class="tag-list-link">dynamic-programming</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/experiment/" class="tag-list-link">experiment</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/front-end/" class="tag-list-link">front-end</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/frontend/" class="tag-list-link">frontend</a><span
-                    class="tag-list-count">4</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/games/" class="tag-list-link">games</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/garupa/" class="tag-list-link">garupa</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/gdg/" class="tag-list-link">gdg</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/golang/" class="tag-list-link">golang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/google/" class="tag-list-link">google</a><span
-                    class="tag-list-count">3</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/graph-theory/" class="tag-list-link">graph-theory</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hackintosh/" class="tag-list-link">hackintosh</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hasee/" class="tag-list-link">hasee</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/hash/" class="tag-list-link">hash</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/javascript/" class="tag-list-link">javascript</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/kmp/" class="tag-list-link">kmp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/latex/" class="tag-list-link">latex</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/leetcode/" class="tag-list-link">leetcode</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/lemon/" class="tag-list-link">lemon</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/life/" class="tag-list-link">life</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/linux/" class="tag-list-link">linux</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/macos/" class="tag-list-link">macos</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/math/" class="tag-list-link">math</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/mathematics/" class="tag-list-link">mathematics</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/matlab/" class="tag-list-link">matlab</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nlp/" class="tag-list-link">nlp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/nodejs/" class="tag-list-link">nodejs</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/note/" class="tag-list-link">note</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/npm/" class="tag-list-link">npm</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/oi/" class="tag-list-link">oi</a><span
-                    class="tag-list-count">9</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/online-judge/" class="tag-list-link">online-judge</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/opencore/" class="tag-list-link">opencore</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/play/" class="tag-list-link">play</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/preact/" class="tag-list-link">preact</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/progressive-web-app/" class="tag-list-link">progressive-web-app</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/python/" class="tag-list-link">python</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react/" class="tag-list-link">react</a><span
-                    class="tag-list-count">4</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/react-lite/" class="tag-list-link">react-lite</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/redux/" class="tag-list-link">redux</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/search/" class="tag-list-link">search</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tensorflow/" class="tag-list-link">tensorflow</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/theme/" class="tag-list-link">theme</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/touchpad/" class="tag-list-link">touchpad</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/tutorial/" class="tag-list-link">tutorial</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/typescript/" class="tag-list-link">typescript</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/uefi/" class="tag-list-link">uefi</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/volume/" class="tag-list-link">volume</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/webpack/" class="tag-list-link">webpack</a><span
-                    class="tag-list-count">3</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows/" class="tag-list-link">windows</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/windows-precision/" class="tag-list-link">windows-precision</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://kirainmoe.com/tags/yarn/" class="tag-list-link">yarn</a><span
-                    class="tag-list-count">1</span></li>
-            
+        <ul class="category-list">
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/acm/" class="category-list-link">acm</a><span class="category-list-count">13</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/android/" class="category-list-link">android</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/hackintosh/" class="category-list-link">hackintosh</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/icpc/" class="category-list-link">icpc</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/react/" class="category-list-link">react</a><span class="category-list-count">6</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/web/" class="category-list-link">web</a><span class="category-list-count">6</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E5%85%B6%E5%AE%83/" class="category-list-link">其它</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E5%89%8D%E7%AB%AF/" class="category-list-link">前端</a><span class="category-list-count">11</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-list-link">学习笔记</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%95%B0%E5%AD%A6/" class="category-list-link">数学</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-list-link">数据结构</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%97%A5%E8%AE%B0/" class="category-list-link">日记</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%B8%B8%E6%88%8F/" class="category-list-link">游戏</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E7%A1%AC%E4%BB%B6/" class="category-list-link">硬件</a><span class="category-list-count">5</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E7%AE%97%E6%B3%95/" class="category-list-link">算法</a><span class="category-list-count">15</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" class="category-list-link">自然语言处理</a><span class="category-list-count">1</span></li>
         </ul>
-
     </div>
 </div>
       
@@ -437,7 +192,7 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
-                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP 学习笔记】理论篇 L1. 分类和向量空间</a>
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP】理论篇 L1. 分类和向量空间</a>
                     </p>
                     <p class="item-date">
                         <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
@@ -521,7 +276,10 @@
   <time datetime="2017-08-13 16:46:17 &#43;0000 UTC" itemprop="datePublished">2017-08-13</time>
 </a>
 </span>
-  
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a class="article-category-link" href="/categories/acm/"> ACM </a>
+</span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>&nbsp;
     <a class="article-tag-link" href="/tags/oi/"> oi </a>
@@ -956,9 +714,7 @@ int main()
     </div>
   </article>
 <section id="comments">
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    <div id="vcomments"></div>
 </section>
 
 </div><nav class="bar bar-footer clearfix" data-stick-bottom>
@@ -1069,17 +825,26 @@ int main()
     });
 </script>
 
-<script>
-    var disqus_config = function () {
-        this.page.url = 'https:\/\/kirainmoe.com\/blog\/post\/practicing-record-2nd-8-7-8-13\/';
-        this.page.identifier = 'yume-diary';
-    };
-    (function () {
-        var d = document, s = d.createElement('script');
-        s.src = '//' + 'yume-diary' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+<script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine"></script>
+<script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail';
+    meta = meta.split(',').filter(function (item) {
+        return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+        el: '#vcomments',
+        verify: true ,
+        notify: true ,
+        appId: 'M2EXNAMR5IP0Klrd9CyjJmRU-gzGzoHsz',
+        appKey: 'BAtmuQAdkaxDvaipyEKDw9NT',
+        placeholder: '留下评论...',
+        avatar: 'mm',
+        meta: meta,
+        pageSize: '10' || 10,
+        visitor: false 
+});
 </script>
 
 <script type="application/javascript">

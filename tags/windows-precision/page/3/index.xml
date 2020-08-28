@@ -11,17 +11,6 @@
     
     
     <item>
-      <title>每周解题报告 (1st, 8/3~8/6)</title>
-      <link>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</link>
-      <pubDate>Mon, 07 Aug 2017 12:49:06 +0000</pubDate>
-      
-      <guid>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</guid>
-      <description>&lt;p&gt;RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。&lt;/p&gt;
-
-&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>一次搭建内部 Online Judge 及调优的笔记</title>
       <link>https://kirainmoe.com/blog/post/notes-of-building-an-online-judge/</link>
       <pubDate>Sat, 05 Aug 2017 21:05:18 +0000</pubDate>
@@ -104,28 +93,28 @@
     
     <item>
       <title>Friends</title>
-      <link>https://kirainmoe.com/pages/friends/</link>
+      <link>https://kirainmoe.com/blog/post/friends/</link>
       <pubDate>Sat, 09 Apr 2016 17:43:54 +0000</pubDate>
       
-      <guid>https://kirainmoe.com/pages/friends/</guid>
+      <guid>https://kirainmoe.com/blog/post/friends/</guid>
       <description>MoeFront Family そら TyanBoot CDog 柚子 祀画 立华 团子 OI/ACM Pantw Ringoer Raffica Xeonacid KSKun Other Arathi Balthild Kenvix mokeyjay Alien Lin ZGQ 纳兰泽雨 Tokei diygod JclMiku Sonic853 Howard QQDie 七夏浅笑 Tsez Handle Kira OZOO Rin404 zoengjinnbiu idealclover var playList = [ { &#34;title&#34;: &#34;イニシャル&#34;, &#34;artist&#34;: &#34;Poppin&#39;Party&#34;, &#34;cover&#34;: &#34;//p1.music.126.net/r9RXZsu37irUEPsBuvZ1yA==/109951164615885431.jpg&#34;, &#34;src&#34;: &#34;https://api.kotori.love/netease/1415751355.mp3&#34;, &#34;lyric&#34;:</description>
     </item>
     
     <item>
       <title>About Me &amp; This Site</title>
-      <link>https://kirainmoe.com/pages/about/</link>
+      <link>https://kirainmoe.com/blog/post/about/</link>
       <pubDate>Sat, 09 Apr 2016 17:09:35 +0000</pubDate>
       
-      <guid>https://kirainmoe.com/pages/about/</guid>
-      <description>ME: Maruyama Yume 丸山（まるやま） 夢（ゆめ） // aka. @kirainmoe, @AyAmita 目前于 厦门大学信息学院 就读计算机科学专业. 昵称受启发于 BanG Dream! 企划中的角色 丸山彩. Skills C/C++/Gola</description>
+      <guid>https://kirainmoe.com/blog/post/about/</guid>
+      <description>关于我 丸山（まるやま, Maruyama）夢（ゆめ, Yume），也可以叫我 吟梦 // aka. @kirainmoe, @AyAmita 昵称是由 BanG Dream! 企划中的角色 丸山彩 和早先一直在用的 ID 吟梦 拼出</description>
     </item>
     
     <item>
       <title>Guestbook</title>
-      <link>https://kirainmoe.com/pages/guestbook/</link>
+      <link>https://kirainmoe.com/blog/post/guestbook/</link>
       <pubDate>Sat, 09 Apr 2016 17:09:35 +0000</pubDate>
       
-      <guid>https://kirainmoe.com/pages/guestbook/</guid>
+      <guid>https://kirainmoe.com/blog/post/guestbook/</guid>
       <description>一个简单的留言板。 ps: 评论系统采用 Disqus，若无法正常加载，请先连接到国际互联网。</description>
     </item>
     

@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/categories/</loc>
+    <lastmod>2020-07-12T00:58:58+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/deep-learning/</loc>
     <lastmod>2020-07-12T00:58:58+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -45,6 +52,20 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2020-07-12T00:58:58+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/acm/</loc>
+    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/acm/</loc>
     <lastmod>2020-02-11T18:35:07+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -61,6 +82,34 @@
   <url>
     <loc>https://kirainmoe.com/blog/post/simplex-algorithm/</loc>
     <lastmod>2020-02-11T18:35:07+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/hackintosh/</loc>
+    <lastmod>2020-02-06T15:08:48+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -87,6 +136,13 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/categories/%E7%A1%AC%E4%BB%B6/</loc>
+    <lastmod>2020-02-06T15:08:48+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/2019/</loc>
     <lastmod>2020-01-01T01:18:33+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -95,6 +151,13 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/diary/</loc>
+    <lastmod>2020-01-01T01:18:33+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2020-01-01T01:18:33+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -129,7 +192,21 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/categories/%E5%85%B6%E5%AE%83/</loc>
+    <lastmod>2019-11-23T12:28:43+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/post/point-divide-and-conquer-notes/</loc>
+    <lastmod>2019-10-26T16:08:20+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2019-10-26T16:08:20+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -159,6 +236,20 @@
   <url>
     <loc>https://kirainmoe.com/blog/post/garupa-resource-extract-decryption/</loc>
     <lastmod>2019-06-15T13:57:11+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E6%B8%B8%E6%88%8F/</loc>
+    <lastmod>2019-06-15T13:57:11+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/blog/post/xmu-acm-training-record-5/</loc>
+    <lastmod>2019-05-09T23:22:56+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -402,6 +493,13 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/categories/icpc/</loc>
+    <lastmod>2018-07-27T20:43:27+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/math/</loc>
     <lastmod>2018-07-27T20:43:27+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -411,6 +509,13 @@
   <url>
     <loc>https://kirainmoe.com/blog/post/exgcd-and-gauss/</loc>
     <lastmod>2018-07-27T20:43:27+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/react/</loc>
+    <lastmod>2018-06-28T19:34:48+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -444,6 +549,27 @@
   </url>
   
   <url>
+    <loc>https://kirainmoe.com/categories/web/</loc>
+    <lastmod>2018-06-28T19:34:48+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2018-06-28T19:34:48+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/android/</loc>
+    <lastmod>2018-03-04T11:28:44+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/tags/android/</loc>
     <lastmod>2018-03-04T11:28:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -460,13 +586,6 @@
   <url>
     <loc>https://kirainmoe.com/blog/post/android-rom-cannot-communicate-with-google-play/</loc>
     <lastmod>2018-03-04T11:28:44+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/blog/post/no-title/</loc>
-    <lastmod>2018-02-16T23:14:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -640,20 +759,6 @@
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/tags/life/</loc>
-    <lastmod>2017-08-26T18:27:16+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/blog/post/hachigatsu-no-if/</loc>
-    <lastmod>2017-08-26T18:27:16+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</loc>
     <lastmod>2017-08-20T14:43:46+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -822,35 +927,22 @@
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/pages/friends/</loc>
+    <loc>https://kirainmoe.com/blog/post/friends/</loc>
     <lastmod>2016-04-09T17:43:54+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/pages/</loc>
-    <lastmod>2016-04-09T17:43:54+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/pages/about/</loc>
+    <loc>https://kirainmoe.com/blog/post/about/</loc>
     <lastmod>2016-04-09T17:09:35+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/pages/guestbook/</loc>
+    <loc>https://kirainmoe.com/blog/post/guestbook/</loc>
     <lastmod>2016-04-09T17:09:35+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
