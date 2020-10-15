@@ -49,7 +49,7 @@
 <meta itemprop="description" content="情况大概是这样的：最近在试 CLE 的新服务器，需要把两个弹性 IP 绑到一个 VM 的两张网卡上；给 VM 添加了两张网卡之后发现入网并不能通，一通骚操作之后连出网都通不了了……">
 <meta itemprop="datePublished" content="2020-10-15T13:47:47+08:00" />
 <meta itemprop="dateModified" content="2020-10-15T13:47:47+08:00" />
-<meta itemprop="wordCount" content="1286">
+<meta itemprop="wordCount" content="1331">
 
 
 
@@ -289,7 +289,7 @@
 
         <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/configure-multi-nic-on-linux-using-netplan/#comments"
             class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1286words</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1331words</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 3minutes </span>
       </div>
     </div>
@@ -446,9 +446,9 @@ Available commands:
     version: 2 
 </code></pre>
 
-<p>首先上面的配置文件说明机器有两张网卡，一张名为 <code>ens3</code>，一张名为 <code>ens12</code>；然后给 <code>ens3</code> 分配了地址 <code>10.230.82.200/18</code>、给 <code>ens12</code> 分配了地址 <code>10.229.147.60/15</code>；</p>
+<p>首先上面的配置文件说明机器有两张网卡，一张名为 <code>ens3</code>，一张名为 <code>ens12</code>；然后给 <code>ens3</code> 分配了地址 <code>10.230.82.200/18</code>、给 <code>ens12</code> 分配了地址 <code>10.229.147.60/15</code>；因为是静态 IP 所有都关闭了 DHCP4；然后因为路由手动设置，所以可以不填写 <code>gateway4</code>。</p>
 
-<p>然后为两张网卡分别设置了路由规则，<code>ens3</code> 通过 <code>10.230.108.202</code> 网关出网，优先级是 <code>203</code>（优先级越大越优先，最大的为默认网卡）；<code>ens12</code> 则通过 <code>10.230.128.128</code> 网关出网，优先级是 <code>202</code>.</p>
+<p>接着为两张网卡分别设置了路由规则，<code>ens3</code> 通过 <code>10.230.108.202</code> 网关出网，优先级是 <code>203</code>（优先级越大越优先，最大的为默认网卡）；<code>ens12</code> 则通过 <code>10.230.128.128</code> 网关出网，优先级是 <code>202</code>.</p>
 
 <p>将上面的配置保存到 <code>/etc/netplan/default.yaml</code> 下，然后执行以下命令应用配置：</p>
 
