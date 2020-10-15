@@ -5,10 +5,21 @@
     <link>https://kirainmoe.com/blog/</link>
     <description>Recent content in Blogs on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Jul 2020 00:58:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 13:47:47 +0800</lastBuildDate>
     
         <atom:link href="https://kirainmoe.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>每周解题报告 (1st, 8/3~8/6)</title>
+      <link>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</link>
+      <pubDate>Mon, 07 Aug 2017 12:49:06 +0000</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</guid>
+      <description>&lt;p&gt;RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。&lt;/p&gt;
+
+&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>一次搭建内部 Online Judge 及调优的笔记</title>

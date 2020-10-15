@@ -5,10 +5,19 @@
     <link>https://kirainmoe.com/categories/</link>
     <description>Recent content in Categories on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Jul 2020 00:58:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 13:47:47 +0800</lastBuildDate>
     
         <atom:link href="https://kirainmoe.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux 下使用 netplan 配置多网卡</title>
+      <link>https://kirainmoe.com/blog/post/configure-multi-nic-on-linux-using-netplan/</link>
+      <pubDate>Thu, 15 Oct 2020 13:47:47 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/configure-multi-nic-on-linux-using-netplan/</guid>
+      <description>&lt;p&gt;情况大概是这样的：最近在试 CLE 的新服务器，需要把两个弹性 IP 绑到一个 VM 的两张网卡上；给 VM 添加了两张网卡之后发现入网并不能通，一通骚操作之后&lt;s&gt;连出网都通不了了&lt;/s&gt;……&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>【从零开始的 NLP】理论篇 L1. 分类和向量空间</title>
@@ -209,17 +218,6 @@
       
       <guid>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</guid>
       <description>&lt;p&gt;Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达&lt;s&gt;一半&lt;/s&gt;的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>BeagleBone Black 开发入门实验</title>
-      <link>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</link>
-      <pubDate>Sun, 23 Dec 2018 11:31:15 +0800</pubDate>
-      
-      <guid>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</guid>
-      <description>&lt;p&gt;写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……&lt;/p&gt;
-
-&lt;p&gt;以下内容&lt;s&gt;为图省事大量地摘编自我的实验报告&lt;/s&gt;。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -5,10 +5,21 @@
     <link>https://kirainmoe.com/tags/</link>
     <description>Recent content in Tags on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Jul 2020 00:58:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 13:47:47 +0800</lastBuildDate>
     
         <atom:link href="https://kirainmoe.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BeagleBone Black 开发入门实验</title>
+      <link>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</link>
+      <pubDate>Sun, 23 Dec 2018 11:31:15 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/beaglebone-black-dev-tutorial/</guid>
+      <description>&lt;p&gt;写篇文章记录一下学校的学科入门实验——基于 BeagleBone Black 的嵌入式 Linux 系统开发。第一次玩这种东西觉得还有点意思……&lt;/p&gt;
+
+&lt;p&gt;以下内容&lt;s&gt;为图省事大量地摘编自我的实验报告&lt;/s&gt;。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Xiamen GDG DevFest 2018 repo</title>
@@ -192,17 +203,6 @@
       
       <guid>https://kirainmoe.com/blog/post/practicing-record-2nd-8-7-8-13/</guid>
       <description>&lt;p&gt;这一周主要在看 DP 的题目，嘛，都是一些我觉得很好&lt;s&gt;但是我写不出来的&lt;/s&gt;题。本周的话做的都是 HDU 的题，虽然看了一下 Codeforces 上的一两道这样子。感觉收获还是蛮多的。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>每周解题报告 (1st, 8/3~8/6)</title>
-      <link>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</link>
-      <pubDate>Mon, 07 Aug 2017 12:49:06 +0000</pubDate>
-      
-      <guid>https://kirainmoe.com/blog/post/practicing-record-1st-8-3-8-6/</guid>
-      <description>&lt;p&gt;RT. 接下来打算在 11 月份之前刷个 200 题的算法题（包括线上和线下）……然后想着就是开个帖子来整理和记录题解什么的，大概能碰到电脑的话那就每周一篇这样子。&lt;/p&gt;
-
-&lt;p&gt;这一阶段的话主要是挑 &lt;a href=&#34;http://acm.hdu.edu.cn/&#34;&gt;HDUOJ&lt;/a&gt; 的题目来做（因为可以找到详细的题目分类），会从简单的题目开始（&lt;s&gt;比如 A+B Problem&lt;/s&gt;），然后辅以一些 Codeforces 的题。之前那个 LeetCode 的记录帖就这么弃坑了（&lt;/p&gt;</description>
     </item>
     
   </channel>
