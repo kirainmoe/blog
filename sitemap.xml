@@ -3,15 +3,78 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/acm/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/acm/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kirainmoe.com/blog/</loc>
-    <lastmod>2020-10-15T13:47:47+08:00</lastmod>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kirainmoe.com/categories/</loc>
-    <lastmod>2020-10-15T13:47:47+08:00</lastmod>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/xiaomi/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/categories/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kirainmoe.com/tags/%E9%A2%98%E8%A7%A3/</loc>
+    <lastmod>2020-10-26T22:57:15+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -39,20 +102,6 @@
   
   <url>
     <loc>https://kirainmoe.com/tags/netplan/</loc>
-    <lastmod>2020-10-15T13:47:47+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/tags/</loc>
-    <lastmod>2020-10-15T13:47:47+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/</loc>
     <lastmod>2020-10-15T13:47:47+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -87,20 +136,6 @@
   </url>
   
   <url>
-    <loc>https://kirainmoe.com/categories/acm/</loc>
-    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/tags/acm/</loc>
-    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://kirainmoe.com/tags/algorithm/</loc>
     <lastmod>2020-02-11T18:35:07+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -123,13 +158,6 @@
   
   <url>
     <loc>https://kirainmoe.com/categories/%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2020-02-11T18:35:07+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kirainmoe.com/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-02-11T18:35:07+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

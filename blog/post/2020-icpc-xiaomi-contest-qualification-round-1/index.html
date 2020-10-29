@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions - 宇宙よりも遠い場所
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="Link: https://ac.nowcoder.com/acm/contest/7501
+" /><style>
+    .marked-body h1 { border-bottom: 0px!important; }
+  </style>
+
+
+
+  
+  <meta name="generator" content="Hugo 0.76.5 with theme pure" />
+  <title>2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions - 宇宙よりも遠い場所</title>
+  
+  
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.766930ed1c97305199cc21580bac381b1a3f2d8a65af4a06789ea36148053944.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+  <meta property="og:title" content="2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions" />
+<meta property="og:description" content="Link: https://ac.nowcoder.com/acm/contest/7501" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/" />
+<meta property="article:published_time" content="2020-10-26T22:57:15+08:00" />
+<meta property="article:modified_time" content="2020-10-26T22:57:15+08:00" />
+<meta itemprop="name" content="2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions">
+<meta itemprop="description" content="Link: https://ac.nowcoder.com/acm/contest/7501">
+<meta itemprop="datePublished" content="2020-10-26T22:57:15+08:00" />
+<meta itemprop="dateModified" content="2020-10-26T22:57:15+08:00" />
+<meta itemprop="wordCount" content="6104">
+
+
+
+<meta itemprop="keywords" content="acm,算法,题解,xiaomi," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions"/>
+<meta name="twitter:description" content="Link: https://ac.nowcoder.com/acm/contest/7501"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://unpkg.com/muse-player/dist/assets/muse-player.js"></script>
+</head>
+  </head>
+
+  
+  
+
+  <body class="main-center theme-white" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://kirainmoe.com" target="_blank">
+            <img class="img-circle" src="https://kirainmoe.com/avatar.jpg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">宇宙よりも遠い場所</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-friends">
+                <a href="/blog/post/friends/">
+                    <i class="icon icon-link"></i>
+                  <span class="menu-title">Friends</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-guestbook">
+                <a href="/blog/post/guestbook/">
+                    <i class="icon icon-stackexchange"></i>
+                  <span class="menu-title">Guestbook</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/blog/post/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title"> Categories</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/acm/" class="category-list-link">acm</a><span class="category-list-count">14</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/android/" class="category-list-link">android</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/hackintosh/" class="category-list-link">hackintosh</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/icpc/" class="category-list-link">icpc</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/linux/" class="category-list-link">linux</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/react/" class="category-list-link">react</a><span class="category-list-count">6</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/web/" class="category-list-link">web</a><span class="category-list-count">6</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E5%85%B6%E5%AE%83/" class="category-list-link">其它</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E5%89%8D%E7%AB%AF/" class="category-list-link">前端</a><span class="category-list-count">11</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-list-link">学习笔记</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%95%B0%E5%AD%A6/" class="category-list-link">数学</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-list-link">数据结构</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%97%A5%E8%AE%B0/" class="category-list-link">日记</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E6%B8%B8%E6%88%8F/" class="category-list-link">游戏</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E7%A1%AC%E4%BB%B6/" class="category-list-link">硬件</a><span class="category-list-count">5</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E7%AE%97%E6%B3%95/" class="category-list-link">算法</a><span class="category-list-count">16</span></li>
+            <li class="category-list-item"><a style="text-transform: uppercase;" href="https://kirainmoe.com/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" class="category-list-link">自然语言处理</a><span class="category-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/" class="title">2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-10-26 22:57:15 &#43;0800 CST" itemprop="datePublished">2020-10-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/configure-multi-nic-on-linux-using-netplan/" class="title">Linux 下使用 netplan 配置多网卡</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-10-15 13:47:47 &#43;0800 CST" itemprop="datePublished">2020-10-15</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/deeplearning-ai-nlp-lesson-1/" class="title">【从零开始的 NLP】理论篇 L1. 分类和向量空间</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-12 00:58:58 &#43;0800 CST" itemprop="datePublished">2020-07-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/simplex-algorithm/" class="title">【学习笔记】线性规划的单纯形算法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-11 18:35:07 &#43;0800 CST" itemprop="datePublished">2020-02-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://kirainmoe.com/blog/post/opencore-migration-experience/" class="title">OpenCore 引导迁移折腾记录</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 15:08:48 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/"
+    >2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/" class="article-date">
+  <time datetime="2020-10-26 22:57:15 &#43;0800 CST" itemprop="datePublished">2020-10-26</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a class="article-category-link" href="/categories/acm/"> ACM </a>
+  <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/acm/"> acm </a>
+    <a class="article-tag-link" href="/tags/%E7%AE%97%E6%B3%95/"> 算法 </a>
+    <a class="article-tag-link" href="/tags/%E9%A2%98%E8%A7%A3/"> 题解 </a>
+    <a class="article-tag-link" href="/tags/xiaomi/"> xiaomi </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 6104words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 13minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>Link: <a href="https://ac.nowcoder.com/acm/contest/7501">https://ac.nowcoder.com/acm/contest/7501</a></p>
+
+<h1 id="a-intelligent-warehouse">A.Intelligent Warehouse</h1>
+
+<h2 id="题意">题意</h2>
+
+<p>给定一个含有 $n$ 个数的序列 $a_1, a_2, &hellip;,a_n$，从中选出尽可能多的数，使得选出的数中，对于任意两个数 $a_i, a_j$，要么 $a_i$ 是 $a_j$ 的倍数，要么 $a_j$ 是 $a_i$ 的倍数。问最多能选出多少个数满足条件。</p>
+
+<h2 id="思路">思路</h2>
+
+<p>首先统计序列中每个数 $a_i$ 出现的次数记为 $cnt[a[i]]$。</p>
+
+<p>注意到对于任意两个数 $i, j$ ($i &lt; j$，且 $j$ 是 $i$ 的倍数)，如果我们已知选择 $i$ 的条件下，从原序列中最多可以选出 $f[i]$ 个落在区间  $[1, i]$ 的数（一个数可以选择多次）满足条件；</p>
+
+<p>那么选择 $j$ 时，从原序列中就最多可以选出 $f[j] = max(f[j], f[i] + cnt[j])$ 个落在区间 $[1, j]$ 的数满足条件。这个递推式子显然是无后效的。</p>
+
+<p>所以对于 $[1, max(a_i)]$ 中的每个数 $i$，使用上式进行递推即可。递推 $i$ 时如果枚举 $i$ 的所有倍数会超时，我们只需要枚举 $i$ 不超过原序列最大值的素数倍数即可，这是因为任意合数一定能表示成若干个比它小的质数的积，因此每个合数必然是另一个数的质数倍。</p>
+
+<p>时间复杂度 $O(V\log K)$，$V$ 为 $a_i$ 的最大取值，$K$ 为 1e7 内的质数个数。</p>
+
+<h2 id="代码">代码</h2>
+
+<h4 id="写法一">写法一</h4>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+using namespace std;
+
+const int maxn = 200050, maxv = 1e7 + 10, sqrtv = 1e4;
+
+int primes[maxv], cnt[maxv], dp[maxv], n, tot;
+bool np[maxv];
+
+template&lt;class T&gt;void read(T &amp;x) {
+	T a = 0, f = 1;
+	char ch = getchar();
+	while (ch &lt; '0' || ch &gt; '9')
+		f = ch == '-' ? -1 : f, ch = getchar();
+	while (ch &gt;= '0' &amp;&amp; ch &lt;= '9')
+		a = a * 10 + ch - '0', ch = getchar();
+	x = a * f;
+}
+
+void sieve() {
+	np[0] = np[1] = 1;
+	for (int i = 2; i &lt; maxv; i++) {
+		if (!np[i])
+			primes[tot++] = i;
+		for (int j = 0; j &lt; tot &amp;&amp; i * primes[j] &lt; maxv; j++) {
+			np[i * primes[j]] = 1;
+			if (i % primes[j] == 0)
+				break;
+		}
+	}
+}
+
+int main() {
+	sieve(), read(n);
+	int lim = 0, ans = 1;
+	for (int i = 0, x; i &lt; n; i++)
+		read(x), lim = max(x, lim), cnt[x]++;
+	memset(dp, 0, sizeof dp);
+	for (int i = 1; i &lt;= lim; i++) {
+		dp[i] += cnt[i];
+		ans = max(ans, dp[i]);
+		for (int j = 0; j &lt; tot &amp;&amp; i * primes[j] &lt;= lim; j++)
+			dp[i * primes[j]] = max(dp[i * primes[j]], dp[i]);
+	}
+	printf(&quot;%d&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+<h4 id="写法二">写法二</h4>
+
+<p>来自队友，似乎是换了一种方式实现，看不懂，总之贴上就是了。</p>
+
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define N 200010
+#define M 10000010
+#define ll long long
+using namespace std;
+inline int read()
+{
+    int x=0,f=1; char c=getchar();
+    while (c&lt;'0' ||c&gt;'9') {if (c=='-') f=-1; c=getchar();}
+    while (c&gt;='0' &amp;&amp; c&lt;='9') x=x*10+c-'0',c=getchar();
+    return x*f;
+}
+int n;
+int mx[M],f[N];
+int prime[1000010],cnt=0;
+vector&lt;int&gt;fj;
+ll a[N];
+int main()
+{
+    for(int i = 2; i &lt;= 1e4; i++) {
+        bool flag = 0;
+        for (int j = 2; j * j &lt;= i; j++)
+            if (i % j == 0) {
+                flag = 1;
+                break;
+            }
+        if (!flag)
+			prime[++cnt] = i;
+    }
+    n = read();
+    for (int i = 1; i &lt;= n; i++)
+		a[i] = read();
+    sort(a+1, a+1+n);
+    int ans = 0;
+    for (int i = 1;i &lt;= n; i++) {
+        int ai = a[i];
+        f[i] = max(1, mx[1] + 1); 
+		fj.clear();
+        fj.push_back(1);
+        for (int j = 1; j &lt;= cnt; j++) {
+            if (prime[j] &gt; a[i])
+				break;
+            if (a[i] % prime[j] == 0) {
+                ll p = prime[j];
+                int len = fj.size();
+                while (a[i] % prime[j] == 0) {
+                    a[i] /= prime[j];
+                    for (int k = 0; k &lt; len; k++) {
+                        f[i] = max(f[i], mx[fj[k] * p] + 1);
+                        fj.push_back(fj[k] * p);
+                    }
+                    p *= prime[j];
+                }
+            }
+        }
+        if (a[i] &gt; 1)
+			f[i] = max(f[i], mx[ai] + 1);
+        mx[ai] = f[i], ans = max(ans, f[i]);
+    }
+    printf(&quot;%d\n&quot;,ans);
+    return 0;
+}
+</code></pre>
+
+<h1 id="b-intelligent-robot">B. Intelligent Robot</h1>
+
+<h2 id="题意-1">题意</h2>
+
+<p>$n \times m$ 的矩形迷宫中有若干堵墙，用起点为 $(x_{i1}, y_{i1})$，终点为 $(x_{i2}, y_{i2})$ 的线段表示。机器人要从起点 $(x_1, y_1)$ 走到终点 $(x_2, y_2)$，途中可以贴着墙走或碰到墙的边界，但不能够穿过墙体；求从起点到终点的最短路径。</p>
+
+<h2 id="思路-1">思路</h2>
+
+<p>枚举任意两个关键点（关键点即线段的两端点、起点、终点），考虑这两个点是否可以连边：两个点能连边的条件是，这两个点连成的线段，不与任何一条给定的线段规范相交（两条线段规范相交：即两条线段只有一个交点且不为端点），如果两个关键点连成的线段不和其它给定的 $n$ 条线段相交，则将这两个点连一条权值为两点间距的双向边；建完图之后跑 Dijkstra 求最短路即可。</p>
+
+<p>不要忘记检查起点和终点是否可以直接连接；以及每堵墙的两个端点也可以直接连一条权值为两点间距的边。</p>
+
+<h2 id="代码-1">代码</h2>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+ 
+const int maxn = 350;
+const double eps = 1e-8;
+const double inf = (double)(1ll &lt;&lt; 60);
+ 
+inline int dcmp(double x) {
+    if (fabs(x) &lt;= eps)
+        return 0;
+    return x &lt; 0 ? -1 : 1;
+}
+ 
+struct Point {
+    double x, y;
+    Point (double _x = 0, double _y = 0): x(_x), y(_y) {}
+    Point operator + (const Point &amp;b) const {
+        return Point(x + b.x, y + b.y);
+    }
+    Point operator - (const Point &amp;b) const {
+        return Point(x - b.x, y - b.y);
+    }
+    Point operator * (const double c) const {
+        return Point(x * c, y * c);
+    }
+    double operator * (const Point &amp;b) const {
+        return x * b.x + y * b.y;
+    }
+    double operator ^ (const Point &amp;b) const {
+        return x * b.y - y * b.x;
+    }
+    bool operator == (const Point &amp;b) const {
+        return dcmp(x - b.x) == 0 &amp;&amp; dcmp(y - b.y) == 0;
+    }
+    bool operator &lt; (const Point &amp;b) const {
+        return dcmp(x - b.x) &lt; 0 || (dcmp(x - b.x) == 0 &amp;&amp; dcmp(y - b.y) &lt; 0);
+    }
+};
+ 
+struct Wall {
+    Point a, b;
+    Wall() {}
+    Wall(Point _a, Point _b): a(_a), b(_b) {}
+} w[maxn];
+ 
+int head[maxn &lt;&lt; 1], cnt = 1;
+struct Edge {
+    int u, v, next;
+    double w;
+    Edge(int _u = 0, int _v = 0, int _n = 0, double _l = 0): u(_u), v(_v), next(_n), w(_l) {}
+} e[maxn * maxn * 8];
+ 
+typedef Point Vector;
+ 
+#define p1(x) x*2
+#define p2(x) x*2+1
+ 
+bool segmentIntersect(Point a1, Point b1, Point a2, Point b2) {
+    double c1 = (b1 - a1) ^ (a2 - a1), c2 = (b1 - a1) ^ (b2 - a1),
+           c3 = (b2 - a2) ^ (a1 - a2), c4 = (b2 - a2) ^ (b1 - a2);
+    return dcmp(c1) * dcmp(c2) &lt; 0 &amp;&amp; dcmp(c3) * dcmp(c4) &lt; 0;
+}
+ 
+double len(Point x, Point y) {
+    return sqrt((y-x) * (y-x));
+}
+ 
+void add_edge(int u, int v, double len) {
+    e[cnt] = Edge(u, v, head[u], len);
+    head[u] = cnt++;
+    e[cnt] = Edge(v, u, head[v], len);
+    head[v] = cnt++;
+}
+ 
+bool vis[maxn &lt;&lt; 1];
+double dist[maxn &lt;&lt; 1];
+ 
+double dijkstra(int n, int s, int t) {
+    priority_queue&lt;pair&lt;double, int&gt; &gt; pq;
+    memset(vis, 0, sizeof vis);
+    fill(dist, dist + n, inf);
+    dist[s] = 0.00, pq.push(make_pair(0.00, s));
+    while (pq.size()) {
+        int cur = pq.top().second;
+        pq.pop();
+        if (vis[cur])
+            continue;
+        vis[cur] = 1;
+        for (int i = head[cur], y; i; i = e[i].next) {
+            y = e[i].v;
+            if (dist[y] &gt; dist[cur] + e[i].w) {
+                dist[y] = dist[cur] + e[i].w;
+                pq.push(make_pair(-dist[y], y));
+            }
+        }
+    }
+    return dist[t];
+}
+ 
+int main() {
+    int n, m, l;
+    double x1, y1, x2, y2;
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;l);
+    for (int i = 0; i &lt; l + 1; i++) {
+        scanf(&quot;%lf%lf%lf%lf&quot;, &amp;x1, &amp;y1, &amp;x2, &amp;y2);
+        w[i] = Wall(Point(x1, y1), Point(x2, y2));
+    }
+    for (int i = 0; i &lt; l + 1; i++) {
+        for (int j = 0; j &lt; l; j++) {
+            if (i == j)
+                continue;
+            bool f1 = false, f2 = false, f3 = false, f4 = false;
+            for (int k = 0; k &lt; l; k++) {
+                if (i == k || j == k)
+                    continue;
+                if (segmentIntersect(w[i].a, w[j].a, w[k].a, w[k].b))
+                    f1 = 1;
+                if (segmentIntersect(w[i].a, w[j].b, w[k].a, w[k].b))
+                    f2 = 1;
+                if (segmentIntersect(w[i].b, w[j].a, w[k].a, w[k].b))
+                    f3 = 1;
+                if (segmentIntersect(w[i].b, w[j].b, w[k].a, w[k].b))
+                    f4 = 1;
+            }
+            if (!f1) add_edge(p1(i), p1(j), len(w[i].a, w[j].a));
+            if (!f2) add_edge(p1(i), p2(j), len(w[i].a, w[j].b));
+            if (!f3) add_edge(p2(i), p1(j), len(w[i].b, w[j].a));
+            if (!f4) add_edge(p2(i), p2(j), len(w[i].b, w[j].b));
+        }
+        if (i != l)
+            add_edge(p1(i), p2(i), len(w[i].a, w[i].b));
+    }
+    bool flag = false;
+    for (int i = 0; i &lt; l; i++) {
+        if (segmentIntersect(w[i].a, w[i].b, w[l].a, w[l].b)) {
+            flag = true;
+            break;
+        }
+    }
+    if (!flag)
+        add_edge(p1(l), p2(l), len(w[l].a, w[l].b));
+    double ans = dijkstra((l + 1) * 2, p1(l), p2(l));
+    printf(&quot;%.4lf&quot;, ans);
+     
+    return 0;
+}
+</code></pre>
+
+<h1 id="c-smart-browser">C. Smart Browser</h1>
+
+<h2 id="题意-2">题意</h2>
+
+<p>给一串小写字母组成的字符串，计算形状 <code>/\</code> 在 <code>w</code> 和连续的 <code>w</code> 之间出现的次数。</p>
+
+<h2 id="思路-2">思路</h2>
+
+<p>签到。一个 <code>w</code> 会贡献 1 个答案，两个 <code>w</code> 一起出现会多贡献一个答案，所以每次遇到 <code>w</code> 时判断它的前一个是不是 <code>w</code>，如果是答案 +2，否则答案 +1。</p>
+
+<h2 id="代码-2">代码</h2>
+
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+char str[100010]; 
+int main() {
+	scanf(&quot;%s&quot;, str);
+	int len = strlen(str);
+	int ans = 0;
+	for (int i = 0; i &lt; len; i++) {
+		if (str[i] == 'w') {
+			if (i == 0)
+                ans=1;
+			else {
+				ans++;
+				if (str[i-1] == 'w')
+                    ans++;	
+			}
+		}
+	}
+	cout&lt;&lt; ans &lt;&lt;endl;
+} 
+</code></pre>
+
+<h1 id="d-router-mesh">D. Router Mesh</h1>
+
+<h2 id="题意-3">题意</h2>
+
+<p>给定一个 $n$ 个点，$m$ 条边的无向图，分别计算删除编号为 $1, 2, &hellip;, n$ 的点时，图中还剩下多少个连通块。</p>
+
+<h2 id="思路-3">思路</h2>
+
+<p>要解决这道题需要对 Tarjan 有一定的理解。</p>
+
+<p>考虑使用 Tarjan 求无向图的割点时，$low[i]$ 的意义为：从节点 $i$ 及其 DFS 子树出发，能够回溯到的最早的位于栈中的节点的 dfn 值（在栈中的元素显然构成一个连通分量）；</p>
+
+<p>如果某个点 $u$ 和边 $(u, v)$ 下一个节点 $v$ 满足 $low[v] \ge dfn[u]$，则说明 $u$ 是一个割点；否则 $v$ 一定能通过其它路径和 $u$ 原先所在的连通分量中连通。</p>
+
+<p>从另一个角度而言，如果满足了 $low[v] \ge dfn[u]$，那么把 $u$ 删去后新增的连通块数量就会 +1，这个考虑一下 DFS 的性质就不难证明。所以我们在缩点的过程中统计删去每个点后新增的连通块数量 $cnt[i]$，然后再求一个未删点时总的连通块数量 $sum$，那么最终每个点的答案就是 $sum + cnt[i] - 1$.</p>
+
+<h2 id="代码-3">代码</h2>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn = 300050;
+
+vector&lt;int&gt; G[maxn];
+
+namespace CutPoint {
+	int dcnt = 0, root = 0,sum=0;
+	int dfn[maxn], low[maxn],cnt[maxn];
+	bool iscut[maxn];
+	vector&lt;int&gt; P;
+	void tarjan(int x) {
+		dfn[x] = low[x] = ++dcnt;
+		int child_count = 0;
+		for (unsigned i = 0; i &lt; G[x].size(); i++) {
+			int y = G[x][i];
+			if (!dfn[y]) {
+				tarjan(y);
+				low[x] = min(low[x], low[y]);
+				if (low[y] &gt;= dfn[x]) {
+					child_count++, cnt[x]++;
+					if (x != root || child_count &gt; 1)
+						iscut[x] = 1;
+				}
+			} else {
+				low[x] = min(low[x], dfn[y]);
+			}
+		}
+	}
+	void solve(int n) {
+		for (int i = 1; i &lt;= n; i++)
+            cnt[i] = 1;
+		sum = 0;
+		for (int i = 1; i &lt;= n; i++)
+			if (!dfn[i])
+				sum++, cnt[i] = 0, root = i, tarjan(i);
+		for (int i = 1; i &lt;= n; i++)
+			printf(&quot;%d &quot;,sum + cnt[i] - 1);
+	}
+}
+
+using CutPoint::solve;
+using CutPoint::iscut;
+using CutPoint::low;
+
+int main() {
+	int n, m;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for (int i = 0, u, v; i &lt; m; i++) {
+		scanf(&quot;%d%d&quot;, &amp;u, &amp;v);
+		G[u].emplace_back(v);
+		G[v].emplace_back(u);
+	}
+	solve(n);
+	return 0;
+}
+
+</code></pre>
+
+<h1 id="e-phone-network">E. Phone Network</h1>
+
+<h2 id="题意-4">题意</h2>
+
+<p>有一个长度为 $n$ 的数列，$a_i$ 的取值可能是 $[1, m]$ 中的整数。对于所有的整数 $i \in [1, m]$，求最短的区间 $[L_i, R_i]$，使得 $[1, i]$ 这 $i$ 个数字在 $[L_i, R_i]$ 中均出现过，输出最短的区间长度。</p>
+
+<h2 id="思路-4">思路</h2>
+
+<p>为了求出满足条件的最短区间，我们首先需要知道对于每个不同的 $i$，满足条件的区间是那些。为此我们需要维护一个量 $R_{i, l}$，表示以 $l$ 为左端点、包含 $[1, i]$ 中所有数的最短区间的右端点。</p>
+
+<p>为了求 $R_{i, l}$，我们首先预处理出每个数 $i$ 在原序列中的所有出现位置 $pos[i]$。但直接暴力计算每个 $R_{i, l}$ 的复杂度是不可接受的，所以我们考虑用数据结构来维护 $R_{i, l}$。</p>
+
+<p>同时我们注意到 $R_{i, l}$ 具有单调性 —— 当 $i, l$ 增大时， $R_{i, l}$ 一定是非严格单调递增的。因为：</p>
+
+<ul>
+<li>如果以 $l$ 为左端点、包含 $[1, i]$ 中所有数的最短区间右端点是 $R_{i, l}$，那么 $R_{i+1, l}$ 要么比 $R_{i, l}$ 更大（说明 $i+1$ 出现在当前区间的更后面），要么和 $R_{i, l}$ 一样长（$i+1$ 出现在这个区间当中）。</li>
+<li>如果以 $l$ 为左端点时的答案为 $R_{i, l}$，此时以 $l+1$ 为左端点，相当于从区间中删除了 $a_l$，因此区间右端点只可能会右移或不变。</li>
+</ul>
+
+<p>假设我们已经计算了 $R_{i, 1}$ &hellip; $R_{i, n}$ 的值，要计算 $R_{i+1, 1} &hellip; R_{i+1, n}$。我们已经知道了数 $i+1$ 的在原序列中的全部出现位置，那么对于相邻的两次出现，$p_i, p_j$，对于所有的 $l \in [p_i + 1, p_j]$，就有 $R_{i+1, l} = max(R_{i, l}, p_j)$.</p>
+
+<p><strong>我们可以用线段树在区间 $[1, n]$ 上维护 $R_{i, l}$：</strong></p>
+
+<p>假设线段树中当前维护的是 $R_{i, *}$ 此时要计算 $R_{i+1, *}$， 因为 $R_{i, l}$ 是单调不减的，那么对于区间 $[p_j + 1, p_{j+1}]$，我们在线段树上二分查找到第一个位置 $pos$，使得 $R_{i, pos}$ 到 $R_{i, p_j}$ 的值都大于等于 $p_{j+1}$，然后对 $[p_j + 1, pos]$ 这段 $R$ 值小于 $p<em>{j+1}$ 的区间，使用线段树区间赋值为 $p</em>{j+1}$。</p>
+
+<p>特别地，对于 $i+1$ 的最后一次出现 $p$，如果 $p &lt; n$，那么我们可以将 $[p+1, n]$ 区间赋值为 $+\infty$。对 $i+1$ 的所有的出现位置进行区间赋值操作之后，就得到了 $R_{i+1, *}$。</p>
+
+<p>但是到这里还没有完，最后我们要的答案是 $\min {R_{i+1, l} - l + 1}$，而我们要怎么求这个 min 值呢？</p>
+
+<p>注意到每次赋值的时候，都会将一段区间 $l \in [p_j+1, pos]$ 的 $R_{i+1, l}$ 更新为 $p_{j+1}$，那么这段区间的最优答案其实就是选择从 $pos$ 到 $p_{j+1}$ 这段区间（在右端点相同的情况下，尽可能选择右边的左端点会使得区间长度更小）。因此我们对线段树的每个节点再维护一个答案 $res$，每次赋值时更新当前节点答案为 $res - r + 1$（$r$ 为当前节点所代表区间的右端点）即可，最后根节点的 $res$ 值即为答案。</p>
+
+<p><strong>因此我们需要一个支持区间赋值、区间取最小值线段树来完成以上操作</strong>。总时间复杂度为 $O(n\log n)$.</p>
+
+<h2 id="代码-4">代码</h2>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int maxn = 200050;
+const int inf = 0x3f3f3f3f;
+
+int a[maxn];
+vector&lt;int&gt; p[maxn];
+
+class SegTree {
+private:
+	int mn[maxn &lt;&lt; 2], res[maxn &lt;&lt; 2], lp[maxn &lt;&lt; 2], rp[maxn &lt;&lt; 2], asgn[maxn &lt;&lt; 2];
+public:
+	#define lc (rt &lt;&lt; 1)
+	#define rc (rt &lt;&lt; 1 | 1)
+	void pushUp(int rt) {
+		mn[rt] = min(mn[lc], mn[rc]);
+		res[rt] = min(res[lc], res[rc]);
+	}
+	void pushDown(int rt) {
+		if (!asgn[rt]) 
+			return;
+		asgn[lc] = asgn[rc] = asgn[rt];
+		mn[lc] = mn[rc] = asgn[rt];
+		res[lc] = mn[lc] - rp[lc] + 1;
+		res[rc] = mn[rc] - rp[rc] + 1;
+		asgn[rt] = 0;
+	}
+	void build(int rt, int l, int r) {
+		lp[rt] = l, rp[rt] = r;
+		if (l == r) {
+			mn[rt] = 0, res[rt] = inf, asgn[rt] = 0;
+			return;
+		}
+		int mid = (l + r) &gt;&gt; 1;
+		build(lc, l, mid), build(rc, mid + 1, r);
+		pushUp(rt);
+	}
+	void assign(int rt, int from, int to, int val) {
+		if (lp[rt] &gt; to or rp[rt] &lt; from)
+			return;
+		if (from &lt;= lp[rt] and rp[rt] &lt;= to) {
+			mn[rt] = val, asgn[rt] = val;
+			res[rt] = val - rp[rt] + 1;
+			return;
+		}
+		pushDown(rt);
+		assign(lc, from, to, val), assign(rc, from, to, val);
+		pushUp(rt);
+	}
+	int search(int rt, int from, int to, int val) {
+		if (lp[rt] &gt; to or rp[rt] &lt; from)
+			return -1;
+		if (lp[rt] == rp[rt])
+			return mn[rt] &lt;= val ? lp[rt] : -1;
+		pushDown(rt);
+		int pos = -1;
+		if (mn[rc] &lt;= val)
+			pos = search(rc, from, to, val);
+		if (pos == -1)
+			pos = search(lc, from, to, val);
+		return pos;
+	}
+	int query() {
+		return res[1];
+	}
+} T;
+
+
+template&lt;class T&gt;void read(T &amp;x) {
+	T a = 0, f = 1;
+	char ch = getchar();
+	while (ch &lt; '0' || ch &gt; '9')
+		f = ch == '-' ? -1 : f, ch = getchar();
+	while (ch &gt;= '0' &amp;&amp; ch &lt;= '9')
+		a = a * 10 + ch - '0', ch = getchar();
+	x = a * f;
+}
+
+int main() {
+	int n, m;
+	read(n), read(m);
+	for (int i = 1; i &lt;= n; i++)
+		read(a[i]), p[a[i]].emplace_back(i);
+	for (int i = 1; i &lt;= m; i++)
+		sort(p[i].begin(), p[i].end());
+		
+	T.build(1, 1, n);
+	for (int i = 1; i &lt;= m; i++) {
+		int j, l;
+		for (j = 0, l = 1; j &lt; (int)p[i].size(); j++) {
+			int r = p[i][j];
+			int pos = T.search(1, l, r, r);
+			T.assign(1, l, pos, r);
+			l = r + 1;
+		}
+		if (p[i][p[i].size()-1] != n)
+			T.assign(1, l, n, inf);
+		printf(&quot;%d &quot;, T.query());
+	}
+	return 0;
+}
+</code></pre>
+
+<h1 id="f-design-problemset">F. Design Problemset</h1>
+
+<h2 id="题意-5">题意</h2>
+
+<p>有 $k$ 种问题，第 $i$ 种问题的个数为 $a_i$ 个。你希望将这些问题分组成若干个问题集合，使得每个问题集满足以下条件：</p>
+
+<ul>
+<li>每个集合的问题总个数在区间 $[L, R]$ 内</li>
+<li>每个集合中，第 $i$ 种问题的数量在区间 $[l_i, r_i]$ 内</li>
+<li>每个问题只能用一次</li>
+</ul>
+
+<p>求最多能组成多少个不同的问题集。</p>
+
+<h2 id="思路-5">思路</h2>
+
+<p>二分答案+贪心判定。首先能构成的问题集合数量落在区间 $[0, \sum a_i]$ 中，而且满足单调性，即：假如能用这些给定的问题构成 $x+1$ 集合，那么也一定能用它们构成 $x$ 个集合（扔掉一个集合不要就行了）。</p>
+
+<p>所以我们二分这个区间，每次取中值 $mid$，判断是否能够构成 $mid$ 个集合。判断的时候，我们可以首先贪心地将每组问题的 $l_i$ 平摊到每个集合中，如果 $l_i \times mid &lt; a_i$，显然无法构成 $mid$ 个集合；如果 $\sum l_i &gt; R$，同样也无法构成；如果 $L \le \sum l_i \le R$ 则可以构成。</p>
+
+<p>接下来考虑 $\sum l_i &lt; L$ 的情况，此时我们还能再为每个集合分配剩下还有配额可用的问题：枚举问题种类 $i$，第 $i$ 类问题中可以分配的数量还剩下 $r = \min \{(r_i - l_i) \times mid, a_i - l_i \times mid \}$。</p>
+
+<p>然后我们将这 $r$ 个问题每次一个放到 $mid$ 个集合中，把这 $r$ 个问题放完后，有 $mid - (r \mod mid)$ 集合增加了 $\lfloor \frac{r}{mid} \rfloor$ 个问题，有 $r \mod mid$ 个集合增加了 $\lfloor \frac{r}{mid} \rfloor + 1$ 个问题，使用类似加法进位的思路模拟即可。</p>
+
+<p>最后这道题会爆 <code>long long</code>，需要用 <code>unsigned long long</code> 或者 <code>__int128</code> 才能通过。</p>
+
+<p>二分答案的时间复杂度为 $O(\log \sum a_i)$，每次判断的时间复杂度为 $O(k)$，总时间复杂度为 $O(k \log \sum a_i)$.</p>
+
+<h2 id="代码-5">代码</h2>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+using ll = unsigned long long;
+const int maxn = 1000050;
+int k;
+ll L, R, l[maxn], r[maxn], a[maxn];
+
+bool check(ll ans) {
+	ll tot = 0;
+	for (int i = 0; i &lt; k; i++) {
+		if (a[i] &lt; ans * l[i])
+			return false;
+		tot += l[i];
+	}
+	if (tot &gt; R)
+		return false;
+	else if (tot &lt; L) {
+		ll rem = L - tot, xx = 0, cur = 0;
+		for (int i = 0; i &lt; k; i++) {
+			ll lm = min((r[i] - l[i]) * ans, a[i] - l[i] * ans);
+			xx += lm;
+			cur += xx / ans;
+			xx %= ans;
+			if (cur &gt;= rem)
+				return true;
+		}
+		return false;
+	}
+	else
+		return true;
+}
+int main() {
+	ll lim = 0, sum = 0;
+	cin &gt;&gt; k &gt;&gt; L &gt;&gt; R;
+	for (int i = 0; i &lt; k; i++)
+		cin &gt;&gt; a[i], sum += a[i];
+	lim = sum;
+	for (int i = 0; i &lt; k; i++)
+		cin &gt;&gt; l[i], cin &gt;&gt; r[i];
+	ll x = 0, y = lim, ans = 0;
+	while (x + 1 &lt; y) 
+	{
+		ll mid = (x + y) &gt;&gt; 1;
+		if (check(mid)) {
+			x = mid;
+		} else
+			y = mid;
+	}
+	if (check(y))
+		cout &lt;&lt; y &lt;&lt; endl;
+	else
+		cout &lt;&lt; x &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+
+<h1 id="g-tree-projection">G. Tree Projection</h1>
+
+<h2 id="题意-6">题意</h2>
+
+<p>给定两个 $1, &hellip;, n$ 的排列 $A$ 和 $B$，构造一棵树，使得这棵树以 $A_1$ 为根时的拓扑序为 $A$，以 $B_1$ 为根时 DFS 序为 $B$.</p>
+
+<h2 id="思路-6">思路</h2>
+
+<p>这样的树一定存在。记录排列 $B$ 中的每个数 $B_i$ 在 $A$ 排列中的位置，记为 $t_{B_i}$，初始时令根节点 $rt$ 为 $B_1$。</p>
+
+<p>枚举 $B_2, &hellip;, B_n$ 中的每个点，然后将它与 $rt$ 连边。如果 $t_{B_i} &lt; t_{rt}$，就换根令 $B_i$ 作为新根。这样构造出来的树就一定满足条件。</p>
+
+<p>证明：</p>
+
+<blockquote>
+<p>考虑排列 $A$，对于每一条边 $(rt, B_i)$，可以知道 $rt$ 和 $B_i$ 谁在排列 $A$ 中更靠前，谁就离 $A_1$ 更近。也就是说，在 $A$ 中靠前的点是靠后的点的父亲。<br />
+考虑排列 $B$，当 $B_1$ 为根时，对于 $i \ge 2, B_i$ 要么是叶子节点，要么 $B_{i+1}&hellip;B_n$ 都可以是 $B_{i}$ 的子孙。也就是说每个点的子树都在排列 $B$ 的某个子区间中。</p>
+</blockquote>
+
+<h2 id="代码-6">代码</h2>
+
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+using namespace std;
+
+const int maxn = 200050;
+
+int a[maxn], b[maxn], topo[maxn];
+vector&lt;pair&lt;int, int&gt;&gt; e;
+
+template&lt;class T&gt;void read(T &amp;x) {
+	T a = 0, f = 1;
+	char ch = getchar();
+	while (ch &lt; '0' || ch &gt; '9')
+		f = ch == '-' ? -1 : f, ch = getchar();
+	while (ch &gt;= '0' &amp;&amp; ch &lt;= '9')
+		a = a * 10 + ch - '0', ch = getchar();
+	x = a * f;
+}
+
+int main() {
+	int n;
+	read(n);
+	for (int i = 0; i &lt; n; i++)
+		read(a[i]), topo[a[i]] = i + 1;
+	for (int i = 0; i &lt; n; i++)
+		read(b[i]);
+	int rt = b[0];
+	for (int i = 1; i &lt; n; i++) {
+		e.emplace_back(make_pair(rt, b[i]));
+		if (topo[rt] &gt; topo[b[i]])
+			rt = b[i];
+	}
+	printf(&quot;YES\n&quot;);
+	for (unsigned i = 0; i &lt; e.size(); i++)
+		printf(&quot;%d %d\n&quot;, e[i].first, e[i].second);
+	return 0;
+}
+</code></pre>
+
+<h1 id="h-grouping">H. Grouping</h1>
+
+<h2 id="题意-7">题意</h2>
+
+<p>将 $2n$ 个数分成 $n$ 组，定义一种分组方案的权值为：所有组的方差之和。求分组方案的权值期望，答案对 998244353 取模。</p>
+
+<h2 id="思路-7">思路</h2>
+
+<p>不会（理直气壮）。</p>
+
+<h1 id="i-walking-machine">I. Walking Machine</h1>
+
+<h2 id="题意-8">题意</h2>
+
+<p>给一个 $n \times m$ 的迷宫，每个格子只能向 W, A, S, D 中一个确定的方向移动，问从多少个格子出发最终会走出边界。</p>
+
+<h2 id="思路-8">思路</h2>
+
+<p>签到难度的 DFS，打好访问标记即可。</p>
+
+<h2 id="代码-7">代码</h2>
+
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+inline int read()
+{
+	int x=0,f=1; char c=getchar();
+	while (c&lt;'0' ||c&gt;'9') {if (c=='-') f=-1; c=getchar();}
+	while (c&gt;='0' &amp;&amp; c&lt;='9') x=x*10+c-'0',c=getchar();
+	return x*f;
+}
+int n, m, ans, cnt;
+int flag[1010][1010];
+char str[1010][1010];
+
+bool dfs(int x, int y) {
+	if (x &lt;= n &amp;&amp; x &gt; 0 &amp;&amp; y &lt;= m &amp;&amp; y &gt; 0) {
+		if (flag[x][y]) {
+			if (flag[x][y] == 2) {
+				ans += cnt;
+				return 1;
+			}
+			return 0;
+		}
+		flag[x][y] = 1, cnt++;
+	}
+	else {
+		ans += cnt;
+		return 1;
+	}
+	bool xx;
+	if (str[x][y] == 'S') xx = dfs(x+1,y);
+	if (str[x][y] == 'W') xx = dfs(x-1,y);
+	if (str[x][y] == 'A') xx = dfs(x,y-1);
+	if (str[x][y] == 'D') xx = dfs(x,y+1);
+	if (xx)
+		flag[x][y] = 2;
+	return xx;
+}
+int main() {
+	n = read(); m = read();
+	for (int i = 1; i &lt;= n; i++)
+		scanf(&quot;%s&quot;,str[i] + 1);
+	for (int i = 1; i &lt;= n; i++)
+		for (int j = 1; j &lt;= m; j++)
+			if (!flag[i][j])
+				cnt = 0, dfs(i, j);		
+	cout &lt;&lt; ans;
+	return 0;
+}
+</code></pre>
+
+<h1 id="j-matrix-subtraction">J. Matrix Subtraction</h1>
+
+<h2 id="题意-9">题意</h2>
+
+<p>给定一个 $n \times m$ 的矩阵 $M$，矩阵中的每个位置都有一个权值 $c_{ij}$。每次你可以选择一个 $a \times b$ 大小的子矩阵，将这个子矩阵中所有的点权值 -1. 问经过若干次操作后，能否将矩阵 $M$ 变为全 0 矩阵。</p>
+
+<h2 id="思路-9">思路</h2>
+
+<p>用二维树状数组维护矩阵，初始时矩阵全 0，从左上角按行序枚举每个点 $(i, j)$，对大小为 $a \times b$ 的子矩阵区间加上 $c_{ij} - query(i, j)$，最后判断树状数组中的值与 $M$ 是否相同即可。如果更新的时候遇到了负数则可以直接退出回答不能。</p>
+
+<h2 id="代码-8">代码</h2>
+
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define N 1010
+using namespace std;
+inline int read()
+{
+	int x=0,f=1; char c=getchar();
+	while (c&lt;'0' ||c&gt;'9') {if (c=='-') f=-1; c=getchar();}
+	while (c&gt;='0' &amp;&amp; c&lt;='9') x=x*10+c-'0',c=getchar();
+	return x*f;
+}
+class T
+{
+	public:
+		int c[N][N];
+		T(){memset(c,0,sizeof(c));}
+		void init(){memset(c,0,sizeof(c));} 
+		int lowbit(int x){return x&amp;(-x);}
+		void add(int x,int y,int num,int n,int m)
+		{
+			for (int i=x;i&lt;=n;i+=lowbit(i))
+				for (int j=y;j&lt;=m;j+=lowbit(j))
+					c[i][j]+=num;
+		}
+		int GetSum(int x,int y)
+		{
+			int total=0;
+			for (int i=x;i&gt;0;i-=lowbit(i))
+				for (int j=y;j&gt;0;j-=lowbit(j))
+					total+=c[i][j];
+			return total;
+		}
+		int query(int x1,int y1,int x2,int y2){
+			return GetSum(x2,y2)-GetSum(x1-1,y2)-GetSum(x2,y1-1)+GetSum(x1-1,y1-1);
+		}
+}T;
+int n,m,a,b;
+int s[N][N];
+int Test;
+int main()
+{
+	Test=read();
+	while (Test--)
+	{ 
+		n=read(); m=read(); a=read(); b=read();
+		T.init();
+		for (int i=1;i&lt;=n;i++)
+			for (int j=1;j&lt;=m;j++)
+				s[i][j]=read();
+		bool flag=1;
+		for (int i=1;i+a-1&lt;=n;i++)
+			for (int j=1;j+b-1&lt;=m;j++)
+			{
+				int x=T.query(1,1,i,j);
+				if (s[i][j]&lt;x)
+				{
+					flag=0;
+					break;
+				}
+				T.add(i,j,s[i][j]-x,n,m);
+				T.add(i,j+b,-(s[i][j]-x),n,m);
+				T.add(i+a,j,-(s[i][j]-x),n,m);
+				T.add(i+a,j+b,s[i][j]-x,n,m);
+			}
+		for (int i=1;i&lt;=n;i++)
+			for (int j=1;j&lt;=m;j++)
+			{
+				int x=T.query(1,1,i,j);
+				if (x!=s[i][j])
+				{
+					flag=0;
+					break;
+				}
+			}
+		if (flag) printf(&quot;^_^\n&quot;); else printf(&quot;QAQ\n&quot;);
+	} 
+}
+</code></pre>
+
+<h1 id="k-sqrt-approaching">K. Sqrt Approaching</h1>
+
+<h2 id="题意-10">题意</h2>
+
+<p>给定三个巨大的整数 $A, B, n$，找到两个整数 $C, D$ 满足 $(BC-AD)(C-D\sqrt{n}) &lt; 0$.</p>
+
+<h2 id="思路-10">思路</h2>
+
+<p>假设 $\frac{A}{B} &lt; \sqrt{n}$， 将式子变形成 $\frac{A}{B} &lt; \frac{C}{D} &lt; \sqrt{n}$ 的形式，然后……总之经过各种放缩之后可以得到 $C = n \times (A+B)$，$D = n \times B + A$，然后用 Python 或者 Java 的大整数整整就过了……了……</p>
+
+<h2 id="代码-9">代码</h2>
+
+<pre><code class="language-python">a = int(input())
+b = int(input())
+n = int(input())
+print(n * (a + b))
+print(n * b + a)
+</code></pre>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>文章链接：</strong>
+      <a href="https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/" title="2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions" target="_blank" rel="external">https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>许可协议：</strong><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="external">CC-BY-NC-SA 4.0 国际</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://kirainmoe.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://kirainmoe.com/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://kirainmoe.com" target="_blank"><span class="text-dark">Yume Maruyama</span><small class="ml-1x"></small></a></h3>
+        <div>まんまるお山に彩りを✨~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+    <div id="vcomments"></div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://kirainmoe.com/blog/post/configure-multi-nic-on-linux-using-netplan/" title="Linux 下使用 netplan 配置多网卡"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/kirainmoe" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://kirainmoe.com/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="http://weibo.com/returnnn" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2020
+    宇宙よりも遠い場所
+    <div class="publishby">
+        Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/cpp.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/java.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/kirainmoe.com\/',
+            CONTENT_URL: 'https:\/\/kirainmoe.com\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine"></script>
+<script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail';
+    meta = meta.split(',').filter(function (item) {
+        return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+        el: '#vcomments',
+        verify: true ,
+        notify: true ,
+        appId: 'M2EXNAMR5IP0Klrd9CyjJmRU-gzGzoHsz',
+        appKey: 'BAtmuQAdkaxDvaipyEKDw9NT',
+        placeholder: '留下评论...',
+        avatar: 'mm',
+        meta: meta,
+        pageSize: '10' || 10,
+        visitor: false 
+});
+</script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111347233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

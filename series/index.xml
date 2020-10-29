@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>2020 ICPC Xiaomi (Qualification Round 1) - Part Solutions</title>
+      <link>https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/</link>
+      <pubDate>Mon, 26 Oct 2020 22:57:15 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/2020-icpc-xiaomi-contest-qualification-round-1/</guid>
+      <description>&lt;p&gt;Link: &lt;a href=&#34;https://ac.nowcoder.com/acm/contest/7501&#34;&gt;https://ac.nowcoder.com/acm/contest/7501&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Linux 下使用 netplan 配置多网卡</title>
       <link>https://kirainmoe.com/blog/post/configure-multi-nic-on-linux-using-netplan/</link>
       <pubDate>Thu, 15 Oct 2020 13:47:47 +0800</pubDate>
@@ -208,15 +217,6 @@
 &lt;p&gt;EFI 配置文件替换教程参见 &lt;a href=&#34;https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B&#34;&gt;GitHub Wiki&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;以下内容可能已经过时。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势</title>
-      <link>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</link>
-      <pubDate>Tue, 01 Jan 2019 20:18:50 +0800</pubDate>
-      
-      <guid>https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/</guid>
-      <description>&lt;p&gt;Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达&lt;s&gt;一半&lt;/s&gt;的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。&lt;/p&gt;</description>
     </item>
     
   </channel>
