@@ -31,30 +31,26 @@
 
 
   
-  <meta name="generator" content="Hugo 0.76.5 with theme pure" />
+  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
   <title>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势 - 宇宙よりも遠い場所</title>
   
   
-  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.766930ed1c97305199cc21580bac381b1a3f2d8a65af4a06789ea36148053944.css">
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.24c2ec8a0b80f65672b0654e875332dacecfbdbd27f17845d3a3cd9f3df8e252.css">
   
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
   <meta property="og:title" content="为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势" />
 <meta property="og:description" content="Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达一半的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/" />
-<meta property="article:published_time" content="2019-01-01T20:18:50+08:00" />
-<meta property="article:modified_time" content="2019-01-01T20:18:50+08:00" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/synaptics-touchbar-windows-precision/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2019-01-01T20:18:50&#43;08:00" />
+<meta property="article:modified_time" content="2019-01-01T20:18:50&#43;08:00" />
+
 <meta itemprop="name" content="为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势">
-<meta itemprop="description" content="Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达一半的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。">
-<meta itemprop="datePublished" content="2019-01-01T20:18:50+08:00" />
-<meta itemprop="dateModified" content="2019-01-01T20:18:50+08:00" />
+<meta itemprop="description" content="Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达一半的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。"><meta itemprop="datePublished" content="2019-01-01T20:18:50&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-01T20:18:50&#43;08:00" />
 <meta itemprop="wordCount" content="845">
-
-
-
-<meta itemprop="keywords" content="touchpad,windows,windows precision," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="touchpad,windows,windows precision," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势"/>
 <meta name="twitter:description" content="Windows Precision 是 Microsoft 在 Windows 10 新增的一系列触摸板手势。笔记本有一块 Windows Precision 触摸板时，可以使用 Windows 自带的三指、四指手势，获得 MacBook 触摸板高达一半的优秀体验。现在市面上的新笔记本，一般都适配了 Windows Precision；而老版的笔记本一般不支持，只能通过触摸板厂商提供的驱动来获得十分有限的体验。然而，如果你正在使用的触摸板是 Synaptics 家的定点装置，那么通过更新驱动就可以获得 Windows Precision 特性。"/>
 
@@ -403,7 +399,7 @@
 </ul>
   <div class="copyright">
     &copy;2016  -
-    2020
+    2021
     宇宙よりも遠い場所
     <div class="publishby">
         Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
@@ -438,8 +434,8 @@
     })
     hljs.initHighlightingOnLoad();
 </script>
-<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
-<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+<script src="https://kirainmoe.com/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
 
 <script>
     (function (window) {
@@ -457,7 +453,7 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({

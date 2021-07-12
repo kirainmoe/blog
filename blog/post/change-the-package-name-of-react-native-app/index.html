@@ -31,11 +31,11 @@
 
 
   
-  <meta name="generator" content="Hugo 0.76.5 with theme pure" />
+  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
   <title>修改 React-Native Android App 包名 - 宇宙よりも遠い場所</title>
   
   
-  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.766930ed1c97305199cc21580bac381b1a3f2d8a65af4a06789ea36148053944.css">
+  <link rel="stylesheet" href="https://kirainmoe.com/css/style.min.24c2ec8a0b80f65672b0654e875332dacecfbdbd27f17845d3a3cd9f3df8e252.css">
   
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
@@ -43,20 +43,16 @@
 <meta property="og:description" content="不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。
 不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/" />
-<meta property="article:published_time" content="2017-02-17T17:31:03+00:00" />
-<meta property="article:modified_time" content="2017-02-17T17:31:03+00:00" />
+<meta property="og:url" content="https://kirainmoe.com/blog/post/change-the-package-name-of-react-native-app/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2017-02-17T17:31:03&#43;00:00" />
+<meta property="article:modified_time" content="2017-02-17T17:31:03&#43;00:00" />
+
 <meta itemprop="name" content="修改 React-Native Android App 包名">
 <meta itemprop="description" content="不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。
-不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。">
-<meta itemprop="datePublished" content="2017-02-17T17:31:03+00:00" />
-<meta itemprop="dateModified" content="2017-02-17T17:31:03+00:00" />
+不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。"><meta itemprop="datePublished" content="2017-02-17T17:31:03&#43;00:00" />
+<meta itemprop="dateModified" content="2017-02-17T17:31:03&#43;00:00" />
 <meta itemprop="wordCount" content="1342">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="修改 React-Native Android App 包名"/>
 <meta name="twitter:description" content="不知道是为什么（大概是依赖太多？），每次执行 react-native init 创建新项目的时候，总是要等个将近 10 分钟的样子…… 对于初学者来说，需要在短时间内创建好多好多好多的项目，这样每次 init 就要浪费好长的时间。用 verbose 模式一看，其实 react-native init 的过程中大部分时间是在安装 node_modules 文件夹里的依赖，那么如果每次要创建新项目的时候保留 node_modules 文件夹，只是复制一份纯净的 android, ios, index.android.js 和 index.ios.js 会省很多的时间。
 不过众所周知的是即使这样做的话，如果不做改动的话，这些新项目的 package name 都是相同的，在同一台设备中只能存在一个唯一包名的 App。搜索了一下 React Native 改包名 一类的关键词，找到了一些结果，好像很有道理的样子，照做之后兴高采烈地 react-native run-android 的时候……各种编译出错。于是就在这个基础上，自己踩了一些坑，最后总结出了修改包名的完整过程。"/>
@@ -439,7 +435,7 @@ app/build/source/BuildConfig/Build Varients/package name/BuildConfig
 </ul>
   <div class="copyright">
     &copy;2016  -
-    2020
+    2021
     宇宙よりも遠い場所
     <div class="publishby">
         Theme <a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> Pure</a> by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>
@@ -474,8 +470,8 @@ app/build/source/BuildConfig/Build Varients/package name/BuildConfig
     })
     hljs.initHighlightingOnLoad();
 </script>
-<script src="https://kirainmoe.com/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
-<script src="https://kirainmoe.com/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+<script src="https://kirainmoe.com/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://kirainmoe.com/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
 
 <script>
     (function (window) {
@@ -493,7 +489,7 @@ app/build/source/BuildConfig/Build Varients/package name/BuildConfig
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script type="text/javascript" src="https://kirainmoe.com/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({
