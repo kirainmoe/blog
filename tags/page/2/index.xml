@@ -5,10 +5,26 @@
     <link>https://kirainmoe.com/tags/</link>
     <description>Recent content in Tags on 宇宙よりも遠い場所</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 26 Oct 2020 22:57:15 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 Jul 2021 22:25:28 +0800</lastBuildDate>
     
         <atom:link href="https://kirainmoe.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>神舟战神 Z7-KP7GZ 等同方系列机型 macOS 安装指北</title>
+      <link>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</link>
+      <pubDate>Wed, 23 Jan 2019 20:14:54 +0800</pubDate>
+      
+      <guid>https://kirainmoe.com/blog/post/guide-on-hasee-z7-kp7gz-hackintosh-macos-mojave/</guid>
+      <description>&lt;h1 id=&#34;2019-7-更新&#34;&gt;&lt;sup&gt;2019&lt;/sup&gt;&amp;frasl;&lt;sub&gt;7&lt;/sub&gt; 更新&lt;/h1&gt;
+
+&lt;p&gt;八代同方机型 Z7(m)-KP7/5GZ(GC, EC) 和部分九代同方机型 Z7-CT7GK, G7-CT7VK 可以直接使用下面的 Clover
+配置文件安装：&lt;a href=&#34;https://github.com/kirainmoe/hasee-tongfang-macos&#34;&gt;https://github.com/kirainmoe/hasee-tongfang-macos&lt;/a&gt; .&lt;/p&gt;
+
+&lt;p&gt;EFI 配置文件替换教程参见 &lt;a href=&#34;https://github.com/kirainmoe/hasee-z7-kp7gz-macos/wiki/EFI-%E6%9B%BF%E6%8D%A2%E6%95%99%E7%A8%8B&#34;&gt;GitHub Wiki&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;以下内容可能已经过时。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>为旧款 Synaptics 触摸板添加 Windows Precision 触摸手势</title>
@@ -193,16 +209,6 @@
       
       <guid>https://kirainmoe.com/blog/post/webpack-plugin-developing-tutorial/</guid>
       <description>&lt;p&gt;之前为了尝试实现 &lt;a href=&#34;https://kotori.love&#34;&gt;dalao&lt;/a&gt; 的一个 idea，浅浅地踩了一下 webpack 插件开发的坑。今天才想起来，趁着有时间，应该整理一下开发 webpack 插件的思路。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>每周解题报告 (3rd, 8/14~8/20)</title>
-      <link>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</link>
-      <pubDate>Sun, 20 Aug 2017 14:43:46 +0000</pubDate>
-      
-      <guid>https://kirainmoe.com/blog/post/practicing-record-3rd-8-14-8-20/</guid>
-      <description>&lt;p&gt;这周主要是尝试了一些新的东西（ 做了一些之前一直想看但是一直没看懂和没做的题目。依旧是做 HDU 的题。虽然写得不是很熟练，不过慢慢来应该也是可以的。
-另外下周由于要阶段考试这样子，可能就没有时间做题目了。&lt;/p&gt;</description>
     </item>
     
   </channel>
